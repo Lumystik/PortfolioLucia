@@ -1,0 +1,415 @@
+/* General Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Fonts */
+body {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+    color: #000;
+    background-color: #ffffff;
+    position: relative;  /* Set relative positioning to contain absolute children */
+}
+
+/* Blurred Gradient Element */
+.gradient-blur {
+    position:fixed;
+    top: 0px;  /* Adjusted to place it slightly outside the visible area */
+    right: 0px;  /* Adjusted to extend beyond the visible area */
+    width: 600px;  /* Controls how wide the gradient should be */
+    height: 600px;  /* Controls how tall the gradient should be */
+    background: radial-gradient(circle at top right, rgba(194, 156, 244, 1), rgba(14, 217, 161, 0.2), transparent 90%);
+    filter: blur(80px);
+    z-index: -1;  /* Place it behind the content */
+    pointer-events: none;  /* Prevent the gradient from interfering with any interactions */
+}
+
+/* Header */
+.header {
+    padding: 40px 20px;
+    text-align: left;
+    border-bottom: 2px solid #000;
+    margin: 0;
+}
+
+.header-text {
+    max-width: 600px;
+}
+
+.name {
+    font-size: 5em;
+    font-weight: 700;
+    color: #000000;
+    line-height: 1.1em;
+}
+
+.title {
+    font-size: 2.38em;
+    color: #000000;
+    font-weight: 200;
+}
+
+/* Navigation */
+.topnav {
+    text-align: left;
+    padding: 10px 10px;
+    background-color: transparent;
+    border-bottom: 2px solid #000;
+}
+
+.topnav a {
+    color: black;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    margin-right: 20px;
+}
+
+.topnav a:hover {
+    color: #0ED9A1;
+}
+
+.icon {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+.gradient-blur {
+    position:fixed;
+    top: -100px;  /* Adjusted to place it slightly outside the visible area */
+    right: -100px;  /* Adjusted to extend beyond the visible area */
+    width: 600px;  /* Controls how wide the gradient should be */
+    height: 600px;  /* Controls how tall the gradient should be */
+    background: radial-gradient(circle at top right, rgba(194, 156, 244, 1), rgba(14, 217, 161, 0.2), transparent 80%);
+    filter: blur(80px);
+    z-index: -1;  /* Place it behind the content */
+    pointer-events: none;  /* Prevent the gradient from interfering with any interactions */
+    }
+    .topnav a { display: none; }
+    .topnav a.icon { display: block; }
+    .topnav.responsive a { 
+        display: block; 
+        text-align: left; 
+        padding: 16px; 
+        border-bottom: 1px solid #ccc; 
+    }
+    .topnav .icon { 
+        display: block; 
+        font-size: 28px; 
+        color: #000; 
+        cursor: pointer; 
+    }
+}
+
+/* Main Content */
+.container {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    align-items: flex-start;
+    margin-bottom: 100px;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        padding: 0 20px;
+    }
+}
+
+/* Left and Right Columns */
+.left-column {
+    flex: 1;
+    padding: 40px 0;
+    border-right: 2px solid #000;
+}
+
+.right-column {
+    flex: 3;
+    padding: 40px 0;
+    padding-left: 60px;
+}
+
+@media screen and (max-width: 768px) {
+    .left-column, .right-column {
+        flex: none;
+        max-width: 100%;
+        padding: 20px 0;
+        border-right: none;
+        border-bottom: 2px solid #000;
+    }
+
+    .right-column {
+        padding-left: 0;
+    }
+}
+
+/* Cards */
+.card {
+    margin-bottom: 60px;
+}
+
+.card-title {
+    font-size: 2em;
+    font-weight: 700;
+    color: #0ED9A1;
+    margin-bottom: 20px;
+}
+
+.skill {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.experience, .education, .project {
+    margin-bottom: 40px;
+}
+
+h3 {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+h4 {
+    font-size: 1.5em;
+    color: #666;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+.paragraph{
+    margin-top: 10px;
+}
+.date {
+    color: #0ED9A1;
+    font-size: 1em;
+    margin-bottom: 20px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #000;
+    margin: 40px 0;
+}
+/* Project Gallery */
+.project-gallery {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.project-image {
+    width: 30%;
+    cursor: pointer;
+    position: relative;
+}
+
+.project-image img {
+    width: 100%;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.project-image img:hover {
+    transform: scale(1.05);
+}
+
+/* Modal */
+/* Modal Overlay */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Transparent dark overlay */
+    backdrop-filter: blur(10px); /* Blur the background */
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Content */
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 90%;
+    position: relative; /* Needed for positioning the close button */
+}
+
+/* Close Button */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: white; /* Changed to white for better visibility */
+    background-color: #0ED9A1;
+    border-radius: 50%;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
+}
+
+.close:hover {
+    background-color: #90A9FF;
+}
+
+/* Thumbnail Gallery */
+.project-gallery {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap; /* Allow thumbnails to wrap on smaller screens */
+    justify-content: center;
+}
+
+.thumbnail {
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.3s ease;
+    flex-basis: 30%;
+    margin-bottom: 20px;
+}
+
+.thumbnail img {
+    width: 100%;
+    max-width: 200px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.thumbnail:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 80%; /* Adjust width for smaller screens */
+        padding: 15px;
+    }
+
+    .thumbnail {
+        flex-basis: 45%; /* Thumbnails take more space on smaller screens */
+    }
+
+    .project-gallery {
+        gap: 15px; /* Reduced gap between thumbnails */
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        width: 95%; /* Further reduce modal width for very small screens */
+    }
+
+    .close {
+        font-size: 1.5rem; /* Smaller close button for small screens */
+        top: 5px;
+        right: 5px;
+    }
+}
+
+/* Contact Form */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.contact-form textarea {
+    resize: none;
+    height: 150px;
+}
+
+.submit-button {
+    padding: 15px;
+    background-color: #0ED9A1;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #90A9FF;
+}
+
+/* Contact Section */
+.contact {
+    text-align: center;
+    padding: 80px 20px;
+    background-color: #f8f8f8;
+    border-top: 2px solid #000;
+}
+
+.contact h2 {
+    font-size: 3em;
+    color: #0ED9A1;
+    margin-bottom: 40px;
+}
+
+.contact p {
+    font-size: 1.5em;
+    color: #444;
+    margin-bottom: 40px;
+}
+
+.contact-button {
+    background-color: #0ED9A1;
+    color: #000;
+    padding: 20px 40px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.contact-button:hover {
+    background-color: #90A9FF;
+    color: #000;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f8f8f8;
+    border-top: 2px solid #000;
+}
+
+.footer .social-icons a {
+    color: #0ED9A1;
+    margin: 0 20px;
+    text-decoration: none;
+    font-size: 30px;
+    transition: color 0.3s;
+}
+
+.footer .social-icons a:hover {
+    color: #90A9FF;
+}

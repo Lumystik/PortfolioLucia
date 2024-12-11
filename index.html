@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lucía Medina - Digital and Interaction Designer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Fonts and Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Gradient Background -->
+    <div class="gradient-background"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-text">
+            <h1 class="name">Lucía Medina</h1>
+            <h2 class="title">Digital & Interaction Designer</h2>
+        </div>
+         <div class="gradient-blur"></div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="topnav" id="myTopnav">
+        <a href="#skills" class="active">Home</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Left Column -->
+        <aside class="left-column">
+            <!-- Skills Section -->
+            <section class="card" id="skills">
+                <h2 class="card-title"><i class="fa fa-asterisk icon"></i> Skills</h2>
+                <div class="skill"><p>Creativity and Innovation</p></div>
+                <div class="skill"><p>Communication Skills</p></div>
+                <div class="skill"><p>Problem Solving</p></div>
+                <div class="skill"><p>Teamwork</p></div>
+                <div class="skill"><p>Photo Editing</p></div>
+                <div class="skill"><p>Social Media Management</p></div>
+            </section>
+
+            <!-- Languages Section -->
+            <section class="card">
+                <h2 class="card-title"><i class="fa fa-globe icon"></i> Languages</h2>
+                <div class="skill"><p>English (Advanced C2)</p></div>
+                <div class="skill"><p>Spanish (Native)</p></div>
+                <div class="skill"><p>Italian (A2)</p></div>
+                <div class="skill"><p>Swedish (B2)</p></div>
+            </section>
+
+        </aside>
+
+        <!-- Right Column -->
+        <section class="right-column">
+            <!-- Work Experience -->
+            <section class="card" id="experience">
+                <h2 class="card-title"><i class="fa fa-suitcase icon"></i> Work Experience</h2>
+                <div class="experience">
+                    <h3>Junior Digital Designer</h3>
+                    <h4>Seedtag, Contextual Advertising Company</h4>
+                    <span class="date"><i class="fa fa-calendar"></i> Dec 2020 - Jan 2024</span>
+                    <br>
+                    <p class="paragraph">Developed graphic elements and animated creatives in cooperation with clients and creative agencies.</p>
+                </div>
+                <hr>
+                <div class="experience">
+                    <h3>Designer and Developer</h3>
+                    <h4>K.S.L.M. Freelance Project</h4>
+                    <span class="date"><i class="fa fa-calendar"></i> 2018</span>
+                     <br>
+                    <p class="paragraph">Visual design of static website & brand identity. Developed with Bootstrap, HTML, CSS, JS, PHP.</p>
+                </div>
+            </section>
+
+            <!-- Education -->
+            <section class="card" id="education">
+                <h2 class="card-title"><i class="fa fa-graduation-cap icon"></i> Education</h2>
+                <div class="education">
+                    <h3>MSc in Digital and Interaction Design</h3>
+                    <h4>Politecnico di Milano</h4>
+                    <span class="date"><i class="fa fa-calendar"></i> Sept 2023 - Present</span>
+                     <br>
+                    <p class="paragraph">Currently pursuing a Master's degree focusing on the intersection of digital technologies and interaction design.</p>
+                </div>
+                <hr>
+                <div class="education">
+                    <h3>Bachelor in Interactive Design</h3>
+                    <h4>Iberoamerican University</h4>
+                    <span class="date"><i class="fa fa-calendar"></i> 2016 - 2020</span>
+                     <br>
+                    <p class="paragraph">Graduated with a Bachelor's degree in Interactive Design, developing foundational skills in design and technology.</p>
+                </div>
+            </section>
+
+<section class="card" id="projects">
+    <h2 class="card-title"><i class="fa fa-lightbulb-o icon"></i> Projects</h2>
+    <div class="project-gallery">
+        <!-- Thumbnail 1 -->
+        <div class="thumbnail" onclick="openModal('modal1')">
+            <img src="../cv/images/museon-1.png" alt="MUSE*ON Thumbnail">
+            <p>MUSE*ON</p>
+        </div>
+        <!-- Thumbnail 2 -->
+        <div class="thumbnail" onclick="openModal('modal2')">
+            <img src="../cv/images/sintonia-1.png" alt="Sintonía Thumbnail">
+            <p>SINTONIA</p>
+        </div>
+        <!-- Thumbnail 3 -->
+        <div class="thumbnail" onclick="openModal('modal3')">
+            <img src="../cv/images/ogj-1.png" alt="OGJ Thumbnail">
+            <p>OGJ</p>
+        </div>
+    </div>
+
+    <!-- Modal 1 -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal1')">&times;</span>
+            <h3>MUSE*ON</h3>
+            <p>Developing an all-in-one software for small museum staff to streamline workflow and improve management of different areas within the institution.</p>
+        </div>
+    </div>
+
+    <!-- Modal 2 -->
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal2')">&times;</span>
+            <h3>Sintonía</h3>
+            <p>A mental health app for anxiety and depression, providing users with tools and resources to manage their mental health effectively.</p>
+        </div>
+    </div>
+
+    <!-- Modal 3 -->
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal3')">&times;</span>
+            <h3>OGJ</h3>
+            <p>A website providing information on gender equality and violence among young people.</p>
+        </div>
+    </div>
+</section>
+
+
+            <!-- Contact Section -->
+<section class="card" id="contact">
+    <h2 class="card-title"><i class="fa fa-envelope icon"></i> Contact</h2>
+    <form class="contact-form" action="contact.php" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <button type="submit" class="submit-button">Send</button>
+    </form>
+</section>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Connect with me on social media.</p>
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/lucia-medina1829" target="_blank"><i class="fa fa-linkedin"></i></a>
+            <a href="https://www.behance.net/lucamedinagaln1" target="_blank"><i class="fa fa-behance"></i></a>
+            <a href="mailto:lucia.medina@mail.polimi.it"><i class="fa fa-envelope"></i></a>
+        </div>
+       
+    </footer>
+
+    <!-- JavaScript for Menu Toggle -->
+    <script>
+        function toggleMenu() {
+            var nav = document.getElementById("myTopnav");
+            if (nav.className === "topnav") {
+                nav.className += " responsive";
+            } else {
+                nav.className = "topnav";
+            }
+        }
+    </script>
+    <!-- JavaScript for Modals -->
+    <script>
+function openModal(modalId) {
+    document.getElementById(modalId).style.display = 'flex';
+}
+
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+}
+
+</script>
+
+</body>
+</html>
