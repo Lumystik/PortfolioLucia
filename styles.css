@@ -1,415 +1,628 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;600;700&display=swap');
+
 /* General Reset */
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-/* Fonts */
+/* Body Styling */
 body {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 300;
-    color: #000;
-    background-color: #ffffff;
-    position: relative;  /* Set relative positioning to contain absolute children */
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #070707; 
+    overflow-x: hidden;
+    line-height: 1.6;
 }
 
-/* Blurred Gradient Element */
-.gradient-blur {
-    position:fixed;
-    top: 0px;  /* Adjusted to place it slightly outside the visible area */
-    right: 0px;  /* Adjusted to extend beyond the visible area */
-    width: 600px;  /* Controls how wide the gradient should be */
-    height: 600px;  /* Controls how tall the gradient should be */
-    background: radial-gradient(circle at top right, rgba(194, 156, 244, 1), rgba(14, 217, 161, 0.2), transparent 90%);
-    filter: blur(80px);
-    z-index: -1;  /* Place it behind the content */
-    pointer-events: none;  /* Prevent the gradient from interfering with any interactions */
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
 }
 
-/* Header */
-.header {
-    padding: 40px 20px;
-    text-align: left;
-    border-bottom: 2px solid #000;
+/* Header Styling */
+header {
+    position: fixed;
+    width: 100%;
+    background-color: #0a0a0a;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    top: 0;
+    height: 70px;
+    transition: background-color 0.3s ease;
+}
+
+
+header.scrolled {
+    background-color:#070707; /* New background color on scroll */
+}
+/* Animate Vector Background like it's being drawn */
+.vector-background {
+    z-index: 1; /* Background behind everything */
+    opacity: 1; /* Keep the opacity to make it visible */
+    stroke: #7bdcb5; /* Color of the vector when being drawn */
+    fill: none; /* Remove fill for drawing effect */
+    stroke-width: 2; /* Adjust the stroke width as needed */
+    stroke-dasharray: 2000; /* Adjust based on the length of your SVG path */
+    stroke-dashoffset: 2000; /* Start with the full length to hide the stroke */
+    animation: draw 10s ease-in-out forwards; /* Draw animation */
+}
+
+/* Keyframes for Drawing Animation (First instance - kept for legacy) */
+@keyframes draw {
+    from {
+        stroke-dashoffset: 2000; /* Begin with the entire path hidden */
+    }
+    to {
+        stroke-dashoffset: 0; /* Complete the path */
+    }
+}
+
+
+/* Hero Section Styling */
+.hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    color: #fff;
+    overflow: hidden;
+    margin-top: 40px; /* Adjust for fixed header */
+}
+
+/* Wrapper to Keep Everything Centered */
+.hero-content-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Hero Background Images */
+.hero-background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vector-background,
+.ellipse-foreground {
+    position: absolute;
+    width: 105%; /* Adjust the size to fit the viewport */
+    max-width: 1200px; /* Set a max-width to avoid oversizing */
+    object-fit: contain; /* Ensure the whole image fits within its container */
+}
+.vector-background {
+    z-index: 1; /* Background behind everything */
+    opacity: 0.7; /* Optional: Adjust opacity for a subtle look */
+}
+
+.ellipse-foreground {
+    z-index: 2; /* In front of vector but behind content */
+    opacity: 0.2; /* Optional: Adjust opacity as needed */
+    animation: fadeReveal 6s 0s linear infinite;
+}
+
+/* Hero Content Styling */
+.hero-content {
+    position: relative;
+    z-index: 3; /* Ensure it stays above both background layers */
+    text-align: center;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Styling for Your Name */
+.hero-name {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: calc(2.5rem + 2vw);
+    color: #FFFFFF;
+    margin-bottom: 20px;
+}
+
+/* Background Circle Behind the Tagline */
+.name-background {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Circle Styling with Tagline */
+.name-circle {
+    width:100%;
+    max-width: 400px; /* Ensure the circle is not too large */
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    z-index: 3;
+    text-align: center;
+}
+
+/* Tagline Styling Inside the Circle - UPDATED FOR CONSISTENCY */
+.name-circle h2 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 300; /* Slightly bolder */
+    font-size: calc(1.3rem + 1.2vw); /* Slightly larger */
+    color: #7bdcb5; /* Using primary accent color */
+    text-align: center;
+    line-height: 1.3;
     margin: 0;
 }
 
-.header-text {
-    max-width: 600px;
-}
 
-.name {
-    font-size: 5em;
-    font-weight: 700;
-    color: #000000;
-    line-height: 1.1em;
-}
-
-.title {
-    font-size: 2.38em;
-    color: #000000;
-    font-weight: 200;
-}
-
-/* Navigation */
-.topnav {
-    text-align: left;
-    padding: 10px 10px;
-    background-color: transparent;
-    border-bottom: 2px solid #000;
-}
-
-.topnav a {
-    color: black;
-    padding: 10px 20px;
-    text-decoration: none;
-    font-size: 1.2em;
-    font-weight: 700;
-    text-transform: uppercase;
-    transition: color 0.3s;
-    margin-right: 20px;
-}
-
-.topnav a:hover {
-    color: #0ED9A1;
-}
-
-.icon {
+/* Remove unused classes */
+.hero-left,
+.hero-right {
     display: none;
 }
+    /* Keyframes for Drawing Animation */
+        @keyframes draw {
+            from {
+                stroke-dashoffset: 2000; /* Start with the entire path hidden */
+            }
+            to {
+                stroke-dashoffset: 0; /* Complete the path */
+            }
+        }
 
-@media screen and (max-width: 768px) {
-.gradient-blur {
-    position:fixed;
-    top: -100px;  /* Adjusted to place it slightly outside the visible area */
-    right: -100px;  /* Adjusted to extend beyond the visible area */
-    width: 600px;  /* Controls how wide the gradient should be */
-    height: 600px;  /* Controls how tall the gradient should be */
-    background: radial-gradient(circle at top right, rgba(194, 156, 244, 1), rgba(14, 217, 161, 0.2), transparent 80%);
-    filter: blur(80px);
-    z-index: -1;  /* Place it behind the content */
-    pointer-events: none;  /* Prevent the gradient from interfering with any interactions */
-    }
-    .topnav a { display: none; }
-    .topnav a.icon { display: block; }
-    .topnav.responsive a { 
-        display: block; 
-        text-align: left; 
-        padding: 16px; 
-        border-bottom: 1px solid #ccc; 
-    }
-    .topnav .icon { 
-        display: block; 
-        font-size: 28px; 
-        color: #000; 
-        cursor: pointer; 
-    }
-}
-
-/* Main Content */
-.container {
-    display: flex;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 40px;
-    align-items: flex-start;
-    margin-bottom: 100px;
-}
-
-@media screen and (max-width: 768px) {
-    .container {
-        flex-direction: column;
-        padding: 0 20px;
-    }
-}
-
-/* Left and Right Columns */
-.left-column {
-    flex: 1;
-    padding: 40px 0;
-    border-right: 2px solid #000;
-}
-
-.right-column {
-    flex: 3;
-    padding: 40px 0;
-    padding-left: 60px;
-}
-
-@media screen and (max-width: 768px) {
-    .left-column, .right-column {
-        flex: none;
-        max-width: 100%;
-        padding: 20px 0;
-        border-right: none;
-        border-bottom: 2px solid #000;
+    /* Animate the vector path like it's being drawn */
+    .drawing-path {
+    stroke-width: 18.355; /* Adjust the stroke width as needed */
+    stroke-linecap: round; /* Line style for the path ends */
+    stroke-linejoin: round; /* Line join style */
+    stroke: linear-gradient(135deg, #7bdcb5 0%, #0080ff 40%, #4f4fff 70%, #006699 100%);
+    fill: none; /* Remove fill for drawing effect */
+    stroke-dasharray: 2000; /* Adjust based on the length of your SVG path */
+    stroke-dashoffset: 2000; /* Start with the full length to hide the stroke */
+    animation: draw 5s 0s linear infinite; /* Animate drawing the path */
     }
 
-    .right-column {
-        padding-left: 0;
+    @keyframes draw {
+    from {
+        stroke-dashoffset: 4000; /* Start offset */
     }
+    to {
+        stroke-dashoffset: 0; /* End offset for full path */
+    }
+    }
+    /* Keyframes for the fade and reveal effect */
+    @keyframes fadeReveal {
+    0%, 100% { /* Start and end fully transparent */
+        clip-path: inset(0 100% 0 0); /* Clip image from the right */
+        opacity: 0.1;
+    }
+    20% { /* Start of reveal */
+        clip-path: inset(0 0 0 0); /* Show entire image */
+        opacity: 0.02;
+    }
+    60% { /* Fade back out */
+        clip-path: inset(0 0 0 0); /* Keep full image */
+        opacity: 0.3;
+    }
+    80% { /* Begin to clip image again */
+        clip-path: inset(0 100% 0 0); /* Clip from the right again */
+        opacity: 0;
+    }
+    }
+/* Projects Section */
+.projects {
+    padding: 80px 20px;
+    text-align: center;
+    background-color: #111;
 }
 
-/* Cards */
-.card {
-    margin-bottom: 60px;
-}
-
-.card-title {
-    font-size: 2em;
-    font-weight: 700;
-    color: #0ED9A1;
-    margin-bottom: 20px;
-}
-
-.skill {
-    font-size: 1.2em;
-    margin-bottom: 20px;
-}
-
-.experience, .education, .project {
+/* Projects H2 - UPDATED FOR CONSISTENCY */
+.projects h2 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 200; /* Bold weight for main title */
+    font-size: 2.8rem; /* Consistent size for section title */
+    color: #f0f0f0; /* High contrast color */
     margin-bottom: 40px;
+    text-align: center; 
+    text-shadow: 0 0 5px rgba(123, 220, 181, 0.3); /* Subtle shadow for depth */
 }
 
-h3 {
-    font-size: 2.5em;
-    font-weight: 700;
-    color: #000;
-    margin-bottom: 10px;
-}
-
-h4 {
-    font-size: 1.5em;
-    color: #666;
-    font-weight: 400;
-    margin-bottom: 10px;
-}
-.paragraph{
-    margin-top: 10px;
-}
-.date {
-    color: #0ED9A1;
-    font-size: 1em;
-    margin-bottom: 20px;
-}
-
-hr {
-    border: none;
-    border-top: 1px solid #000;
-    margin: 40px 0;
-}
-/* Project Gallery */
 .project-gallery {
     display: flex;
-    gap: 20px;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
 }
 
-.project-image {
-    width: 30%;
+.project-card {
+    width: 280px;
+    background-color: #222;
+    border-radius: 8px;
+    overflow: hidden;
     cursor: pointer;
-    position: relative;
-}
-
-.project-image img {
-    width: 100%;
-    border-radius: 10px;
     transition: transform 0.3s;
 }
 
-.project-image img:hover {
+.project-card:hover {
     transform: scale(1.05);
 }
 
-/* Modal */
-/* Modal Overlay */
-.modal {
+.project-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.project-card-content {
+    padding: 15px;
+}
+
+.project-card h3 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.project-card p {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1rem;
+    color: #aaa;
+}
+.view-work-button {
+    display: inline-block;
+    padding: 10px 20px; /* similar to nav link padding */
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    background-color: transparent; /* match nav hover vibe */
+    border: 2px solid rgba(67, 68, 218, 0.8); /* same as nav hover border */
+    border-radius: 50px; /* consistent with nav hover */
+    text-decoration: none;
+    margin: 10px;
+    transition: all 0.3s ease;
+}
+
+.view-work-button:hover {
+    color: #fff;
+    background: rgba(67, 68, 218, 0.2); /* subtle background highlight */
+    transform: translateY(-2px);
+    border-color: rgba(67, 68, 218, 1);
+}
+
+
+/* Project Modal */
+.project-modal {
     display: none;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Transparent dark overlay */
-    backdrop-filter: blur(10px); /* Blur the background */
-    z-index: 1000;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.9);
     justify-content: center;
     align-items: center;
+    z-index: 1000;
 }
 
-/* Modal Content */
 .modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
+    background-color: #222;
+    padding: 40px;
+    border-radius: 8px;
     width: 90%;
-    position: relative; /* Needed for positioning the close button */
+    max-width: 700px;
+    color: #fff;
+    position: relative;
+    overflow-y: auto;
+    max-height: 90vh;
 }
 
-/* Close Button */
 .close {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 15px;
+    right: 20px;
     font-size: 2rem;
+    color: #aaa;
     cursor: pointer;
-    color: white; /* Changed to white for better visibility */
-    background-color: #0ED9A1;
-    border-radius: 50%;
-    padding: 5px 10px;
-    transition: background-color 0.3s ease;
 }
 
 .close:hover {
-    background-color: #90A9FF;
+    color: #fff;
 }
 
-/* Thumbnail Gallery */
-.project-gallery {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap; /* Allow thumbnails to wrap on smaller screens */
-    justify-content: center;
-}
-
-.thumbnail {
-    cursor: pointer;
-    text-align: center;
-    transition: transform 0.3s ease;
-    flex-basis: 30%;
+.project-details h2 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 2rem;
+    color: #7bdcb5;
     margin-bottom: 20px;
 }
 
-.thumbnail img {
-    width: 100%;
-    max-width: 200px;
-    border-radius: 10px;
-    transition: transform 0.3s ease;
+.project-details h4 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.2rem;
+    color: #7bdcb5;
+    margin-top: 20px;
 }
 
-.thumbnail:hover {
-    transform: scale(1.05);
+.project-details p {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1rem;
+    color: #ccc;
+    margin-top: 10px;
+}
+/* About Section */
+.about {
+    padding: 100px 20px;
+    background-color: #070707; 
 }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .modal-content {
-        width: 80%; /* Adjust width for smaller screens */
-        padding: 15px;
-    }
-
-    .thumbnail {
-        flex-basis: 45%; /* Thumbnails take more space on smaller screens */
-    }
-
-    .project-gallery {
-        gap: 15px; /* Reduced gap between thumbnails */
-    }
+.about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    color: #7bdcb5;
 }
 
-@media (max-width: 480px) {
-    .modal-content {
-        width: 95%; /* Further reduce modal width for very small screens */
-    }
-
-    .close {
-        font-size: 1.5rem; /* Smaller close button for small screens */
-        top: 5px;
-        right: 5px;
-    }
+.about-heading {
+    margin-bottom: 60px;
 }
 
-/* Contact Form */
-.contact-form {
+/* About H2 - UPDATED FOR CONSISTENCY (Consolidated with .projects h2) */
+.about-heading h2 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 200; /* Bold weight for main title */
+    font-size: 2.8rem; /* Consistent size for section title */
+    color: #f0f0f0; /* High contrast color */
+    margin-bottom: 40px;
+    text-align: center; 
+    text-shadow: 0 0 5px rgba(123, 220, 181, 0.3); /* Subtle shadow for depth */
+}
+
+.about-heading p {
+    font-size: 1.2rem;
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Cards Container */
+.cards-container {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
 }
 
-.contact-form input,
-.contact-form textarea {
+.about-card {
+    background-color: #111;
+    border-radius: 15px;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 550px;
     width: 100%;
-    padding: 15px;
-    border: 2px solid #000;
-    border-radius: 5px;
-    font-size: 16px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.contact-form textarea {
-    resize: none;
-    height: 150px;
+.about-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 20px 25px rgba(0, 0, 0, 0.15);
 }
 
-.submit-button {
-    padding: 15px;
-    background-color: #0ED9A1;
-    color: #000;
+.card-heading {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.card-item {
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.card-item h4 {
+    font-size: 1.5rem;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.card-item .institution {
     font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    color: #7bdcb5;
+    margin-bottom: 5px;
+    display: block;
 }
 
-.submit-button:hover {
-    background-color: #90A9FF;
+.card-item .date {
+    font-size: 0.9rem;
+    color: #999;
+    margin-bottom: 10px;
+    display: block;
 }
 
+.card-item p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+   
+ .hero-background {
+    width: 80%;
+}
+    .about-container {
+        padding: 0 20px;
+    }
+
+    .cards-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .about-card {
+        max-width: 100%;
+    }
+
+    .about-heading h2 {
+        font-size: 2.4rem;
+    }
+
+    .about-heading p {
+        font-size: 1.1rem;
+    }
+}
 /* Contact Section */
 .contact {
-    text-align: center;
     padding: 80px 20px;
-    background-color: #f8f8f8;
-    border-top: 2px solid #000;
-}
-
-.contact h2 {
-    font-size: 3em;
-    color: #0ED9A1;
-    margin-bottom: 40px;
-}
-
-.contact p {
-    font-size: 1.5em;
-    color: #444;
-    margin-bottom: 40px;
-}
-
-.contact-button {
-    background-color: #0ED9A1;
-    color: #000;
-    padding: 20px 40px;
-    font-weight: 700;
-    text-decoration: none;
-    border-radius: 50px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.contact-button:hover {
-    background-color: #90A9FF;
-    color: #000;
-}
-
-/* Footer */
-.footer {
+    background-color: #111;
     text-align: center;
-    padding: 40px 20px;
-    background-color: #f8f8f8;
-    border-top: 2px solid #000;
 }
 
-.footer .social-icons a {
-    color: #0ED9A1;
-    margin: 0 20px;
-    text-decoration: none;
-    font-size: 30px;
+/* Contact H2 - UPDATED FOR CONSISTENCY (Consolidated with .projects h2) */
+.contact h2 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 200; /* Bold weight for main title */
+    font-size: 2.8rem; /* Consistent size for section title */
+    color: #f0f0f0; /* High contrast color */
+    margin-bottom: 40px;
+    text-align: center; 
+    text-shadow: 0 0 5px rgba(123, 220, 181, 0.3); /* Subtle shadow for depth */
+}
+
+.contact-icons {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.contact-icons li a {
+    color: #fff;
+    font-size: 2rem;
     transition: color 0.3s;
 }
 
-.footer .social-icons a:hover {
-    color: #90A9FF;
+.contact-icons li a:hover {
+    color: #7bdcb5;
+}
+.hero-image img,
+.content-card img {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+
+
+.name-circle h2 {
+    font-size: clamp(1rem, 4vw, 1.4rem);
+    line-height: 1.4;
+    padding: 0 10px;
+}
+
+     .hero-image img,
+    .content-card img {
+        max-width: 500px; /* Prevent huge scaling */
+    }
+  
+
+    .hero-name {
+        font-size: calc(2rem + 2vw);
+    }
+
+    .name-circle h2 {
+        font-size: calc(1rem + 1.5vw);
+    }
+
+    .vector-background,
+    .ellipse-foreground {
+        width: 90%;
+    }
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: rgba(17, 17, 17, 0.9);
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        text-align: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    /* Adjust Hero Content Width */
+    .hero-content {
+        width: 100%;
+    }
+    .gradient-background {
+        width: 350px;
+        height: 350px;
+    }
+    /* Projects Section Adjustments */
+    .projects h2 {
+        font-size: 2.2rem; /* Adjusted for smaller screens */
+        margin-bottom: 40px;
+    }
+
+    .project-card {
+        width: 90%;
+    }
+
+    /* About Section Adjustments */
+    .about-container {
+        padding: 0 20px;
+    }
+
+    .cards-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .about-card {
+        max-width: 100%;
+    }
+
+    .about-heading h2 {
+        font-size: 2.2rem; /* Adjusted for smaller screens */
+    }
+
+    .about-heading p {
+        font-size: 1.1rem;
+    }
+
+    /* Contact Section Adjustments */
+    .contact h2 {
+        font-size: 2.2rem; /* Adjusted for smaller screens */
+    }
 }
