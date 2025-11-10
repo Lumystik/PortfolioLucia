@@ -185,7 +185,7 @@ header.scrolled {
 
     /* Animate the vector path like it's being drawn */
     .drawing-path {
-    stroke-width: 18.355; /* Adjust the stroke width as needed */
+    stroke-width: 4.355; /* Adjust the stroke width as needed */
     stroke-linecap: round; /* Line style for the path ends */
     stroke-linejoin: round; /* Line join style */
     stroke: linear-gradient(135deg, #7bdcb5 0%, #0080ff 40%, #4f4fff 70%, #006699 100%);
@@ -625,4 +625,5 @@ header.scrolled {
     .contact h2 {
         font-size: 2.2rem; /* Adjusted for smaller screens */
     }
+
 }
