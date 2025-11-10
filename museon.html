@@ -5,36 +5,14 @@
     <meta charset="UTF-8">
     <title>Muse*on Project Overview - Lucía Medina Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="portfolio/styles.css">
-    <link rel="stylesheet" href="portfolio/nav.css">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="project-details.css">
+    
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="portfolio/styles.css">
     <style>
-        /* Styling for Zoomable Image Container */
-        .zoom-container {
-            width: 100%;
-            max-width: 800px;
-            height: 500px;
-            overflow: hidden;
-            margin: 20px auto;
-            position: relative;
-            border-radius: 10px;
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
-        }
-
-        .zoom-image {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            transition: transform 0.3s ease;
-            cursor: grab;
-        }
-
-        .zoom-image:active {
-            cursor: grabbing;
-        }
-
-        /* --- NEW STYLE FOR FIGMA EMBED --- */
+        /* --- STYLE FOR FIGMA EMBED --- */
         .figma-embed-container {
             width: 100%;
             max-width: 1000px; /* You can adjust this */
@@ -42,6 +20,16 @@
             border-radius: 10px;
             box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
             overflow: hidden; /* Ensures the iframe respects the border-radius */
+        }
+        
+        /* Simple style for figcaptions */
+        .embed-caption {
+            text-align: center; 
+            display: block; 
+            margin-top: -15px; /* Pulls it closer to the embed */
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #666;
         }
 
     </style>
@@ -71,7 +59,7 @@
 
     <section id="project-overview" class="project-details">
         <div class="hero-image">
-            <img src="../portfolio/images/museonlogo.png" alt="MuseOn Project Hero Image">
+            <img src="images/museonlogo.png" alt="MuseOn Project Hero Image">
         </div>
 
         <div class="container">
@@ -104,14 +92,108 @@
                     <li><strong>Surveys:</strong> Collected quantitative data.</li>
                     <li><strong>Ecosystem Mapping:</strong> Visualized department interactions.</li>
                 </ul>
-                <div class="zoom-container">
-                    <img src="../portfolio/images/museon_ecosystemap.png" alt="MuseOn Ecosystem Mapping" class="zoom-image">
-                    <figcaption>Ecosystem map of stakeholders and interactions.</figcaption>
+                
+                <div class="figma-embed-container">
+                    <iframe
+                        style="border: none;"
+                        width="100%"
+                        height="500"
+                        src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2Ftr6jdVBNagNiL3RmbhfNFk%2Fmuseon-desktop%3Fnode-id%3D2-6194%26scaling%3Dcontain%26content-scaling%3Dfixed"
+                        allowfullscreen>
+                    </iframe>
                 </div>
-            </div>
+                <figcaption class="embed-caption">Ecosystem map of stakeholders and interactions.</figcaption>
+                </div>
 
             <div class="section-heading">
                 <h2>Ideation & Prototyping</h2>
             </div>
-            <div class="content-card
+            <div class="content-card2">
+                <h3>Wireframes & Prototypes</h3>
+                <p>We started with sketches, then refined them into wireframes and high-fidelity prototypes, iterating based on feedback to ensure user needs were met.</p>
+                <div class="image-container">
+                    <img src="images/museon_wireframe.png" alt="Wireframe of MuseOn Project">
+                    <figcaption>Wireframes showcasing core features taking into consideration the wireflow for organizing a new <br>museum exhibition.</figcaption>
+                </div>
+            </div>
 
+            <div class="section-heading">
+                <h2>User Testing</h2>
+            </div>
+            <div class="content-card">
+                <h3>Usability Testing</h3>
+                <p>Two rounds of usability testing with 8 participants led to improvements in navigation and task prioritization features.</p>
+                <ul>
+                    <li><strong>Navigation:</strong> Simplified for easier use.</li>
+                    <li><strong>Task Management:</strong> Color-coded priorities for better clarity.</li>
+                </ul>
+            </div>
+
+            <div class="section-heading">
+                <h2>Outcome & Impact</h2>
+            </div>
+            <div class="content-card">
+                <h3>Final Product</h3>
+                <p>Here is the interactive desktop prototype. Feel free to click through the user flow.</p>
+                
+                <div class="figma-embed-container">
+                    <iframe
+                        style="border: none;"
+                        width="100%"
+                        height="650"
+                        src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2Ftr6jdVBNagNiL3RmbhfNFk%2Fmuseon-desktop%3Fnode-id%3D2-7140%26t%3D0NKftnr7gRKTqPvw-1%26scaling%3Dscale-down%26content-scaling%3Dfixed%26page-id%3D0%253A1"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="figma-link" style="margin-top: 25px; text-align: center;">
+                    <a href="https://www.figma.com/embed?embed_host=share&amp;url=https%3A%2F%2Fwww.figma.com%2Fproto%2F5gT2aMT495MnDl8rPj9Z2P%2FUntitled%3Fnode-id%3D1-495%26t%3DwxViot3bzi45j43v-1%26scaling%3Dscale-down%26content-scaling=fixed%26page-id%3D0%253A1" target="_blank" class="figma-button">Link to Mobile Version</a>
+                </div>
+            </div>
+
+            <div class="back-to-work">
+                <a href="index.html#work" class="back-button">Back to All Work</a>
+            </div>
+        </div>
+    </section>
+ <script>
+        // Change header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) { // Adjust the scroll threshold as needed
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Hamburger Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+        });
+
+        // Smooth Scrolling with Offset
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetID = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetID);
+                if (targetSection) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+  
+</body>
+
+</html>
