@@ -6,43 +6,276 @@
     <title>Muse*on Project Overview - Lucía Medina Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="nav.css">
-    <link rel="stylesheet" href="project-details.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css"> <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* This is the only style you need for the embeds */
+        /* --- General Body & Container for Minimalism --- */
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9; /* A very light background */
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1100px; /* Wider for two columns */
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* --- Minimalist Header --- */
+        .site-header {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .site-header.scrolled {
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .brand a {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: #333;
+        }
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .nav-links li {
+            margin-left: 30px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: #007bff; /* Example highlight color */
+        }
+        .hamburger { /* Hide hamburger on desktop */
+            display: none;
+        }
+
+        /* --- Project Hero (Simplified) --- */
+        .project-hero {
+            text-align: center;
+            padding: 60px 20px 40px; /* Increased top padding, reduced bottom */
+            background-color: #fff; /* Clean white background */
+            margin-bottom: 40px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+        .project-hero h1 {
+            font-size: 3rem;
+            color: #222;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+        .project-hero .intro-text {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+            font-weight: 400;
+        }
+
+        /* --- New Two-Column Layout --- */
+        .project-content-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Default to single column for smaller screens */
+            gap: 40px 80px; /* Vertical and horizontal gap */
+            margin-top: 40px;
+        }
+
+        @media (min-width: 768px) { /* Two columns on larger screens */
+            .project-content-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* --- Section Styling (Minimalist) --- */
+        .project-section {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03); /* Subtle shadow */
+            margin-bottom: 20px; /* Space between sections if not in grid */
+        }
+        .project-section h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee; /* Subtle separator */
+            padding-bottom: 10px;
+            font-weight: 600;
+        }
+        .project-section h3 {
+            font-size: 1.4rem;
+            color: #444;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .project-section p {
+            margin-bottom: 1em;
+            color: #555;
+            font-weight: 300;
+        }
+        .project-section ul {
+            list-style: disc;
+            margin-left: 20px;
+            margin-bottom: 1em;
+            color: #555;
+            font-weight: 300;
+        }
+        .project-section ul li {
+            margin-bottom: 5px;
+        }
+
+        /* --- Figma Embeds & Figures --- */
         .figma-embed-container {
             width: 100%;
-            max-width: 1000px;
-            margin: 30px auto;
-            border-radius: 10px;
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
-            overflow: hidden; /* Keeps the rounded corners on the iframe */
+            max-width: 100%; /* Adapts to column width */
+            margin: 30px 0; /* Adjusted margin for column flow */
+            border-radius: 8px; /* Slightly less rounded */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+            overflow: hidden;
         }
-        
-        /* You can style your other <figure> tags similarly */
-        .image-container {
-            width: 100%;
-            margin: 20px auto;
+        .figma-embed-container iframe {
+            display: block; /* Removes extra space below iframe */
+        }
+        figure.image-container { /* Renamed for clarity */
+            margin: 30px 0;
             text-align: center;
         }
-        .image-container img {
+        figure.image-container img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Subtle shadow for images too */
         }
-
         figcaption {
             text-align: center; 
             display: block; 
-            margin-top: 8px;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-            color: #666;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: #777;
         }
+
+        /* --- Back to Work Button --- */
+        .back-to-work {
+            text-align: center;
+            margin-top: 60px;
+            grid-column: 1 / -1; /* Make button span all columns in the grid */
+        }
+        .back-button {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* --- Figma Buttons (for mobile link) --- */
+        .figma-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .figma-button {
+            display: inline-block;
+            background-color: #663399; /* Figma purple-ish */
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .figma-button:hover {
+            background-color: #5a2c89;
+        }
+
+        /* --- Mobile Navigation (Hamburger) --- */
+        @media (max-width: 767px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 60px; /* Adjust based on header height */
+                left: 0;
+                background-color: #fff;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                padding-bottom: 10px;
+            }
+            .nav-links.show {
+                display: flex;
+            }
+            .nav-links li {
+                margin: 0;
+                text-align: center;
+                border-bottom: 1px solid #eee;
+            }
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+            .nav-links a {
+                display: block;
+                padding: 15px 0;
+            }
+            .hamburger {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                width: 30px;
+                height: 25px;
+                cursor: pointer;
+            }
+            .hamburger div {
+                width: 100%;
+                height: 3px;
+                background-color: #333;
+                border-radius: 3px;
+            }
+
+            .project-hero h1 {
+                font-size: 2rem;
+            }
+            .project-hero .intro-text {
+                font-size: 1rem;
+            }
+            .project-section h2 {
+                font-size: 1.6rem;
+            }
+            .project-section h3 {
+                font-size: 1.2rem;
+            }
+        }
+
     </style>
 </head>
 
@@ -72,23 +305,19 @@
     <main id="project-overview">
 
         <header class="project-hero">
-            <img src="images/museonlogo.png" alt="MuseOn Project Hero Image">
-            <div class="intro-section">
-                <h1>Muse*on: Streamlining Small Museum Management</h1>
-                <p class="intro-text"><strong>Muse*on is a digital platform designed to simplify operations for small museums, providing centralized tools for efficient management.</strong></p>
-            </div>
+            <h1>Muse*on: Streamlining Small Museum Management</h1>
+            <p class="intro-text"><strong>Muse*on is a digital platform designed to simplify operations for small museums, providing centralized tools for efficient management.</strong></p>
         </header>
 
-        <div class="container">
-
-            <section class="project-card">
+        <div class="container project-content-grid">
+            <section class="project-section">
                 <h2>Project Summary</h2>
                 <p><strong>Objective:</strong> Develop an all-in-one software to streamline museum operations and enhance resource management.</p>
                 <p><strong>Role:</strong> UX/UI Designer: research, wireframing, prototyping, testing, final delivery.</p>
                 <p><strong>Tools:</strong> Figma.</p>
             </section>
 
-            <section class="project-card">
+            <section class="project-section">
                 <h2>Problem Statement</h2>
                 <p>Small museums lack efficient tools, leading to resource and workflow inefficiencies. Muse*on aims to address these challenges with a centralized platform.</p>
             </section>
@@ -126,7 +355,7 @@
                 </figure>
             </section>
 
-            <section class="project-card">
+            <section class="project-section">
                 <h2>User Testing</h2>
                 <h3>Usability Testing</h3>
                 <p>Two rounds of usability testing with 8 participants led to improvements in navigation and task prioritization features.</p>
@@ -151,7 +380,7 @@
                     </iframe>
                 </figure>
 
-                 <div class="figma-link" style="margin-top: 25px; text-align: center;">
+                 <div class="figma-link">
                     <a href="https://www.figma.com/embed?embed_host=share&amp;url=https%3A%2F%2Fwww.figma.com%2Fproto%2F5gT2aMT495MnDl8rPj9Z2P%2FUntitled%3Fnode-id%3D1-495%26t%3DwxViot3bzi45j43v-1%26scaling%3Dscale-down%26content-scaling=fixed%26page-id%3D0%253A1" target="_blank" class="figma-button">Link to Mobile Version</a>
                 </div>
             </section>
@@ -167,7 +396,7 @@
     
     // Change header background on scroll
     window.addEventListener('scroll', () => {
-        const header = document.querySelector('.site-header'); // Changed selector
+        const header = document.querySelector('.site-header'); 
         if (window.scrollY > 50) {
             header.classList.add('scrolled');
         } else {
@@ -175,13 +404,15 @@
         }
     });
 
-    // Hamburger Menu Toggle
+    // Hamburger Menu Toggle (for smaller screens)
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
 
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('show');
-    });
+    if (hamburger && navLinks) { // Ensure elements exist before adding listeners
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+        });
+    }
 
     // Smooth Scrolling with Offset
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -191,7 +422,7 @@
             const targetSection = document.getElementById(targetID);
             
             if (targetSection) {
-                const headerHeight = document.querySelector('.site-header').offsetHeight; // Changed selector
+                const headerHeight = document.querySelector('.site-header').offsetHeight; 
                 const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
 
                 window.scrollTo({
@@ -206,3 +437,4 @@
 </body>
 
 </html>
+```http://googleusercontent.com/image_generation_content/0
