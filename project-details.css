@@ -7,29 +7,20 @@
     box-sizing: border-box;
 }
 
-/* Body Styling */
-body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    background-color: #070707; 
-    overflow-x: hidden;
-    line-height: 1.6;
-}
-
 /* Smooth Scrolling */
 html {
     scroll-behavior: smooth;
 }
 
-
+/* Body Styling - Consolidated & Minimalist Dark Theme */
 body {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    background-color: #101010;
-    color: #e0e0e0; 
+    background-color: #101010; /* Dark background */
+    color: #e0e0e0; /* Light text */
     line-height: 1.7;
     font-size: 1rem;
-    margin: 0;
-    padding: 0;
     overflow-x: hidden;
+    /* Fade-in for the whole page */
     opacity: 0;
     animation: fadeInBody 1s forwards ease-in-out;
 }
@@ -46,19 +37,29 @@ body {
     margin: 0 auto;
 }
 
-/* Navigation Header */
-header {
+/* --- Navigation Header --- */
+.site-header { /* Targeting the new class in HTML */
     position: fixed;
     width: 100%;
     background-color: #0a0a0a;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
     z-index: 1000;
     top: 0;
-    height: 70px;
+    /* height removed to let content define height */
+    padding: 15px 0; /* Added padding for height */
     transition: background-color 0.3s ease;
 }
 
-/* 
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Navigation Links - UNCOMMENTED & FIXED */
 .nav-links {
     list-style: none;
     display: flex;
@@ -76,60 +77,70 @@ header {
     color: #fff;
     border-radius: 50px;
     border: 2px solid rgba(67, 68, 218, 0.8);
+    /* Prevent size jump on hover */
+    padding: 8px 13px; 
 }
-.hamburger { display: none; flex-direction: column; cursor: pointer; }
+.hamburger { 
+    display: none; 
+    flex-direction: column; 
+    cursor: pointer; 
+}
 .hamburger div {
-    width: 25px; height: 3px;
+    width: 25px; 
+    height: 3px;
     background-color: #fff;
     margin: 4px 0;
     transition: all 0.3s ease;
 }
-*/
-/* Section Headings */
-.section-heading { text-align: center; margin: 60px 0 40px; }
-.section-heading h2 {
-    font-size: 2.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: #e0e0e0;
-    border-bottom: 3px solid rgba(67, 68, 218, 0.8);
-    display: inline-block;
-    padding-bottom: 8px;
+
+/* --- Project Hero (Above the Grid) --- */
+.project-hero {
+    text-align: center;
+    padding: 140px 20px 60px; /* Top padding offset for fixed header */
     margin-bottom: 40px;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInSlide 0.8s forwards ease-out;
-    animation-delay: 0.5s;
 }
-/* Wrapper to Keep Everything Centered */
-.hero-content-wrapper {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
+.project-hero h1 {
+    font-size: 2.8rem; /* Adjusted for minimalism */
+    font-weight: 700;
+    color: #e0e0e0;
+    margin-bottom: 15px;
 }
-/* Fade-in slide animation */
-@keyframes fadeInSlide {
-    to {
-        opacity: 1;
-        transform: translateY(0);
+.project-hero .intro-text {
+    font-size: 1.1rem;
+    color: #b0b0b0;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* --- NEW: Two-Column Grid Setup --- */
+.project-content-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Default to single column */
+    gap: 30px; /* Space between the cards/sections */
+    padding-bottom: 60px;
+}
+
+@media (min-width: 768px) {
+    .project-content-grid {
+        /* Set to two columns */
+        grid-template-columns: 1fr 1fr; 
+    }
+}
+@media (min-width: 1024px) {
+    .project-content-grid {
+        /* Slightly larger gap on bigger screens */
+        gap: 40px;
     }
 }
 
-/* Content Cards */
-.content-card {
+/* --- Project Sections/Cards (The new .content-card) --- */
+/* Now targeting the new generic .project-section class */
+.project-section {
     background-color: #1b1b1b;
-    padding: 25px 30px;
+    padding: 30px;
     border-radius: 12px;
     box-shadow: 0px 6px 15px rgba(0,0,0,0.4);
-    margin-bottom: 40px;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
+    /* Margins removed; the grid gap handles spacing */
     transition: transform 0.5s ease, box-shadow 0.5s ease;
     position: relative;
     overflow: hidden;
@@ -137,29 +148,36 @@ header {
     transform: translateY(20px);
     animation: fadeInSlide 0.8s forwards ease-out;
 }
-.content-card:nth-child(1) { animation-delay: 0.6s; }
-.content-card:nth-child(2) { animation-delay: 0.8s; }
-.content-card:nth-child(3) { animation-delay: 1s; }
+/* Applying staggered delay to new sections for visual pop */
+.project-content-grid > .project-section:nth-child(1) { animation-delay: 0.6s; }
+.project-content-grid > .project-section:nth-child(2) { animation-delay: 0.8s; }
+.project-content-grid > .project-section:nth-child(3) { animation-delay: 1s; }
+.project-content-grid > .project-section:nth-child(4) { animation-delay: 1.2s; }
+.project-content-grid > .project-section:nth-child(5) { animation-delay: 1.4s; }
+.project-content-grid > .project-section:nth-child(6) { animation-delay: 1.6s; }
 
-.content-card:hover {
+
+.project-section:hover {
     transform: translateY(-4px);
     box-shadow: 0px 12px 25px rgba(0,0,0,0.5);
 }
 
 /* Card Titles */
-.content-card h2,
-.content-card h3 {
+.project-section h2,
+.project-section h3 {
     color: rgba(67, 68, 218, 0.8);
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 20px;
-    font-size: 1.8rem;
+    font-size: 1.5rem; /* Adjusted for smaller cards in a grid */
+}
+.project-section h3 {
+    font-size: 1.2rem;
 }
 
 /* Paragraphs */
-.content-card p,
-.project-details p,
+.project-section p,
 body p {
     font-size: 1rem;
     line-height: 1.7;
@@ -168,13 +186,13 @@ body p {
 }
 
 /* Bullet Lists */
-.content-card ul {
+.project-section ul {
     list-style: none;
     padding: 0;
     margin-bottom: 20px;
     text-align: left;
 }
-.content-card ul li {
+.project-section ul li {
     display: block;
     margin: 8px 0;
     color: #dcdcdc;
@@ -182,43 +200,49 @@ body p {
     position: relative;
     padding-left: 20px;
 }
-.content-card ul li::before {
+.project-section ul li::before {
     content: '▸';
     position: absolute;
     left: 0;
     color: rgba(67, 68, 218, 0.5);
 }
 
-/* Hero Image / Floating Vector */
-.hero-image,
+/* Image Container */
 .image-container {
     text-align: center;
-    margin-bottom: 50px;
+    margin: 30px 0; /* Space within the card */
     opacity: 0;
     animation: fadeInSlide 1s forwards ease-out;
     animation-delay: 0.7s;
 }
-.hero-image img,
 .image-container img {
     width: 100%;
-    max-width: 850px;
-    border-radius: 12px;
-    box-shadow: 0px 8px 15px rgba(0,0,0,0.5);
+    max-width: 100%; /* Important for grid context */
+    border-radius: 8px; /* Slightly less rounded */
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.5);
     transition: transform 0.5s ease, box-shadow 0.5s ease;
-    animation: float 6s ease-in-out infinite alternate;
+    /* Removed float animation for a more static, professional look */
 }
-.hero-image img:hover,
 .image-container img:hover {
-    transform: scale(1.03);
-    box-shadow: 0px 12px 20px rgba(0,0,0,0.6);
+    transform: none; /* Removed hover scaling */
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.5);
 }
 
-/* Floating gentle animation */
-@keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
-    100% { transform: translateY(0); }
+/* Figma Embed Container */
+.figma-embed-container {
+    width: 100%;
+    margin: 30px 0;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); 
+    overflow: hidden;
+    /* Added to fit content nicely within the card */
+    height: 400px;
 }
+.figma-embed-container iframe {
+    display: block;
+    height: 100%;
+}
+
 
 /* Figure Caption */
 figcaption {
@@ -251,39 +275,61 @@ figcaption {
     border-color: rgba(67, 68, 218, 1);
 }
 
-/* Project Details */
-.project-details {
-    padding: 140px 20px 60px;
-    background: linear-gradient(135deg, #1a1a1a, #151515);
-    border-radius: 12px;
-    box-shadow: 0px 10px 20px rgba(0,0,0,0.5);
-    max-width: 900px;
-    margin: 0 auto;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInSlide 0.8s forwards ease-out;
-    animation-delay: 0.9s;
+.back-to-work {
+    text-align: center;
+    margin-top: 40px;
+    grid-column: 1 / -1; /* Make button span full width in the grid */
 }
+
+/* Animation Fixes */
+@keyframes fadeInSlide {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* Removed redundant float animation */
 
 /* Responsive Styles */
 @media (max-width: 1024px) {
-    .section-heading h2,
-    .content-card h2,
-    .content-card h3 { font-size: 2rem; }
-    .content-card { padding: 20px; }
+    .project-hero h1 { font-size: 2.2rem; }
+    .project-section { padding: 25px; }
+    .project-section h2 { font-size: 1.4rem; }
+    .project-section h3 { font-size: 1.1rem; }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) { /* Changed from 768px to 767px for consistency */
     .nav-container { flex-direction: column; align-items: flex-start; }
-    .nav-links { flex-direction: column; gap: 10px; width: 100%; background-color: #0b0b0b; padding: 15px; margin-top: 15px; border-radius: 10px; }
+    .nav-links { 
+        display: none; /* Hidden by default for mobile */
+        flex-direction: column; 
+        gap: 10px; 
+        width: 100%; 
+        background-color: #0b0b0b; 
+        padding: 15px; 
+        margin-top: 15px; 
+        border-radius: 10px; 
+    }
+    .nav-links.show { 
+        display: flex; /* Show when hamburger is clicked */
+    }
     .nav-links li a { text-align: center; padding: 12px; }
-    .project-details { padding: 100px 20px 40px; }
-    .section-heading h2 { font-size: 1.9rem; }
+    
+    .project-hero { padding: 100px 20px 30px; }
+    .project-hero h1 { font-size: 1.9rem; }
+    
+    /* Ensure the single column flow is the default and correct */
+    .project-content-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-section { padding: 20px; }
+    .project-section h2 { font-size: 1.6rem; }
+    .project-section h3 { font-size: 1.3rem; }
     .back-button, .figma-button { padding: 10px 22px; font-size: 0.95rem; }
 }
 
 @media (max-width: 480px) {
-    .section-heading h2 { font-size: 1.7rem; }
-    .content-card p, .project-details p { font-size: 0.9rem; }
-    .back-button, .figma-button { padding: 8px 20px; font-size: 0.9rem; }
+    .project-hero h1 { font-size: 1.5rem; }
+    .project-section p { font-size: 0.9rem; }
 }
