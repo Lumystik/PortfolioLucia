@@ -441,8 +441,8 @@ header.scrolled {
 }
 
 .card-item .institution {
-    font-weight: bold;
-    color: #7bdcb5;
+    /*font-weight: bold;*/
+    color: #ffff;
     margin-bottom: 5px;
     display: block;
 }
@@ -627,5 +627,6 @@ header.scrolled {
     }
 
 }
+
 
 
