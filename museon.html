@@ -5,38 +5,50 @@
     <meta charset="UTF-8">
     <title>Muse*on Project Overview - Lucía Medina Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="nav.css">
     <link rel="stylesheet" href="project-details.css">
     
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* --- STYLE FOR FIGMA EMBED --- */
+        /* This is the only style you need for the embeds */
         .figma-embed-container {
             width: 100%;
-            max-width: 1000px; /* You can adjust this */
-            margin: 30px auto; /* Centered with space */
+            max-width: 1000px;
+            margin: 30px auto;
             border-radius: 10px;
             box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
-            overflow: hidden; /* Ensures the iframe respects the border-radius */
+            overflow: hidden; /* Keeps the rounded corners on the iframe */
         }
         
-        /* Simple style for figcaptions */
-        .embed-caption {
+        /* You can style your other <figure> tags similarly */
+        .image-container {
+            width: 100%;
+            margin: 20px auto;
+            text-align: center;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        figcaption {
             text-align: center; 
             display: block; 
-            margin-top: -15px; /* Pulls it closer to the embed */
+            margin-top: 8px;
             margin-bottom: 20px;
             font-size: 0.9rem;
             color: #666;
         }
-
     </style>
 </head>
 
 <body>
-     <header>
+
+    <header class="site-header">
         <nav>
             <div class="nav-container">
                 <div class="brand">
@@ -48,43 +60,41 @@
                     <div></div>
                 </div>
                <ul class="nav-links">
-               <li><a href="index.html#home">Home</a></li>
-                <li><a href="index.html#work">All Work</a></li>
-                <li><a href="index.html#about">About Me</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
+                   <li><a href="index.html#home">Home</a></li>
+                   <li><a href="index.html#work">All Work</a></li>
+                   <li><a href="index.html#about">About Me</a></li>
+                   <li><a href="index.html#contact">Contact</a></li>
                 </ul>
             </div>
         </nav>
     </header>
 
-    <section id="project-overview" class="project-details">
-        <div class="hero-image">
-            <img src="images/museonlogo.png" alt="MuseOn Project Hero Image">
-        </div>
+    <main id="project-overview">
 
-        <div class="container">
+        <header class="project-hero">
+            <img src="images/museonlogo.png" alt="MuseOn Project Hero Image">
             <div class="intro-section">
                 <h1>Muse*on: Streamlining Small Museum Management</h1>
-                <p class="intro-text"> <strong > Muse*on is a digital platform designed to simplify operations for small museums, providing centralized tools for efficient management.</strong></p>
-                <br>
+                <p class="intro-text"><strong>Muse*on is a digital platform designed to simplify operations for small museums, providing centralized tools for efficient management.</strong></p>
             </div>
+        </header>
 
-            <div class="content-card">
+        <div class="container">
+
+            <section class="project-card">
                 <h2>Project Summary</h2>
                 <p><strong>Objective:</strong> Develop an all-in-one software to streamline museum operations and enhance resource management.</p>
                 <p><strong>Role:</strong> UX/UI Designer: research, wireframing, prototyping, testing, final delivery.</p>
                 <p><strong>Tools:</strong> Figma.</p>
-            </div>
+            </section>
 
-            <div class="content-card">
+            <section class="project-card">
                 <h2>Problem Statement</h2>
                 <p>Small museums lack efficient tools, leading to resource and workflow inefficiencies. Muse*on aims to address these challenges with a centralized platform.</p>
-            </div>
+            </section>
 
-            <div class="section-heading">
+            <section class="project-section">
                 <h2>Research Insights</h2>
-            </div>
-            <div class="content-card2">
                 <h3>Research Activities</h3>
                 <ul>
                     <li><strong>Contextual Inquiry:</strong> Observed staff workflows.</li>
@@ -93,7 +103,7 @@
                     <li><strong>Ecosystem Mapping:</strong> Visualized department interactions.</li>
                 </ul>
                 
-                <div class="figma-embed-container">
+                <figure class="figma-embed-container">
                     <iframe
                         style="border: none;"
                         width="100%"
@@ -101,42 +111,37 @@
                         src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2Ftr6jdVBNagNiL3RmbhfNFk%2Fmuseon-desktop%3Fnode-id%3D2-6194%26scaling%3Dcontain%26content-scaling%3Dfixed"
                         allowfullscreen>
                     </iframe>
-                </div>
-                <figcaption class="embed-caption">Ecosystem map of stakeholders and interactions.</figcaption>
-                </div>
+                    <figcaption>Ecosystem map of stakeholders and interactions.</figcaption>
+                </figure>
+            </section>
 
-            <div class="section-heading">
+            <section class="project-section">
                 <h2>Ideation & Prototyping</h2>
-            </div>
-            <div class="content-card2">
                 <h3>Wireframes & Prototypes</h3>
                 <p>We started with sketches, then refined them into wireframes and high-fidelity prototypes, iterating based on feedback to ensure user needs were met.</p>
-                <div class="image-container">
+                
+                <figure class="image-container">
                     <img src="images/museon_wireframe.png" alt="Wireframe of MuseOn Project">
-                    <figcaption>Wireframes showcasing core features taking into consideration the wireflow for organizing a new <br>museum exhibition.</figcaption>
-                </div>
-            </div>
+                    <figcaption>Wireframes showcasing core features for organizing a new museum exhibition.</figcaption>
+                </figure>
+            </section>
 
-            <div class="section-heading">
+            <section class="project-card">
                 <h2>User Testing</h2>
-            </div>
-            <div class="content-card">
                 <h3>Usability Testing</h3>
                 <p>Two rounds of usability testing with 8 participants led to improvements in navigation and task prioritization features.</p>
                 <ul>
                     <li><strong>Navigation:</strong> Simplified for easier use.</li>
                     <li><strong>Task Management:</strong> Color-coded priorities for better clarity.</li>
                 </ul>
-            </div>
+            </section>
 
-            <div class="section-heading">
+            <section class="project-section">
                 <h2>Outcome & Impact</h2>
-            </div>
-            <div class="content-card">
                 <h3>Final Product</h3>
                 <p>Here is the interactive desktop prototype. Feel free to click through the user flow.</p>
                 
-                <div class="figma-embed-container">
+                <figure class="figma-embed-container">
                     <iframe
                         style="border: none;"
                         width="100%"
@@ -144,55 +149,59 @@
                         src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2Ftr6jdVBNagNiL3RmbhfNFk%2Fmuseon-desktop%3Fnode-id%3D2-7140%26t%3D0NKftnr7gRKTqPvw-1%26scaling%3Dscale-down%26content-scaling%3Dfixed%26page-id%3D0%253A1"
                         allowfullscreen>
                     </iframe>
-                </div>
-                <div class="figma-link" style="margin-top: 25px; text-align: center;">
+                </figure>
+
+                 <div class="figma-link" style="margin-top: 25px; text-align: center;">
                     <a href="https://www.figma.com/embed?embed_host=share&amp;url=https%3A%2F%2Fwww.figma.com%2Fproto%2F5gT2aMT495MnDl8rPj9Z2P%2FUntitled%3Fnode-id%3D1-495%26t%3DwxViot3bzi45j43v-1%26scaling%3Dscale-down%26content-scaling=fixed%26page-id%3D0%253A1" target="_blank" class="figma-button">Link to Mobile Version</a>
                 </div>
-            </div>
+            </section>
 
             <div class="back-to-work">
                 <a href="index.html#work" class="back-button">Back to All Work</a>
             </div>
         </div>
-    </section>
+    </main>
+ 
  <script>
-        // Change header background on scroll
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) { // Adjust the scroll threshold as needed
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
+    // --- Navigation Script ---
+    
+    // Change header background on scroll
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('.site-header'); // Changed selector
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    // Hamburger Menu Toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('show');
+    });
+
+    // Smooth Scrolling with Offset
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetID = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetID);
+            
+            if (targetSection) {
+                const headerHeight = document.querySelector('.site-header').offsetHeight; // Changed selector
+                const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
             }
         });
-
-        // Hamburger Menu Toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('show');
-        });
-
-        // Smooth Scrolling with Offset
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                const targetID = this.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetID);
-                if (targetSection) {
-                    const headerHeight = document.querySelector('header').offsetHeight;
-                    const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
+    });
+</script>
   
 </body>
 
