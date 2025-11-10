@@ -5,17 +5,50 @@
     <meta charset="UTF-8">
     <title>Muse*on Project Overview - Lucía Medina Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  
-    <link rel="stylesheet" href="nav.css">
-    
+    <link rel="stylesheet" href="../portfolio/styles.css">
+    <link rel="stylesheet" href="../portfolio/nav.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../portfolio/project-details.css">
+    <style>
+        /* Styling for Zoomable Image Container */
+        .zoom-container {
+            width: 100%;
+            max-width: 800px;
+            height: 500px;
+            overflow: hidden;
+            margin: 20px auto;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+        }
 
+        .zoom-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+            cursor: grab;
+        }
+
+        .zoom-image:active {
+            cursor: grabbing;
+        }
+
+        /* --- NEW STYLE FOR FIGMA EMBED --- */
+        .figma-embed-container {
+            width: 100%;
+            max-width: 1000px; /* You can adjust this */
+            margin: 30px auto; /* Centered with space */
+            border-radius: 10px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+            overflow: hidden; /* Ensures the iframe respects the border-radius */
+        }
+
+    </style>
 </head>
 
 <body>
-
-    <header class="site-header">
+     <header>
         <nav>
             <div class="nav-container">
                 <div class="brand">
@@ -27,41 +60,43 @@
                     <div></div>
                 </div>
                <ul class="nav-links">
-                   <li><a href="index.html#home">Home</a></li>
-                   <li><a href="index.html#work">All Work</a></li>
-                   <li><a href="index.html#about">About Me</a></li>
-                   <li><a href="index.html#contact">Contact</a></li>
+               <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#work">All Work</a></li>
+                <li><a href="index.html#about">About Me</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
                 </ul>
             </div>
         </nav>
     </header>
 
-    <main id="project-overview">
-
-        <header class="project-hero">
-            <img src="images/museonlogo.png" alt="MuseOn Project Hero Image">
-            <div class="intro-section">
-                <h1>Muse*on: Streamlining Small Museum Management</h1>
-                <p class="intro-text"><strong>Muse*on is a digital platform designed to simplify operations for small museums, providing centralized tools for efficient management.</strong></p>
-            </div>
-        </header>
+    <section id="project-overview" class="project-details">
+        <div class="hero-image">
+            <img src="../portfolio/images/museonlogo.png" alt="MuseOn Project Hero Image">
+        </div>
 
         <div class="container">
+            <div class="intro-section">
+                <h1>Muse*on: Streamlining Small Museum Management</h1>
+                <p class="intro-text"> <strong > Muse*on is a digital platform designed to simplify operations for small museums, providing centralized tools for efficient management.</strong></p>
+                <br>
+            </div>
 
-            <section class="project-card">
+            <div class="content-card">
                 <h2>Project Summary</h2>
                 <p><strong>Objective:</strong> Develop an all-in-one software to streamline museum operations and enhance resource management.</p>
                 <p><strong>Role:</strong> UX/UI Designer: research, wireframing, prototyping, testing, final delivery.</p>
                 <p><strong>Tools:</strong> Figma.</p>
-            </section>
+            </div>
 
-            <section class="project-card">
+            <div class="content-card">
                 <h2>Problem Statement</h2>
                 <p>Small museums lack efficient tools, leading to resource and workflow inefficiencies. Muse*on aims to address these challenges with a centralized platform.</p>
-            </section>
+            </div>
 
-            <section class="project-section">
+            <div class="section-heading">
                 <h2>Research Insights</h2>
+            </div>
+            <div class="content-card2">
                 <h3>Research Activities</h3>
                 <ul>
                     <li><strong>Contextual Inquiry:</strong> Observed staff workflows.</li>
@@ -69,110 +104,171 @@
                     <li><strong>Surveys:</strong> Collected quantitative data.</li>
                     <li><strong>Ecosystem Mapping:</strong> Visualized department interactions.</li>
                 </ul>
-                
-                <figure class="figma-embed-container">
-                    <iframe
-                        style="border: none;"
-                        width="100%"
-                        height="500"
-                        src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2Ftr6jdVBNagNiL3RmbhfNFk%2Fmuseon-desktop%3Fnode-id%3D2-6194%26scaling%3Dcontain%26content-scaling%3Dfixed"
-                        allowfullscreen>
-                    </iframe>
+                <div class="zoom-container">
+                    <img src="../portfolio/images/museon_ecosystemap.png" alt="MuseOn Ecosystem Mapping" class="zoom-image">
                     <figcaption>Ecosystem map of stakeholders and interactions.</figcaption>
-                </figure>
-            </section>
+                </div>
+            </div>
 
-            <section class="project-section">
+            <div class="section-heading">
                 <h2>Ideation & Prototyping</h2>
+            </div>
+            <div class="content-card2">
                 <h3>Wireframes & Prototypes</h3>
                 <p>We started with sketches, then refined them into wireframes and high-fidelity prototypes, iterating based on feedback to ensure user needs were met.</p>
-                
-                <figure class="image-container">
-                    <img src="images/museon_wireframe.png" alt="Wireframe of MuseOn Project">
-                    <figcaption>Wireframes showcasing core features for organizing a new museum exhibition.</figcaption>
-                </figure>
-            </section>
+                <div class="image-container">
+                    <img src="../portfolio/images/museon_wireframe.png" alt="Wireframe of MuseOn Project">
+                    <figcaption>Wireframes showcasing core features taking into consideration the wireflow for organizing a new <br>museum exhibition.</figcaption>
+                </div>
+            </div>
 
-            <section class="project-card">
+            <div class="section-heading">
                 <h2>User Testing</h2>
+            </div>
+            <div class="content-card">
                 <h3>Usability Testing</h3>
                 <p>Two rounds of usability testing with 8 participants led to improvements in navigation and task prioritization features.</p>
                 <ul>
                     <li><strong>Navigation:</strong> Simplified for easier use.</li>
                     <li><strong>Task Management:</strong> Color-coded priorities for better clarity.</li>
                 </ul>
-            </section>
+            </div>
 
-            <section class="project-section">
+            <div class="section-heading">
                 <h2>Outcome & Impact</h2>
+            </div>
+            <div class="content-card">
                 <h3>Final Product</h3>
                 <p>Here is the interactive desktop prototype. Feel free to click through the user flow.</p>
                 
-                <figure class="figma-embed-container">
+                <div class="figma-embed-container">
                     <iframe
                         style="border: none;"
                         width="100%"
                         height="650"
-                        src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2Ftr6jdVBNagNiL3RmbhfNFk%2Fmuseon-desktop%3Fnode-id%3D2-7140%26t%3D0NKftnr7gRKTqPvw-1%26scaling%3Dscale-down%26content-scaling%3Dfixed%26page-id%3D0%253A1"
+                        src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2Ftr6jdVBNagNiL3RmbhfNFk%2Fmuseon-desktop%3Fnode-id%3D2-6194%26scaling%3Dcontain%26content-scaling%3Dfixed"
                         allowfullscreen>
                     </iframe>
-                </figure>
-
-                 <div class="figma-link" style="margin-top: 25px; text-align: center;">
+                </div>
+                <div class="figma-link" style="margin-top: 25px; text-align: center;">
                     <a href="https://www.figma.com/embed?embed_host=share&amp;url=https%3A%2F%2Fwww.figma.com%2Fproto%2F5gT2aMT495MnDl8rPj9Z2P%2FUntitled%3Fnode-id%3D1-495%26t%3DwxViot3bzi45j43v-1%26scaling%3Dscale-down%26content-scaling=fixed%26page-id%3D0%253A1" target="_blank" class="figma-button">Link to Mobile Version</a>
                 </div>
-            </section>
+            </div>
 
             <div class="back-to-work">
                 <a href="index.html#work" class="back-button">Back to All Work</a>
             </div>
         </div>
-    </main>
- 
+    </section>
  <script>
-    // --- Navigation Script ---
-    
-    // Change header background on scroll
-    window.addEventListener('scroll', () => {
-        const header = document.querySelector('.site-header'); // Changed selector
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
-
-    // Hamburger Menu Toggle
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
-
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('show');
-    });
-
-    // Smooth Scrolling with Offset
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetID = this.getAttribute('href').substring(1);
-            const targetSection = document.getElementById(targetID);
-            
-            if (targetSection) {
-                const headerHeight = document.querySelector('.site-header').offsetHeight; // Changed selector
-                const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
+        // Change header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) { // Adjust the scroll threshold as needed
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
             }
         });
-    });
+
+        // Hamburger Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+        });
+
+        // Smooth Scrolling with Offset
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetID = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetID);
+                if (targetSection) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+  <script>
+    // JavaScript for Zooming and Panning the Image
+    const zoomContainer = document.querySelector('.zoom-container');
+    const zoomImage = document.querySelector('.zoom-image');
+
+    // Check if the elements exist before adding event listeners
+    if (zoomContainer && zoomImage) {
+        let scale = 1;
+        let isDragging = false;
+        let startX, startY;
+        let translateX = 0, translateY = 0;
+
+        // Zoom In and Out - Zoom to cursor
+        zoomContainer.addEventListener('wheel', (e) => {
+            e.preventDefault();
+
+            const rect = zoomImage.getBoundingClientRect();
+            const offsetX = e.clientX - rect.left; // X position of cursor relative to image
+            const offsetY = e.clientY - rect.top;  // Y position of cursor relative to image
+
+            const delta = e.deltaY > 0 ? 0.9 : 1.1;
+            const newScale = scale * delta;
+
+            // Limit the scale (between 1 and 3)
+            if (newScale >= 1 && newScale <= 3) {
+                // Adjust translate to keep the zoom centered on cursor
+                translateX -= (offsetX / scale) * (delta - 1);
+                translateY -= (offsetY / scale) * (delta - 1);
+
+                scale = newScale;
+                updateTransform();
+            }
+        });
+
+        // Start Dragging
+        zoomContainer.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.clientX - translateX;
+            startY = e.clientY - translateY;
+            zoomImage.style.cursor = 'grabbing';
+        });
+
+        // Drag the Image
+        zoomContainer.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+
+            translateX = e.clientX - startX;
+            translateY = e.clientY - startY;
+
+            updateTransform();
+        });
+
+        // Stop Dragging
+        zoomContainer.addEventListener('mouseup', () => {
+            isDragging = false;
+            zoomImage.style.cursor = 'grab';
+        });
+
+        zoomContainer.addEventListener('mouseleave', () => {
+            isDragging = false;
+            zoomImage.style.cursor = 'grab';
+        });
+
+        // Function to update image transform
+        function updateTransform() {
+            zoomImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+        }
+    }
 </script>
-  
+
 </body>
 
 </html>
-
-
-
