@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../portfolio/styles.css">
     <link rel="stylesheet" href="../portfolio/nav.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../portfolio/project-details.css">
+    <link rel="stylesheet" href="../portfolio/styles.css">
     <style>
         /* Styling for Zoomable Image Container */
         .zoom-container {
@@ -33,12 +33,22 @@
         .zoom-image:active {
             cursor: grabbing;
         }
+
+        /* --- NEW STYLE FOR FIGMA EMBED --- */
+        .figma-embed-container {
+            width: 100%;
+            max-width: 1000px; /* You can adjust this */
+            margin: 30px auto; /* Centered with space */
+            border-radius: 10px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+            overflow: hidden; /* Ensures the iframe respects the border-radius */
+        }
+
     </style>
 </head>
 
 <body>
-     <!-- Navigation -->
-    <header>
+     <header>
         <nav>
             <div class="nav-container">
                 <div class="brand">
@@ -59,7 +69,6 @@
         </nav>
     </header>
 
-    <!-- MuseOn Project Overview Section -->
     <section id="project-overview" class="project-details">
         <div class="hero-image">
             <img src="../portfolio/images/museonlogo.png" alt="MuseOn Project Hero Image">
@@ -104,154 +113,4 @@
             <div class="section-heading">
                 <h2>Ideation & Prototyping</h2>
             </div>
-            <div class="content-card2">
-                <h3>Wireframes & Prototypes</h3>
-                <p>We started with sketches, then refined them into wireframes and high-fidelity prototypes, iterating based on feedback to ensure user needs were met.</p>
-                <div class="image-container">
-                    <img src="../portfolio/images/museon_wireframe.png" alt="Wireframe of MuseOn Project">
-                    <figcaption>Wireframes showcasing core features taking into consideration the wireflow for organizing a new <br>museum exhibition.</figcaption>
-                </div>
-            </div>
-
-            <div class="section-heading">
-                <h2>User Testing</h2>
-            </div>
-            <div class="content-card">
-                <h3>Usability Testing</h3>
-                <p>Two rounds of usability testing with 8 participants led to improvements in navigation and task prioritization features.</p>
-                <ul>
-                    <li><strong>Navigation:</strong> Simplified for easier use.</li>
-                    <li><strong>Task Management:</strong> Color-coded priorities for better clarity.</li>
-                </ul>
-            </div>
-
-            <div class="section-heading">
-                <h2>Outcome & Impact</h2>
-            </div>
-            <div class="content-card">
-                <h3>Final Product</h3>
-                <div class="image-container">
-                    <img src="../portfolio/images/museon_final.png" alt="Final UI Design of MuseOn">
-                    <figcaption>Final UI appearance mockup.</figcaption>
-                </div>
-                <div class="figma-link">
-                    <a href="https://www.figma.com/proto/tr6jdVBNagNiL3RmbhfNFk/museon-desktop?node-id=2-7140&t=0NKftnr7gRKTqPvw-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1" target="_blank" class="figma-button">Link to Figma Desktop Version</a>
-                    <br>
-                    <a href="https://www.figma.com/embed?embed_host=share&amp;url=https%3A%2F%2Fwww.figma.com%2Fproto%2F5gT2aMT495MnDl8rPj9Z2P%2FUntitled%3Fnode-id%3D1-495%26t%3DwxViot3bzi45j43v-1%26scaling%3Dscale-down%26content-scaling=fixed%26page-id%3D0%253A1" target="_blank" class="figma-button">Link to Figma Mobile Version</a>
-                </div>
-            </div>
-
-            <div class="back-to-work">
-                <a href="index.html#work" class="back-button">Back to All Work</a>
-            </div>
-        </div>
-    </section>
- <script>
-        // Change header background on scroll
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) { // Adjust the scroll threshold as needed
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Hamburger Menu Toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('show');
-        });
-
-        // Smooth Scrolling with Offset
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                const targetID = this.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetID);
-                if (targetSection) {
-                    const headerHeight = document.querySelector('header').offsetHeight;
-                    const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
-  <script>
-    // JavaScript for Zooming and Panning the Image
-    const zoomContainer = document.querySelector('.zoom-container');
-    const zoomImage = document.querySelector('.zoom-image');
-
-    let scale = 1;
-    let isDragging = false;
-    let startX, startY;
-    let translateX = 0, translateY = 0;
-
-    // Zoom In and Out - Zoom to cursor
-    zoomContainer.addEventListener('wheel', (e) => {
-        e.preventDefault();
-
-        const rect = zoomImage.getBoundingClientRect();
-        const offsetX = e.clientX - rect.left; // X position of cursor relative to image
-        const offsetY = e.clientY - rect.top;  // Y position of cursor relative to image
-
-        const delta = e.deltaY > 0 ? 0.9 : 1.1;
-        const newScale = scale * delta;
-
-        // Limit the scale (between 1 and 3)
-        if (newScale >= 1 && newScale <= 3) {
-            // Adjust translate to keep the zoom centered on cursor
-            translateX -= (offsetX / scale) * (delta - 1);
-            translateY -= (offsetY / scale) * (delta - 1);
-
-            scale = newScale;
-            updateTransform();
-        }
-    });
-
-    // Start Dragging
-    zoomContainer.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        startX = e.clientX - translateX;
-        startY = e.clientY - translateY;
-        zoomImage.style.cursor = 'grabbing';
-    });
-
-    // Drag the Image
-    zoomContainer.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-        e.preventDefault();
-
-        translateX = e.clientX - startX;
-        translateY = e.clientY - startY;
-
-        updateTransform();
-    });
-
-    // Stop Dragging
-    zoomContainer.addEventListener('mouseup', () => {
-        isDragging = false;
-        zoomImage.style.cursor = 'grab';
-    });
-
-    zoomContainer.addEventListener('mouseleave', () => {
-        isDragging = false;
-        zoomImage.style.cursor = 'grab';
-    });
-
-    // Function to update image transform
-    function updateTransform() {
-        zoomImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
-    }
-</script>
-
-</body>
-
-</html>
+            <div class="content-card
