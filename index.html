@@ -72,28 +72,23 @@
             display: none;
         }
 
-        /* Animation for path drawing */
-        .drawing-path {
-            stroke-width: 5;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            /* Use the gradient defined in the SVG */
-            stroke: url(#gradient-stroke);
-            fill: none;
-            stroke-dasharray: 2000;   /* length of path */
-            stroke-dashoffset: 2000;  /* start hidden */
-            animation: draw 5s 0s linear infinite;
-        }
+     /* First time */
+.drawing-path {
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    /* Use the gradient defined in the SVG */
+    stroke: url(#gradient-stroke);
+    fill: none;
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;
+    animation: draw 5s 0s linear infinite;
+}
 
-    /* Keyframes for Drawing Animation */
-        @keyframes draw {
-            from {
-                stroke-dashoffset: 2000; /* Start with the entire path hidden */
-            }
-            to {
-                stroke-dashoffset: 0; /* Complete the path */
-            }
-        }
+@keyframes draw {
+    from { stroke-dashoffset: 2000; }
+    to   { stroke-dashoffset: 0; }
+}
 
     /* Animate the vector path like it's being drawn */
     .drawing-path {
@@ -386,6 +381,7 @@
 </script>
 </body>
 </html>
+
 
 
 
