@@ -123,25 +123,24 @@
     }
     }
     /* Keyframes for the fade and reveal effect */
-    @keyframes fadeReveal {
-    0%, 100% { /* Start and end fully transparent */
-        clip-path: inset(0 100% 0 0); /* Clip image from the right */
+@keyframes fadeReveal {
+    0%, 100% {
+        clip-path: inset(0 100% 0 0);
         opacity: 0.1;
     }
-    20% { /* Start of reveal */
-        clip-path: inset(0 0 0 0); /* Show entire image */
+    20% {
+        clip-path: inset(0 0 0 0);
         opacity: 0.02;
     }
-    60% { /* Fade back out */
-        clip-path: inset(0 0 0 0); /* Keep full image */
+    60% {
+        clip-path: inset(0 0 0 0);
         opacity: 0.3;
     }
-    80% { /* Begin to clip image again */
-        clip-path: inset(0 100% 0 0); /* Clip from the right again */
+    80% {
+        clip-path: inset(0 100% 0 0);
         opacity: 0;
     }
-    }
-     
+}
         
         /* Position the SVG behind the content */
         .hero-background {
@@ -382,6 +381,7 @@
 </script>
 </body>
 </html>
+
 
 
 
