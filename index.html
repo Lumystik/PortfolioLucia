@@ -1,228 +1,245 @@
-build the entire portfolio 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>Lucía Medina - UI Designer Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- External CSS -->
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="nav.css">
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <!-- Google Fonts -->
+    <title>Lucía Medina - Portfolio</title>
+    
+    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;600;700&display=swap" rel="stylesheet">
-</head>
+    
+    <!-- Internal CSS -->
+    <style>
+        /* --- Global & Resets --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<body>
-    <!-- Navigation -->
-    <header>
-        <nav>
-            <div class="nav-container">
-                <div class="brand">
-                    <a href="#home">Lucía Medina</a>
-                </div>
-                <div class="hamburger" aria-label="Toggle navigation">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#work">All Work</a></li>
-                    <li><a href="#about">About Me</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Aligned to top */
+            padding: 40px 20px;
+        }
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-              <div class="hero-background">
-<svg width="987" height="878" viewBox="0 0 987 878" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <defs>
-    <!-- Define a linear gradient for the stroke -->
-    <linearGradient id="gradient-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#7bdcb5" />
-      <stop offset="40%" stop-color="#0080ff" />
-      <stop offset="70%" stop-color="#4f4fff" />
-      <stop offset="100%" stop-color="#006699" />
-    </linearGradient>
+        /* --- Main Container --- */
+        .portfolio-container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
 
-    <!-- Existing image and filter definitions -->
-    <filter id="filter0_d_75_190" x="0.507699" y="0.874847" width="986.196" height="876.712" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-      <feOffset dy="4.25793"/>
-      <feGaussianBlur stdDeviation="2.12896"/>
-      <feComposite in2="hardAlpha" operator="out"/>
-      <feColorMatrix type="matrix" values="0 0 0 0 0.192157 0 0 0 0 0.427451 0 0 0 0 0.905882 0 0 0 0.33 0"/>
-      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_75_190"/>
-      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_75_190" result="shape"/>
-    </filter>
-    <pattern id="pattern0_75_190" patternContentUnits="objectBoundingBox" width="1" height="1">
-      <use xlink:href="#image0_75_190" transform="matrix(0.00488931 0 0 0.00502513 -0.145389 0)"/>
-    </pattern>
-    <image id="image0_75_190" width="264" height="199" xlink:href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/..." />
-  </defs>
+        /* --- Hero Section (Name + SVG) --- */
+        .hero {
+            text-align: center;
+            margin-bottom: 80px;
+        }
 
-  <g filter="url(#filter0_d_75_190)">
-    <path
-      d="M17.7617 646.374C25.7546 676.661 50.6879 692.759 75.3093 701.181C101.467 710.129 149.865 741.192 168.756 761.377C172.71 765.601 175.447 770.816 176.677 776.468L180.224 792.771C192.792 850.529 258.938 878.229 308.913 846.663L325.076 836.453C336.404 829.299 345.554 819.335 354.12 809.033C393.875 761.215 490.712 704.118 642.944 767.831C795.246 831.573 858.919 728.484 876.751 650.37C880.653 633.276 887.453 616.779 899.024 603.606L952.091 543.189C977.366 514.414 980.322 472.305 959.314 440.281L908.296 362.507C891.84 337.42 891.668 305.004 907.857 279.744C933.235 240.146 916.955 187.238 873.707 168.757L727.598 106.32C715.419 101.115 704.623 93.1424 696.065 83.0343L659.798 40.1928C633.149 8.71371 587.772 0.85643 552.09 21.5425L439.597 86.7595C403.942 107.43 358.602 99.6015 331.943 68.1717L309.21 41.3711C273.099 -1.20259 206.477 1.90277 174.482 47.651L129.362 112.167C124.584 118.999 118.9 125.155 111.92 129.714C66.7895 159.187 -17.8498 193.265 35.8118 346.157C108.406 552.994 -8.2777 547.706 17.7617 646.374Z"
-      stroke="url(#gradient-stroke)"
-      fill="none"
-      stroke-width="18.355"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="drawing-path"
-    />
-  </g>
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
 
-</svg>
+        .svg-container {
+            width: 100%;
+            max-width: 600px; /* Controls the max size of the SVG */
+            margin: 0 auto;
+        }
 
-        <img src="./images/circle.svg" alt="Foreground Ellipse" class="ellipse-foreground">
-              </div>
-            <!-- Your Name -->
-            <h1 class="hero-name">Lucía Medina</h1>
-            <!-- Circle with Tagline -->
-            <div class="name-background">
-                <div class="name-circle">
-                    <h2 >I am a digital <br> and interaction designer</h2>
-                </div>
-            </div>
-        </div>
-    </section>
+        .svg-container svg {
+            width: 100%;
+            height: auto; /* Makes the SVG responsive */
+        }
 
-  <section id="work" class="projects">
-    <h2>All Work</h2>
-    <div class="project-gallery">
-        <!-- Project Card 1 -->
-        <div class="project-card">
-            <div class="project-card-content">
-                <h3>Muse*on</h3>
-                <p>Developing an all-in-one software for small museum staff to streamline workflow and improve management of different areas within the institution.</p>
-                <a href="https://www.figma.com/embed?embed_host=share&amp;url=https%3A%2F%2Fwww.figma.com%2Fproto%2F5gT2aMT495MnDl8rPj9Z2P%2FUntitled%3Fnode-id%3D1-495%26t%3DwxViot3bzi45j43v-1%26scaling%3Dscale-down%26content-scaling=fixed%26page-id%3D0%253A1" class="view-work-button">View Work</a>
-            </div>
-        </div>
+        /* --- SVG "Sphere" Draw Animation --- */
+        .drawing-path {
+            stroke-dasharray: 10000; /* A very long dash */
+            stroke-dashoffset: 10000; /* Hides the line initially */
+            animation: draw 5s ease-out forwards;
+            animation-delay: 0.5s; /* Wait half a second to start */
+        }
 
-        <!-- Project Card 2 -->
-        <div class="project-card">
-            <div class="project-card-content">
-                <h3>Art Without dimension</h3>
-                <p>A futuristic prototype for users</p>
-                <br>
-                <a href="https://www.figma.com/proto/FnFqrWBxyChSOdL3aVzV9A/Prototype?node-id=564-1907" class="view-work-button">View Work</a>
-            </div>
-        </div>
-        <!-- Add more project cards as needed -->
-            <!-- Project Card 3 -->
-        <div class="project-card">
-            <div class="project-card-content">
-                <h3>Films Foundation</h3>
-                <p>A website proposal for the Italian film foundation.<br><br><br></p>
-                <br>
-                <a href="https://www.figma.com/proto/MWvYkF7ybuKjE7SPnGi8po/Assignment?node-id=2290-1438&starting-point-node-id=2128%3A5992" class="view-work-button">View Work</a>
-            </div>
-        </div>
-        
-    </div>
-</section>
-     <!-- About Section -->
-    <section id="about" class="about">
-        <div class="about-container">
-            <div class="about-heading">
-                <h2>About Me</h2>
-            </div>
-
-            <!-- Education and Work Experience Container -->
-            <div class="cards-container">
-                <!-- Education Section -->
-                <div class="about-card">
-                    <h3 class="card-heading">Education</h3>
-                    <div class="card-item">
-                        <h4>MSc in Digital and Interaction Design</h4>
-                        <p class="institution">Politecnico di Milano, Milan</p>
-                        <span class="date">Sept 2023 - Present</span>
-                    </div>
-                    <div class="card-item">
-                        <h4>Bachelor in Interactive Design</h4>
-                        <p class="institution">Iberoamerican University, Mexico City</p>
-                        <span class="date">2016 - 2020</span>
-                    </div>
-                </div>
-
-                <!-- Work Experience Section -->
-                <div class="about-card">
-                    <h3 class="card-heading">Work Experience</h3>
-                    <div class="card-item">
-                        <h4>Junior Digital Designer</h4>
-                        <p class="institution">Seedtag, International Company</p>
-                        <span class="date">Dec 2020 - Jan 2024</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-  <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <h2>Contact Me</h2>
-        <ul class="contact-icons">
-            <li><a href="tel:+393518576811" title="Phone"><i class="fas fa-phone"></i></a></li>
-            <li><a href="mailto:lucia.medina@mail.polimi.it" title="Email"><i class="fas fa-envelope"></i></a></li>
-            <li><a href="https://www.behance.net/lucamedinagaln1" target="_blank" title="Behance"><i class="fab fa-behance"></i></a></li>
-            <li><a href="https://www.linkedin.com/in/lucia-medina1829" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a></li>
-        </ul>
-    </section>
-
-
-    <!-- JavaScript for Modal Functionality -->
-    <script src="../portfolio/script.js"></script>
-    <!-- JavaScript for Hamburger Menu and Header Scroll -->
-    <script>
-        // Change header background on scroll
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) { // Adjust the scroll threshold as needed
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
+        @keyframes draw {
+            to {
+                stroke-dashoffset: 0; /* Animates the line "drawing" */
             }
-        });
+        }
 
-        // Hamburger Menu Toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
+        /* --- Projects Section --- */
+        .projects {
+            width: 100%;
+        }
 
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('show');
-        });
+        .projects h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 40px;
+            text-align: center;
+        }
 
-        // Smooth Scrolling with Offset
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 columns */
+            gap: 30px;
+        }
 
-                const targetID = this.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetID);
-                if (targetSection) {
-                    const headerHeight = document.querySelector('header').offsetHeight;
-                    const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+        /* --- Project Card --- */
+        .project-card {
+            background-color: #111111; /* Slightly lighter than pure black */
+            border: 1px solid #333333;
+            padding: 30px;
+            border-radius: 12px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
 
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
+        .project-card:hover {
+            transform: translateY(-5px); /* Simple hover effect */
+            border-color: #555555;
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .project-card p {
+            font-size: 1rem;
+            font-weight: 300;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: #cccccc; /* Slightly muted white for description */
+        }
+
+        .project-card a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid #ffffff;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .project-card a:hover {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        /* --- Responsive (Mobile) --- */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 15px; /* Less padding on mobile */
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .project-grid {
+                /* Stack the 2 columns into 1 on mobile */
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .projects h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="portfolio-container">
+        
+        <!-- Hero Section -->
+        <header class="hero">
+            <h1>Lucía Medina</h1>
+            
+            <!-- Your Sphere Animation SVG -->
+            <div class="svg-container">
+                <svg width="987" height="878" viewBox="0 0 987 878" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <defs>
+                        <linearGradient id="gradient-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#7bdcb5" />
+                            <stop offset="40%" stop-color="#0080ff" />
+                            <stop offset="70%" stop-color="#4f4fff" />
+                            <stop offset="100%" stop-color="#006699" />
+                        </linearGradient>
+                        <filter id="filter0_d_75_190" x="0.507699" y="0.874847" width="986.196" height="876.712" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                            <feOffset dy="4.25793"/>
+                            <feGaussianBlur stdDeviation="2.12896"/>
+                            <feComposite in2="hardAlpha" operator="out"/>
+                            <feColorMatrix type="matrix" values="0 0 0 0 0.192157 0 0 0 0 0.427451 0 0 0 0 0.905882 0 0 0 0.33 0"/>
+                            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_75_190"/>
+                            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_75_190" result="shape"/>
+                        </filter>
+                    </defs>
+                    <g filter="url(#filter0_d_75_190)">
+                        <path
+                            d="M17.7617 646.374C25.7546 676.661 50.6879 692.759 75.3093 701.181C101.467 710.129 149.865 741.192 168.756 761.377C172.71 765.601 175.447 770.816 176.677 776.468L180.224 792.771C192.792 850.529 258.938 878.229 308.913 846.663L325.076 836.453C336.404 829.299 345.554 819.335 354.12 809.033C393.875 761.215 490.712 704.118 642.944 767.831C795.246 831.573 858.919 728.484 876.751 650.37C880.653 633.276 887.453 616.779 899.024 603.606L952.091 543.189C977.366 514.414 980.322 472.305 959.314 440.281L908.296 362.507C891.84 337.42 891.668 305.004 907.857 279.744C933.235 240.146 916.955 187.238 873.707 168.757L727.598 106.32C715.419 101.115 704.623 93.1424 696.065 83.0343L659.798 40.1928C633.149 8.71371 587.772 0.85643 552.09 21.5425L439.597 86.7595C403.942 107.43 358.602 99.6015 331.943 68.1717L309.21 41.3711C273.099 -1.20259 206.477 1.90277 174.482 47.651L129.362 112.167C124.584 118.999 118.9 125.155 111.92 129.714C66.7895 159.187 -17.8498 193.265 35.8118 346.157C108.406 552.994 -8.2777 547.706 17.7617 646.374Z"
+                            stroke="url(#gradient-stroke)"
+                            fill="none"
+                            stroke-width="18.355"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="drawing-path"
+                        />
+                    </g>
+                </svg>
+            </div>
+        </header>
+
+        <!-- Projects Section -->
+        <main class="projects">
+            <h2>All Work</h2>
+            <div class="project-grid">
+                
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <h3>Muse*on</h3>
+                    <p>Developing an all-in-one software for small museum staff to streamline workflow.</p>
+                    <a href="httpsis://www.figma.com/embed?embed_host=share&amp;url=https%3A%2F%2Fwww.figma.com%2Fproto%2F5gT2aMT495MnDl8rPj9Z2P%2FUntitled%3Fnode-id%3D1-495%26t%3DwxViot3bzi45j43v-1%26scaling%3Dscale-down%26content-scaling=fixed%26page-id%3D0%253A1" target="_blank">View Work</a>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <h3>Art Without Dimension</h3>
+                    <p>A futuristic prototype for users exploring art in new virtual ways.</p>
+                    <a href="https://www.figma.com/proto/FnFqrWBxyChSOdL3aVzV9A/Prototype?node-id=564-1907" target="_blank">View Work</a>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <h3>Films Foundation</h3>
+                    <p>A website proposal for the Italian film foundation.</p>
+                    <a href="https-::/www.figma.com/proto/MWvYkF7ybuKjE7SPnGi8po/Assignment?node-id=2290-1438&starting-point-node-id=2128%3A5992" target="_blank">View Work</a>
+                </div>
+
+                <!-- Project 4 (Placeholder) -->
+                <div class="project-card">
+                    <h3>Project Four</h3>
+                    <p>A brief description of your fourth project goes here. This is a placeholder.</p>
+                    <a href="#" target="_blank">View Work</a>
+                </div>
+
+            </div>
+        </main>
+
+    </div> <!-- /portfolio-container -->
+
 </body>
-
 </html>
+
 
 
 
