@@ -71,7 +71,55 @@
                 stroke-dashoffset: 0; /* Animates the line "drawing" */
             }
         }
+    /* Keyframes for Drawing Animation */
+        @keyframes draw {
+            from {
+                stroke-dashoffset: 2000; /* Start with the entire path hidden */
+            }
+            to {
+                stroke-dashoffset: 0; /* Complete the path */
+            }
+        }
 
+    /* Animate the vector path like it's being drawn */
+    .drawing-path {
+    stroke-width: 5; /* Adjust the stroke width as needed */
+    stroke-linecap: round; /* Line style for the path ends */
+    stroke-linejoin: round; /* Line join style */
+    stroke: linear-gradient(135deg, #7bdcb5 0%, #0080ff 40%, #4f4fff 70%, #006699 100%);
+    fill: none; /* Remove fill for drawing effect */
+    stroke-dasharray: 2000; /* Adjust based on the length of your SVG path */
+    stroke-dashoffset: 2000; /* Start with the full length to hide the stroke */
+    animation: draw 5s 0s linear infinite; /* Animate drawing the path */
+    }
+
+    @keyframes draw {
+    from {
+        stroke-dashoffset: 4000; /* Start offset */
+    }
+    to {
+        stroke-dashoffset: 0; /* End offset for full path */
+    }
+    }
+    /* Keyframes for the fade and reveal effect */
+    @keyframes fadeReveal {
+    0%, 100% { /* Start and end fully transparent */
+        clip-path: inset(0 100% 0 0); /* Clip image from the right */
+        opacity: 0.1;
+    }
+    20% { /* Start of reveal */
+        clip-path: inset(0 0 0 0); /* Show entire image */
+        opacity: 0.02;
+    }
+    60% { /* Fade back out */
+        clip-path: inset(0 0 0 0); /* Keep full image */
+        opacity: 0.3;
+    }
+    80% { /* Begin to clip image again */
+        clip-path: inset(0 100% 0 0); /* Clip from the right again */
+        opacity: 0;
+    }
+    }
         /* --- Projects Section --- */
         .projects {
             width: 100%;
@@ -239,6 +287,7 @@
 
 </body>
 </html>
+
 
 
 
