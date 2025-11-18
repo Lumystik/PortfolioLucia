@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Code Playground – Braun & Clarke Themes</title>
+  <!-- Nunito Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-body: #000000;
+      --bg-app: #000000;
+      --bg-column: #141621;
+      --bg-column-header: #1c1e2b;
+      --border-column: #232636;
+      --accent: #ffb36a;
+      --accent-soft: #ff9b6a;
+      --text-main: #ffffff;
+      --text-muted: #8b8fa7;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Nunito Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-body);
+      color: var(--text-main);
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 1400px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .top-bar h1 {
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .top-bar small {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: #10111a;
+      border: 1px solid #24273b;
+    }
+
+    .controls input {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #2c3044;
+      outline: none;
+      background: #171826;
+      color: #fff;
+      flex: 1 0 150px;
+      min-width: 150px;
+      font-size: 0.85rem;
+    }
+
+    .controls input::placeholder {
+      color: #6e7392;
+    }
+
+    .controls button {
+      background: var(--accent-soft);
+      padding: 7px 14px;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #1a0f0a;
+      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+
+    .controls button.secondary {
+      background: transparent;
+      color: #c0c4de;
+      border: 1px solid #343750;
+    }
+
+    .controls span.hint {
+      margin-left: auto;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .board {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+    }
+
+    .column {
+      background: var(--bg-column);
+      border: 1px solid var(--border-column);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      min-height: 230px;
+      overflow: hidden;
+    }
+
+    .column-header {
+      padding: 8px;
+      background: var(--bg-column-header);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #aaa;
+    }
+
+    .column-header[contenteditable="true"] {
+      cursor: text;
+    }
+
+    .column-header:focus {
+      outline: 1px solid var(--accent);
+      outline-offset: -2px;
+    }
+
+    .column-body {
+      padding: 8px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .column-body.empty::before {
+      content: "Drop codes here";
+      text-align: center;
+      margin-top: 10px;
+      color: #555;
+      font-size: 0.75rem;
+      font-style: italic;
+    }
+
+    .column-body.over {
+      outline: 1px dashed var(--accent);
+      outline-offset: -3px;
+    }
+
+    .card {
+      padding: 6px 8px 6px 10px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #ff9a8b, #ff6a88);
+      font-size: 0.8rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    /* allow selection & copying */
+    .card,
+    .card-text {
+      user-select: text;
+      -webkit-user-select: text;
+    }
+
+    .card.dragging {
+      opacity: 0.6;
+    }
+
+    .card-text {
+      flex: 1;
+      word-break: break-word;
+    }
+
+    .delete-card {
+      border: none;
+      background: rgba(0, 0, 0, 0.2);
+      color: #250707;
+      border-radius: 999px;
+      width: 18px;
+      height: 18px;
+      font-size: 0.75rem;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 0;
+      flex-shrink: 0;
+    }
+
+    .delete-card:hover {
+      background: rgba(0, 0, 0, 0.35);
+    }
+
+    /* Descriptor cards (auto-generated theme descriptions) */
+    .descriptor-card {
+      background: linear-gradient(135deg, #ffe4b5, #ffb36a);
+      color: #241307;
+      border: 1px dashed rgba(0, 0, 0, 0.35);
+      font-weight: 600;
+      cursor: default;
+    }
+
+    .descriptor-card .card-text {
+      font-size: 0.78rem;
+      line-height: 1.35;
+    }
+
+    .descriptor-card[draggable="false"] {
+      cursor: default;
+    }
+
+    /* ---------- PRINT STYLES ---------- */
+    @page {
+      size: A4 landscape;
+      margin: 10mm;
+    }
+
+    @media print {
+      html, body {
+        background: #000000 !important;
+        color: #ffffff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        padding: 0;
+        margin: 0;
+      }
+
+      .app {
+        max-width: 100%;
+        padding: 0;
+      }
+
+      .controls {
+        display: none !important;
+      }
+
+      .top-bar small {
+        display: none !important;
+      }
+
+      .top-bar h1 {
+        color: var(--accent) !important;
+        margin-bottom: 6px;
+      }
+
+      .board {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+
+      .column {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        background: var(--bg-column) !important;
+        border-color: var(--border-column) !important;
+      }
+
+      .column-header {
+        background: var(--bg-column-header) !important;
+        color: #aaaaaa !important;
+      }
+
+      .card {
+        box-shadow: none;
+        background: linear-gradient(135deg, #ff9a8b, #ff6a88) !important;
+        color: #250707 !important;
+      }
+
+      .descriptor-card {
+        background: linear-gradient(135deg, #ffe4b5, #ffb36a) !important;
+        color: #241307 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="top-bar">
+      <h1>Code Playground</h1>
+      <small>Drag codes, auto-generate Braun & Clarke style theme descriptors, and save the layout.</small>
+    </div>
+
+    <div class="controls">
+      <input id="new-code" type="text" placeholder="Write a new code and press Add or Enter…" />
+      <button id="add-code"><span>＋</span> Add code</button>
+      <button id="add-column" class="secondary">＋ Column</button>
+      <button id="generate-descriptors" class="secondary">Auto-describe themes</button>
+      <button id="save-layout" class="secondary">Save layout</button>
+      <button id="export-pdf" class="secondary">Export PDF</button>
+      <span class="hint">Titles, positions & descriptors are saved automatically.</span>
+    </div>
+
+    <div class="board" id="board">
+      <!-- Columns created by JS -->
+    </div>
+  </div>
+
+  <script>
+    // Use v1 to stay compatible with your previous saved layout
+    const STORAGE_KEY = "codePlaygroundLayout_v1";
+
+    const board = document.getElementById("board");
+    const input = document.getElementById("new-code");
+    const addButton = document.getElementById("add-code");
+    const saveButton = document.getElementById("save-layout");
+    const addColumnButton = document.getElementById("add-column");
+    const exportPdfButton = document.getElementById("export-pdf");
+    const generateDescriptorsButton = document.getElementById("generate-descriptors");
+
+    let draggedCard = null;
+
+    // ---------- Braun & Clarke-ish helpers ----------
+
+    const STOPWORDS = new Set([
+      "the","and","or","of","to","a","an","in","on","for","with",
+      "is","are","was","were","it","that","this","these","those",
+      "i","you","he","she","they","we","me","my","your","their",
+      "about","like","just","very","really","from","into","around",
+      "when","then","than","because","but","also","more","less"
+    ]);
+
+    function getTopKeywordsFromCodes(codes, max = 3) {
+      const freq = {};
+      codes.forEach(text => {
+        text
+          .toLowerCase()
+          .replace(/[.,!?;:()"']/g, " ")
+          .split(/\s+/)
+          .filter(w => w.length > 3 && !STOPWORDS.has(w))
+          .forEach(w => {
+            freq[w] = (freq[w] || 0) + 1;
+          });
+      });
+
+      return Object.entries(freq)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, max)
+        .map(([w]) => w);
+    }
+
+    function buildDescriptorText(codes, columnTitle) {
+      if (!codes || codes.length === 0) {
+        return "DESCRIPTOR: No codes in this column yet – add some codes before drafting a theme.";
+      }
+
+      const trimmedTitle = (columnTitle || "").trim();
+      const keywords = getTopKeywordsFromCodes(codes);
+      const exampleCodes = codes.slice(0, 5);
+      const remainingCount = codes.length - exampleCodes.length;
+
+      const codesPart =
+        exampleCodes.map(c => `"${c}"`).join(", ") +
+        (remainingCount > 0 ? ` … (+${remainingCount} more codes)` : "");
+
+      const centralConcept =
+        trimmedTitle ||
+        (keywords[0] ? keywords[0] : "a recurring way participants make sense of this experience");
+
+      const keywordPhrase = keywords.length
+        ? `repeating ideas around ${keywords.join(", ")}`
+        : "a recurring pattern of meaning across different situations";
+
+      return (
+        `DESCRIPTOR: This theme, tentatively named "${centralConcept}", brings together a ` +
+        `pattern of shared meaning rather than just a list of topics. Across codes such as ` +
+        `${codesPart}, the data repeatedly point to ${keywordPhrase}. Taken together, these ` +
+        `codes suggest a central organising concept of "${centralConcept}" – where ` +
+        `participants are not simply talking about this topic, but doing a particular kind ` +
+        `of sense-making. Refine this description to clarify what is unique about this theme, ` +
+        `where its boundaries lie, and how it answers your research question.`
+      );
+    }
+
+    // ---------- Layout + cards ----------
+
+    function createColumnElement(index, title, cards) {
+      const column = document.createElement("div");
+      column.className = "column";
+
+      const header = document.createElement("div");
+      header.className = "column-header";
+      header.contentEditable = "true";
+      header.textContent = title || `Column ${index + 1}`;
+      header.addEventListener("blur", saveLayoutFromDOM);
+
+      const body = document.createElement("div");
+      body.className = "column-body dropzone";
+      body.dataset.columnIndex = index;
+
+      body.addEventListener("dragover", (e) => {
+        e.preventDefault();
+      });
+      body.addEventListener("dragenter", function (e) {
+        e.preventDefault();
+        this.classList.add("over");
+      });
+      body.addEventListener("dragleave", function () {
+        this.classList.remove("over");
+      });
+      body.addEventListener("drop", function () {
+        this.classList.remove("over");
+        if (draggedCard) {
+          this.appendChild(draggedCard);
+          refreshEmptyStates();
+          saveLayoutFromDOM();
+        }
+      });
+
+      if (Array.isArray(cards)) {
+        cards.forEach(cardData => {
+          const card = createCardElement(cardData.text || "", cardData.type || "code");
+          body.appendChild(card);
+        });
+      }
+
+      column.appendChild(header);
+      column.appendChild(body);
+
+      return column;
+    }
+
+    function createCardElement(text, type = "code") {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.dataset.type = type;
+
+      if (type === "descriptor") {
+        card.classList.add("descriptor-card");
+        card.draggable = false;
+      } else {
+        card.draggable = true;
+      }
+
+      const span = document.createElement("span");
+      span.className = "card-text";
+      span.textContent = text;
+
+      const del = document.createElement("button");
+      del.className = "delete-card";
+      del.title = "Delete card";
+      del.textContent = "×";
+
+      del.addEventListener("click", (e) => {
+        e.stopPropagation();
+        card.remove();
+        refreshEmptyStates();
+        saveLayoutFromDOM();
+      });
+
+      card.appendChild(span);
+      card.appendChild(del);
+
+      if (type === "code") {
+        card.addEventListener("dragstart", () => {
+          draggedCard = card;
+          card.classList.add("dragging");
+        });
+
+        card.addEventListener("dragend", () => {
+          card.classList.remove("dragging");
+          draggedCard = null;
+          refreshEmptyStates();
+          saveLayoutFromDOM();
+        });
+      }
+
+      return card;
+    }
+
+    function refreshEmptyStates() {
+      document.querySelectorAll(".column-body").forEach(zone => {
+        zone.classList.toggle("empty", zone.children.length === 0);
+      });
+    }
+
+    function serializeLayoutFromDOM() {
+      const layout = [];
+      document.querySelectorAll(".column").forEach((col) => {
+        const titleEl = col.querySelector(".column-header");
+        const bodyEl = col.querySelector(".column-body");
+        const colObj = {
+          title: (titleEl.textContent || "").trim(),
+          cards: []
+        };
+        bodyEl.querySelectorAll(".card").forEach(card => {
+          const text = card.querySelector(".card-text")?.textContent || "";
+          const type = card.dataset.type || "code";
+          colObj.cards.push({ text: text.trim(), type });
+        });
+        layout.push(colObj);
+      });
+      return layout;
+    }
+
+    function saveLayoutFromDOM() {
+      const layout = serializeLayoutFromDOM();
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(layout));
+      } catch (e) {
+        console.warn("Could not save layout:", e);
+      }
+    }
+
+    function loadLayout() {
+      let layout = null;
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+          layout = JSON.parse(stored);
+        }
+      } catch (e) {
+        console.warn("Could not load layout, using default:", e);
+      }
+
+      board.innerHTML = "";
+
+      if (!layout || !Array.isArray(layout) || layout.length === 0) {
+        for (let i = 0; i < 5; i++) {
+          const col = createColumnElement(i, `Column ${i + 1}`, []);
+          board.appendChild(col);
+        }
+      } else {
+        layout.forEach((colData, index) => {
+          const col = createColumnElement(
+            index,
+            colData.title || `Column ${index + 1}`,
+            colData.cards || []
+          );
+          board.appendChild(col);
+        });
+      }
+
+      refreshEmptyStates();
+    }
+
+    // ---------- Add new codes ----------
+
+    function addCode() {
+      const text = input.value.trim();
+      if (!text) return;
+
+      const firstColumnBody = document.querySelector(".column-body");
+      if (!firstColumnBody) return;
+
+      const card = createCardElement(text, "code");
+      firstColumnBody.appendChild(card);
+
+      input.value = "";
+      input.focus();
+
+      refreshEmptyStates();
+      saveLayoutFromDOM();
+    }
+
+    // ---------- Add new column ----------
+
+    function addColumn() {
+      const index = document.querySelectorAll(".column").length;
+      const col = createColumnElement(index, `Column ${index + 1}`, []);
+      board.appendChild(col);
+      refreshEmptyStates();
+      saveLayoutFromDOM();
+    }
+
+    // ---------- Auto-generate Braun & Clarke descriptors ----------
+
+    function generateDescriptors() {
+      const columns = document.querySelectorAll(".column");
+
+      columns.forEach(col => {
+        const titleEl = col.querySelector(".column-header");
+        const bodyEl = col.querySelector(".column-body");
+        if (!bodyEl) return;
+
+        const codeCards = Array.from(bodyEl.querySelectorAll(".card"))
+          .filter(c => (c.dataset.type || "code") === "code");
+
+        const codeTexts = codeCards
+          .map(c => c.querySelector(".card-text")?.textContent.trim())
+          .filter(t => t && t.length > 0);
+
+        if (codeTexts.length === 0) {
+          return;
+        }
+
+        const descriptorText = buildDescriptorText(codeTexts, titleEl.textContent);
+
+        const existingDescriptor = bodyEl.querySelector(".descriptor-card");
+        if (existingDescriptor) {
+          existingDescriptor.remove();
+        }
+
+        const descriptorCard = createCardElement(descriptorText, "descriptor");
+
+        if (bodyEl.firstChild) {
+          bodyEl.insertBefore(descriptorCard, bodyEl.firstChild);
+        } else {
+          bodyEl.appendChild(descriptorCard);
+        }
+      });
+
+      refreshEmptyStates();
+      saveLayoutFromDOM();
+
+      generateDescriptorsButton.textContent = "Descriptors updated!";
+      setTimeout(() => {
+        generateDescriptorsButton.textContent = "Auto-describe themes";
+      }, 900);
+    }
+
+    // ---------- Export PDF ----------
+
+    function exportPDF() {
+      window.print();
+    }
+
+    // ---------- Event listeners ----------
+
+    addButton.addEventListener("click", addCode);
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        addCode();
+      }
+    });
+
+    addColumnButton.addEventListener("click", addColumn);
+
+    saveButton.addEventListener("click", () => {
+      saveLayoutFromDOM();
+      saveButton.textContent = "Saved!";
+      setTimeout(() => {
+        saveButton.textContent = "Save layout";
+      }, 900);
+    });
+
+    exportPdfButton.addEventListener("click", exportPDF);
+
+    generateDescriptorsButton.addEventListener("click", generateDescriptors);
+
+    // ---------- init ----------
+
+    loadLayout();
+  </script>
+</body>
+</html>
