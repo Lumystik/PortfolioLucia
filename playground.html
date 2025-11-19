@@ -109,6 +109,50 @@
       white-space: nowrap;
     }
 
+    /* Blackboard */
+    .blackboard {
+      background: #0f1018;
+      border-radius: 10px;
+      border: 1px solid #24273b;
+      padding: 8px 10px;
+      display: none; /* shown after CSV import */
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .blackboard-header {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #d4d7f4;
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+      align-items: baseline;
+    }
+
+    .blackboard-header span {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: #8b8fa7;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .blackboard-body {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      min-height: 40px;
+    }
+
+    .blackboard-body.empty::before {
+      content: "Top 10 codes from CSV will appear here – drag them into your theme columns.";
+      font-size: 0.75rem;
+      color: #555;
+      font-style: italic;
+    }
+
     .board {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -427,6 +471,15 @@
       <span class="hint">Assumes CSV columns: id, document, tag, content.</span>
     </div>
 
+    <!-- Blackboard with sample codes -->
+    <div class="blackboard" id="blackboard">
+      <div class="blackboard-header">
+        <div>Blackboard – sample codes</div>
+        <span>Top 10 most frequent codes from CSV. Drag them into columns to start building themes.</span>
+      </div>
+      <div class="blackboard-body column-body dropzone empty" id="blackboard-body"></div>
+    </div>
+
     <div class="board" id="board"></div>
 
     <div class="analytics">
@@ -459,6 +512,9 @@
     const importCsvTrigger = document.getElementById("import-csv-trigger");
     const analyticsSummary = document.getElementById("analytics-summary");
     const codeStatsContainer = document.getElementById("code-stats-container");
+
+    const blackboard = document.getElementById("blackboard");
+    const blackboardBody = document.getElementById("blackboard-body");
 
     let draggedCard = null;
 
@@ -518,6 +574,25 @@
       );
     }
 
+    function attachDropzoneHandlers(bodyEl) {
+      bodyEl.addEventListener("dragover", e => e.preventDefault());
+      bodyEl.addEventListener("dragenter", function(e) {
+        e.preventDefault();
+        this.classList.add("over");
+      });
+      bodyEl.addEventListener("dragleave", function() {
+        this.classList.remove("over");
+      });
+      bodyEl.addEventListener("drop", function() {
+        this.classList.remove("over");
+        if (draggedCard) {
+          this.appendChild(draggedCard);
+          refreshEmptyStates();
+          saveLayoutFromDOM();
+        }
+      });
+    }
+
     function createColumnElement(index, title, cards) {
       const column = document.createElement("div");
       column.className = "column";
@@ -532,22 +607,7 @@
       body.className = "column-body dropzone";
       body.dataset.columnIndex = index;
 
-      body.addEventListener("dragover", e => e.preventDefault());
-      body.addEventListener("dragenter", function(e) {
-        e.preventDefault();
-        this.classList.add("over");
-      });
-      body.addEventListener("dragleave", function() {
-        this.classList.remove("over");
-      });
-      body.addEventListener("drop", function() {
-        this.classList.remove("over");
-        if (draggedCard) {
-          this.appendChild(draggedCard);
-          refreshEmptyStates();
-          saveLayoutFromDOM();
-        }
-      });
+      attachDropzoneHandlers(body);
 
       if (Array.isArray(cards)) {
         cards.forEach(cardData => {
@@ -662,6 +722,9 @@
           );
         });
       }
+
+      // attach handlers to blackboard body too
+      attachDropzoneHandlers(blackboardBody);
       refreshEmptyStates();
     }
 
@@ -758,18 +821,17 @@
       return rows;
     }
 
-    // Strip Taguette-style timestamps
     function cleanQuote(text) {
       if (!text) return "";
       let cleaned = text.replace(/\[[0-9:\.\s\u2013\u2014\-–>]+]/g, "");
       return cleaned.trim();
     }
 
+    // Hard-wired: id | document | tag | content
     function buildCodeStatsFromCSV(rows) {
       if (!rows || rows.length === 0) return [];
 
       const headerCells = rows[0].headerCells || [];
-      // We know your structure: id, document, tag, content
       let codeIndex = headerCells.findIndex(h => h.toLowerCase() === "tag");
       let quoteIndex = headerCells.findIndex(h => h.toLowerCase() === "content");
       let sourceIndex = headerCells.findIndex(h => h.toLowerCase() === "document");
@@ -802,6 +864,26 @@
       const statsArray = Array.from(statsMap.values());
       statsArray.sort((a,b)=> b.count - a.count || a.code.localeCompare(b.code));
       return statsArray;
+    }
+
+    function populateBlackboard(stats) {
+      blackboardBody.innerHTML = "";
+      if (!stats || stats.length === 0) {
+        blackboard.classList.remove("empty");
+        blackboardBody.classList.add("empty");
+        return;
+      }
+
+      // show blackboard
+      blackboard.style.display = "flex";
+
+      const top = stats.slice(0, 10);
+      top.forEach(stat => {
+        const card = createCardElement(stat.code, "code");
+        blackboardBody.appendChild(card);
+      });
+
+      blackboardBody.classList.toggle("empty", blackboardBody.children.length === 0);
     }
 
     function renderCodeStatsByColumn(stats) {
@@ -949,8 +1031,9 @@
           const rows = parseCSV(e.target.result);
           const stats = buildCodeStatsFromCSV(rows);
           renderCodeStatsByColumn(stats);
+          populateBlackboard(stats);
           analyticsSummary.textContent =
-            `Imported ${rows.length} rows. Using columns: "tag" as code, "content" as quote, "document" as source.`;
+            `Imported ${rows.length} rows. Using columns: "tag" as code, "content" as quote, "document" as source. Blackboard shows the 10 most frequent codes.`;
         } catch(err) {
           console.error(err);
           analyticsSummary.textContent = "Could not read CSV – check the format and try again.";
