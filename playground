@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Code Playground – Braun & Clarke Themes</title>
-  <!-- Nunito Sans -->
+  <title>Code Playground – Braun & Clarke Themes + CSV Analytics</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -178,7 +177,6 @@
       gap: 6px;
     }
 
-    /* allow selection & copying */
     .card,
     .card-text {
       user-select: text;
@@ -215,7 +213,6 @@
       background: rgba(0, 0, 0, 0.35);
     }
 
-    /* Descriptor cards (auto-generated theme descriptions) */
     .descriptor-card {
       background: linear-gradient(135deg, #ffe4b5, #ffb36a);
       color: #241307;
@@ -233,7 +230,115 @@
       cursor: default;
     }
 
-    /* ---------- PRINT STYLES ---------- */
+    .analytics {
+      margin-top: 16px;
+      padding: 12px;
+      border-radius: 10px;
+      background: #0f1019;
+      border: 1px solid #22253a;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .analytics-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .analytics h2 {
+      margin: 0;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .analytics-summary {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .code-section {
+      margin-top: 8px;
+      padding-top: 6px;
+      border-top: 1px solid #26293d;
+    }
+
+    .code-section-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #d4d7f4;
+      margin-bottom: 4px;
+    }
+
+    .code-section-title span {
+      font-weight: 400;
+      color: #8b8fa7;
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 0.75rem;
+    }
+
+    .code-stats-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 8px;
+    }
+
+    .code-stat {
+      background: #151626;
+      border-radius: 8px;
+      padding: 8px 10px;
+      border: 1px solid #26293d;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 0.78rem;
+    }
+
+    .code-stat-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+      align-items: baseline;
+    }
+
+    .code-name {
+      font-weight: 700;
+      color: #ffd9a0;
+    }
+
+    .code-count {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .example-quote {
+      margin-top: 2px;
+      padding-left: 6px;
+      border-left: 2px solid #343750;
+      font-style: italic;
+      color: #d3d6f2;
+    }
+
+    .example-source {
+      font-size: 0.7rem;
+      color: #9094b5;
+      margin-top: 1px;
+    }
+
+    .analytics-empty {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
     @page {
       size: A4 landscape;
       margin: 10mm;
@@ -294,6 +399,10 @@
         background: linear-gradient(135deg, #ffe4b5, #ffb36a) !important;
         color: #241307 !important;
       }
+
+      .analytics {
+        page-break-before: always;
+      }
     }
   </style>
 </head>
@@ -301,7 +410,7 @@
   <div class="app">
     <div class="top-bar">
       <h1>Code Playground</h1>
-      <small>Drag codes, auto-generate Braun & Clarke style theme descriptors, and save the layout.</small>
+      <small>Drag codes, auto-generate Braun & Clarke descriptors, and analyze CSV-coded data by column.</small>
     </div>
 
     <div class="controls">
@@ -311,16 +420,31 @@
       <button id="generate-descriptors" class="secondary">Auto-describe themes</button>
       <button id="save-layout" class="secondary">Save layout</button>
       <button id="export-pdf" class="secondary">Export PDF</button>
-      <span class="hint">Titles, positions & descriptors are saved automatically.</span>
+
+      <button id="import-csv-trigger" class="secondary">Import codes CSV</button>
+      <input id="import-csv" type="file" accept=".csv" style="display:none;" />
+
+      <span class="hint">Assumes CSV columns: id, document, tag, content.</span>
     </div>
 
-    <div class="board" id="board">
-      <!-- Columns created by JS -->
+    <div class="board" id="board"></div>
+
+    <div class="analytics">
+      <div class="analytics-header">
+        <h2>Code Usage Analytics (by Column)</h2>
+        <div class="analytics-summary" id="analytics-summary">
+          Import your CSV (id, document, tag, content). Codes are grouped by column/theme with counts and up to 3 representative extracts.
+        </div>
+      </div>
+      <div id="code-stats-container">
+        <div class="analytics-empty">
+          No CSV imported yet.
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
-    // Use v1 to stay compatible with your previous saved layout
     const STORAGE_KEY = "codePlaygroundLayout_v1";
 
     const board = document.getElementById("board");
@@ -331,9 +455,12 @@
     const exportPdfButton = document.getElementById("export-pdf");
     const generateDescriptorsButton = document.getElementById("generate-descriptors");
 
-    let draggedCard = null;
+    const importCsvInput = document.getElementById("import-csv");
+    const importCsvTrigger = document.getElementById("import-csv-trigger");
+    const analyticsSummary = document.getElementById("analytics-summary");
+    const codeStatsContainer = document.getElementById("code-stats-container");
 
-    // ---------- Braun & Clarke-ish helpers ----------
+    let draggedCard = null;
 
     const STOPWORDS = new Set([
       "the","and","or","of","to","a","an","in","on","for","with",
@@ -346,19 +473,16 @@
     function getTopKeywordsFromCodes(codes, max = 3) {
       const freq = {};
       codes.forEach(text => {
-        text
-          .toLowerCase()
+        text.toLowerCase()
           .replace(/[.,!?;:()"']/g, " ")
           .split(/\s+/)
           .filter(w => w.length > 3 && !STOPWORDS.has(w))
-          .forEach(w => {
-            freq[w] = (freq[w] || 0) + 1;
-          });
+          .forEach(w => { freq[w] = (freq[w] || 0) + 1; });
       });
 
       return Object.entries(freq)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, max)
+        .sort((a,b) => b[1]-a[1])
+        .slice(0,max)
         .map(([w]) => w);
     }
 
@@ -366,10 +490,9 @@
       if (!codes || codes.length === 0) {
         return "DESCRIPTOR: No codes in this column yet – add some codes before drafting a theme.";
       }
-
       const trimmedTitle = (columnTitle || "").trim();
       const keywords = getTopKeywordsFromCodes(codes);
-      const exampleCodes = codes.slice(0, 5);
+      const exampleCodes = codes.slice(0,5);
       const remainingCount = codes.length - exampleCodes.length;
 
       const codesPart =
@@ -395,8 +518,6 @@
       );
     }
 
-    // ---------- Layout + cards ----------
-
     function createColumnElement(index, title, cards) {
       const column = document.createElement("div");
       column.className = "column";
@@ -411,17 +532,15 @@
       body.className = "column-body dropzone";
       body.dataset.columnIndex = index;
 
-      body.addEventListener("dragover", (e) => {
-        e.preventDefault();
-      });
-      body.addEventListener("dragenter", function (e) {
+      body.addEventListener("dragover", e => e.preventDefault());
+      body.addEventListener("dragenter", function(e) {
         e.preventDefault();
         this.classList.add("over");
       });
-      body.addEventListener("dragleave", function () {
+      body.addEventListener("dragleave", function() {
         this.classList.remove("over");
       });
-      body.addEventListener("drop", function () {
+      body.addEventListener("drop", function() {
         this.classList.remove("over");
         if (draggedCard) {
           this.appendChild(draggedCard);
@@ -439,11 +558,10 @@
 
       column.appendChild(header);
       column.appendChild(body);
-
       return column;
     }
 
-    function createCardElement(text, type = "code") {
+    function createCardElement(text, type="code") {
       const card = document.createElement("div");
       card.className = "card";
       card.dataset.type = type;
@@ -463,8 +581,7 @@
       del.className = "delete-card";
       del.title = "Delete card";
       del.textContent = "×";
-
-      del.addEventListener("click", (e) => {
+      del.addEventListener("click", e => {
         e.stopPropagation();
         card.remove();
         refreshEmptyStates();
@@ -479,7 +596,6 @@
           draggedCard = card;
           card.classList.add("dragging");
         });
-
         card.addEventListener("dragend", () => {
           card.classList.remove("dragging");
           draggedCard = null;
@@ -499,7 +615,7 @@
 
     function serializeLayoutFromDOM() {
       const layout = [];
-      document.querySelectorAll(".column").forEach((col) => {
+      document.querySelectorAll(".column").forEach(col => {
         const titleEl = col.querySelector(".column-header");
         const bodyEl = col.querySelector(".column-body");
         const colObj = {
@@ -520,7 +636,7 @@
       const layout = serializeLayoutFromDOM();
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(layout));
-      } catch (e) {
+      } catch(e) {
         console.warn("Could not save layout:", e);
       }
     }
@@ -529,119 +645,324 @@
       let layout = null;
       try {
         const stored = localStorage.getItem(STORAGE_KEY);
-        if (stored) {
-          layout = JSON.parse(stored);
-        }
-      } catch (e) {
-        console.warn("Could not load layout, using default:", e);
+        if (stored) layout = JSON.parse(stored);
+      } catch(e) {
+        console.warn("Could not load layout:", e);
       }
 
       board.innerHTML = "";
-
       if (!layout || !Array.isArray(layout) || layout.length === 0) {
-        for (let i = 0; i < 5; i++) {
-          const col = createColumnElement(i, `Column ${i + 1}`, []);
-          board.appendChild(col);
+        for (let i=0;i<5;i++) {
+          board.appendChild(createColumnElement(i, `Column ${i+1}`, []));
         }
       } else {
-        layout.forEach((colData, index) => {
-          const col = createColumnElement(
-            index,
-            colData.title || `Column ${index + 1}`,
-            colData.cards || []
+        layout.forEach((colData,index) => {
+          board.appendChild(
+            createColumnElement(index, colData.title || `Column ${index+1}`, colData.cards || [])
           );
-          board.appendChild(col);
         });
       }
-
       refreshEmptyStates();
     }
-
-    // ---------- Add new codes ----------
 
     function addCode() {
       const text = input.value.trim();
       if (!text) return;
-
       const firstColumnBody = document.querySelector(".column-body");
       if (!firstColumnBody) return;
-
-      const card = createCardElement(text, "code");
+      const card = createCardElement(text,"code");
       firstColumnBody.appendChild(card);
-
       input.value = "";
       input.focus();
-
       refreshEmptyStates();
       saveLayoutFromDOM();
     }
-
-    // ---------- Add new column ----------
 
     function addColumn() {
       const index = document.querySelectorAll(".column").length;
-      const col = createColumnElement(index, `Column ${index + 1}`, []);
-      board.appendChild(col);
+      board.appendChild(createColumnElement(index, `Column ${index+1}`, []));
       refreshEmptyStates();
       saveLayoutFromDOM();
     }
 
-    // ---------- Auto-generate Braun & Clarke descriptors ----------
-
     function generateDescriptors() {
-      const columns = document.querySelectorAll(".column");
-
-      columns.forEach(col => {
+      document.querySelectorAll(".column").forEach(col => {
         const titleEl = col.querySelector(".column-header");
         const bodyEl = col.querySelector(".column-body");
         if (!bodyEl) return;
-
         const codeCards = Array.from(bodyEl.querySelectorAll(".card"))
           .filter(c => (c.dataset.type || "code") === "code");
-
         const codeTexts = codeCards
           .map(c => c.querySelector(".card-text")?.textContent.trim())
-          .filter(t => t && t.length > 0);
-
-        if (codeTexts.length === 0) {
-          return;
-        }
+          .filter(Boolean);
+        if (codeTexts.length === 0) return;
 
         const descriptorText = buildDescriptorText(codeTexts, titleEl.textContent);
-
         const existingDescriptor = bodyEl.querySelector(".descriptor-card");
-        if (existingDescriptor) {
-          existingDescriptor.remove();
-        }
-
-        const descriptorCard = createCardElement(descriptorText, "descriptor");
-
-        if (bodyEl.firstChild) {
-          bodyEl.insertBefore(descriptorCard, bodyEl.firstChild);
-        } else {
-          bodyEl.appendChild(descriptorCard);
-        }
+        if (existingDescriptor) existingDescriptor.remove();
+        const descriptorCard = createCardElement(descriptorText,"descriptor");
+        if (bodyEl.firstChild) bodyEl.insertBefore(descriptorCard, bodyEl.firstChild);
+        else bodyEl.appendChild(descriptorCard);
       });
 
       refreshEmptyStates();
       saveLayoutFromDOM();
-
       generateDescriptorsButton.textContent = "Descriptors updated!";
-      setTimeout(() => {
-        generateDescriptorsButton.textContent = "Auto-describe themes";
-      }, 900);
+      setTimeout(() => { generateDescriptorsButton.textContent = "Auto-describe themes"; }, 900);
     }
-
-    // ---------- Export PDF ----------
 
     function exportPDF() {
       window.print();
     }
 
-    // ---------- Event listeners ----------
+    // ---------- CSV helpers ----------
 
+    function parseCSVLine(line) {
+      const result = [];
+      let cur = "";
+      let inQuotes = false;
+      for (let i=0;i<line.length;i++) {
+        const ch = line[i];
+        if (ch === '"') {
+          if (inQuotes && line[i+1] === '"') {
+            cur += '"'; i++;
+          } else {
+            inQuotes = !inQuotes;
+          }
+        } else if (ch === "," && !inQuotes) {
+          result.push(cur);
+          cur = "";
+        } else {
+          cur += ch;
+        }
+      }
+      result.push(cur);
+      return result;
+    }
+
+    function parseCSV(text) {
+      const lines = text.replace(/^\uFEFF/, "")
+        .split(/\r?\n/)
+        .filter(l => l.trim().length > 0);
+      if (lines.length === 0) return [];
+
+      const headerCells = parseCSVLine(lines[0]).map(h => h.trim());
+      const rows = [];
+
+      for (let i=1;i<lines.length;i++) {
+        const cells = parseCSVLine(lines[i]).map(c => c.trim());
+        if (cells.every(c => c === "")) continue;
+        rows.push({ headerCells, cells });
+      }
+
+      return rows;
+    }
+
+    // Strip Taguette-style timestamps
+    function cleanQuote(text) {
+      if (!text) return "";
+      let cleaned = text.replace(/\[[0-9:\.\s\u2013\u2014\-–>]+]/g, "");
+      return cleaned.trim();
+    }
+
+    function buildCodeStatsFromCSV(rows) {
+      if (!rows || rows.length === 0) return [];
+
+      const headerCells = rows[0].headerCells || [];
+      // We know your structure: id, document, tag, content
+      let codeIndex = headerCells.findIndex(h => h.toLowerCase() === "tag");
+      let quoteIndex = headerCells.findIndex(h => h.toLowerCase() === "content");
+      let sourceIndex = headerCells.findIndex(h => h.toLowerCase() === "document");
+
+      if (codeIndex === -1) codeIndex = 2;
+      if (quoteIndex === -1) quoteIndex = 3;
+      if (sourceIndex === -1) sourceIndex = 1;
+
+      const statsMap = new Map();
+
+      rows.forEach(row => {
+        const cells = row.cells;
+        const code = (cells[codeIndex] || "").trim();
+        if (!code) return;
+
+        const rawQuote = quoteIndex >= 0 ? (cells[quoteIndex] || "").trim() : "";
+        const quote = cleanQuote(rawQuote);
+        const source = sourceIndex >= 0 ? (cells[sourceIndex] || "").trim() : "";
+
+        if (!statsMap.has(code)) {
+          statsMap.set(code, { code, count: 0, examples: [] });
+        }
+        const entry = statsMap.get(code);
+        entry.count += 1;
+        if (quote && entry.examples.length < 3) {
+          entry.examples.push({ quote, source });
+        }
+      });
+
+      const statsArray = Array.from(statsMap.values());
+      statsArray.sort((a,b)=> b.count - a.count || a.code.localeCompare(b.code));
+      return statsArray;
+    }
+
+    function renderCodeStatsByColumn(stats) {
+      codeStatsContainer.innerHTML = "";
+
+      if (!stats || stats.length === 0) {
+        const empty = document.createElement("div");
+        empty.className = "analytics-empty";
+        empty.textContent = "No valid codes detected in the CSV.";
+        codeStatsContainer.appendChild(empty);
+        return;
+      }
+
+      const columns = Array.from(document.querySelectorAll(".column"));
+      const usedCodes = new Set();
+
+      columns.forEach(col => {
+        const titleEl = col.querySelector(".column-header");
+        const title = (titleEl?.textContent || "").trim() || "Untitled column";
+        const bodyEl = col.querySelector(".column-body");
+        if (!bodyEl) return;
+
+        const columnCodeNames = new Set(
+          Array.from(bodyEl.querySelectorAll(".card"))
+            .filter(c => (c.dataset.type || "code") === "code")
+            .map(c => c.querySelector(".card-text")?.textContent.trim())
+            .filter(Boolean)
+        );
+        if (columnCodeNames.size === 0) return;
+
+        const columnStats = stats.filter(s => columnCodeNames.has(s.code));
+        if (columnStats.length === 0) return;
+
+        columnStats.sort((a,b)=> b.count - a.count || a.code.localeCompare(b.code));
+        columnStats.forEach(s => usedCodes.add(s.code));
+
+        const section = document.createElement("section");
+        section.className = "code-section";
+
+        const heading = document.createElement("div");
+        heading.className = "code-section-title";
+        heading.innerHTML = `${title} <span>(codes used in this column)</span>`;
+        section.appendChild(heading);
+
+        const list = document.createElement("div");
+        list.className = "code-stats-list";
+
+        columnStats.forEach(stat => {
+          const card = document.createElement("div");
+          card.className = "code-stat";
+
+          const header = document.createElement("div");
+          header.className = "code-stat-header";
+
+          const name = document.createElement("div");
+          name.className = "code-name";
+          name.textContent = stat.code;
+
+          const count = document.createElement("div");
+          count.className = "code-count";
+          count.textContent = `${stat.count} occurrence${stat.count>1?"s":""}`;
+
+          header.appendChild(name);
+          header.appendChild(count);
+          card.appendChild(header);
+
+          stat.examples.forEach(ex => {
+            const quoteEl = document.createElement("div");
+            quoteEl.className = "example-quote";
+            quoteEl.textContent = `"${ex.quote}"`;
+            card.appendChild(quoteEl);
+
+            if (ex.source) {
+              const srcEl = document.createElement("div");
+              srcEl.className = "example-source";
+              srcEl.textContent = `Source: ${ex.source}`;
+              card.appendChild(srcEl);
+            }
+          });
+
+          list.appendChild(card);
+        });
+
+        section.appendChild(list);
+        codeStatsContainer.appendChild(section);
+      });
+
+      const unassigned = stats.filter(s => !usedCodes.has(s.code));
+      if (unassigned.length > 0) {
+        const section = document.createElement("section");
+        section.className = "code-section";
+        const heading = document.createElement("div");
+        heading.className = "code-section-title";
+        heading.innerHTML = `Not in any column <span>(codes present in CSV but not yet placed as cards)</span>`;
+        section.appendChild(heading);
+
+        const list = document.createElement("div");
+        list.className = "code-stats-list";
+
+        unassigned.forEach(stat => {
+          const card = document.createElement("div");
+          card.className = "code-stat";
+
+          const header = document.createElement("div");
+          header.className = "code-stat-header";
+
+          const name = document.createElement("div");
+          name.className = "code-name";
+          name.textContent = stat.code;
+
+          const count = document.createElement("div");
+          count.className = "code-count";
+          count.textContent = `${stat.count} occurrence${stat.count>1?"s":""}`;
+
+          header.appendChild(name);
+          header.appendChild(count);
+          card.appendChild(header);
+
+          stat.examples.forEach(ex => {
+            const quoteEl = document.createElement("div");
+            quoteEl.className = "example-quote";
+            quoteEl.textContent = `"${ex.quote}"`;
+            card.appendChild(quoteEl);
+
+            if (ex.source) {
+              const srcEl = document.createElement("div");
+              srcEl.className = "example-source";
+              srcEl.textContent = `Source: ${ex.source}`;
+              card.appendChild(srcEl);
+            }
+          });
+
+          list.appendChild(card);
+        });
+
+        section.appendChild(list);
+        codeStatsContainer.appendChild(section);
+      }
+    }
+
+    function handleCSVImport(file) {
+      const reader = new FileReader();
+      reader.onload = e => {
+        try {
+          const rows = parseCSV(e.target.result);
+          const stats = buildCodeStatsFromCSV(rows);
+          renderCodeStatsByColumn(stats);
+          analyticsSummary.textContent =
+            `Imported ${rows.length} rows. Using columns: "tag" as code, "content" as quote, "document" as source.`;
+        } catch(err) {
+          console.error(err);
+          analyticsSummary.textContent = "Could not read CSV – check the format and try again.";
+          codeStatsContainer.innerHTML = "";
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    // events
     addButton.addEventListener("click", addCode);
-    input.addEventListener("keydown", (e) => {
+    input.addEventListener("keydown", e => {
       if (e.key === "Enter") {
         e.preventDefault();
         addCode();
@@ -653,16 +974,21 @@
     saveButton.addEventListener("click", () => {
       saveLayoutFromDOM();
       saveButton.textContent = "Saved!";
-      setTimeout(() => {
-        saveButton.textContent = "Save layout";
-      }, 900);
+      setTimeout(() => { saveButton.textContent = "Save layout"; }, 900);
     });
 
     exportPdfButton.addEventListener("click", exportPDF);
-
     generateDescriptorsButton.addEventListener("click", generateDescriptors);
 
-    // ---------- init ----------
+    importCsvTrigger.addEventListener("click", () => {
+      importCsvInput.value = "";
+      importCsvInput.click();
+    });
+
+    importCsvInput.addEventListener("change", e => {
+      const file = e.target.files[0];
+      if (file) handleCSVImport(file);
+    });
 
     loadLayout();
   </script>
