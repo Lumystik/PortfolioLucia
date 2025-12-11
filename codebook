@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucía Medina</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Nunito Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        'black-pure': '#000000',
+                        'gray-dark': '#111111',
+                        'pastel-gray': '#848484',
+                        'pastel-blue': '#C0DBEE',
+                        'pastel-purple': '#B9B3F8',
+                        'pastel-green': '#BBEED5',
+                        'pastel-red': '#F5A4AB',
+                        'pastel-lilla': '#CCB1D0',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        html { scroll-behavior: smooth; }
+        body { background-color: #000000; color: #848484; font-family: 'Nunito Sans', sans-serif; }
+        
+        .drawing-path {
+            stroke-width: 5; stroke-linecap: round; stroke-linejoin: round;
+            stroke: url(#gradient-stroke); fill: none;
+            stroke-dasharray: 2000; stroke-dashoffset: 2000; opacity: 0.8;
+            animation: draw 5s 0s linear infinite;
+        }
+        @keyframes draw {
+            from { opacity: 0.5; stroke-dashoffset: 4000; }
+            to { opacity: 0.8; stroke-dashoffset: 0; }
+        }
+        .hero-background {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0; display: flex; justify-content: center; align-items: center;
+            pointer-events: none;
+        }
+        .hero-background svg { width: 110%; height: 110%; object-fit: contain; }
+    </style>
+</head>
+<body class="antialiased">
+
+<header class="sticky top-0 z-50 bg-black-pure/90 backdrop-blur-sm border-b border-pastel-gray/20">
+    <nav class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="text-xl font-bold text-pastel-purple tracking-widest"><a href="#home">Lucía Medina</a></div>
+        <div class="hidden md:flex space-x-8 text-pastel-gray font-medium">
+            <a href="#work" class="hover:text-pastel-blue transition duration-200">Work</a>
+            <a href="#community" class="hover:text-pastel-blue transition duration-200">Community</a>
+            <a href="#about" class="hover:text-pastel-blue transition duration-200">About</a>
+        </div>
+        <button id="menu-button" class="md:hidden focus:outline-none"><i class="fas fa-bars text-pastel-purple text-xl"></i></button>
+    </nav>
+    <div id="mobile-menu" class="hidden md:hidden bg-black-pure border-t border-pastel-gray/20">
+        <a href="#work" class="block py-3 px-4 text-sm text-pastel-gray hover:text-pastel-blue">Work</a>
+        <a href="#community" class="block py-3 px-4 text-sm text-pastel-gray hover:text-pastel-blue">Community</a>
+        <a href="#about" class="block py-3 px-4 text-sm text-pastel-gray hover:text-pastel-blue">About</a>
+    </div>
+</header>
+
+<section id="home" class="max-w-6xl mx-auto px-4 pt-40 pb-20 text-center relative min-h-[90vh] flex flex-col justify-center items-center">
+    <div class="relative z-10">
+        <h1 class="text-6xl sm:text-7xl font-bold mb-4 tracking-tight text-pastel-blue">Lucía Medina</h1>
+        <p class="text-xl sm:text-2xl text-pastel-gray mb-8 font-light">Digital & Interaction Designer focused on intuitive experiences.</p>
+        <a href="#work" class="inline-block px-8 py-3 bg-pastel-green text-black-pure text-lg font-bold rounded-full hover:bg-pastel-lilla transition duration-300 shadow-[0_0_15px_rgba(187,238,213,0.4)] mt-4">View Projects</a>
+    </div>
+    <div class="hero-background">
+        <svg width="987" height="878" viewBox="0 0 987 878" fill="none">
+            <defs>
+                <linearGradient id="gradient-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#BBEED5" /><stop offset="40%" stop-color="#C0DBEE" />
+                    <stop offset="70%" stop-color="#B9B3F8" /><stop offset="100%" stop-color="#CCB1D0" />
+                </linearGradient>
+            </defs>
+            <path d="M17.7617 646.374C25.7546 676.661 50.6879 692.759 75.3093 701.181C101.467 710.129 149.865 741.192 168.756 761.377C172.71 765.601 175.447 770.816 176.677 776.468L180.224 792.771C192.792 850.529 258.938 878.229 308.913 846.663L325.076 836.453C336.404 829.299 345.554 819.335 354.12 809.033C393.875 761.215 490.712 704.118 642.944 767.831C795.246 831.573 858.919 728.484 876.751 650.37C880.653 633.276 887.453 616.779 899.024 603.606L952.091 543.189C977.366 514.414 980.322 472.305 959.314 440.281L908.296 362.507C891.84 337.42 891.668 305.004 907.857 279.744C933.235 240.146 916.955 187.238 873.707 168.757L727.598 106.32C715.419 101.115 704.623 93.1424 696.065 83.0343L659.798 40.1928C633.149 8.71371 587.772 0.85643 552.09 21.5425L439.597 86.7595C403.942 107.43 358.602 99.6015 331.943 68.1717L309.21 41.3711C273.099 -1.20259 206.477 1.90277 174.482 47.651L129.362 112.167C124.584 118.999 118.9 125.155 111.92 129.714C66.7895 159.187 -17.8498 193.265 35.8118 346.157C108.406 552.994 -8.2777 547.706 17.7617 646.374Z" stroke="url(#gradient-stroke)" fill="none" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" class="drawing-path" />
+        </svg>
+    </div>
+</section>
+
+<section id="work" class="max-w-6xl mx-auto px-4 py-20">
+    <h2 class="text-4xl font-bold text-center mb-16 text-pastel-lilla">Recent Work</h2>
+    <div class="grid md:grid-cols-2 gap-10">
+        <article class="bg-black-pure p-8 rounded-lg shadow-2xl border border-pastel-blue/20 hover:border-pastel-blue transition hover:scale-[1.02]">
+            <h3 class="text-2xl font-semibold mb-3 text-pastel-blue">Muse*on</h3>
+            <p class="text-pastel-gray mb-6">Developing an all-in-one software for small museum staff.</p>
+            <a href="#" class="text-sm font-bold text-pastel-red hover:text-pastel-lilla border-b border-pastel-red">Case Study &rarr;</a>
+        </article>
+        <article class="bg-black-pure p-8 rounded-lg shadow-2xl border border-pastel-blue/20 hover:border-pastel-blue transition hover:scale-[1.02]">
+            <h3 class="text-2xl font-semibold mb-3 text-pastel-blue">Art Without Dimension</h3>
+            <p class="text-pastel-gray mb-6">A futuristic prototype for users exploring art in new virtual ways.</p>
+            <a href="#" class="text-sm font-bold text-pastel-red hover:text-pastel-lilla border-b border-pastel-red">View Prototype &rarr;</a>
+        </article>
+    </div>
+</section>
+
+<section id="community" class="max-w-6xl mx-auto px-4 py-20 border-t border-pastel-gray/20">
+    <h2 class="text-4xl font-bold text-center mb-8 text-pastel-green">Community Board</h2>
+    <p class="text-center text-pastel-gray mb-12">Leave a message or share a link! Content here is saved to the cloud.</p>
+    
+    <div class="max-w-xl mx-auto bg-gray-dark p-6 rounded-xl border border-pastel-green/30 mb-16">
+        <form id="uploadForm" class="space-y-4">
+            <div>
+                <label class="block text-pastel-blue text-sm mb-2">Your Name</label>
+                <input type="text" id="userName" required class="w-full bg-black-pure border border-pastel-gray/30 text-white rounded p-3 focus:outline-none focus:border-pastel-green">
+            </div>
+            <div>
+                <label class="block text-pastel-blue text-sm mb-2">Message or Project Description</label>
+                <textarea id="userMessage" required class="w-full bg-black-pure border border-pastel-gray/30 text-white rounded p-3 focus:outline-none focus:border-pastel-green h-24"></textarea>
+            </div>
+            <button type="submit" class="w-full bg-pastel-green text-black-pure font-bold py-3 rounded hover:bg-pastel-lilla transition">
+                Post to Board
+            </button>
+        </form>
+    </div>
+
+    <div id="postsContainer" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <p class="text-center w-full text-pastel-gray col-span-full">Loading community posts...</p>
+    </div>
+</section>
+
+<section id="about" class="max-w-6xl mx-auto px-4 py-20 border-t border-pastel-gray/20">
+    <h2 class="text-4xl font-bold text-center mb-16 text-pastel-purple">A Little About Me</h2>
+    <div class="lg:flex gap-10">
+        <div class="lg:w-1/2 mb-10 lg:mb-0">
+            <p class="text-lg text-pastel-gray leading-relaxed mb-6">I am a master's student in Digital and Interaction Design at Polimi.</p>
+        </div>
+        <div class="lg:w-1/2 bg-black-pure p-8 rounded-lg shadow-lg border border-pastel-purple/30">
+            <h3 class="text-2xl font-semibold mb-5 text-pastel-lilla">Key Details</h3>
+            <p class="text-pastel-gray"><span class="font-bold text-pastel-green">Education:</span> MSc Digital Design, Polimi</p>
+        </div>
+    </div>
+</section>
+
+<footer class="bg-black-pure border-t border-pastel-gray/10 py-8 text-center text-sm text-pastel-gray/60">
+    <p>&copy; 2025 Lucía Medina.</p>
+</footer>
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } 
+    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+  // 2. YOUR FIREBASE CONFIGURATION (PASTE YOUR KEYS HERE)
+  // ---------------------------------------------------
+  const firebaseConfig = {
+    apiKey: "AIzaSyD... YOUR API KEY ...",
+    authDomain: "your-project.firebaseapp.com",
+    projectId: "your-project-id",
+    storageBucket: "your-project.appspot.com",
+    messagingSenderId: "123456789",
+    appId: "1:123456789:web:abc123456"
+  };
+  // ---------------------------------------------------
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // Reference to HTML elements
+  const form = document.getElementById('uploadForm');
+  const postsContainer = document.getElementById('postsContainer');
+
+  // 3. LOGIC TO SAVE DATA
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const name = document.getElementById('userName').value;
+    const message = document.getElementById('userMessage').value;
+    const btn = form.querySelector('button');
+
+    try {
+        btn.textContent = "Posting...";
+        btn.disabled = true;
+
+        // Add a new document to collection "posts"
+        await addDoc(collection(db, "posts"), {
+            name: name,
+            message: message,
+            timestamp: serverTimestamp()
+        });
+
+        // Reset form
+        form.reset();
+        btn.textContent = "Post to Board";
+        btn.disabled = false;
+        alert("Posted successfully!");
+
+    } catch (e) {
+        console.error("Error adding document: ", e);
+        alert("Error! Did you enable Firestore in 'Test Mode' in the Firebase console?");
+        btn.textContent = "Post to Board";
+        btn.disabled = false;
+    }
+  });
+
+  // 4. LOGIC TO LOAD DATA (REAL-TIME)
+  // This listener runs automatically whenever the database changes
+  const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
+  
+  onSnapshot(q, (snapshot) => {
+    postsContainer.innerHTML = ""; // Clear current list
+    
+    if(snapshot.empty) {
+        postsContainer.innerHTML = "<p class='text-center w-full text-pastel-gray col-span-full'>No posts yet. Be the first!</p>";
+        return;
+    }
+
+    snapshot.forEach((doc) => {
+        const data = doc.data();
+        // Create HTML for the card
+        const card = `
+            <div class="bg-gray-dark p-6 rounded-lg border border-pastel-purple/20 animate-fade-in">
+                <h4 class="text-xl font-bold text-pastel-purple mb-2">${escapeHtml(data.name)}</h4>
+                <p class="text-pastel-gray text-sm leading-relaxed">${escapeHtml(data.message)}</p>
+            </div>
+        `;
+        postsContainer.innerHTML += card;
+    });
+  });
+
+  // Helper to prevent XSS attacks (security)
+  function escapeHtml(text) {
+    if(!text) return "";
+    return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+  }
+</script>
+
+<script>
+    // Mobile menu toggle
+    const menuButton = document.getElementById('menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+</script>
+
+</body>
+</html>
