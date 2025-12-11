@@ -4,28 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lucía Medina</title>
-    <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Configure Tailwind for a modern look (using Inter font) -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        sans: ['"Nunito Sans"', 'sans-serif'],
                     },
                     colors: {
                         'black-pure': '#000000',
-                        'gray-dark': '#111111',
-                        'gray-light': '#bbbbbb',
-                        'highlight': '#ffffff',
+                        'gray-dark': '#111111', // Kept for slight card contrast if needed
+                        
+                        // Your Custom Pastel Palette
+                        'pastel-gray': '#848484',
+                        'pastel-blue': '#C0DBEE',
+                        'pastel-purple': '#B9B3F8',
+                        'pastel-green': '#BBEED5',
+                        'pastel-red': '#F5A4AB',
+                        'pastel-lilla': '#CCB1D0',
                     }
                 }
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-    <!-- Icon Library -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
@@ -33,89 +36,58 @@
         html {
             scroll-behavior: smooth;
         }
-        /* Ensure the body is black and text is white */
+        /* Ensure the body is black and text defaults to your pastel gray */
         body {
             background-color: #000000;
-            color: #ffffff;
-            font-family: 'Inter', sans-serif;
+            color: #848484; /* pastel-gray */
+            font-family: 'Nunito Sans', sans-serif;
         }
 
-        /* Background Circle Behind the Tagline */
-        .name-background {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* Animate the vector path like it's being drawn */
+        .drawing-path {
+            stroke-width: 5; 
+            stroke-linecap: round; 
+            stroke-linejoin: round; 
+            /* Updated Gradient to match your Pastel Colors: Green -> Blue -> Purple -> Lilla */
+            stroke: url(#gradient-stroke); 
+            fill: none; 
+            stroke-dasharray: 2000; 
+            stroke-dashoffset: 2000; 
+            opacity: 0.8;
+            animation: draw 5s 0s linear infinite; 
         }
-        .name-circle {
-            width:100%;
-            max-width: 400px;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            z-index: -1;
-            text-align: center;
-        }
-        .name-circle h2 {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 300; 
-            font-size: calc(1.3rem + 1.2vw);
-            color: #7bdcb5; 
-            text-align: center;
-            line-height: 1.3;
-            margin: 0;
-        }
-        .hero-left,
-        .hero-right {
-            display: none;
-        }
-  
-    /* Animate the vector path like it's being drawn */
-    .drawing-path {
-    stroke-width: 5; /* Adjust the stroke width as needed */
-    stroke-linecap: round; /* Line style for the path ends */
-    stroke-linejoin: round; /* Line join style */
-    stroke: linear-gradient(135deg, #7bdcb5 0%, #0080ff 40%, #4f4fff 70%, #006699 100%);
-    fill: none; /* Remove fill for drawing effect */
-    stroke-dasharray: 2000; /* Adjust based on the length of your SVG path */
-    stroke-dashoffset: 2000; /* Start with the full length to hide the stroke */
-    opacity:0.4;
-    animation: draw 5s 0s linear infinite; /* Animate drawing the path */
-    }
 
-    @keyframes draw {
-    from {
-        opacity:0.3;
-        stroke-dashoffset: 4000; /* Start offset */
-    }
-    to {
-        opacity:0.2;
-        stroke-dashoffset: 0; /* End offset for full path */
-    }
-    }
-    /* Keyframes for the fade and reveal effect */
-@keyframes fadeReveal {
-    0%, 100% {
-        clip-path: inset(0 100% 0 0);
-        opacity: 0.1;
-    }
-    20% {
-        clip-path: inset(0 0 0 0);
-        opacity: 0.02;
-    }
-    60% {
-        clip-path: inset(0 0 0 0);
-        opacity: 0.3;
-    }
-    80% {
-        clip-path: inset(0 100% 0 0);
-        opacity: 0;
-    }
-}
+        @keyframes draw {
+            from {
+                opacity: 0.5;
+                stroke-dashoffset: 4000; 
+            }
+            to {
+                opacity: 0.8;
+                stroke-dashoffset: 0; 
+            }
+        }
+
+        /* Keyframes for the fade and reveal effect */
+        @keyframes fadeReveal {
+            0%, 100% {
+                clip-path: inset(0 100% 0 0);
+                opacity: 0.1;
+            }
+            20% {
+                clip-path: inset(0 0 0 0);
+                opacity: 0.05;
+            }
+            60% {
+                clip-path: inset(0 0 0 0);
+                opacity: 0.4;
+            }
+            80% {
+                clip-path: inset(0 100% 0 0);
+                opacity: 0;
+            }
+        }
         
-        /* Position the SVG behind the content */
         .hero-background {
             position: absolute;
             top: 0;
@@ -128,11 +100,10 @@
             align-items: center;
             max-width: 100%; 
             max-height: 100%;
-            pointer-events: none; /* avoid blocking clicks */
+            pointer-events: none; 
         }
 
-        /* Ensure the SVG itself fills the container space and maintains aspect ratio */
-              .hero-background svg {
+        .hero-background svg {
             width: 110%;
             height: 110%;
             max-width: 1100px;
@@ -153,61 +124,49 @@
 </head>
 <body class="antialiased">
 
-<!-- Sticky Navigation Header -->
-<header class="sticky top-0 z-50 bg-black-pure shadow-lg shadow-white/5">
+<header class="sticky top-0 z-50 bg-black-pure/90 backdrop-blur-sm border-b border-pastel-gray/20">
     <nav class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-        <div class="text-xl font-bold text-highlight tracking-widest">
+        <div class="text-xl font-bold text-pastel-purple tracking-widest">
             <a href="#home">Lucía Medina</a>
         </div>
-        <div class="hidden md:flex space-x-8 text-gray-light font-medium">
-            <a href="#work" class="hover:text-highlight transition duration-200">Work</a>
-            <a href="#about" class="hover:text-highlight transition duration-200">About</a>
-            <a href="#contact" class="hover:text-highlight transition duration-200">Contact</a>
+        <div class="hidden md:flex space-x-8 text-pastel-gray font-medium">
+            <a href="#work" class="hover:text-pastel-blue transition duration-200">Work</a>
+            <a href="#about" class="hover:text-pastel-blue transition duration-200">About</a>
+            <a href="#contact" class="hover:text-pastel-blue transition duration-200">Contact</a>
         </div>
-        <!-- Mobile Menu Button (Hamburger) -->
         <button id="menu-button" class="md:hidden focus:outline-none">
-            <svg class="w-6 h-6 text-highlight" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg class="w-6 h-6 text-pastel-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
             </svg>
         </button>
     </nav>
-    <!-- Mobile Menu (Hidden by default) -->
-    <div id="mobile-menu" class="hidden md:hidden bg-gray-dark border-t border-white/10">
-        <a href="#work" class="block py-3 px-4 text-sm text-gray-light hover:bg-black-pure">Work</a>
-        <a href="#about" class="block py-3 px-4 text-sm text-gray-light hover:bg-black-pure">About</a>
-        <a href="#contact" class="block py-3 px-4 text-sm text-gray-light hover:bg-black-pure">Contact</a>
+    <div id="mobile-menu" class="hidden md:hidden bg-black-pure border-t border-pastel-gray/20">
+        <a href="#work" class="block py-3 px-4 text-sm text-pastel-gray hover:text-pastel-blue hover:bg-gray-dark">Work</a>
+        <a href="#about" class="block py-3 px-4 text-sm text-pastel-gray hover:text-pastel-blue hover:bg-gray-dark">About</a>
+        <a href="#contact" class="block py-3 px-4 text-sm text-pastel-gray hover:text-pastel-blue hover:bg-gray-dark">Contact</a>
     </div>
 </header>
 
-<!-- 1. Home / Hero Section -->
 <section id="home" class="max-w-6xl mx-auto px-4 pt-40 pb-20 text-center relative min-h-[90vh] flex flex-col justify-center items-center">
     
-    <!-- Text Content -->
     <div class="relative z-10">
-        <h1 class="text-6xl sm:text-7xl font-bold mb-4 tracking-tight">
+        <h1 class="text-6xl sm:text-7xl font-bold mb-4 tracking-tight text-pastel-blue">
             Lucía Medina
         </h1>
-        <p class="text-xl sm:text-2xl text-gray-light mb-8 font-light">
+        <p class="text-xl sm:text-2xl text-pastel-gray mb-8 font-light">
             Digital & Interaction Designer focused on intuitive experiences.
         </p>
-        <a href="#work" class="inline-block px-8 py-3 bg-white text-black-pure text-lg font-semibold rounded-full hover:bg-gray-light transition duration-300 shadow-xl mt-4">
+        <a href="#work" class="inline-block px-8 py-3 bg-pastel-green text-black-pure text-lg font-bold rounded-full hover:bg-pastel-lilla transition duration-300 shadow-[0_0_15px_rgba(187,238,213,0.4)] mt-4">
             View Projects
         </a>
     </div>
 
-    <!-- Animated SVG Background -->
     <div class="hero-background">
         <svg width="987" height="878" viewBox="0 0 987 878" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
           <defs>
-            <!-- Define a linear gradient for the stroke -->
             <linearGradient id="gradient-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#7bdcb5" />
-              <stop offset="40%" stop-color="#0080ff" />
-              <stop offset="70%" stop-color="#4f4fff" />
-              <stop offset="100%" stop-color="#006699" />
-            </linearGradient>
+              <stop offset="0%" stop-color="#BBEED5" /> <stop offset="40%" stop-color="#C0DBEE" /> <stop offset="70%" stop-color="#B9B3F8" /> <stop offset="100%" stop-color="#CCB1D0" /> </linearGradient>
 
-            <!-- Existing image and filter definitions -->
             <filter id="filter0_d_75_190" x="0.507699" y="0.874847" width="986.196" height="876.712" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
               <feFlood flood-opacity="0" result="BackgroundImageFix"/>
               <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
@@ -218,10 +177,6 @@
               <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_75_190"/>
               <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_75_190" result="shape"/>
             </filter>
-            <pattern id="pattern0_75_190" patternContentUnits="objectBoundingBox" width="1" height="1">
-              <use xlink:href="#image0_75_190" transform="matrix(0.00488931 0 0 0.00502513 -0.145389 0)"/>
-            </pattern>
-            <image id="image0_75_190" width="264" height="199" xlink:href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/..." />
           </defs>
 
           <g filter="url(#filter0_d_75_190)">
@@ -236,117 +191,105 @@
             />
           </g>
         </svg>
-
-        <img src="./images/circle.svg" alt="Foreground Ellipse" class="ellipse-foreground">
-    </div>
+        
+        </div>
 </section>
 
-<!-- 2. Work / Projects Section -->
 <section id="work" class="max-w-6xl mx-auto px-4 py-20">
-    <h2 class="text-4xl font-bold text-center mb-16 text-highlight">
+    <h2 class="text-4xl font-bold text-center mb-16 text-pastel-lilla">
         Recent Work
     </h2>
     <div class="grid md:grid-cols-2 gap-10">
-        <!-- Project Card 1 -->
-        <article class="bg-gray-dark p-8 rounded-lg shadow-2xl transition duration-300 hover:scale-[1.02] hover:shadow-white/10 border border-white/10">
-            <h3 class="text-2xl font-semibold mb-3">Muse*on</h3>
-            <p class="text-gray-light mb-6">Developing an all-in-one software for small museum staff to streamline workflow.</p>
-            <a href="https://www.behance.net/gallery/201102523/Museon-2024" target="_blank" class="text-sm font-bold text-white hover:text-highlight transition duration-200 border-b border-white hover:border-highlight">
+        <article class="bg-black-pure p-8 rounded-lg shadow-2xl transition duration-300 hover:scale-[1.02] border border-pastel-blue/20 hover:border-pastel-blue">
+            <h3 class="text-2xl font-semibold mb-3 text-pastel-blue">Muse*on</h3>
+            <p class="text-pastel-gray mb-6">Developing an all-in-one software for small museum staff to streamline workflow.</p>
+            <a href="https://www.behance.net/gallery/201102523/Museon-2024" target="_blank" class="text-sm font-bold text-pastel-red hover:text-pastel-lilla transition duration-200 border-b border-pastel-red hover:border-pastel-lilla">
                 Case Study &rarr;
             </a>
         </article>
 
-        <!-- Project Card 2 -->
-        <article class="bg-gray-dark p-8 rounded-lg shadow-2xl transition duration-300 hover:scale-[1.02] hover:shadow-white/10 border border-white/10">
-            <h3 class="text-2xl font-semibold mb-3">Art Without Dimension</h3>
-            <p class="text-gray-light mb-6">A futuristic prototype for users exploring art in new virtual ways.</p>
-            <a href="https://www.figma.com/proto/FnFqrWBxyChSOdL3aVzV9A/Prototype?node-id=616-1949&starting-point-node-id=564%3A1942&scaling=contain&content-scaling=fixed" target="_blank" class="text-sm font-bold text-white hover:text-highlight transition duration-200 border-b border-white hover:border-highlight">
+        <article class="bg-black-pure p-8 rounded-lg shadow-2xl transition duration-300 hover:scale-[1.02] border border-pastel-blue/20 hover:border-pastel-blue">
+            <h3 class="text-2xl font-semibold mb-3 text-pastel-blue">Art Without Dimension</h3>
+            <p class="text-pastel-gray mb-6">A futuristic prototype for users exploring art in new virtual ways.</p>
+            <a href="https://www.figma.com/proto/FnFqrWBxyChSOdL3aVzV9A/Prototype?node-id=616-1949&starting-point-node-id=564%3A1942&scaling=contain&content-scaling=fixed" target="_blank" class="text-sm font-bold text-pastel-red hover:text-pastel-lilla transition duration-200 border-b border-pastel-red hover:border-pastel-lilla">
                 View Prototype &rarr;
             </a>
         </article>
 
-        <!-- Project Card 3 -->
-        <article class="bg-gray-dark p-8 rounded-lg shadow-2xl transition duration-300 hover:scale-[1.02] hover:shadow-white/10 border border-white/10">
-            <h3 class="text-2xl font-semibold mb-3">Films Foundation</h3>
-            <p class="text-gray-light mb-6">A website proposal for the Italian film foundation.</p>
-            <a href="https://www.figma.com/proto/MWvYkF7ybuKjE7SPnGi8po/Assignment?node-id=2128-5992&starting-point-node-id=2128%3A5992" target="_blank" class="text-sm font-bold text-white hover:text-highlight transition duration-200 border-b border-white hover:border-highlight">
+        <article class="bg-black-pure p-8 rounded-lg shadow-2xl transition duration-300 hover:scale-[1.02] border border-pastel-blue/20 hover:border-pastel-blue">
+            <h3 class="text-2xl font-semibold mb-3 text-pastel-blue">Films Foundation</h3>
+            <p class="text-pastel-gray mb-6">A website proposal for the Italian film foundation.</p>
+            <a href="https://www.figma.com/proto/MWvYkF7ybuKjE7SPnGi8po/Assignment?node-id=2128-5992&starting-point-node-id=2128%3A5992" target="_blank" class="text-sm font-bold text-pastel-red hover:text-pastel-lilla transition duration-200 border-b border-pastel-red hover:border-pastel-lilla">
                 View Design &rarr;
             </a>
         </article>
 
-        <!-- Project Card 4 -->
-        <article class="bg-gray-dark p-8 rounded-lg shadow-2xl transition duration-300 hover:scale-[1.02] hover:shadow-white/10 border border-white/10">
-            <h3 class="text-2xl font-semibold mb-3">Pixela</h3>
-            <p class="text-gray-light mb-6">A brief description of your fourth project goes here. This is a placeholder for your newest work.</p>
-            <a href="https://www.behance.net/gallery/201101643/PIXELA" target="_blank" class="text-sm font-bold text-white hover:text-highlight transition duration-200 border-b border-white hover:border-highlight">
+        <article class="bg-black-pure p-8 rounded-lg shadow-2xl transition duration-300 hover:scale-[1.02] border border-pastel-blue/20 hover:border-pastel-blue">
+            <h3 class="text-2xl font-semibold mb-3 text-pastel-blue">Pixela</h3>
+            <p class="text-pastel-gray mb-6">A brief description of your fourth project goes here. This is a placeholder.</p>
+            <a href="https://www.behance.net/gallery/201101643/PIXELA" target="_blank" class="text-sm font-bold text-pastel-red hover:text-pastel-lilla transition duration-200 border-b border-pastel-red hover:border-pastel-lilla">
               View Design &rarr;
             </a>
         </article>
 
-    <!-- Project Card 5 -->
-<article class="bg-gray-dark p-8 rounded-lg shadow-2xl transition duration-300 hover:scale-[1.02] hover:shadow-white/10 border border-white/10">
-  <h3 class="text-2xl font-semibold mb-3">Thematic Analysis Tool</h3>
-  <p class="text-gray-light mb-6">
-    I made a small thematic analysis tool that is visual and organises the content accordinng to the codes
-  </p>
-  <a href="playground.html"
-     target="_blank"
-     class="text-sm font-bold text-white hover:text-highlight transition duration-200 border-b border-white hover:border-highlight">
-    View Tool &rarr;
-  </a>
-</article>
+         <article class="bg-black-pure p-8 rounded-lg shadow-2xl transition duration-300 hover:scale-[1.02] border border-pastel-blue/20 hover:border-pastel-blue">
+            <h3 class="text-2xl font-semibold mb-3 text-pastel-blue">Thematic Analysis Tool</h3>
+            <p class="text-pastel-gray mb-6">
+              I made a small thematic analysis tool that is visual and organises the content according to the codes.
+            </p>
+            <a href="playground.html" target="_blank" class="text-sm font-bold text-pastel-red hover:text-pastel-lilla transition duration-200 border-b border-pastel-red hover:border-pastel-lilla">
+              View Tool &rarr;
+            </a>
+          </article>
     </div>
 </section>
 
-<!-- 3. About Me Section -->
-<section id="about" class="max-w-6xl mx-auto px-4 py-20 border-t border-white/10">
-    <h2 class="text-4xl font-bold text-center mb-16 text-highlight">
+<section id="about" class="max-w-6xl mx-auto px-4 py-20 border-t border-pastel-gray/20">
+    <h2 class="text-4xl font-bold text-center mb-16 text-pastel-purple">
         A Little About Me
     </h2>
     <div class="lg:flex gap-10">
         <div class="lg:w-1/2 mb-10 lg:mb-0">
-            <p class="text-lg text-gray-light leading-relaxed mb-6">
+            <p class="text-lg text-pastel-gray leading-relaxed mb-6">
                 I am a master's student in Digital and Interaction Design at Politecnico di Milano, bringing a background in interactive design to the world of UX/UI. My passion is translating complex ideas into elegant, user-friendly interfaces.
             </p>
-            <p class="text-lg text-gray-light leading-relaxed">
-                I love experimenting with new technologies like <strong>SVG animation</strong> and front-end frameworks to create unique and engaging digital experiences, always aiming for accessibility and visual harmony.
+            <p class="text-lg text-pastel-gray leading-relaxed">
+                I love experimenting with new technologies like <strong class="text-pastel-green">SVG animation</strong> and front-end frameworks to create unique and engaging digital experiences, always aiming for accessibility and visual harmony.
             </p>
         </div>
-        <div class="lg:w-1/2 bg-gray-dark p-8 rounded-lg shadow-lg border border-white/10">
-            <h3 class="text-2xl font-semibold mb-5 border-b border-white/10 pb-3">Key Details</h3>
-            <div class="space-y-4">
-                <p><span class="font-bold text-highlight">Education:</span> MSc Digital and Interaction Design, Polimi</p>
-                <p><span class="font-bold text-highlight">Experience:</span> Junior Digital Designer at Seedtag (2020-2024)</p>
-                <p><span class="font-bold text-highlight">Skills:</span> Figma, Adobe Suite, HTML/CSS/JS, Prototyping, Usability Testing</p>
+        <div class="lg:w-1/2 bg-black-pure p-8 rounded-lg shadow-lg border border-pastel-purple/30">
+            <h3 class="text-2xl font-semibold mb-5 border-b border-pastel-gray/20 pb-3 text-pastel-lilla">Key Details</h3>
+            <div class="space-y-4 text-pastel-gray">
+                <p><span class="font-bold text-pastel-green">Education:</span> MSc Digital and Interaction Design, Polimi</p>
+                <p><span class="font-bold text-pastel-green">Experience:</span> Junior Digital Designer at Seedtag (2020-2024)</p>
+                <p><span class="font-bold text-pastel-green">Skills:</span> Figma, Adobe Suite, HTML/CSS/JS, Prototyping, Usability Testing</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- 4. Contact Section -->
-<section id="contact" class="max-w-6xl mx-auto px-4 py-20 border-t border-white/10 text-center">
-    <h2 class="text-4xl font-bold mb-6 text-highlight">
+<section id="contact" class="max-w-6xl mx-auto px-4 py-20 border-t border-pastel-gray/20 text-center">
+    <h2 class="text-4xl font-bold mb-6 text-pastel-lilla">
         Let's Connect
     </h2>
-    <p class="text-lg text-gray-light max-w-2xl mx-auto mb-12">
+    <p class="text-lg text-pastel-gray max-w-2xl mx-auto mb-12">
         I’m always open to new projects, opportunities, and discussions about design or technology. Feel free to reach out!
     </p>
     <div class="flex justify-center space-x-10">
-        <a href="mailto:lucia.medina@mail.polimi.it" class="text-gray-light hover:text-highlight transition duration-300 text-3xl" title="Email">
+        <a href="mailto:lucia.medina@mail.polimi.it" class="text-pastel-gray hover:text-pastel-blue transition duration-300 text-3xl" title="Email">
             <i class="fas fa-envelope"></i>
         </a>
-        <a href="https://www.linkedin.com/in/lucia-medina1829" target="_blank" class="text-gray-light hover:text-highlight transition duration-300 text-3xl" title="LinkedIn">
+        <a href="https://www.linkedin.com/in/lucia-medina1829" target="_blank" class="text-pastel-gray hover:text-pastel-lilla transition duration-300 text-3xl" title="LinkedIn">
             <i class="fab fa-linkedin"></i>
         </a>
-        <a href="https://www.behance.net/lucamedinagaln1" target="_blank" class="text-gray-light hover:text-highlight transition duration-300 text-3xl" title="Behance">
+        <a href="https://www.behance.net/lucamedinagaln1" target="_blank" class="text-pastel-gray hover:text-pastel-green transition duration-300 text-3xl" title="Behance">
             <i class="fab fa-behance"></i>
         </a>
     </div>
 </section>
 
-<!-- Footer -->
-<footer class="bg-gray-dark border-t border-white/10 py-8 text-center text-sm text-gray-light">
-    <p>&copy; 2025 Lucía Medina. All rights reserved. Designed with Inter and Tailwind CSS.</p>
+<footer class="bg-black-pure border-t border-pastel-gray/10 py-8 text-center text-sm text-pastel-gray/60">
+    <p>&copy; 2025 Lucía Medina. All rights reserved. Designed with Nunito Sans and Tailwind CSS.</p>
 </footer>
 
 <script>
@@ -367,19 +310,3 @@
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
