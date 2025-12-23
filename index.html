@@ -389,8 +389,6 @@
             <h2 class="text-sm font-bold text-pastel-lilla tracking-[0.2em] uppercase mb-16 border-b border-white/5 pb-4">Profile</h2>
             
             <div class="lg:flex gap-16 items-start">
-                
-                <!-- Left: Interactive Portrait (35%) -->
                 <div class="lg:w-[35%] mb-12 lg:mb-0 relative group">
                     <div class="face-slider-container" id="face-slider">
                         
@@ -400,7 +398,15 @@
                         </div>
 
                         <!-- Layer 2: Top (Shadow Text + Photo) -->
-                        <div class="face-slider-layer" id="face-foreground">
+                        <div class="face-slider-layer layer-cover" id="face-foreground">
+
+                            <!-- The Shadow Text (Inside Cover) -->
+                            <div class="skin-shadow-text" id="shadow-text">
+                                <span>I am a <span class="highlight">Hybrid</span></span>
+                                <span>Designer.</span>
+                                <span style="font-size: 0.8em; opacity: 0.8; margin-top: 1rem;">Based in <span class="highlight">Milan</span></span>
+                                <span style="font-size: 0.8em; opacity: 0.8;">From <span class="highlight">Mexico</span></span>
+                            </div>
 
                             <!-- The Image on Top -->
                             <img src="./images/meme2.png" alt="Lucía Medina" id="face-image">
@@ -822,6 +828,7 @@
 </script>
 </body>
 </html>
+
 
 
 
