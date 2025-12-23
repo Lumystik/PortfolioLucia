@@ -114,14 +114,115 @@
             height: calc(100vh - 80px); /* Fill screen minus header */
             justify-content: center;
             align-items: center;
-            overflow: hidden; /* Prevent scroll on home */
+            overflow: hidden;
         }
 
         #home-content-wrapper {
             position: relative;
             z-index: 10;
             text-align: center;
-            padding-bottom: 10vh; /* Shift content slightly up visually */
+            padding-bottom: 10vh; 
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        /* --- ABOUT SLIDER COMPONENT (SHADOW ON SKIN) --- */
+        .face-slider-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 3/4; 
+            overflow: hidden;
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.1);
+            user-select: none;
+            cursor: ew-resize; 
+        }
+        
+        .face-slider-layer { 
+            position: absolute; 
+            top: 0; left: 0; 
+            width: 100%; height: 100%; 
+            overflow: hidden; 
+        }
+        
+        /* GENERAL IMAGE STYLE FOR BOTH LAYERS */
+        .face-slider-layer img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(100%); /* B&W Filter */
+            pointer-events: none;
+        }
+
+        /* BOTTOM LAYER: IMAGE + TEXT SHADOW */
+        .layer-base {
+            z-index: 1;
+            background-color: #fff; /* White base to help multiply effect */
+        }
+        
+        /* The "Shadow" Text */
+        .skin-shadow-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            z-index: 2;
+            mix-blend-mode: multiply; /* THIS CREATES THE SHADOW EFFECT ON SKIN */
+            color: #1a1a1a; /* Dark gray shadow */
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            line-height: 1.4;
+            text-align: left;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            pointer-events: none;
+        }
+        
+        /* Highlight specific words in the shadow */
+        .skin-shadow-text span {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .skin-shadow-text .highlight {
+            color: #000; /* Darker shadow for emphasis */
+            text-decoration: underline;
+        }
+
+        /* TOP LAYER: CLEAN IMAGE (Resized width reveals bottom) */
+        .layer-cover {
+            z-index: 10;
+            width: 50%; /* JS changes this */
+            border-right: 2px solid #BBEED5; 
+            background-color: #050505; /* Fallback */
+        }
+        /* Ensure top image matches bottom exactly so face doesn't move */
+        .layer-cover img {
+            max-width: none !important; /* Prevent squishing */
+            /* We set exact width in JS to match container */
+        }
+
+        /* Slider Handle */
+        .slider-handle {
+            position: absolute;
+            top: 50%;
+            right: -20px; 
+            width: 40px;
+            height: 40px;
+            background: #BBEED5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-size: 10px;
+            font-weight: bold;
+            box-shadow: 0 0 20px rgba(187, 238, 213, 0.4);
+            transform: translateY(-50%);
+            z-index: 20;
+            pointer-events: none;
+            text-transform: uppercase;
         }
 
         /* --- DETAIL VIEW & CAROUSEL --- */
@@ -166,7 +267,7 @@
             <div class="text-sm font-bold text-pastel-purple tracking-widest hover:text-pastel-green transition-colors duration-300 uppercase cursor-pointer" onclick="switchPage('home')">
                 Lucía Medina
             </div>
-            <div class="hidden md:flex space-x-10 text-pastel-blue/80 font-medium text-xs tracking-widest uppercase">
+            <div class="hidden md:flex space-x-10 text-pastel-blue/80 font-medium text-sm tracking-widest uppercase">
                 <button onclick="switchPage('home')" class="nav-link hover:text-pastel-green transition duration-200">Home</button>
                 <button onclick="switchPage('work')" class="nav-link hover:text-pastel-green transition duration-200">Work</button>
                 <button onclick="switchPage('about')" class="nav-link hover:text-pastel-green transition duration-200">About</button>
@@ -189,8 +290,6 @@
 
         <!-- === PAGE: HOME === -->
         <section id="home" class="page-section active max-w-6xl mx-auto px-4 items-center group" onmouseenter="document.body.classList.add('hovering-home')" onmouseleave="document.body.classList.remove('hovering-home')">
-            
-            <!-- FIXED INTRO TEXT -->
             <div id="home-content-wrapper" class="relative z-10 text-center">
                 <h1 class="text-5xl md:text-7xl font-light mb-6 tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-pastel-blue via-pastel-purple to-pastel-lilla animate-pulse">
                     Lucía Medina
@@ -202,7 +301,6 @@
                     View Projects
                 </button>
             </div>
-
         </section>
 
         <!-- === PAGE: WORK === -->
@@ -213,7 +311,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pb-20">
-                
                 <!-- Project 1: Museon -->
                 <article class="group cursor-pointer click-trigger border border-white/5 p-8 rounded-sm hover:border-pastel-blue/50 transition-all duration-500 relative overflow-hidden" onclick="openProject('museon')">
                     <div class="absolute top-0 left-0 w-1 h-full bg-pastel-blue transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
@@ -308,35 +405,70 @@
         <section id="about" class="page-section max-w-6xl mx-auto px-4 py-8">
             <h2 class="text-sm font-bold text-pastel-lilla tracking-[0.2em] uppercase mb-16 border-b border-white/5 pb-4">Profile</h2>
             
-            <div class="lg:flex gap-24 items-start">
-                <div class="lg:w-1/2 mb-12 lg:mb-0">
-                    <p class="text-xl text-pastel-white/90 leading-relaxed font-light mb-8">
-                        I am a master's student in <strong class="text-pastel-blue font-normal">Digital and Interaction Design</strong> at Politecnico di Milano.
-                    </p>
-                    <p class="text-lg text-pastel-white/60 leading-relaxed font-light">
-                        My approach is defined by precision. I don't just design interfaces; I consider the logic, the code, and the system behind them. I have extensive experience with <strong class="text-pastel-white font-normal">HTML5, CSS3, and JavaScript</strong>, allowing me to prototype with the fidelity of a finished product.
-                    </p>
-                </div>
+            <div class="lg:flex gap-16 items-start">
                 
-                <div class="lg:w-1/2 grid grid-cols-2 gap-y-12 gap-x-8">
-                    <div>
-                        <h4 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-3">Education</h4>
-                        <p class="text-pastel-white text-sm">MSc Digital & Interaction Design</p>
-                        <p class="text-pastel-white/40 text-xs mt-1">Politecnico di Milano, 2026</p>
+                <!-- Left: Interactive Portrait (35%) -->
+                <div class="lg:w-[35%] mb-12 lg:mb-0 relative group">
+                    <div class="face-slider-container" id="face-slider">
+                        <!-- Layer 1: Info/Shadow (Bottom) -->
+                        <div class="face-slider-layer layer-base">
+                            <!-- Background Image (Same as top) -->
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" alt="Lucía Medina">
+                            
+                            <!-- Text Shadow Overlay (Multiply Blend Mode) -->
+                            <div class="skin-shadow-text">
+                                <span>I am a <span class="highlight">Hybrid</span></span>
+                                <span>Designer.</span>
+                                <span style="font-size: 0.8em; opacity: 0.8; margin-top: 1rem;">Based in <span class="highlight">Milan</span></span>
+                                <span style="font-size: 0.8em; opacity: 0.8;">From <span class="highlight">Mexico</span></span>
+                            </div>
+                        </div>
+
+                        <!-- Layer 2: Clean Photo (Top) -->
+                        <div class="face-slider-layer layer-cover" id="face-foreground">
+                            <!-- NOTE: Replace 'images/me.jpg' with your actual image path -->
+                            <img src="images/meme.png" alt="Lucía Medina" id="face-image">
+                            <div class="slider-handle">
+                                INFO
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <h4 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-3">History</h4>
-                        <p class="text-pastel-white text-sm">Seedtag (3+ Years)</p>
-                        <p class="text-pastel-white/40 text-xs mt-1">Digital Designer / Developer</p>
+                    <p class="text-center text-xs text-pastel-white/30 mt-4 font-mono uppercase tracking-widest"><i class="fas fa-arrows-alt-h mr-2"></i> Drag to Reveal Info</p>
+                </div>
+
+                <!-- Right: Content (65%) -->
+                <div class="lg:w-[65%]">
+                    <!-- Bio -->
+                    <div class="mb-12">
+                        <p class="text-xl text-pastel-white/90 leading-relaxed font-light mb-8">
+                            I am a master's student in <strong class="text-pastel-blue font-normal">Digital and Interaction Design</strong> at Politecnico di Milano.
+                        </p>
+                        <p class="text-lg text-pastel-white/60 leading-relaxed font-light">
+                            My approach is defined by precision. I don't just design interfaces; I consider the logic, the code, and the system behind them. I have extensive experience with <strong class="text-pastel-white font-normal">HTML5, CSS3, and JavaScript</strong>, allowing me to prototype with the fidelity of a finished product.
+                        </p>
                     </div>
-                    <div>
-                        <h4 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-3">Tech Stack</h4>
-                        <p class="text-pastel-white text-sm leading-6">Figma, HTML, CSS, JS, Tailwind, Adobe Suite</p>
-                    </div>
-                    <div>
-                        <h4 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-3">Status</h4>
-                        <p class="text-pastel-white text-sm">Based in Milan</p>
-                        <p class="text-pastel-green text-xs mt-1">Open to Relocation</p>
+                    
+                    <!-- Grid -->
+                    <div class="grid grid-cols-2 gap-y-12 gap-x-8">
+                        <div>
+                            <h4 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-3">Education</h4>
+                            <p class="text-pastel-white text-sm">MSc Digital & Interaction Design</p>
+                            <p class="text-pastel-white/40 text-xs mt-1">Politecnico di Milano, 2026</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-3">History</h4>
+                            <p class="text-pastel-white text-sm">Seedtag (3+ Years)</p>
+                            <p class="text-pastel-white/40 text-xs mt-1">Digital Designer / Developer</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-3">Tech Stack</h4>
+                            <p class="text-pastel-white text-sm leading-6">Figma, HTML, CSS, JS, Tailwind, Adobe Suite</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-3">Status</h4>
+                            <p class="text-pastel-white text-sm">Based in Milan</p>
+                            <p class="text-pastel-green text-xs mt-1">Open to Relocation</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -456,10 +588,68 @@
         }
     }
 
-    // --- HOME HOVER EFFECTS ---
-    // Scroll removed, keeping hover interaction
-    
-    // --- PROJECT DATA ---
+    // --- SLIDER INTERACTION LOGIC (ABOUT PAGE) ---
+    const sliderContainer = document.getElementById('face-slider');
+    const foreground = document.getElementById('face-foreground');
+    const faceImage = document.getElementById('face-image');
+
+    if (sliderContainer) {
+        // Update image width to match container on resize (responsive fix)
+        const updateImageSize = () => {
+            const width = sliderContainer.offsetWidth;
+            faceImage.style.width = width + 'px';
+        };
+        window.addEventListener('resize', updateImageSize);
+        // Initial call after load (timeout ensures render)
+        setTimeout(updateImageSize, 100);
+
+        const handleMove = (e) => {
+            const rect = sliderContainer.getBoundingClientRect();
+            // Get X position from mouse or touch
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            
+            let x = clientX - rect.left;
+            
+            // Constrain
+            if (x < 0) x = 0;
+            if (x > rect.width) x = rect.width;
+            
+            const percentage = (x / rect.width) * 100;
+            foreground.style.width = percentage + '%';
+        };
+
+        // Event Listeners
+        sliderContainer.addEventListener('mousemove', handleMove);
+        sliderContainer.addEventListener('touchmove', (e) => {
+            e.preventDefault(); // Prevent page scroll while dragging
+            handleMove(e);
+        });
+        
+        // Optional: Click to jump
+        sliderContainer.addEventListener('click', handleMove);
+    }
+
+    // --- ACCELERATE ANIMATION ON CLICK ---
+    document.querySelectorAll('.click-trigger').forEach(trigger => {
+        trigger.addEventListener('click', () => {
+            const bg = document.querySelector('.hero-background');
+            if(bg) {
+                bg.classList.add('accelerated');
+                setTimeout(() => {
+                    bg.classList.remove('accelerated');
+                }, 2000);
+            }
+        });
+    });
+
+    // Mobile Menu Logic
+    const menuButton = document.getElementById('menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // --- PROJECT DATA & OPEN/CLOSE (Kept existing) ---
     const projects = {
         'seedtag': {
             title: 'Seedtag Interactive Ads',
@@ -496,8 +686,6 @@
                 'Mobile Interface Design (Figma)',
                 'Prototyping'
             ],
-            // NOTE: ADD IMAGES HERE 
-            // images: ['images/museon1.jpg', 'images/museon2.jpg'],
             images: [
                 'https://images.unsplash.com/photo-1544967082-d9d3fdd01a1d?auto=format&fit=crop&w=800&q=80',
                 'https://images.unsplash.com/photo-1574950578143-858c6fc58922?auto=format&fit=crop&w=800&q=80',
@@ -595,15 +783,10 @@
         }
     };
 
-    // --- LOGIC ---
-    const detailView = document.getElementById('detail-view');
-    const galleryContainer = document.getElementById('detail-gallery-container');
-
     function openProject(id) {
         const p = projects[id];
         if (!p) return;
 
-        // Populate Text Data
         document.getElementById('detail-nav-title').innerText = p.title;
         document.getElementById('detail-title').innerText = p.title;
         document.getElementById('detail-subtitle').innerText = p.subtitle;
@@ -611,20 +794,18 @@
         document.getElementById('detail-desc').innerHTML = p.desc;
         document.getElementById('detail-type').innerText = p.type;
 
-        // Populate Roles List
         const roleList = document.getElementById('detail-role');
-        roleList.innerHTML = ''; // Clear previous
+        roleList.innerHTML = '';
         p.role.forEach(r => {
             const li = document.createElement('li');
             li.innerHTML = r; 
             roleList.appendChild(li);
         });
 
-        // --- DYNAMIC GALLERY LOGIC ---
+        const galleryContainer = document.getElementById('detail-gallery-container');
         galleryContainer.innerHTML = ''; 
 
         if (p.isCarousel) {
-            // Render Horizontal GIF Carousel
             document.getElementById('gallery-title').innerText = "Interactive Gallery";
             let carouselHTML = `
                 <div class="carousel-container flex gap-6 pb-4">
@@ -640,7 +821,6 @@
             galleryContainer.innerHTML = carouselHTML;
 
         } else if (p.images) {
-            // Render Standard Static Grid with Images
             document.getElementById('gallery-title').innerText = "Visuals";
             let gridHTML = `<div class="grid grid-cols-1 md:grid-cols-2 gap-6">`;
             
@@ -656,35 +836,14 @@
             galleryContainer.innerHTML = gridHTML;
         }
 
-        // Show Overlay
-        detailView.classList.remove('translate-x-full');
+        document.getElementById('detail-view').classList.remove('translate-x-full');
         document.body.classList.add('detail-open');
     }
 
     function closeProject() {
-        detailView.classList.add('translate-x-full');
+        document.getElementById('detail-view').classList.add('translate-x-full');
         document.body.classList.remove('detail-open');
     }
-
-    // --- ACCELERATE ANIMATION ON CLICK ---
-    document.querySelectorAll('.click-trigger').forEach(trigger => {
-        trigger.addEventListener('click', () => {
-            const bg = document.querySelector('.hero-background');
-            if(bg) {
-                bg.classList.add('accelerated');
-                setTimeout(() => {
-                    bg.classList.remove('accelerated');
-                }, 2000);
-            }
-        });
-    });
-
-    // Mobile Menu Logic
-    const menuButton = document.getElementById('menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    menuButton.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-    });
 </script>
 </body>
 </html>
