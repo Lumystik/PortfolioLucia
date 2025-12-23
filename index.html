@@ -5,25 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lucía Medina | Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JEPVH1MD2X"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-JEPVH1MD2X');
-</script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['"Inter"', 'sans-serif'], // Changed to Inter for Nordic sharpness
+                        sans: ['"Inter"', 'sans-serif'],
                     },
                     colors: {
                         'black-pure': '#050505',
-                        'gray-dark': '#1a1a1a', 
+                        'gray-dark': '#111111', 
                         'pastel-gray': '#B9B3F8',
                         'pastel-blue': '#C0DBEE',
                         'pastel-purple': '#B9B3F8',
@@ -36,356 +27,417 @@
             }
         }
     </script>
-    <!-- Inter Font for Nordic Feel -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-JEPVH1MD2X"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-JEPVH1MD2X'); </script>
     <style>
-        html { scroll-behavior: smooth; }
         body {
             background-color: #050505;
             color: #F0F0F0;
-            font-family: 'Inter', sans-serif; /* Applied Inter */
+            font-family: 'Inter', sans-serif;
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased; /* Crisp text rendering */
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* --- ETHEREAL ANIMATION SETTINGS (KEPT EXACTLY THE SAME) --- */
-        
-        .drawing-path {
-            stroke-width: 5; 
-            stroke-linecap: round; 
-            stroke-linejoin: round; 
-            stroke: url(#gradient-stroke); 
-            fill: none; 
-            stroke-dasharray: 2000; 
-            stroke-dashoffset: 2000; 
-            opacity: 0.5; 
-            animation: draw 20s linear infinite; 
-            transition: animation-duration 2s ease, opacity 1s ease;
-        }
-
-        @keyframes draw {
-            from { opacity: 0.4; stroke-dashoffset: 4000; }
-            to { opacity: 0.7; stroke-dashoffset: 0; }
-        }
-
-        .hero-background {
-            position: absolute;
+        /* --- GLOBAL ETHEREAL BACKGROUND --- */
+        /* Moved out of #home so it persists without resetting */
+        #global-background {
+            position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 0; 
+            z-index: -1; /* Behind everything */
             display: flex; justify-content: center; align-items: center;
             pointer-events: none; overflow: hidden;
-            transition: filter 1.5s ease, transform 1.5s ease;
+            transition: all 1.5s ease; /* Smooth transition for blur/opacity */
         }
 
-        .hero-background svg {
+        .drawing-path {
+            stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; stroke: url(#gradient-stroke); fill: none;
+            stroke-dasharray: 2000; stroke-dashoffset: 2000; opacity: 0.5;
+            animation: draw 30s linear infinite; /* Even slower for elegance */
+            transition: opacity 1s ease;
+        }
+        @keyframes draw { from { opacity: 0.3; stroke-dashoffset: 4000; } to { opacity: 0.6; stroke-dashoffset: 0; } }
+
+        #global-background svg {
             width: 110%; height: 110%; max-width: 1100px; max-height: 980px; object-fit: contain;
-            filter: blur(5px); 
-            transition: filter 1.2s ease, opacity 1.2s ease;
-            opacity: 0.7;
+            transition: filter 1.5s ease, opacity 1.5s ease, transform 1.5s ease;
         }
 
-        /* --- HOVER STATE: Clarity --- */
-        #home:hover .hero-background svg {
+        /* --- BACKGROUND STATES --- */
+        
+        /* State 1: Home (Default) - Dreamy Blur */
+        body[data-page="home"] #global-background svg {
+            filter: blur(5px);
+            opacity: 0.8;
+            transform: scale(1);
+        }
+
+        /* State 2: Home Hover - Clarity (Interactive) */
+        body[data-page="home"].hovering-home #global-background svg {
             filter: blur(0px);
             opacity: 1;
+            transform: scale(1.02);
+        }
+
+        /* State 3: Not Home (Work/About/Contact) - Deep Background Blur */
+        body:not([data-page="home"]) #global-background svg {
+            filter: blur(20px); /* Deep blur to push it back */
+            opacity: 0.15; /* Very faint */
+            transform: scale(1.1);
+        }
+
+        /* --- PAGE TRANSITIONS --- */
+        .page-section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out, transform 0.6s ease-out;
+            min-height: 80vh; 
+            padding-top: 1rem; 
         }
         
-        #home:hover .drawing-path {
-            opacity: 0.9; 
+        .page-section.active {
+            display: flex; 
+            flex-direction: column;
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        /* --- ACCELERATED STATE (ON CLICK) --- */
-        .hero-background.accelerated .drawing-path {
-            animation-duration: 2s; 
-            opacity: 1; 
+        /* Initial state for fade-in animation */
+        .page-section:not(.active) {
+            transform: translateY(20px);
         }
 
-        /* DETAIL VIEW TRANSITIONS */
-        #detail-view {
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+        /* --- TEXT FADE EFFECT FOR HOME --- */
+        #home-content-wrapper {
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
-        .detail-open {
-            overflow: hidden; 
+        /* When leaving home, text fades and slides left slightly */
+        body.leaving-home #home-content-wrapper {
+            opacity: 0;
+            transform: translateX(-30px);
         }
 
-        /* CAROUSEL STYLES */
-        .carousel-container {
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none; 
-            -ms-overflow-style: none;  
-        }
-        .carousel-container::-webkit-scrollbar { 
-            display: none; 
-        }
-        .carousel-item {
-            scroll-snap-align: center;
-            flex: 0 0 85%; 
-        }
-        @media (min-width: 768px) {
-            .carousel-item {
-                flex: 0 0 60%;
-            }
-        }
+        /* --- DETAIL VIEW & CAROUSEL --- */
+        #detail-view { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease; }
+        .detail-open { overflow: hidden; }
+        .carousel-container { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+        .carousel-container::-webkit-scrollbar { display: none; }
+        .carousel-item { scroll-snap-align: center; flex: 0 0 85%; }
+        @media (min-width: 768px) { .carousel-item { flex: 0 0 60%; } }
+        
+        .nav-link.active { color: #BBEED5; } 
     </style>
 </head>
-<body class="antialiased relative selection:bg-pastel-purple selection:text-black-pure">
+<!-- Initial state is home -->
+<body class="antialiased relative selection:bg-pastel-purple selection:text-black-pure" data-page="home">
 
-<!-- ================= MAIN VIEW ================= -->
-<div id="main-view" class="transition-opacity duration-300">
+    <!-- GLOBAL BACKGROUND (PERSISTENT) -->
+    <div id="global-background">
+        <svg viewBox="0 0 987 878" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="gradient-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#BBEED5" /> <stop offset="40%" stop-color="#C0DBEE" /> <stop offset="70%" stop-color="#B9B3F8" /> <stop offset="100%" stop-color="#CCB1D0" /> </linearGradient>
+            <filter id="filter0_d_75_190" x="0.5" y="0.8" width="986" height="876" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+              <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+              <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+              <feOffset dy="4"/>
+              <feGaussianBlur stdDeviation="2"/>
+              <feComposite in2="hardAlpha" operator="out"/>
+              <feColorMatrix values="0 0 0 0 0.2 0 0 0 0 0.4 0 0 0 0 0.9 0 0 0 0.3 0"/>
+              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+            </filter>
+          </defs>
+          <g filter="url(#filter0_d_75_190)">
+            <path d="M17.7617 646.374C25.7546 676.661 50.6879 692.759 75.3093 701.181C101.467 710.129 149.865 741.192 168.756 761.377C172.71 765.601 175.447 770.816 176.677 776.468L180.224 792.771C192.792 850.529 258.938 878.229 308.913 846.663L325.076 836.453C336.404 829.299 345.554 819.335 354.12 809.033C393.875 761.215 490.712 704.118 642.944 767.831C795.246 831.573 858.919 728.484 876.751 650.37C880.653 633.276 887.453 616.779 899.024 603.606L952.091 543.189C977.366 514.414 980.322 472.305 959.314 440.281L908.296 362.507C891.84 337.42 891.668 305.004 907.857 279.744C933.235 240.146 916.955 187.238 873.707 168.757L727.598 106.32C715.419 101.115 704.623 93.1424 696.065 83.0343L659.798 40.1928C633.149 8.71371 587.772 0.85643 552.09 21.5425L439.597 86.7595C403.942 107.43 358.602 99.6015 331.943 68.1717L309.21 41.3711C273.099 -1.20259 206.477 1.90277 174.482 47.651L129.362 112.167C124.584 118.999 118.9 125.155 111.92 129.714C66.7895 159.187 -17.8498 193.265 35.8118 346.157C108.406 552.994 -8.2777 547.706 17.7617 646.374Z" stroke="url(#gradient-stroke)" fill="none" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" class="drawing-path"/>
+          </g>
+        </svg>
+    </div>
 
-    <header class="sticky top-0 z-40 bg-black-pure/90 backdrop-blur-md border-b border-white/5">
-        <nav class="max-w-6xl mx-auto px-4 py-5 flex justify-between items-center">
-            <div class="text-sm font-bold text-pastel-purple tracking-widest hover:text-pastel-green transition-colors duration-300 uppercase">
-                <a href="#home">Lucía Medina</a>
+    <!-- HEADER (FIXED) -->
+    <header class="sticky top-0 z-40 bg-black-pure/90 backdrop-blur-md border-b border-white/5 h-20 flex items-center">
+        <nav class="w-full max-w-6xl mx-auto px-6 flex justify-between items-center">
+            <div class="text-sm font-bold text-pastel-purple tracking-widest hover:text-pastel-green transition-colors duration-300 uppercase cursor-pointer" onclick="switchPage('home')">
+                Lucía Medina
             </div>
             <div class="hidden md:flex space-x-10 text-pastel-blue/80 font-medium text-xs tracking-widest uppercase">
-                <a href="#work" class="hover:text-pastel-green transition duration-200 click-trigger">Work</a>
-                <a href="#about" class="hover:text-pastel-green transition duration-200 click-trigger">About</a>
-                <a href="#contact" class="hover:text-pastel-green transition duration-200 click-trigger">Contact</a>
+                <button onclick="switchPage('home')" class="nav-link hover:text-pastel-green transition duration-200">Home</button>
+                <button onclick="switchPage('work')" class="nav-link hover:text-pastel-green transition duration-200">Work</button>
+                <button onclick="switchPage('about')" class="nav-link hover:text-pastel-green transition duration-200">About</button>
+                <button onclick="switchPage('contact')" class="nav-link hover:text-pastel-green transition duration-200">Contact</button>
             </div>
             <button id="menu-button" class="md:hidden focus:outline-none">
                 <svg class="w-6 h-6 text-pastel-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </nav>
-        <div id="mobile-menu" class="hidden md:hidden bg-black-pure border-t border-pastel-gray/20">
-            <a href="#work" class="block py-4 px-4 text-sm text-pastel-blue hover:text-pastel-green click-trigger uppercase tracking-widest">Work</a>
-            <a href="#about" class="block py-4 px-4 text-sm text-pastel-blue hover:text-pastel-green click-trigger uppercase tracking-widest">About</a>
-            <a href="#contact" class="block py-4 px-4 text-sm text-pastel-blue hover:text-pastel-green click-trigger uppercase tracking-widest">Contact</a>
+        <div id="mobile-menu" class="hidden absolute top-20 left-0 w-full bg-black-pure border-t border-pastel-gray/20 z-50">
+            <button onclick="switchPage('home')" class="block w-full text-left py-4 px-6 text-sm text-pastel-blue hover:text-pastel-green uppercase tracking-widest">Home</button>
+            <button onclick="switchPage('work')" class="block w-full text-left py-4 px-6 text-sm text-pastel-blue hover:text-pastel-green uppercase tracking-widest">Work</button>
+            <button onclick="switchPage('about')" class="block w-full text-left py-4 px-6 text-sm text-pastel-blue hover:text-pastel-green uppercase tracking-widest">About</button>
+            <button onclick="switchPage('contact')" class="block w-full text-left py-4 px-6 text-sm text-pastel-blue hover:text-pastel-green uppercase tracking-widest">Contact</button>
         </div>
     </header>
 
-    <section id="home" class="max-w-6xl mx-auto px-4 pt-40 pb-20 text-center relative min-h-[90vh] flex flex-col justify-center items-center group">
-        <div class="relative z-10">
-            <!-- Adjusted Name Size: Reduced from 6xl/8xl to 5xl/7xl for a more elegant look -->
-            <h1 class="text-5xl md:text-7xl font-light mb-6 tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-pastel-blue via-pastel-purple to-pastel-lilla animate-pulse">
-                Lucía Medina
-            </h1>
-            <p class="text-lg md:text-xl text-pastel-white/60 mb-10 font-light tracking-widest uppercase">
-                Digital & Interaction Designer 
-            </p>
-            <a href="#work" class="click-trigger inline-block px-10 py-4 border border-pastel-green text-pastel-green text-xs font-bold uppercase tracking-widest rounded-full hover:bg-pastel-green hover:text-black-pure transition-all duration-300 shadow-[0_0_20px_rgba(187,238,213,0.1)] hover:shadow-[0_0_30px_rgba(187,238,213,0.4)]">
-                View Projects
-            </a>
-        </div>
+    <!-- MAIN CONTENT AREA -->
+    <main class="relative">
 
-        <div class="hero-background">
-            <svg viewBox="0 0 987 878" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="gradient-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#BBEED5" /> <stop offset="40%" stop-color="#C0DBEE" /> <stop offset="70%" stop-color="#B9B3F8" /> <stop offset="100%" stop-color="#CCB1D0" /> </linearGradient>
-                <filter id="filter0_d_75_190" x="0.5" y="0.8" width="986" height="876" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                  <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                  <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
-                  <feOffset dy="4"/>
-                  <feGaussianBlur stdDeviation="2"/>
-                  <feComposite in2="hardAlpha" operator="out"/>
-                  <feColorMatrix values="0 0 0 0 0.2 0 0 0 0 0.4 0 0 0 0 0.9 0 0 0 0.3 0"/>
-                  <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
-                  <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
-                </filter>
-              </defs>
-              <g filter="url(#filter0_d_75_190)">
-                <path d="M17.7617 646.374C25.7546 676.661 50.6879 692.759 75.3093 701.181C101.467 710.129 149.865 741.192 168.756 761.377C172.71 765.601 175.447 770.816 176.677 776.468L180.224 792.771C192.792 850.529 258.938 878.229 308.913 846.663L325.076 836.453C336.404 829.299 345.554 819.335 354.12 809.033C393.875 761.215 490.712 704.118 642.944 767.831C795.246 831.573 858.919 728.484 876.751 650.37C880.653 633.276 887.453 616.779 899.024 603.606L952.091 543.189C977.366 514.414 980.322 472.305 959.314 440.281L908.296 362.507C891.84 337.42 891.668 305.004 907.857 279.744C933.235 240.146 916.955 187.238 873.707 168.757L727.598 106.32C715.419 101.115 704.623 93.1424 696.065 83.0343L659.798 40.1928C633.149 8.71371 587.772 0.85643 552.09 21.5425L439.597 86.7595C403.942 107.43 358.602 99.6015 331.943 68.1717L309.21 41.3711C273.099 -1.20259 206.477 1.90277 174.482 47.651L129.362 112.167C124.584 118.999 118.9 125.155 111.92 129.714C66.7895 159.187 -17.8498 193.265 35.8118 346.157C108.406 552.994 -8.2777 547.706 17.7617 646.374Z" stroke="url(#gradient-stroke)" fill="none" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" class="drawing-path"/>
-              </g>
-            </svg>
-        </div>
-    </section>
-
-    <section id="work" class="max-w-6xl mx-auto px-4 py-20">
-        <div class="flex items-end justify-between mb-16 border-b border-white/10 pb-6">
-            <h2 class="text-sm font-bold text-pastel-lilla tracking-[0.2em] uppercase">Selected Work</h2>
-            <span class="text-xs text-pastel-white/40 hidden md:block font-mono">2020 — 2025</span>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-x-16 gap-y-20">
-            <!-- Project 1: Museon -->
-            <article class="group cursor-pointer click-trigger border-t border-white/5 pt-8 hover:border-pastel-blue transition-colors duration-500" onclick="openProject('museon')">
-                <div class="flex justify-between items-start mb-6">
-                    <span class="text-xs font-bold tracking-widest text-pastel-blue uppercase">PoliMi Project</span>
-                    <i class="fas fa-arrow-right text-pastel-white/30 group-hover:text-pastel-blue transition-colors -rotate-45 group-hover:rotate-0 transform duration-300"></i>
-                </div>
-                <h3 class="text-3xl font-light text-white mb-2 group-hover:text-pastel-blue transition-colors">MUSE*ON</h3>
-                <p class="text-pastel-white/60 font-light text-sm leading-relaxed">Service Design & Staff Management Platform.</p>
-            </article>
-
-            <!-- Project 2: Art Beyond Dimension -->
-            <article class="group cursor-pointer click-trigger border-t border-white/5 pt-8 hover:border-pastel-blue transition-colors duration-500" onclick="openProject('artbeyond')">
-                <div class="flex justify-between items-start mb-6">
-                    <span class="text-xs font-bold tracking-widest text-pastel-blue uppercase">PoliMi Project</span>
-                    <i class="fas fa-arrow-right text-pastel-white/30 group-hover:text-pastel-blue transition-colors -rotate-45 group-hover:rotate-0 transform duration-300"></i>
-                </div>
-                <h3 class="text-3xl font-light text-white mb-2 group-hover:text-pastel-blue transition-colors">Art Beyond Dimension</h3>
-                <p class="text-pastel-white/60 font-light text-sm leading-relaxed">Interactive AI experience making art history accessible.</p>
-            </article>
-
-            <!-- Project 3: Films Foundation -->
-            <article class="group cursor-pointer click-trigger border-t border-white/5 pt-8 hover:border-pastel-blue transition-colors duration-500" onclick="openProject('films')">
-                <div class="flex justify-between items-start mb-6">
-                    <span class="text-xs font-bold tracking-widest text-pastel-blue uppercase">PoliMi Project</span>
-                    <i class="fas fa-arrow-right text-pastel-white/30 group-hover:text-pastel-blue transition-colors -rotate-45 group-hover:rotate-0 transform duration-300"></i>
-                </div>
-                <h3 class="text-3xl font-light text-white mb-2 group-hover:text-pastel-blue transition-colors">Films Foundation</h3>
-                <p class="text-pastel-white/60 font-light text-sm leading-relaxed">Website proposal and visual identity.</p>
-            </article>
-
-            <!-- Project 4: Seedtag -->
-            <article class="group cursor-pointer click-trigger border-t border-white/5 pt-8 hover:border-pastel-purple transition-colors duration-500" onclick="openProject('seedtag')">
-                <div class="flex justify-between items-start mb-6">
-                    <span class="text-xs font-bold tracking-widest text-pastel-purple uppercase">Ad Tech</span>
-                    <i class="fas fa-play text-pastel-white/30 group-hover:text-pastel-purple transition-colors transform duration-300"></i>
-                </div>
-                <h3 class="text-3xl font-light text-white mb-2 group-hover:text-pastel-purple transition-colors">Seedtag</h3>
-                <p class="text-pastel-white/60 font-light text-sm leading-relaxed">Engineering high-impact rich media campaigns.</p>
-            </article>
-
-             <!-- Project 5: Thematic Analysis -->
-             <article class="group cursor-pointer click-trigger border-t border-white/5 pt-8 hover:border-pastel-purple transition-colors duration-500" onclick="openProject('thematic')">
-                <div class="flex justify-between items-start mb-6">
-                    <span class="text-xs font-bold tracking-widest text-pastel-purple uppercase">Code</span>
-                    <i class="fas fa-code text-pastel-white/30 group-hover:text-pastel-purple transition-colors transform duration-300"></i>
-                </div>
-                <h3 class="text-3xl font-light text-white mb-2 group-hover:text-pastel-purple transition-colors">Thematic Tool</h3>
-                <p class="text-pastel-white/60 font-light text-sm leading-relaxed">Visual tool to organize qualitative research codes.</p>
-            </article>
-
-             <!-- Project 6: Pixela -->
-             <article class="group cursor-pointer click-trigger border-t border-white/5 pt-8 hover:border-pastel-blue transition-colors duration-500" onclick="openProject('pixela')">
-                <div class="flex justify-between items-start mb-6">
-                    <span class="text-xs font-bold tracking-widest text-pastel-blue uppercase">Bachelor Project</span>
-                    <i class="fas fa-gamepad text-pastel-white/30 group-hover:text-pastel-blue transition-colors transform duration-300"></i>
-                </div>
-                <h3 class="text-3xl font-light text-white mb-2 group-hover:text-pastel-blue transition-colors">Pixela</h3>
-                <p class="text-pastel-white/60 font-light text-sm leading-relaxed">Immersive first-person survival game.</p>
-            </article>
-        </div>
-    </section>
-
-    <!-- UPDATED ABOUT SECTION -->
-    <section id="about" class="max-w-6xl mx-auto px-4 py-24 border-t border-white/5">
-        <h2 class="text-sm font-bold text-pastel-lilla tracking-[0.2em] uppercase mb-16">Profile</h2>
-        
-        <div class="lg:flex gap-24 items-start">
-            <!-- Left: Bio -->
-            <div class="lg:w-1/2 mb-12 lg:mb-0">
-                <p class="text-xl text-pastel-white/90 leading-relaxed font-light mb-8">
-                    I am a master's student in <strong class="text-pastel-blue font-normal">Digital and Interaction Design</strong> at Politecnico di Milano.
+        <!-- === PAGE: HOME === -->
+        <section id="home" class="page-section active max-w-6xl mx-auto px-4 justify-center items-center min-h-[calc(100vh-80px)]" onmouseenter="document.body.classList.add('hovering-home')" onmouseleave="document.body.classList.remove('hovering-home')">
+            <div id="home-content-wrapper" class="relative z-10 text-center">
+                <h1 class="text-5xl md:text-7xl font-light mb-6 tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-pastel-blue via-pastel-purple to-pastel-lilla animate-pulse">
+                    Lucía Medina
+                </h1>
+                <p class="text-lg md:text-xl text-pastel-white/80 mb-10 font-light tracking-wide uppercase max-w-2xl mx-auto">
+                    I work in the intersection between <strong class="text-pastel-green font-normal">design</strong> and <strong class="text-pastel-purple font-normal">code</strong>.
                 </p>
-                <p class="text-lg text-pastel-white/60 leading-relaxed font-light">
-                    My approach is defined by precision. I don't just design interfaces; I consider the logic, the code, and the system behind them. I have extensive experience with <strong class="text-pastel-white font-normal">HTML5, CSS3, and JavaScript</strong>, allowing me to prototype with the fidelity of a finished product.
-                </p>
+                <button onclick="switchPage('work')" class="click-trigger inline-block px-10 py-4 border border-pastel-green text-pastel-green text-xs font-bold uppercase tracking-widest rounded-full hover:bg-pastel-green hover:text-black-pure transition-all duration-300 shadow-[0_0_20px_rgba(187,238,213,0.1)] hover:shadow-[0_0_30px_rgba(187,238,213,0.4)]">
+                    View Projects
+                </button>
             </div>
+        </section>
+
+        <!-- === PAGE: WORK === -->
+        <section id="work" class="page-section max-w-6xl mx-auto px-4 py-8">
+            <div class="flex items-end justify-between mb-12 border-b border-white/5 pb-4">
+                <h2 class="text-sm font-bold text-pastel-lilla tracking-[0.2em] uppercase">Selected Work</h2>
+                <span class="text-xs text-pastel-white/40 hidden md:block font-mono">2020 — 2025</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pb-20">
+                
+                <!-- Project 1: Museon -->
+                <article class="group cursor-pointer click-trigger border border-white/5 p-8 rounded-sm hover:border-pastel-blue/50 transition-all duration-500 relative overflow-hidden" onclick="openProject('museon')">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-pastel-blue transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+                    <div class="flex justify-between items-start mb-10">
+                        <span class="text-xs font-bold tracking-widest text-pastel-blue uppercase border border-pastel-blue/20 px-2 py-1 rounded-full">PoliMi</span>
+                        <span class="text-xs font-mono text-pastel-white/40">01</span>
+                    </div>
+                    <h3 class="text-3xl md:text-4xl font-light text-white mb-3 leading-tight group-hover:text-pastel-blue transition-colors">MUSE*ON</h3>
+                    <p class="text-pastel-white/60 font-light text-sm mb-8 max-w-sm">A B2B platform digitizing staff workflows for small museums.</p>
+                    <div class="flex items-center text-xs font-bold text-pastel-white/40 uppercase tracking-widest group-hover:text-pastel-blue transition-colors">
+                        View Project <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                    </div>
+                </article>
+
+                <!-- Project 2: Art Beyond Dimension -->
+                <article class="group cursor-pointer click-trigger border border-white/5 p-8 rounded-sm hover:border-pastel-blue/50 transition-all duration-500 relative overflow-hidden" onclick="openProject('artbeyond')">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-pastel-blue transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+                    <div class="flex justify-between items-start mb-10">
+                        <span class="text-xs font-bold tracking-widest text-pastel-blue uppercase border border-pastel-blue/20 px-2 py-1 rounded-full">PoliMi</span>
+                        <span class="text-xs font-mono text-pastel-white/40">02</span>
+                    </div>
+                    <h3 class="text-3xl md:text-4xl font-light text-white mb-3 leading-tight group-hover:text-pastel-blue transition-colors">Art Beyond<br>Dimension</h3>
+                    <p class="text-pastel-white/60 font-light text-sm mb-8 max-w-sm">An interactive installation using AI to teach art history.</p>
+                    <div class="flex items-center text-xs font-bold text-pastel-white/40 uppercase tracking-widest group-hover:text-pastel-blue transition-colors">
+                        View Project <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                    </div>
+                </article>
+
+                <!-- Project 3: Films Foundation -->
+                <article class="group cursor-pointer click-trigger border border-white/5 p-8 rounded-sm hover:border-pastel-blue/50 transition-all duration-500 relative overflow-hidden" onclick="openProject('films')">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-pastel-blue transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+                    <div class="flex justify-between items-start mb-10">
+                        <span class="text-xs font-bold tracking-widest text-pastel-blue uppercase border border-pastel-blue/20 px-2 py-1 rounded-full">UI Design</span>
+                        <span class="text-xs font-mono text-pastel-white/40">03</span>
+                    </div>
+                    <h3 class="text-3xl md:text-4xl font-light text-white mb-3 leading-tight group-hover:text-pastel-blue transition-colors">Films<br>Foundation</h3>
+                    <p class="text-pastel-white/60 font-light text-sm mb-8 max-w-sm">A mobile-first archive platform for Italian cinema.</p>
+                    <div class="flex items-center text-xs font-bold text-pastel-white/40 uppercase tracking-widest group-hover:text-pastel-blue transition-colors">
+                        View Project <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                    </div>
+                </article>
+
+                 <!-- Project 4: Thematic Analysis -->
+                 <article class="group cursor-pointer click-trigger border border-white/5 p-8 rounded-sm hover:border-pastel-purple/50 transition-all duration-500 relative overflow-hidden" onclick="openProject('thematic')">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-pastel-purple transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+                    <div class="flex justify-between items-start mb-10">
+                        <span class="text-xs font-bold tracking-widest text-pastel-purple uppercase border border-pastel-purple/20 px-2 py-1 rounded-full">Thesis Tool</span>
+                        <span class="text-xs font-mono text-pastel-white/40">04</span>
+                    </div>
+                    <h3 class="text-3xl md:text-4xl font-light text-white mb-3 leading-tight group-hover:text-pastel-purple transition-colors">Thematic<br>Analysis Tool</h3>
+                    <p class="text-pastel-white/60 font-light text-sm mb-8 max-w-sm">A web tool for visualizing and organizing qualitative research data.</p>
+                    <div class="flex items-center text-xs font-bold text-pastel-white/40 uppercase tracking-widest group-hover:text-pastel-purple transition-colors">
+                        View Code <i class="fas fa-code ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                    </div>
+                </article>
+
+                 <!-- Project 5: Pixela -->
+                 <article class="group cursor-pointer click-trigger border border-white/5 p-8 rounded-sm hover:border-pastel-green/50 transition-all duration-500 relative overflow-hidden md:col-span-2" onclick="openProject('pixela')">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-pastel-green transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+                    <div class="flex justify-between items-start mb-10">
+                        <span class="text-xs font-bold tracking-widest text-pastel-green uppercase border border-pastel-green/20 px-2 py-1 rounded-full">Bachelor Project</span>
+                        <span class="text-xs font-mono text-pastel-white/40">05</span>
+                    </div>
+                    <div class="md:flex justify-between items-end">
+                        <div>
+                            <h3 class="text-3xl md:text-4xl font-light text-white mb-3 leading-tight group-hover:text-pastel-green transition-colors">Pixela</h3>
+                            <p class="text-pastel-white/60 font-light text-sm max-w-md">A first-person survival game exploring surrealist art.</p>
+                        </div>
+                        <div class="mt-8 md:mt-0 flex items-center text-xs font-bold text-pastel-white/40 uppercase tracking-widest group-hover:text-pastel-green transition-colors">
+                            View Game <i class="fas fa-gamepad ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- === PAGE: ABOUT === -->
+        <section id="about" class="page-section max-w-6xl mx-auto px-4 py-8">
+            <h2 class="text-sm font-bold text-pastel-lilla tracking-[0.2em] uppercase mb-16 border-b border-white/5 pb-4">Profile</h2>
             
-            <!-- Right: Profile Grid -->
-            <div class="lg:w-1/2 grid grid-cols-2 gap-y-12 gap-x-8">
-                <div>
-                    <h4 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-3">Education</h4>
-                    <p class="text-pastel-white text-sm">MSc Digital & Interaction Design</p>
-                    <p class="text-pastel-white/40 text-xs mt-1">Politecnico di Milano, 2026</p>
-                </div>
-                <div>
-                    <h4 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-3">History</h4>
-                    <p class="text-pastel-white text-sm">Seedtag (3+ Years)</p>
-                    <p class="text-pastel-white/40 text-xs mt-1">Digital Designer / Developer</p>
-                </div>
-                <div>
-                    <h4 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-3">Tech Stack</h4>
-                    <p class="text-pastel-white text-sm leading-6">Figma, HTML, CSS, JS, Tailwind, Adobe Suite</p>
-                </div>
-                <div>
-                    <h4 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-3">Status</h4>
-                    <p class="text-pastel-white text-sm">Based in Milan</p>
-                    <p class="text-pastel-green text-xs mt-1">Open to Relocation</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="max-w-4xl mx-auto px-4 py-32 border-t border-white/5 text-center">
-        <h2 class="text-4xl md:text-5xl font-light mb-8 text-pastel-white">Ready to collaborate?</h2>
-        <p class="text-lg text-pastel-white/60 max-w-xl mx-auto mb-12 font-light">
-            I am currently open to thesis collaborations and internship opportunities.
-        </p>
-        <a href="mailto:lucia.medina@mail.polimi.it" class="text-pastel-blue text-lg hover:text-white transition-colors border-b border-pastel-blue/30 hover:border-pastel-blue pb-1 inline-block mb-12">
-            lucia.medina@mail.polimi.it
-        </a>
-        
-        <div class="flex justify-center space-x-12">
-            <a href="https://www.linkedin.com/in/lucia-medina1829" target="_blank" class="text-pastel-gray hover:text-white transition duration-300 text-2xl"><i class="fab fa-linkedin"></i></a>
-            <a href="https://www.behance.net/lucamedinagaln1" target="_blank" class="text-pastel-gray hover:text-white transition duration-300 text-2xl"><i class="fab fa-behance"></i></a>
-        </div>
-    </section>
-
-    <footer class="bg-black-pure border-t border-white/5 py-12 text-center text-xs text-pastel-white/20 uppercase tracking-widest font-mono">
-        <p>&copy; 2025 Lucía Medina.</p>
-    </footer>
-</div>
-
-<!-- ================= DETAIL VIEW OVERLAY ================= -->
-<div id="detail-view" class="fixed inset-0 bg-black-pure z-50 transform translate-x-full flex flex-col overflow-y-auto">
-    <!-- Detail Navbar -->
-    <div class="sticky top-0 bg-black-pure/95 backdrop-blur-md border-b border-white/5 p-6 flex justify-between items-center z-50">
-        <button onclick="closeProject()" class="flex items-center text-pastel-white/60 hover:text-pastel-green transition-colors text-xs font-bold uppercase tracking-widest">
-            <i class="fas fa-arrow-left mr-3"></i> Back
-        </button>
-        <div class="text-pastel-white/40 font-mono text-xs uppercase" id="detail-nav-title">Project Name</div>
-        <div class="w-16"></div> 
-    </div>
-
-    <!-- Detail Content -->
-    <div class="max-w-4xl mx-auto px-6 py-20 flex-grow w-full">
-        <!-- Hero -->
-        <div class="mb-16">
-            <h1 id="detail-title" class="text-4xl md:text-6xl font-light text-white mb-4">Title</h1>
-            <p id="detail-subtitle" class="text-xl text-pastel-blue font-light">Subtitle goes here</p>
-        </div>
-
-        <!-- Two Column Layout: Description & Role -->
-        <div class="grid md:grid-cols-3 gap-16 border-t border-white/5 pt-12">
-            <!-- Main Description (2/3) -->
-            <div class="md:col-span-2">
-                <h3 class="text-xs font-bold text-pastel-lilla uppercase tracking-widest mb-6">Overview</h3>
-                <div id="detail-desc" class="text-pastel-white/80 leading-relaxed text-lg font-light space-y-6">
-                    <!-- Dynamic Description -->
+            <div class="lg:flex gap-24 items-start">
+                <div class="lg:w-1/2 mb-12 lg:mb-0">
+                    <p class="text-xl text-pastel-white/90 leading-relaxed font-light mb-8">
+                        I am a master's student in <strong class="text-pastel-blue font-normal">Digital and Interaction Design</strong> at Politecnico di Milano.
+                    </p>
+                    <p class="text-lg text-pastel-white/60 leading-relaxed font-light">
+                        My approach is defined by precision. I don't just design interfaces; I consider the logic, the code, and the system behind them. I have extensive experience with <strong class="text-pastel-white font-normal">HTML5, CSS3, and JavaScript</strong>, allowing me to prototype with the fidelity of a finished product.
+                    </p>
                 </div>
                 
-                <a id="detail-link" href="#" target="_blank" class="inline-block mt-10 px-8 py-3 border border-white/20 text-white text-sm hover:bg-white hover:text-black-pure transition-all duration-300">
+                <div class="lg:w-1/2 grid grid-cols-2 gap-y-12 gap-x-8">
+                    <div>
+                        <h4 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-3">Education</h4>
+                        <p class="text-pastel-white text-sm">MSc Digital & Interaction Design</p>
+                        <p class="text-pastel-white/40 text-xs mt-1">Politecnico di Milano, 2026</p>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-3">History</h4>
+                        <p class="text-pastel-white text-sm">Seedtag (3+ Years)</p>
+                        <p class="text-pastel-white/40 text-xs mt-1">Digital Designer / Developer</p>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-3">Tech Stack</h4>
+                        <p class="text-pastel-white text-sm leading-6">Figma, HTML, CSS, JS, Tailwind, Adobe Suite</p>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-3">Status</h4>
+                        <p class="text-pastel-white text-sm">Based in Milan</p>
+                        <p class="text-pastel-green text-xs mt-1">Open to Relocation</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- === PAGE: CONTACT === -->
+        <section id="contact" class="page-section max-w-4xl mx-auto px-4 flex flex-col justify-center items-center h-[70vh]">
+            <h2 class="text-4xl md:text-5xl font-light mb-8 text-pastel-white text-center">Ready to collaborate?</h2>
+            <p class="text-lg text-pastel-white/60 max-w-xl mx-auto mb-12 font-light text-center">
+                I am currently open to thesis collaborations and internship opportunities.
+            </p>
+            <a href="mailto:lucia.medina@mail.polimi.it" class="text-pastel-blue text-lg hover:text-white transition-colors border-b border-pastel-blue/30 hover:border-pastel-blue pb-1 inline-block mb-12">
+                lucia.medina@mail.polimi.it
+            </a>
+            
+            <div class="flex justify-center space-x-12">
+                <a href="https://www.linkedin.com/in/lucia-medina1829" target="_blank" class="text-pastel-gray hover:text-white transition duration-300 text-2xl"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.behance.net/lucamedinagaln1" target="_blank" class="text-pastel-gray hover:text-white transition duration-300 text-2xl"><i class="fab fa-behance"></i></a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-black-pure border-t border-white/5 py-12 text-center text-xs text-pastel-white/20 uppercase tracking-widest font-mono fixed bottom-0 w-full z-0 pointer-events-none md:relative">
+        <p>&copy; 2025 Lucía Medina.</p>
+    </footer>
+
+    <!-- ================= DETAIL VIEW OVERLAY ================= -->
+    <div id="detail-view" class="fixed inset-0 bg-black-pure z-50 transform translate-x-full flex flex-col overflow-y-auto">
+        <!-- Detail Navbar -->
+        <div class="sticky top-0 bg-black-pure/95 backdrop-blur-md border-b border-white/5 p-6 flex justify-between items-center z-50">
+            <button onclick="closeProject()" class="flex items-center text-pastel-white/60 hover:text-pastel-green transition-colors text-xs font-bold uppercase tracking-widest">
+                <i class="fas fa-arrow-left mr-3"></i> Back
+            </button>
+            <div class="text-pastel-white/40 font-mono text-xs uppercase" id="detail-nav-title">Project Name</div>
+            <div class="w-16"></div> 
+        </div>
+
+        <!-- Detail Content -->
+        <div class="max-w-4xl mx-auto px-6 py-20 flex-grow w-full">
+            <!-- Hero -->
+            <div class="mb-16">
+                <h1 id="detail-title" class="text-4xl md:text-6xl font-light text-white mb-4">Title</h1>
+                <p id="detail-subtitle" class="text-xl text-pastel-blue font-light">Subtitle goes here</p>
+                
+                <a id="detail-link" href="#" target="_blank" class="inline-block mt-8 px-8 py-3 border border-white/20 text-white text-sm hover:bg-white hover:text-black-pure transition-all duration-300">
                     View Project
                 </a>
             </div>
 
-            <!-- Role & Tech (1/3) -->
-            <div class="md:col-span-1 space-y-10">
-                <div>
-                    <h3 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-4">My Role</h3>
-                    <ul id="detail-role" class="space-y-2 text-pastel-white/60 text-sm font-light">
-                        <!-- Dynamic Role -->
-                    </ul>
+            <!-- Two Column Layout: Description & Role -->
+            <div class="grid md:grid-cols-3 gap-16 border-t border-white/5 pt-12">
+                <!-- Main Description (2/3) -->
+                <div class="md:col-span-2">
+                    <h3 class="text-xs font-bold text-pastel-lilla uppercase tracking-widest mb-6">Overview</h3>
+                    <div id="detail-desc" class="text-pastel-white/80 leading-relaxed text-lg font-light space-y-6">
+                        <!-- Dynamic Description -->
+                    </div>
                 </div>
-                <div>
-                    <h3 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-4">Type</h3>
-                    <p id="detail-type" class="text-pastel-white/60 text-sm font-light">Web App</p>
+
+                <!-- Role & Tech (1/3) -->
+                <div class="md:col-span-1 space-y-10">
+                    <div>
+                        <h3 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-4">My Role</h3>
+                        <ul id="detail-role" class="space-y-2 text-pastel-white/60 text-sm font-light">
+                            <!-- Dynamic Role -->
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-4">Type</h3>
+                        <p id="detail-type" class="text-pastel-white/60 text-sm font-light">Web App</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Process / Gallery (DYNAMIC CONTAINER) -->
-        <div class="mt-24">
-            <h3 class="text-xs font-bold text-pastel-lilla uppercase tracking-widest mb-8 text-center" id="gallery-title">Visuals</h3>
-            <div id="detail-gallery-container"></div>
+            <!-- Process / Gallery (DYNAMIC CONTAINER) -->
+            <div class="mt-24">
+                <h3 class="text-xs font-bold text-pastel-lilla uppercase tracking-widest mb-8 text-center" id="gallery-title">Visuals</h3>
+                <div id="detail-gallery-container"></div>
+            </div>
         </div>
     </div>
-</div>
 
 <script>
+    // --- PAGE NAVIGATION LOGIC ---
+    function switchPage(pageId) {
+        // Handle transitions for Home content specifically
+        if(pageId === 'home') {
+            document.body.classList.remove('leaving-home');
+        } else {
+            document.body.classList.add('leaving-home');
+        }
+
+        // Delay switching the active section to allow animations
+        setTimeout(() => {
+            // Hide all pages
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show target page
+            const target = document.getElementById(pageId);
+            if(target) {
+                target.classList.add('active');
+                window.scrollTo(0,0);
+            }
+            
+            // Update Body Data Attribute for Global Background State
+            document.body.dataset.page = pageId;
+
+        }, 300); // 300ms delay matches CSS transition
+
+        // Close mobile menu if open
+        const mobileMenu = document.getElementById('mobile-menu');
+        if(!mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+        }
+    }
+
     // --- PROJECT DATA ---
     const projects = {
         'seedtag': {
             title: 'Seedtag Interactive Ads',
-            subtitle: 'Engineering High-Impact Rich Media',
+            subtitle: 'Interactive Rich Media Ad Engine',
             type: 'Ad Tech (HTML5/JS)',
             link: '#', 
             isCarousel: true, 
@@ -394,6 +446,7 @@
                 'https://via.placeholder.com/600x400/1a1a1a/333333?text=Ad+GIF+2+(Add+Path)',
                 'https://via.placeholder.com/600x400/1a1a1a/333333?text=Ad+GIF+3+(Add+Path)'
             ],
+            // NOTE: Replace the URLs above with your own file paths, e.g., 'images/ad1.gif'
             role: [
                 'Frontend Development (Vanilla JS)',
                 'Creative QA',
@@ -408,14 +461,22 @@
         },
         'museon': {
             title: 'MUSE*ON',
-            subtitle: 'Service Design & Staff Management Platform',
+            subtitle: 'B2B Staff Management Platform',
             type: 'PoliMi Project',
-            link: 'https://www.figma.com/embed?embed_host=share&amp;url=https%3A%2F%2Fwww.figma.com%2Fproto%2F5gT2aMT495MnDl8rPj9Z2P%2FUntitled%3Fnode-id%3D1-495%26t%3DwxViot3bzi45j43v-1%26scaling%3Dscale-down%26content-scaling%3Dfixed%26page-id%3D0%253A1" allowfullscreen sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-popups-to-escape-sandbox',
+            link: 'https://www.behance.net/gallery/201102523/Museon-2024',
             role: [
                 'UX Research (Environment Mapping)',
                 'Hero Flows & Wireflows',
                 'Mobile Interface Design (Figma)',
                 'Prototyping'
+            ],
+            // NOTE: ADD IMAGES HERE 
+            // images: ['images/museon1.jpg', 'images/museon2.jpg'],
+            images: [
+                'https://images.unsplash.com/photo-1544967082-d9d3fdd01a1d?auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1574950578143-858c6fc58922?auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80'
             ],
             desc: `
                 <p>MUSE*ON is an <strong>all-in-one software</strong> designed specifically for small museum staff. The platform aims to streamline daily workflows and improve the management of different institutional areas, replacing disjointed paper methods with a cohesive digital ecosystem.</p>
@@ -424,7 +485,7 @@
         },
         'artbeyond': {
             title: 'Art Beyond Dimension',
-            subtitle: 'Interactive AI Experience for Art History',
+            subtitle: 'Interactive AI Installation',
             type: 'PoliMi Project',
             link: 'https://www.figma.com/proto/FnFqrWBxyChSOdL3aVzV9A/Prototype?node-id=616-1949&starting-point-node-id=564%3A1942&scaling=contain&content-scaling=fixed',
             role: [
@@ -433,6 +494,11 @@
                 'Concept Development',
                 'Visual Storytelling'
             ],
+            images: [
+                'https://images.unsplash.com/photo-1626379953822-baec19c3accd?auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=800&q=80'
+            ],
             desc: `
                 <p>How do we make classical art relevant to a generation raised on TikTok and Roblox? Art Beyond Dimension is a futuristic prototype that uses AI to create immersive, narrative-driven entry points into art history.</p>
                 <p>I was responsible for the motion design and video assets that bring the prototype to life. Using Adobe After Effects and Premiere, I created the visual language of the AI assistant, visualizing how the system "scans" art and generates stories for the user.</p>
@@ -440,7 +506,7 @@
         },
         'films': {
             title: 'Films Foundation',
-            subtitle: 'Website Proposal for Italian Cinema',
+            subtitle: 'Mobile-First Cinema Archive',
             type: 'UI Design',
             link: 'https://www.figma.com/proto/MWvYkF7ybuKjE7SPnGi8po/Assignment?node-id=2128-5992&starting-point-node-id=2128%3A5992',
             role: [
@@ -449,6 +515,11 @@
                 'Visual Identity',
                 'Responsive Layouts'
             ],
+            images: [
+                'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1542204165-65bf26472b9b?auto=format&fit=crop&w=800&q=80'
+            ],
             desc: `
                 <p>A complete redesign proposal for a prominent Italian Film Foundation. The goal was to organize a massive archive of historical cinema into a navigable, modern mobile experience.</p>
                 <p>I focused on the mobile-first implementation, ensuring that the rich media assets (posters, trailers, stills) remained the hero of the experience even on small screens. The design prioritizes clarity and accessibility while maintaining a cinematic elegance.</p>
@@ -456,7 +527,7 @@
         },
         'pixela': {
             title: 'Pixela',
-            subtitle: 'First-Person Survival Game',
+            subtitle: 'Surrealist First-Person Game',
             type: 'Bachelor Project',
             link: 'https://www.behance.net/gallery/201101643/PIXELA',
             role: [
@@ -465,6 +536,11 @@
                 'Interactive Assets',
                 'Game Logic'
             ],
+            images: [
+                'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1535905557558-afc4877a26fc?auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&w=800&q=80'
+            ],
             desc: `
                 <p>Pixela is an immersive first-person survival game where you play as an AI named Pixela, who is an unexpected anomaly in a scientific project designed to decode the minds of history's greatest artists.</p>
                 <p>As Pixela, your primary objective is to escape from the scientists who have captured you, using your unique abilities to travel through the worlds of Dalí, Van Gogh and Escher.</p>
@@ -472,7 +548,7 @@
         },
         'thematic': {
             title: 'Thematic Analysis Tool',
-            subtitle: 'Visual Tool for Qualitative Data',
+            subtitle: 'Visual Qualitative Research Tool',
             type: 'Thesis Tool (Code)',
             link: 'playground.html',
             role: [
@@ -480,8 +556,13 @@
                 'Data Visualization Logic',
                 'UX for Research Tools'
             ],
+            images: [
+                'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=800&q=80'
+            ],
             desc: `
-                <p><strong>Note: This is a live tool that I built to do Thematic Analysis for my Findings section of my Master's Thesis.</strong></p>
+                <p><strong>Note: This is a live tool built for my Master's Thesis.</strong></p>
                 <p>Qualitative research often involves messy spreadsheets and sticky notes. I built this web-based tool to make the process of Thematic Analysis more visual and intuitive.</p>
                 <p>It allows researchers to input raw data, assign codes, and visually group them into themes. It transforms an abstract cognitive process into a tangible, drag-and-drop interface.</p>
             `
@@ -489,9 +570,7 @@
     };
 
     // --- LOGIC ---
-    const mainView = document.getElementById('main-view');
     const detailView = document.getElementById('detail-view');
-    const body = document.body;
     const galleryContainer = document.getElementById('detail-gallery-container');
 
     function openProject(id) {
@@ -511,12 +590,12 @@
         roleList.innerHTML = ''; // Clear previous
         p.role.forEach(r => {
             const li = document.createElement('li');
-            li.innerHTML = r; // Removed checkmark for simpler nordic list
+            li.innerHTML = r; 
             roleList.appendChild(li);
         });
 
         // --- DYNAMIC GALLERY LOGIC ---
-        galleryContainer.innerHTML = ''; // Clear previous gallery
+        galleryContainer.innerHTML = ''; 
 
         if (p.isCarousel) {
             // Render Horizontal GIF Carousel
@@ -534,46 +613,43 @@
             `;
             galleryContainer.innerHTML = carouselHTML;
 
-        } else {
-            // Render Standard Static Grid (For other projects)
+        } else if (p.images) {
+            // Render Standard Static Grid with Images
             document.getElementById('gallery-title').innerText = "Visuals";
-            let gridHTML = `
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="aspect-video bg-gray-dark border border-white/5 flex items-center justify-center">
-                        <span class="text-pastel-white/20 font-mono text-xs">IMG 01</span>
+            let gridHTML = `<div class="grid grid-cols-1 md:grid-cols-2 gap-6">`;
+            
+            p.images.forEach(imgSrc => {
+                gridHTML += `
+                    <div class="aspect-video bg-gray-dark border border-white/5 flex items-center justify-center overflow-hidden">
+                        <img src="${imgSrc}" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-300" alt="Project Screenshot">
                     </div>
-                    <div class="aspect-video bg-gray-dark border border-white/5 flex items-center justify-center">
-                        <span class="text-pastel-white/20 font-mono text-xs">IMG 02</span>
-                    </div>
-                    <div class="aspect-video bg-gray-dark border border-white/5 flex items-center justify-center">
-                        <span class="text-pastel-white/20 font-mono text-xs">IMG 03</span>
-                    </div>
-                    <div class="aspect-video bg-gray-dark border border-white/5 flex items-center justify-center">
-                        <span class="text-pastel-white/20 font-mono text-xs">IMG 04</span>
-                    </div>
-                </div>
-            `;
+                `;
+            });
+            
+            gridHTML += `</div>`;
             galleryContainer.innerHTML = gridHTML;
         }
 
         // Show Overlay
         detailView.classList.remove('translate-x-full');
-        body.classList.add('detail-open');
+        document.body.classList.add('detail-open');
     }
 
     function closeProject() {
         detailView.classList.add('translate-x-full');
-        body.classList.remove('detail-open');
+        document.body.classList.remove('detail-open');
     }
 
     // --- ACCELERATE ANIMATION ON CLICK ---
     document.querySelectorAll('.click-trigger').forEach(trigger => {
         trigger.addEventListener('click', () => {
             const bg = document.querySelector('.hero-background');
-            bg.classList.add('accelerated');
-            setTimeout(() => {
-                bg.classList.remove('accelerated');
-            }, 2000);
+            if(bg) {
+                bg.classList.add('accelerated');
+                setTimeout(() => {
+                    bg.classList.remove('accelerated');
+                }, 2000);
+            }
         });
     });
 
@@ -586,5 +662,3 @@
 </script>
 </body>
 </html>
-
-
