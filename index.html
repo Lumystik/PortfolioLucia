@@ -29,7 +29,7 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-JEPVH1MD2X"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-JEPVH1MD2X'); </script>
+
     <style>
         body {
             background-color: #050505;
@@ -37,23 +37,25 @@
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         /* --- GLOBAL ETHEREAL BACKGROUND --- */
-        /* Moved out of #home so it persists without resetting */
         #global-background {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1; /* Behind everything */
+            z-index: -1; 
             display: flex; justify-content: center; align-items: center;
             pointer-events: none; overflow: hidden;
-            transition: all 1.5s ease; /* Smooth transition for blur/opacity */
+            transition: all 1.5s ease;
         }
 
         .drawing-path {
             stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; stroke: url(#gradient-stroke); fill: none;
             stroke-dasharray: 2000; stroke-dashoffset: 2000; opacity: 0.5;
-            animation: draw 30s linear infinite; /* Even slower for elegance */
+            animation: draw 30s linear infinite; 
             transition: opacity 1s ease;
         }
         @keyframes draw { from { opacity: 0.3; stroke-dashoffset: 4000; } to { opacity: 0.6; stroke-dashoffset: 0; } }
@@ -64,35 +66,36 @@
         }
 
         /* --- BACKGROUND STATES --- */
-        
-        /* State 1: Home (Default) - Dreamy Blur */
         body[data-page="home"] #global-background svg {
             filter: blur(5px);
             opacity: 0.8;
             transform: scale(1);
         }
 
-        /* State 2: Home Hover - Clarity (Interactive) */
         body[data-page="home"].hovering-home #global-background svg {
             filter: blur(0px);
             opacity: 1;
             transform: scale(1.02);
         }
 
-        /* State 3: Not Home (Work/About/Contact) - Deep Background Blur */
         body:not([data-page="home"]) #global-background svg {
-            filter: blur(20px); /* Deep blur to push it back */
-            opacity: 0.15; /* Very faint */
+            filter: blur(20px); 
+            opacity: 0.15; 
             transform: scale(1.1);
         }
 
         /* --- PAGE TRANSITIONS --- */
+        main {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
         .page-section {
             display: none;
             opacity: 0;
             transition: opacity 0.6s ease-in-out, transform 0.6s ease-out;
-            min-height: 80vh; 
-            padding-top: 1rem; 
+            width: 100%;
         }
         
         .page-section.active {
@@ -102,19 +105,44 @@
             transform: translateY(0);
         }
 
-        /* Initial state for fade-in animation */
         .page-section:not(.active) {
             transform: translateY(20px);
         }
 
-        /* --- TEXT FADE EFFECT FOR HOME --- */
-        #home-content-wrapper {
-            transition: opacity 0.5s ease, transform 0.5s ease;
+        /* --- HOME SCROLLING LOGIC --- */
+        #home.active {
+            /* Taller height to allow scrolling past the floating words */
+            height: 250vh; 
+            display: block; 
+            position: relative;
         }
-        /* When leaving home, text fades and slides left slightly */
-        body.leaving-home #home-content-wrapper {
+
+        /* The wrapper for the main intro text - ABSOLUTE (Scrolls with page) */
+        #home-content-wrapper {
+            position: absolute; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh; /* Takes up exactly the first screen */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            transition: opacity 0.5s ease; /* Only fade, let scroll handle movement */
+        }
+
+        /* Floating Words - FIXED (Stay in view while scrolling) */
+        .floating-word {
+            position: fixed;
             opacity: 0;
-            transform: translateX(-30px);
+            z-index: 5;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            pointer-events: none;
+            transition: opacity 0.5s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.5s ease;
+            filter: blur(10px);
         }
 
         /* --- DETAIL VIEW & CAROUSEL --- */
@@ -128,10 +156,9 @@
         .nav-link.active { color: #BBEED5; } 
     </style>
 </head>
-<!-- Initial state is home -->
 <body class="antialiased relative selection:bg-pastel-purple selection:text-black-pure" data-page="home">
 
-    <!-- GLOBAL BACKGROUND (PERSISTENT) -->
+    <!-- GLOBAL BACKGROUND -->
     <div id="global-background">
         <svg viewBox="0 0 987 878" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -154,8 +181,8 @@
         </svg>
     </div>
 
-    <!-- HEADER (FIXED) -->
-    <header class="sticky top-0 z-40 bg-black-pure/90 backdrop-blur-md border-b border-white/5 h-20 flex items-center">
+    <!-- HEADER -->
+    <header class="sticky top-0 z-40 bg-black-pure/90 backdrop-blur-md border-b border-white/5 h-20 flex items-center flex-shrink-0">
         <nav class="w-full max-w-6xl mx-auto px-6 flex justify-between items-center">
             <div class="text-sm font-bold text-pastel-purple tracking-widest hover:text-pastel-green transition-colors duration-300 uppercase cursor-pointer" onclick="switchPage('home')">
                 Lucía Medina
@@ -178,22 +205,30 @@
         </div>
     </header>
 
-    <!-- MAIN CONTENT AREA -->
-    <main class="relative">
+    <!-- MAIN CONTENT -->
+    <main>
 
         <!-- === PAGE: HOME === -->
-        <section id="home" class="page-section active max-w-6xl mx-auto px-4 justify-center items-center min-h-[calc(100vh-80px)]" onmouseenter="document.body.classList.add('hovering-home')" onmouseleave="document.body.classList.remove('hovering-home')">
-            <div id="home-content-wrapper" class="relative z-10 text-center">
+        <section id="home" class="page-section active max-w-6xl mx-auto px-4 items-center group" onmouseenter="document.body.classList.add('hovering-home')" onmouseleave="document.body.classList.remove('hovering-home')">
+            
+            <!-- INTRO TEXT - Absolute Position (Moves UP with scroll naturally) -->
+            <div id="home-content-wrapper">
                 <h1 class="text-5xl md:text-7xl font-light mb-6 tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-pastel-blue via-pastel-purple to-pastel-lilla animate-pulse">
                     Lucía Medina
                 </h1>
-                <p class="text-lg md:text-xl text-pastel-white/80 mb-10 font-light tracking-wide uppercase max-w-2xl mx-auto">
+                <p class="text-lg md:text-xl text-pastel-white/80 mb-10 font-light tracking-wide uppercase max-w-2xl mx-auto text-center">
                     I work in the intersection between <strong class="text-pastel-green font-normal">design</strong> and <strong class="text-pastel-purple font-normal">code</strong>.
                 </p>
                 <button onclick="switchPage('work')" class="click-trigger inline-block px-10 py-4 border border-pastel-green text-pastel-green text-xs font-bold uppercase tracking-widest rounded-full hover:bg-pastel-green hover:text-black-pure transition-all duration-300 shadow-[0_0_20px_rgba(187,238,213,0.1)] hover:shadow-[0_0_30px_rgba(187,238,213,0.4)]">
                     View Projects
                 </button>
             </div>
+
+            <!-- FLOATING WORDS (Fixed position, appear on scroll) -->
+            <div id="word-design" class="floating-word text-6xl md:text-8xl text-pastel-green/20" style="top: 30%; left: 10%;">DESIGN</div>
+            <div id="word-code" class="floating-word text-6xl md:text-8xl text-pastel-purple/20" style="top: 60%; right: 10%;">CODE</div>
+            <div id="word-hybrid" class="floating-word text-7xl md:text-9xl text-pastel-blue/80" style="top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.8);">HYBRID</div>
+
         </section>
 
         <!-- === PAGE: WORK === -->
@@ -213,7 +248,7 @@
                         <span class="text-xs font-mono text-pastel-white/40">01</span>
                     </div>
                     <h3 class="text-3xl md:text-4xl font-light text-white mb-3 leading-tight group-hover:text-pastel-blue transition-colors">MUSE*ON</h3>
-                    <p class="text-pastel-white/60 font-light text-sm mb-8 max-w-sm">A B2B platform digitizing staff workflows for small museums.</p>
+                    <p class="text-pastel-white/60 font-light text-sm mb-8 max-w-sm">UX Research & Service Design for Museums.</p>
                     <div class="flex items-center text-xs font-bold text-pastel-white/40 uppercase tracking-widest group-hover:text-pastel-blue transition-colors">
                         View Project <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
                     </div>
@@ -227,7 +262,7 @@
                         <span class="text-xs font-mono text-pastel-white/40">02</span>
                     </div>
                     <h3 class="text-3xl md:text-4xl font-light text-white mb-3 leading-tight group-hover:text-pastel-blue transition-colors">Art Beyond<br>Dimension</h3>
-                    <p class="text-pastel-white/60 font-light text-sm mb-8 max-w-sm">An interactive installation using AI to teach art history.</p>
+                    <p class="text-pastel-white/60 font-light text-sm mb-8 max-w-sm">Motion Graphics for Interactive AI.</p>
                     <div class="flex items-center text-xs font-bold text-pastel-white/40 uppercase tracking-widest group-hover:text-pastel-blue transition-colors">
                         View Project <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
                     </div>
@@ -241,37 +276,51 @@
                         <span class="text-xs font-mono text-pastel-white/40">03</span>
                     </div>
                     <h3 class="text-3xl md:text-4xl font-light text-white mb-3 leading-tight group-hover:text-pastel-blue transition-colors">Films<br>Foundation</h3>
-                    <p class="text-pastel-white/60 font-light text-sm mb-8 max-w-sm">A mobile-first archive platform for Italian cinema.</p>
+                    <p class="text-pastel-white/60 font-light text-sm mb-8 max-w-sm">Mobile UI for Film Festivals.</p>
                     <div class="flex items-center text-xs font-bold text-pastel-white/40 uppercase tracking-widest group-hover:text-pastel-blue transition-colors">
                         View Project <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
                     </div>
                 </article>
 
-                 <!-- Project 4: Thematic Analysis -->
+                <!-- Project 4: Seedtag -->
+                <article class="group cursor-pointer click-trigger border border-white/5 p-8 rounded-sm hover:border-pastel-purple/50 transition-all duration-500 relative overflow-hidden" onclick="openProject('seedtag')">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-pastel-purple transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+                    <div class="flex justify-between items-start mb-10">
+                        <span class="text-xs font-bold tracking-widest text-pastel-purple uppercase border border-pastel-purple/20 px-2 py-1 rounded-full">Ad Tech</span>
+                        <span class="text-xs font-mono text-pastel-white/40">04</span>
+                    </div>
+                    <h3 class="text-3xl md:text-4xl font-light text-white mb-3 leading-tight group-hover:text-pastel-purple transition-colors">Seedtag</h3>
+                    <p class="text-pastel-white/60 font-light text-sm mb-8 max-w-sm">Motion Graphics with Code (Vanilla JS).</p>
+                    <div class="flex items-center text-xs font-bold text-pastel-white/40 uppercase tracking-widest group-hover:text-pastel-purple transition-colors">
+                        View Ads <i class="fas fa-play ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                    </div>
+                </article>
+
+                 <!-- Project 5: Thematic Analysis -->
                  <article class="group cursor-pointer click-trigger border border-white/5 p-8 rounded-sm hover:border-pastel-purple/50 transition-all duration-500 relative overflow-hidden" onclick="openProject('thematic')">
                     <div class="absolute top-0 left-0 w-1 h-full bg-pastel-purple transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
                     <div class="flex justify-between items-start mb-10">
                         <span class="text-xs font-bold tracking-widest text-pastel-purple uppercase border border-pastel-purple/20 px-2 py-1 rounded-full">Thesis Tool</span>
-                        <span class="text-xs font-mono text-pastel-white/40">04</span>
+                        <span class="text-xs font-mono text-pastel-white/40">05</span>
                     </div>
                     <h3 class="text-3xl md:text-4xl font-light text-white mb-3 leading-tight group-hover:text-pastel-purple transition-colors">Thematic<br>Analysis Tool</h3>
-                    <p class="text-pastel-white/60 font-light text-sm mb-8 max-w-sm">A web tool for visualizing and organizing qualitative research data.</p>
+                    <p class="text-pastel-white/60 font-light text-sm mb-8 max-w-sm">Frontend Tool for Qualitative Data.</p>
                     <div class="flex items-center text-xs font-bold text-pastel-white/40 uppercase tracking-widest group-hover:text-pastel-purple transition-colors">
                         View Code <i class="fas fa-code ml-2 transform group-hover:translate-x-2 transition-transform"></i>
                     </div>
                 </article>
 
-                 <!-- Project 5: Pixela -->
+                 <!-- Project 6: Pixela -->
                  <article class="group cursor-pointer click-trigger border border-white/5 p-8 rounded-sm hover:border-pastel-green/50 transition-all duration-500 relative overflow-hidden md:col-span-2" onclick="openProject('pixela')">
                     <div class="absolute top-0 left-0 w-1 h-full bg-pastel-green transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
                     <div class="flex justify-between items-start mb-10">
                         <span class="text-xs font-bold tracking-widest text-pastel-green uppercase border border-pastel-green/20 px-2 py-1 rounded-full">Bachelor Project</span>
-                        <span class="text-xs font-mono text-pastel-white/40">05</span>
+                        <span class="text-xs font-mono text-pastel-white/40">06</span>
                     </div>
                     <div class="md:flex justify-between items-end">
                         <div>
                             <h3 class="text-3xl md:text-4xl font-light text-white mb-3 leading-tight group-hover:text-pastel-green transition-colors">Pixela</h3>
-                            <p class="text-pastel-white/60 font-light text-sm max-w-md">A first-person survival game exploring surrealist art.</p>
+                            <p class="text-pastel-white/60 font-light text-sm max-w-md">AI Art Videogame Demo.</p>
                         </div>
                         <div class="mt-8 md:mt-0 flex items-center text-xs font-bold text-pastel-white/40 uppercase tracking-widest group-hover:text-pastel-green transition-colors">
                             View Game <i class="fas fa-gamepad ml-2 transform group-hover:translate-x-2 transition-transform"></i>
@@ -337,7 +386,7 @@
 
     </main>
 
-    <footer class="bg-black-pure border-t border-white/5 py-12 text-center text-xs text-pastel-white/20 uppercase tracking-widest font-mono fixed bottom-0 w-full z-0 pointer-events-none md:relative">
+    <footer class="bg-black-pure border-t border-white/5 py-12 text-center text-xs text-pastel-white/20 uppercase tracking-widest font-mono flex-shrink-0">
         <p>&copy; 2025 Lucía Medina.</p>
     </footer>
 
@@ -432,6 +481,65 @@
             mobileMenu.classList.add('hidden');
         }
     }
+
+    // --- HOME SCROLL EFFECTS ---
+    window.addEventListener('scroll', () => {
+        // Only run logic if on Home page
+        if(document.body.dataset.page !== 'home') return;
+
+        const scrollY = window.scrollY;
+        const windowHeight = window.innerHeight;
+        
+        // 1. Move Main Content Up and Fade slowly
+        const content = document.getElementById('home-content-wrapper');
+        
+        // Fade logic
+        const fadeStart = 50; 
+        const fadeEnd = windowHeight * 0.8;
+        
+        let opacity = 1;
+        if (scrollY > fadeStart) {
+            opacity = 1 - ((scrollY - fadeStart) / (fadeEnd - fadeStart));
+        }
+        if (opacity < 0) opacity = 0;
+        
+        content.style.opacity = opacity;
+        
+        // 2. Reveal Floating Words
+        const designWord = document.getElementById('word-design');
+        const codeWord = document.getElementById('word-code');
+        const hybridWord = document.getElementById('word-hybrid');
+
+        // Reveal logic helper
+        const reveal = (el, startScroll) => {
+            if (scrollY > startScroll) {
+                el.style.opacity = 1;
+                el.style.transform = 'translate(0, 0) scale(1)';
+                el.style.filter = 'blur(0px)';
+            } else {
+                el.style.opacity = 0;
+                el.style.transform = 'translate(0, 20px) scale(0.9)'; // Start slightly down and small
+                el.style.filter = 'blur(10px)';
+            }
+        };
+
+        // Custom transform for the centered "HYBRID" word
+        const revealCenter = (el, startScroll) => {
+            if (scrollY > startScroll) {
+                el.style.opacity = 1;
+                el.style.transform = 'translate(-50%, -50%) scale(1)';
+                el.style.filter = 'blur(0px)';
+            } else {
+                el.style.opacity = 0;
+                el.style.transform = 'translate(-50%, -30%) scale(0.8)';
+                el.style.filter = 'blur(10px)';
+            }
+        };
+
+        reveal(designWord, windowHeight * 0.3);
+        reveal(codeWord, windowHeight * 0.6);
+        revealCenter(hybridWord, windowHeight * 0.9);
+    });
 
     // --- PROJECT DATA ---
     const projects = {
