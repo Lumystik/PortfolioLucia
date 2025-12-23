@@ -3,323 +3,577 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucía Medina</title>
+    <title>Lucía Medina | Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['"Nunito Sans"', 'sans-serif'],
+                        sans: ['"Inter"', 'sans-serif'], // Changed to Inter for Nordic sharpness
                     },
                     colors: {
-                        'white': '#FFFFFF',
-                        'black-pure': '#000000',
-                        'gray-dark': '#C0DBEE', // Kept for slight card contrast if needed
-                 // Your Custom Pastel Palette
+                        'black-pure': '#050505',
+                        'gray-dark': '#1a1a1a', 
                         'pastel-gray': '#B9B3F8',
                         'pastel-blue': '#C0DBEE',
                         'pastel-purple': '#B9B3F8',
                         'pastel-green': '#BBEED5',
-                        'pastel-red': '##847A54',
+                        'pastel-red': '#847A54',
                         'pastel-lilla': '#CCB1D0',
+                        'pastel-white': '#F0F0F0',
                     }
                 }
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Inter Font for Nordic Feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
-        /* Smooth scrolling for navigation */
-        html {
-            scroll-behavior: smooth;
-        }
-        /* Ensure the body is black and text defaults to your pastel gray */
+        html { scroll-behavior: smooth; }
         body {
-            background-color: #000000;
-            color: #848484; /* pastel-gray */
-            font-family: 'Nunito Sans', sans-serif;
+            background-color: #050505;
+            color: #F0F0F0;
+            font-family: 'Inter', sans-serif; /* Applied Inter */
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased; /* Crisp text rendering */
         }
 
-        /* Animate the vector path like it's being drawn */
+        /* --- ETHEREAL ANIMATION SETTINGS (KEPT EXACTLY THE SAME) --- */
+        
         .drawing-path {
             stroke-width: 5; 
             stroke-linecap: round; 
             stroke-linejoin: round; 
-            /* Updated Gradient to match your Pastel Colors: Green -> Blue -> Purple -> Lilla */
             stroke: url(#gradient-stroke); 
             fill: none; 
             stroke-dasharray: 2000; 
             stroke-dashoffset: 2000; 
-            opacity: 0.8;
-            animation: draw 5s 0s linear infinite; 
+            opacity: 0.5; 
+            animation: draw 20s linear infinite; 
+            transition: animation-duration 2s ease, opacity 1s ease;
         }
 
         @keyframes draw {
-            from {
-                opacity: 0.5;
-                stroke-dashoffset: 4000; 
-            }
-            to {
-                opacity: 0.8;
-                stroke-dashoffset: 0; 
-            }
+            from { opacity: 0.4; stroke-dashoffset: 4000; }
+            to { opacity: 0.7; stroke-dashoffset: 0; }
         }
 
-        /* Keyframes for the fade and reveal effect */
-        @keyframes fadeReveal {
-            0%, 100% {
-                clip-path: inset(0 100% 0 0);
-                opacity: 0.1;
-            }
-            20% {
-                clip-path: inset(0 0 0 0);
-                opacity: 0.05;
-            }
-            60% {
-                clip-path: inset(0 0 0 0);
-                opacity: 0.4;
-            }
-            80% {
-                clip-path: inset(0 100% 0 0);
-                opacity: 0;
-            }
-        }
-        
         .hero-background {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             z-index: 0; 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            max-width: 100%; 
-            max-height: 100%;
-            pointer-events: none; 
+            display: flex; justify-content: center; align-items: center;
+            pointer-events: none; overflow: hidden;
+            transition: filter 1.5s ease, transform 1.5s ease;
         }
 
         .hero-background svg {
-            width: 110%;
-            height: 110%;
-            max-width: 1100px;
-            max-height: 980px;
-            object-fit: contain;
+            width: 110%; height: 110%; max-width: 1100px; max-height: 980px; object-fit: contain;
+            filter: blur(5px); 
+            transition: filter 1.2s ease, opacity 1.2s ease;
+            opacity: 0.7;
         }
 
-        .ellipse-foreground {
-            position: absolute;
-            inset: 0;
-            margin: auto;
-            max-width: 987px;
-            max-height: 878px;
-            pointer-events: none;
-            animation: fadeReveal 6s ease-in-out infinite;
+        /* --- HOVER STATE: Clarity --- */
+        #home:hover .hero-background svg {
+            filter: blur(0px);
+            opacity: 1;
+        }
+        
+        #home:hover .drawing-path {
+            opacity: 0.9; 
+        }
+
+        /* --- ACCELERATED STATE (ON CLICK) --- */
+        .hero-background.accelerated .drawing-path {
+            animation-duration: 2s; 
+            opacity: 1; 
+        }
+
+        /* DETAIL VIEW TRANSITIONS */
+        #detail-view {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+        }
+        .detail-open {
+            overflow: hidden; 
+        }
+
+        /* CAROUSEL STYLES */
+        .carousel-container {
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; 
+            -ms-overflow-style: none;  
+        }
+        .carousel-container::-webkit-scrollbar { 
+            display: none; 
+        }
+        .carousel-item {
+            scroll-snap-align: center;
+            flex: 0 0 85%; 
+        }
+        @media (min-width: 768px) {
+            .carousel-item {
+                flex: 0 0 60%;
+            }
         }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased relative selection:bg-pastel-purple selection:text-black-pure">
 
-<header class="sticky top-0 z-50 bg-black-pure/90 backdrop-blur-sm border-b border-pastel-gray/20">
-    <nav class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-        <div class="text-xl font-bold text-pastel-purple tracking-widest">
-            <a href="#home">Lucía Medina</a>
+<!-- ================= MAIN VIEW ================= -->
+<div id="main-view" class="transition-opacity duration-300">
+
+    <header class="sticky top-0 z-40 bg-black-pure/90 backdrop-blur-md border-b border-white/5">
+        <nav class="max-w-6xl mx-auto px-4 py-5 flex justify-between items-center">
+            <div class="text-sm font-bold text-pastel-purple tracking-widest hover:text-pastel-green transition-colors duration-300 uppercase">
+                <a href="#home">Lucía Medina</a>
+            </div>
+            <div class="hidden md:flex space-x-10 text-pastel-blue/80 font-medium text-xs tracking-widest uppercase">
+                <a href="#work" class="hover:text-pastel-green transition duration-200 click-trigger">Work</a>
+                <a href="#about" class="hover:text-pastel-green transition duration-200 click-trigger">About</a>
+                <a href="#contact" class="hover:text-pastel-green transition duration-200 click-trigger">Contact</a>
+            </div>
+            <button id="menu-button" class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6 text-pastel-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-black-pure border-t border-pastel-gray/20">
+            <a href="#work" class="block py-4 px-4 text-sm text-pastel-blue hover:text-pastel-green click-trigger uppercase tracking-widest">Work</a>
+            <a href="#about" class="block py-4 px-4 text-sm text-pastel-blue hover:text-pastel-green click-trigger uppercase tracking-widest">About</a>
+            <a href="#contact" class="block py-4 px-4 text-sm text-pastel-blue hover:text-pastel-green click-trigger uppercase tracking-widest">Contact</a>
         </div>
-        <div class="hidden md:flex space-x-8 text-pastel-gray font-medium">
-            <a href="#work" class="hover:text-pastel-blue transition duration-200">Work</a>
-            <a href="#about" class="hover:text-pastel-blue transition duration-200">About</a>
-            <a href="#contact" class="hover:text-pastel-blue transition duration-200">Contact</a>
+    </header>
+
+    <section id="home" class="max-w-6xl mx-auto px-4 pt-40 pb-20 text-center relative min-h-[90vh] flex flex-col justify-center items-center group">
+        <div class="relative z-10">
+            <!-- Adjusted Name Size: Reduced from 6xl/8xl to 5xl/7xl for a more elegant look -->
+            <h1 class="text-5xl md:text-7xl font-light mb-6 tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-pastel-blue via-pastel-purple to-pastel-lilla animate-pulse">
+                Lucía Medina
+            </h1>
+            <p class="text-lg md:text-xl text-pastel-white/60 mb-10 font-light tracking-widest uppercase">
+                Digital & Interaction Designer 
+            </p>
+            <a href="#work" class="click-trigger inline-block px-10 py-4 border border-pastel-green text-pastel-green text-xs font-bold uppercase tracking-widest rounded-full hover:bg-pastel-green hover:text-black-pure transition-all duration-300 shadow-[0_0_20px_rgba(187,238,213,0.1)] hover:shadow-[0_0_30px_rgba(187,238,213,0.4)]">
+                View Projects
+            </a>
         </div>
-        <button id="menu-button" class="md:hidden focus:outline-none">
-            <svg class="w-6 h-6 text-pastel-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+
+        <div class="hero-background">
+            <svg viewBox="0 0 987 878" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="gradient-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#BBEED5" /> <stop offset="40%" stop-color="#C0DBEE" /> <stop offset="70%" stop-color="#B9B3F8" /> <stop offset="100%" stop-color="#CCB1D0" /> </linearGradient>
+                <filter id="filter0_d_75_190" x="0.5" y="0.8" width="986" height="876" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                  <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                  <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+                  <feOffset dy="4"/>
+                  <feGaussianBlur stdDeviation="2"/>
+                  <feComposite in2="hardAlpha" operator="out"/>
+                  <feColorMatrix values="0 0 0 0 0.2 0 0 0 0 0.4 0 0 0 0 0.9 0 0 0 0.3 0"/>
+                  <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+                  <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+                </filter>
+              </defs>
+              <g filter="url(#filter0_d_75_190)">
+                <path d="M17.7617 646.374C25.7546 676.661 50.6879 692.759 75.3093 701.181C101.467 710.129 149.865 741.192 168.756 761.377C172.71 765.601 175.447 770.816 176.677 776.468L180.224 792.771C192.792 850.529 258.938 878.229 308.913 846.663L325.076 836.453C336.404 829.299 345.554 819.335 354.12 809.033C393.875 761.215 490.712 704.118 642.944 767.831C795.246 831.573 858.919 728.484 876.751 650.37C880.653 633.276 887.453 616.779 899.024 603.606L952.091 543.189C977.366 514.414 980.322 472.305 959.314 440.281L908.296 362.507C891.84 337.42 891.668 305.004 907.857 279.744C933.235 240.146 916.955 187.238 873.707 168.757L727.598 106.32C715.419 101.115 704.623 93.1424 696.065 83.0343L659.798 40.1928C633.149 8.71371 587.772 0.85643 552.09 21.5425L439.597 86.7595C403.942 107.43 358.602 99.6015 331.943 68.1717L309.21 41.3711C273.099 -1.20259 206.477 1.90277 174.482 47.651L129.362 112.167C124.584 118.999 118.9 125.155 111.92 129.714C66.7895 159.187 -17.8498 193.265 35.8118 346.157C108.406 552.994 -8.2777 547.706 17.7617 646.374Z" stroke="url(#gradient-stroke)" fill="none" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" class="drawing-path"/>
+              </g>
             </svg>
-        </button>
-    </nav>
-    <div id="mobile-menu" class="hidden md:hidden bg-black-pure border-t border-pastel-gray/20">
-        <a href="#work" class="block py-3 px-4 text-sm text-pastel-gray hover:text-pastel-blue hover:bg-gray-dark">Work</a>
-        <a href="#about" class="block py-3 px-4 text-sm text-pastel-gray hover:text-pastel-blue hover:bg-gray-dark">About</a>
-        <a href="#contact" class="block py-3 px-4 text-sm text-pastel-gray hover:text-pastel-blue hover:bg-gray-dark">Contact</a>
-    </div>
-</header>
+        </div>
+    </section>
 
-<section id="home" class="max-w-6xl mx-auto px-4 pt-40 pb-20 text-center relative min-h-[90vh] flex flex-col justify-center items-center">
-    
-    <div class="relative z-10">
-        <h1 class="text-6xl sm:text-7xl font-bold mb-4 tracking-tight text-pastel-blue">
-            Lucía Medina
-        </h1>
-        <p class="text-xl sm:text-2xl text-pastel-gray mb-8 font-light">
-            Digital & Interaction Designer 
-        </p>
-        <a href="#work" class="inline-block px-8 py-3 bg-pastel-green text-black-pure text-lg font-bold rounded-full hover:bg-pastel-lilla transition duration-300 shadow-[0_0_15px_rgba(187,238,213,0.4)] mt-4">
-            View Projects
-        </a>
-    </div>
+    <section id="work" class="max-w-6xl mx-auto px-4 py-20">
+        <div class="flex items-end justify-between mb-16 border-b border-white/10 pb-6">
+            <h2 class="text-sm font-bold text-pastel-lilla tracking-[0.2em] uppercase">Selected Work</h2>
+            <span class="text-xs text-pastel-white/40 hidden md:block font-mono">2020 — 2025</span>
+        </div>
 
-    <div class="hero-background">
-        <svg width="987" height="878" viewBox="0 0 987 878" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-          <defs>
-            <linearGradient id="gradient-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#BBEED5" /> <stop offset="40%" stop-color="#C0DBEE" /> <stop offset="70%" stop-color="#B9B3F8" /> <stop offset="100%" stop-color="#CCB1D0" /> </linearGradient>
+        <div class="grid md:grid-cols-2 gap-x-16 gap-y-20">
+            <!-- Project 1: Museon -->
+            <article class="group cursor-pointer click-trigger border-t border-white/5 pt-8 hover:border-pastel-blue transition-colors duration-500" onclick="openProject('museon')">
+                <div class="flex justify-between items-start mb-6">
+                    <span class="text-xs font-bold tracking-widest text-pastel-blue uppercase">PoliMi Project</span>
+                    <i class="fas fa-arrow-right text-pastel-white/30 group-hover:text-pastel-blue transition-colors -rotate-45 group-hover:rotate-0 transform duration-300"></i>
+                </div>
+                <h3 class="text-3xl font-light text-white mb-2 group-hover:text-pastel-blue transition-colors">MUSE*ON</h3>
+                <p class="text-pastel-white/60 font-light text-sm leading-relaxed">Service Design & Staff Management Platform.</p>
+            </article>
 
-            <filter id="filter0_d_75_190" x="0.507699" y="0.874847" width="986.196" height="876.712" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-              <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-              <feOffset dy="4.25793"/>
-              <feGaussianBlur stdDeviation="2.12896"/>
-              <feComposite in2="hardAlpha" operator="out"/>
-              <feColorMatrix type="matrix" values="0 0 0 0 0.192157 0 0 0 0 0.427451 0 0 0 0 0.905882 0 0 0 0.33 0"/>
-              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_75_190"/>
-              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_75_190" result="shape"/>
-            </filter>
-          </defs>
+            <!-- Project 2: Art Beyond Dimension -->
+            <article class="group cursor-pointer click-trigger border-t border-white/5 pt-8 hover:border-pastel-blue transition-colors duration-500" onclick="openProject('artbeyond')">
+                <div class="flex justify-between items-start mb-6">
+                    <span class="text-xs font-bold tracking-widest text-pastel-blue uppercase">PoliMi Project</span>
+                    <i class="fas fa-arrow-right text-pastel-white/30 group-hover:text-pastel-blue transition-colors -rotate-45 group-hover:rotate-0 transform duration-300"></i>
+                </div>
+                <h3 class="text-3xl font-light text-white mb-2 group-hover:text-pastel-blue transition-colors">Art Beyond Dimension</h3>
+                <p class="text-pastel-white/60 font-light text-sm leading-relaxed">Interactive AI experience making art history accessible.</p>
+            </article>
 
-          <g filter="url(#filter0_d_75_190)">
-            <path
-              d="M17.7617 646.374C25.7546 676.661 50.6879 692.759 75.3093 701.181C101.467 710.129 149.865 741.192 168.756 761.377C172.71 765.601 175.447 770.816 176.677 776.468L180.224 792.771C192.792 850.529 258.938 878.229 308.913 846.663L325.076 836.453C336.404 829.299 345.554 819.335 354.12 809.033C393.875 761.215 490.712 704.118 642.944 767.831C795.246 831.573 858.919 728.484 876.751 650.37C880.653 633.276 887.453 616.779 899.024 603.606L952.091 543.189C977.366 514.414 980.322 472.305 959.314 440.281L908.296 362.507C891.84 337.42 891.668 305.004 907.857 279.744C933.235 240.146 916.955 187.238 873.707 168.757L727.598 106.32C715.419 101.115 704.623 93.1424 696.065 83.0343L659.798 40.1928C633.149 8.71371 587.772 0.85643 552.09 21.5425L439.597 86.7595C403.942 107.43 358.602 99.6015 331.943 68.1717L309.21 41.3711C273.099 -1.20259 206.477 1.90277 174.482 47.651L129.362 112.167C124.584 118.999 118.9 125.155 111.92 129.714C66.7895 159.187 -17.8498 193.265 35.8118 346.157C108.406 552.994 -8.2777 547.706 17.7617 646.374Z"
-              stroke="url(#gradient-stroke)"
-              fill="none"
-              stroke-width="18.355"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="drawing-path"
-            />
-          </g>
-        </svg>
+            <!-- Project 3: Films Foundation -->
+            <article class="group cursor-pointer click-trigger border-t border-white/5 pt-8 hover:border-pastel-blue transition-colors duration-500" onclick="openProject('films')">
+                <div class="flex justify-between items-start mb-6">
+                    <span class="text-xs font-bold tracking-widest text-pastel-blue uppercase">PoliMi Project</span>
+                    <i class="fas fa-arrow-right text-pastel-white/30 group-hover:text-pastel-blue transition-colors -rotate-45 group-hover:rotate-0 transform duration-300"></i>
+                </div>
+                <h3 class="text-3xl font-light text-white mb-2 group-hover:text-pastel-blue transition-colors">Films Foundation</h3>
+                <p class="text-pastel-white/60 font-light text-sm leading-relaxed">Website proposal and visual identity.</p>
+            </article>
+
+            <!-- Project 4: Seedtag -->
+            <article class="group cursor-pointer click-trigger border-t border-white/5 pt-8 hover:border-pastel-purple transition-colors duration-500" onclick="openProject('seedtag')">
+                <div class="flex justify-between items-start mb-6">
+                    <span class="text-xs font-bold tracking-widest text-pastel-purple uppercase">Ad Tech</span>
+                    <i class="fas fa-play text-pastel-white/30 group-hover:text-pastel-purple transition-colors transform duration-300"></i>
+                </div>
+                <h3 class="text-3xl font-light text-white mb-2 group-hover:text-pastel-purple transition-colors">Seedtag</h3>
+                <p class="text-pastel-white/60 font-light text-sm leading-relaxed">Engineering high-impact rich media campaigns.</p>
+            </article>
+
+             <!-- Project 5: Thematic Analysis -->
+             <article class="group cursor-pointer click-trigger border-t border-white/5 pt-8 hover:border-pastel-purple transition-colors duration-500" onclick="openProject('thematic')">
+                <div class="flex justify-between items-start mb-6">
+                    <span class="text-xs font-bold tracking-widest text-pastel-purple uppercase">Code</span>
+                    <i class="fas fa-code text-pastel-white/30 group-hover:text-pastel-purple transition-colors transform duration-300"></i>
+                </div>
+                <h3 class="text-3xl font-light text-white mb-2 group-hover:text-pastel-purple transition-colors">Thematic Tool</h3>
+                <p class="text-pastel-white/60 font-light text-sm leading-relaxed">Visual tool to organize qualitative research codes.</p>
+            </article>
+
+             <!-- Project 6: Pixela -->
+             <article class="group cursor-pointer click-trigger border-t border-white/5 pt-8 hover:border-pastel-blue transition-colors duration-500" onclick="openProject('pixela')">
+                <div class="flex justify-between items-start mb-6">
+                    <span class="text-xs font-bold tracking-widest text-pastel-blue uppercase">Bachelor Project</span>
+                    <i class="fas fa-gamepad text-pastel-white/30 group-hover:text-pastel-blue transition-colors transform duration-300"></i>
+                </div>
+                <h3 class="text-3xl font-light text-white mb-2 group-hover:text-pastel-blue transition-colors">Pixela</h3>
+                <p class="text-pastel-white/60 font-light text-sm leading-relaxed">Immersive first-person survival game.</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- UPDATED ABOUT SECTION -->
+    <section id="about" class="max-w-6xl mx-auto px-4 py-24 border-t border-white/5">
+        <h2 class="text-sm font-bold text-pastel-lilla tracking-[0.2em] uppercase mb-16">Profile</h2>
         
-        </div>
-</section>
-
-<section id="work" class="max-w-6xl mx-auto px-4 py-20">
-    <h2 class="text-4xl font-bold text-center mb-16 text-pastel-lilla">
-        Recent Work
-    </h2>
-    <div class="grid md:grid-cols-2 gap-10">
-        <article class="bg-black-pure p-8 rounded-lg shadow-2xl transition duration-300 hover:scale-[1.02] border border-pastel-blue/20 hover:border-pastel-blue">
-            <h3 class="text-2xl font-semibold mb-3 text-pastel-blue">Muse*on</h3>
-            <p class="text-pastel-white mb-6">Developing an all-in-one software for small museum staff to streamline workflow.</p>
-            <a href="https://www.behance.net/gallery/201102523/Museon-2024" target="_blank" class="text-sm font-bold text-pastel-white hover:text-pastel-lilla transition duration-200 border-b border-pastel-red hover:border-pastel-lilla">
-                Case Study &rarr;
-            </a>
-        </article>
-
-        <article class="bg-black-pure p-8 rounded-lg shadow-2xl transition duration-300 hover:scale-[1.02] border border-pastel-blue/20 hover:border-pastel-blue">
-            <h3 class="text-2xl font-semibold mb-3 text-pastel-blue">Art Without Dimension</h3>
-            <p class="text-pastel-white mb-6">A futuristic prototype for users exploring art in new virtual ways.</p>
-            <a href="https://www.figma.com/proto/FnFqrWBxyChSOdL3aVzV9A/Prototype?node-id=616-1949&starting-point-node-id=564%3A1942&scaling=contain&content-scaling=fixed" target="_blank" class="text-sm font-bold text-pastel-white hover:text-pastel-lilla transition duration-200 border-b border-pastel-red hover:border-pastel-lilla">
-                View Prototype &rarr;
-            </a>
-        </article>
-
-        <article class="bg-black-pure p-8 rounded-lg shadow-2xl transition duration-300 hover:scale-[1.02] border border-pastel-blue/20 hover:border-pastel-blue">
-            <h3 class="text-2xl font-semibold mb-3 text-pastel-blue">Films Foundation</h3>
-            <p class="text-pastel-white mb-6">A website proposal for the Italian film foundation.</p>
-            <a href="https://www.figma.com/proto/MWvYkF7ybuKjE7SPnGi8po/Assignment?node-id=2128-5992&starting-point-node-id=2128%3A5992" target="_blank" class="text-sm font-bold text-pastel-white hover:text-pastel-lilla transition duration-200 border-b border-pastel-red hover:border-pastel-lilla">
-                View Design &rarr;
-            </a>
-        </article>
-
-        <article class="bg-black-pure p-8 rounded-lg shadow-2xl transition duration-300 hover:scale-[1.02] border border-pastel-blue/20 hover:border-pastel-blue">
-            <h3 class="text-2xl font-semibold mb-3 text-pastel-blue">Pixela</h3>
-            <p class="text-pastel-white mb-6">A brief description of your fourth project goes here. This is a placeholder.</p>
-            <a href="https://www.behance.net/gallery/201101643/PIXELA" target="_blank" class="text-sm font-bold text-pastel-white hover:text-pastel-lilla transition duration-200 border-b border-pastel-red hover:border-pastel-lilla">
-              View Design &rarr;
-            </a>
-        </article>
-
-         <article class="bg-black-pure p-8 rounded-lg shadow-2xl transition duration-300 hover:scale-[1.02] border border-pastel-blue/20 hover:border-pastel-blue">
-            <h3 class="text-2xl font-semibold mb-3 text-pastel-blue">Thematic Analysis Tool</h3>
-            <p class="text-pastel-white mb-6">
-              I made a small thematic analysis tool that is visual and organises the content according to the codes.
-            </p>
-            <a href="playground.html" target="_blank" class="text-sm font-bold text-pastel-white hover:text-pastel-lilla transition duration-200 border-b border-pastel-red hover:border-pastel-lilla">
-              View Tool &rarr;
-            </a>
-          </article>
-    </div>
-</section>
-
-<section id="about" class="max-w-6xl mx-auto px-4 py-20 border-t border-pastel-gray/20">
-    <h2 class="text-4xl font-bold text-center mb-16 text-pastel-lilla">
-        A Little About Me
-    </h2>
-    <div class="lg:flex gap-10">
-        <div class="lg:w-1/2 mb-10 lg:mb-0">
-            <p class="text-lg text-pastel-white leading-relaxed mb-6">
-                I am a master's student in Digital and Interaction Design at Politecnico di Milano, bringing a background in interactive design to the world of UX/UI. My passion is translating complex ideas into elegant, user-friendly interfaces.
-            </p>
-            <p class="text-lg text-pastel-white leading-relaxed">
-                I love experimenting with new technologies like <strong class="text-pastel-green">SVG animation</strong> and front-end frameworks to create unique and engaging digital experiences, always aiming for accessibility and visual harmony.
-            </p>
-        </div>
-        <div class="lg:w-1/2 bg-black-pure p-8 rounded-lg shadow-lg border border-pastel-purple/30">
-            <h3 class="text-2xl font-semibold mb-5 border-b border-pastel-gray/20 pb-3 text-pastel-lilla">Key Details</h3>
-            <div class="space-y-4" color="white">
-                <p><span class="font-bold text-pastel-whit">Education:</span> MSc Digital and Interaction Design, Polimi</p>
-                <p><span class="font-bold text-pastel-white">Experience:</span> Junior Digital Designer at Seedtag (2020-2024)</p>
-                <p><span class="font-bold text-pastel-white">Skills:</span> Figma, Adobe Suite, HTML/CSS/JS, Prototyping, Usability Testing</p>
+        <div class="lg:flex gap-24 items-start">
+            <!-- Left: Bio -->
+            <div class="lg:w-1/2 mb-12 lg:mb-0">
+                <p class="text-xl text-pastel-white/90 leading-relaxed font-light mb-8">
+                    I am a master's student in <strong class="text-pastel-blue font-normal">Digital and Interaction Design</strong> at Politecnico di Milano.
+                </p>
+                <p class="text-lg text-pastel-white/60 leading-relaxed font-light">
+                    My approach is defined by precision. I don't just design interfaces; I consider the logic, the code, and the system behind them. I have extensive experience with <strong class="text-pastel-white font-normal">HTML5, CSS3, and JavaScript</strong>, allowing me to prototype with the fidelity of a finished product.
+                </p>
+            </div>
+            
+            <!-- Right: Profile Grid -->
+            <div class="lg:w-1/2 grid grid-cols-2 gap-y-12 gap-x-8">
+                <div>
+                    <h4 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-3">Education</h4>
+                    <p class="text-pastel-white text-sm">MSc Digital & Interaction Design</p>
+                    <p class="text-pastel-white/40 text-xs mt-1">Politecnico di Milano, 2026</p>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-3">History</h4>
+                    <p class="text-pastel-white text-sm">Seedtag (3+ Years)</p>
+                    <p class="text-pastel-white/40 text-xs mt-1">Digital Designer / Developer</p>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-3">Tech Stack</h4>
+                    <p class="text-pastel-white text-sm leading-6">Figma, HTML, CSS, JS, Tailwind, Adobe Suite</p>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-3">Status</h4>
+                    <p class="text-pastel-white text-sm">Based in Milan</p>
+                    <p class="text-pastel-green text-xs mt-1">Open to Relocation</p>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="contact" class="max-w-6xl mx-auto px-4 py-20 border-t border-pastel-gray/20 text-center">
-    <h2 class="text-4xl font-bold mb-6 text-pastel-lilla">
-        Let's Connect
-    </h2>
-    <p class="text-lg text-pastel-white max-w-2xl mx-auto mb-12">
-        I’m always open to new projects, opportunities, and discussions about design or technology. Feel free to reach out!
-    </p>
-    <div class="flex justify-center space-x-10">
-        <a href="mailto:lucia.medina@mail.polimi.it" class="text-pastel-white hover:text-pastel-blue transition duration-300 text-3xl" title="Email">
-            <i class="fas fa-envelope"></i>
+    <section id="contact" class="max-w-4xl mx-auto px-4 py-32 border-t border-white/5 text-center">
+        <h2 class="text-4xl md:text-5xl font-light mb-8 text-pastel-white">Ready to collaborate?</h2>
+        <p class="text-lg text-pastel-white/60 max-w-xl mx-auto mb-12 font-light">
+            I am currently open to thesis collaborations and internship opportunities.
+        </p>
+        <a href="mailto:lucia.medina@mail.polimi.it" class="text-pastel-blue text-lg hover:text-white transition-colors border-b border-pastel-blue/30 hover:border-pastel-blue pb-1 inline-block mb-12">
+            lucia.medina@mail.polimi.it
         </a>
-        <a href="https://www.linkedin.com/in/lucia-medina1829" target="_blank" class="text-pastel-white hover:text-pastel-lilla transition duration-300 text-3xl" title="LinkedIn">
-            <i class="fab fa-linkedin"></i>
-        </a>
-        <a href="https://www.behance.net/lucamedinagaln1" target="_blank" class="text-pastel-white hover:text-pastel-green transition duration-300 text-3xl" title="Behance">
-            <i class="fab fa-behance"></i>
-        </a>
-    </div>
-</section>
+        
+        <div class="flex justify-center space-x-12">
+            <a href="https://www.linkedin.com/in/lucia-medina1829" target="_blank" class="text-pastel-gray hover:text-white transition duration-300 text-2xl"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.behance.net/lucamedinagaln1" target="_blank" class="text-pastel-gray hover:text-white transition duration-300 text-2xl"><i class="fab fa-behance"></i></a>
+        </div>
+    </section>
 
-<footer class="bg-black-pure border-t border-pastel-gray/10 py-8 text-center text-sm text-pastel-gray/60">
-    <p>&copy; 2025 Lucía Medina. All rights reserved. Designed with Nunito Sans and Tailwind CSS.</p>
-</footer>
+    <footer class="bg-black-pure border-t border-white/5 py-12 text-center text-xs text-pastel-white/20 uppercase tracking-widest font-mono">
+        <p>&copy; 2025 Lucía Medina.</p>
+    </footer>
+</div>
+
+<!-- ================= DETAIL VIEW OVERLAY ================= -->
+<div id="detail-view" class="fixed inset-0 bg-black-pure z-50 transform translate-x-full flex flex-col overflow-y-auto">
+    <!-- Detail Navbar -->
+    <div class="sticky top-0 bg-black-pure/95 backdrop-blur-md border-b border-white/5 p-6 flex justify-between items-center z-50">
+        <button onclick="closeProject()" class="flex items-center text-pastel-white/60 hover:text-pastel-green transition-colors text-xs font-bold uppercase tracking-widest">
+            <i class="fas fa-arrow-left mr-3"></i> Back
+        </button>
+        <div class="text-pastel-white/40 font-mono text-xs uppercase" id="detail-nav-title">Project Name</div>
+        <div class="w-16"></div> 
+    </div>
+
+    <!-- Detail Content -->
+    <div class="max-w-4xl mx-auto px-6 py-20 flex-grow w-full">
+        <!-- Hero -->
+        <div class="mb-16">
+            <h1 id="detail-title" class="text-4xl md:text-6xl font-light text-white mb-4">Title</h1>
+            <p id="detail-subtitle" class="text-xl text-pastel-blue font-light">Subtitle goes here</p>
+        </div>
+
+        <!-- Two Column Layout: Description & Role -->
+        <div class="grid md:grid-cols-3 gap-16 border-t border-white/5 pt-12">
+            <!-- Main Description (2/3) -->
+            <div class="md:col-span-2">
+                <h3 class="text-xs font-bold text-pastel-lilla uppercase tracking-widest mb-6">Overview</h3>
+                <div id="detail-desc" class="text-pastel-white/80 leading-relaxed text-lg font-light space-y-6">
+                    <!-- Dynamic Description -->
+                </div>
+                
+                <a id="detail-link" href="#" target="_blank" class="inline-block mt-10 px-8 py-3 border border-white/20 text-white text-sm hover:bg-white hover:text-black-pure transition-all duration-300">
+                    View Project
+                </a>
+            </div>
+
+            <!-- Role & Tech (1/3) -->
+            <div class="md:col-span-1 space-y-10">
+                <div>
+                    <h3 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-4">My Role</h3>
+                    <ul id="detail-role" class="space-y-2 text-pastel-white/60 text-sm font-light">
+                        <!-- Dynamic Role -->
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-4">Type</h3>
+                    <p id="detail-type" class="text-pastel-white/60 text-sm font-light">Web App</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Process / Gallery (DYNAMIC CONTAINER) -->
+        <div class="mt-24">
+            <h3 class="text-xs font-bold text-pastel-lilla uppercase tracking-widest mb-8 text-center" id="gallery-title">Visuals</h3>
+            <div id="detail-gallery-container"></div>
+        </div>
+    </div>
+</div>
 
 <script>
-    // JavaScript for mobile menu toggle
-    const menuButton = document.getElementById('menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
+    // --- PROJECT DATA ---
+    const projects = {
+        'seedtag': {
+            title: 'Seedtag Interactive Ads',
+            subtitle: 'Engineering High-Impact Rich Media',
+            type: 'Ad Tech (HTML5/JS)',
+            link: '#', 
+            isCarousel: true, 
+            gifs: [
+                'https://via.placeholder.com/600x400/1a1a1a/333333?text=Ad+GIF+1+(Add+Path)',
+                'https://via.placeholder.com/600x400/1a1a1a/333333?text=Ad+GIF+2+(Add+Path)',
+                'https://via.placeholder.com/600x400/1a1a1a/333333?text=Ad+GIF+3+(Add+Path)'
+            ],
+            role: [
+                'Frontend Development (Vanilla JS)',
+                'Creative QA',
+                'Animation Logic',
+                'Cross-Browser Optimization'
+            ],
+            desc: `
+                <p>At Seedtag, I didn't just design ads; I engineered them. My role bridged the gap between the creative studio and the engineering team.</p>
+                <p>I built high-impact, rich-media formats using raw HTML, CSS, and JavaScript. These weren't standard banners; they were interactive mini-applications that responded to scroll events, user gestures, and device orientation.</p>
+                <p><strong>The Challenge:</strong> Creating complex animations that ran smoothly at 60fps while keeping file sizes incredibly low for rapid loading on mobile networks.</p>
+            `
+        },
+        'museon': {
+            title: 'MUSE*ON',
+            subtitle: 'Service Design & Staff Management Platform',
+            type: 'PoliMi Project',
+            link: 'https://www.behance.net/gallery/201102523/Museon-2024',
+            role: [
+                'UX Research (Environment Mapping)',
+                'Hero Flows & Wireflows',
+                'Mobile Interface Design (Figma)',
+                'Prototyping'
+            ],
+            desc: `
+                <p>MUSE*ON is an <strong>all-in-one software</strong> designed specifically for small museum staff. The platform aims to streamline daily workflows and improve the management of different institutional areas, replacing disjointed paper methods with a cohesive digital ecosystem.</p>
+                <p>My primary role involved deep UX research to understand the staff's reality. I translated these insights into actionable <strong>Hero Flows and Wireflows</strong>, eventually building a high-fidelity mobile interface that allows staff to manage shifts, track inventory, and communicate in real-time.</p>
+            `
+        },
+        'artbeyond': {
+            title: 'Art Beyond Dimension',
+            subtitle: 'Interactive AI Experience for Art History',
+            type: 'PoliMi Project',
+            link: 'https://www.figma.com/proto/FnFqrWBxyChSOdL3aVzV9A/Prototype?node-id=616-1949&starting-point-node-id=564%3A1942&scaling=contain&content-scaling=fixed',
+            role: [
+                'Motion Graphics (After Effects)',
+                'Video Editing (Premiere Pro)',
+                'Concept Development',
+                'Visual Storytelling'
+            ],
+            desc: `
+                <p>How do we make classical art relevant to a generation raised on TikTok and Roblox? Art Beyond Dimension is a futuristic prototype that uses AI to create immersive, narrative-driven entry points into art history.</p>
+                <p>I was responsible for the motion design and video assets that bring the prototype to life. Using Adobe After Effects and Premiere, I created the visual language of the AI assistant, visualizing how the system "scans" art and generates stories for the user.</p>
+            `
+        },
+        'films': {
+            title: 'Films Foundation',
+            subtitle: 'Website Proposal for Italian Cinema',
+            type: 'UI Design',
+            link: 'https://www.figma.com/proto/MWvYkF7ybuKjE7SPnGi8po/Assignment?node-id=2128-5992&starting-point-node-id=2128%3A5992',
+            role: [
+                'Mobile UI Design',
+                'Information Architecture',
+                'Visual Identity',
+                'Responsive Layouts'
+            ],
+            desc: `
+                <p>A complete redesign proposal for a prominent Italian Film Foundation. The goal was to organize a massive archive of historical cinema into a navigable, modern mobile experience.</p>
+                <p>I focused on the mobile-first implementation, ensuring that the rich media assets (posters, trailers, stills) remained the hero of the experience even on small screens. The design prioritizes clarity and accessibility while maintaining a cinematic elegance.</p>
+            `
+        },
+        'pixela': {
+            title: 'Pixela',
+            subtitle: 'First-Person Survival Game',
+            type: 'Bachelor Project',
+            link: 'https://www.behance.net/gallery/201101643/PIXELA',
+            role: [
+                'Video Game Implementation',
+                'Post-Production',
+                'Interactive Assets',
+                'Game Logic'
+            ],
+            desc: `
+                <p>Pixela is an immersive first-person survival game where you play as an AI named Pixela, who is an unexpected anomaly in a scientific project designed to decode the minds of history's greatest artists.</p>
+                <p>As Pixela, your primary objective is to escape from the scientists who have captured you, using your unique abilities to travel through the worlds of Dalí, Van Gogh and Escher.</p>
+            `
+        },
+        'thematic': {
+            title: 'Thematic Analysis Tool',
+            subtitle: 'Visual Tool for Qualitative Data',
+            type: 'Thesis Tool (Code)',
+            link: 'playground.html',
+            role: [
+                'Frontend Development',
+                'Data Visualization Logic',
+                'UX for Research Tools'
+            ],
+            desc: `
+                <p><strong>Note: This is a live tool built for my Master's Thesis.</strong></p>
+                <p>Qualitative research often involves messy spreadsheets and sticky notes. I built this web-based tool to make the process of Thematic Analysis more visual and intuitive.</p>
+                <p>It allows researchers to input raw data, assign codes, and visually group them into themes. It transforms an abstract cognitive process into a tangible, drag-and-drop interface.</p>
+            `
+        }
+    };
 
-    menuButton.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
+    // --- LOGIC ---
+    const mainView = document.getElementById('main-view');
+    const detailView = document.getElementById('detail-view');
+    const body = document.body;
+    const galleryContainer = document.getElementById('detail-gallery-container');
+
+    function openProject(id) {
+        const p = projects[id];
+        if (!p) return;
+
+        // Populate Text Data
+        document.getElementById('detail-nav-title').innerText = p.title;
+        document.getElementById('detail-title').innerText = p.title;
+        document.getElementById('detail-subtitle').innerText = p.subtitle;
+        document.getElementById('detail-link').href = p.link;
+        document.getElementById('detail-desc').innerHTML = p.desc;
+        document.getElementById('detail-type').innerText = p.type;
+
+        // Populate Roles List
+        const roleList = document.getElementById('detail-role');
+        roleList.innerHTML = ''; // Clear previous
+        p.role.forEach(r => {
+            const li = document.createElement('li');
+            li.innerHTML = r; // Removed checkmark for simpler nordic list
+            roleList.appendChild(li);
+        });
+
+        // --- DYNAMIC GALLERY LOGIC ---
+        galleryContainer.innerHTML = ''; // Clear previous gallery
+
+        if (p.isCarousel) {
+            // Render Horizontal GIF Carousel
+            document.getElementById('gallery-title').innerText = "Interactive Gallery";
+            let carouselHTML = `
+                <div class="carousel-container flex gap-6 pb-4">
+                    ${p.gifs.map(gifSrc => `
+                        <div class="carousel-item relative aspect-video bg-gray-dark border border-white/10 overflow-hidden flex-shrink-0 w-[85%] md:w-[60%]">
+                             <img src="${gifSrc}" alt="Interactive Ad GIF" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
+                             <div class="absolute bottom-3 left-3 bg-black/60 px-3 py-1 text-xs font-bold text-white uppercase tracking-widest backdrop-blur-sm">Ad Preview</div>
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="text-center text-pastel-white/30 text-xs mt-4 font-mono uppercase tracking-widest"><i class="fas fa-arrows-alt-h mr-2"></i> Swipe</div>
+            `;
+            galleryContainer.innerHTML = carouselHTML;
+
+        } else {
+            // Render Standard Static Grid (For other projects)
+            document.getElementById('gallery-title').innerText = "Visuals";
+            let gridHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="aspect-video bg-gray-dark border border-white/5 flex items-center justify-center">
+                        <span class="text-pastel-white/20 font-mono text-xs">IMG 01</span>
+                    </div>
+                    <div class="aspect-video bg-gray-dark border border-white/5 flex items-center justify-center">
+                        <span class="text-pastel-white/20 font-mono text-xs">IMG 02</span>
+                    </div>
+                    <div class="aspect-video bg-gray-dark border border-white/5 flex items-center justify-center">
+                        <span class="text-pastel-white/20 font-mono text-xs">IMG 03</span>
+                    </div>
+                    <div class="aspect-video bg-gray-dark border border-white/5 flex items-center justify-center">
+                        <span class="text-pastel-white/20 font-mono text-xs">IMG 04</span>
+                    </div>
+                </div>
+            `;
+            galleryContainer.innerHTML = gridHTML;
+        }
+
+        // Show Overlay
+        detailView.classList.remove('translate-x-full');
+        body.classList.add('detail-open');
+    }
+
+    function closeProject() {
+        detailView.classList.add('translate-x-full');
+        body.classList.remove('detail-open');
+    }
+
+    // --- ACCELERATE ANIMATION ON CLICK ---
+    document.querySelectorAll('.click-trigger').forEach(trigger => {
+        trigger.addEventListener('click', () => {
+            const bg = document.querySelector('.hero-background');
+            bg.classList.add('accelerated');
+            setTimeout(() => {
+                bg.classList.remove('accelerated');
+            }, 2000);
+        });
     });
 
-    // Close mobile menu when a link is clicked
-    document.querySelectorAll('#mobile-menu a').forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
-        });
+    // Mobile Menu Logic
+    const menuButton = document.getElementById('menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
     });
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
