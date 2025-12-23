@@ -167,35 +167,6 @@
             pointer-events: none;
         }
 
-        /* --- ABOUT SLIDER COMPONENT (SHADOW ON SKIN) --- */
-        .face-slider-container {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 3/4; 
-            overflow: hidden;
-            border-radius: 4px;
-            border: 1px solid rgba(255,255,255,0.1);
-            user-select: none;
-            cursor: ew-resize; 
-        }
-        
-        .face-slider-layer { 
-            position: absolute; 
-            top: 0; left: 0; 
-            width: 100%; height: 100%; 
-            overflow: hidden; 
-        }
-        
-        /* GENERAL IMAGE STYLE */
-        .face-slider-layer img {
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-            display: block;
-            filter: grayscale(100%); 
-            pointer-events: none;
-        }
-
         /* BOTTOM LAYER: CLEAN IMAGE (Base) */
         .layer-base {
             z-index: 1;
@@ -322,7 +293,7 @@
                 <span class="text-xs text-pastel-white/40 hidden md:block font-mono">2020 — 2025</span>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pb-20">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pb-10">
                 <!-- Project 1: Museon -->
                 <article class="group cursor-pointer click-trigger border border-white/5 p-8 rounded-sm hover:border-pastel-blue/50 transition-all duration-500 relative overflow-hidden" onclick="openProject('museon')">
                     <div class="absolute top-0 left-0 w-1 h-full bg-pastel-blue transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
@@ -425,14 +396,14 @@
                         
                         <!-- Layer 1: Bottom (Clean Photo) -->
                         <div class="face-slider-layer layer-base">
-                            <img src=".images/meme.png" alt="Lucía Medina">
+                            <img src="images/meme.png" alt="Lucía Medina">
                         </div>
 
                         <!-- Layer 2: Top (Shadow Text + Photo) -->
                         <div class="face-slider-layer layer-cover" id="face-foreground">
 
                             <!-- The Image on Top -->
-                            <img src=".images/meme2.png" alt="Lucía Medina" id="face-image">
+                            <img src="images/meme2.png" alt="Lucía Medina" id="face-image">
                             
                             <div class="slider-handle">
                                 INFO
@@ -479,7 +450,7 @@
         </section>
 
         <!-- === PAGE: CONTACT === -->
-        <section id="contact" class="page-section max-w-4xl mx-auto px-4 flex flex-col justify-center items-center h-[70vh]">
+        <section id="contact" class="page-section max-w-4xl mx-auto px-4 flex flex-col justify-center items-center py-24">
             <h2 class="text-4xl md:text-5xl font-light mb-8 text-pastel-white text-center">Ready to collaborate?</h2>
             <p class="text-lg text-pastel-white/60 max-w-xl mx-auto mb-12 font-light text-center">
                 I am currently open to thesis collaborations and internship opportunities.
@@ -596,14 +567,12 @@
     const sliderContainer = document.getElementById('face-slider');
     const foreground = document.getElementById('face-foreground');
     const faceImage = document.getElementById('face-image');
-    // Removed shadowText reference as element is gone
-
+    
     if (sliderContainer) {
         // Update image width to match container on resize (responsive fix)
         const updateImageSize = () => {
             const width = sliderContainer.offsetWidth;
             faceImage.style.width = width + 'px';
-            // Removed shadowText width update
         };
         window.addEventListener('resize', updateImageSize);
         // Initial call after load (timeout ensures render)
