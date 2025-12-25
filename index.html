@@ -6,32 +6,35 @@
   <title>Lucía Medina | Portfolio</title>
 
   <!-- Tailwind config MUST be defined BEFORE loading the CDN script -->
-  <script>
-    tailwind = window.tailwind || {};
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-          },
-          colors: {
-            'black-pure': '#050505',
-            'gray-dark': '#111111',
-            'pastel-gray': '#B9B3F8',
-            'pastel-blue': '#C0DBEE',
-            'pastel-purple': '#B9B3F8',
-            'pastel-green': '#BBEED5',
-            'pastel-red': '#847A54',
-            'pastel-lilla': '#CCB1D0',
-            'pastel-white': '#F0F0F0',
-          },
-        },
-      },
-    };
-  </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+      gtag('config', 'G-JEPVH1MD2X');
+    </script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                    },
+                    colors: {
+                        'black-pure': '#050505',
+                        'gray-dark': '#111111', 
+                        'pastel-gray': '#B9B3F8',
+                        'pastel-blue': '#C0DBEE',
+                        'pastel-purple': '#B9B3F8',
+                        'pastel-green': '#BBEED5',
+                        'pastel-red': '#847A54',
+                        'pastel-lilla': '#CCB1D0',
+                        'pastel-white': '#F0F0F0',
+                    }
+                }
+            }
+        }
+    </script>
 
   <!-- Google Analytics (ONLY ONCE) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JEPVH1MD2X"></script>
@@ -896,6 +899,7 @@
 
 </body>
 </html>
+
 
 
 
