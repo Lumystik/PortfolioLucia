@@ -192,7 +192,7 @@
         }
         
         .layer-base img {
-             filter: grayscale(70%) brightness(0.7);
+             filter: grayscale(50%) brightness(0.7);
         }
 
         /* TOP LAYER: CONTENT (The "Hybrid Side") */
@@ -514,13 +514,23 @@
 
         <!-- === PAGE: CONTACT === -->
         <section id="contact" class="page-section max-w-4xl mx-auto px-4 flex flex-col justify-center items-center py-24">
-            <h2 class="text-4xl md:text-5xl font-light mb-8 text-pastel-white text-center">Ready to collaborate?</h2>
+            <h2 class="text-4xl md:text-5xl font-light mb-8 text-pastel-white text-center">Would like to keep in touch?</h2>
             <p class="text-lg text-pastel-white/60 max-w-xl mx-auto mb-12 font-light text-center">
-                I am currently open to thesis collaborations and internship opportunities.
+                I am currently open to professional internships and junior design/dev roles.
             </p>
-            <a href="mailto:lucia.medina@mail.polimi.it" class="text-pastel-blue text-lg hover:text-white transition-colors border-b border-pastel-blue/30 hover:border-pastel-blue pb-1 inline-block mb-12">
-                lucia.medina@mail.polimi.it
-            </a>
+          <a id="emailLink" class="text-pastel-blue text-lg hover:text-white transition-colors border-b border-pastel-blue/30 hover:border-pastel-blue pb-1 inline-block mb-12">
+  Email me
+</a>
+
+<script>
+  const user = "lucia.medina";
+  const domain = "mail.polimi.it";
+  const addr = `${user}@${domain}`;
+  const link = document.getElementById("emailLink");
+  link.href = `mailto:${addr}`;
+  link.textContent = "Email me";
+</script>
+
             
             <div class="flex justify-center space-x-12">
                 <a href="https://www.linkedin.com/in/lucia-medina1829" target="_blank" class="text-pastel-gray hover:text-white transition duration-300 text-2xl"><i class="fab fa-linkedin"></i></a>
@@ -893,6 +903,7 @@
 </script>
 </body>
 </html>
+
 
 
 
