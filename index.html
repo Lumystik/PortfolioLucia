@@ -1,311 +1,905 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucía Medina | Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JEPVH1MD2X"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-JEPVH1MD2X');
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucía Medina | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JEPVH1MD2X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Inter"', 'sans-serif'],
-                    },
-                    colors: {
-                        'black-pure': '#050505',
-                        'gray-dark': '#111111', 
-                        'pastel-gray': '#B9B3F8',
-                        'pastel-blue': '#C0DBEE',
-                        'pastel-purple': '#B9B3F8',
-                        'pastel-green': '#BBEED5',
-                        'pastel-red': '#847A54',
-                        'pastel-lilla': '#CCB1D0',
-                        'pastel-white': '#F0F0F0',
-                    }
-                }
-            }
-        }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  gtag('config', 'G-JEPVH1MD2X');
+</script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                    },
+                    colors: {
+                        'black-pure': '#050505',
+                        'gray-dark': '#111111', 
+                        'pastel-gray': '#B9B3F8',
+                        'pastel-blue': '#C0DBEE',
+                        'pastel-purple': '#B9B3F8',
+                        'pastel-green': '#BBEED5',
+                        'pastel-red': '#847A54',
+                        'pastel-lilla': '#CCB1D0',
+                        'pastel-white': '#F0F0F0',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JEPVH1MD2X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    <style>
-        body {
-            background-color: #050505;
-            color: #F0F0F0;
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+  gtag('config', 'G-JEPVH1MD2X');
+</script>
+    <style>
+        body {
+            background-color: #050505;
+            color: #F0F0F0;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
 
-        /* --- GLOBAL ETHEREAL BACKGROUND --- */
-        #global-background {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1; 
-            display: flex; justify-content: center; align-items: center;
-            pointer-events: none; overflow: hidden;
-            transition: all 1.5s ease;
-        }
-        
-        /* Animation class for click trigger */
-        #global-background.accelerated svg {
-            filter: blur(0px) brightness(1.2);
-            transform: scale(1.05);
-            transition: all 0.3s ease;
-        }
+        /* --- GLOBAL ETHEREAL BACKGROUND --- */
+        #global-background {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; 
+            display: flex; justify-content: center; align-items: center;
+            pointer-events: none; overflow: hidden;
+            transition: all 1.5s ease;
+        }
 
-        .drawing-path {
-            stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; stroke: url(#gradient-stroke); fill: none;
-            stroke-dasharray: 2000; stroke-dashoffset: 2000; opacity: 0.5;
-            animation: draw 30s linear infinite; 
-            transition: opacity 1s ease;
-        }
-        @keyframes draw { from { opacity: 0.3; stroke-dashoffset: 4000; } to { opacity: 0.6; stroke-dashoffset: 0; } }
+        .drawing-path {
+            stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; stroke: url(#gradient-stroke); fill: none;
+            stroke-dasharray: 2000; stroke-dashoffset: 2000; opacity: 0.5;
+            animation: draw 30s linear infinite; 
+            transition: opacity 1s ease;
+        }
+        @keyframes draw { from { opacity: 0.3; stroke-dashoffset: 4000; } to { opacity: 0.6; stroke-dashoffset: 0; } }
 
-        #global-background svg {
-            width: 110%; height: 110%; max-width: 1100px; max-height: 980px; object-fit: contain;
-            transition: filter 1.5s ease, opacity 1.5s ease, transform 1.5s ease;
-        }
+        #global-background svg {
+            width: 110%; height: 110%; max-width: 1100px; max-height: 980px; object-fit: contain;
+            transition: filter 1.5s ease, opacity 1.5s ease, transform 1.5s ease;
+        }
 
-        /* --- BACKGROUND STATES --- */
-        body[data-page="home"] #global-background svg {
-            filter: blur(5px);
-            opacity: 0.8;
-            transform: scale(1);
-        }
+        /* --- BACKGROUND STATES --- */
+        body[data-page="home"] #global-background svg {
+            filter: blur(5px);
+            opacity: 0.8;
+            transform: scale(1);
+        }
 
-        body[data-page="home"].hovering-home #global-background svg {
-            filter: blur(0px);
-            opacity: 1;
-            transform: scale(1.02);
-        }
+        body[data-page="home"].hovering-home #global-background svg {
+            filter: blur(0px);
+            opacity: 1;
+            transform: scale(1.02);
+        }
 
-        body:not([data-page="home"]) #global-background svg {
-            filter: blur(20px); 
-            opacity: 0.15; 
-            transform: scale(1.1);
-        }
+        body:not([data-page="home"]) #global-background svg {
+            filter: blur(20px); 
+            opacity: 0.15; 
+            transform: scale(1.1);
+        }
 
-        /* --- PAGE TRANSITIONS --- */
-        main {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
+        /* --- PAGE TRANSITIONS --- */
+        main {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
 
-        .page-section {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.6s ease-in-out, transform 0.6s ease-out;
-            width: 100%;
-        }
-        
-        .page-section.active {
-            display: flex; 
-            flex-direction: column;
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .page-section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out, transform 0.6s ease-out;
+            width: 100%;
+        }
+        
+        .page-section.active {
+            display: flex; 
+            flex-direction: column;
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-        .page-section:not(.active) {
-            transform: translateY(20px);
-        }
+        .page-section:not(.active) {
+            transform: translateY(20px);
+        }
 
-        /* --- SCROLL HANDLING --- */
-        body[data-page="home"] {
-            overflow: hidden;
-        }
+        /* --- SCROLL HANDLING --- */
+        body[data-page="home"] {
+            overflow: hidden;
+        }
 
-        body[data-page="home"] footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background: transparent;
-            border-top: none;
-        }
+        body[data-page="home"] footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: transparent;
+            border-top: none;
+        }
 
-        /* --- HOME LAYOUT (Fixed, No Scroll) --- */
-        #home.active {
-            height: calc(100vh - 80px); 
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
+        /* --- HOME LAYOUT (Fixed, No Scroll) --- */
+        #home.active {
+            height: calc(100vh - 80px); 
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
 
-        #home-content-wrapper {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            padding-bottom: 10vh; 
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
+        #home-content-wrapper {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding-bottom: 10vh; 
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
 
-        /* --- ABOUT SLIDER COMPONENT --- */
-        .face-slider-container {
-            position: relative;
-            width: 100%;
-            height: 75vh; 
-            min-height: 600px;
-            overflow: hidden;
-            border-radius: 4px;
-            border: 1px solid rgba(255,255,255,0.1);
-            user-select: none;
-            cursor: ew-resize; 
-        }
-        
-        .face-slider-layer { 
-            position: absolute; 
-            top: 0; left: 0; 
-            width: 100%; height: 100%; 
-            overflow: hidden; 
-        }
-        
-        .face-slider-layer img {
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-            display: block;
-            pointer-events: none;
-            object-position: top;
-        }
+        /* --- ABOUT SLIDER COMPONENT (UPDATED FOR TEXT INSIDE) --- */
+        .face-slider-container {
+            position: relative;
+            width: 100%;
+            height: 75vh; /* Taller to fit text */
+            min-height: 600px;
+            overflow: hidden;
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.1);
+            user-select: none;
+            cursor: ew-resize; 
+        }
+        
+        .face-slider-layer { 
+            position: absolute; 
+            top: 0; left: 0; 
+            width: 100%; height: 100%; 
+            overflow: hidden; 
+        }
+        
+        /* GENERAL IMAGE STYLE */
+        .face-slider-layer img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            display: block;
+            pointer-events: none;
+            object-position: top;
+        }
 
-        /* BOTTOM LAYER */
-        .layer-base {
-            z-index: 1;
-            background-color: #050505; 
-        }
-        
-        .layer-base img {
-             filter: grayscale(50%) brightness(0.7);
-        }
+        /* BOTTOM LAYER: CLEAN IMAGE (Base) */
+        .layer-base {
+            z-index: 1;
+            background-color: #050505; 
+        }
+        
+        .layer-base img {
+             filter: grayscale(50%) brightness(0.7);
+        }
 
-        /* TOP LAYER */
-        .layer-cover {
-            z-index: 10;
-            width: 60%; /* Initial width */
-            border-right: 2px solid #BBEED5; 
-            background-color: #050505; 
-        }
+        /* TOP LAYER: CONTENT (The "Hybrid Side") */
+        .layer-cover {
+            z-index: 10;
+            width: 60%; /* Initial width */
+            border-right: 2px solid #BBEED5; 
+            background-color: #050505; 
+            
+        }
 
-        .layer-cover .layer-inner-fixed {
-            position: absolute;
-            top: 0; left: 0;
-            height: 100%;
-            width: 100vw; 
-            max-width: none;
-        }
+        /* Important: Ensure the inner content of the resizing layer stays full width 
+           relative to the container, so it doesn't squash */
+        .layer-cover .layer-inner-fixed {
+            position: absolute;
+            top: 0; left: 0;
+            height: 100%;
+            /* Width will be set by JS to match container width */
+            width: 100vw; 
+            max-width: none;
+        }
 
-        .layer-cover img {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            object-fit: cover;
-            z-index: 1;
-            filter: grayscale(60%) brightness(0.2);
-            object-position: top;
-        }
+        .layer-cover img {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            filter: grayscale(60%) brightness(0.2);
+            object-position: top;
+        }
 
-        /* Text Overlay inside Layer Cover */
-        .slider-text-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 10;
-            background: linear-gradient(to right, rgba(5,5,5,0.95) 0%, rgba(5,5,5,0.8) 70%, rgba(5,5,5,0.4) 100%);
-            padding: 4rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+        /* Text Overlay inside Layer Cover */
+        .slider-text-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 10;
+            background: linear-gradient(to right, rgba(5,5,5,0.95) 0%, rgba(5,5,5,0.8) 70%, rgba(5,5,5,0.4) 100%);
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-        /* Slider Handle */
-        .slider-handle {
-            position: absolute;
-            top: 50%;
-            right: -20px; 
-            width: 40px;
-            height: 40px;
-            background: #BBEED5;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #000;
-            font-size: 16px;
-            box-shadow: 0 0 20px rgba(187, 238, 213, 0.4);
-            transform: translateY(-50%);
-            z-index: 20;
-            pointer-events: none;
-        }
+        /* Slider Handle */
+        .slider-handle {
+            position: absolute;
+            top: 50%;
+            right: -20px; 
+            width: 40px;
+            height: 40px;
+            background: #BBEED5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-size: 16px;
+            box-shadow: 0 0 20px rgba(187, 238, 213, 0.4);
+            transform: translateY(-50%);
+            z-index: 20;
+            pointer-events: none;
+        }
 
-        /* --- DETAIL VIEW & CAROUSEL --- */
-        #detail-view { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease; }
-        .detail-open { overflow: hidden; }
-        .carousel-container { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-        .carousel-container::-webkit-scrollbar { display: none; }
-        .carousel-item { scroll-snap-align: center; flex: 0 0 85%; }
-        @media (min-width: 768px) { .carousel-item { flex: 0 0 60%; } }
-        
-        .nav-link.active { color: #BBEED5; } 
+        /* --- DETAIL VIEW & CAROUSEL --- */
+        #detail-view { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease; }
+        .detail-open { overflow: hidden; }
+        .carousel-container { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+        .carousel-container::-webkit-scrollbar { display: none; }
+        .carousel-item { scroll-snap-align: center; flex: 0 0 85%; }
+        @media (min-width: 768px) { .carousel-item { flex: 0 0 60%; } }
+        
+        .nav-link.active { color: #BBEED5; } 
 
-        .custom-scroll::-webkit-scrollbar { width: 4px; }
-        .custom-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
-        .custom-scroll::-webkit-scrollbar-thumb { background: rgba(187, 238, 213, 0.3); border-radius: 4px; }
-    </style>
+        /* Custom scrollbar for text area inside slider */
+        .custom-scroll::-webkit-scrollbar { width: 4px; }
+        .custom-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
+        .custom-scroll::-webkit-scrollbar-thumb { background: rgba(187, 238, 213, 0.3); border-radius: 4px; }
+    </style>
 </head>
 <body class="antialiased relative selection:bg-pastel-purple selection:text-black-pure" data-page="home">
 
-    <div id="global-background">
-        <svg viewBox="0 0 987 878" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="gradient-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#BBEED5" /> <stop offset="40%" stop-color="#C0DBEE" /> <stop offset="70%" stop-color="#B9B3F8" /> <stop offset="100%" stop-color="#CCB1D0" /> </linearGradient>
-            <filter id="filter0_d_75_190" x="0.5" y="0.8" width="986" height="876" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-              <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-              <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
-              <feOffset dy="4"/>
-              <feGaussianBlur stdDeviation="2"/>
-              <feComposite in2="hardAlpha" operator="out"/>
-              <feColorMatrix values="0 0 0 0 0.2 0 0 0 0 0.4 0 0 0 0 0.9 0 0 0 0.3 0"/>
-              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
-              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
-            </filter>
-          </defs>
-          <g filter="url(#filter0_d_75_190)">
-            <path d="M17.7617 646.374C25.7546 676.661 50.6879 692.759 75.3093 701.181C101.467 710.129 149.865 741.192 168.756 761.377C172.71 765.601 175.447 770.816 176.677 776.468L180.224 792.771C192.792 850.529 258.938 878.229 308.913 846.663L325.076 836.453C336.404 829.299 345.554 819.335 354.12 809.033C393.875 761.215 490.712 704.118 642.944 767.831C795.246 831.573 858.919 728.484 876.751 650.37C880.653 633.276 887.453 616.779 899.024 603.606L952.091 543.189C977.366 514.414 980.322 472.305 959.314 440.281L908.296 362.507C891.84 337.42 891.668 305.004 907.857 279.744C933.235 240.146 916.955 187.238 873.707 168.757L727.598 106.32C715.419 101.115 704.623 93.1424 696.065 83.0343L659.798 40.1928C633.149 8.71371 587.772 0.85643 552.09 21.5425L439.597 86.7595C403.942 107.43 358.602 99.6015 331.943 68.1717L309.21 41.3711C273.099 -1.20259 206.477 1.90277 174.482 47.651L129.362 112.167C124.584 118.999 118.9 125.155 111.92 129.714C66.7895 159.187 -17.8498 193.265 35.8118 346.157C108.406 552.994 -8.2777 547.706 17.7617 646.374Z" stroke="url(#gradient-stroke)" fill="none" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" class="drawing-path"/>
-          </g>
-        </svg>
-    </div>
+    <!-- GLOBAL BACKGROUND -->
+    <div id="global-background">
+        <svg viewBox="0 0 987 878" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="gradient-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#BBEED5" /> <stop offset="40%" stop-color="#C0DBEE" /> <stop offset="70%" stop-color="#B9B3F8" /> <stop offset="100%" stop-color="#CCB1D0" /> </linearGradient>
+            <filter id="filter0_d_75_190" x="0.5" y="0.8" width="986" height="876" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+              <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+              <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+              <feOffset dy="4"/>
+              <feGaussianBlur stdDeviation="2"/>
+              <feComposite in2="hardAlpha" operator="out"/>
+              <feColorMatrix values="0 0 0 0 0.2 0 0 0 0 0.4 0 0 0 0 0.9 0 0 0 0.3 0"/>
+              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+            </filter>
+          </defs>
+          <g filter="url(#filter0_d_75_190)">
+            <path d="M17.7617 646.374C25.7546 676.661 50.6879 692.759 75.3093 701.181C101.467 710.129 149.865 741.192 168.756 761.377C172.71 765.601 175.447 770.816 176.677 776.468L180.224 792.771C192.792 850.529 258.938 878.229 308.913 846.663L325.076 836.453C336.404 829.299 345.554 819.335 354.12 809.033C393.875 761.215 490.712 704.118 642.944 767.831C795.246 831.573 858.919 728.484 876.751 650.37C880.653 633.276 887.453 616.779 899.024 603.606L952.091 543.189C977.366 514.414 980.322 472.305 959.314 440.281L908.296 362.507C891.84 337.42 891.668 305.004 907.857 279.744C933.235 240.146 916.955 187.238 873.707 168.757L727.598 106.32C715.419 101.115 704.623 93.1424 696.065 83.0343L659.798 40.1928C633.149 8.71371 587.772 0.85643 552.09 21.5425L439.597 86.7595C403.942 107.43 358.602 99.6015 331.943 68.1717L309.21 41.3711C273.099 -1.20259 206.477 1.90277 174.482 47.651L129.362 112.167C124.584 118.999 118.9 125.155 111.92 129.714C66.7895 159.187 -17.8498 193.265 35.8118 346.157C108.406 552.994 -8.2777 547.706 17.7617 646.374Z" stroke="url(#gradient-stroke)" fill="none" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" class="drawing-path"/>
+          </g>
+        </svg>
+    </div>
 
-    <header class="sticky top-0 z-40 bg-black-pure/90 backdrop-blur-md border-b border-white/5 h-20 flex items-center flex-shrink-0">
-        <nav class="w-full max-w-6xl mx-auto px-6 flex justify-between items-center">
-            <div class="text-sm font-bold text-pastel-purple tracking-widest hover:text-pastel-green transition-colors duration-300 uppercase cursor-pointer" onclick="switchPage('home')">
-                Lucía Medina
-            </div>
-            <div class="hidden md:flex space-x-10 text-pastel-blue/80 font-medium text-sm tracking-widest uppercase">
-                <button onclick="switchPage('home')" class="nav-link hover:text-pastel-green transition duration-200">Home</button>
-                <button onclick="switchPage('work')" class="nav-link hover:text-pastel-green transition duration-200">Work</button>
-                <button onclick="switchPage('about')" class="nav-link hover:text-pastel-green transition duration-200">About</button>
-                <button onclick="switchPage('contact')" class="nav-link hover:text-pastel-green transition duration-200">Contact</button>
-            </div>
-            <button id="menu-button" class="md:hidden focus:outline-none">
-                <svg class="w-6 h-6 text-pastel-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-            </button>
-        </nav>
-        <div id="mobile-menu" class="hidden absolute top-20 left-0 w-full bg-black-pure border-t border-pastel-gray/20 z-50">
-            <button onclick="switchPage('home')" class="block w-full text-left py-4 px-6 text-sm text-pastel-blue hover:text-pastel-green uppercase tracking-widest">Home</button>
-            <button onclick="switchPage('work')" class="block w-full text-left py-4 px-6 text-sm text-pastel-blue hover:text-pastel-green uppercase tracking-widest">Work</button>
-            <button onclick="switchPage('about')" class="block w-full text-left py-
+    <!-- HEADER -->
+    <header class="sticky top-0 z-40 bg-black-pure/90 backdrop-blur-md border-b border-white/5 h-20 flex items-center flex-shrink-0">
+        <nav class="w-full max-w-6xl mx-auto px-6 flex justify-between items-center">
+            <div class="text-sm font-bold text-pastel-purple tracking-widest hover:text-pastel-green transition-colors duration-300 uppercase cursor-pointer" onclick="switchPage('home')">
+                Lucía Medina
+            </div>
+            <div class="hidden md:flex space-x-10 text-pastel-blue/80 font-medium text-sm tracking-widest uppercase">
+                <button onclick="switchPage('home')" class="nav-link hover:text-pastel-green transition duration-200">Home</button>
+                <button onclick="switchPage('work')" class="nav-link hover:text-pastel-green transition duration-200">Work</button>
+                <button onclick="switchPage('about')" class="nav-link hover:text-pastel-green transition duration-200">About</button>
+                <button onclick="switchPage('contact')" class="nav-link hover:text-pastel-green transition duration-200">Contact</button>
+            </div>
+            <button id="menu-button" class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6 text-pastel-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden absolute top-20 left-0 w-full bg-black-pure border-t border-pastel-gray/20 z-50">
+            <button onclick="switchPage('home')" class="block w-full text-left py-4 px-6 text-sm text-pastel-blue hover:text-pastel-green uppercase tracking-widest">Home</button>
+            <button onclick="switchPage('work')" class="block w-full text-left py-4 px-6 text-sm text-pastel-blue hover:text-pastel-green uppercase tracking-widest">Work</button>
+            <button onclick="switchPage('about')" class="block w-full text-left py-4 px-6 text-sm text-pastel-blue hover:text-pastel-green uppercase tracking-widest">About</button>
+            <button onclick="switchPage('contact')" class="block w-full text-left py-4 px-6 text-sm text-pastel-blue hover:text-pastel-green uppercase tracking-widest">Contact</button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <!-- === PAGE: HOME === -->
+        <section id="home" class="page-section active max-w-6xl mx-auto px-4 items-center group" onmouseenter="document.body.classList.add('hovering-home')" onmouseleave="document.body.classList.remove('hovering-home')">
+            <div id="home-content-wrapper" class="relative z-10 text-center">
+                <h1 class="text-5xl md:text-7xl font-light mb-6 tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-pastel-blue via-pastel-purple to-pastel-lilla animate-pulse">
+                    Lucía Medina
+                </h1>
+                <p class="text-lg md:text-xl text-pastel-white/80 mb-10 font-light tracking-wide uppercase max-w-2xl mx-auto text-center">
+                    I work in the intersection between <strong class="text-pastel-green font-normal">design</strong> and <strong class="text-pastel-purple font-normal">code</strong>.
+                </p>
+                <button onclick="switchPage('work')" class="click-trigger inline-block px-10 py-4 border border-pastel-green text-pastel-green text-xs font-bold uppercase tracking-widest rounded-full hover:bg-pastel-green hover:text-black-pure transition-all duration-300 shadow-[0_0_20px_rgba(187,238,213,0.1)] hover:shadow-[0_0_30px_rgba(187,238,213,0.4)]">
+                    View Projects
+                </button>
+            </div>
+        </section>
+
+        <!-- === PAGE: WORK === -->
+        <section id="work" class="page-section max-w-6xl mx-auto px-4 py-8">
+            <div class="flex items-end justify-between mb-12 border-b border-white/5 pb-4">
+                <h2 class="text-sm font-bold text-pastel-lilla tracking-[0.2em] uppercase">Selected Work</h2>
+                <span class="text-xs text-pastel-white/40 hidden md:block font-mono">2020 — 2025</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pb-10">
+                <!-- Project 1: Museon -->
+                <article class="group cursor-pointer click-trigger border border-white/5 p-8 rounded-sm hover:border-pastel-blue/50 transition-all duration-500 relative overflow-hidden" onclick="openProject('museon')">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-pastel-blue transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+                    <div class="flex justify-between items-start mb-10">
+                        <span class="text-xs font-bold tracking-widest text-pastel-blue uppercase border border-pastel-blue/20 px-2 py-1 rounded-full">PoliMi</span>
+                        <span class="text-xs font-mono text-pastel-white/40">01</span>
+                    </div>
+                    <h3 class="text-3xl md:text-4xl font-light text-white mb-3 leading-tight group-hover:text-pastel-blue transition-colors">MUSE*ON</h3>
+                    <p class="text-pastel-white/60 font-light text-sm mb-8 max-w-sm">UX Research & Service Design for Museums.</p>
+                    <div class="flex items-center text-xs font-bold text-pastel-white/40 uppercase tracking-widest group-hover:text-pastel-blue transition-colors">
+                        View Project <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                    </div>
+                </article>
+
+                <!-- Project 2: Art Beyond Dimension -->
+                <article class="group cursor-pointer click-trigger border border-white/5 p-8 rounded-sm hover:border-pastel-blue/50 transition-all duration-500 relative overflow-hidden" onclick="openProject('artbeyond')">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-pastel-blue transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+                    <div class="flex justify-between items-start mb-10">
+                        <span class="text-xs font-bold tracking-widest text-pastel-blue uppercase border border-pastel-blue/20 px-2 py-1 rounded-full">PoliMi</span>
+                        <span class="text-xs font-mono text-pastel-white/40">02</span>
+                    </div>
+                    <h3 class="text-3xl md:text-4xl font-light text-white mb-3 leading-tight group-hover:text-pastel-blue transition-colors">Art Beyond<br>Dimension</h3>
+                    <p class="text-pastel-white/60 font-light text-sm mb-8 max-w-sm">Motion Graphics for Interactive AI.</p>
+                    <div class="flex items-center text-xs font-bold text-pastel-white/40 uppercase tracking-widest group-hover:text-pastel-blue transition-colors">
+                        View Project <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                    </div>
+                </article>
+
+                <!-- Project 3: Films Foundation -->
+                <article class="group cursor-pointer click-trigger border border-white/5 p-8 rounded-sm hover:border-pastel-blue/50 transition-all duration-500 relative overflow-hidden" onclick="openProject('films')">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-pastel-blue transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+                    <div class="flex justify-between items-start mb-10">
+                        <span class="text-xs font-bold tracking-widest text-pastel-blue uppercase border border-pastel-blue/20 px-2 py-1 rounded-full">UI Design</span>
+                        <span class="text-xs font-mono text-pastel-white/40">03</span>
+                    </div>
+                    <h3 class="text-3xl md:text-4xl font-light text-white mb-3 leading-tight group-hover:text-pastel-blue transition-colors">Films<br>Foundation</h3>
+                    <p class="text-pastel-white/60 font-light text-sm mb-8 max-w-sm">Mobile UI for Film Festivals.</p>
+                    <div class="flex items-center text-xs font-bold text-pastel-white/40 uppercase tracking-widest group-hover:text-pastel-blue transition-colors">
+                        View Project <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                    </div>
+                </article>
+
+                <!-- Project 4: Seedtag -->
+                <article class="group cursor-pointer click-trigger border border-white/5 p-8 rounded-sm hover:border-pastel-purple/50 transition-all duration-500 relative overflow-hidden" onclick="openProject('seedtag')">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-pastel-purple transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+                    <div class="flex justify-between items-start mb-10">
+                        <span class="text-xs font-bold tracking-widest text-pastel-purple uppercase border border-pastel-purple/20 px-2 py-1 rounded-full">Ad Tech</span>
+                        <span class="text-xs font-mono text-pastel-white/40">04</span>
+                    </div>
+                    <h3 class="text-3xl md:text-4xl font-light text-white mb-3 leading-tight group-hover:text-pastel-purple transition-colors">Seedtag</h3>
+                    <p class="text-pastel-white/60 font-light text-sm mb-8 max-w-sm">Motion Graphics with Code (Vanilla JS).</p>
+                    <div class="flex items-center text-xs font-bold text-pastel-white/40 uppercase tracking-widest group-hover:text-pastel-purple transition-colors">
+                        View Ads <i class="fas fa-play ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                    </div>
+                </article>
+
+                 <!-- Project 5: Thematic Analysis -->
+                 <article class="group cursor-pointer click-trigger border border-white/5 p-8 rounded-sm hover:border-pastel-purple/50 transition-all duration-500 relative overflow-hidden" onclick="openProject('thematic')">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-pastel-purple transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+                    <div class="flex justify-between items-start mb-10">
+                        <span class="text-xs font-bold tracking-widest text-pastel-purple uppercase border border-pastel-purple/20 px-2 py-1 rounded-full">Thesis Tool</span>
+                        <span class="text-xs font-mono text-pastel-white/40">05</span>
+                    </div>
+                    <h3 class="text-3xl md:text-4xl font-light text-white mb-3 leading-tight group-hover:text-pastel-purple transition-colors">Thematic<br>Analysis Tool</h3>
+                    <p class="text-pastel-white/60 font-light text-sm mb-8 max-w-sm">Frontend Tool for Qualitative Data.</p>
+                    <div class="flex items-center text-xs font-bold text-pastel-white/40 uppercase tracking-widest group-hover:text-pastel-purple transition-colors">
+                        View Code <i class="fas fa-code ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                    </div>
+                </article>
+
+                 <!-- Project 6: Pixela -->
+                 <article class="group cursor-pointer click-trigger border border-white/5 p-8 rounded-sm hover:border-pastel-green/50 transition-all duration-500 relative overflow-hidden md:col-span-2" onclick="openProject('pixela')">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-pastel-green transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+                    <div class="flex justify-between items-start mb-10">
+                        <span class="text-xs font-bold tracking-widest text-pastel-green uppercase border border-pastel-green/20 px-2 py-1 rounded-full">Bachelor Project</span>
+                        <span class="text-xs font-mono text-pastel-white/40">06</span>
+                    </div>
+                    <div class="md:flex justify-between items-end">
+                        <div>
+                            <h3 class="text-3xl md:text-4xl font-light text-white mb-3 leading-tight group-hover:text-pastel-green transition-colors">Pixela</h3>
+                            <p class="text-pastel-white/60 font-light text-sm max-w-md">AI Art Videogame Demo.</p>
+                        </div>
+                        <div class="mt-8 md:mt-0 flex items-center text-xs font-bold text-pastel-white/40 uppercase tracking-widest group-hover:text-pastel-green transition-colors">
+                            View Game <i class="fas fa-gamepad ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- === PAGE: ABOUT (RESTRUCTURED) === -->
+        <section id="about" class="page-section max-w-6xl mx-auto px-4 py-8 h-[85vh]">
+            <h2 class="text-sm font-bold text-pastel-lilla tracking-[0.2em] uppercase mb-4 border-b border-white/5 pb-4">Profile</h2>
+            
+                
+           <!-- Slider Container now takes full width/height -->
+            <div class="face-slider-container" id="face-slider">
+                
+                <!-- Layer 1: Background (Clean Image, Right side content conceptually) -->
+                <div class="face-slider-layer layer-base">
+                    <!-- Image A: Professional / Clean -->
+                    <img src="./images/mememe.png" alt="Lucía Medina">
+                    <!-- Optional: Label for right side -->
+                    <div class="absolute bottom-10 right-10 text-right opacity-40">
+                        <p class="text-sm tracking-widest uppercase font-bold text-white">The Designer</p>
+                    </div>
+                </div>
+
+
+                <!-- Layer 2: Foreground (Hybrid/Text Side) -->
+                <div class="face-slider-layer layer-cover" id="face-foreground">
+                    <div class="layer-inner-fixed" id="face-inner-fixed">
+                        <!-- Image B: Casual / Hybrid -->
+                        <img src="./images/mememe.png" alt="Lucía Medina">
+                        
+                        <!-- TEXT CONTENT OVERLAY -->
+                        <div class="slider-text-overlay custom-scroll overflow-y-auto">
+                            <div class="max-w-xl">
+                                <h3 class="text-3xl font-light text-white mb-2">Hybrid Designer</h3>
+                                <div class="w-12 h-1 bg-pastel-green mb-8"></div>
+
+                                <p class="text-lg text-pastel-white/90 leading-relaxed font-light mb-8">
+                                    I am a master's student in <strong class="text-pastel-blue font-normal">Digital and Interaction Design</strong> at Politecnico di Milano.
+                                </p>
+                                <p class="text-sm text-pastel-white/70 leading-relaxed font-light mb-12">
+                                    My approach is defined by precision. I don't just design interfaces; I consider the logic, the code, and the system behind them. I have extensive experience with <strong class="text-pastel-white font-normal">HTML5, CSS3, and JavaScript</strong>, allowing me to prototype with the fidelity of a finished product.
+                                </p>
+                                
+                                <div class="grid grid-cols-2 gap-8 text-sm">
+                                    <div>
+                                        <h4 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-2">Education</h4>
+                                        <p class="text-pastel-white">MSc Digital & Interaction Design</p>
+                                        <p class="text-pastel-white/40 text-xs mt-1">Politecnico di Milano, 2026</p>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-2">History</h4>
+                                        <p class="text-pastel-white">Seedtag (3+ Years)</p>
+                                        <p class="text-pastel-white/40 text-xs mt-1">Digital Designer / Developer</p>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-2">Tech Stack</h4>
+                                        <p class="text-pastel-white/80">Figma, HTML, CSS, JS, Tailwind, Adobe Suite</p>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-2">Status</h4>
+                                        <p class="text-pastel-white">Based in Milan</p>
+                                        <p class="text-pastel-green text-xs mt-1">Open to Relocation</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slider-handle">
+                        <i class="fas fa-arrows-alt-h"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="text-center text-xs text-pastel-white/30 mt-4 font-mono uppercase tracking-widest">
+                <i class="fas fa-arrows-alt-h mr-2"></i> Drag slider to reveal info
+            </p>
+        </section>
+
+        <!-- === PAGE: CONTACT === -->
+        <section id="contact" class="page-section max-w-4xl mx-auto px-4 flex flex-col justify-center items-center py-24">
+            <h2 class="text-4xl md:text-5xl font-light mb-8 text-pastel-white text-center">Would like to keep in touch?</h2>
+            <p class="text-lg text-pastel-white/60 max-w-xl mx-auto mb-12 font-light text-center">
+                I am currently open to professional internships and junior design/dev roles.
+            </p>
+          <a id="emailLink" class="text-pastel-blue text-lg hover:text-white transition-colors border-b border-pastel-blue/30 hover:border-pastel-blue pb-1 inline-block mb-12">
+  Email me
+</a>
+
+<script>
+  const user = "lu_1829med";
+  const domain = "outlook.com";
+  const addr = `${user}@${domain}`;
+  const link = document.getElementById("emailLink");
+  link.href = `mailto:${addr}`;
+  link.textContent = "Email me";
+</script>
+
+            
+            <div class="flex justify-center space-x-12">
+                <a href="https://www.linkedin.com/in/lucia-medina1829" target="_blank" class="text-pastel-gray hover:text-white transition duration-300 text-2xl"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.behance.net/lucamedinagaln1" target="_blank" class="text-pastel-gray hover:text-white transition duration-300 text-2xl"><i class="fab fa-behance"></i></a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-black-pure border-t border-white/5 py-12 text-center text-xs text-pastel-white/20 uppercase tracking-widest font-mono flex-shrink-0">
+        <p>&copy; 2025 Lucía Medina.</p>
+    </footer>
+
+    <!-- ================= DETAIL VIEW OVERLAY ================= -->
+    <div id="detail-view" class="fixed inset-0 bg-black-pure z-50 transform translate-x-full flex flex-col overflow-y-auto">
+        <!-- Detail Navbar -->
+        <div class="sticky top-0 bg-black-pure/95 backdrop-blur-md border-b border-white/5 p-6 flex justify-between items-center z-50">
+            <button onclick="closeProject()" class="flex items-center text-pastel-white/60 hover:text-pastel-green transition-colors text-xs font-bold uppercase tracking-widest">
+                <i class="fas fa-arrow-left mr-3"></i> Back
+            </button>
+            <div class="text-pastel-white/40 font-mono text-xs uppercase" id="detail-nav-title">Project Name</div>
+            <div class="w-16"></div> 
+        </div>
+
+        <!-- Detail Content -->
+        <div class="max-w-4xl mx-auto px-6 py-20 flex-grow w-full">
+            <!-- Hero -->
+            <div class="mb-16">
+                <h1 id="detail-title" class="text-4xl md:text-6xl font-light text-white mb-4">Title</h1>
+                <p id="detail-subtitle" class="text-xl text-pastel-blue font-light">Subtitle goes here</p>
+                
+                <a id="detail-link" href="#" target="_blank" class="inline-block mt-8 px-8 py-3 border border-white/20 text-white text-sm hover:bg-white hover:text-black-pure transition-all duration-300">
+                    View Project
+                </a>
+            </div>
+
+            <!-- Two Column Layout: Description & Role -->
+            <div class="grid md:grid-cols-3 gap-16 border-t border-white/5 pt-12">
+                <!-- Main Description (2/3) -->
+                <div class="md:col-span-2">
+                    <h3 class="text-xs font-bold text-pastel-lilla uppercase tracking-widest mb-6">Overview</h3>
+                    <div id="detail-desc" class="text-pastel-white/80 leading-relaxed text-lg font-light space-y-6">
+                        <!-- Dynamic Description -->
+                    </div>
+                </div>
+
+                <!-- Role & Tech (1/3) -->
+                <div class="md:col-span-1 space-y-10">
+                    <div>
+                        <h3 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-4">My Role</h3>
+                        <ul id="detail-role" class="space-y-2 text-pastel-white/60 text-sm font-light">
+                            <!-- Dynamic Role -->
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-4">Type</h3>
+                        <p id="detail-type" class="text-pastel-white/60 text-sm font-light">Web App</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Process / Gallery (DYNAMIC CONTAINER) -->
+            <div class="mt-24">
+                <h3 class="text-xs font-bold text-pastel-lilla uppercase tracking-widest mb-8 text-center" id="gallery-title">Visuals</h3>
+                <div id="detail-gallery-container"></div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    // --- PAGE NAVIGATION LOGIC ---
+    function switchPage(pageId) {
+        // Handle transitions for Home content specifically
+        if(pageId === 'home') {
+            document.body.classList.remove('leaving-home');
+        } else {
+            document.body.classList.add('leaving-home');
+        }
+
+        // Delay switching the active section to allow animations
+        setTimeout(() => {
+            // Hide all pages
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show target page
+            const target = document.getElementById(pageId);
+            if(target) {
+                target.classList.add('active');
+                window.scrollTo(0,0);
+            }
+            
+            // Update Body Data Attribute for Global Background State
+            document.body.dataset.page = pageId;
+
+        }, 300); // 300ms delay matches CSS transition
+
+        // Close mobile menu if open
+        const mobileMenu = document.getElementById('mobile-menu');
+        if(!mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+        }
+    }
+
+    // --- SLIDER INTERACTION LOGIC (ABOUT PAGE) ---
+    const sliderContainer = document.getElementById('face-slider');
+    const foreground = document.getElementById('face-foreground');
+    const innerFixed = document.getElementById('face-inner-fixed');
+    
+    if (sliderContainer && foreground && innerFixed) {
+        // CRITICAL: We need the inner content to remain fixed at the width of the main container
+        // This prevents the text/image from "squashing" as the parent div width changes.
+        const updateSizes = () => {
+            const width = sliderContainer.offsetWidth;
+            // Set the inner fixed container to match the parent's full width
+            innerFixed.style.width = width + 'px';
+        };
+        
+        window.addEventListener('resize', updateSizes);
+        // Initial call after load (timeout ensures render)
+        setTimeout(updateSizes, 100);
+        // Also update when switching to About page to ensure correct calculation
+        document.addEventListener('click', (e) => {
+            if(e.target.closest('[onclick*="about"]')) {
+                setTimeout(updateSizes, 350);
+            }
+        });
+
+        const handleMove = (e) => {
+            const rect = sliderContainer.getBoundingClientRect();
+            // Get X position from mouse or touch
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            
+            let x = clientX - rect.left;
+            
+            // Constrain
+            if (x < 0) x = 0;
+            if (x > rect.width) x = rect.width;
+            
+            const percentage = (x / rect.width) * 100;
+            foreground.style.width = percentage + '%';
+        };
+
+        // Event Listeners
+        sliderContainer.addEventListener('mousemove', handleMove);
+        sliderContainer.addEventListener('touchmove', (e) => {
+            e.preventDefault(); // Prevent page scroll while dragging
+            handleMove(e);
+        });
+        
+        // Optional: Click to jump
+        sliderContainer.addEventListener('click', handleMove);
+    }
+
+    // --- ACCELERATE ANIMATION ON CLICK ---
+    document.querySelectorAll('.click-trigger').forEach(trigger => {
+        trigger.addEventListener('click', () => {
+            const bg = document.querySelector('.hero-background');
+            if(bg) {
+                bg.classList.add('accelerated');
+                setTimeout(() => {
+                    bg.classList.remove('accelerated');
+                }, 2000);
+            }
+        });
+    });
+
+    // Mobile Menu Logic
+    const menuButton = document.getElementById('menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // --- PROJECT DATA & OPEN/CLOSE (Kept existing) ---
+    const projects = {
+        'seedtag': {
+            title: 'Seedtag Interactive Ads',
+            subtitle: 'Interactive Rich Media Ad Engine',
+            type: 'Ad Tech (HTML5/JS)',
+            link: '#', 
+            isCarousel: true, 
+            gifs: [
+                'https://via.placeholder.com/600x400/1a1a1a/333333?text=Ad+GIF+1+(Add+Path)',
+                'https://via.placeholder.com/600x400/1a1a1a/333333?text=Ad+GIF+2+(Add+Path)',
+                'https://via.placeholder.com/600x400/1a1a1a/333333?text=Ad+GIF+3+(Add+Path)'
+            ],
+            role: [
+                'Frontend Development (Vanilla JS)',
+                'Creative QA',
+                'Animation Logic',
+                'Cross-Browser Optimization'
+            ],
+            desc: `
+                <p>At Seedtag, I didn't just design ads; I engineered them. My role bridged the gap between the creative studio and the engineering team.</p>
+                <p>I built high-impact, rich-media formats using raw HTML, CSS, and JavaScript. These weren't standard banners; they were interactive mini-applications that responded to scroll events, user gestures, and device orientation.</p>
+                <p><strong>The Challenge:</strong> Creating complex animations that ran smoothly at 60fps while keeping file sizes incredibly low for rapid loading on mobile networks.</p>
+            `
+        },
+        'museon': {
+            title: 'MUSE*ON',
+            subtitle: 'B2B Staff Management Platform',
+            type: 'PoliMi Project',
+            link: 'https://www.behance.net/gallery/201102523/Museon-2024',
+            role: [
+                'UX Research (Environment Mapping)',
+                'Hero Flows & Wireflows',
+                'Mobile Interface Design (Figma)',
+                'Prototyping'
+            ],
+            images: [
+                '././images/museon-wireframe.png',
+                './images/museon_final.png',
+                './images/museon-1.png',
+                './images/museonthumb.jpg'
+            ],
+            desc: `
+                <p>MUSE*ON is an <strong>all-in-one software</strong> designed specifically for small museum staff. The platform aims to streamline daily workflows and improve the management of different institutional areas, replacing disjointed paper methods with a cohesive digital ecosystem.</p>
+                <p>My primary role involved deep UX research to understand the staff's reality. I translated these insights into actionable <strong>Hero Flows and Wireflows</strong>, eventually building a high-fidelity mobile interface that allows staff to manage shifts, track inventory, and communicate in real-time.</p>
+            `
+        },
+        'artbeyond': {
+            title: 'Art Beyond Dimension',
+            subtitle: 'Interactive AI Installation',
+            type: 'PoliMi Project',
+            link: 'https://www.figma.com/proto/FnFqrWBxyChSOdL3aVzV9A/Prototype?node-id=616-1949&starting-point-node-id=564%3A1942&scaling=contain&content-scaling=fixed',
+            role: [
+                'Motion Graphics (After Effects)',
+                'Video Editing (Premiere Pro)',
+                'Concept Development',
+                'Visual Storytelling'
+            ],
+            images: [
+                './images/art_1.png',
+                'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=800&q=80'
+            ],
+            desc: `
+                <p>How do we make classical art relevant to a generation raised on TikTok and Roblox? Art Beyond Dimension is a futuristic prototype that uses AI to create immersive, narrative-driven entry points into art history.</p>
+                <p>I was responsible for the motion design and video assets that bring the prototype to life. Using Adobe After Effects and Premiere, I created the visual language of the AI assistant, visualizing how the system "scans" art and generates stories for the user.</p>
+            `
+        },
+        'films': {
+            title: 'Films Foundation',
+            subtitle: 'Mobile-First Cinema Archive',
+            type: 'UI Design',
+            link: 'https://www.figma.com/proto/MWvYkF7ybuKjE7SPnGi8po/Assignment?node-id=2128-5992&starting-point-node-id=2128%3A5992',
+            role: [
+                'Mobile UI Design',
+                'Information Architecture',
+                'Visual Identity',
+                'Responsive Layouts'
+            ],
+            images: [
+                'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1542204165-65bf26472b9b?auto=format&fit=crop&w=800&q=80'
+            ],
+            desc: `
+                <p>A complete redesign proposal for a prominent Italian Film Foundation. The goal was to organize a massive archive of historical cinema into a navigable, modern mobile experience.</p>
+                <p>I focused on the mobile-first implementation, ensuring that the rich media assets (posters, trailers, stills) remained the hero of the experience even on small screens. The design prioritizes clarity and accessibility while maintaining a cinematic elegance.</p>
+            `
+        },
+        'pixela': {
+            title: 'Pixela',
+            subtitle: 'Surrealist First-Person Game',
+            type: 'Bachelor Project',
+            link: 'https://www.behance.net/gallery/201101643/PIXELA',
+            role: [
+                'Video Game Implementation',
+                'Post-Production',
+                'Interactive Assets',
+                'Game Logic'
+            ],
+            images: [
+                'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1535905557558-afc4877a26fc?auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&w=800&q=80'
+            ],
+            desc: `
+                <p>Pixela is an immersive first-person survival game where you play as an AI named Pixela, who is an unexpected anomaly in a scientific project designed to decode the minds of history's greatest artists.</p>
+                <p>As Pixela, your primary objective is to escape from the scientists who have captured you, using your unique abilities to travel through the worlds of Dalí, Van Gogh and Escher.</p>
+            `
+        },
+        'thematic': {
+            title: 'Thematic Analysis Tool',
+            subtitle: 'Visual Qualitative Research Tool',
+            type: 'Thesis Tool (Code)',
+            link: 'playground.html',
+            role: [
+                'Frontend Development',
+                'Data Visualization Logic',
+                'UX for Research Tools'
+            ],
+            images: [
+                'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=800&q=80'
+            ],
+            desc: `
+                <p><strong>Note: This is a live tool built for my Master's Thesis.</strong></p>
+                <p>Qualitative research often involves messy spreadsheets and sticky notes. I built this web-based tool to make the process of Thematic Analysis more visual and intuitive.</p>
+                <p>It allows researchers to input raw data, assign codes, and visually group them into themes. It transforms an abstract cognitive process into a tangible, drag-and-drop interface.</p>
+            `
+        }
+    };
+
+    function openProject(id) {
+        const p = projects[id];
+        if (!p) return;
+
+        document.getElementById('detail-nav-title').innerText = p.title;
+        document.getElementById('detail-title').innerText = p.title;
+        document.getElementById('detail-subtitle').innerText = p.subtitle;
+        document.getElementById('detail-link').href = p.link;
+        document.getElementById('detail-desc').innerHTML = p.desc;
+        document.getElementById('detail-type').innerText = p.type;
+
+        const roleList = document.getElementById('detail-role');
+        roleList.innerHTML = '';
+        p.role.forEach(r => {
+            const li = document.createElement('li');
+            li.innerHTML = r; 
+            roleList.appendChild(li);
+        });
+
+        const galleryContainer = document.getElementById('detail-gallery-container');
+        galleryContainer.innerHTML = ''; 
+
+        if (p.isCarousel) {
+            document.getElementById('gallery-title').innerText = "Interactive Gallery";
+            let carouselHTML = `
+                <div class="carousel-container flex gap-6 pb-4">
+                    ${p.gifs.map(gifSrc => `
+                        <div class="carousel-item relative aspect-video bg-gray-dark border border-white/10 overflow-hidden flex-shrink-0 w-[85%] md:w-[60%]">
+                             <img src="${gifSrc}" alt="Interactive Ad GIF" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
+                             <div class="absolute bottom-3 left-3 bg-black/60 px-3 py-1 text-xs font-bold text-white uppercase tracking-widest backdrop-blur-sm">Ad Preview</div>
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="text-center text-pastel-white/30 text-xs mt-4 font-mono uppercase tracking-widest"><i class="fas fa-arrows-alt-h mr-2"></i> Swipe</div>
+            `;
+            galleryContainer.innerHTML = carouselHTML;
+
+        } else if (p.images) {
+            document.getElementById('gallery-title').innerText = "Visuals";
+            let gridHTML = `<div class="grid grid-cols-1 md:grid-cols-2 gap-6">`;
+            
+            p.images.forEach(imgSrc => {
+                gridHTML += `
+                    <div class="aspect-video bg-gray-dark border border-white/5 flex items-center justify-center overflow-hidden">
+                        <img src="${imgSrc}" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-300" alt="Project Screenshot">
+                    </div>
+                `;
+            });
+            
+            gridHTML += `</div>`;
+            galleryContainer.innerHTML = gridHTML;
+        }
+
+        document.getElementById('detail-view').classList.remove('translate-x-full');
+        document.body.classList.add('detail-open');
+    }
+
+    function closeProject() {
+        document.getElementById('detail-view').classList.add('translate-x-full');
+        document.body.classList.remove('detail-open');
+    }
+</script>
+</body>
+</html>
