@@ -1,253 +1,1628 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucía Medina</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Nunito Sans"', 'sans-serif'],
-                    },
-                    colors: {
-                        'black-pure': '#000000',
-                        'gray-dark': '#111111',
-                        'pastel-gray': '#848484',
-                        'pastel-blue': '#C0DBEE',
-                        'pastel-purple': '#B9B3F8',
-                        'pastel-green': '#BBEED5',
-                        'pastel-red': '#F5A4AB',
-                        'pastel-lilla': '#CCB1D0',
-                    }
-                }
-            }
-        }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <style>
-        html { scroll-behavior: smooth; }
-        body { background-color: #000000; color: #848484; font-family: 'Nunito Sans', sans-serif; }
-        
-        .drawing-path {
-            stroke-width: 5; stroke-linecap: round; stroke-linejoin: round;
-            stroke: url(#gradient-stroke); fill: none;
-            stroke-dasharray: 2000; stroke-dashoffset: 2000; opacity: 0.8;
-            animation: draw 5s 0s linear infinite;
-        }
-        @keyframes draw {
-            from { opacity: 0.5; stroke-dashoffset: 4000; }
-            to { opacity: 0.8; stroke-dashoffset: 0; }
-        }
-        .hero-background {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 0; display: flex; justify-content: center; align-items: center;
-            pointer-events: none;
-        }
-        .hero-background svg { width: 110%; height: 110%; object-fit: contain; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Codebook Interactive</title>
+
+  <!-- Nunito Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- External Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
+  <style>
+    :root {
+      --text-primary: #2F323A;
+      --text-secondary: #848484;
+      --bg-panel: #EEF0F4;
+      --bg-page: #FFFFFF;
+
+      --theme-1-yellow: #f9eea2;
+      --theme-2-green: #BBEED5;
+      --theme-3-purple: #B9B3F8;
+      --theme-4-blue: #C0DBEE;
+      --theme-5-pink: #F5A4AB; /* For new themes */
+
+      --btn-hover: #e2e4e8;
+      --accent-primary: #B9B3F8;
+
+      --note-pink: #fff0f1;
+      --note-yellow: #fffcdb;
+      --note-blue: #e8f4ff;
+      --note-green: #eafaf1;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 20px 40px;
+      background-color: var(--bg-page);
+      border-bottom: 1px solid var(--bg-panel);
+      flex-shrink: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .header-content h1 {
+      margin: 0;
+      font-size: 24px;
+      color: var(--text-primary);
+      font-weight: 800;
+    }
+
+    .header-content p.subtitle {
+      margin: 5px 0 0 0;
+      color: var(--text-secondary);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      background-color: var(--bg-panel);
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: background-color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      user-select: none;
+    }
+
+    .btn:hover { background-color: var(--btn-hover); }
+
+    .btn-primary {
+      background-color: var(--accent-primary);
+      color: #fff;
+    }
+    .btn-primary:hover { opacity: 0.92; }
+
+    .btn-danger {
+      background: #2F323A;
+      color: #fff;
+    }
+    .btn-danger:hover { opacity: 0.92; }
+
+    input[type="file"] { display: none; }
+
+    .board-container {
+      flex: 1;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 30px 40px;
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .column {
+      background-color: var(--bg-panel);
+      min-width: 360px;
+      max-width: 360px;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      max-height: 100%;
+      flex-shrink: 0;
+      transition: box-shadow 0.2s;
+    }
+
+    .column-header {
+      padding: 16px 20px;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      color: var(--text-primary);
+      position: sticky;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      z-index: 10;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .col-title {
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+      cursor: pointer; /* Click to edit */
+    }
+    .col-title:hover {
+        text-decoration: underline;
+        text-decoration-style: dotted;
+    }
+
+    .card-count {
+      background: rgba(255,255,255,0.6);
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--text-primary);
+      white-space: nowrap;
+    }
+
+    .card-list {
+      padding: 12px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 50px;
+      /* Scrollbar aesthetic for column */
+      scrollbar-width: thin;
+      scrollbar-color: #D1D5DB transparent;
+    }
+
+    .subsection-title {
+      font-size: 11px;
+      font-weight: 900;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      margin-top: 12px;
+      margin-bottom: 4px;
+      padding-left: 4px;
+      letter-spacing: 0.5px;
+      pointer-events: none;
+    }
+
+    .card {
+      background-color: #FFFFFF;
+      padding: 16px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: 1px solid transparent;
+      cursor: grab;
+      position: relative;
+    }
+
+    .card:active { cursor: grabbing; }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+    }
+
+    .card-text {
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--text-primary);
+      font-weight: 800;
+    }
+
+    .card-type {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 10px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      background-color: var(--bg-panel);
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-weight: 800;
+    }
+
+    .card-quote {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #f0f0f0;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #666;
+      font-style: italic;
+      display: none;
+      white-space: pre-wrap;
+      font-weight: 700;
+    }
+    .card-quote.visible { display: block; }
+
+    .card-quote-actions {
+      margin-top: 8px;
+      display: none;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .card-quote-actions.visible { display:flex; }
+
+    .mini-btn {
+      border: none;
+      background: var(--bg-panel);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--text-primary);
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
+    }
+    .mini-btn:hover { background: var(--btn-hover); }
+
+    .col-theme-1 { background-color: var(--theme-1-yellow); }
+    .col-theme-2 { background-color: var(--theme-2-green); }
+    .col-theme-3 { background-color: var(--theme-3-purple); }
+    .col-theme-4 { background-color: var(--theme-4-blue); }
+    .col-theme-5 { background-color: var(--theme-5-pink); }
+
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #D1D5DB; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #9CA3AF; }
+
+    .sortable-ghost{ opacity: 0.35; }
+
+    /* Playground */
+    .pg-backdrop{ position: fixed; inset: 0; background: rgba(47,50,58,0.10); display:none; z-index: 2000; }
+    .pg-backdrop.open{ display:block; }
+    .pg-modal{ position: fixed; left: 50%; top: 50%; transform: translate(-50%,-50%); width: min(1400px, calc(100vw - 40px)); height: min(900px, calc(100vh - 60px)); background: #fff; border-radius: 18px; border: 1px solid var(--bg-panel); box-shadow: 0 20px 60px rgba(0,0,0,0.14); display:none; z-index: 2001; overflow: hidden; }
+    .pg-modal.open{ display:flex; flex-direction: column; }
+    
+    .pg-header{ padding: 14px 16px; border-bottom: 1px solid var(--bg-panel); display:flex; align-items:center; justify-content: space-between; gap: 12px; background: var(--bg-page); flex: 0 0 auto; }
+    .pg-title{ font-weight: 900; font-size: 16px; letter-spacing: 0.2px; }
+    .icon-btn{ width: 36px; height: 36px; border-radius: 10px; border: none; background: var(--bg-panel); cursor: pointer; font-weight: 900; font-size: 18px; line-height: 1; display:flex; align-items:center; justify-content:center; user-select:none; }
+    .icon-btn:hover{ background: var(--btn-hover); }
+    
+    .pg-content{ display: grid; grid-template-columns: 1fr 320px; flex: 1; overflow: hidden; }
+
+    /* Carousel: ONE theme at a time, full area */
+    .pg-stage{ position: relative; display:flex; flex-direction: column; background: #fafafa; }
+    .pg-carousel{ display:flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; background: #fff; border-bottom: 1px solid rgba(0,0,0,0.04); }
+    .pg-carousel-title{ font-size: 18px; font-weight: 900; letter-spacing: 0.3px; color: #1f2430; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 500px; display:flex; align-items:center; gap:8px;}
+    .pg-dots{ display:flex; gap: 8px; align-items:center; }
+    .pg-dot{ width: 10px; height: 10px; border-radius: 999px; background: rgba(47,50,58,0.15); cursor: pointer; transition: 0.2s; }
+    .pg-dot.active{ background: rgba(47,50,58,0.8); transform: scale(1.2); }
+
+    .pg-canvas-wrapper{ position: relative; flex: 1; min-height: 0; padding: 20px; overflow: hidden; }
+    .pg-canvas-inner{ position: relative; height: 100%; border-radius: 18px; background: radial-gradient(#D1D5DB 1px, transparent 1px); background-size: 24px 24px; box-shadow: inset 0 0 20px rgba(0,0,0,0.02); overflow: hidden; }
+    
+    .pg-canvas-screen{ 
+        position:absolute; inset:0; display:block; opacity:0; pointer-events:none; transition: opacity 0.3s ease; 
+        /* Tiny Scroll Implementation */
+        overflow: auto; 
+    }
+    .pg-canvas-screen::-webkit-scrollbar { width: 6px; height: 6px; }
+    .pg-canvas-screen::-webkit-scrollbar-track { background: transparent; }
+    .pg-canvas-screen::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 4px; }
+    .pg-canvas-screen::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.25); }
+
+    .pg-canvas-screen.active{ opacity:1; pointer-events:auto; }
+    
+    /* Content must be large enough to scroll if items are pushed down */
+    .pg-screen-content { position: relative; width: 100%; min-height: 100%; }
+
+    .pg-sidebar{ border-left: 1px solid var(--bg-panel); background: #fff; display:flex; flex-direction: column; min-height: 0; z-index: 20; box-shadow: -4px 0 12px rgba(0,0,0,0.03); }
+    .pg-sidebar-top{ padding: 14px; border-bottom: 1px solid var(--bg-panel); display:flex; flex-direction: column; gap: 10px; }
+    .pg-search{ width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid #ddd; background: #fff; font-size: 13px; font-weight: 800; color: var(--text-primary); outline: none; }
+    
+    .pg-code-list{ padding: 14px; overflow-y: auto; display:flex; flex-direction: column; gap: 8px; flex: 1; }
+    
+    .pg-code-item{ background: #fff; border: 1px solid #ddd; border-left: 4px solid #aaa; border-radius: 6px; padding: 10px 12px; display:flex; align-items:center; justify-content: space-between; gap: 10px; cursor: grab; user-select: none; transition: 0.2s; }
+    .pg-code-item:hover { border-color: #bbb; transform: translateX(2px); }
+    
+    /* Hide used items to prevent repetition */
+    .pg-code-item.used { display: none; } 
+    
+    .pg-code-item:active{ cursor: grabbing; }
+    .pg-code-label{ font-size: 12px; font-weight: 800; color: var(--text-primary); line-height: 1.3; }
+    
+    /* Notes on Playground */
+    .note{ 
+      position: absolute; width: 190px; min-height: 120px; padding: 12px; 
+      border-radius: 2px; 
+      background: var(--note-yellow); 
+      box-shadow: 2px 4px 12px rgba(0,0,0,0.15); 
+      cursor: grab; user-select: none; touch-action: none; 
+      display: flex; flex-direction: column;
+      transition: box-shadow 0.2s, transform 0.1s;
+      font-family: "Kalam", "Nunito Sans", sans-serif; /* Fallback to Nunito */
+    }
+    .note:active{ cursor: grabbing; box-shadow: 4px 8px 16px rgba(0,0,0,0.2); z-index: 1000 !important; }
+    .note.selected{ outline: 2px dashed #2F323A; outline-offset: 4px; }
+    
+    /* Theme colors for notes */
+    .pg-screen-content[data-theme-id="1"] .note { background-color: #fff9c4; transform: rotate(-1deg); }
+    .pg-screen-content[data-theme-id="2"] .note { background-color: #dcedc8; transform: rotate(1deg); }
+    .pg-screen-content[data-theme-id="3"] .note { background-color: #e1bee7; transform: rotate(-0.5deg); }
+    .pg-screen-content[data-theme-id="4"] .note { background-color: #b3e5fc; transform: rotate(1.5deg); }
+    .pg-screen-content[data-theme-id="5"] .note { background-color: #ffccbc; transform: rotate(-1.5deg); }
+
+    .note-title{ font-weight: 800; font-size: 13px; line-height: 1.4; color: #333; flex: 1; pointer-events: none; margin-bottom: 6px; }
+    .note-footer{ display:flex; align-items: flex-end; justify-content: space-between; gap: 8px; margin-top: auto; opacity: 1; }
+    .note-x{ border: none; background: transparent; cursor: pointer; font-weight: 900; color: #999; padding: 4px; font-size: 16px; line-height: 1; position: absolute; top:4px; right:4px;}
+    .note-x:hover{ color: #d32f2f; }
+    
+    .note-quote-btn { font-size: 11px; padding: 4px 8px; background: rgba(255,255,255,0.6); border: 1px solid rgba(0,0,0,0.1); }
+    .note-quote-btn:hover { background: #fff; }
+
+    .hint{ font-size: 12px; color: var(--text-secondary); font-weight: 700; line-height: 1.4; }
+
+    /* Group Labels on Canvas (for theme 2) */
+    .group-label {
+      position: absolute;
+      font-size: 14px;
+      font-weight: 900;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      pointer-events: none;
+      z-index: 0;
+      border-bottom: 2px dashed #ccc;
+      width: 200px;
+      padding-bottom: 4px;
+    }
+
+    /* Quote modal */
+    .modal-backdrop{ position: fixed; inset: 0; background: rgba(47,50,58,0.10); display:none; z-index: 2100; }
+    .modal-backdrop.open{ display:block; }
+    .modal{ position: fixed; left: 50%; top: 50%; transform: translate(-50%,-50%); width: min(860px, calc(100vw - 40px)); max-height: min(78vh, 720px); background: #fff; border-radius: 16px; border: 1px solid var(--bg-panel); box-shadow: 0 20px 60px rgba(0,0,0,0.12); display:none; z-index: 2101; overflow: hidden; }
+    .modal.open{ display:block; }
+    .modal-header{ padding: 14px 16px; border-bottom: 1px solid var(--bg-panel); display:flex; align-items:center; justify-content: space-between; gap: 10px; background: var(--bg-page); }
+    .modal-title{ font-weight: 900; font-size: 14px; line-height: 1.2; }
+    .modal-body{ padding: 14px 16px 18px 16px; overflow:auto; display:flex; flex-direction: column; gap: 10px; background: #fff; max-height: 60vh;}
+    .quote-item{ padding: 12px 12px; border-radius: 12px; background: var(--bg-panel); border: 1px solid rgba(0,0,0,0.02); }
+    .quote-text{ font-size: 13px; line-height: 1.45; font-style: italic; color: #555; white-space: pre-wrap; font-weight: 700; }
+    .quote-meta{ margin-top: 8px; font-size: 12px; color: var(--text-secondary); font-weight: 800; }
+   
+    /* Confirm modal buttons */
+    .confirm-actions{ display:flex; gap:10px; justify-content:flex-end; margin-top: 12px; flex-wrap: wrap; }
+
+    /* Auto sync toggle */
+    .switch-container { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 800; color: var(--text-primary); margin-right: 12px; }
+    .switch { position: relative; display: inline-block; width: 34px; height: 20px; }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+    .slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+    input:checked + .slider { background-color: var(--accent-primary); }
+    input:checked + .slider:before { transform: translateX(14px); }
+
+  </style>
+
+  <!-- Google Translate -->
+  <script>
+    function translatePage() {
+      new google.translate.TranslateElement(
+        {
+          pageLanguage: 'en',
+          includedLanguages: 'en,it',
+          autoDisplay: false
+        },
+        'google_translate_element'
+      );
+    }
+  </script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=translatePage"></script>
 </head>
-<body class="antialiased">
 
-<header class="sticky top-0 z-50 bg-black-pure/90 backdrop-blur-sm border-b border-pastel-gray/20">
-    <nav class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-        <div class="text-xl font-bold text-pastel-purple tracking-widest"><a href="#home">Lucía Medina</a></div>
-        <div class="hidden md:flex space-x-8 text-pastel-gray font-medium">
-            <a href="#work" class="hover:text-pastel-blue transition duration-200">Work</a>
-            <a href="#community" class="hover:text-pastel-blue transition duration-200">Community</a>
-            <a href="#about" class="hover:text-pastel-blue transition duration-200">About</a>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Codebook</h1>
+      <p class="subtitle">Consolidated View: 4 Core Themes</p>
+    </div>
+
+    <div class="controls" data-html2canvas-ignore="true">
+      <input type="file" id="csvInput" accept=".csv,.html,.htm" />
+      <button class="btn btn-primary" id="importBtn">📂 Import CSV</button>
+      <button class="btn" id="openPlaygroundBtn">🎡 Code Playground</button>
+      <button class="btn" id="addCodeBtn">+ Add Card</button>
+      <button class="btn" id="saveBtn">Save Layout</button>
+      <button class="btn" id="exportPdfBtn">Export PDF</button>
+      <button class="btn btn-danger" id="resetPresetBtn">Reset to Preset</button>
+      <div id="google_translate_element"></div>
+    </div>
+  </header>
+
+  <div class="board-container" id="board">
+    <!-- Columns populated by JS or preset -->
+    <div class="column" data-theme="1">
+      <div class="column-header col-theme-1">
+        <div class="header-top">
+          <span class="col-title" onclick="promptEditTheme(1)">Theme 1. Sense of Authorship rooted in Human Ideation</span>
+          <span class="card-count">0</span>
         </div>
-        <button id="menu-button" class="md:hidden focus:outline-none"><i class="fas fa-bars text-pastel-purple text-xl"></i></button>
-    </nav>
-    <div id="mobile-menu" class="hidden md:hidden bg-black-pure border-t border-pastel-gray/20">
-        <a href="#work" class="block py-3 px-4 text-sm text-pastel-gray hover:text-pastel-blue">Work</a>
-        <a href="#community" class="block py-3 px-4 text-sm text-pastel-gray hover:text-pastel-blue">Community</a>
-        <a href="#about" class="block py-3 px-4 text-sm text-pastel-gray hover:text-pastel-blue">About</a>
+      </div>
+      <div class="card-list" id="colList1"></div>
     </div>
-</header>
 
-<section id="home" class="max-w-6xl mx-auto px-4 pt-40 pb-20 text-center relative min-h-[90vh] flex flex-col justify-center items-center">
-    <div class="relative z-10">
-        <h1 class="text-6xl sm:text-7xl font-bold mb-4 tracking-tight text-pastel-blue">Lucía Medina</h1>
-        <p class="text-xl sm:text-2xl text-pastel-gray mb-8 font-light">Digital & Interaction Designer focused on intuitive experiences.</p>
-        <a href="#work" class="inline-block px-8 py-3 bg-pastel-green text-black-pure text-lg font-bold rounded-full hover:bg-pastel-lilla transition duration-300 shadow-[0_0_15px_rgba(187,238,213,0.4)] mt-4">View Projects</a>
+    <div class="column" data-theme="2">
+      <div class="column-header col-theme-2">
+        <div class="header-top">
+          <span class="col-title" onclick="promptEditTheme(2)">Theme 2. Labels are treated as signals that allocate authorship, agency, legitimacy.</span>
+          <span class="card-count">0</span>
+        </div>
+      </div>
+      <div class="card-list" id="colList2"></div>
     </div>
-    <div class="hero-background">
-        <svg width="987" height="878" viewBox="0 0 987 878" fill="none">
-            <defs>
-                <linearGradient id="gradient-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#BBEED5" /><stop offset="40%" stop-color="#C0DBEE" />
-                    <stop offset="70%" stop-color="#B9B3F8" /><stop offset="100%" stop-color="#CCB1D0" />
-                </linearGradient>
-            </defs>
-            <path d="M17.7617 646.374C25.7546 676.661 50.6879 692.759 75.3093 701.181C101.467 710.129 149.865 741.192 168.756 761.377C172.71 765.601 175.447 770.816 176.677 776.468L180.224 792.771C192.792 850.529 258.938 878.229 308.913 846.663L325.076 836.453C336.404 829.299 345.554 819.335 354.12 809.033C393.875 761.215 490.712 704.118 642.944 767.831C795.246 831.573 858.919 728.484 876.751 650.37C880.653 633.276 887.453 616.779 899.024 603.606L952.091 543.189C977.366 514.414 980.322 472.305 959.314 440.281L908.296 362.507C891.84 337.42 891.668 305.004 907.857 279.744C933.235 240.146 916.955 187.238 873.707 168.757L727.598 106.32C715.419 101.115 704.623 93.1424 696.065 83.0343L659.798 40.1928C633.149 8.71371 587.772 0.85643 552.09 21.5425L439.597 86.7595C403.942 107.43 358.602 99.6015 331.943 68.1717L309.21 41.3711C273.099 -1.20259 206.477 1.90277 174.482 47.651L129.362 112.167C124.584 118.999 118.9 125.155 111.92 129.714C66.7895 159.187 -17.8498 193.265 35.8118 346.157C108.406 552.994 -8.2777 547.706 17.7617 646.374Z" stroke="url(#gradient-stroke)" fill="none" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" class="drawing-path" />
-        </svg>
-    </div>
-</section>
 
-<section id="work" class="max-w-6xl mx-auto px-4 py-20">
-    <h2 class="text-4xl font-bold text-center mb-16 text-pastel-lilla">Recent Work</h2>
-    <div class="grid md:grid-cols-2 gap-10">
-        <article class="bg-black-pure p-8 rounded-lg shadow-2xl border border-pastel-blue/20 hover:border-pastel-blue transition hover:scale-[1.02]">
-            <h3 class="text-2xl font-semibold mb-3 text-pastel-blue">Muse*on</h3>
-            <p class="text-pastel-gray mb-6">Developing an all-in-one software for small museum staff.</p>
-            <a href="#" class="text-sm font-bold text-pastel-red hover:text-pastel-lilla border-b border-pastel-red">Case Study &rarr;</a>
-        </article>
-        <article class="bg-black-pure p-8 rounded-lg shadow-2xl border border-pastel-blue/20 hover:border-pastel-blue transition hover:scale-[1.02]">
-            <h3 class="text-2xl font-semibold mb-3 text-pastel-blue">Art Without Dimension</h3>
-            <p class="text-pastel-gray mb-6">A futuristic prototype for users exploring art in new virtual ways.</p>
-            <a href="#" class="text-sm font-bold text-pastel-red hover:text-pastel-lilla border-b border-pastel-red">View Prototype &rarr;</a>
-        </article>
+    <div class="column" data-theme="3">
+      <div class="column-header col-theme-3">
+        <div class="header-top">
+          <span class="col-title" onclick="promptEditTheme(3)">Theme 3 - AI is accepted as a production tool, but resisted as a co-author with creative intent</span>
+          <span class="card-count">0</span>
+        </div>
+      </div>
+      <div class="card-list" id="colList3"></div>
     </div>
-</section>
 
-<section id="community" class="max-w-6xl mx-auto px-4 py-20 border-t border-pastel-gray/20">
-    <h2 class="text-4xl font-bold text-center mb-8 text-pastel-green">Community Board</h2>
-    <p class="text-center text-pastel-gray mb-12">Leave a message or share a link! Content here is saved to the cloud.</p>
-    
-    <div class="max-w-xl mx-auto bg-gray-dark p-6 rounded-xl border border-pastel-green/30 mb-16">
-        <form id="uploadForm" class="space-y-4">
-            <div>
-                <label class="block text-pastel-blue text-sm mb-2">Your Name</label>
-                <input type="text" id="userName" required class="w-full bg-black-pure border border-pastel-gray/30 text-white rounded p-3 focus:outline-none focus:border-pastel-green">
+    <div class="column" data-theme="4">
+      <div class="column-header col-theme-4">
+        <div class="header-top">
+          <span class="col-title" onclick="promptEditTheme(4)">Theme 4 - The platform social dynamics that influence the usage and distribution of AI generated content</span>
+          <span class="card-count">0</span>
+        </div>
+      </div>
+      <div class="card-list" id="colList4"></div>
+    </div>
+  </div>
+
+  <!-- Playground overlay -->
+  <div class="pg-backdrop" id="pgBackdrop"></div>
+  <div class="pg-modal" id="pgModal" aria-modal="true" role="dialog">
+      <div class="pg-header">
+        <div>
+          <div class="pg-title">Code Playground</div>
+          <div class="hint">Organize codes spatially. Changes here can update the main board instantly.</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <div class="switch-container">
+             <label class="switch">
+               <input type="checkbox" id="pgAutoSync">
+               <span class="slider"></span>
+             </label>
+             Auto-Sync to Main Board
+          </div>
+          <button class="icon-btn" id="closePgBtn" aria-label="Close">×</button>
+        </div>
+      </div>
+
+      <div class="pg-content">
+        <div class="pg-stage">
+          <div class="pg-carousel">
+            <button class="icon-btn" id="pgPrevBtn" title="Previous theme">‹</button>
+            <div style="display:flex;flex-direction:column;gap:4px;min-width:0;align-items:center;flex:1;">
+              <div class="pg-carousel-title">
+                <span id="pgThemeTitle" style="cursor:pointer;" title="Click to edit">Theme 1</span>
+                <button class="mini-btn" id="editThemeBtn" style="margin-left:10px; font-size:11px;">✎ Edit Title</button>
+              </div>
+              <div class="pg-dots" id="pgDots"></div>
             </div>
-            <div>
-                <label class="block text-pastel-blue text-sm mb-2">Message or Project Description</label>
-                <textarea id="userMessage" required class="w-full bg-black-pure border border-pastel-gray/30 text-white rounded p-3 focus:outline-none focus:border-pastel-green h-24"></textarea>
+            <button class="icon-btn" id="pgNextBtn" title="Next theme">›</button>
+            <button class="btn btn-primary" id="addThemeBtn" style="margin-left:12px;">➕ New Theme</button>
+          </div>
+
+          <div class="pg-canvas-wrapper">
+            <div class="pg-canvas-inner">
+              <div class="pg-canvas-screen active" data-theme="1"><div class="pg-screen-content" id="pgTheme1Inner" data-theme-id="1"></div></div>
+              <div class="pg-canvas-screen" data-theme="2"><div class="pg-screen-content" id="pgTheme2Inner" data-theme-id="2"></div></div>
+              <div class="pg-canvas-screen" data-theme="3"><div class="pg-screen-content" id="pgTheme3Inner" data-theme-id="3"></div></div>
+              <div class="pg-canvas-screen" data-theme="4"><div class="pg-screen-content" id="pgTheme4Inner" data-theme-id="4"></div></div>
+              <!-- Dynamic themes will append here -->
             </div>
-            <button type="submit" class="w-full bg-pastel-green text-black-pure font-bold py-3 rounded hover:bg-pastel-lilla transition">
-                Post to Board
-            </button>
-        </form>
-    </div>
-
-    <div id="postsContainer" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <p class="text-center w-full text-pastel-gray col-span-full">Loading community posts...</p>
-    </div>
-</section>
-
-<section id="about" class="max-w-6xl mx-auto px-4 py-20 border-t border-pastel-gray/20">
-    <h2 class="text-4xl font-bold text-center mb-16 text-pastel-purple">A Little About Me</h2>
-    <div class="lg:flex gap-10">
-        <div class="lg:w-1/2 mb-10 lg:mb-0">
-            <p class="text-lg text-pastel-gray leading-relaxed mb-6">I am a master's student in Digital and Interaction Design at Polimi.</p>
+          </div>
         </div>
-        <div class="lg:w-1/2 bg-black-pure p-8 rounded-lg shadow-lg border border-pastel-purple/30">
-            <h3 class="text-2xl font-semibold mb-5 text-pastel-lilla">Key Details</h3>
-            <p class="text-pastel-gray"><span class="font-bold text-pastel-green">Education:</span> MSc Digital Design, Polimi</p>
-        </div>
+
+        <aside class="pg-sidebar">
+          <div class="pg-sidebar-top">
+            <h3 style="margin:0 0 10px 0; font-size:14px; font-weight:900;">Theme Codes</h3>
+            <select id="pgSidebarFilter" style="width:100%; padding:6px; font-size:12px; font-weight:700; border-radius:4px; border:1px solid #ddd; margin-bottom:8px;">
+               <option value="current">Current Theme</option>
+               <option value="unassigned">Unassigned (New)</option>
+               <option value="all">All Codes</option>
+            </select>
+            <input class="pg-search" id="pgSearch" placeholder="Filter codes..." />
+            <div class="hint" style="margin-top:6px;">Drag to canvas (used codes are hidden)</div>
+          </div>
+          <div class="pg-code-list" id="pgCodeList"></div>
+          <div style="padding:14px; border-top:1px solid #eee;">
+            <button class="btn btn-primary" id="pgManualSyncBtn" style="width:100%; justify-content:center;">⬆️ Sync to Main Board</button>
+          </div>
+        </aside>
+      </div>
+  </div>
+
+  <!-- Quote Modal -->
+  <div class="modal-backdrop" id="modalBackdrop"></div>
+  <div class="modal" id="quoteModal" role="dialog" aria-modal="true">
+    <div class="modal-header">
+      <div class="modal-title" id="modalTitle">Quotes</div>
+      <button class="icon-btn" id="closeModalBtn" aria-label="Close">×</button>
     </div>
-</section>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
 
-<footer class="bg-black-pure border-t border-pastel-gray/10 py-8 text-center text-sm text-pastel-gray/60">
-    <p>&copy; 2025 Lucía Medina.</p>
-</footer>
+  <!-- Confirm Modal -->
+  <div class="modal-backdrop" id="confirmBackdrop"></div>
+  <div class="modal" id="confirmModal" role="dialog" aria-modal="true">
+    <div class="modal-header">
+      <div class="modal-title" id="confirmTitle">Confirm</div>
+      <button class="icon-btn" id="closeConfirmBtn" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body" id="confirmBody">
+      <div class="hint" id="confirmMessage" style="font-size:14px; color:#333;"></div>
+      <div class="confirm-actions">
+        <button class="btn" id="confirmCancelBtn">Cancel</button>
+        <button class="btn btn-danger" id="confirmOkBtn">Delete</button>
+      </div>
+    </div>
+  </div>
 
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } 
-    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+  <!-- Hidden Embedded Data -->
+  <script id="embeddedQuotesMap" type="application/json">
+    {"openness / freedom of circulation":{"quotes":[{"text":"I really have it quite open.  I can put illustrations that don’t even have my signature,  that are completely free.  So I feel that some artists feel very vulnerable  in the sense of thinking that anyone can take your work","source":"participant1.txt","tag":"Openness"}],"theme":1},"disapproval of reliance on ai for creative ideation":{"quotes":[{"text":"Look, maybe you would have done it as you would have done it.  I don’t like it.  I’m not the kind of.  Aesthetically.  I don’t like it.  It’s not the kind of work that I consume or image that I consume.","source":"participant1.txt"}],"theme":1},"sees content-creator role as marginal to core artistic identity":{"quotes":[{"text":"I guess at a certain level I am, as a content creator.  At a very micro level.  But I do think that maybe people who have more media reach  also benefit from deceiving the public on certain occasions.","source":"participant1.txt"}],"theme":1},"artistic identity grounded in authenticity":{"quotes":[{"text":"I am a plastic artist, so the content goes more than anything to my artistic production.","source":"participant1.txt"}],"theme":1},"perceived copyright vulnerability among other artists":{"quotes":[{"text":"So I feel that some artists feel very vulnerable in the sense of thinking that anyone can take your work","source":"participant1.txt"}],"theme":1},"unstable authorship boundaries in social media environments":{"quotes":[{"text":"I’ve always thought, well, if someone is going to steal it, let them steal it completely. I don’t have that filter.","source":"participant1.txt"}],"theme":1},"values representation of creative labor":{"quotes":[{"text":"Yo lo hice totally, pero si me asistió, bueno, como saber, y co-created puede que ser eso, que literal, de que tú hiciste algo, que AI lo hizo algo más, y luego tú agarraste el AI y le ajustaste colores, entonces como que hubo un back and forth así seguido, ¿sabes?","source":"participant2.txt"}],"theme":1},"audiences will eventually sharpen their eye to distinguish human vs ai.":{"quotes":[{"text":"la gente  Pues conforme vaya pasando  El tiempo va a ir entrenando  Más el ojo  Y va a ir discerniendo  De lo que es real  De lo que está hecho  Artísticamente","source":"participant3.txt"}],"theme":1},"creative anxiety / “if ai can do this, what happens to human creativity?”":{"quotes":[{"text":"si la inteligencia puede hacer tantas cosas visualmente, ¿en dónde va quedando la creatividad?","source":"participant6.txt"}],"theme":1},"ai increases speed, efficiency, and reduces creative bottlenecks":{"quotes":[{"text":"in embargo, la producción musical con AI me ha hecho más productivo, más rápido. Eficiente.","source":"participant6.txt"}],"theme":3},"ai as cost-saving tool":{"quotes":[{"text":"Y, ¿qué haces? Tienes que igual pagar ese dinero a este productor, aunque no te esté gustando del todo como haya quedado.","source":"participant6.txt"}],"theme":3},"labels are a moral practice":{"quotes":[{"text":"Creo que es algo, una práctica que mínimo ayuda un poco a más a, pues sí, como que aclarar que se sube a las redes","source":"participant2.txt"}],"theme":1},"disappointment with human production":{"quotes":[{"text":"Tienes que igual pagar ese dinero a este productor, aunque no te esté gustando del todo como haya quedado.","source":"participant6.txt"}],"theme":3},"ai-assisted label means a human gave idea to the machine":{"quotes":[{"text":"Pues mi interpretación yo creo que es como justo que alguien alimentó a AI, o sea, lo que sea que está usando, con una imagen y tal vez si le dijo, hazme esta imagen como retrato pintoresco, no sé.","source":"participant2.txt"}],"theme":2},"“made with ai” label as meaning that the image has no human-originated creative input":{"quotes":[{"text":"Eso también, pues me dice que todo fue hecho con AI, o sea, como que, pues cien por ciento, cien por ciento AI.","source":"participant2.txt"}],"theme":2},"co-created with ai label highlights ambiguity":{"quotes":[{"text":"Esa, me confunde un poco el co-created porque siento que co-created es como de que, o sea, sí, sí, entiendo.","source":"participant2.txt"}],"theme":2},"perceives disclosure as credibility signals":{"quotes":[{"text":"Lo que pasa es que ArtStation Como es una plataforma muy dedicada a artistas Apoyando a artistas Y como es una plataforma de portafolio profesional","source":"participant3.txt"}],"theme":2},"sees labels as fillters in an information stream":{"quotes":[{"text":"Estos labels Pues si son una manera Pues un pequeño Como filtro De decir Oye Esto no es real Esto está creado A partir de una IA","source":"participant3.txt"}],"theme":2},"ai-generated image: hyper-realism creates uncertainty":{"quotes":[{"text":"Discerniendo Lo que es real De lo que no es La imagen Me parece Bastante Real O sea Si a simple vista Es que Está Es tan orgánica","source":"participant3.txt"}],"theme":2},"ai-assisted label restores a line between image and reality":{"quotes":[{"text":"Basándose En Monet Pero recordemos Que al final De cuentas Un artista Hace una construcción De lo que ve","source":"participant3.txt"}],"theme":2},"creators rely on subtle visual logic to detect authenticity":{"quotes":[{"text":"Que están volteando Hacia enfrente No les está pegando La luz O sea Son oscuras Pero la Al ala de atrás Que tiene el mismo ángulo Le debería estar pegando La misma luz","source":"participant3.txt"}],"theme":2},"imperfections become diagnostic cues of fakeness":{"quotes":[{"text":"Igual Las manos Tienen más dedos De las que deberían","source":"participant3.txt"}],"theme":2},"ai art image challenges trust in his own visual judgment":{"quotes":[{"text":"Pero lo veo Y si lo veo A simple vista Hay algo que está hecho Con inteligencia artificial Que siempre digo Hay algo Que no me cuadra","source":"participant3.txt"}],"theme":2},"labels help confirm what the eye cannot trust":{"quotes":[{"text":"Entonces poner el label De AI","source":"participant3.txt"}],"theme":2},"interior design image ai output perceived as technically competent but not real":{"quotes":[{"text":"Este Si bien no parece 100% realista Pero si parece 100% Algo entregable Para Un arquitecto","source":"participant3.txt"}],"theme":2},"ai is already common in architectural visualization.":{"quotes":[{"text":"Un render Hecho por un arquitecto Por un diseñador De interiores Etcétera Entonces ver Este label De hecho Con AI Pues Como Pues si puedo Llegar a decir Ok Como que es normal","source":"participant3.txt"}],"theme":2},"ai label normalizes synthetic content in professional workflows":{"quotes":[{"text":"Entonces ver Este label De hecho Con AI Pues Como Pues si puedo Llegar a decir Ok Como que es normal","source":"participant3.txt"}],"theme":2},"ai perfection destabilizes trust in authorship":{"quotes":[{"text":"Es verdad que se A mi gusto Se ve bastante perfecto","source":"participant3.txt"}],"theme":2},"platform labels compete with creator reputation as signals of truth.":{"quotes":[{"text":"Porque si lo subió Mi tía Obviamente diría yo Ah bueno Esto está hecho Con inteligencia artificial","source":"participant3.txt"}],"theme":2},"rejects co-creation because ai lacks human imperfection":{"quotes":[{"text":"Es que todo Es muy Muy perfecto En cuanto a trazo En cuanto a calidad","source":"participant3.txt"}],"theme":2},"feels co-creation exaggerates ai’s artistic agency":{"quotes":[{"text":"El filtro El output Final Que es tan limpio No tiene noise Tiene un filtro Un poco Como de Onírico Como de ensueño","source":"participant3.txt"}],"theme":2},"requires quantifiable creative effort to accept co-creation.":{"quotes":[{"text":"Y eso pues ya cuenta Un poco como 50-50 ¿No? 50-50","source":"participant3.txt"}],"theme":2},"labels matter only when ai realism fools perception":{"quotes":[{"text":"Pero en casos Que parezcan demasiado realistas Sí que se usarían","source":"participant3.txt"}],"theme":2},"ai content is like 'fast-food'":{"quotes":[{"text":"Pues existe La comida rápida","source":"participant3.txt"}],"theme":2},"context-dependent emotional detachment":{"quotes":[{"text":"Mmm, it’s a, I feel like, okay, first of all, that’s a really nice AI generated, usually","source":"participant5.txt"}],"theme":2},"ai-assisted label amplifies perceived discomfort":{"quotes":[{"text":"Uh, it’s like, yeah, it’s a beautiful painting, if it wasn’t AI assisted.","source":"participant5.txt"}],"theme":2},"ai-assisted triggers conditonal appreciation":{"quotes":[{"text":"Uh, it’s like, yeah, it’s a beautiful painting, if it wasn’t AI assisted.","source":"participant5.txt"}],"theme":2},"'made with ai' label accepted under the interior design context":{"quotes":[{"text":"so made by, made with the AI, so it’s like, oh yeah, I can see that in like, for example, in a Instagram about, uh, um, someone who is selling furniture","source":"participant5.txt"}],"theme":2},"co-created label is acceptable in fictional or world-building contexts":{"quotes":[{"text":"co-created with AI, eh, it doesn’t piss me off as much as the painting one, but, because it’s fiction","source":"participant5.txt"}],"theme":2},"co-created label preserves human authorship as the origin point":{"quotes":[{"text":"ah, maybe co-created, I can guess that the person put, like, what they are seeing, like, this, I want this, this, this, uh, with this color,","source":"participant5.txt"}],"theme":2},"ai use in high-art formats threatens authenticity":{"quotes":[{"text":"but if i see a movie or a book with ai yeah i’m gonna throw that","source":"participant5.txt"}],"theme":2},"ai use accepted in low-stakes, playful, non-professional contexts":{"quotes":[{"text":"i have used ai generated but for tiktok content like uh not stupid stuff but like trends","source":"participant5.txt"}],"theme":2},"authorship only matters when the image is artistic or expressive.":{"quotes":[{"text":"como que tipo, o sea, sé que a lo mejor está hecha de inteligencia artificial, pero siento que las instrucciones que se dieron para llegar a esta imagen como que fueron muy precisas del artista","source":"participant4.txt"}],"theme":2},"“made with ai” does not reduce value because the goal isn’t artistic authorship":{"quotes":[{"text":"el resultado sí se me hace muy interesante. Ah, ok. Esta imagen, bueno, pues yo incluso he usado AI para este tipo de renders de arquitectura.","source":"participant4.txt"}],"theme":2},"ai feels appropriate in functional contexts":{"quotes":[{"text":"Esta imagen, bueno, pues yo incluso he usado AI para este tipo de renders de arquitectura.","source":"participant4.txt"}],"theme":2},"low-stakes functional images = label is normalized":{"quotes":[{"text":"Siento que es una buena representación para mostrar un espacio.","source":"participant4.txt"}],"theme":2},"label does not threaten professional identity in non-artistic tasks":{"quotes":[{"text":"Se me hace como que muy, o sea, en la línea realista de los renders de arquitectura.","source":"participant4.txt"}],"theme":2},"technical acceptance (“ai fits architectural visualization norms”)":{"quotes":[{"text":"orque se mira muy natural. Además, no se mira muy, ¿sabes? La AI en espacios de arquitectura, normalmente las texturas, o el espacio se mira como que muy smooth, muy suave.","source":"participant4.txt"}],"theme":2},"co-creative with ai label amplifies loss or perceived human authorship":{"quotes":[{"text":"Como que, ahí la AI siento que tuvo más, eh, más protagonismo en esta imagen, que en la pintura","source":"participant4.txt"}],"theme":2},"context-dependent acceptance of labels / “label is fine when ai is the medium”":{"quotes":[{"text":"hay artistas en Instagram que ellos, y que la venta no tiene nada de malo que ellos muestren que le hicieron con EI, porque de hecho de eso se trata del contenido de ellos","source":"participant4.txt"}],"theme":2},"hyperreal ai triggers concern / “realistic ai + label = perceptual alarm”":{"quotes":[{"text":"y si se mira muy real, ya me quedé que no manches, esto tiene EI. Pues sí me preocupa nada más en el sentido de que, wow, no, esto es tan real.","source":"participant4.txt"}],"theme":2},"need for clarification in percentage, the extent ai was used":{"quotes":[{"text":"debería haber un porcentaje, tipo, si el porcentaje de qué tanto fue humano y qué tanto fue IAI, que eso dependa de poner la etiqueta","source":"participant4.txt"}],"theme":2},"'ai-generated' label becomes associated with possible fakery":{"quotes":[{"text":"El hecho que esté la etiqueta ahí no implica nada. Y bueno, me implica que algo de lo que estoy viendo es falso, ¿viste?","source":"participant6.txt"}],"theme":2},"'ai-assisted' label when ai is a creative extension":{"quotes":[{"text":"Y que esté generada por una inteligencia artificial, nada, me hace pensar varias cosas, tanto positivas como negativas.","source":"participant6.txt"}],"theme":2},"'ai-assisted' blurs authorship boundaries enough to enable plausible deceit.":{"quotes":[{"text":"Y después cachipurrerme a mi familia y decir que lo pinte yo, pero en realidad lo hice en inteligencia artificial.","source":"participant6.txt"}],"theme":2},"'made with ai' label accepted under the interior design context":{"quotes":[{"text":"Y luego con respecto a esta imagen, ¿qué dice hecho con AI? Esto me parece genial porque en este aspecto es como para las personas que tienen un negocio, por ejemplo, y necesitan reubicar visualmente cómo sería.","source":"participant6.txt"}],"theme":2},"'made with ai' label perceived neutrally in an interior desgin context":{"quotes":[{"text":"Y luego con respecto a esta imagen, ¿qué dice hecho con AI? Esto me parece genial porque en este aspecto es como para las personas que tienen un negocio","source":"participant6.txt"}],"theme":2},"context awareness of ai use defines the value of the content":{"quotes":[{"text":"Yo creo que depende mucho del contexto en que se utilice el AI.","source":"participant6.txt"}],"theme":2},"collaborative authorship interpretation / “co-created implies joint effort”":{"quotes":[{"text":"Co-creado, está bien, porque me imagino de que es un trabajo en conjunto, viste, alguien tenía la imagen y la modificó, la mejoró.","source":"participant6.txt"}],"theme":2},"ai-generated label maintains trust and awareness in realistic but synthetic media":{"quotes":[{"text":"Aquí el El label Os ayuda bastante Porque esta es la Esta parece Verdaderamente real","source":"participant3.txt"}],"theme":2},"labels as a practice of maintaining creator–audience trust":{"quotes":[{"text":"I mean, there’s an honesty of what you’re presenting to your audience, right?","source":"participant1.txt"}],"theme":2},"sees labels as a solution to restore user agency sees labels as segmentation cues that sort audiences by content preference":{"quotes":[{"text":"entonces yo creo que este tipo de tags, como que ya la gente que busca contenido AI, pues le va a salir más, entonces como que su algoritmo se va a ir con eso, y la gente que, pues de verdad quiere ver gente haciendo trucos con patinetas de verdad, pues más bien el que ya ignore todo lo que tenga tags,","source":"participant2.txt"}],"theme":2},"human-made label frames creation as a competence of identities with ai":{"quotes":[{"text":"No sé, o sea, como que siento que al poner una etiqueta de humanoid, primero, pues muchos, o sea, es como si cualquiera que suba una foto suya ahora tiene que poner humanoid","source":"participant2.txt"}],"theme":2},"human-made label risks becoming deceptive when verification is unclear":{"quotes":[{"text":"Cómo alguien va a subir, qué tal si alguien sí quiere, su propósito es tener un buen de views y no quiere que la gente sepa que ese AI,","source":"participant2.txt"}],"theme":2},"human-made label enforces belief that the value of authenticity is already in crisis":{"quotes":[{"text":"Entonces ahí entras en otro problema de, pues, cómo lo compruebas, o sea, cómo compruebas que alguien sí está subiendo algo de verdad","source":"participant2.txt"}],"theme":2},"sees disclosure as an industrial standard rather than a moral act.":{"quotes":[{"text":"Pues puedes crearte un hashtag tú Pero es verdad que ArtStation Sí que las tiene Y las tiene desde hace ya Bastantitos años","source":"participant3.txt"}],"theme":2},"in response to social issues, labels become an urgent standard defense":{"quotes":[{"text":"Entonces Así como que Cierto que Debería estar Estandarizado Este tipo de Etiquetas A la hora de Generar contenido En redes sociales","source":"participant3.txt"}],"theme":2},"as ai becomes the norm, human-made work will require its own label":{"quotes":[{"text":"Estos tags Pues quizás Lo estandarizado En unos años Es que pues todo Este hecho Con inteligencia artificial ¿No? Entonces quizás Lo que puede llegar A pasar Es lo contrario ¿No?","source":"participant3.txt"}],"theme":2},"labels as first-line defence against misuse":{"quotes":[{"text":"Este label Quizás no sea La defensa Última Ante Lo legal O ante El mal uso De tu imagen Pero por lo menos Si es un primer filtro","source":"participant3.txt"}],"theme":2},"labels are a temporary perceptual aid, not a permanent requirement.":{"quotes":[{"text":"Sin Ya quizás Ni siquiera Necesitemos los labels Sin Ya vamos A interiorizar Tanto Lo que está hecho De lo que no","source":"participant3.txt"}],"theme":2},"labels protect against deception / “labels safeguard vulnerable audiences”":{"quotes":[{"text":"La misma Instagram ya te diga, pues esto tiene EI y esto no, o sea, que realmente, porque hay mucha gente que, pues sí se quiere, como te digo, engañarse con cosas que parecen muy reales y realmente no lo son.","source":"participant4.txt"}],"theme":2},"perceived penalty for disclosure in artistic fields / “label can harm visibility and opportunity”":{"quotes":[{"text":"en las plataformas de música también te bajan las setlists, las playlists, por el hecho de estar con creación de inteligencia artificial.","source":"participant6.txt"}],"theme":2},"sees labels as a solution to restore user agency":{"quotes":[{"text":"está bien mencionar que es inteligencia artificial, porque hoy en día ya no se sabe qué es lo que es inteligencia artificial, qué es lo que es real y qué es lo que no es real.","source":"participant6.txt"}],"theme":2},"ethical imperative for high-impact content / “for news and socially impactful media, labels are mandatory”":{"quotes":[{"text":"Entonces, para temas de noticias, para temas que pueden impactar a la sociedad como tal, vendría re bien que diga en algún momento una marca de agua, que es inteligencia artificial.","source":"participant6.txt"}],"theme":2},"“labels need nuance” / desire for percentage disclosure":{"quotes":[{"text":"Claro, es como que esto fue creado con, no sé, estos pros y se generó tal por ciento con inteligencia artificial.","source":"participant6.txt"}],"theme":2},"“human-made label is comforting but must be aeshtetically subtle”":{"quotes":[{"text":"Sí, igual sería interesante, ¿viste? Como porque ahora no se sabe qué es lo que es inteligencia artificial y qué es hecho por un humano. Pero igual, de la misma manera, quizás no tan grande, porque igual es raro, ¿viste?","source":"participant6.txt"}],"theme":2},"curiosity towards ai as a creative tool":{"quotes":[{"text":"La verdad es que siempre estoy, sí, estoy muy curioso, o sea,","source":"participant2.txt"}],"theme":3},"negotiating adoption while protecting creative agency":{"quotes":[{"text":"I think right now I’m in a kind of resistance. To say, no, I’m not going to win. And I’m going to do it. And I’m like this. Yes, I’m in my resistance. But how long can I last?","source":"participant1.txt"}],"theme":3},"curiosity towards ai in tension with his ethical commitment.":{"quotes":[{"text":"La verdad es que siempre estoy, sí, estoy muy curioso, o sea, sé todo el como tema justo de que muchas controversias y tema entre los artistas y ella y este","source":"participant2.txt"}],"theme":3},"ai accepted as a reference tool, but not a creative author":{"quotes":[{"text":"tengo más bien, tengo mucho más interés que uso, ya sabes, como que nada más no me ha dado tiempo de investigar,","source":"participant2.txt"}],"theme":3},"ai for ideation is not a priority":{"quotes":[{"text":"tengo más bien, tengo mucho más interés que uso, ya sabes, como que nada más no me ha dado tiempo de investigar,","source":"participant2.txt"}],"theme":3},"3d and ai as mediums of expression, not identity threats":{"quotes":[{"text":"Creo Más que nada Un poco de 3D","source":"participant3.txt"}],"theme":3},"ai explored as a technical curiosity, not as creative input":{"quotes":[{"text":"Las he usado Por curiosidad Para un poco Tantear las herramientas Ver sus capacidades Ver sus limitaciones Pero a nivel profesional Nunca las he usado Sí","source":"participant3.txt"}],"theme":3},"accepts ai in the workflow but rejects ai as final author":{"quotes":[{"text":"Entonces sí es de verdad que esta plataforma sí protegía mucho El uso de inteligencia artificial De lo que está hecho por ti ¿No? O sea realmente lo que interesa en esta plataforma es lo que tú hagas","source":"participant3.txt"}],"theme":3},"ai lacks intentionality and interpretation":{"quotes":[{"text":"Discerniendo Lo que es real De lo que no es La imagen Me parece Bastante Real","source":"participant3.txt"}],"theme":3},"ai doesn’t create, it recombines.":{"quotes":[{"text":"Basándose En Monet Pero recordemos Que al final De cuentas Un artista Hace una construcción De lo que ve","source":"participant3.txt"}],"theme":3},"ai threatens labor-based creative professions":{"quotes":[{"text":"Pues nos da Nos da en jaque ¿No? A los renderistas","source":"participant3.txt"}],"theme":3},"efficiency vs craft value tension":{"quotes":[{"text":"Pues esta inteligencia artificial Seguramente lo hizo En Cinco minutos ¿No? ¿Y cuánto se tarda Un renderista En hacer esto? Dos días Si le mete Prisa","source":"participant3.txt"}],"theme":3},"ai is a threat when it replaces process, not when it replaces ideas":{"quotes":[{"text":"En Cinco minutos ¿No? ¿Y cuánto se tarda Un renderista En hacer esto? Dos días Si le mete Prisa","source":"participant3.txt"}],"theme":3},"ai is fine as an internal tool but not as a co-author of the artifact.":{"quotes":[{"text":"De hecho lo que se busca Hoy en día Es que en procesos Más técnicos Tediosos Se usen estas herramientas Para acelerar El flujo de trabajo","source":"participant3.txt"}],"theme":3},"ai is a threat when it replaces process":{"quotes":[{"text":"Pues esta inteligencia artificial Seguramente lo hizo En Cinco minutos ¿No? ¿Y cuánto se tarda Un renderista En hacer esto?","source":"participant3.txt"}],"theme":3},"manipulability of narratives using ai":{"quotes":[{"text":"Utilizar estas retóricas En pos De política En pos De cosas Pues un poco Más maquiavélicas","source":"participant3.txt"}],"theme":3},"legal vulnerability caused by ai":{"quotes":[{"text":"Una brecha Legal Por autos Que incluso Los abogados Saben Aterrizar Porque al final Este Pues pueden usar Tu voz Sin tu consentimiento","source":"participant3.txt"}],"theme":3},"perceived irrelevance of ai to current creative practice":{"quotes":[{"text":"Quizás A mí A mí no me llama La atención ¿Sabes? Reconozco el potencial De la herramienta Pero hasta ahorita Es potencial Hasta ahorita","source":"participant3.txt"}],"theme":3},"doesn't consider ai as a serious tool until it becomes a clear industry norm":{"quotes":[{"text":"No hay nada Que en mi Específica área Sea algo Totalmente Este Necesario Usar","source":"participant3.txt"}],"theme":3},"resists replacing his work with ai partly because of the time, money, and effort invested in learning his craft":{"quotes":[{"text":"Lo que he pagado Por aprender Lo que Lo que he hecho Por aprender Sino porque Hoy en día No es algo Que sirva Al 100% Si no Es una cuestión De prueba y error","source":"participant3.txt"}],"theme":3},"ai tools perceived as valid for factual accuracy, not emotional authenticity":{"quotes":[{"text":"right now i’m writing a book so i’m asking some information about the 19th century uh how the how women were perceived in the 19th century more mostly in the uk and scotland","source":"participant5.txt"}],"theme":3},"ai as a visualization tool for world-building":{"quotes":[{"text":"AI is showing you what can possibly be, so it doesn’t make me mad, but it’s not something that I will use constantly, because I, when I read a book, I like to also use my imagination,","source":"participant5.txt"}],"theme":3},"ai as an experimentation tool":{"quotes":[{"text":"Una vez hice eso, nada más, pero para experimentar cosas nuevas.","source":"participant4.txt"}],"theme":3},"tool-based recognition of skill (“skill in prompting still belongs to the human”)":{"quotes":[{"text":"en la línea realista de los renders de arquitectura. Siento que está ahí. No se mira","source":"participant4.txt"}],"theme":3},"“ai as the lazy teammate”":{"quotes":[{"text":"Es como sabes, cuando haces un trabajo en equipo, en la UNI, y hay alguien que no hizo casi nada y aún así está, pues ahí en la lista del equipo, ¿no?","source":"participant4.txt"}],"theme":3},"ai as a compensatory tool / “ai supports creators lacking specific skills”":{"quotes":[{"text":"por ejemplo yo, que a veces necesito hacer un bosquejo de algún sketch, pero no sé dibujar bien, a un render, y no tengo las habilidades como para aprender otro programa, que esté la IAI y más o menos darle instrucciones y que muestre más o menos lo que tenía en mente, pues eso se me hace bien, ¿no?","source":"participant4.txt"}],"theme":3},"ai as an assistant for workload / task delegation":{"quotes":[{"text":"También como asistente parecido a un manager para no hacer todo porque al ser artista independiente es mucho el trabajo y a veces quedan áreas sin completar y la AI ayuda bastante en eso.","source":"participant6.txt"}],"theme":3},"plural tool ecosystem / “multiple ai tools integrated into workflow”":{"quotes":[{"text":"he usado distintos tipos de inteligencia artificial, entre a horas uno, para también generar videos, no me acuerdo la otra.","source":"participant6.txt"}],"theme":3},"ai use is okay in low stakes content":{"quotes":[{"text":"Pero, por ejemplo, en caso de que fuera contenido como memes, como cosas para causar conmoción y cosas similares o cosas de trabajo, como marketing y cosas que te hacen más fácil el trabajo en sí","source":"participant6.txt"}],"theme":3},"ai positive impact on production and scalability, improves work and time":{"quotes":[{"text":"Positivamente, completamente. Ok, lo ha hecho más productivo, más rápido. Eficiente. Más rápido, mucho más productivo.","source":"participant6.txt"}],"theme":3},"audience lacks critical visual discernment":{"quotes":[{"text":"And I’m shocked by the people who comment on images like this, like, oh, how beautiful the space is, it looks amazing,","source":"participant1.txt"}],"theme":4},"concern about future misuse and societal manipulation":{"quotes":[{"text":"Because right now I think we are in a moment where the images that are presented are very innocent. But what is going to happen when this is taken to another level?","source":"participant1.txt"}],"theme":4},"believes high-reach creators can exploit media to deceive":{"quotes":[{"text":"But I do think that maybe people who have more media reach also benefit from deceiving the public on certain occasions. And that’s not new, right?","source":"participant1.txt"}],"theme":4},"audience seeks pleasurable illusion over truth":{"quotes":[{"text":"And apart from that, people love to be deceived. I mean, that’s a fact. That’s why there are so many AI consumers. Not everyone bets on honesty and truth. We don’t like truth. We love all fiction.","source":"participant1.txt"}],"theme":4},"fear of a society losing critical judgment when confronted with realistic synthetic images":{"quotes":[{"text":"It was a video or a photo of a woman who was getting on a plane and the staff told her that she could not get on her koala, no, it was not a koala, sorry, it was a kangaroo","source":"participant1.txt"}],"theme":4},"sense of betrayal when institutions adopt ai instead of supporting human artists":{"quotes":[{"text":"I think that we can see that there are a lot of people who are not identifying with AI with drawing made by artists. And they don’t realize it, and there are even governmental institutions that are using AI in their campaigns","source":"participant1.txt"}],"theme":4},"believes some content creators can exploit media to deceive":{"quotes":[{"text":"que si no lo pones y estás subiendo algo, estás medio engañando a la gente, en mi opinión, o sea, si no pones, porque a veces lo que yo hago justo es como ver una imagen y si algo me salta como, o un video y luego esto suena raro","source":"participant2.txt"}],"theme":4},"labels are a necessity because audiences are impressed easily":{"quotes":[{"text":", pero siento que entre más videos súper realistas que suban AI, la gente, pues la gente creo que le impresiona ahorita nada más","source":"participant2.txt"}],"theme":4},"social media dynamics do not support authenticity claims":{"quotes":[{"text":"Entonces ahí entras en otro problema de, pues, cómo lo compruebas, o sea, cómo compruebas que alguien sí está subiendo algo de verdad, ya sabes","source":"participant2.txt"}],"theme":4},"ai's impact is perceived as social rather than technical":{"quotes":[{"text":"como Autodesk, creo que ya está implementando cosas que no he usado directamente, que yo sepa, o sea, no sé si algunas tools, digamos, ya, ya tienen AI, yo ni lo sé","source":"participant2.txt"}],"theme":4},"authorial legitimacy depends on platform governance, not personal morality":{"quotes":[{"text":"Entonces sí es de verdad que esta plataforma sí protegía mucho El uso de inteligencia artificial De lo que está hecho por ti ¿No?","source":"participant3.txt"}],"theme":4},"fear of losing collective ability to tell real from fake":{"quotes":[{"text":"Nos vamos a delimitar En lo que No podremos marcar la línea En lo que es real De lo que No lo es","source":"participant3.txt"}],"theme":4},"sees social media as an ecosystem where identity gets distorted. ai is not the original problem":{"quotes":[{"text":"De inteligencia artificial Para acá Sino es algo que ya existe Desde que Comenzaron a salir Las redes sociales ¿No? La cuestión de Tú puedes proyectar Algo que no eres","source":"participant3.txt"}],"theme":4},"sees social media as a space where authenticity is already unstable":{"quotes":[{"text":"Algo que no eres En En redes sociales","source":"participant3.txt"}],"theme":4},"fear of political and harmful misuse":{"quotes":[{"text":"Todo lo que involucra Simulacro Simulación De lo que es real De lo que no es Y esto se puede utilizar Para retóricas Políticas Para retóricas Un poco malignas Entonces","source":"participant3.txt"}],"theme":4},"believes people are already overwhelmed by curated, idealized realities.":{"quotes":[{"text":"De discernir Lo que es real Y de lo que no Porque somos Una sociedad Hipersensible Por el hecho De que existen Las redes sociales","source":"participant3.txt"}],"theme":4},"media performance of perfection undermines trust":{"quotes":[{"text":"Yo tengo la vida Perfecta Yo tengo el cuerpo Perfecto Yo no tengo Nada absolutamente Malo en mi vida Y eso es lo que tú Proyectas A tus redes sociales Pero en el fondo Puedes estar pasando Un infierno","source":"participant3.txt"}],"theme":4},"labels signal moral character and artistic integrity.":{"quotes":[{"text":"so when i the fact that is out there the label that ai created or co-created or assisted or whatever gives you an idea of the person of the the type of creator that that that they are","source":"participant5.txt"}],"theme":4},"mandatory enforcement increases trust in the label system":{"quotes":[{"text":"hat are some some uh platforms are making you use them like if you don’t use it and you use ai they will strike you uh so i’m i’m actually all about that like i agree with that you","source":"participant5.txt"}],"theme":4},"platform automated labelling label exaggerates ai’s contribution / “label inflates ai credit”":{"quotes":[{"text":"Y a veces Instagram ya te dice, no, pues esto contiene EI, ¿no? Y me hace sentir como que, ah, no mames, ahora la gente va a pensar que casi toda la foto de ahí es EI, ¿no?","source":"participant4.txt"}],"theme":4}}
+  </script>
 
-  // 2. YOUR FIREBASE CONFIGURATION (PASTE YOUR KEYS HERE)
-  // ---------------------------------------------------
-  const firebaseConfig = {
-    apiKey: "AIzaSyD... YOUR API KEY ...",
-    authDomain: "your-project.firebaseapp.com",
-    projectId: "your-project-id",
-    storageBucket: "your-project.appspot.com",
-    messagingSenderId: "123456789",
-    appId: "1:123456789:web:abc123456"
-  };
-  // ---------------------------------------------------
+  <script>
+    // --- STORAGE KEYS ---
+    const STORAGE_KEY_BOARD = 'codebookLayout_v25_fixed_final';
+    const STORAGE_KEY_QUOTES = 'codebookQuotesMap_v25_fixed_final';
+    const STORAGE_KEY_THEMEMAP = 'codebookThemeMap_v25_fixed_final';
+    const STORAGE_KEY_PLAYGROUND = 'codebookPlaygroundLayout_v25_fixed_final';
+    const STORAGE_KEY_TITLES = 'codebookThemeTitles_v25_fixed_final';
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+    // --- STATE ---
+    let quotesMap = {}; 
+    let codeThemeMap = {}; 
+    let currentTheme = 1;
+    let autoSyncEnabled = false;
+    let totalThemes = 4;
 
-  // Reference to HTML elements
-  const form = document.getElementById('uploadForm');
-  const postsContainer = document.getElementById('postsContainer');
-
-  // 3. LOGIC TO SAVE DATA
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
+    // --- UTILS ---
+    const normalize = (s) => (s || '').trim().toLowerCase();
     
-    const name = document.getElementById('userName').value;
-    const message = document.getElementById('userMessage').value;
-    const btn = form.querySelector('button');
+    // Default Theme Titles
+    let themeTitles = {
+      1: "Theme 1. Sense of Authorship rooted in Human Ideation",
+      2: "Theme 2. Labels are treated as signals that allocate authorship, agency, legitimacy.",
+      3: "Theme 3 - AI is accepted as a production tool, but resisted as a co-author with creative intent",
+      4: "Theme 4 - The platform social dynamics that influence the usage and distribution of AI generated content"
+    };
 
-    try {
-        btn.textContent = "Posting...";
-        btn.disabled = true;
+    // --- DOM REFERENCES ---
+    const boardContainer = document.getElementById('board');
+    const modalBackdrop = document.getElementById('modalBackdrop');
+    const quoteModal = document.getElementById('quoteModal');
+    const pgModal = document.getElementById('pgModal');
+    
+    // --- INITIAL DATA LOAD ---
+    // (Existing PRESET_CODES logic unchanged)
+    const PRESET_CODES = [
+      { t:1, c: "Openness / freedom of circulation" },
+      { t:1, c: "Disapproval of reliance on AI for creative ideation" },
+      { t:1, c: "Sees content-creator role as marginal to core artistic identity" },
+      { t:1, c: "AI disrupts the ability to evaluate artistic authorship" },
+      { t:1, c: "human made content is nourishing" },
+      { t:1, c: "Artistic identity grounded in intrinsic personal expression" },
+      { t:1, c: "Ethical awareness as creative identity" },
+      { t:1, c: "Values clarity to prevent authorship and rights disputes" },
+      { t:1, c: "Uses social media as professional showcase" },
+      { t:1, c: "identity anchored in purpose/professionalism" },
+      { t:1, c: "his work expresses ideas, not his inner emotional state." },
+      { t:1, c: "Uses social media for professional visibility, not persona building" },
+      { t:1, c: "Professional authorship is kept separate from AI influence" },
+      { t:1, c: "Human talent is assumed real within trusted communities" },
+      { t:1, c: "believes time and effort produce authenticity" },
+      { t:1, c: "Human authorship anchored in personal narrative rather than technical craft" },
+      { t:1, c: "Human Intent vs. AI Autonomy (“Human objective determines perceived legitimacy”)" },
+      { t:1, c: "Reluctance to Disclose Minor AI Use" },
+      { t:1, c: "Creator Identity Threatened by Over-labeling" },
+      { t:1, c: "Reliance on social cues to identify AI" },
+      { t:1, c: "Multiplatform creator identity" },
+      { t:1, c: "Artistic primary authorship (“I am an independent artist-composer”)" },
+      { t:1, c: "Platform dependency for visibility (“Algorithmic pressure to produce visuals”)" },
+      { t:1, c: "Visual content as secondary to the true creative product (“Visuals support music”)" },
+      { t:1, c: "AI visual generation 'skills' as a threat" },
+      { t:1, c: "Aesthetic Resistance to large labels/ “Large labels interfere with presentation”" },
+      { t:1, c: "“Label erases human creativity” / Fear of Misattributed Authorship" },
+      { t:1, c: "AI increases speed, efficiency, cost, and reduces creative bottlenecks" },
+      { t:1, c: "“Creativity still comes from me” / Assertion of human primacy" },
+      { t:1, c: "Fear of losing critical judgement / ai as a threat to professional visual discernment" },
+      { t:1, c: "Perfection as a cue of synthetic origin" },
+      { t:1, c: "Artist identity rooted in idea generation" },
+      { t:1, c: "Ethical expectation of transparency in creative authorship" },
+      { t:1, c: "Labels are a moral practice" },
+      { t:1, c: "Fear that AI-created final outputs undermine the craft." },
+      { t:1, c: "Frustration towards the loss of creaive agency in ideation" },
+      { t:1, c: "fear of losing the capacity to imagine without AI" },
+      { t:1, c: "Hope that human made art will be more valued for its effort and quality" },
+      { t:1, c: "wants clarity and specificity in creative disclosure" },
+      { t:1, c: "Values representation of creative labor" },
+      { t:1, c: "Audiences will eventually sharpen their eye to distinguish human vs AI." },
+      { t:1, c: "Creative Anxiety / “If AI can do this, what happens to human creativity?”" },
+      { t:2, c: "Perception ai images/ labels conflict from unrealistic AI-generated standards" },
+      { t:2, c: "Labels seen as a plausible practice of maintaining creator–audience trust" },
+      { t:2, c: "Perceives AI-generated imagery as economically displacing illustrators" },
+      { t:2, c: "Need for labels to show her true value over AI content" },
+      { t:2, c: "AI-Assisted label means a human gave idea to the machine" },
+      { t:2, c: "“Made with AI” label as meaning that the image has no human-originated creative input" },
+      { t:2, c: "Co-created with AI label highlights ambiguity" },
+      { t:2, c: "Perceives disclosure as credibility signals" },
+      { t:2, c: "Sees labels as fillters in an information stream" },
+      { t:2, c: "AI-generated image: Hyper-realism creates uncertainty" },
+      { t:2, c: "AI-Assisted label restores a line between image and reality" },
+      { t:2, c: "Creators rely on subtle visual logic to detect authenticity" },
+      { t:2, c: "Imperfections become diagnostic cues of fakeness" },
+      { t:2, c: "AI art image challenges trust in his own visual judgment" },
+      { t:2, c: "Labels help confirm what the eye cannot trust" },
+      { t:2, c: "interior design image AI output perceived as technically competent but not real" },
+      { t:2, c: "AI is already common in architectural visualization." },
+      { t:2, c: "AI label normalizes synthetic content in professional workflows" },
+      { t:2, c: "AI perfection destabilizes trust in authorship" },
+      { t:2, c: "Platform labels compete with creator reputation as signals of truth." },
+      { t:2, c: "Rejects co-creation because AI lacks human imperfection" },
+      { t:2, c: "Sees co-creation with AI as incompatible with artistic intention" },
+      { t:2, c: "Feels co-creation exaggerates AI’s artistic agency" },
+      { t:2, c: "Requires quantifiable creative effort to accept co-creation." },
+      { t:2, c: "co-created label highlights ambiguity of percentage of human authorship" },
+      { t:2, c: "Labels matter only when AI realism fools perception" },
+      { t:2, c: "AI content is like 'fast-food'" },
+      { t:2, c: "Context-dependent emotional detachment" },
+      { t:2, c: "AI-assisted label amplifies perceived discomfort" },
+      { t:2, c: "AI-assisted triggers conditonal appreciation" },
+      { t:2, c: "'Made with AI' label accepted under the interior design context" },
+      { t:2, c: "Co-created label is acceptable in fictional or world-building contexts" },
+      { t:2, c: "Co-created label preserves human authorship as the origin point" },
+      { t:2, c: "AI use in high-art formats threatens authenticity" },
+      { t:2, c: "AI-generated Label reduces perceived authenticity" },
+      { t:2, c: "ai generated label triggers instant disinterest" },
+      { t:2, c: "AI use accepted in low-stakes, playful, non-professional contexts" },
+      { t:2, c: "authorship only matters when the image is artistic or expressive." },
+      { t:2, c: "“Made with AI” does not reduce value because the goal isn’t artistic authorship" },
+      { t:2, c: "AI feels appropriate in functional contexts" },
+      { t:2, c: "Low-stakes functional images = label is normalized" },
+      { t:2, c: "Label Does Not Threaten Professional Identity in Non-Artistic Tasks" },
+      { t:2, c: "Technical Acceptance (“AI fits architectural visualization norms”)" },
+      { t:2, c: "Co-Creative with AI label amplifies loss or perceived human authorship" },
+      { t:2, c: "Proportionality of AI Use (“Percentage matters”)" },
+      { t:2, c: "Context-dependent acceptance of labels / “Label is fine when AI is the medium”" },
+      { t:2, c: "Hyperreal AI triggers concern / “Realistic AI + label = perceptual alarm”" },
+      { t:2, c: "labels become a warning when context is of impact" },
+      { t:2, c: "need for clarification in percentage, the extent AI was used" },
+      { t:2, c: "High realism perception despite the AI-generated label, suspicion it is real" },
+      { t:2, c: "'AI-generated' label becomes associated with possible fakery" },
+      { t:2, c: "'AI-assisted' label when AI is a creative extension" },
+      { t:2, c: "'AI-Assisted' blurs authorship boundaries enough to enable plausible deceit." },
+      { t:2, c: "Collaborative Authorship Interpretation / “Co-created implies joint effort”" },
+      { t:2, c: "AI-generated label maintains trust and awareness in realistic but synthetic media" },
+      { t:2, c: "Labels as a practice of maintaining creator–audience trust" },
+      { t:2, c: "Sees labels as a solution to restore user agency sees labels as segmentation cues that sort audiences by content preference" },
+      { t:2, c: "Human-made label frames creation as a competence of identities with AI" },
+      { t:2, c: "Human-made label risks becoming deceptive when verification is unclear" },
+      { t:2, c: "human-made label enforces belief that the value of authenticity is already in crisis" },
+      { t:2, c: "Sees disclosure as an industrial standard rather than a moral act." },
+      { t:2, c: "In response to social issues, labels become an urgent standard defense" },
+      { t:2, c: "As AI becomes the norm, human-made work will require its own label" },
+      { t:2, c: "Labels as first-line defence against misuse" },
+      { t:2, c: "Labels are a temporary perceptual aid, not a permanent requirement." },
+      { t:2, c: "anticipates a future where human-made label becomes a valuable" },
+      { t:2, c: "Labels protect against deception / “Labels safeguard vulnerable audiences”" },
+      { t:2, c: "Perceived Penalty for Disclosure in Artistic Fields / “Label can harm visibility and opportunity”" },
+      { t:2, c: "Sees labels as a solution to restore user agency" },
+      { t:2, c: "Ethical Imperative for High-Impact Content / “For news and socially impactful media, labels are mandatory”" },
+      { t:2, c: "“Labels need nuance” / Desire for percentage disclosure" },
+      { t:2, c: "“Human-made label is comforting but must be aeshtetically subtle”" },
+      { t:3, c: "Curiosity towards AI as a creative tool" },
+      { t:3, c: "Negotiating adoption while protecting creative agency" },
+      { t:3, c: "Curiosity towards AI in tension with his ethical commitment." },
+      { t:3, c: "AI accepted as a reference tool, but not a creative author" },
+      { t:3, c: "AI for ideation is not a priority" },
+      { t:3, c: "AI as a scaffolding technique" },
+      { t:3, c: "3D and AI as mediums of expression, not identity threats" },
+      { t:3, c: "AI explored as a technical curiosity, not as creative input" },
+      { t:3, c: "Accepts AI in the workflow but rejects AI as final author" },
+      { t:3, c: "Sees AI as a mechanism for realistic simulation" },
+      { t:3, c: "AI lacks intentionality and interpretation" },
+      { t:3, c: "AI doesn’t create, it recombines." },
+      { t:3, c: "AI threatens labor-based creative professions" },
+      { t:3, c: "Efficiency vs craft value tension" },
+      { t:3, c: "AI is a threat when it replaces process, not when it replaces ideas" },
+      { t:3, c: "AI is fine as an internal tool but not as a co-author of the artifact." },
+      { t:3, c: "AI is a threat when it replaces process" },
+      { t:3, c: "Manipulability of narratives using AI" },
+      { t:3, c: "Legal vulnerability caused by AI" },
+      { t:3, c: "Perceived irrelevance of AI to current creative practice" },
+      { t:3, c: "Doesn't consider AI as a serious tool until it becomes a clear industry norm" },
+      { t:3, c: "resists replacing his work with AI partly because of the time, money, and effort invested in learning his craft" },
+      { t:3, c: "AI accepted as an information-retrieval tool" },
+      { t:3, c: "AI tools perceived as valid for factual accuracy, not emotional authenticity" },
+      { t:3, c: "AI as a visualization tool for world-building" },
+      { t:3, c: "AI as an experimentation tool" },
+      { t:3, c: "Tool-Based Recognition of Skill (“Skill in prompting still belongs to the human”)" },
+      { t:3, c: "AI as an edition Tool" },
+      { t:3, c: "“AI as the lazy teammate”" },
+      { t:3, c: "AI as a compensatory tool / “AI supports creators lacking specific skills”" },
+      { t:3, c: "AI as an assistant for workload / task delegation" },
+      { t:3, c: "Plural tool ecosystem / “Multiple AI tools integrated into workflow”" },
+      { t:3, c: "AI use is okay in low stakes content" },
+      { t:3, c: "AI positive impact on production and scalability, improves work and time" },
+      { t:3, c: "AI as Cost-Saving Tool" },
+      { t:4, c: "Audience lacks critical visual discernment" },
+      { t:4, c: "Concern about future misuse and societal manipulation" },
+      { t:4, c: "Believes high-reach creators can exploit media to deceive" },
+      { t:4, c: "Audience seeks pleasurable illusion over truth" },
+      { t:4, c: "Fear of a society losing critical judgment when confronted with realistic synthetic images" },
+      { t:4, c: "Sense of betrayal when institutions adopt AI instead of supporting human artists" },
+      { t:4, c: "Believes some content creators can exploit media to deceive" },
+      { t:4, c: "Labels are a necessity because audiences are impressed easily" },
+      { t:4, c: "Social media dynamics do not support authenticity claims" },
+      { t:4, c: "AI's impact is perceived as social rather than technical" },
+      { t:4, c: "Authorial legitimacy depends on platform governance, not personal morality" },
+      { t:4, c: "fear of losing collective ability to tell real from fake" },
+      { t:4, c: "sees social media as an ecosystem where identity gets distorted. Ai is not the original problem" },
+      { t:4, c: "Sees social media as a space where authenticity is already unstable" },
+      { t:4, c: "Fear of political and harmful misuse" },
+      { t:4, c: "believes people are already overwhelmed by curated, idealized realities." },
+      { t:4, c: "Media performance of perfection undermines trust" },
+      { t:4, c: "Labels signal moral character and artistic integrity." },
+      { t:4, c: "Mandatory enforcement increases trust in the label system" },
+      { t:4, c: "Platform automated labelling Label exaggerates AI’s contribution / “Label inflates AI credit”" }
+    ];
 
-        // Add a new document to collection "posts"
-        await addDoc(collection(db, "posts"), {
-            name: name,
-            message: message,
-            timestamp: serverTimestamp()
+    // --- INIT BOARD ---
+    function initBoard() {
+      // 1. Load Titles
+      const savedTitles = localStorage.getItem(STORAGE_KEY_TITLES);
+      if(savedTitles) {
+        try { 
+           const parsed = JSON.parse(savedTitles);
+           themeTitles = {...themeTitles, ...parsed};
+           const keys = Object.keys(themeTitles).map(k => parseInt(k));
+           if(keys.length > 0) totalThemes = Math.max(4, ...keys);
+        } catch(e) {}
+      }
+
+      // Sync titles to main board headers
+      for(let t=1; t<=4; t++) {
+         const colHeader = document.querySelector(`.column[data-theme="${t}"] .col-title`);
+         if(colHeader && themeTitles[t]) colHeader.textContent = themeTitles[t];
+      }
+
+      const savedThemeMap = localStorage.getItem(STORAGE_KEY_THEMEMAP);
+      if(savedThemeMap) {
+        try { codeThemeMap = JSON.parse(savedThemeMap); } catch(e){}
+      }
+
+      const savedQuotes = localStorage.getItem(STORAGE_KEY_QUOTES);
+      if (savedQuotes) {
+         try { quotesMap = JSON.parse(savedQuotes); } catch(e){ quotesMap = {}; }
+      } else {
+         const embeddedScript = document.getElementById('embeddedQuotesMap');
+         if(embeddedScript) {
+            try { 
+               quotesMap = JSON.parse(embeddedScript.textContent); 
+               localStorage.setItem(STORAGE_KEY_QUOTES, JSON.stringify(quotesMap));
+            } catch(e) { quotesMap = {}; }
+         }
+      }
+
+      const savedBoard = localStorage.getItem(STORAGE_KEY_BOARD);
+      if (savedBoard) {
+        boardContainer.innerHTML = savedBoard;
+      } else {
+        renderPresetBoard();
+      }
+
+      scanBoardForThemes();
+      initSortable();
+      updateCounts();
+      attachQuoteListeners();
+    }
+
+    function renderPresetBoard() {
+      [1,2,3,4].forEach(t => {
+         const el = document.getElementById(`colList${t}`);
+         if(el) el.innerHTML = '';
+      });
+      PRESET_CODES.forEach(item => {
+        createCard(item.c, item.t, true);
+      });
+      saveBoard();
+    }
+
+    function createCard(text, themeId, append = true) {
+      const list = document.getElementById(`colList${themeId}`);
+      if(!list) return;
+
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="card-text">${text}</div>
+        <div class="card-type">code</div>
+        <div class="card-quote"></div>
+        <div class="card-quote-actions"></div>
+      `;
+      refreshCardQuotes(card, text);
+      if(append) list.appendChild(card);
+    }
+
+    function refreshCardQuotes(card, text) {
+      const key = normalize(text);
+      const data = quotesMap[key];
+      const actions = card.querySelector('.card-quote-actions');
+      const quoteBody = card.querySelector('.card-quote');
+      
+      if(data && data.quotes && data.quotes.length > 0) {
+        // Show first quote
+        quoteBody.innerText = data.quotes[0].text;
+        quoteBody.classList.add('visible');
+        
+        actions.innerHTML = `<button class="mini-btn">💬 View all (${data.quotes.length})</button>`;
+        actions.classList.add('visible');
+        actions.querySelector('button').onclick = (e) => {
+           e.stopPropagation();
+           openQuoteModal(text);
+        };
+      } else {
+        quoteBody.classList.remove('visible');
+        actions.classList.remove('visible');
+      }
+    }
+
+    function attachQuoteListeners() {
+      document.querySelectorAll('.card').forEach(card => {
+        const txt = card.querySelector('.card-text').innerText;
+        refreshCardQuotes(card, txt);
+      });
+    }
+
+    function scanBoardForThemes() {
+      // Rebuild map from current DOM
+      for(let t=1; t<=totalThemes; t++) {
+        const list = document.getElementById(`colList${t}`);
+        if(list) {
+          list.querySelectorAll('.card-text').forEach(el => {
+             const txt = el.textContent.trim();
+             if(txt) codeThemeMap[normalize(txt)] = t;
+          });
+        }
+      }
+      // Fallback to preset if not in DOM
+      PRESET_CODES.forEach(p => {
+        if(!codeThemeMap[normalize(p.c)]) codeThemeMap[normalize(p.c)] = p.t;
+      });
+      localStorage.setItem(STORAGE_KEY_THEMEMAP, JSON.stringify(codeThemeMap));
+    }
+
+    function initSortable() {
+      document.querySelectorAll('.card-list').forEach(list => {
+        new Sortable(list, {
+          group: 'cards-shared',
+          animation: 150,
+          ghostClass: 'sortable-ghost',
+          onEnd: () => { 
+            updateCounts(); 
+            saveBoard(); 
+            scanBoardForThemes(); 
+          }
+        });
+      });
+    }
+
+    function updateCounts() {
+      document.querySelectorAll('.column').forEach(col => {
+        const count = col.querySelectorAll('.card').length;
+        const counter = col.querySelector('.card-count');
+        if (counter) counter.innerText = count;
+      });
+    }
+
+    function saveBoard() {
+      localStorage.setItem(STORAGE_KEY_BOARD, boardContainer.innerHTML);
+      localStorage.setItem(STORAGE_KEY_QUOTES, JSON.stringify(quotesMap));
+    }
+
+    // --- QUOTE MODAL ---
+    function openQuoteModal(codeText) {
+      const key = normalize(codeText);
+      const data = quotesMap[key];
+      const title = document.getElementById('modalTitle');
+      const body = document.getElementById('modalBody');
+      
+      title.innerText = codeText;
+      body.innerHTML = '';
+
+      if(!data || !data.quotes || data.quotes.length === 0) {
+        body.innerHTML = '<div class="hint">No quotes found for this code.</div>';
+      } else {
+        data.quotes.forEach((q, idx) => {
+           const div = document.createElement('div');
+           div.className = 'quote-item';
+           div.innerHTML = `
+             <div class="quote-text">${q.text}</div>
+             <div class="quote-meta">Source: ${q.source || 'Unknown'}</div>
+           `;
+           body.appendChild(div);
+        });
+      }
+      
+      modalBackdrop.classList.add('open');
+      quoteModal.classList.add('open');
+    }
+    
+    document.getElementById('closeModalBtn').onclick = () => {
+      modalBackdrop.classList.remove('open');
+      quoteModal.classList.remove('open');
+    }
+
+    // --- PLAYGROUND LOGIC ---
+    
+    const pgSearch = document.getElementById('pgSearch');
+    const pgCodeList = document.getElementById('pgCodeList');
+    const screens = {}; 
+    const filterSelect = document.getElementById('pgSidebarFilter');
+
+    function openPlayground() {
+      pgModal.classList.add('open');
+      document.getElementById('pgBackdrop').classList.add('open');
+      scanBoardForThemes(); 
+      
+      for(let i=1; i<=4; i++) {
+         if(!screens[i]) screens[i] = document.getElementById(`pgTheme${i}Inner`);
+      }
+
+      loadPlaygroundTheme(currentTheme);
+      
+      // Check if we need to auto-populate the playground
+      const screen = ensureScreenExists(currentTheme);
+      if(screen && screen.children.length === 0) {
+         if (currentTheme === 2) {
+            populatePlaygroundGroupsTheme2();
+         } else {
+            populatePlaygroundFromMain(currentTheme);
+         }
+      }
+    }
+
+    function ensureScreenExists(themeId) {
+       if(!screens[themeId]) {
+          const existing = document.getElementById(`pgTheme${themeId}Inner`);
+          if(existing) {
+             screens[themeId] = existing;
+          } else {
+             const inner = document.querySelector('.pg-canvas-inner');
+             const wrap = document.createElement('div');
+             wrap.className = 'pg-canvas-screen';
+             wrap.dataset.theme = themeId;
+             const content = document.createElement('div');
+             content.className = 'pg-screen-content';
+             content.id = `pgTheme${themeId}Inner`;
+             content.dataset.themeId = themeId;
+             wrap.appendChild(content);
+             inner.appendChild(wrap);
+             screens[themeId] = content;
+             
+             wrap.addEventListener('dragover', (e) => { e.preventDefault(); e.dataTransfer.dropEffect = 'copy'; });
+             wrap.addEventListener('drop', (e) => {
+               e.preventDefault();
+               const code = e.dataTransfer.getData('text/plain');
+               if(!code) return;
+               const rect = wrap.getBoundingClientRect();
+               const scrollTop = wrap.scrollTop || 0;
+               const scrollLeft = wrap.scrollLeft || 0;
+               
+               // Assign to this theme map
+               codeThemeMap[normalize(code)] = themeId;
+               localStorage.setItem(STORAGE_KEY_THEMEMAP, JSON.stringify(codeThemeMap));
+
+               addNoteToCanvas(themeId, code, (e.clientX - rect.left) + scrollLeft, (e.clientY - rect.top) + scrollTop);
+               renderSidebarList(themeId);
+             });
+          }
+       }
+       return screens[themeId];
+    }
+
+    function populatePlaygroundGroupsTheme2() {
+       const themeId = 2;
+       const colList = document.getElementById(`colList${themeId}`);
+       if(!colList) return;
+       const cards = Array.from(colList.querySelectorAll('.card .card-text'));
+       if(cards.length === 0) return;
+
+       const container = screens[themeId];
+       container.innerHTML = '';
+
+       const clusters = {
+          'label': { x: 50, y: 50, title: "Labels" },
+          'ai-assisted': { x: 350, y: 50, title: "AI-Assisted" },
+          'co-created': { x: 650, y: 50, title: "Co-Created" },
+          'made with ai': { x: 50, y: 600, title: "Made with AI" },
+          'other': { x: 350, y: 600, title: "Other / General" }
+       };
+
+       Object.values(clusters).forEach(c => {
+          const label = document.createElement('div');
+          label.className = 'group-label';
+          label.textContent = c.title;
+          label.style.left = c.x + 'px';
+          label.style.top = (c.y - 30) + 'px';
+          container.appendChild(label);
+       });
+
+       cards.forEach(card => {
+          const txt = card.textContent.trim();
+          const lower = normalize(txt);
+          let target = clusters['other'];
+
+          if(lower.includes('label')) target = clusters['label'];
+          else if(lower.includes('assist')) target = clusters['ai-assisted'];
+          else if(lower.includes('co-creat') || lower.includes('collabor')) target = clusters['co-created'];
+          else if(lower.includes('made with ai') || lower.includes('generated')) target = clusters['made with ai'];
+
+          const offsetX = (Math.random() * 40);
+          
+          addNoteToCanvas(themeId, txt, target.x + offsetX, target.y);
+          
+          target.y += 60; 
+       });
+       
+       renderSidebarList(themeId);
+    }
+
+    function populatePlaygroundFromMain(themeId) {
+      const colList = document.getElementById(`colList${themeId}`);
+      if(!colList) return;
+      
+      const cards = colList.querySelectorAll('.card .card-text');
+      if(cards.length === 0) return;
+
+      const container = ensureScreenExists(themeId);
+      
+      let containerW = container.offsetWidth;
+      if (containerW < 200) containerW = window.innerWidth - 360; 
+      if (containerW < 400) containerW = 800; 
+
+      const noteW = 190, noteH = 120;
+      const gap = 20;
+      
+      // Force 4 cols if possible
+      let cols = Math.floor((containerW - 40) / (noteW + gap));
+      if (cols < 4) cols = 4; 
+
+      let x = 20, y = 20;
+      let colCount = 0;
+
+      cards.forEach(card => {
+         const txt = card.textContent.trim();
+         addNoteToCanvas(themeId, txt, x, y);
+         
+         colCount++;
+         if(colCount >= cols) {
+            colCount = 0;
+            x = 20;
+            y += noteH + gap;
+         } else {
+            x += noteW + gap;
+         }
+      });
+      renderSidebarList(themeId);
+    }
+
+    function closePlayground() {
+      pgModal.classList.remove('open');
+      document.getElementById('pgBackdrop').classList.remove('open');
+      savePlaygroundState();
+    }
+
+    function savePlaygroundState() {
+       const state = {};
+       for(let t=1; t<=totalThemes; t++) {
+          if(!screens[t]) continue;
+          const notes = [];
+          const groups = [];
+          screens[t].querySelectorAll('.group-label').forEach(g => {
+             groups.push({
+               text: g.textContent,
+               x: g.style.left,
+               y: g.style.top
+             });
+          });
+
+          screens[t].querySelectorAll('.note').forEach(n => {
+             notes.push({
+               code: n.dataset.code,
+               x: n.style.left,
+               y: n.style.top,
+               deg: n.style.transform
+             });
+          });
+          state[t] = { notes, groups };
+       }
+       localStorage.setItem(STORAGE_KEY_PLAYGROUND, JSON.stringify(state));
+    }
+
+    function restorePlaygroundState() {
+       const raw = localStorage.getItem(STORAGE_KEY_PLAYGROUND);
+       if(!raw) return false;
+       try {
+          const state = JSON.parse(raw);
+          let restoredAny = false;
+          Object.keys(state).forEach(tId => {
+             const t = parseInt(tId);
+             if(t > totalThemes) { 
+               totalThemes = t; 
+               themeTitles[t] = `Theme ${t}`; 
+             }
+             const screen = ensureScreenExists(t);
+             const data = state[tId];
+             const notes = Array.isArray(data) ? data : (data.notes || []);
+             const groups = data.groups || [];
+
+             if(notes.length > 0 || groups.length > 0) {
+               screen.innerHTML = '';
+               restoredAny = true;
+               
+               groups.forEach(g => {
+                  const label = document.createElement('div');
+                  label.className = 'group-label';
+                  label.textContent = g.text;
+                  label.style.left = g.x;
+                  label.style.top = g.y;
+                  screen.appendChild(label);
+               });
+
+               notes.forEach(n => {
+                  addNoteToCanvas(t, n.code, parseFloat(n.x), parseFloat(n.y), n.deg);
+               });
+             }
+          });
+          return restoredAny;
+       } catch(e) { return false; }
+    }
+
+    function loadPlaygroundTheme(themeId) {
+      currentTheme = themeId;
+      const titleEl = document.getElementById('pgThemeTitle');
+      titleEl.textContent = themeTitles[themeId] || `Theme ${themeId}`;
+
+      // Re-bind click event with the current theme ID in closure
+      titleEl.onclick = () => promptEditTheme(themeId);
+      
+      document.querySelectorAll('.pg-canvas-screen').forEach(el => el.classList.remove('active'));
+      const activeScreen = document.querySelector(`.pg-canvas-screen[data-theme="${themeId}"]`);
+      if(activeScreen) activeScreen.classList.add('active');
+
+      const dotsContainer = document.getElementById('pgDots');
+      dotsContainer.innerHTML = '';
+      for(let t=1; t<=totalThemes; t++) {
+        const dot = document.createElement('div');
+        dot.className = 'pg-dot' + (t === themeId ? ' active' : '');
+        dot.onclick = () => loadPlaygroundTheme(t);
+        dotsContainer.appendChild(dot);
+      }
+
+      renderSidebarList(themeId);
+      
+      const screen = ensureScreenExists(themeId);
+      // Only auto-populate if TRULY empty (no notes)
+      if(screen.querySelectorAll('.note').length === 0) {
+         if(themeId === 2) populatePlaygroundGroupsTheme2();
+         else populatePlaygroundFromMain(themeId);
+      }
+    }
+
+    document.getElementById('pgPrevBtn').onclick = () => {
+       let next = currentTheme - 1;
+       if(next < 1) next = totalThemes;
+       loadPlaygroundTheme(next);
+    };
+    document.getElementById('pgNextBtn').onclick = () => {
+       let next = currentTheme + 1;
+       if(next > totalThemes) next = 1;
+       loadPlaygroundTheme(next);
+    };
+
+    // Edit Title
+    function promptEditTheme(tId) {
+       const old = themeTitles[tId] || `Theme ${tId}`;
+       const newTitle = prompt("Edit Theme Title:", old);
+       if(newTitle) {
+          themeTitles[tId] = newTitle;
+          localStorage.setItem(STORAGE_KEY_TITLES, JSON.stringify(themeTitles));
+          
+          // Update main board
+          const colHeader = document.querySelector(`.column[data-theme="${tId}"] .col-title`);
+          if(colHeader) colHeader.textContent = newTitle;
+
+          // Update playground if open
+          if(currentTheme === tId) {
+             document.getElementById('pgThemeTitle').textContent = newTitle;
+          }
+       }
+    }
+    
+    // Attach promptEditTheme globally
+    window.promptEditTheme = promptEditTheme;
+
+    document.getElementById('editThemeBtn').onclick = () => promptEditTheme(currentTheme);
+
+    // Add Theme
+    document.getElementById('addThemeBtn').onclick = () => {
+       totalThemes++;
+       const newId = totalThemes;
+       themeTitles[newId] = `New Theme ${newId}`;
+       localStorage.setItem(STORAGE_KEY_TITLES, JSON.stringify(themeTitles));
+       
+       const board = document.getElementById('board');
+       const col = document.createElement('div');
+       col.className = 'column';
+       col.dataset.theme = newId;
+       col.innerHTML = `
+          <div class="column-header col-theme-5">
+            <div class="header-top">
+              <span class="col-title" onclick="promptEditTheme(${newId})">${themeTitles[newId]}</span>
+              <span class="card-count">0</span>
+            </div>
+          </div>
+          <div class="card-list" id="colList${newId}"></div>
+       `;
+       board.appendChild(col);
+       
+       loadPlaygroundTheme(newId);
+    };
+
+    // Sidebar Filter
+    filterSelect.onchange = () => renderSidebarList(currentTheme);
+
+    function renderSidebarList(themeId) {
+      pgCodeList.innerHTML = '';
+      const filter = normalize(pgSearch.value);
+      const mode = filterSelect.value; // current, unassigned, all
+      
+      const allKeys = Object.keys(codeThemeMap);
+      allKeys.sort();
+
+      const container = screens[themeId];
+      const existingOnCanvas = new Set();
+      if(container) {
+        container.querySelectorAll('.note').forEach(n => {
+          existingOnCanvas.add(normalize(n.dataset.code));
+        });
+      }
+
+      allKeys.forEach(key => {
+        if(filter && !key.includes(filter)) return;
+        
+        const mappedTheme = codeThemeMap[key];
+        
+        // Filtering Logic
+        if (mode === 'current') {
+           if(mappedTheme !== themeId) return;
+        } else if (mode === 'unassigned') {
+           if(mappedTheme !== 0) return;
+        } 
+        // 'all' passes through everything
+
+        let display = key; 
+        const presetMatch = PRESET_CODES.find(p => normalize(p.c) === key);
+        if(presetMatch) display = presetMatch.c; 
+        else display = key.charAt(0).toUpperCase() + key.slice(1);
+
+        // Hide if on canvas
+        if(existingOnCanvas.has(key)) {
+           return; 
+        }
+
+        const item = document.createElement('div');
+        item.className = 'pg-code-item';
+        item.textContent = display;
+        item.draggable = true;
+
+        item.addEventListener('dragstart', (e) => {
+          e.dataTransfer.setData('text/plain', display);
+          e.dataTransfer.effectAllowed = 'copy';
         });
 
-        // Reset form
-        form.reset();
-        btn.textContent = "Post to Board";
-        btn.disabled = false;
-        alert("Posted successfully!");
+        item.ondblclick = () => {
+          // Double click adds to canvas and assigns theme
+          codeThemeMap[key] = themeId;
+          localStorage.setItem(STORAGE_KEY_THEMEMAP, JSON.stringify(codeThemeMap));
+          
+          addNoteToCanvas(themeId, display, 50 + Math.random()*100, 50 + Math.random()*100);
+          renderSidebarList(themeId); 
+        };
 
-    } catch (e) {
-        console.error("Error adding document: ", e);
-        alert("Error! Did you enable Firestore in 'Test Mode' in the Firebase console?");
-        btn.textContent = "Post to Board";
-        btn.disabled = false;
+        pgCodeList.appendChild(item);
+      });
     }
-  });
 
-  // 4. LOGIC TO LOAD DATA (REAL-TIME)
-  // This listener runs automatically whenever the database changes
-  const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
-  
-  onSnapshot(q, (snapshot) => {
-    postsContainer.innerHTML = ""; // Clear current list
+    pgSearch.oninput = () => renderSidebarList(currentTheme);
+
+    function addNoteToCanvas(themeId, text, x, y, rotationString = null) {
+      const container = ensureScreenExists(themeId);
+      let exists = false;
+      container.querySelectorAll('.note').forEach(n => {
+        if(normalize(n.dataset.code) === normalize(text)) exists = true;
+      });
+      if(exists) return;
+
+      const note = document.createElement('div');
+      note.className = 'note';
+      note.dataset.code = text;
+      
+      let rot = rotationString;
+      if(!rot) {
+         const deg = (Math.random() * 6) - 3; 
+         rot = `rotate(${deg}deg)`;
+      }
+      note.style.transform = rot;
+      note.style.left = `${x}px`;
+      note.style.top = `${y}px`;
+
+      note.innerHTML = `
+        <button class="note-x" title="Remove">×</button>
+        <div class="note-title">${text}</div>
+        <div class="note-footer">
+          <button class="mini-btn note-quote-btn">💬 Quotes</button>
+          <span style="font-size:10px; font-weight:900; opacity:0.5;">THEME ${themeId}</span>
+        </div>
+      `;
+
+      note.querySelector('.note-x').onclick = (e) => {
+        e.stopPropagation(); 
+        note.remove();
+        
+        // When removed from canvas, it becomes unassigned? 
+        // Or stays with theme but just off canvas? 
+        // User asked "leave unassigned codes in bar".
+        // Let's assume removing means "Unassign from canvas, keep theme mapping"
+        // It will reappear in sidebar because !existingOnCanvas
+        renderSidebarList(themeId); 
+        
+        if(autoSyncEnabled) syncPlaygroundToMain(themeId);
+      };
+
+      note.querySelector('.note-quote-btn').onclick = (e) => {
+         e.stopPropagation();
+         openQuoteModal(text);
+      };
+
+      makeDraggable(note, container, () => {
+         if(autoSyncEnabled) syncPlaygroundToMain(themeId);
+      });
+      
+      container.appendChild(note);
+
+      const requiredHeight = y + 150; 
+      const currentMin = parseFloat(container.style.minHeight || '0');
+      if(requiredHeight > currentMin) {
+         container.style.minHeight = requiredHeight + 'px';
+      }
+    }
+
+    function makeDraggable(el, container, onDragEnd) {
+      let isDragging = false;
+      let startX, startY, initialLeft, initialTop;
+      
+      el.addEventListener('mousedown', (e) => {
+        if(e.target.tagName === 'BUTTON') return;
+        isDragging = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        initialLeft = el.offsetLeft;
+        initialTop = el.offsetTop;
+        el.style.zIndex = 1000;
+        e.preventDefault();
+      });
+      
+      window.addEventListener('mousemove', (e) => {
+        if(!isDragging) return;
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        let newLeft = initialLeft + dx;
+        let newTop = initialTop + dy;
+        el.style.left = `${newLeft}px`;
+        el.style.top = `${newTop}px`;
+        const currentMin = parseFloat(container.style.minHeight || '0');
+        if(newTop + 150 > currentMin) {
+           container.style.minHeight = (newTop + 150) + 'px';
+        }
+      });
+      
+      window.addEventListener('mouseup', () => {
+        if(isDragging) {
+          isDragging = false;
+          el.style.zIndex = '';
+          if(onDragEnd) onDragEnd();
+        }
+      });
+    }
+
+    function syncPlaygroundToMain(themeId) {
+      const playgroundContainer = screens[themeId];
+      if(!playgroundContainer) return;
+      const mainList = document.getElementById(`colList${themeId}`);
+      if(!mainList) return; 
+
+      const notes = Array.from(playgroundContainer.querySelectorAll('.note'));
+      notes.sort((a, b) => {
+        const ay = a.offsetTop, by = b.offsetTop;
+        if (Math.abs(ay - by) > 40) return ay - by;
+        return a.offsetLeft - b.offsetLeft;
+      });
+
+      mainList.innerHTML = '';
+      if(notes.length > 0) {
+        const playgroundTitle = document.createElement('div');
+        playgroundTitle.className = 'subsection-title';
+        playgroundTitle.innerText = "Playground Layout";
+        mainList.appendChild(playgroundTitle);
+      }
+
+      notes.forEach(n => {
+        createCard(n.dataset.code, themeId, true);
+      });
+
+      updateCounts();
+      saveBoard();
+    }
+
+    document.getElementById('pgManualSyncBtn').onclick = () => {
+      syncPlaygroundToMain(currentTheme);
+      const btn = document.getElementById('pgManualSyncBtn');
+      const old = btn.innerText; btn.innerText = "✅ Synced!";
+      setTimeout(()=> btn.innerText = old, 1000);
+    };
+
+    document.getElementById('pgAutoSync').onchange = (e) => {
+      autoSyncEnabled = e.target.checked;
+      if(autoSyncEnabled) syncPlaygroundToMain(currentTheme);
+    };
+
+    document.getElementById('openPlaygroundBtn').onclick = openPlayground;
+    document.getElementById('closePgBtn').onclick = closePlayground;
+    document.getElementById('pgBackdrop').onclick = closePlayground;
     
-    if(snapshot.empty) {
-        postsContainer.innerHTML = "<p class='text-center w-full text-pastel-gray col-span-full'>No posts yet. Be the first!</p>";
-        return;
+    document.getElementById('resetPresetBtn').onclick = () => {
+      if(confirm("Reset entire board to default preset? This will clear all imported data.")) {
+        localStorage.clear(); 
+        location.reload();
+      }
+    };
+
+    // --- CSV IMPORT LOGIC ---
+    const fileInput = document.getElementById('csvInput');
+    document.getElementById('importBtn').onclick = () => fileInput.click();
+    fileInput.onchange = (e) => {
+      const file = e.target.files?.[0];
+      if(!file) return;
+      Papa.parse(file, {
+        header: true,
+        skipEmptyLines: true,
+        complete: (results) => {
+           handleImport(results.data);
+           fileInput.value = '';
+        }
+      });
+    };
+
+    function handleImport(rows) {
+      if(!rows || rows.length === 0) return;
+      const headers = Object.keys(rows[0]).map(h => normalize(h));
+      let importedQuotes = 0;
+      let newCodes = 0;
+
+      if(headers.includes('tag') && headers.includes('content') && headers.includes('document')) {
+         rows.forEach(row => {
+            const tag = (row.tag || '').trim();
+            const quoteText = (row.content || '').trim();
+            const source = (row.document || '').trim();
+            if(!tag || !quoteText) return;
+            const key = normalize(tag);
+            if(!quotesMap[key]) quotesMap[key] = { quotes: [], theme: null };
+            quotesMap[key].quotes.push({ text: quoteText, source: source });
+            importedQuotes++;
+            if(!codeThemeMap[key]) {
+               codeThemeMap[key] = 0; // Default to 0 (Unassigned)
+               newCodes++;
+            }
+         });
+      }
+      else if(headers.includes('theme') && headers.includes('code')) {
+         rows.forEach(row => {
+            const themeName = (row.theme || '').trim();
+            const code = (row.code || '').trim();
+            if(!code) return;
+            let tid = 0; // Default 0
+            const tNorm = normalize(themeName);
+            if(tNorm.includes('identity')) tid = 1;
+            else if(tNorm.includes('label')) tid = 2;
+            else if(tNorm.includes('tool') || tNorm.includes('production')) tid = 3;
+            else if(tNorm.includes('dynamics') || tNorm.includes('fear') || tNorm.includes('hope')) tid = 4;
+            const key = normalize(code);
+            codeThemeMap[key] = tid;
+            if(!quotesMap[key]) quotesMap[key] = { quotes: [], theme: tid };
+            ['example_1', 'example_2', 'example_3'].forEach((exField, i) => {
+               const txt = row[exField];
+               const src = row[`source_${i+1}`];
+               if(txt && txt.trim()) {
+                 quotesMap[key].quotes.push({ text: txt, source: src });
+                 importedQuotes++;
+               }
+            });
+            // If recognized theme 1-4, add to main board
+            if(tid > 0) {
+               const list = document.getElementById(`colList${tid}`);
+               let found = false;
+               list.querySelectorAll('.card-text').forEach(el => { if(normalize(el.innerText) === key) found = true; });
+               if(!found) createCard(code, tid, true);
+            } else {
+               newCodes++; // Unassigned count
+            }
+         });
+      }
+      else {
+         rows.forEach(row => {
+            const code = row['tag'] || row['code'] || row['Code'];
+            if(code) {
+               const key = normalize(code);
+               if(!codeThemeMap[key]) {
+                 codeThemeMap[key] = 0;
+                 newCodes++;
+               }
+            }
+         });
+      }
+      saveBoard();
+      attachQuoteListeners(); 
+      // Refresh sidebar to show new unassigned codes
+      if(pgModal.classList.contains('open')) {
+          renderSidebarList(currentTheme);
+      }
+      alert(`Import Successful!\nAdded ${importedQuotes} quotes.\nFound ${newCodes} new codes (Unassigned).`);
     }
 
-    snapshot.forEach((doc) => {
-        const data = doc.data();
-        // Create HTML for the card
-        const card = `
-            <div class="bg-gray-dark p-6 rounded-lg border border-pastel-purple/20 animate-fade-in">
-                <h4 class="text-xl font-bold text-pastel-purple mb-2">${escapeHtml(data.name)}</h4>
-                <p class="text-pastel-gray text-sm leading-relaxed">${escapeHtml(data.message)}</p>
-            </div>
-        `;
-        postsContainer.innerHTML += card;
-    });
-  });
+    document.getElementById('exportPdfBtn').onclick = () => {
+       const el = document.body;
+       html2pdf().set({ margin:0, filename:'codebook.pdf', image:{type:'jpeg',quality:0.98}, html2canvas:{scale:2}, jsPDF:{unit:'in', format:'letter', orientation:'landscape'} }).from(el).save();
+    };
 
-  // Helper to prevent XSS attacks (security)
-  function escapeHtml(text) {
-    if(!text) return "";
-    return text
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-  }
-</script>
+    window.onload = () => {
+       initBoard();
+       if(!restorePlaygroundState()) {
+          [1,2,3,4].forEach(t => populatePlaygroundFromMain(t));
+       }
+    };
 
-<script>
-    // Mobile menu toggle
-    const menuButton = document.getElementById('menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    menuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-</script>
-
+  </script>
 </body>
 </html>
