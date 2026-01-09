@@ -116,8 +116,7 @@ const App = () => {
       {/* Minimal Footer */}
       <div className={`h-12 flex items-center justify-between px-4 ${dark ? 'text-gray-300' : 'text-gray-600'}`}>
         <div className="flex items-center gap-2">
-           <div className={`w-2 h-2 rounded-full ${dark ? 'bg-emerald-400' : 'bg-emerald-500'}`}></div>
-           <span className="text-xs font-medium tracking-wide uppercase">Project Preview</span>
+          
         </div>
         <Maximize className="w-4 h-4 opacity-50" />
       </div>
