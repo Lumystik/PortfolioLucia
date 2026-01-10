@@ -40,6 +40,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
+        /* --- CRITICAL FIX FOR LOADING JUMP --- */
         body {
             background-color: #050505;
             color: #F0F0F0;
@@ -49,6 +50,15 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            
+            /* Start invisible to prevent FOUC (Flash of Unstyled Content) */
+            opacity: 0; 
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        /* Helper class to be added by JS once loaded */
+        body.loaded {
+            opacity: 1;
         }
 
         /* --- GLOBAL ETHEREAL BACKGROUND --- */
@@ -139,10 +149,12 @@
             overflow: hidden;
         }
 
+        /* Hardening the Home Wrapper: Force centering even if Tailwind is slow */
         #home-content-wrapper {
             position: relative;
             z-index: 10;
             text-align: center;
+            width: 100%; /* Ensure it spans width to allow centering */
             padding-bottom: 10vh; 
             transition: opacity 0.5s ease, transform 0.5s ease;
         }
@@ -342,7 +354,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pb-10">
                 <!-- Project 1: Museon -->
                 <article class="group cursor-pointer click-trigger border border-white/5 p-8 rounded-sm hover:border-pastel-blue/50 transition-all duration-500 relative overflow-hidden" onclick="openProject('museon')">
-                     <!-- Background Image (Visible Default) -->
+                      <!-- Background Image (Visible Default) -->
                     <img src="https://github.com/Lumystik/PortfolioLucia/blob/main/images/museon-1.png?raw=true" class="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:opacity-30 group-hover:scale-105 transition-all duration-700 z-0">
                     
                     <!-- Dark Overlay (Fade in on hover for text contrast) -->
@@ -642,6 +654,12 @@
     </div>
 
 <script>
+    // --- LOAD HANDLER (FIX FOR FLASHING TEXT) ---
+    window.addEventListener('load', () => {
+        // Only reveal the body when everything (images, fonts, scripts) is ready
+        document.body.classList.add('loaded');
+    });
+
     // --- PAGE NAVIGATION LOGIC ---
     function switchPage(pageId) {
         // Handle transitions for Home content specifically
@@ -945,18 +963,3 @@
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
