@@ -9,6 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Kalam for notes/circles -->
+  <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap" rel="stylesheet">
 
   <!-- External Libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
@@ -30,6 +32,10 @@
 
       --btn-hover: #e2e4e8;
       --accent-primary: #B9B3F8;
+
+      /* Pastel Charcoal Background for Playground */
+      --pg-bg-charcoal: #464952; 
+      --pg-dot-color: #585c66;
 
       --note-pink: #fff0f1;
       --note-yellow: #fffcdb;
@@ -312,8 +318,16 @@
     .pg-dot{ width: 10px; height: 10px; border-radius: 999px; background: rgba(47,50,58,0.15); cursor: pointer; transition: 0.2s; }
     .pg-dot.active{ background: rgba(47,50,58,0.8); transform: scale(1.2); }
 
-    .pg-canvas-wrapper{ position: relative; flex: 1; min-height: 0; padding: 20px; overflow: hidden; }
-    .pg-canvas-inner{ position: relative; height: 100%; border-radius: 18px; background: radial-gradient(#D1D5DB 1px, transparent 1px); background-size: 24px 24px; box-shadow: inset 0 0 20px rgba(0,0,0,0.02); overflow: hidden; }
+    .pg-canvas-wrapper{ position: relative; flex: 1; min-height: 0; padding: 0; overflow: hidden; }
+    .pg-canvas-inner{ 
+      position: relative; height: 100%; width: 100%;
+      /* Pastel Charcoal Background */
+      background-color: var(--pg-bg-charcoal);
+      background-image: radial-gradient(var(--pg-dot-color) 1px, transparent 1px);
+      background-size: 24px 24px; 
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.2); 
+      overflow: hidden; 
+    }
     
     .pg-canvas-screen{ 
         position:absolute; inset:0; display:block; opacity:0; pointer-events:none; transition: opacity 0.3s ease; 
@@ -322,8 +336,8 @@
     }
     .pg-canvas-screen::-webkit-scrollbar { width: 6px; height: 6px; }
     .pg-canvas-screen::-webkit-scrollbar-track { background: transparent; }
-    .pg-canvas-screen::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 4px; }
-    .pg-canvas-screen::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.25); }
+    .pg-canvas-screen::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
+    .pg-canvas-screen::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
 
     .pg-canvas-screen.active{ opacity:1; pointer-events:auto; }
     
@@ -345,34 +359,57 @@
     .pg-code-item:active{ cursor: grabbing; }
     .pg-code-label{ font-size: 12px; font-weight: 800; color: var(--text-primary); line-height: 1.3; }
     
-    /* Notes on Playground */
+    /* Notes on Playground - CIRCLE STYLE */
     .note{ 
-      position: absolute; width: 190px; min-height: 120px; padding: 12px; 
-      border-radius: 2px; 
+      position: absolute; width: 140px; height: 140px; padding: 16px; 
+      border-radius: 50%; /* CIRCLE */
       background: var(--note-yellow); 
-      box-shadow: 2px 4px 12px rgba(0,0,0,0.15); 
+      box-shadow: 2px 4px 12px rgba(0,0,0,0.25); 
       cursor: grab; user-select: none; touch-action: none; 
       display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
       transition: box-shadow 0.2s, transform 0.1s;
       font-family: "Kalam", "Nunito Sans", sans-serif; /* Fallback to Nunito */
+      z-index: 10;
     }
-    .note:active{ cursor: grabbing; box-shadow: 4px 8px 16px rgba(0,0,0,0.2); z-index: 1000 !important; }
-    .note.selected{ outline: 2px dashed #2F323A; outline-offset: 4px; }
+    .note:active{ cursor: grabbing; box-shadow: 0 10px 25px rgba(0,0,0,0.4); z-index: 1000 !important; }
+    .note.selected{ outline: 3px dashed #fff; outline-offset: 4px; }
     
     /* Theme colors for notes */
-    .pg-screen-content[data-theme-id="1"] .note { background-color: #fff9c4; transform: rotate(-1deg); }
-    .pg-screen-content[data-theme-id="2"] .note { background-color: #dcedc8; transform: rotate(1deg); }
-    .pg-screen-content[data-theme-id="3"] .note { background-color: #e1bee7; transform: rotate(-0.5deg); }
-    .pg-screen-content[data-theme-id="4"] .note { background-color: #b3e5fc; transform: rotate(1.5deg); }
-    .pg-screen-content[data-theme-id="5"] .note { background-color: #ffccbc; transform: rotate(-1.5deg); }
+    .pg-screen-content[data-theme-id="1"] .note { background-color: #fff9c4; transform: rotate(-2deg); }
+    .pg-screen-content[data-theme-id="2"] .note { background-color: #dcedc8; transform: rotate(2deg); }
+    .pg-screen-content[data-theme-id="3"] .note { background-color: #e1bee7; transform: rotate(-1deg); }
+    .pg-screen-content[data-theme-id="4"] .note { background-color: #b3e5fc; transform: rotate(1deg); }
+    .pg-screen-content[data-theme-id="5"] .note { background-color: #ffccbc; transform: rotate(-2deg); }
 
-    .note-title{ font-weight: 800; font-size: 13px; line-height: 1.4; color: #333; flex: 1; pointer-events: none; margin-bottom: 6px; }
-    .note-footer{ display:flex; align-items: flex-end; justify-content: space-between; gap: 8px; margin-top: auto; opacity: 1; }
-    .note-x{ border: none; background: transparent; cursor: pointer; font-weight: 900; color: #999; padding: 4px; font-size: 16px; line-height: 1; position: absolute; top:4px; right:4px;}
-    .note-x:hover{ color: #d32f2f; }
+    .note-title{ 
+      font-weight: 800; font-size: 12px; line-height: 1.3; color: #333; 
+      max-height: 60px; overflow: hidden; pointer-events: none; 
+      margin-bottom: 24px; /* Space for footer */
+      flex: unset; 
+    }
+    .note-footer{ 
+      position: absolute; bottom: 20px;
+      display:flex; align-items: center; justify-content: center; width: 100%;
+      margin-top: 0; opacity: 1; 
+    }
+    .note-x{ 
+      border: none; background: rgba(0,0,0,0.1); border-radius: 50%; width: 20px; height: 20px;
+      cursor: pointer; font-weight: 900; color: #555; font-size: 12px; line-height: 1;
+      position: absolute; top: 18px; right: 18px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .note-x:hover{ background: #d32f2f; color: white; }
     
-    .note-quote-btn { font-size: 11px; padding: 4px 8px; background: rgba(255,255,255,0.6); border: 1px solid rgba(0,0,0,0.1); }
-    .note-quote-btn:hover { background: #fff; }
+    .note-quote-btn { 
+      font-size: 10px; padding: 4px 8px; 
+      background: rgba(255,255,255,0.7); 
+      border: 1px solid rgba(0,0,0,0.1); 
+      border-radius: 12px;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .note-quote-btn:hover { background: #fff; transform: scale(1.05); }
 
     .hint{ font-size: 12px; color: var(--text-secondary); font-weight: 700; line-height: 1.4; }
 
@@ -381,12 +418,12 @@
       position: absolute;
       font-size: 14px;
       font-weight: 900;
-      color: #666;
+      color: rgba(255,255,255,0.7); /* Light text for charcoal bg */
       text-transform: uppercase;
       letter-spacing: 1px;
       pointer-events: none;
       z-index: 0;
-      border-bottom: 2px dashed #ccc;
+      border-bottom: 2px dashed rgba(255,255,255,0.3);
       width: 200px;
       padding-bottom: 4px;
     }
@@ -555,6 +592,9 @@
         <aside class="pg-sidebar">
           <div class="pg-sidebar-top">
             <h3 style="margin:0 0 10px 0; font-size:14px; font-weight:900;">Theme Codes</h3>
+            <!-- NEW CREATE BUTTON -->
+            <button class="btn btn-primary" id="pgCreateCodeBtn" style="width:100%; justify-content:center; margin-bottom: 12px;">✨ Create Code</button>
+            
             <select id="pgSidebarFilter" style="width:100%; padding:6px; font-size:12px; font-weight:700; border-radius:4px; border:1px solid #ddd; margin-bottom:8px;">
                <option value="current">Current Theme</option>
                <option value="unassigned">Unassigned (New)</option>
@@ -595,6 +635,24 @@
       <div class="confirm-actions">
         <button class="btn" id="cancelEditThemeBtn">Cancel</button>
         <button class="btn btn-primary" id="saveThemeBtn">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Create Code Modal -->
+  <div class="modal" id="createCodeModal" role="dialog" aria-modal="true">
+    <div class="modal-header">
+      <div class="modal-title">Create New Code</div>
+      <button class="icon-btn" id="closeCreateCodeBtn" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <div style="margin-bottom: 16px;">
+        <label for="newCodeInput" style="display:block; font-size:12px; font-weight:700; color:#666; margin-bottom:6px;">Code Name</label>
+        <input type="text" id="newCodeInput" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:6px; font-size:14px; font-weight:600;" placeholder="e.g., Authentic Expression" />
+      </div>
+      <div class="confirm-actions">
+        <button class="btn" id="cancelCreateCodeBtn">Cancel</button>
+        <button class="btn btn-primary" id="confirmCreateCodeBtn">Create & Drop</button>
       </div>
     </div>
   </div>
@@ -996,7 +1054,7 @@
           
           addNoteToCanvas(themeId, txt, target.x + offsetX, target.y);
           
-          target.y += 60; 
+          target.y += 100; 
        });
        
        renderSidebarList(themeId);
@@ -1015,8 +1073,8 @@
       if (containerW < 200) containerW = window.innerWidth - 360; 
       if (containerW < 400) containerW = 800; 
 
-      const noteW = 190, noteH = 120;
-      const gap = 20;
+      const noteW = 140; 
+      const gap = 30; 
       
       // Force 4 cols if possible
       let cols = Math.floor((containerW - 40) / (noteW + gap));
@@ -1033,7 +1091,7 @@
          if(colCount >= cols) {
             colCount = 0;
             x = 20;
-            y += noteH + gap;
+            y += noteW + gap;
          } else {
             x += noteW + gap;
          }
@@ -1234,6 +1292,67 @@
        updateHeaderCount();
        loadPlaygroundTheme(newId);
     };
+    
+    // --- CREATE CODE LOGIC (MODAL) ---
+    const createCodeModal = document.getElementById('createCodeModal');
+    const newCodeInput = document.getElementById('newCodeInput');
+
+    function openCreateCodeModal() {
+        newCodeInput.value = '';
+        modalBackdrop.classList.add('open');
+        createCodeModal.classList.add('open');
+        newCodeInput.focus();
+    }
+
+    function closeCreateCodeModal() {
+        modalBackdrop.classList.remove('open');
+        createCodeModal.classList.remove('open');
+    }
+
+    function confirmCreateCode() {
+       const name = newCodeInput.value;
+       if(name && name.trim()) {
+           const finalName = name.trim();
+           const key = normalize(finalName);
+           
+           // Check if exists using hasOwnProperty to prevent 0/false issues
+           if(codeThemeMap.hasOwnProperty(key)) {
+               alert("Code already exists!");
+               return;
+           }
+           
+           // Assign to current theme
+           codeThemeMap[key] = currentTheme;
+           localStorage.setItem(STORAGE_KEY_THEMEMAP, JSON.stringify(codeThemeMap));
+           
+           // Add to canvas in center
+           const screen = screens[currentTheme];
+           // Calculate center relative to visible area
+           const wrapper = screen.parentElement; // .pg-canvas-screen
+           // Center coordinates accounting for current scroll position
+           const centerX = (wrapper.clientWidth / 2) - 70 + wrapper.scrollLeft; 
+           const centerY = (wrapper.clientHeight / 2) - 70 + wrapper.scrollTop;
+           
+           addNoteToCanvas(currentTheme, finalName, centerX, centerY);
+           savePlaygroundState();
+           
+           // Update sidebar to hide it from there
+           renderSidebarList(currentTheme);
+           
+           if(autoSyncEnabled) syncPlaygroundToMain(currentTheme);
+           
+           closeCreateCodeModal();
+       }
+    }
+
+    document.getElementById('pgCreateCodeBtn').onclick = openCreateCodeModal;
+    document.getElementById('closeCreateCodeBtn').onclick = closeCreateCodeModal;
+    document.getElementById('cancelCreateCodeBtn').onclick = closeCreateCodeModal;
+    document.getElementById('confirmCreateCodeBtn').onclick = confirmCreateCode;
+    
+    newCodeInput.addEventListener('keypress', (e) => {
+        if(e.key === 'Enter') confirmCreateCode();
+    });
 
     // Sidebar Filter
     filterSelect.onchange = () => renderSidebarList(currentTheme);
@@ -1327,22 +1446,14 @@
         <button class="note-x" title="Remove">×</button>
         <div class="note-title">${text}</div>
         <div class="note-footer">
-          <button class="mini-btn note-quote-btn">💬 Quotes</button>
-          <span style="font-size:10px; font-weight:900; opacity:0.5;">THEME ${themeId}</span>
+          <button class="note-quote-btn">💬 View Quotes</button>
         </div>
       `;
 
       note.querySelector('.note-x').onclick = (e) => {
         e.stopPropagation(); 
         note.remove();
-        
-        // When removed from canvas, it becomes unassigned? 
-        // Or stays with theme but just off canvas? 
-        // User asked "leave unassigned codes in bar".
-        // Let's assume removing means "Unassign from canvas, keep theme mapping"
-        // It will reappear in sidebar because !existingOnCanvas
         renderSidebarList(themeId); 
-        
         if(autoSyncEnabled) syncPlaygroundToMain(themeId);
       };
 
@@ -1357,29 +1468,20 @@
       
       container.appendChild(note);
 
-      const requiredHeight = y + 150; 
+      const requiredHeight = y + 200; 
       const currentMin = parseFloat(container.style.minHeight || '0');
       if(requiredHeight > currentMin) {
          container.style.minHeight = requiredHeight + 'px';
       }
     }
 
+    // Refactored Drag Functionality for better performance and stability
     function makeDraggable(el, container, onDragEnd) {
       let isDragging = false;
       let startX, startY, initialLeft, initialTop;
       
-      el.addEventListener('mousedown', (e) => {
-        if(e.target.tagName === 'BUTTON') return;
-        isDragging = true;
-        startX = e.clientX;
-        startY = e.clientY;
-        initialLeft = el.offsetLeft;
-        initialTop = el.offsetTop;
-        el.style.zIndex = 1000;
-        e.preventDefault();
-      });
-      
-      window.addEventListener('mousemove', (e) => {
+      // Handlers defined outside to allow removal
+      const onMouseMove = (e) => {
         if(!isDragging) return;
         const dx = e.clientX - startX;
         const dy = e.clientY - startY;
@@ -1391,14 +1493,31 @@
         if(newTop + 150 > currentMin) {
            container.style.minHeight = (newTop + 150) + 'px';
         }
-      });
-      
-      window.addEventListener('mouseup', () => {
+      };
+
+      const onMouseUp = () => {
         if(isDragging) {
           isDragging = false;
           el.style.zIndex = '';
+          window.removeEventListener('mousemove', onMouseMove);
+          window.removeEventListener('mouseup', onMouseUp);
           if(onDragEnd) onDragEnd();
         }
+      };
+
+      el.addEventListener('mousedown', (e) => {
+        if(e.target.tagName === 'BUTTON') return;
+        isDragging = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        initialLeft = el.offsetLeft;
+        initialTop = el.offsetTop;
+        el.style.zIndex = 1000;
+        e.preventDefault();
+        
+        // Add window listeners only during drag
+        window.addEventListener('mousemove', onMouseMove);
+        window.addEventListener('mouseup', onMouseUp);
       });
     }
 
@@ -1541,7 +1660,7 @@
       attachQuoteListeners(); 
       // Refresh sidebar to show new unassigned codes
       if(pgModal.classList.contains('open')) {
-          renderSidebarList(currentTheme);
+         renderSidebarList(currentTheme);
       }
       alert(`Import Successful!\nAdded ${importedQuotes} quotes.\nFound ${newCodes} new codes (Unassigned).`);
     }
