@@ -879,8 +879,8 @@
             ],
             images: [
                 'https://github.com/Lumystik/PortfolioLucia/blob/main/images/portfolio-5.jpg?raw=true',
-                'https://github.com/Lumystik/PortfolioLucia/blob/main/images/pixela_palette.png?raw=true',
-                'https://www.behance.net/gallery/201101643/PIXELA/modules/1140361799'
+                'https://images.unsplash.com/photo-1535905557558-afc4877a26fc?auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&w=800&q=80'
             ],
             desc: `
                 <p>Pixela is an immersive first-person survival game where you play as an AI named Pixela, who is an unexpected anomaly in a scientific project designed to decode the minds of history's greatest artists.</p>
@@ -935,7 +935,34 @@
         // Reset custom layout class for safety
         galleryContainer.classList.remove('custom-layout');
 
-        if (p.isCarousel) {
+        // --- 1. CUSTOM LAYOUT: ART BEYOND DIMENSION ---
+        if (id === 'artbeyond') {
+            document.getElementById('gallery-title').innerText = "Visuals";
+            galleryContainer.classList.add('custom-layout');
+            
+            let customHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 h-[500px]">
+                    <!-- Left Column: Stacked Static Images -->
+                    <div class="flex flex-col gap-4 h-full">
+                            <div class="bg-black border border-white/20 p-2 flex items-center justify-center overflow-hidden flex-1">
+                            <img src="${p.images[0]}" class="w-full h-full object-cover hover:opacity-90 transition-opacity duration-300">
+                        </div>
+                            <div class="bg-black border border-white/20 p-2 flex items-center justify-center overflow-hidden flex-1">
+                            <img src="${p.images[2]}" class="w-full h-full object-cover hover:opacity-90 transition-opacity duration-300">
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Single Large GIF (Fit Inside Frame) -->
+                    <!-- CHANGED: Switched to object-contain to stop GIF from being cut -->
+                    <div class="bg-black border border-white/20 p-2 flex items-center justify-center overflow-hidden h-full">
+                        <img src="${p.images[1]}" class="w-full h-full object-contain hover:opacity-90 transition-opacity duration-300">
+                    </div>
+                </div>
+            `;
+            galleryContainer.innerHTML = customHTML;
+
+        // --- 2. STANDARD CAROUSEL (For Seedtag & other projects with isCarousel: true) ---
+        } else if (p.isCarousel) {
             document.getElementById('gallery-title').innerText = "Interactive Gallery";
             let carouselHTML = `
                 <div class="carousel-container flex gap-6 pb-4">
@@ -950,49 +977,19 @@
             `;
             galleryContainer.innerHTML = carouselHTML;
 
+        // --- 3. STANDARD GRID (For other projects) ---
         } else if (p.images) {
             document.getElementById('gallery-title').innerText = "Visuals";
-            
-            // --- CUSTOM LAYOUT LOGIC FOR 'ARTBEYOND' ---
-            if (id === 'artbeyond') {
-                galleryContainer.classList.add('custom-layout'); // Add class to prevent CSS conflict if needed
-                
-                // Assuming p.images order: [0]=static1, [1]=GIF, [2]=static2
-                // We want: Left Col (static1 + static2), Right Col (GIF alone, taller)
-                
-                let customHTML = `
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 h-full">
-                        <!-- Left Column: Stacked Static Images -->
-                        <div class="flex flex-col gap-4">
-                             <div class="aspect-video bg-black border border-white/20 p-2 flex items-center justify-center overflow-hidden h-1/2">
-                                <img src="${p.images[0]}" class="w-full h-full object-contain hover:opacity-90 transition-opacity duration-300">
-                            </div>
-                             <div class="aspect-video bg-black border border-white/20 p-2 flex items-center justify-center overflow-hidden h-1/2">
-                                <img src="${p.images[2]}" class="w-full h-full object-contain hover:opacity-90 transition-opacity duration-300">
-                            </div>
-                        </div>
-
-                        <!-- Right Column: Single Large GIF -->
-                        <div class="bg-black border border-white/20 p-2 flex items-center justify-center overflow-hidden h-full min-h-[400px]">
-                            <img src="${p.images[1]}" class="w-full h-full object-contain hover:opacity-90 transition-opacity duration-300">
-                        </div>
+            let gridHTML = `<div class="grid grid-cols-1 gap-4">`;
+            p.images.forEach(imgSrc => {
+                gridHTML += `
+                    <div class="aspect-video bg-black border border-white/20 p-2 flex items-center justify-center overflow-hidden">
+                        <img src="${imgSrc}" class="w-full h-full object-contain hover:opacity-90 transition-opacity duration-300" alt="Project Screenshot">
                     </div>
                 `;
-                galleryContainer.innerHTML = customHTML;
-
-            } else {
-                // --- DEFAULT LAYOUT FOR OTHER PROJECTS ---
-                let gridHTML = `<div class="grid grid-cols-1 gap-4">`;
-                p.images.forEach(imgSrc => {
-                    gridHTML += `
-                        <div class="aspect-video bg-black border border-white/20 p-2 flex items-center justify-center overflow-hidden">
-                            <img src="${imgSrc}" class="w-full h-full object-contain hover:opacity-90 transition-opacity duration-300" alt="Project Screenshot">
-                        </div>
-                    `;
-                });
-                gridHTML += `</div>`;
-                galleryContainer.innerHTML = gridHTML;
-            }
+            });
+            gridHTML += `</div>`;
+            galleryContainer.innerHTML = gridHTML;
         }
 
         document.getElementById('detail-view').classList.remove('translate-x-full');
@@ -1015,4 +1012,3 @@
 </script>
 </body>
 </html>
-
