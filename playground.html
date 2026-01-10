@@ -443,7 +443,7 @@
   <header>
     <div class="header-content">
       <h1>Codebook</h1>
-      <p class="subtitle">Consolidated View: 4 Core Themes</p>
+      <p class="subtitle" id="headerSubtitle">Consolidated View: 0 Core Themes</p>
     </div>
 
     <div class="controls" data-html2canvas-ignore="true">
@@ -733,6 +733,12 @@
       initSortable();
       updateCounts();
       attachQuoteListeners();
+      updateHeaderCount();
+    }
+
+    function updateHeaderCount() {
+       const el = document.getElementById('headerSubtitle');
+       if(el) el.innerText = `Consolidated View: ${totalThemes} Core Themes`;
     }
 
     function renderPresetBoard() {
@@ -1225,6 +1231,7 @@
        `;
        board.appendChild(col);
        
+       updateHeaderCount();
        loadPlaygroundTheme(newId);
     };
 
