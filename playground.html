@@ -186,6 +186,28 @@
       white-space: nowrap;
     }
 
+    /* Theme Delete Button */
+    .theme-delete-btn {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.1);
+      border: none;
+      color: #555;
+      font-weight: 900;
+      font-size: 14px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .theme-delete-btn:hover {
+      background: #ff5252;
+      color: #fff;
+    }
+
     .card-list {
       padding: 12px;
       overflow-y: auto;
@@ -228,11 +250,41 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.06);
     }
 
+    /* Delete Button Styles - High Visibility */
+    .card-delete-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 22px;
+      height: 22px;
+      border: none;
+      background: #ffebee; /* Soft Red Background */
+      color: #c62828; /* Dark Red Text */
+      font-weight: 900;
+      font-size: 16px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      opacity: 1; /* Always visible */
+      transition: all 0.2s;
+      z-index: 20;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .card-delete-btn:hover {
+      background: #ef5350;
+      color: #fff;
+      transform: scale(1.1);
+    }
+
     .card-text {
       font-size: 14px;
       line-height: 1.5;
       color: var(--text-primary);
       font-weight: 800;
+      padding-right: 24px; /* More space for delete btn */
     }
 
     .card-type {
@@ -374,7 +426,7 @@
       z-index: 10;
     }
     .note:active{ cursor: grabbing; box-shadow: 0 10px 25px rgba(0,0,0,0.4); z-index: 1000 !important; }
-    .note.selected{ outline: 3px dashed #fff; outline-offset: 4px; }
+    .note.selected{ outline: 3px dashed #fff; outline-offset: 4px; z-index: 1000; }
     
     /* Theme colors for notes */
     .pg-screen-content[data-theme-id="1"] .note { background-color: #fff9c4; transform: rotate(-2deg); }
@@ -395,7 +447,7 @@
       margin-top: 0; opacity: 1; 
     }
     .note-x{ 
-      border: none; background: rgba(0,0,0,0.1); border-radius: 50%; width: 20px; height: 20px;
+      border: none; background: rgba(0,0,0,0.15); border-radius: 50%; width: 20px; height: 20px;
       cursor: pointer; font-weight: 900; color: #555; font-size: 12px; line-height: 1;
       position: absolute; top: 18px; right: 18px;
       display: flex; align-items: center; justify-content: center;
@@ -506,7 +558,10 @@
       <div class="column-header col-theme-1">
         <div class="header-top">
           <span class="col-title" onclick="promptEditTheme(1)">Theme 1 - Click to Add Name</span>
-          <span class="card-count">0</span>
+          <div style="display:flex; align-items:center; gap:6px;">
+             <span class="card-count">0</span>
+             <button class="theme-delete-btn" onclick="promptDeleteTheme(1)">×</button>
+          </div>
         </div>
       </div>
       <div class="card-list" id="colList1"></div>
@@ -516,7 +571,10 @@
       <div class="column-header col-theme-2">
         <div class="header-top">
           <span class="col-title" onclick="promptEditTheme(2)">Theme 2 - Click to Add Name</span>
-          <span class="card-count">0</span>
+          <div style="display:flex; align-items:center; gap:6px;">
+             <span class="card-count">0</span>
+             <button class="theme-delete-btn" onclick="promptDeleteTheme(2)">×</button>
+          </div>
         </div>
       </div>
       <div class="card-list" id="colList2"></div>
@@ -526,7 +584,10 @@
       <div class="column-header col-theme-3">
         <div class="header-top">
           <span class="col-title" onclick="promptEditTheme(3)">Theme 3 - Click to Add Name</span>
-          <span class="card-count">0</span>
+          <div style="display:flex; align-items:center; gap:6px;">
+             <span class="card-count">0</span>
+             <button class="theme-delete-btn" onclick="promptDeleteTheme(3)">×</button>
+          </div>
         </div>
       </div>
       <div class="card-list" id="colList3"></div>
@@ -536,7 +597,10 @@
       <div class="column-header col-theme-4">
         <div class="header-top">
           <span class="col-title" onclick="promptEditTheme(4)">Theme 4 - Click to Add Name</span>
-          <span class="card-count">0</span>
+          <div style="display:flex; align-items:center; gap:6px;">
+             <span class="card-count">0</span>
+             <button class="theme-delete-btn" onclick="promptDeleteTheme(4)">×</button>
+          </div>
         </div>
       </div>
       <div class="card-list" id="colList4"></div>
@@ -790,13 +854,15 @@
       scanBoardForThemes();
       initSortable();
       updateCounts();
-      attachQuoteListeners();
+      hydrateCards(); // AUTO-FIX: Inject missing buttons & re-attach events
+      hydrateThemes(); // AUTO-FIX: Inject theme delete buttons
       updateHeaderCount();
     }
 
     function updateHeaderCount() {
+       const count = document.querySelectorAll('.column').length;
        const el = document.getElementById('headerSubtitle');
-       if(el) el.innerText = `Consolidated View: ${totalThemes} Core Themes`;
+       if(el) el.innerText = `Consolidated View: ${count} Core Themes`;
     }
 
     function renderPresetBoard() {
@@ -817,11 +883,19 @@
       const card = document.createElement('div');
       card.className = 'card';
       card.innerHTML = `
+        <button class="card-delete-btn" title="Delete card">×</button>
         <div class="card-text">${text}</div>
         <div class="card-type">code</div>
         <div class="card-quote"></div>
         <div class="card-quote-actions"></div>
       `;
+      
+      // Delete handler
+      card.querySelector('.card-delete-btn').onclick = (e) => {
+          e.stopPropagation();
+          promptDeleteCard(card, text);
+      };
+
       refreshCardQuotes(card, text);
       if(append) list.appendChild(card);
     }
@@ -849,11 +923,63 @@
       }
     }
 
-    function attachQuoteListeners() {
+    function hydrateCards() {
       document.querySelectorAll('.card').forEach(card => {
         const txt = card.querySelector('.card-text').innerText;
         refreshCardQuotes(card, txt);
+
+        // Auto-fix for old data: Inject delete button if missing
+        if (!card.querySelector('.card-delete-btn')) {
+             const btn = document.createElement('button');
+             btn.className = 'card-delete-btn';
+             btn.title = 'Delete card';
+             btn.innerHTML = '×';
+             // Insert at beginning
+             card.insertBefore(btn, card.firstChild);
+             btn.onclick = (e) => {
+                 e.stopPropagation();
+                 promptDeleteCard(card, txt);
+             };
+        } else {
+             // Re-attach event listener if loaded from storage
+             const btn = card.querySelector('.card-delete-btn');
+             btn.onclick = (e) => {
+                 e.stopPropagation();
+                 promptDeleteCard(card, txt);
+             };
+        }
       });
+    }
+
+    // New Hydration for Themes
+    function hydrateThemes() {
+        document.querySelectorAll('.column').forEach(col => {
+            const tId = col.dataset.theme;
+            const headerTop = col.querySelector('.header-top');
+            
+            // Check if delete button wrapper exists
+            if (!headerTop.querySelector('.theme-delete-btn')) {
+                // Remove existing counter if separate, we will group them
+                const oldCounter = headerTop.querySelector('.card-count');
+                if(oldCounter) oldCounter.remove();
+
+                const group = document.createElement('div');
+                group.style.cssText = "display:flex; align-items:center; gap:6px;";
+                group.innerHTML = `
+                    <span class="card-count">0</span>
+                    <button class="theme-delete-btn" title="Delete Theme">×</button>
+                `;
+                headerTop.appendChild(group);
+                
+                // Attach event
+                group.querySelector('.theme-delete-btn').onclick = () => promptDeleteTheme(tId);
+            } else {
+                // Ensure event is attached
+                const btn = headerTop.querySelector('.theme-delete-btn');
+                btn.onclick = () => promptDeleteTheme(tId);
+            }
+        });
+        updateCounts(); // Refresh counts in new location
     }
 
     function scanBoardForThemes() {
@@ -1185,12 +1311,15 @@
 
       const dotsContainer = document.getElementById('pgDots');
       dotsContainer.innerHTML = '';
-      for(let t=1; t<=totalThemes; t++) {
-        const dot = document.createElement('div');
-        dot.className = 'pg-dot' + (t === themeId ? ' active' : '');
-        dot.onclick = () => loadPlaygroundTheme(t);
-        dotsContainer.appendChild(dot);
-      }
+      
+      // Iterate only existing themes from titles map
+      Object.keys(themeTitles).forEach(key => {
+          const t = parseInt(key);
+          const dot = document.createElement('div');
+          dot.className = 'pg-dot' + (t === themeId ? ' active' : '');
+          dot.onclick = () => loadPlaygroundTheme(t);
+          dotsContainer.appendChild(dot);
+      });
 
       renderSidebarList(themeId);
       
@@ -1203,13 +1332,16 @@
     }
 
     document.getElementById('pgPrevBtn').onclick = () => {
-       let next = currentTheme - 1;
-       if(next < 1) next = totalThemes;
-       loadPlaygroundTheme(next);
+       // Logic to find previous available ID
+       const ids = Object.keys(themeTitles).map(k=>parseInt(k)).sort((a,b)=>a-b);
+       const idx = ids.indexOf(currentTheme);
+       const prev = idx > 0 ? ids[idx-1] : ids[ids.length-1];
+       loadPlaygroundTheme(prev);
     };
     document.getElementById('pgNextBtn').onclick = () => {
-       let next = currentTheme + 1;
-       if(next > totalThemes) next = 1;
+       const ids = Object.keys(themeTitles).map(k=>parseInt(k)).sort((a,b)=>a-b);
+       const idx = ids.indexOf(currentTheme);
+       const next = idx < ids.length-1 ? ids[idx+1] : ids[0];
        loadPlaygroundTheme(next);
     };
 
@@ -1282,7 +1414,10 @@
           <div class="column-header col-theme-5">
             <div class="header-top">
               <span class="col-title" onclick="promptEditTheme(${newId})">${themeTitles[newId]}</span>
-              <span class="card-count">0</span>
+              <div style="display:flex; align-items:center; gap:6px;">
+                 <span class="card-count">0</span>
+                 <button class="theme-delete-btn" onclick="promptDeleteTheme(${newId})">×</button>
+              </div>
             </div>
           </div>
           <div class="card-list" id="colList${newId}"></div>
@@ -1475,49 +1610,78 @@
       }
     }
 
-    // Refactored Drag Functionality for better performance and stability
+    // UPDATED DRAG FUNCTIONALITY (Mouse + Touch)
     function makeDraggable(el, container, onDragEnd) {
       let isDragging = false;
       let startX, startY, initialLeft, initialTop;
       
-      // Handlers defined outside to allow removal
-      const onMouseMove = (e) => {
+      const onMove = (clientX, clientY) => {
         if(!isDragging) return;
-        const dx = e.clientX - startX;
-        const dy = e.clientY - startY;
+        const dx = clientX - startX;
+        const dy = clientY - startY;
         let newLeft = initialLeft + dx;
         let newTop = initialTop + dy;
         el.style.left = `${newLeft}px`;
         el.style.top = `${newTop}px`;
+        
+        // Expand container if needed
         const currentMin = parseFloat(container.style.minHeight || '0');
         if(newTop + 150 > currentMin) {
            container.style.minHeight = (newTop + 150) + 'px';
         }
       };
 
-      const onMouseUp = () => {
+      const onEnd = () => {
         if(isDragging) {
           isDragging = false;
           el.style.zIndex = '';
+          el.classList.remove('selected'); 
+          
           window.removeEventListener('mousemove', onMouseMove);
           window.removeEventListener('mouseup', onMouseUp);
+          window.removeEventListener('touchmove', onTouchMove);
+          window.removeEventListener('touchend', onTouchEnd);
+          
           if(onDragEnd) onDragEnd();
         }
       };
 
-      el.addEventListener('mousedown', (e) => {
-        if(e.target.tagName === 'BUTTON') return;
+      // Mouse Wrappers
+      const onMouseMove = (e) => onMove(e.clientX, e.clientY);
+      const onMouseUp = () => onEnd();
+
+      // Touch Wrappers
+      const onTouchMove = (e) => {
+         if(e.cancelable) e.preventDefault(); 
+         const touch = e.touches[0];
+         onMove(touch.clientX, touch.clientY);
+      };
+      const onTouchEnd = () => onEnd();
+
+      const startDrag = (clientX, clientY) => {
         isDragging = true;
-        startX = e.clientX;
-        startY = e.clientY;
+        startX = clientX;
+        startY = clientY;
         initialLeft = el.offsetLeft;
         initialTop = el.offsetTop;
         el.style.zIndex = 1000;
-        e.preventDefault();
-        
-        // Add window listeners only during drag
+        el.classList.add('selected'); 
+      };
+
+      el.addEventListener('mousedown', (e) => {
+        if(e.target.tagName === 'BUTTON') return;
+        e.preventDefault(); // Prevent text selection
+        startDrag(e.clientX, e.clientY);
         window.addEventListener('mousemove', onMouseMove);
         window.addEventListener('mouseup', onMouseUp);
+      });
+
+      el.addEventListener('touchstart', (e) => {
+        if(e.target.tagName === 'BUTTON') return;
+        const touch = e.touches[0];
+        startDrag(touch.clientX, touch.clientY);
+        window.addEventListener('touchmove', onTouchMove, { passive: false });
+        window.addEventListener('touchend', onTouchEnd);
       });
     }
 
@@ -1669,6 +1833,81 @@
        const el = document.body;
        html2pdf().set({ margin:0, filename:'codebook.pdf', image:{type:'jpeg',quality:0.98}, html2canvas:{scale:2}, jsPDF:{unit:'in', format:'letter', orientation:'landscape'} }).from(el).save();
     };
+
+    // --- DELETION LOGIC (Card & Theme) ---
+    let deletionTarget = null; // { type: 'card'|'theme', el?: HTMLElement, id?: string|number, text?: string }
+
+    // Global exposed functions for inline onclicks
+    window.promptDeleteCard = (cardElement, text) => {
+        deletionTarget = { type: 'card', el: cardElement, text: text };
+        document.getElementById('confirmMessage').innerText = `Are you sure you want to delete card "${text}"?`;
+        document.getElementById('confirmBackdrop').classList.add('open');
+        document.getElementById('confirmModal').classList.add('open');
+    };
+
+    window.promptDeleteTheme = (themeId) => {
+        const title = themeTitles[themeId] || `Theme ${themeId}`;
+        deletionTarget = { type: 'theme', id: themeId, text: title };
+        document.getElementById('confirmMessage').innerText = `Are you sure you want to delete "${title}"? All codes in this theme will be unassigned.`;
+        document.getElementById('confirmBackdrop').classList.add('open');
+        document.getElementById('confirmModal').classList.add('open');
+    };
+
+    function closeConfirmModal() {
+        document.getElementById('confirmBackdrop').classList.remove('open');
+        document.getElementById('confirmModal').classList.remove('open');
+        deletionTarget = null;
+    }
+
+    document.getElementById('confirmCancelBtn').onclick = closeConfirmModal;
+    document.getElementById('closeConfirmBtn').onclick = closeConfirmModal;
+    
+    document.getElementById('confirmOkBtn').onclick = () => {
+        if (!deletionTarget) return;
+
+        if (deletionTarget.type === 'card') {
+            deletionTarget.el.remove();
+            updateCounts();
+            saveBoard();
+            scanBoardForThemes(); 
+        } 
+        else if (deletionTarget.type === 'theme') {
+            performDeleteTheme(deletionTarget.id);
+        }
+        closeConfirmModal();
+    };
+
+    function performDeleteTheme(tId) {
+        tId = parseInt(tId);
+        
+        // 1. Unassign codes in map
+        Object.keys(codeThemeMap).forEach(key => {
+            if(codeThemeMap[key] === tId) codeThemeMap[key] = 0;
+        });
+        
+        // 2. Remove from title map
+        delete themeTitles[tId];
+        
+        // 3. Remove DOM Column
+        const col = document.querySelector(`.column[data-theme="${tId}"]`);
+        if(col) col.remove();
+        
+        // 4. Update Header Count
+        updateHeaderCount();
+        
+        // 5. Save
+        localStorage.setItem(STORAGE_KEY_TITLES, JSON.stringify(themeTitles));
+        localStorage.setItem(STORAGE_KEY_THEMEMAP, JSON.stringify(codeThemeMap));
+        saveBoard();
+
+        // 6. Handle Playground if active
+        if(pgModal.classList.contains('open') && currentTheme === tId) {
+            // Switch to another valid theme
+            const ids = Object.keys(themeTitles).map(k=>parseInt(k));
+            if(ids.length > 0) loadPlaygroundTheme(ids[0]);
+            else closePlayground(); 
+        }
+    }
 
     window.onload = () => {
        initBoard();
