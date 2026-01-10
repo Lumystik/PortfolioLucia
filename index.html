@@ -1000,8 +1000,17 @@
     }
 
     function closeProject() {
-        document.getElementById('detail-view').classList.add('translate-x-full');
+        const detailView = document.getElementById('detail-view');
+        detailView.classList.add('translate-x-full');
         document.body.classList.remove('detail-open');
+
+        // Stop GIFs by clearing content after the transition (400ms)
+        // This ensures they don't loop in the background when the section is inactive
+        setTimeout(() => {
+            if (detailView.classList.contains('translate-x-full')) {
+                document.getElementById('detail-gallery-container').innerHTML = '';
+            }
+        }, 400);
     }
 </script>
 </body>
