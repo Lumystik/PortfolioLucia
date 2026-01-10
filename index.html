@@ -278,8 +278,9 @@
 
         /* --- CUSTOM ADJUSTMENT FOR GALLERY HEIGHT --- */
         /* Targets the 2nd item in the gallery grid/carousel to make it taller */
-        #detail-gallery-container .grid > div:nth-child(2),
-        #detail-gallery-container .carousel-container > div:nth-child(2) {
+        /* Only apply to default gallery, not the specific layout for Art Beyond Dimension */
+        #detail-gallery-container:not(.custom-layout) .grid > div:nth-child(2),
+        #detail-gallery-container:not(.custom-layout) .carousel-container > div:nth-child(2) {
             aspect-ratio: 1 / 1 !important; /* Square is significantly taller than the default 16/9 aspect-video */
         }
     </style>
@@ -931,6 +932,9 @@
         const galleryContainer = document.getElementById('detail-gallery-container');
         galleryContainer.innerHTML = ''; 
 
+        // Reset custom layout class for safety
+        galleryContainer.classList.remove('custom-layout');
+
         if (p.isCarousel) {
             document.getElementById('gallery-title').innerText = "Interactive Gallery";
             let carouselHTML = `
@@ -948,19 +952,47 @@
 
         } else if (p.images) {
             document.getElementById('gallery-title').innerText = "Visuals";
-            // CHANGED: Removed 'md:grid-cols-2' to keep it a single column, reduced gap to 'gap-4'
-            let gridHTML = `<div class="grid grid-cols-1 gap-4">`;
             
-            p.images.forEach(imgSrc => {
-                gridHTML += `
-                    <div class="aspect-video bg-black border border-white/20 p-2 flex items-center justify-center overflow-hidden">
-                        <img src="${imgSrc}" class="w-full h-full object-contain hover:opacity-90 transition-opacity duration-300" alt="Project Screenshot">
+            // --- CUSTOM LAYOUT LOGIC FOR 'ARTBEYOND' ---
+            if (id === 'artbeyond') {
+                galleryContainer.classList.add('custom-layout'); // Add class to prevent CSS conflict if needed
+                
+                // Assuming p.images order: [0]=static1, [1]=GIF, [2]=static2
+                // We want: Left Col (static1 + static2), Right Col (GIF alone, taller)
+                
+                let customHTML = `
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 h-full">
+                        <!-- Left Column: Stacked Static Images -->
+                        <div class="flex flex-col gap-4">
+                             <div class="aspect-video bg-black border border-white/20 p-2 flex items-center justify-center overflow-hidden h-1/2">
+                                <img src="${p.images[0]}" class="w-full h-full object-contain hover:opacity-90 transition-opacity duration-300">
+                            </div>
+                             <div class="aspect-video bg-black border border-white/20 p-2 flex items-center justify-center overflow-hidden h-1/2">
+                                <img src="${p.images[2]}" class="w-full h-full object-contain hover:opacity-90 transition-opacity duration-300">
+                            </div>
+                        </div>
+
+                        <!-- Right Column: Single Large GIF -->
+                        <div class="bg-black border border-white/20 p-2 flex items-center justify-center overflow-hidden h-full min-h-[400px]">
+                            <img src="${p.images[1]}" class="w-full h-full object-contain hover:opacity-90 transition-opacity duration-300">
+                        </div>
                     </div>
                 `;
-            });
-            
-            gridHTML += `</div>`;
-            galleryContainer.innerHTML = gridHTML;
+                galleryContainer.innerHTML = customHTML;
+
+            } else {
+                // --- DEFAULT LAYOUT FOR OTHER PROJECTS ---
+                let gridHTML = `<div class="grid grid-cols-1 gap-4">`;
+                p.images.forEach(imgSrc => {
+                    gridHTML += `
+                        <div class="aspect-video bg-black border border-white/20 p-2 flex items-center justify-center overflow-hidden">
+                            <img src="${imgSrc}" class="w-full h-full object-contain hover:opacity-90 transition-opacity duration-300" alt="Project Screenshot">
+                        </div>
+                    `;
+                });
+                gridHTML += `</div>`;
+                galleryContainer.innerHTML = gridHTML;
+            }
         }
 
         document.getElementById('detail-view').classList.remove('translate-x-full');
