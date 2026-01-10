@@ -26,6 +26,7 @@
       --theme-2-green: #BBEED5;
       --theme-3-purple: #B9B3F8;
       --theme-4-blue: #C0DBEE;
+      --theme-5-pink: #F5A4AB; /* For new themes */
 
       --btn-hover: #e2e4e8;
       --accent-primary: #B9B3F8;
@@ -162,6 +163,11 @@
       font-size: 13px;
       letter-spacing: 0.5px;
       line-height: 1.2;
+      cursor: pointer; /* Click to edit */
+    }
+    .col-title:hover {
+        text-decoration: underline;
+        text-decoration-style: dotted;
     }
 
     .card-count {
@@ -276,6 +282,7 @@
     .col-theme-2 { background-color: var(--theme-2-green); }
     .col-theme-3 { background-color: var(--theme-3-purple); }
     .col-theme-4 { background-color: var(--theme-4-blue); }
+    .col-theme-5 { background-color: var(--theme-5-pink); }
 
     ::-webkit-scrollbar { width: 8px; height: 8px; }
     ::-webkit-scrollbar-track { background: transparent; }
@@ -300,7 +307,7 @@
     /* Carousel: ONE theme at a time, full area */
     .pg-stage{ position: relative; display:flex; flex-direction: column; background: #fafafa; }
     .pg-carousel{ display:flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; background: #fff; border-bottom: 1px solid rgba(0,0,0,0.04); }
-    .pg-carousel-title{ font-size: 18px; font-weight: 900; letter-spacing: 0.3px; color: #1f2430; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 600px; }
+    .pg-carousel-title{ font-size: 18px; font-weight: 900; letter-spacing: 0.3px; color: #1f2430; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 500px; display:flex; align-items:center; gap:8px;}
     .pg-dots{ display:flex; gap: 8px; align-items:center; }
     .pg-dot{ width: 10px; height: 10px; border-radius: 999px; background: rgba(47,50,58,0.15); cursor: pointer; transition: 0.2s; }
     .pg-dot.active{ background: rgba(47,50,58,0.8); transform: scale(1.2); }
@@ -357,6 +364,7 @@
     .pg-screen-content[data-theme-id="2"] .note { background-color: #dcedc8; transform: rotate(1deg); }
     .pg-screen-content[data-theme-id="3"] .note { background-color: #e1bee7; transform: rotate(-0.5deg); }
     .pg-screen-content[data-theme-id="4"] .note { background-color: #b3e5fc; transform: rotate(1.5deg); }
+    .pg-screen-content[data-theme-id="5"] .note { background-color: #ffccbc; transform: rotate(-1.5deg); }
 
     .note-title{ font-weight: 800; font-size: 13px; line-height: 1.4; color: #333; flex: 1; pointer-events: none; margin-bottom: 6px; }
     .note-footer{ display:flex; align-items: flex-end; justify-content: space-between; gap: 8px; margin-top: auto; opacity: 1; }
@@ -367,6 +375,21 @@
     .note-quote-btn:hover { background: #fff; }
 
     .hint{ font-size: 12px; color: var(--text-secondary); font-weight: 700; line-height: 1.4; }
+
+    /* Group Labels on Canvas (for theme 2) */
+    .group-label {
+      position: absolute;
+      font-size: 14px;
+      font-weight: 900;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      pointer-events: none;
+      z-index: 0;
+      border-bottom: 2px dashed #ccc;
+      width: 200px;
+      padding-bottom: 4px;
+    }
 
     /* Quote modal */
     .modal-backdrop{ position: fixed; inset: 0; background: rgba(47,50,58,0.10); display:none; z-index: 2100; }
@@ -434,7 +457,7 @@
     <div class="column" data-theme="1">
       <div class="column-header col-theme-1">
         <div class="header-top">
-          <span class="col-title">Theme 1. Sense of Authorship rooted in Human Ideation</span>
+          <span class="col-title" onclick="promptEditTheme(1)">Theme 1. Sense of Authorship rooted in Human Ideation</span>
           <span class="card-count">0</span>
         </div>
       </div>
@@ -444,7 +467,7 @@
     <div class="column" data-theme="2">
       <div class="column-header col-theme-2">
         <div class="header-top">
-          <span class="col-title">Theme 2. Labels are treated as signals that allocate authorship, agency, legitimacy.</span>
+          <span class="col-title" onclick="promptEditTheme(2)">Theme 2. Labels are treated as signals that allocate authorship, agency, legitimacy.</span>
           <span class="card-count">0</span>
         </div>
       </div>
@@ -454,7 +477,7 @@
     <div class="column" data-theme="3">
       <div class="column-header col-theme-3">
         <div class="header-top">
-          <span class="col-title">Theme 3 - AI is accepted as a production tool, but resisted as a co-author with creative intent</span>
+          <span class="col-title" onclick="promptEditTheme(3)">Theme 3 - AI is accepted as a production tool, but resisted as a co-author with creative intent</span>
           <span class="card-count">0</span>
         </div>
       </div>
@@ -464,7 +487,7 @@
     <div class="column" data-theme="4">
       <div class="column-header col-theme-4">
         <div class="header-top">
-          <span class="col-title">Theme 4 - The platform social dynamics that influence the usage and distribution of AI generated content</span>
+          <span class="col-title" onclick="promptEditTheme(4)">Theme 4 - The platform social dynamics that influence the usage and distribution of AI generated content</span>
           <span class="card-count">0</span>
         </div>
       </div>
@@ -497,10 +520,14 @@
           <div class="pg-carousel">
             <button class="icon-btn" id="pgPrevBtn" title="Previous theme">‹</button>
             <div style="display:flex;flex-direction:column;gap:4px;min-width:0;align-items:center;flex:1;">
-              <div class="pg-carousel-title" id="pgThemeTitle">Theme 1</div>
+              <div class="pg-carousel-title">
+                <span id="pgThemeTitle" style="cursor:pointer;" title="Click to edit">Theme 1</span>
+                <button class="mini-btn" id="editThemeBtn" style="margin-left:10px; font-size:11px;">✎ Edit Title</button>
+              </div>
               <div class="pg-dots" id="pgDots"></div>
             </div>
             <button class="icon-btn" id="pgNextBtn" title="Next theme">›</button>
+            <button class="btn btn-primary" id="addThemeBtn" style="margin-left:12px;">➕ New Theme</button>
           </div>
 
           <div class="pg-canvas-wrapper">
@@ -509,6 +536,7 @@
               <div class="pg-canvas-screen" data-theme="2"><div class="pg-screen-content" id="pgTheme2Inner" data-theme-id="2"></div></div>
               <div class="pg-canvas-screen" data-theme="3"><div class="pg-screen-content" id="pgTheme3Inner" data-theme-id="3"></div></div>
               <div class="pg-canvas-screen" data-theme="4"><div class="pg-screen-content" id="pgTheme4Inner" data-theme-id="4"></div></div>
+              <!-- Dynamic themes will append here -->
             </div>
           </div>
         </div>
@@ -516,6 +544,11 @@
         <aside class="pg-sidebar">
           <div class="pg-sidebar-top">
             <h3 style="margin:0 0 10px 0; font-size:14px; font-weight:900;">Theme Codes</h3>
+            <select id="pgSidebarFilter" style="width:100%; padding:6px; font-size:12px; font-weight:700; border-radius:4px; border:1px solid #ddd; margin-bottom:8px;">
+               <option value="current">Current Theme</option>
+               <option value="unassigned">Unassigned (New)</option>
+               <option value="all">All Codes</option>
+            </select>
             <input class="pg-search" id="pgSearch" placeholder="Filter codes..." />
             <div class="hint" style="margin-top:6px;">Drag to canvas (used codes are hidden)</div>
           </div>
@@ -555,27 +588,29 @@
 
   <!-- Hidden Embedded Data -->
   <script id="embeddedQuotesMap" type="application/json">
-    {"openness / freedom of circulation":{"quotes":[{"text":"I really have it quite open.  I can put illustrations that don’t even have my signature,  that are completely free.  So I feel that some artists feel very vulnerable  in the sense of thinking that anyone can take your work","source":"participant1.txt","tag":"Openness"}],"theme":1},"disapproval of reliance on ai for creative ideation":{"quotes":[{"text":"Look, maybe you would have done it as you would have done it.  I don’t like it.  I’m not the kind of.  Aesthetically.  I don’t like it.  It’s not the kind of work that I consume or image that I consume.","source":"participant1.txt"}],"theme":1},"sees content-creator role as marginal to core artistic identity":{"quotes":[{"text":"I guess at a certain level I am, as a content creator.  At a very micro level.  But I do think that maybe people who have more media reach  also benefit from deceiving the public on certain occasions.","source":"participant1.txt"}],"theme":1},"artistic identity grounded in authenticity":{"quotes":[{"text":"I am a plastic artist, so the content goes more than anything to my artistic production.","source":"participant1.txt"}],"theme":1},"perceived copyright vulnerability among other artists":{"quotes":[{"text":"So I feel that some artists feel very vulnerable in the sense of thinking that anyone can take your work","source":"participant1.txt"}],"theme":1},"unstable authorship boundaries in social media environments":{"quotes":[{"text":"I’ve always thought, well, if someone is going to steal it, let them steal it completely. I don’t have that filter.","source":"participant1.txt"}],"theme":1},"values representation of creative labor":{"quotes":[{"text":"Yo lo hice totalmente, pero si me asistió, bueno, como saber, y co-created puede que ser eso, que literal, de que tú hiciste algo, que AI lo hizo algo más, y luego tú agarraste el AI y le ajustaste colores, entonces como que hubo un back and forth así seguido, ¿sabes?","source":"participant2.txt"}],"theme":1},"audiences will eventually sharpen their eye to distinguish human vs ai.":{"quotes":[{"text":"la gente  Pues conforme vaya pasando  El tiempo va a ir entrenando  Más el ojo  Y va a ir discerniendo  De lo que es real  De lo que está hecho  Artísticamente","source":"participant3.txt"}],"theme":1},"creative anxiety / “if ai can do this, what happens to human creativity?”":{"quotes":[{"text":"si la inteligencia puede hacer tantas cosas visualmente, ¿en dónde va quedando la creatividad?","source":"participant6.txt"}],"theme":1},"ai increases speed, efficiency, and reduces creative bottlenecks":{"quotes":[{"text":"in embargo, la producción musical con AI me ha hecho más productivo, más rápido. Eficiente.","source":"participant6.txt"}],"theme":3},"ai as cost-saving tool":{"quotes":[{"text":"Y, ¿qué haces? Tienes que igual pagar ese dinero a este productor, aunque no te esté gustando del todo como haya quedado.","source":"participant6.txt"}],"theme":3},"labels are a moral practice":{"quotes":[{"text":"Creo que es algo, una práctica que mínimo ayuda un poco a más a, pues sí, como que aclarar que se sube a las redes","source":"participant2.txt"}],"theme":1},"disappointment with human production":{"quotes":[{"text":"Tienes que igual pagar ese dinero a este productor, aunque no te esté gustando del todo como haya quedado.","source":"participant6.txt"}],"theme":3},"ai-assisted label means a human gave idea to the machine":{"quotes":[{"text":"Pues mi interpretación yo creo que es como justo que alguien alimentó a AI, o sea, lo que sea que está usando, con una imagen y tal vez si le dijo, hazme esta imagen como retrato pintoresco, no sé.","source":"participant2.txt"}],"theme":2},"“made with ai” label as meaning that the image has no human-originated creative input":{"quotes":[{"text":"Eso también, pues me dice que todo fue hecho con AI, o sea, como que, pues cien por ciento, cien por ciento AI.","source":"participant2.txt"}],"theme":2},"co-created with ai label highlights ambiguity":{"quotes":[{"text":"Esa, me confunde un poco el co-created porque siento que co-created es como de que, o sea, sí, sí, entiendo.","source":"participant2.txt"}],"theme":2},"perceives disclosure as credibility signals":{"quotes":[{"text":"Lo que pasa es que ArtStation Como es una plataforma muy dedicada a artistas Apoyando a artistas Y como es una plataforma de portafolio profesional","source":"participant3.txt"}],"theme":2},"sees labels as fillters in an information stream":{"quotes":[{"text":"Estos labels Pues si son una manera Pues un pequeño Como filtro De decir Oye Esto no es real Esto está creado A partir de una IA","source":"participant3.txt"}],"theme":2},"ai-generated image: hyper-realism creates uncertainty":{"quotes":[{"text":"Discerniendo Lo que es real De lo que no es La imagen Me parece Bastante Real O sea Si a simple vista Es que Está Es tan orgánica","source":"participant3.txt"}],"theme":2},"ai-assisted label restores a line between image and reality":{"quotes":[{"text":"Basándose En Monet Pero recordemos Que al final De cuentas Un artista Hace una construcción De lo que ve","source":"participant3.txt"}],"theme":2},"creators rely on subtle visual logic to detect authenticity":{"quotes":[{"text":"Que están volteando Hacia enfrente No les está pegando La luz O sea Son oscuras Pero la Al ala de atrás Que tiene el mismo ángulo Le debería estar pegando La misma luz","source":"participant3.txt"}],"theme":2},"imperfections become diagnostic cues of fakeness":{"quotes":[{"text":"Igual Las manos Tienen más dedos De las que deberían","source":"participant3.txt"}],"theme":2},"ai art image challenges trust in his own visual judgment":{"quotes":[{"text":"Pero lo veo Y si lo veo A simple vista Hay algo que está hecho Con inteligencia artificial Que siempre digo Hay algo Que no me cuadra","source":"participant3.txt"}],"theme":2},"labels help confirm what the eye cannot trust":{"quotes":[{"text":"Entonces poner el label De AI","source":"participant3.txt"}],"theme":2},"interior design image ai output perceived as technically competent but not real":{"quotes":[{"text":"Este Si bien no parece 100% realista Pero si parece 100% Algo entregable Para Un arquitecto","source":"participant3.txt"}],"theme":2},"ai is already common in architectural visualization.":{"quotes":[{"text":"Un render Hecho por un arquitecto Por un diseñador De interiores Etcétera Entonces ver Este label De hecho Con AI Pues Como Pues si puedo Llegar a decir Ok Como que es normal","source":"participant3.txt"}],"theme":2},"ai label normalizes synthetic content in professional workflows":{"quotes":[{"text":"Entonces ver Este label De hecho Con AI Pues Como Pues si puedo Llegar a decir Ok Como que es normal","source":"participant3.txt"}],"theme":2},"ai perfection destabilizes trust in authorship":{"quotes":[{"text":"Es verdad que se A mi gusto Se ve bastante perfecto","source":"participant3.txt"}],"theme":2},"platform labels compete with creator reputation as signals of truth.":{"quotes":[{"text":"Porque si lo subió Mi tía Obviamente diría yo Ah bueno Esto está hecho Con inteligencia artificial","source":"participant3.txt"}],"theme":2},"rejects co-creation because ai lacks human imperfection":{"quotes":[{"text":"Es que todo Es muy Muy perfecto En cuanto a trazo En cuanto a calidad","source":"participant3.txt"}],"theme":2},"feels co-creation exaggerates ai’s artistic agency":{"quotes":[{"text":"El filtro El output Final Que es tan limpio No tiene noise Tiene un filtro Un poco Como de Onírico Como de ensueño","source":"participant3.txt"}],"theme":2},"requires quantifiable creative effort to accept co-creation.":{"quotes":[{"text":"Y eso pues ya cuenta Un poco como 50-50 ¿No? 50-50","source":"participant3.txt"}],"theme":2},"labels matter only when ai realism fools perception":{"quotes":[{"text":"Pero en casos Que parezcan demasiado realistas Sí que se usarían","source":"participant3.txt"}],"theme":2},"ai content is like 'fast-food'":{"quotes":[{"text":"Pues existe La comida rápida","source":"participant3.txt"}],"theme":2},"context-dependent emotional detachment":{"quotes":[{"text":"Mmm, it’s a, I feel like, okay, first of all, that’s a really nice AI generated, usually","source":"participant5.txt"}],"theme":2},"ai-assisted label amplifies perceived discomfort":{"quotes":[{"text":"Uh, it’s like, yeah, it’s a beautiful painting, if it wasn’t AI assisted.","source":"participant5.txt"}],"theme":2},"ai-assisted triggers conditonal appreciation":{"quotes":[{"text":"Uh, it’s like, yeah, it’s a beautiful painting, if it wasn’t AI assisted.","source":"participant5.txt"}],"theme":2},"'made with ai' label accepted under the interior design context":{"quotes":[{"text":"so made by, made with the AI, so it’s like, oh yeah, I can see that in like, for example, in a Instagram about, uh, um, someone who is selling furniture","source":"participant5.txt"}],"theme":2},"co-created label is acceptable in fictional or world-building contexts":{"quotes":[{"text":"co-created with AI, eh, it doesn’t piss me off as much as the painting one, but, because it’s fiction","source":"participant5.txt"}],"theme":2},"co-created label preserves human authorship as the origin point":{"quotes":[{"text":"ah, maybe co-created, I can guess that the person put, like, what they are seeing, like, this, I want this, this, this, uh, with this color,","source":"participant5.txt"}],"theme":2},"ai use in high-art formats threatens authenticity":{"quotes":[{"text":"but if i see a movie or a book with ai yeah i’m gonna throw that","source":"participant5.txt"}],"theme":2},"ai use accepted in low-stakes, playful, non-professional contexts":{"quotes":[{"text":"i have used ai generated but for tiktok content like uh not stupid stuff but like trends","source":"participant5.txt"}],"theme":2},"authorship only matters when the image is artistic or expressive.":{"quotes":[{"text":"como que tipo, o sea, sé que a lo mejor está hecha de inteligencia artificial, pero siento que las instrucciones que se dieron para llegar a esta imagen como que fueron muy precisas del artista","source":"participant4.txt"}],"theme":2},"“made with ai” does not reduce value because the goal isn’t artistic authorship":{"quotes":[{"text":"el resultado sí se me hace muy interesante. Ah, ok. Esta imagen, bueno, pues yo incluso he usado AI para este tipo de renders de arquitectura.","source":"participant4.txt"}],"theme":2},"ai feels appropriate in functional contexts":{"quotes":[{"text":"Esta imagen, bueno, pues yo incluso he usado AI para este tipo de renders de arquitectura.","source":"participant4.txt"}],"theme":2},"low-stakes functional images = label is normalized":{"quotes":[{"text":"Siento que es una buena representación para mostrar un espacio.","source":"participant4.txt"}],"theme":2},"label does not threaten professional identity in non-artistic tasks":{"quotes":[{"text":"Se me hace como que muy, o sea, en la línea realista de los renders de arquitectura.","source":"participant4.txt"}],"theme":2},"technical acceptance (“ai fits architectural visualization norms”)":{"quotes":[{"text":"orque se mira muy natural. Además, no se mira muy, ¿sabes? La AI en espacios de arquitectura, normalmente las texturas, o el espacio se mira como que muy smooth, muy suave.","source":"participant4.txt"}],"theme":2},"co-creative with ai label amplifies loss or perceived human authorship":{"quotes":[{"text":"Como que, ahí la AI siento que tuvo más, eh, más protagonismo en esta imagen, que en la pintura","source":"participant4.txt"}],"theme":2},"context-dependent acceptance of labels / “label is fine when ai is the medium”":{"quotes":[{"text":"hay artistas en Instagram que ellos, y que la venta no tiene nada de malo que ellos muestren que le hicieron con EI, porque de hecho de eso se trata del contenido de ellos","source":"participant4.txt"}],"theme":2},"hyperreal ai triggers concern / “realistic ai + label = perceptual alarm”":{"quotes":[{"text":"y si se mira muy real, ya me quedé que no manches, esto tiene EI. Pues sí me preocupa nada más en el sentido de que, wow, no, esto es tan real.","source":"participant4.txt"}],"theme":2},"need for clarification in percentage, the extent ai was used":{"quotes":[{"text":"debería haber un porcentaje, tipo, si el porcentaje de qué tanto fue humano y qué tanto fue IAI, que eso dependa de poner la etiqueta","source":"participant4.txt"}],"theme":2},"'ai-generated' label becomes associated with possible fakery":{"quotes":[{"text":"El hecho que esté la etiqueta ahí no implica nada. Y bueno, me implica que algo de lo que estoy viendo es falso, ¿viste?","source":"participant6.txt"}],"theme":2},"'ai-assisted' label when ai is a creative extension":{"quotes":[{"text":"Y que esté generada por una inteligencia artificial, nada, me hace pensar varias cosas, tanto positivas como negativas.","source":"participant6.txt"}],"theme":2},"'ai-assisted' blurs authorship boundaries enough to enable plausible deceit.":{"quotes":[{"text":"Y después cachipurrerme a mi familia y decir que lo pinte yo, pero en realidad lo hice en inteligencia artificial.","source":"participant6.txt"}],"theme":2},"'made with ai' label accepted under the interior design context":{"quotes":[{"text":"Y luego con respecto a esta imagen, ¿qué dice hecho con AI? Esto me parece genial porque en este aspecto es como para las personas que tienen un negocio, por ejemplo, y necesitan reubicar visualmente cómo sería.","source":"participant6.txt"}],"theme":2},"'made with ai' label perceived neutrally in an interior desgin context":{"quotes":[{"text":"Y luego con respecto a esta imagen, ¿qué dice hecho con AI? Esto me parece genial porque en este aspecto es como para las personas que tienen un negocio","source":"participant6.txt"}],"theme":2},"context awareness of ai use defines the value of the content":{"quotes":[{"text":"Yo creo que depende mucho del contexto en que se utilice el AI.","source":"participant6.txt"}],"theme":2},"collaborative authorship interpretation / “co-created implies joint effort”":{"quotes":[{"text":"Co-creado, está bien, porque me imagino de que es un trabajo en conjunto, viste, alguien tenía la imagen y la modificó, la mejoró.","source":"participant6.txt"}],"theme":2},"ai-generated label maintains trust and awareness in realistic but synthetic media":{"quotes":[{"text":"Aquí el El label Os ayuda bastante Porque esta es la Esta parece Verdaderamente real","source":"participant3.txt"}],"theme":2},"labels as a practice of maintaining creator–audience trust":{"quotes":[{"text":"I mean, there’s an honesty of what you’re presenting to your audience, right?","source":"participant1.txt"}],"theme":2},"sees labels as a solution to restore user agency sees labels as segmentation cues that sort audiences by content preference":{"quotes":[{"text":"entonces yo creo que este tipo de tags, como que ya la gente que busca contenido AI, pues le va a salir más, entonces como que su algoritmo se va a ir con eso, y la gente que, pues de verdad quiere ver gente haciendo trucos con patinetas de verdad, pues más bien el que ya ignore todo lo que tenga tags,","source":"participant2.txt"}],"theme":2},"human-made label frames creation as a competence of identities with ai":{"quotes":[{"text":"No sé, o sea, como que siento que al poner una etiqueta de humanoid, primero, pues muchos, o sea, es como si cualquiera que suba una foto suya ahora tiene que poner humanoid","source":"participant2.txt"}],"theme":2},"human-made label risks becoming deceptive when verification is unclear":{"quotes":[{"text":"Cómo alguien va a subir, qué tal si alguien sí quiere, su propósito es tener un buen de views y no quiere que la gente sepa que ese AI,","source":"participant2.txt"}],"theme":2},"human-made label enforces belief that the value of authenticity is already in crisis":{"quotes":[{"text":"Entonces ahí entras en otro problema de, pues, cómo lo compruebas, o sea, cómo compruebas que alguien sí está subiendo algo de verdad","source":"participant2.txt"}],"theme":2},"sees disclosure as an industrial standard rather than a moral act.":{"quotes":[{"text":"Pues puedes crearte un hashtag tú Pero es verdad que ArtStation Sí que las tiene Y las tiene desde hace ya Bastantitos años","source":"participant3.txt"}],"theme":2},"in response to social issues, labels become an urgent standard defense":{"quotes":[{"text":"Entonces Así como que Cierto que Debería estar Estandarizado Este tipo de Etiquetas A la hora de Generar contenido En redes sociales","source":"participant3.txt"}],"theme":2},"as ai becomes the norm, human-made work will require its own label":{"quotes":[{"text":"Estos tags Pues quizás Lo estandarizado En unos años Es que pues todo Este hecho Con inteligencia artificial ¿No? Entonces quizás Lo que puede llegar A pasar Es lo contrario ¿No?","source":"participant3.txt"}],"theme":2},"labels as first-line defence against misuse":{"quotes":[{"text":"Este label Quizás no sea La defensa Última Ante Lo legal O ante El mal uso De tu imagen Pero por lo menos Si es un primer filtro","source":"participant3.txt"}],"theme":2},"labels are a temporary perceptual aid, not a permanent requirement.":{"quotes":[{"text":"Sin Ya quizás Ni siquiera Necesitemos los labels Sin Ya vamos A interiorizar Tanto Lo que está hecho De lo que no","source":"participant3.txt"}],"theme":2},"labels protect against deception / “labels safeguard vulnerable audiences”":{"quotes":[{"text":"La misma Instagram ya te diga, pues esto tiene EI y esto no, o sea, que realmente, porque hay mucha gente que, pues sí se quiere, como te digo, engañarse con cosas que parecen muy reales y realmente no lo son.","source":"participant4.txt"}],"theme":2},"perceived penalty for disclosure in artistic fields / “label can harm visibility and opportunity”":{"quotes":[{"text":"en las plataformas de música también te bajan las setlists, las playlists, por el hecho de estar con creación de inteligencia artificial.","source":"participant6.txt"}],"theme":2},"sees labels as a solution to restore user agency":{"quotes":[{"text":"está bien mencionar que es inteligencia artificial, porque hoy en día ya no se sabe qué es lo que es inteligencia artificial, qué es lo que es real y qué es lo que no es real.","source":"participant6.txt"}],"theme":2},"ethical imperative for high-impact content / “for news and socially impactful media, labels are mandatory”":{"quotes":[{"text":"Entonces, para temas de noticias, para temas que pueden impactar a la sociedad como tal, vendría re bien que diga en algún momento una marca de agua, que es inteligencia artificial.","source":"participant6.txt"}],"theme":2},"“labels need nuance” / desire for percentage disclosure":{"quotes":[{"text":"Claro, es como que esto fue creado con, no sé, estos pros y se generó tal por ciento con inteligencia artificial.","source":"participant6.txt"}],"theme":2},"“human-made label is comforting but must be aeshtetically subtle”":{"quotes":[{"text":"Sí, igual sería interesante, ¿viste? Como porque ahora no se sabe qué es lo que es inteligencia artificial y qué es hecho por un humano. Pero igual, de la misma manera, quizás no tan grande, porque igual es raro, ¿viste?","source":"participant6.txt"}],"theme":2},"curiosity towards ai as a creative tool":{"quotes":[{"text":"La verdad es que siempre estoy, sí, estoy muy curioso, o sea,","source":"participant2.txt"}],"theme":3},"negotiating adoption while protecting creative agency":{"quotes":[{"text":"I think right now I’m in a kind of resistance. To say, no, I’m not going to win. And I’m going to do it. And I’m like this. Yes, I’m in my resistance. But how long can I last?","source":"participant1.txt"}],"theme":3},"curiosity towards ai in tension with his ethical commitment.":{"quotes":[{"text":"La verdad es que siempre estoy, sí, estoy muy curioso, o sea, sé todo el como tema justo de que muchas controversias y tema entre los artistas y ella y este","source":"participant2.txt"}],"theme":3},"ai accepted as a reference tool, but not a creative author":{"quotes":[{"text":"tengo más bien, tengo mucho más interés que uso, ya sabes, como que nada más no me ha dado tiempo de investigar,","source":"participant2.txt"}],"theme":3},"ai for ideation is not a priority":{"quotes":[{"text":"tengo más bien, tengo mucho más interés que uso, ya sabes, como que nada más no me ha dado tiempo de investigar,","source":"participant2.txt"}],"theme":3},"3d and ai as mediums of expression, not identity threats":{"quotes":[{"text":"Creo Más que nada Un poco de 3D","source":"participant3.txt"}],"theme":3},"ai explored as a technical curiosity, not as creative input":{"quotes":[{"text":"Las he usado Por curiosidad Para un poco Tantear las herramientas Ver sus capacidades Ver sus limitaciones Pero a nivel profesional Nunca las he usado Sí","source":"participant3.txt"}],"theme":3},"accepts ai in the workflow but rejects ai as final author":{"quotes":[{"text":"Entonces sí es de verdad que esta plataforma sí protegía mucho El uso de inteligencia artificial De lo que está hecho por ti ¿No? O sea realmente lo que interesa en esta plataforma es lo que tú hagas","source":"participant3.txt"}],"theme":3},"ai lacks intentionality and interpretation":{"quotes":[{"text":"Discerniendo Lo que es real De lo que no es La imagen Me parece Bastante Real","source":"participant3.txt"}],"theme":3},"ai doesn’t create, it recombines.":{"quotes":[{"text":"Basándose En Monet Pero recordemos Que al final De cuentas Un artista Hace una construcción De lo que ve","source":"participant3.txt"}],"theme":3},"ai threatens labor-based creative professions":{"quotes":[{"text":"Pues nos da Nos da en jaque ¿No? A los renderistas","source":"participant3.txt"}],"theme":3},"efficiency vs craft value tension":{"quotes":[{"text":"Pues esta inteligencia artificial Seguramente lo hizo En Cinco minutos ¿No? ¿Y cuánto se tarda Un renderista En hacer esto? Dos días Si le mete Prisa","source":"participant3.txt"}],"theme":3},"ai is a threat when it replaces process, not when it replaces ideas":{"quotes":[{"text":"En Cinco minutos ¿No? ¿Y cuánto se tarda Un renderista En hacer esto? Dos días Si le mete Prisa","source":"participant3.txt"}],"theme":3},"ai is fine as an internal tool but not as a co-author of the artifact.":{"quotes":[{"text":"De hecho lo que se busca Hoy en día Es que en procesos Más técnicos Tediosos Se usen estas herramientas Para acelerar El flujo de trabajo","source":"participant3.txt"}],"theme":3},"ai is a threat when it replaces process":{"quotes":[{"text":"Pues esta inteligencia artificial Seguramente lo hizo En Cinco minutos ¿No? ¿Y cuánto se tarda Un renderista En hacer esto?","source":"participant3.txt"}],"theme":3},"manipulability of narratives using ai":{"quotes":[{"text":"Utilizar estas retóricas En pos De política En pos De cosas Pues un poco Más maquiavélicas","source":"participant3.txt"}],"theme":3},"legal vulnerability caused by ai":{"quotes":[{"text":"Una brecha Legal Por autos Que incluso Los abogados Saben Aterrizar Porque al final Este Pues pueden usar Tu voz Sin tu consentimiento","source":"participant3.txt"}],"theme":3},"perceived irrelevance of ai to current creative practice":{"quotes":[{"text":"Quizás A mí A mí no me llama La atención ¿Sabes? Reconozco el potencial De la herramienta Pero hasta ahorita Es potencial Hasta ahorita","source":"participant3.txt"}],"theme":3},"doesn't consider ai as a serious tool until it becomes a clear industry norm":{"quotes":[{"text":"No hay nada Que en mi Específica área Sea algo Totalmente Este Necesario Usar","source":"participant3.txt"}],"theme":3},"resists replacing his work with ai partly because of the time, money, and effort invested in learning his craft":{"quotes":[{"text":"Lo que he pagado Por aprender Lo que Lo que he hecho Por aprender Sino porque Hoy en día No es algo Que sirva Al 100% Si no Es una cuestión De prueba y error","source":"participant3.txt"}],"theme":3},"ai tools perceived as valid for factual accuracy, not emotional authenticity":{"quotes":[{"text":"right now i’m writing a book so i’m asking some information about the 19th century uh how the how women were perceived in the 19th century more mostly in the uk and scotland","source":"participant5.txt"}],"theme":3},"ai as a visualization tool for world-building":{"quotes":[{"text":"AI is showing you what can possibly be, so it doesn’t make me mad, but it’s not something that I will use constantly, because I, when I read a book, I like to also use my imagination,","source":"participant5.txt"}],"theme":3},"ai as an experimentation tool":{"quotes":[{"text":"Una vez hice eso, nada más, pero para experimentar cosas nuevas.","source":"participant4.txt"}],"theme":3},"tool-based recognition of skill (“skill in prompting still belongs to the human”)":{"quotes":[{"text":"en la línea realista de los renders de arquitectura. Siento que está ahí. No se mira","source":"participant4.txt"}],"theme":3},"“ai as the lazy teammate”":{"quotes":[{"text":"Es como sabes, cuando haces un trabajo en equipo, en la UNI, y hay alguien que no hizo casi nada y aún así está, pues ahí en la lista del equipo, ¿no?","source":"participant4.txt"}],"theme":3},"ai as a compensatory tool / “ai supports creators lacking specific skills”":{"quotes":[{"text":"por ejemplo yo, que a veces necesito hacer un bosquejo de algún sketch, pero no sé dibujar bien, a un render, y no tengo las habilidades como para aprender otro programa, que esté la IAI y más o menos darle instrucciones y que muestre más o menos lo que tenía en mente, pues eso se me hace bien, ¿no?","source":"participant4.txt"}],"theme":3},"ai as an assistant for workload / task delegation":{"quotes":[{"text":"También como asistente parecido a un manager para no hacer todo porque al ser artista independiente es mucho el trabajo y a veces quedan áreas sin completar y la AI ayuda bastante en eso.","source":"participant6.txt"}],"theme":3},"plural tool ecosystem / “multiple ai tools integrated into workflow”":{"quotes":[{"text":"he usado distintos tipos de inteligencia artificial, entre a horas uno, para también generar videos, no me acuerdo la otra.","source":"participant6.txt"}],"theme":3},"ai use is okay in low stakes content":{"quotes":[{"text":"Pero, por ejemplo, en caso de que fuera contenido como memes, como cosas para causar conmoción y cosas similares o cosas de trabajo, como marketing y cosas que te hacen más fácil el trabajo en sí","source":"participant6.txt"}],"theme":3},"ai positive impact on production and scalability, improves work and time":{"quotes":[{"text":"Positivamente, completamente. Ok, lo ha hecho más productivo, más rápido. Eficiente. Más rápido, mucho más productivo.","source":"participant6.txt"}],"theme":3},"audience lacks critical visual discernment":{"quotes":[{"text":"And I’m shocked by the people who comment on images like this, like, oh, how beautiful the space is, it looks amazing,","source":"participant1.txt"}],"theme":4},"concern about future misuse and societal manipulation":{"quotes":[{"text":"Because right now I think we are in a moment where the images that are presented are very innocent. But what is going to happen when this is taken to another level?","source":"participant1.txt"}],"theme":4},"believes high-reach creators can exploit media to deceive":{"quotes":[{"text":"But I do think that maybe people who have more media reach also benefit from deceiving the public on certain occasions. And that’s not new, right?","source":"participant1.txt"}],"theme":4},"audience seeks pleasurable illusion over truth":{"quotes":[{"text":"And apart from that, people love to be deceived. I mean, that’s a fact. That’s why there are so many AI consumers. Not everyone bets on honesty and truth. We don’t like truth. We love all fiction.","source":"participant1.txt"}],"theme":4},"fear of a society losing critical judgment when confronted with realistic synthetic images":{"quotes":[{"text":"It was a video or a photo of a woman who was getting on a plane and the staff told her that she could not get on her koala, no, it was not a koala, sorry, it was a kangaroo","source":"participant1.txt"}],"theme":4},"sense of betrayal when institutions adopt ai instead of supporting human artists":{"quotes":[{"text":"I think that we can see that there are a lot of people who are not identifying with AI with drawing made by artists. And they don’t realize it, and there are even governmental institutions that are using AI in their campaigns","source":"participant1.txt"}],"theme":4},"believes some content creators can exploit media to deceive":{"quotes":[{"text":"que si no lo pones y estás subiendo algo, estás medio engañando a la gente, en mi opinión, o sea, si no pones, porque a veces lo que yo hago justo es como ver una imagen y si algo me salta como, o un video y luego esto suena raro","source":"participant2.txt"}],"theme":4},"labels are a necessity because audiences are impressed easily":{"quotes":[{"text":", pero siento que entre más videos súper realistas que suban AI, la gente, pues la gente creo que le impresiona ahorita nada más","source":"participant2.txt"}],"theme":4},"social media dynamics do not support authenticity claims":{"quotes":[{"text":"Entonces ahí entras en otro problema de, pues, cómo lo compruebas, o sea, cómo compruebas que alguien sí está subiendo algo de verdad, ya sabes","source":"participant2.txt"}],"theme":4},"ai's impact is perceived as social rather than technical":{"quotes":[{"text":"como Autodesk, creo que ya está implementando cosas que no he usado directamente, que yo sepa, o sea, no sé si algunas tools, digamos, ya, ya tienen AI, yo ni lo sé","source":"participant2.txt"}],"theme":4},"authorial legitimacy depends on platform governance, not personal morality":{"quotes":[{"text":"Entonces sí es de verdad que esta plataforma sí protegía mucho El uso de inteligencia artificial De lo que está hecho por ti ¿No?","source":"participant3.txt"}],"theme":4},"fear of losing collective ability to tell real from fake":{"quotes":[{"text":"Nos vamos a delimitar En lo que No podremos marcar la línea En lo que es real De lo que No lo es","source":"participant3.txt"}],"theme":4},"sees social media as an ecosystem where identity gets distorted. ai is not the original problem":{"quotes":[{"text":"De inteligencia artificial Para acá Sino es algo que ya existe Desde que Comenzaron a salir Las redes sociales ¿No? La cuestión de Tú puedes proyectar Algo que no eres","source":"participant3.txt"}],"theme":4},"sees social media as a space where authenticity is already unstable":{"quotes":[{"text":"Algo que no eres En En redes sociales","source":"participant3.txt"}],"theme":4},"fear of political and harmful misuse":{"quotes":[{"text":"Todo lo que involucra Simulacro Simulación De lo que es real De lo que no es Y esto se puede utilizar Para retóricas Políticas Para retóricas Un poco malignas Entonces","source":"participant3.txt"}],"theme":4},"believes people are already overwhelmed by curated, idealized realities.":{"quotes":[{"text":"De discernir Lo que es real Y de lo que no Porque somos Una sociedad Hipersensible Por el hecho De que existen Las redes sociales","source":"participant3.txt"}],"theme":4},"media performance of perfection undermines trust":{"quotes":[{"text":"Yo tengo la vida Perfecta Yo tengo el cuerpo Perfecto Yo no tengo Nada absolutamente Malo en mi vida Y eso es lo que tú Proyectas A tus redes sociales Pero en el fondo Puedes estar pasando Un infierno","source":"participant3.txt"}],"theme":4},"labels signal moral character and artistic integrity.":{"quotes":[{"text":"so when i the fact that is out there the label that ai created or co-created or assisted or whatever gives you an idea of the person of the the type of creator that that that they are","source":"participant5.txt"}],"theme":4},"mandatory enforcement increases trust in the label system":{"quotes":[{"text":"hat are some some uh platforms are making you use them like if you don’t use it and you use ai they will strike you uh so i’m i’m actually all about that like i agree with that you","source":"participant5.txt"}],"theme":4},"platform automated labelling label exaggerates ai’s contribution / “label inflates ai credit”":{"quotes":[{"text":"Y a veces Instagram ya te dice, no, pues esto contiene EI, ¿no? Y me hace sentir como que, ah, no mames, ahora la gente va a pensar que casi toda la foto de ahí es EI, ¿no?","source":"participant4.txt"}],"theme":4},"ethical awareness as creative identity":{"quotes":[{"text":"y pues hasta temas morales entiendo de justo de que pues el robo de, de dónde salió el, como justo de que se alimenta el LEA y todo eso como que lo entiendo","source":"participant2.txt"}],"theme":1},"values clarity to prevent authorship and rights disputes":{"quotes":[{"text":"Pero bueno, en general creo que sí, creo que, pues está muy bien, o sea, creo que es algo, una práctica que mínimo ayuda un poco a más a, pues sí, como que aclarar que se sube a las redes, porque creo que ahorita hay mucho más problemas, más de, ya sabes, de demandas y de derechos y derechos de autor, hay muchísimas cosas,","source":"participant2.txt"}],"theme":1},"uses social media as professional showcase":{"quotes":[{"text":"01:00.000 —> 01:13.020] Uso principalmente Linkedin Instagram y Artstation Creo Más que nada Un poco de 3D Ya sea animaciones Un poco Setups Un poquito más avanzados Pero a manera generalmente de portafolio Digo, siempre busco Que haya una especie de temática Social","source":"participant3.txt"}],"theme":1},"identity anchored in purpose/professionalism":{"quotes":[{"text":"01:37.980 —> 01:39.760] Que haya una especie de temática Social Y medioambiental en lo que hago Aunque no sea tal cual Así como, oye, estoy hablando aquí De alguna temática social Sino que haya por ahí un subtexto en lo que hago Pero lo esencial Es que sea portafolio Y ganar visibilidad profesional Profesionalmente no Las he usado","source":"participant3.txt"}],"theme":1},"his work expresses ideas, not his inner emotional state.":{"quotes":[{"text":"Que haya una especie de temática Social Y medioambiental en lo que hago Aunque no sea tal cual","source":"participant3.txt"}],"theme":1},"uses social media for professional visibility, not persona building":{"quotes":[{"text":"Y ganar visibilidad profesional Profesionalmente no Las he usado","source":"participant3.txt"}],"theme":1},"professional authorship is kept separate from ai influence":{"quotes":[{"text":"Ver sus capacidades Ver sus limitaciones Pero a nivel profesional Nunca las he usado Sí","source":"participant3.txt"}],"theme":1},"human talent is assumed real within trusted communities":{"quotes":[{"text":"16:02.800 —> 16:03.040] ¿No? Porque si lo subió Mi tía Obviamente diría yo Ah bueno Esto está hecho Con inteligencia artificial ¿No?","source":"participant3.txt"}],"theme":1},"believes time and effort produce authenticity":{"quotes":[{"text":"25:42.940 —> 25:43.380] Un poco más Artesanal Un poco más Laborioso ¿No? Entonces Eso por un lado Por otro lado Lo que te mencionaba","source":"participant3.txt"}],"theme":1},"human authorship anchored in personal narrative rather than technical craft":{"quotes":[{"text":"i create uh like book talk content uh film film director content and a bit a little bit","source":"participant5.txt"}],"theme":1},"human intent vs. ai autonomy (“human objective determines perceived legitimacy”)":{"quotes":[{"text":"lo contrario a la pintura de la segunda imagen, creo que fue. Siento que, si se miraba claro, el objetivo de la pintura. Aquí siento que nada más, a lo mejor si otro artista, nada más le pidió al AI, tipo, haz esto, le dio como instrucciones a lo logro y salió hecho nada más.","source":"participant4.txt"}],"theme":1},"reluctance to disclose minor ai use":{"quotes":[{"text":"si pudiera, pues nunca las mostraría, ¿no?","source":"participant4.txt"}],"theme":1},"creator identity threatened by over-labeling":{"quotes":[{"text":"Pero el punto es que eso ya fue manipulación EI, ¿no? Cuando el resto de la foto realmente la hice yo, el resto d","source":"participant4.txt"}],"theme":1},"reliance on social cues to identify ai":{"quotes":[{"text":"e, a veces tengo que hacerlo entrando a los comentarios de un post para ver qué dice la gente, ¿no?","source":"participant4.txt"}],"theme":1},"multiplatform creator identity":{"quotes":[{"text":"Instagram. Y YouTube también, ¿no?","source":"participant6.txt"}],"theme":1},"artistic primary authorship (“i am an independent artist-composer”)":{"quotes":[{"text":"soy artista compositora independiente","source":"participant6.txt"}],"theme":1},"platform dependency for visibility (“algorithmic pressure to produce visuals”)":{"quotes":[{"text":"por el tema de los algoritmos y todo el show, tengo que estar usando constantemente apoyo visual para poder mover la música y que la gente la pueda escuchar.","source":"participant6.txt"}],"theme":1},"visual content as secondary to the true creative product (“visuals support music”)":{"quotes":[{"text":"por el tema de los algoritmos y todo el show, tengo que estar usando constantemente apoyo visual para poder mover la música y que la gente la pueda escuchar.","source":"participant6.txt"}],"theme":1},"ai visual generation 'skills' as a threat":{"quotes":[{"text":"En el aspecto negativo es como que si la inteligencia puede hacer tantas cosas visualmente, ¿en dónde va quedando la creatividad?","source":"participant6.txt"}],"theme":1},"aesthetic resistance to large labels/ “large labels interfere with presentation”":{"quotes":[{"text":"O sea, así darle un, un, ¿cómo se llama? Un, un reconocimiento a la inteligencia artificial, pero tener la etiqueta tan grandota ahí, como que no sé.","source":"participant6.txt"}],"theme":1},"“label erases human creativity” / fear of misattributed authorship":{"quotes":[{"text":"Pero al fin y al cabo, si sale la etiqueta de la inteligencia artificial, es como que, oh, la inteligencia hizo todo y en realidad no hubo nada de cabeza por parte del creador o por parte del artista.","source":"participant6.txt"}],"theme":1},"“creativity still comes from me” / assertion of human primacy":{"quotes":[{"text":"400] Si bien yo le estoy describiendo todo lo que yo quiero y como quiero que suene, eso es parte de mi creatividad.","source":"participant6.txt"}],"theme":1},"fear of losing critical judgement / ai as a threat to professional visual discernment":{"quotes":[{"text":"Pues me da un sentido de preocupación, ¿no? De que, wow, o sea, ya cada vez más no puedo distinguir si es EI o no, ¿no?","source":"participant4.txt"}],"theme":1},"perfection as a cue of synthetic origin":{"quotes":[{"text":"So in this image, I don’t really care about the creation process, whether it was digital or handmade, analogous. What worries me is that the idea has been generated.","source":"participant1.txt"}],"theme":1},"artist identity rooted in idea generation":{"quotes":[{"text":"Look, maybe you would have done it as you would have done it. I don’t like it. I’m not the kind of. Aesthetically. I don’t like it. It’s not the kind of work that I consume or image that I consume. Then I don’t have that. Yes. I don’t know, again, my conflict here is because you need the computer to give you ideas. I mean, they don’t give you… Drugs are better, we use hallucinogens before a computer. I don’t understand why as an artist you need a robot to tell you what to do. No, it has to be","source":"participant1.txt"}],"theme":1},"ethical expectation of transparency in creative authorship":{"quotes":[{"text":"if you’re going to deceive your audience as a creator and say, oh, look, I made this piece and it’s not, and there’s no label that says it, that’s a deception, it’s a fraud.","source":"participant1.txt"}],"theme":1},"fear that ai-created final outputs undermine the craft.":{"quotes":[{"text":"Eso es lo que Lo que está un poco Mal visto En el sector No tanto Que lo utilices Para cuestiones técnicas Por ejemplo Necesito un código Que me haga esto ¿No? Pues al final El output No va a ser tu código","source":"participant3.txt"}],"theme":1},"frustration towards the loss of creaive agency in ideation":{"quotes":[{"text":"] I think that’s the part that affects me the most as a creator, to say, let’s see, we artists are not going to have, the ability to generate ideas or artistic proposals that arise from our thinking, but I have to ask the computer what happens to it, because today I don’t know what to draw. Computer, well, I don’t even know how to, so you can see that I’m not completely related. I hear very boomer, hey computer, I don’t know how they call it, the chat GTP, I guess, right? What do I draw today? And that seems to me to be, it seems very serious, it seems very strong, very, very strong to say, I don’t have the ability to say, today I’m not going to generate anything, today I’m not going to create anything because I can’t think of anything.","source":"participant1.txt"}],"theme":1},"fear of losing the capacity to imagine without ai":{"quotes":[{"text":"] What I don’t want to happen to me at any time is just that my ideas are generated by a robot. And I wouldn’t forgive it.","source":"participant1.txt"}],"theme":1},"hope that human made art will be more valued for its effort and quality":{"quotes":[{"text":"Because if not, I’m going to have to start looking for another profession. But my hope in art is that human art is valued more. That the effort is seen. The effort is seen. The quality is seen. The knowledge is seen. You can see all these characteristics that artificial art does not have.","source":"participant1.txt"}],"theme":1},"wants clarity and specificity in creative disclosure":{"quotes":[{"text":"Como que me gustaría hasta que haya más específicos, como de que AI sound, como dices, como que le puse AI audio o algo así, pero pues sí, yo creo que está bien, o sea, yo creo que es una buena práctica que la gente debe de usar, o sea, si yo en algún punto justo me uso el AI como asistencia de alguna forma, o sea, me gustaría que haya como una forma como que ya esté muy establecido, ¿qué significa qué?","source":"participant2.txt"}],"theme":1},"ai increases speed, efficiency, cost, and reduces creative bottlenecks":{"quotes":[{"text":"in embargo, la producción musical con AI me ha hecho más productivo, más rápido. Eficiente.","source":"participant6.txt"}],"theme":3},"ai as cost-saving tool":{"quotes":[{"text":"Y, ¿qué haces? Tienes que igual pagar ese dinero a este productor, aunque no te esté gustando del todo como haya quedado.","source":"participant6.txt"}],"theme":3}}
+    {"openness / freedom of circulation":{"quotes":[{"text":"I really have it quite open.  I can put illustrations that don’t even have my signature,  that are completely free.  So I feel that some artists feel very vulnerable  in the sense of thinking that anyone can take your work","source":"participant1.txt","tag":"Openness"}],"theme":1},"disapproval of reliance on ai for creative ideation":{"quotes":[{"text":"Look, maybe you would have done it as you would have done it.  I don’t like it.  I’m not the kind of.  Aesthetically.  I don’t like it.  It’s not the kind of work that I consume or image that I consume.","source":"participant1.txt"}],"theme":1},"sees content-creator role as marginal to core artistic identity":{"quotes":[{"text":"I guess at a certain level I am, as a content creator.  At a very micro level.  But I do think that maybe people who have more media reach  also benefit from deceiving the public on certain occasions.","source":"participant1.txt"}],"theme":1},"artistic identity grounded in authenticity":{"quotes":[{"text":"I am a plastic artist, so the content goes more than anything to my artistic production.","source":"participant1.txt"}],"theme":1},"perceived copyright vulnerability among other artists":{"quotes":[{"text":"So I feel that some artists feel very vulnerable in the sense of thinking that anyone can take your work","source":"participant1.txt"}],"theme":1},"unstable authorship boundaries in social media environments":{"quotes":[{"text":"I’ve always thought, well, if someone is going to steal it, let them steal it completely. I don’t have that filter.","source":"participant1.txt"}],"theme":1},"values representation of creative labor":{"quotes":[{"text":"Yo lo hice totally, pero si me asistió, bueno, como saber, y co-created puede que ser eso, que literal, de que tú hiciste algo, que AI lo hizo algo más, y luego tú agarraste el AI y le ajustaste colores, entonces como que hubo un back and forth así seguido, ¿sabes?","source":"participant2.txt"}],"theme":1},"audiences will eventually sharpen their eye to distinguish human vs ai.":{"quotes":[{"text":"la gente  Pues conforme vaya pasando  El tiempo va a ir entrenando  Más el ojo  Y va a ir discerniendo  De lo que es real  De lo que está hecho  Artísticamente","source":"participant3.txt"}],"theme":1},"creative anxiety / “if ai can do this, what happens to human creativity?”":{"quotes":[{"text":"si la inteligencia puede hacer tantas cosas visualmente, ¿en dónde va quedando la creatividad?","source":"participant6.txt"}],"theme":1},"ai increases speed, efficiency, and reduces creative bottlenecks":{"quotes":[{"text":"in embargo, la producción musical con AI me ha hecho más productivo, más rápido. Eficiente.","source":"participant6.txt"}],"theme":3},"ai as cost-saving tool":{"quotes":[{"text":"Y, ¿qué haces? Tienes que igual pagar ese dinero a este productor, aunque no te esté gustando del todo como haya quedado.","source":"participant6.txt"}],"theme":3},"labels are a moral practice":{"quotes":[{"text":"Creo que es algo, una práctica que mínimo ayuda un poco a más a, pues sí, como que aclarar que se sube a las redes","source":"participant2.txt"}],"theme":1},"disappointment with human production":{"quotes":[{"text":"Tienes que igual pagar ese dinero a este productor, aunque no te esté gustando del todo como haya quedado.","source":"participant6.txt"}],"theme":3},"ai-assisted label means a human gave idea to the machine":{"quotes":[{"text":"Pues mi interpretación yo creo que es como justo que alguien alimentó a AI, o sea, lo que sea que está usando, con una imagen y tal vez si le dijo, hazme esta imagen como retrato pintoresco, no sé.","source":"participant2.txt"}],"theme":2},"“made with ai” label as meaning that the image has no human-originated creative input":{"quotes":[{"text":"Eso también, pues me dice que todo fue hecho con AI, o sea, como que, pues cien por ciento, cien por ciento AI.","source":"participant2.txt"}],"theme":2},"co-created with ai label highlights ambiguity":{"quotes":[{"text":"Esa, me confunde un poco el co-created porque siento que co-created es como de que, o sea, sí, sí, entiendo.","source":"participant2.txt"}],"theme":2},"perceives disclosure as credibility signals":{"quotes":[{"text":"Lo que pasa es que ArtStation Como es una plataforma muy dedicada a artistas Apoyando a artistas Y como es una plataforma de portafolio profesional","source":"participant3.txt"}],"theme":2},"sees labels as fillters in an information stream":{"quotes":[{"text":"Estos labels Pues si son una manera Pues un pequeño Como filtro De decir Oye Esto no es real Esto está creado A partir de una IA","source":"participant3.txt"}],"theme":2},"ai-generated image: hyper-realism creates uncertainty":{"quotes":[{"text":"Discerniendo Lo que es real De lo que no es La imagen Me parece Bastante Real O sea Si a simple vista Es que Está Es tan orgánica","source":"participant3.txt"}],"theme":2},"ai-assisted label restores a line between image and reality":{"quotes":[{"text":"Basándose En Monet Pero recordemos Que al final De cuentas Un artista Hace una construcción De lo que ve","source":"participant3.txt"}],"theme":2},"creators rely on subtle visual logic to detect authenticity":{"quotes":[{"text":"Que están volteando Hacia enfrente No les está pegando La luz O sea Son oscuras Pero la Al ala de atrás Que tiene el mismo ángulo Le debería estar pegando La misma luz","source":"participant3.txt"}],"theme":2},"imperfections become diagnostic cues of fakeness":{"quotes":[{"text":"Igual Las manos Tienen más dedos De las que deberían","source":"participant3.txt"}],"theme":2},"ai art image challenges trust in his own visual judgment":{"quotes":[{"text":"Pero lo veo Y si lo veo A simple vista Hay algo que está hecho Con inteligencia artificial Que siempre digo Hay algo Que no me cuadra","source":"participant3.txt"}],"theme":2},"labels help confirm what the eye cannot trust":{"quotes":[{"text":"Entonces poner el label De AI","source":"participant3.txt"}],"theme":2},"interior design image ai output perceived as technically competent but not real":{"quotes":[{"text":"Este Si bien no parece 100% realista Pero si parece 100% Algo entregable Para Un arquitecto","source":"participant3.txt"}],"theme":2},"ai is already common in architectural visualization.":{"quotes":[{"text":"Un render Hecho por un arquitecto Por un diseñador De interiores Etcétera Entonces ver Este label De hecho Con AI Pues Como Pues si puedo Llegar a decir Ok Como que es normal","source":"participant3.txt"}],"theme":2},"ai label normalizes synthetic content in professional workflows":{"quotes":[{"text":"Entonces ver Este label De hecho Con AI Pues Como Pues si puedo Llegar a decir Ok Como que es normal","source":"participant3.txt"}],"theme":2},"ai perfection destabilizes trust in authorship":{"quotes":[{"text":"Es verdad que se A mi gusto Se ve bastante perfecto","source":"participant3.txt"}],"theme":2},"platform labels compete with creator reputation as signals of truth.":{"quotes":[{"text":"Porque si lo subió Mi tía Obviamente diría yo Ah bueno Esto está hecho Con inteligencia artificial","source":"participant3.txt"}],"theme":2},"rejects co-creation because ai lacks human imperfection":{"quotes":[{"text":"Es que todo Es muy Muy perfecto En cuanto a trazo En cuanto a calidad","source":"participant3.txt"}],"theme":2},"feels co-creation exaggerates ai’s artistic agency":{"quotes":[{"text":"El filtro El output Final Que es tan limpio No tiene noise Tiene un filtro Un poco Como de Onírico Como de ensueño","source":"participant3.txt"}],"theme":2},"requires quantifiable creative effort to accept co-creation.":{"quotes":[{"text":"Y eso pues ya cuenta Un poco como 50-50 ¿No? 50-50","source":"participant3.txt"}],"theme":2},"labels matter only when ai realism fools perception":{"quotes":[{"text":"Pero en casos Que parezcan demasiado realistas Sí que se usarían","source":"participant3.txt"}],"theme":2},"ai content is like 'fast-food'":{"quotes":[{"text":"Pues existe La comida rápida","source":"participant3.txt"}],"theme":2},"context-dependent emotional detachment":{"quotes":[{"text":"Mmm, it’s a, I feel like, okay, first of all, that’s a really nice AI generated, usually","source":"participant5.txt"}],"theme":2},"ai-assisted label amplifies perceived discomfort":{"quotes":[{"text":"Uh, it’s like, yeah, it’s a beautiful painting, if it wasn’t AI assisted.","source":"participant5.txt"}],"theme":2},"ai-assisted triggers conditonal appreciation":{"quotes":[{"text":"Uh, it’s like, yeah, it’s a beautiful painting, if it wasn’t AI assisted.","source":"participant5.txt"}],"theme":2},"'made with ai' label accepted under the interior design context":{"quotes":[{"text":"so made by, made with the AI, so it’s like, oh yeah, I can see that in like, for example, in a Instagram about, uh, um, someone who is selling furniture","source":"participant5.txt"}],"theme":2},"co-created label is acceptable in fictional or world-building contexts":{"quotes":[{"text":"co-created with AI, eh, it doesn’t piss me off as much as the painting one, but, because it’s fiction","source":"participant5.txt"}],"theme":2},"co-created label preserves human authorship as the origin point":{"quotes":[{"text":"ah, maybe co-created, I can guess that the person put, like, what they are seeing, like, this, I want this, this, this, uh, with this color,","source":"participant5.txt"}],"theme":2},"ai use in high-art formats threatens authenticity":{"quotes":[{"text":"but if i see a movie or a book with ai yeah i’m gonna throw that","source":"participant5.txt"}],"theme":2},"ai use accepted in low-stakes, playful, non-professional contexts":{"quotes":[{"text":"i have used ai generated but for tiktok content like uh not stupid stuff but like trends","source":"participant5.txt"}],"theme":2},"authorship only matters when the image is artistic or expressive.":{"quotes":[{"text":"como que tipo, o sea, sé que a lo mejor está hecha de inteligencia artificial, pero siento que las instrucciones que se dieron para llegar a esta imagen como que fueron muy precisas del artista","source":"participant4.txt"}],"theme":2},"“made with ai” does not reduce value because the goal isn’t artistic authorship":{"quotes":[{"text":"el resultado sí se me hace muy interesante. Ah, ok. Esta imagen, bueno, pues yo incluso he usado AI para este tipo de renders de arquitectura.","source":"participant4.txt"}],"theme":2},"ai feels appropriate in functional contexts":{"quotes":[{"text":"Esta imagen, bueno, pues yo incluso he usado AI para este tipo de renders de arquitectura.","source":"participant4.txt"}],"theme":2},"low-stakes functional images = label is normalized":{"quotes":[{"text":"Siento que es una buena representación para mostrar un espacio.","source":"participant4.txt"}],"theme":2},"label does not threaten professional identity in non-artistic tasks":{"quotes":[{"text":"Se me hace como que muy, o sea, en la línea realista de los renders de arquitectura.","source":"participant4.txt"}],"theme":2},"technical acceptance (“ai fits architectural visualization norms”)":{"quotes":[{"text":"orque se mira muy natural. Además, no se mira muy, ¿sabes? La AI en espacios de arquitectura, normalmente las texturas, o el espacio se mira como que muy smooth, muy suave.","source":"participant4.txt"}],"theme":2},"co-creative with ai label amplifies loss or perceived human authorship":{"quotes":[{"text":"Como que, ahí la AI siento que tuvo más, eh, más protagonismo en esta imagen, que en la pintura","source":"participant4.txt"}],"theme":2},"context-dependent acceptance of labels / “label is fine when ai is the medium”":{"quotes":[{"text":"hay artistas en Instagram que ellos, y que la venta no tiene nada de malo que ellos muestren que le hicieron con EI, porque de hecho de eso se trata del contenido de ellos","source":"participant4.txt"}],"theme":2},"hyperreal ai triggers concern / “realistic ai + label = perceptual alarm”":{"quotes":[{"text":"y si se mira muy real, ya me quedé que no manches, esto tiene EI. Pues sí me preocupa nada más en el sentido de que, wow, no, esto es tan real.","source":"participant4.txt"}],"theme":2},"need for clarification in percentage, the extent ai was used":{"quotes":[{"text":"debería haber un porcentaje, tipo, si el porcentaje de qué tanto fue humano y qué tanto fue IAI, que eso dependa de poner la etiqueta","source":"participant4.txt"}],"theme":2},"'ai-generated' label becomes associated with possible fakery":{"quotes":[{"text":"El hecho que esté la etiqueta ahí no implica nada. Y bueno, me implica que algo de lo que estoy viendo es falso, ¿viste?","source":"participant6.txt"}],"theme":2},"'ai-assisted' label when ai is a creative extension":{"quotes":[{"text":"Y que esté generada por una inteligencia artificial, nada, me hace pensar varias cosas, tanto positivas como negativas.","source":"participant6.txt"}],"theme":2},"'ai-assisted' blurs authorship boundaries enough to enable plausible deceit.":{"quotes":[{"text":"Y después cachipurrerme a mi familia y decir que lo pinte yo, pero en realidad lo hice en inteligencia artificial.","source":"participant6.txt"}],"theme":2},"'made with ai' label accepted under the interior design context":{"quotes":[{"text":"Y luego con respecto a esta imagen, ¿qué dice hecho con AI? Esto me parece genial porque en este aspecto es como para las personas que tienen un negocio, por ejemplo, y necesitan reubicar visualmente cómo sería.","source":"participant6.txt"}],"theme":2},"'made with ai' label perceived neutrally in an interior desgin context":{"quotes":[{"text":"Y luego con respecto a esta imagen, ¿qué dice hecho con AI? Esto me parece genial porque en este aspecto es como para las personas que tienen un negocio","source":"participant6.txt"}],"theme":2},"context awareness of ai use defines the value of the content":{"quotes":[{"text":"Yo creo que depende mucho del contexto en que se utilice el AI.","source":"participant6.txt"}],"theme":2},"collaborative authorship interpretation / “co-created implies joint effort”":{"quotes":[{"text":"Co-creado, está bien, porque me imagino de que es un trabajo en conjunto, viste, alguien tenía la imagen y la modificó, la mejoró.","source":"participant6.txt"}],"theme":2},"ai-generated label maintains trust and awareness in realistic but synthetic media":{"quotes":[{"text":"Aquí el El label Os ayuda bastante Porque esta es la Esta parece Verdaderamente real","source":"participant3.txt"}],"theme":2},"labels as a practice of maintaining creator–audience trust":{"quotes":[{"text":"I mean, there’s an honesty of what you’re presenting to your audience, right?","source":"participant1.txt"}],"theme":2},"sees labels as a solution to restore user agency sees labels as segmentation cues that sort audiences by content preference":{"quotes":[{"text":"entonces yo creo que este tipo de tags, como que ya la gente que busca contenido AI, pues le va a salir más, entonces como que su algoritmo se va a ir con eso, y la gente que, pues de verdad quiere ver gente haciendo trucos con patinetas de verdad, pues más bien el que ya ignore todo lo que tenga tags,","source":"participant2.txt"}],"theme":2},"human-made label frames creation as a competence of identities with ai":{"quotes":[{"text":"No sé, o sea, como que siento que al poner una etiqueta de humanoid, primero, pues muchos, o sea, es como si cualquiera que suba una foto suya ahora tiene que poner humanoid","source":"participant2.txt"}],"theme":2},"human-made label risks becoming deceptive when verification is unclear":{"quotes":[{"text":"Cómo alguien va a subir, qué tal si alguien sí quiere, su propósito es tener un buen de views y no quiere que la gente sepa que ese AI,","source":"participant2.txt"}],"theme":2},"human-made label enforces belief that the value of authenticity is already in crisis":{"quotes":[{"text":"Entonces ahí entras en otro problema de, pues, cómo lo compruebas, o sea, cómo compruebas que alguien sí está subiendo algo de verdad","source":"participant2.txt"}],"theme":2},"sees disclosure as an industrial standard rather than a moral act.":{"quotes":[{"text":"Pues puedes crearte un hashtag tú Pero es verdad que ArtStation Sí que las tiene Y las tiene desde hace ya Bastantitos años","source":"participant3.txt"}],"theme":2},"in response to social issues, labels become an urgent standard defense":{"quotes":[{"text":"Entonces Así como que Cierto que Debería estar Estandarizado Este tipo de Etiquetas A la hora de Generar contenido En redes sociales","source":"participant3.txt"}],"theme":2},"as ai becomes the norm, human-made work will require its own label":{"quotes":[{"text":"Estos tags Pues quizás Lo estandarizado En unos años Es que pues todo Este hecho Con inteligencia artificial ¿No? Entonces quizás Lo que puede llegar A pasar Es lo contrario ¿No?","source":"participant3.txt"}],"theme":2},"labels as first-line defence against misuse":{"quotes":[{"text":"Este label Quizás no sea La defensa Última Ante Lo legal O ante El mal uso De tu imagen Pero por lo menos Si es un primer filtro","source":"participant3.txt"}],"theme":2},"labels are a temporary perceptual aid, not a permanent requirement.":{"quotes":[{"text":"Sin Ya quizás Ni siquiera Necesitemos los labels Sin Ya vamos A interiorizar Tanto Lo que está hecho De lo que no","source":"participant3.txt"}],"theme":2},"labels protect against deception / “labels safeguard vulnerable audiences”":{"quotes":[{"text":"La misma Instagram ya te diga, pues esto tiene EI y esto no, o sea, que realmente, porque hay mucha gente que, pues sí se quiere, como te digo, engañarse con cosas que parecen muy reales y realmente no lo son.","source":"participant4.txt"}],"theme":2},"perceived penalty for disclosure in artistic fields / “label can harm visibility and opportunity”":{"quotes":[{"text":"en las plataformas de música también te bajan las setlists, las playlists, por el hecho de estar con creación de inteligencia artificial.","source":"participant6.txt"}],"theme":2},"sees labels as a solution to restore user agency":{"quotes":[{"text":"está bien mencionar que es inteligencia artificial, porque hoy en día ya no se sabe qué es lo que es inteligencia artificial, qué es lo que es real y qué es lo que no es real.","source":"participant6.txt"}],"theme":2},"ethical imperative for high-impact content / “for news and socially impactful media, labels are mandatory”":{"quotes":[{"text":"Entonces, para temas de noticias, para temas que pueden impactar a la sociedad como tal, vendría re bien que diga en algún momento una marca de agua, que es inteligencia artificial.","source":"participant6.txt"}],"theme":2},"“labels need nuance” / desire for percentage disclosure":{"quotes":[{"text":"Claro, es como que esto fue creado con, no sé, estos pros y se generó tal por ciento con inteligencia artificial.","source":"participant6.txt"}],"theme":2},"“human-made label is comforting but must be aeshtetically subtle”":{"quotes":[{"text":"Sí, igual sería interesante, ¿viste? Como porque ahora no se sabe qué es lo que es inteligencia artificial y qué es hecho por un humano. Pero igual, de la misma manera, quizás no tan grande, porque igual es raro, ¿viste?","source":"participant6.txt"}],"theme":2},"curiosity towards ai as a creative tool":{"quotes":[{"text":"La verdad es que siempre estoy, sí, estoy muy curioso, o sea,","source":"participant2.txt"}],"theme":3},"negotiating adoption while protecting creative agency":{"quotes":[{"text":"I think right now I’m in a kind of resistance. To say, no, I’m not going to win. And I’m going to do it. And I’m like this. Yes, I’m in my resistance. But how long can I last?","source":"participant1.txt"}],"theme":3},"curiosity towards ai in tension with his ethical commitment.":{"quotes":[{"text":"La verdad es que siempre estoy, sí, estoy muy curioso, o sea, sé todo el como tema justo de que muchas controversias y tema entre los artistas y ella y este","source":"participant2.txt"}],"theme":3},"ai accepted as a reference tool, but not a creative author":{"quotes":[{"text":"tengo más bien, tengo mucho más interés que uso, ya sabes, como que nada más no me ha dado tiempo de investigar,","source":"participant2.txt"}],"theme":3},"ai for ideation is not a priority":{"quotes":[{"text":"tengo más bien, tengo mucho más interés que uso, ya sabes, como que nada más no me ha dado tiempo de investigar,","source":"participant2.txt"}],"theme":3},"3d and ai as mediums of expression, not identity threats":{"quotes":[{"text":"Creo Más que nada Un poco de 3D","source":"participant3.txt"}],"theme":3},"ai explored as a technical curiosity, not as creative input":{"quotes":[{"text":"Las he usado Por curiosidad Para un poco Tantear las herramientas Ver sus capacidades Ver sus limitaciones Pero a nivel profesional Nunca las he usado Sí","source":"participant3.txt"}],"theme":3},"accepts ai in the workflow but rejects ai as final author":{"quotes":[{"text":"Entonces sí es de verdad que esta plataforma sí protegía mucho El uso de inteligencia artificial De lo que está hecho por ti ¿No? O sea realmente lo que interesa en esta plataforma es lo que tú hagas","source":"participant3.txt"}],"theme":3},"ai lacks intentionality and interpretation":{"quotes":[{"text":"Discerniendo Lo que es real De lo que no es La imagen Me parece Bastante Real","source":"participant3.txt"}],"theme":3},"ai doesn’t create, it recombines.":{"quotes":[{"text":"Basándose En Monet Pero recordemos Que al final De cuentas Un artista Hace una construcción De lo que ve","source":"participant3.txt"}],"theme":3},"ai threatens labor-based creative professions":{"quotes":[{"text":"Pues nos da Nos da en jaque ¿No? A los renderistas","source":"participant3.txt"}],"theme":3},"efficiency vs craft value tension":{"quotes":[{"text":"Pues esta inteligencia artificial Seguramente lo hizo En Cinco minutos ¿No? ¿Y cuánto se tarda Un renderista En hacer esto? Dos días Si le mete Prisa","source":"participant3.txt"}],"theme":3},"ai is a threat when it replaces process, not when it replaces ideas":{"quotes":[{"text":"En Cinco minutos ¿No? ¿Y cuánto se tarda Un renderista En hacer esto? Dos días Si le mete Prisa","source":"participant3.txt"}],"theme":3},"ai is fine as an internal tool but not as a co-author of the artifact.":{"quotes":[{"text":"De hecho lo que se busca Hoy en día Es que en procesos Más técnicos Tediosos Se usen estas herramientas Para acelerar El flujo de trabajo","source":"participant3.txt"}],"theme":3},"ai is a threat when it replaces process":{"quotes":[{"text":"Pues esta inteligencia artificial Seguramente lo hizo En Cinco minutos ¿No? ¿Y cuánto se tarda Un renderista En hacer esto?","source":"participant3.txt"}],"theme":3},"manipulability of narratives using ai":{"quotes":[{"text":"Utilizar estas retóricas En pos De política En pos De cosas Pues un poco Más maquiavélicas","source":"participant3.txt"}],"theme":3},"legal vulnerability caused by ai":{"quotes":[{"text":"Una brecha Legal Por autos Que incluso Los abogados Saben Aterrizar Porque al final Este Pues pueden usar Tu voz Sin tu consentimiento","source":"participant3.txt"}],"theme":3},"perceived irrelevance of ai to current creative practice":{"quotes":[{"text":"Quizás A mí A mí no me llama La atención ¿Sabes? Reconozco el potencial De la herramienta Pero hasta ahorita Es potencial Hasta ahorita","source":"participant3.txt"}],"theme":3},"doesn't consider ai as a serious tool until it becomes a clear industry norm":{"quotes":[{"text":"No hay nada Que en mi Específica área Sea algo Totalmente Este Necesario Usar","source":"participant3.txt"}],"theme":3},"resists replacing his work with ai partly because of the time, money, and effort invested in learning his craft":{"quotes":[{"text":"Lo que he pagado Por aprender Lo que Lo que he hecho Por aprender Sino porque Hoy en día No es algo Que sirva Al 100% Si no Es una cuestión De prueba y error","source":"participant3.txt"}],"theme":3},"ai tools perceived as valid for factual accuracy, not emotional authenticity":{"quotes":[{"text":"right now i’m writing a book so i’m asking some information about the 19th century uh how the how women were perceived in the 19th century more mostly in the uk and scotland","source":"participant5.txt"}],"theme":3},"ai as a visualization tool for world-building":{"quotes":[{"text":"AI is showing you what can possibly be, so it doesn’t make me mad, but it’s not something that I will use constantly, because I, when I read a book, I like to also use my imagination,","source":"participant5.txt"}],"theme":3},"ai as an experimentation tool":{"quotes":[{"text":"Una vez hice eso, nada más, pero para experimentar cosas nuevas.","source":"participant4.txt"}],"theme":3},"tool-based recognition of skill (“skill in prompting still belongs to the human”)":{"quotes":[{"text":"en la línea realista de los renders de arquitectura. Siento que está ahí. No se mira","source":"participant4.txt"}],"theme":3},"“ai as the lazy teammate”":{"quotes":[{"text":"Es como sabes, cuando haces un trabajo en equipo, en la UNI, y hay alguien que no hizo casi nada y aún así está, pues ahí en la lista del equipo, ¿no?","source":"participant4.txt"}],"theme":3},"ai as a compensatory tool / “ai supports creators lacking specific skills”":{"quotes":[{"text":"por ejemplo yo, que a veces necesito hacer un bosquejo de algún sketch, pero no sé dibujar bien, a un render, y no tengo las habilidades como para aprender otro programa, que esté la IAI y más o menos darle instrucciones y que muestre más o menos lo que tenía en mente, pues eso se me hace bien, ¿no?","source":"participant4.txt"}],"theme":3},"ai as an assistant for workload / task delegation":{"quotes":[{"text":"También como asistente parecido a un manager para no hacer todo porque al ser artista independiente es mucho el trabajo y a veces quedan áreas sin completar y la AI ayuda bastante en eso.","source":"participant6.txt"}],"theme":3},"plural tool ecosystem / “multiple ai tools integrated into workflow”":{"quotes":[{"text":"he usado distintos tipos de inteligencia artificial, entre a horas uno, para también generar videos, no me acuerdo la otra.","source":"participant6.txt"}],"theme":3},"ai use is okay in low stakes content":{"quotes":[{"text":"Pero, por ejemplo, en caso de que fuera contenido como memes, como cosas para causar conmoción y cosas similares o cosas de trabajo, como marketing y cosas que te hacen más fácil el trabajo en sí","source":"participant6.txt"}],"theme":3},"ai positive impact on production and scalability, improves work and time":{"quotes":[{"text":"Positivamente, completamente. Ok, lo ha hecho más productivo, más rápido. Eficiente. Más rápido, mucho más productivo.","source":"participant6.txt"}],"theme":3},"audience lacks critical visual discernment":{"quotes":[{"text":"And I’m shocked by the people who comment on images like this, like, oh, how beautiful the space is, it looks amazing,","source":"participant1.txt"}],"theme":4},"concern about future misuse and societal manipulation":{"quotes":[{"text":"Because right now I think we are in a moment where the images that are presented are very innocent. But what is going to happen when this is taken to another level?","source":"participant1.txt"}],"theme":4},"believes high-reach creators can exploit media to deceive":{"quotes":[{"text":"But I do think that maybe people who have more media reach also benefit from deceiving the public on certain occasions. And that’s not new, right?","source":"participant1.txt"}],"theme":4},"audience seeks pleasurable illusion over truth":{"quotes":[{"text":"And apart from that, people love to be deceived. I mean, that’s a fact. That’s why there are so many AI consumers. Not everyone bets on honesty and truth. We don’t like truth. We love all fiction.","source":"participant1.txt"}],"theme":4},"fear of a society losing critical judgment when confronted with realistic synthetic images":{"quotes":[{"text":"It was a video or a photo of a woman who was getting on a plane and the staff told her that she could not get on her koala, no, it was not a koala, sorry, it was a kangaroo","source":"participant1.txt"}],"theme":4},"sense of betrayal when institutions adopt ai instead of supporting human artists":{"quotes":[{"text":"I think that we can see that there are a lot of people who are not identifying with AI with drawing made by artists. And they don’t realize it, and there are even governmental institutions that are using AI in their campaigns","source":"participant1.txt"}],"theme":4},"believes some content creators can exploit media to deceive":{"quotes":[{"text":"que si no lo pones y estás subiendo algo, estás medio engañando a la gente, en mi opinión, o sea, si no pones, porque a veces lo que yo hago justo es como ver una imagen y si algo me salta como, o un video y luego esto suena raro","source":"participant2.txt"}],"theme":4},"labels are a necessity because audiences are impressed easily":{"quotes":[{"text":", pero siento que entre más videos súper realistas que suban AI, la gente, pues la gente creo que le impresiona ahorita nada más","source":"participant2.txt"}],"theme":4},"social media dynamics do not support authenticity claims":{"quotes":[{"text":"Entonces ahí entras en otro problema de, pues, cómo lo compruebas, o sea, cómo compruebas que alguien sí está subiendo algo de verdad, ya sabes","source":"participant2.txt"}],"theme":4},"ai's impact is perceived as social rather than technical":{"quotes":[{"text":"como Autodesk, creo que ya está implementando cosas que no he usado directamente, que yo sepa, o sea, no sé si algunas tools, digamos, ya, ya tienen AI, yo ni lo sé","source":"participant2.txt"}],"theme":4},"authorial legitimacy depends on platform governance, not personal morality":{"quotes":[{"text":"Entonces sí es de verdad que esta plataforma sí protegía mucho El uso de inteligencia artificial De lo que está hecho por ti ¿No?","source":"participant3.txt"}],"theme":4},"fear of losing collective ability to tell real from fake":{"quotes":[{"text":"Nos vamos a delimitar En lo que No podremos marcar la línea En lo que es real De lo que No lo es","source":"participant3.txt"}],"theme":4},"sees social media as an ecosystem where identity gets distorted. ai is not the original problem":{"quotes":[{"text":"De inteligencia artificial Para acá Sino es algo que ya existe Desde que Comenzaron a salir Las redes sociales ¿No? La cuestión de Tú puedes proyectar Algo que no eres","source":"participant3.txt"}],"theme":4},"sees social media as a space where authenticity is already unstable":{"quotes":[{"text":"Algo que no eres En En redes sociales","source":"participant3.txt"}],"theme":4},"fear of political and harmful misuse":{"quotes":[{"text":"Todo lo que involucra Simulacro Simulación De lo que es real De lo que no es Y esto se puede utilizar Para retóricas Políticas Para retóricas Un poco malignas Entonces","source":"participant3.txt"}],"theme":4},"believes people are already overwhelmed by curated, idealized realities.":{"quotes":[{"text":"De discernir Lo que es real Y de lo que no Porque somos Una sociedad Hipersensible Por el hecho De que existen Las redes sociales","source":"participant3.txt"}],"theme":4},"media performance of perfection undermines trust":{"quotes":[{"text":"Yo tengo la vida Perfecta Yo tengo el cuerpo Perfecto Yo no tengo Nada absolutamente Malo en mi vida Y eso es lo que tú Proyectas A tus redes sociales Pero en el fondo Puedes estar pasando Un infierno","source":"participant3.txt"}],"theme":4},"labels signal moral character and artistic integrity.":{"quotes":[{"text":"so when i the fact that is out there the label that ai created or co-created or assisted or whatever gives you an idea of the person of the the type of creator that that that they are","source":"participant5.txt"}],"theme":4},"mandatory enforcement increases trust in the label system":{"quotes":[{"text":"hat are some some uh platforms are making you use them like if you don’t use it and you use ai they will strike you uh so i’m i’m actually all about that like i agree with that you","source":"participant5.txt"}],"theme":4},"platform automated labelling label exaggerates ai’s contribution / “label inflates ai credit”":{"quotes":[{"text":"Y a veces Instagram ya te dice, no, pues esto contiene EI, ¿no? Y me hace sentir como que, ah, no mames, ahora la gente va a pensar que casi toda la foto de ahí es EI, ¿no?","source":"participant4.txt"}],"theme":4}}
   </script>
 
   <script>
     // --- STORAGE KEYS ---
-    const STORAGE_KEY_BOARD = 'codebookLayout_v13_quotesFixed';
-    const STORAGE_KEY_QUOTES = 'codebookQuotesMap_v13_quotesFixed';
-    const STORAGE_KEY_THEMEMAP = 'codebookThemeMap_v13_quotesFixed';
-    const STORAGE_KEY_PLAYGROUND = 'codebookPlaygroundLayout_v13_quotesFixed';
+    const STORAGE_KEY_BOARD = 'codebookLayout_v25_fixed_final';
+    const STORAGE_KEY_QUOTES = 'codebookQuotesMap_v25_fixed_final';
+    const STORAGE_KEY_THEMEMAP = 'codebookThemeMap_v25_fixed_final';
+    const STORAGE_KEY_PLAYGROUND = 'codebookPlaygroundLayout_v25_fixed_final';
+    const STORAGE_KEY_TITLES = 'codebookThemeTitles_v25_fixed_final';
 
     // --- STATE ---
     let quotesMap = {}; 
-    let codeThemeMap = {}; // "Code Name" -> ThemeID (1,2,3,4)
+    let codeThemeMap = {}; 
     let currentTheme = 1;
     let autoSyncEnabled = false;
+    let totalThemes = 4;
 
     // --- UTILS ---
     const normalize = (s) => (s || '').trim().toLowerCase();
     
-    // Theme Titles Mapping (Static)
-    const themeTitles = {
+    // Default Theme Titles
+    let themeTitles = {
       1: "Theme 1. Sense of Authorship rooted in Human Ideation",
       2: "Theme 2. Labels are treated as signals that allocate authorship, agency, legitimacy.",
       3: "Theme 3 - AI is accepted as a production tool, but resisted as a co-author with creative intent",
@@ -589,7 +624,7 @@
     const pgModal = document.getElementById('pgModal');
     
     // --- INITIAL DATA LOAD ---
-    // This giant object is your preset data. 
+    // (Existing PRESET_CODES logic unchanged)
     const PRESET_CODES = [
       { t:1, c: "Openness / freedom of circulation" },
       { t:1, c: "Disapproval of reliance on AI for creative ideation" },
@@ -633,7 +668,6 @@
       { t:1, c: "Values representation of creative labor" },
       { t:1, c: "Audiences will eventually sharpen their eye to distinguish human vs AI." },
       { t:1, c: "Creative Anxiety / “If AI can do this, what happens to human creativity?”" },
-      
       { t:2, c: "Perception ai images/ labels conflict from unrealistic AI-generated standards" },
       { t:2, c: "Labels seen as a plausible practice of maintaining creator–audience trust" },
       { t:2, c: "Perceives AI-generated imagery as economically displacing illustrators" },
@@ -706,7 +740,6 @@
       { t:2, c: "Ethical Imperative for High-Impact Content / “For news and socially impactful media, labels are mandatory”" },
       { t:2, c: "“Labels need nuance” / Desire for percentage disclosure" },
       { t:2, c: "“Human-made label is comforting but must be aeshtetically subtle”" },
-
       { t:3, c: "Curiosity towards AI as a creative tool" },
       { t:3, c: "Negotiating adoption while protecting creative agency" },
       { t:3, c: "Curiosity towards AI in tension with his ethical commitment." },
@@ -742,7 +775,6 @@
       { t:3, c: "AI use is okay in low stakes content" },
       { t:3, c: "AI positive impact on production and scalability, improves work and time" },
       { t:3, c: "AI as Cost-Saving Tool" },
-
       { t:4, c: "Audience lacks critical visual discernment" },
       { t:4, c: "Concern about future misuse and societal manipulation" },
       { t:4, c: "Believes high-reach creators can exploit media to deceive" },
@@ -767,29 +799,41 @@
 
     // --- INIT BOARD ---
     function initBoard() {
-      // 1. Recover Theme Map
+      // 1. Load Titles
+      const savedTitles = localStorage.getItem(STORAGE_KEY_TITLES);
+      if(savedTitles) {
+        try { 
+           const parsed = JSON.parse(savedTitles);
+           themeTitles = {...themeTitles, ...parsed};
+           const keys = Object.keys(themeTitles).map(k => parseInt(k));
+           if(keys.length > 0) totalThemes = Math.max(4, ...keys);
+        } catch(e) {}
+      }
+
+      // Sync titles to main board headers
+      for(let t=1; t<=4; t++) {
+         const colHeader = document.querySelector(`.column[data-theme="${t}"] .col-title`);
+         if(colHeader && themeTitles[t]) colHeader.textContent = themeTitles[t];
+      }
+
       const savedThemeMap = localStorage.getItem(STORAGE_KEY_THEMEMAP);
       if(savedThemeMap) {
         try { codeThemeMap = JSON.parse(savedThemeMap); } catch(e){}
       }
 
-      // 2. Recover Quotes - OR Load from Embedded
       const savedQuotes = localStorage.getItem(STORAGE_KEY_QUOTES);
       if (savedQuotes) {
          try { quotesMap = JSON.parse(savedQuotes); } catch(e){ quotesMap = {}; }
       } else {
-         // Auto-load embedded if nothing in storage
          const embeddedScript = document.getElementById('embeddedQuotesMap');
          if(embeddedScript) {
             try { 
                quotesMap = JSON.parse(embeddedScript.textContent); 
-               // Save immediately so it persists
                localStorage.setItem(STORAGE_KEY_QUOTES, JSON.stringify(quotesMap));
-            } catch(e) { console.error("Error loading embedded quotes", e); quotesMap = {}; }
+            } catch(e) { quotesMap = {}; }
          }
       }
 
-      // 3. Recover Board Layout
       const savedBoard = localStorage.getItem(STORAGE_KEY_BOARD);
       if (savedBoard) {
         boardContainer.innerHTML = savedBoard;
@@ -797,20 +841,17 @@
         renderPresetBoard();
       }
 
-      // 4. Ensure code map is fully populated from current board if empty
       scanBoardForThemes();
-
-      // 5. Listeners
       initSortable();
       updateCounts();
       attachQuoteListeners();
     }
 
     function renderPresetBoard() {
-      // Clear
-      [1,2,3,4].forEach(t => document.getElementById(`colList${t}`).innerHTML = '');
-      
-      // Populate
+      [1,2,3,4].forEach(t => {
+         const el = document.getElementById(`colList${t}`);
+         if(el) el.innerHTML = '';
+      });
       PRESET_CODES.forEach(item => {
         createCard(item.c, item.t, true);
       });
@@ -829,9 +870,7 @@
         <div class="card-quote"></div>
         <div class="card-quote-actions"></div>
       `;
-      // attach quotes logic
       refreshCardQuotes(card, text);
-
       if(append) list.appendChild(card);
     }
 
@@ -867,7 +906,7 @@
 
     function scanBoardForThemes() {
       // Rebuild map from current DOM
-      [1,2,3,4].forEach(t => {
+      for(let t=1; t<=totalThemes; t++) {
         const list = document.getElementById(`colList${t}`);
         if(list) {
           list.querySelectorAll('.card-text').forEach(el => {
@@ -875,7 +914,7 @@
              if(txt) codeThemeMap[normalize(txt)] = t;
           });
         }
-      });
+      }
       // Fallback to preset if not in DOM
       PRESET_CODES.forEach(p => {
         if(!codeThemeMap[normalize(p.c)]) codeThemeMap[normalize(p.c)] = p.t;
@@ -948,24 +987,115 @@
     
     const pgSearch = document.getElementById('pgSearch');
     const pgCodeList = document.getElementById('pgCodeList');
-    const screens = {
-      1: document.getElementById('pgTheme1Inner'),
-      2: document.getElementById('pgTheme2Inner'),
-      3: document.getElementById('pgTheme3Inner'),
-      4: document.getElementById('pgTheme4Inner')
-    };
+    const screens = {}; 
+    const filterSelect = document.getElementById('pgSidebarFilter');
 
     function openPlayground() {
       pgModal.classList.add('open');
       document.getElementById('pgBackdrop').classList.add('open');
       scanBoardForThemes(); 
+      
+      for(let i=1; i<=4; i++) {
+         if(!screens[i]) screens[i] = document.getElementById(`pgTheme${i}Inner`);
+      }
+
       loadPlaygroundTheme(currentTheme);
       
       // Check if we need to auto-populate the playground
-      // Only if the current screen is empty, try to populate
-      if(screens[currentTheme].children.length === 0) {
-         populatePlaygroundFromMain(currentTheme);
+      const screen = ensureScreenExists(currentTheme);
+      if(screen && screen.children.length === 0) {
+         if (currentTheme === 2) {
+            populatePlaygroundGroupsTheme2();
+         } else {
+            populatePlaygroundFromMain(currentTheme);
+         }
       }
+    }
+
+    function ensureScreenExists(themeId) {
+       if(!screens[themeId]) {
+          const existing = document.getElementById(`pgTheme${themeId}Inner`);
+          if(existing) {
+             screens[themeId] = existing;
+          } else {
+             const inner = document.querySelector('.pg-canvas-inner');
+             const wrap = document.createElement('div');
+             wrap.className = 'pg-canvas-screen';
+             wrap.dataset.theme = themeId;
+             const content = document.createElement('div');
+             content.className = 'pg-screen-content';
+             content.id = `pgTheme${themeId}Inner`;
+             content.dataset.themeId = themeId;
+             wrap.appendChild(content);
+             inner.appendChild(wrap);
+             screens[themeId] = content;
+             
+             wrap.addEventListener('dragover', (e) => { e.preventDefault(); e.dataTransfer.dropEffect = 'copy'; });
+             wrap.addEventListener('drop', (e) => {
+               e.preventDefault();
+               const code = e.dataTransfer.getData('text/plain');
+               if(!code) return;
+               const rect = wrap.getBoundingClientRect();
+               const scrollTop = wrap.scrollTop || 0;
+               const scrollLeft = wrap.scrollLeft || 0;
+               
+               // Assign to this theme map
+               codeThemeMap[normalize(code)] = themeId;
+               localStorage.setItem(STORAGE_KEY_THEMEMAP, JSON.stringify(codeThemeMap));
+
+               addNoteToCanvas(themeId, code, (e.clientX - rect.left) + scrollLeft, (e.clientY - rect.top) + scrollTop);
+               renderSidebarList(themeId);
+             });
+          }
+       }
+       return screens[themeId];
+    }
+
+    function populatePlaygroundGroupsTheme2() {
+       const themeId = 2;
+       const colList = document.getElementById(`colList${themeId}`);
+       if(!colList) return;
+       const cards = Array.from(colList.querySelectorAll('.card .card-text'));
+       if(cards.length === 0) return;
+
+       const container = screens[themeId];
+       container.innerHTML = '';
+
+       const clusters = {
+          'label': { x: 50, y: 50, title: "Labels" },
+          'ai-assisted': { x: 350, y: 50, title: "AI-Assisted" },
+          'co-created': { x: 650, y: 50, title: "Co-Created" },
+          'made with ai': { x: 50, y: 600, title: "Made with AI" },
+          'other': { x: 350, y: 600, title: "Other / General" }
+       };
+
+       Object.values(clusters).forEach(c => {
+          const label = document.createElement('div');
+          label.className = 'group-label';
+          label.textContent = c.title;
+          label.style.left = c.x + 'px';
+          label.style.top = (c.y - 30) + 'px';
+          container.appendChild(label);
+       });
+
+       cards.forEach(card => {
+          const txt = card.textContent.trim();
+          const lower = normalize(txt);
+          let target = clusters['other'];
+
+          if(lower.includes('label')) target = clusters['label'];
+          else if(lower.includes('assist')) target = clusters['ai-assisted'];
+          else if(lower.includes('co-creat') || lower.includes('collabor')) target = clusters['co-created'];
+          else if(lower.includes('made with ai') || lower.includes('generated')) target = clusters['made with ai'];
+
+          const offsetX = (Math.random() * 40);
+          
+          addNoteToCanvas(themeId, txt, target.x + offsetX, target.y);
+          
+          target.y += 60; 
+       });
+       
+       renderSidebarList(themeId);
     }
 
     function populatePlaygroundFromMain(themeId) {
@@ -975,14 +1105,19 @@
       const cards = colList.querySelectorAll('.card .card-text');
       if(cards.length === 0) return;
 
-      const container = screens[themeId];
-      // Force container to have some width even if hidden, for calculation
-      // Since container is hidden, offsetWidth might be 0. Use window width or default.
-      const containerW = container.offsetWidth || 800;
+      const container = ensureScreenExists(themeId);
       
+      let containerW = container.offsetWidth;
+      if (containerW < 200) containerW = window.innerWidth - 360; 
+      if (containerW < 400) containerW = 800; 
+
       const noteW = 190, noteH = 120;
-      const cols = Math.floor((containerW - 40) / (noteW + 20));
+      const gap = 20;
       
+      // Force 4 cols if possible
+      let cols = Math.floor((containerW - 40) / (noteW + gap));
+      if (cols < 4) cols = 4; 
+
       let x = 20, y = 20;
       let colCount = 0;
 
@@ -990,14 +1125,13 @@
          const txt = card.textContent.trim();
          addNoteToCanvas(themeId, txt, x, y);
          
-         // simple grid layout
          colCount++;
          if(colCount >= cols) {
             colCount = 0;
             x = 20;
-            y += noteH + 20;
+            y += noteH + gap;
          } else {
-            x += noteW + 20;
+            x += noteW + gap;
          }
       });
       renderSidebarList(themeId);
@@ -1009,11 +1143,20 @@
       savePlaygroundState();
     }
 
-    // Save Playground State
     function savePlaygroundState() {
        const state = {};
-       [1,2,3,4].forEach(t => {
+       for(let t=1; t<=totalThemes; t++) {
+          if(!screens[t]) continue;
           const notes = [];
+          const groups = [];
+          screens[t].querySelectorAll('.group-label').forEach(g => {
+             groups.push({
+               text: g.textContent,
+               x: g.style.left,
+               y: g.style.top
+             });
+          });
+
           screens[t].querySelectorAll('.note').forEach(n => {
              notes.push({
                code: n.dataset.code,
@@ -1022,8 +1165,8 @@
                deg: n.style.transform
              });
           });
-          state[t] = notes;
-       });
+          state[t] = { notes, groups };
+       }
        localStorage.setItem(STORAGE_KEY_PLAYGROUND, JSON.stringify(state));
     }
 
@@ -1032,22 +1175,47 @@
        if(!raw) return false;
        try {
           const state = JSON.parse(raw);
-          [1,2,3,4].forEach(t => {
-             const notes = state[t] || [];
-             const container = screens[t];
-             container.innerHTML = ''; // clear first
-             notes.forEach(n => {
-                addNoteToCanvas(t, n.code, parseFloat(n.x), parseFloat(n.y), n.deg);
-             });
+          let restoredAny = false;
+          Object.keys(state).forEach(tId => {
+             const t = parseInt(tId);
+             if(t > totalThemes) { 
+               totalThemes = t; 
+               themeTitles[t] = `Theme ${t}`; 
+             }
+             const screen = ensureScreenExists(t);
+             const data = state[tId];
+             const notes = Array.isArray(data) ? data : (data.notes || []);
+             const groups = data.groups || [];
+
+             if(notes.length > 0 || groups.length > 0) {
+               screen.innerHTML = '';
+               restoredAny = true;
+               
+               groups.forEach(g => {
+                  const label = document.createElement('div');
+                  label.className = 'group-label';
+                  label.textContent = g.text;
+                  label.style.left = g.x;
+                  label.style.top = g.y;
+                  screen.appendChild(label);
+               });
+
+               notes.forEach(n => {
+                  addNoteToCanvas(t, n.code, parseFloat(n.x), parseFloat(n.y), n.deg);
+               });
+             }
           });
-          return true;
+          return restoredAny;
        } catch(e) { return false; }
     }
 
-    // Carousel
     function loadPlaygroundTheme(themeId) {
       currentTheme = themeId;
-      document.getElementById('pgThemeTitle').textContent = themeTitles[themeId];
+      const titleEl = document.getElementById('pgThemeTitle');
+      titleEl.textContent = themeTitles[themeId] || `Theme ${themeId}`;
+
+      // Re-bind click event with the current theme ID in closure
+      titleEl.onclick = () => promptEditTheme(themeId);
       
       document.querySelectorAll('.pg-canvas-screen').forEach(el => el.classList.remove('active'));
       const activeScreen = document.querySelector(`.pg-canvas-screen[data-theme="${themeId}"]`);
@@ -1055,55 +1223,129 @@
 
       const dotsContainer = document.getElementById('pgDots');
       dotsContainer.innerHTML = '';
-      [1,2,3,4].forEach(t => {
+      for(let t=1; t<=totalThemes; t++) {
         const dot = document.createElement('div');
         dot.className = 'pg-dot' + (t === themeId ? ' active' : '');
         dot.onclick = () => loadPlaygroundTheme(t);
         dotsContainer.appendChild(dot);
-      });
+      }
 
       renderSidebarList(themeId);
       
-      // Auto populate if empty on switch
-      if(screens[themeId].children.length === 0) {
-         populatePlaygroundFromMain(themeId);
+      const screen = ensureScreenExists(themeId);
+      // Only auto-populate if TRULY empty (no notes)
+      if(screen.querySelectorAll('.note').length === 0) {
+         if(themeId === 2) populatePlaygroundGroupsTheme2();
+         else populatePlaygroundFromMain(themeId);
       }
     }
 
-    document.getElementById('pgPrevBtn').onclick = () => loadPlaygroundTheme(currentTheme === 1 ? 4 : currentTheme - 1);
-    document.getElementById('pgNextBtn').onclick = () => loadPlaygroundTheme(currentTheme === 4 ? 1 : currentTheme + 1);
+    document.getElementById('pgPrevBtn').onclick = () => {
+       let next = currentTheme - 1;
+       if(next < 1) next = totalThemes;
+       loadPlaygroundTheme(next);
+    };
+    document.getElementById('pgNextBtn').onclick = () => {
+       let next = currentTheme + 1;
+       if(next > totalThemes) next = 1;
+       loadPlaygroundTheme(next);
+    };
+
+    // Edit Title
+    function promptEditTheme(tId) {
+       const old = themeTitles[tId] || `Theme ${tId}`;
+       const newTitle = prompt("Edit Theme Title:", old);
+       if(newTitle) {
+          themeTitles[tId] = newTitle;
+          localStorage.setItem(STORAGE_KEY_TITLES, JSON.stringify(themeTitles));
+          
+          // Update main board
+          const colHeader = document.querySelector(`.column[data-theme="${tId}"] .col-title`);
+          if(colHeader) colHeader.textContent = newTitle;
+
+          // Update playground if open
+          if(currentTheme === tId) {
+             document.getElementById('pgThemeTitle').textContent = newTitle;
+          }
+       }
+    }
+    
+    // Attach promptEditTheme globally
+    window.promptEditTheme = promptEditTheme;
+
+    document.getElementById('editThemeBtn').onclick = () => promptEditTheme(currentTheme);
+
+    // Add Theme
+    document.getElementById('addThemeBtn').onclick = () => {
+       totalThemes++;
+       const newId = totalThemes;
+       themeTitles[newId] = `New Theme ${newId}`;
+       localStorage.setItem(STORAGE_KEY_TITLES, JSON.stringify(themeTitles));
+       
+       const board = document.getElementById('board');
+       const col = document.createElement('div');
+       col.className = 'column';
+       col.dataset.theme = newId;
+       col.innerHTML = `
+          <div class="column-header col-theme-5">
+            <div class="header-top">
+              <span class="col-title" onclick="promptEditTheme(${newId})">${themeTitles[newId]}</span>
+              <span class="card-count">0</span>
+            </div>
+          </div>
+          <div class="card-list" id="colList${newId}"></div>
+       `;
+       board.appendChild(col);
+       
+       loadPlaygroundTheme(newId);
+    };
+
+    // Sidebar Filter
+    filterSelect.onchange = () => renderSidebarList(currentTheme);
 
     function renderSidebarList(themeId) {
       pgCodeList.innerHTML = '';
       const filter = normalize(pgSearch.value);
+      const mode = filterSelect.value; // current, unassigned, all
       
-      // Get codes for this theme from map
-      const codesForTheme = Object.keys(codeThemeMap).filter(k => codeThemeMap[k] === themeId);
-      codesForTheme.sort();
+      const allKeys = Object.keys(codeThemeMap);
+      allKeys.sort();
 
-      const canvasEl = screens[themeId];
+      const container = screens[themeId];
       const existingOnCanvas = new Set();
-      canvasEl.querySelectorAll('.note').forEach(n => {
-        existingOnCanvas.add(normalize(n.dataset.code));
-      });
+      if(container) {
+        container.querySelectorAll('.note').forEach(n => {
+          existingOnCanvas.add(normalize(n.dataset.code));
+        });
+      }
 
-      codesForTheme.forEach(key => {
+      allKeys.forEach(key => {
         if(filter && !key.includes(filter)) return;
         
+        const mappedTheme = codeThemeMap[key];
+        
+        // Filtering Logic
+        if (mode === 'current') {
+           if(mappedTheme !== themeId) return;
+        } else if (mode === 'unassigned') {
+           if(mappedTheme !== 0) return;
+        } 
+        // 'all' passes through everything
+
         let display = key; 
         const presetMatch = PRESET_CODES.find(p => normalize(p.c) === key);
         if(presetMatch) display = presetMatch.c; 
         else display = key.charAt(0).toUpperCase() + key.slice(1);
 
+        // Hide if on canvas
+        if(existingOnCanvas.has(key)) {
+           return; 
+        }
+
         const item = document.createElement('div');
         item.className = 'pg-code-item';
         item.textContent = display;
         item.draggable = true;
-
-        if(existingOnCanvas.has(key)) {
-          item.classList.add('used');
-          item.title = "Already on canvas";
-        }
 
         item.addEventListener('dragstart', (e) => {
           e.dataTransfer.setData('text/plain', display);
@@ -1111,10 +1353,12 @@
         });
 
         item.ondblclick = () => {
-          if(!item.classList.contains('used')) {
-             addNoteToCanvas(themeId, display, 50 + Math.random()*100, 50 + Math.random()*100);
-             item.classList.add('used');
-          }
+          // Double click adds to canvas and assigns theme
+          codeThemeMap[key] = themeId;
+          localStorage.setItem(STORAGE_KEY_THEMEMAP, JSON.stringify(codeThemeMap));
+          
+          addNoteToCanvas(themeId, display, 50 + Math.random()*100, 50 + Math.random()*100);
+          renderSidebarList(themeId); 
         };
 
         pgCodeList.appendChild(item);
@@ -1123,34 +1367,8 @@
 
     pgSearch.oninput = () => renderSidebarList(currentTheme);
 
-    [1,2,3,4].forEach(t => {
-      const el = screens[t];
-      // Note: el is pg-screen-content. The DROP event might fire on pg-canvas-screen (the parent) because it's the one with size initially.
-      // But here we added listener to `screens[t]` which is content div.
-      // Let's add listeners to the PARENT wrapper to be safe, because content div might be small initially.
-      const wrapper = el.parentElement; // pg-canvas-screen
-      
-      wrapper.addEventListener('dragover', (e) => { e.preventDefault(); e.dataTransfer.dropEffect = 'copy'; });
-      wrapper.addEventListener('drop', (e) => {
-        e.preventDefault();
-        const code = e.dataTransfer.getData('text/plain');
-        if(!code) return;
-        const rect = wrapper.getBoundingClientRect();
-        
-        // Calculate scroll offset into drop position
-        const scrollTop = wrapper.scrollTop || 0;
-        const scrollLeft = wrapper.scrollLeft || 0;
-        
-        addNoteToCanvas(t, code, (e.clientX - rect.left) + scrollLeft, (e.clientY - rect.top) + scrollTop);
-        renderSidebarList(t);
-        if(autoSyncEnabled) syncPlaygroundToMain(t);
-      });
-    });
-
     function addNoteToCanvas(themeId, text, x, y, rotationString = null) {
-      const container = screens[themeId]; // pg-screen-content
-      if (!container) return;
-
+      const container = ensureScreenExists(themeId);
       let exists = false;
       container.querySelectorAll('.note').forEach(n => {
         if(normalize(n.dataset.code) === normalize(text)) exists = true;
@@ -1182,7 +1400,14 @@
       note.querySelector('.note-x').onclick = (e) => {
         e.stopPropagation(); 
         note.remove();
-        renderSidebarList(themeId);
+        
+        // When removed from canvas, it becomes unassigned? 
+        // Or stays with theme but just off canvas? 
+        // User asked "leave unassigned codes in bar".
+        // Let's assume removing means "Unassign from canvas, keep theme mapping"
+        // It will reappear in sidebar because !existingOnCanvas
+        renderSidebarList(themeId); 
+        
         if(autoSyncEnabled) syncPlaygroundToMain(themeId);
       };
 
@@ -1197,11 +1422,8 @@
       
       container.appendChild(note);
 
-      // Expand container height if necessary to trigger scrollbar on parent
       const requiredHeight = y + 150; 
-      // Current minHeight might be string '1200px'
       const currentMin = parseFloat(container.style.minHeight || '0');
-      // If we are placing below current min height, expand
       if(requiredHeight > currentMin) {
          container.style.minHeight = requiredHeight + 'px';
       }
@@ -1210,7 +1432,6 @@
     function makeDraggable(el, container, onDragEnd) {
       let isDragging = false;
       let startX, startY, initialLeft, initialTop;
-      // container is pg-screen-content
       
       el.addEventListener('mousedown', (e) => {
         if(e.target.tagName === 'BUTTON') return;
@@ -1227,14 +1448,10 @@
         if(!isDragging) return;
         const dx = e.clientX - startX;
         const dy = e.clientY - startY;
-        
         let newLeft = initialLeft + dx;
         let newTop = initialTop + dy;
-        
         el.style.left = `${newLeft}px`;
         el.style.top = `${newTop}px`;
-        
-        // Auto-expand on drag
         const currentMin = parseFloat(container.style.minHeight || '0');
         if(newTop + 150 > currentMin) {
            container.style.minHeight = (newTop + 150) + 'px';
@@ -1251,10 +1468,10 @@
     }
 
     function syncPlaygroundToMain(themeId) {
-      // screens[themeId] is pg-screen-content
       const playgroundContainer = screens[themeId];
+      if(!playgroundContainer) return;
       const mainList = document.getElementById(`colList${themeId}`);
-      if(!mainList || !playgroundContainer) return;
+      if(!mainList) return; 
 
       const notes = Array.from(playgroundContainer.querySelectorAll('.note'));
       notes.sort((a, b) => {
@@ -1297,28 +1514,23 @@
     
     document.getElementById('resetPresetBtn').onclick = () => {
       if(confirm("Reset entire board to default preset? This will clear all imported data.")) {
-        localStorage.removeItem(STORAGE_KEY_BOARD);
-        localStorage.removeItem(STORAGE_KEY_QUOTES);
-        localStorage.removeItem(STORAGE_KEY_THEMEMAP);
-        localStorage.removeItem(STORAGE_KEY_PLAYGROUND);
+        localStorage.clear(); 
         location.reload();
       }
     };
 
-    // --- CSV IMPORT LOGIC (Secretly adapted) ---
+    // --- CSV IMPORT LOGIC ---
     const fileInput = document.getElementById('csvInput');
     document.getElementById('importBtn').onclick = () => fileInput.click();
-    
     fileInput.onchange = (e) => {
       const file = e.target.files?.[0];
       if(!file) return;
-
       Papa.parse(file, {
         header: true,
         skipEmptyLines: true,
         complete: (results) => {
            handleImport(results.data);
-           fileInput.value = ''; // reset
+           fileInput.value = '';
         }
       });
     };
@@ -1326,53 +1538,38 @@
     function handleImport(rows) {
       if(!rows || rows.length === 0) return;
       const headers = Object.keys(rows[0]).map(h => normalize(h));
-      
       let importedQuotes = 0;
       let newCodes = 0;
 
-      // 1. Check for "all_tags" structure (id, document, tag, content)
       if(headers.includes('tag') && headers.includes('content') && headers.includes('document')) {
-         console.log("Detected Taguette/Hihi All Tags structure");
          rows.forEach(row => {
             const tag = (row.tag || '').trim();
             const quoteText = (row.content || '').trim();
             const source = (row.document || '').trim();
             if(!tag || !quoteText) return;
-
-            // Map code to quotes
             const key = normalize(tag);
             if(!quotesMap[key]) quotesMap[key] = { quotes: [], theme: null };
             quotesMap[key].quotes.push({ text: quoteText, source: source });
             importedQuotes++;
-
-            // If code is new to the board, assign a default Theme (1)
             if(!codeThemeMap[key]) {
-               codeThemeMap[key] = 1;
-               createCard(tag, 1, true);
+               codeThemeMap[key] = 0; // Default to 0 (Unassigned)
                newCodes++;
             }
          });
       }
-      // 2. Check for "Themes with quotes" structure
-      else if(headers.includes('theme') && headers.includes('code') && headers.includes('example_1')) {
-         console.log("Detected Themes Structure");
+      else if(headers.includes('theme') && headers.includes('code')) {
          rows.forEach(row => {
             const themeName = (row.theme || '').trim();
             const code = (row.code || '').trim();
             if(!code) return;
-
-            // Determine Theme ID from text
-            let tid = 1;
+            let tid = 0; // Default 0
             const tNorm = normalize(themeName);
             if(tNorm.includes('identity')) tid = 1;
             else if(tNorm.includes('label')) tid = 2;
             else if(tNorm.includes('tool') || tNorm.includes('production')) tid = 3;
             else if(tNorm.includes('dynamics') || tNorm.includes('fear') || tNorm.includes('hope')) tid = 4;
-
             const key = normalize(code);
             codeThemeMap[key] = tid;
-
-            // Add quotes
             if(!quotesMap[key]) quotesMap[key] = { quotes: [], theme: tid };
             ['example_1', 'example_2', 'example_3'].forEach((exField, i) => {
                const txt = row[exField];
@@ -1382,43 +1579,36 @@
                  importedQuotes++;
                }
             });
-
-            // Ensure card exists on board
-            const list = document.getElementById(`colList${tid}`);
-            let found = false;
-            list.querySelectorAll('.card-text').forEach(el => { if(normalize(el.innerText) === key) found = true; });
-            
-            if(!found) {
-               createCard(code, tid, true);
-               newCodes++;
+            // If recognized theme 1-4, add to main board
+            if(tid > 0) {
+               const list = document.getElementById(`colList${tid}`);
+               let found = false;
+               list.querySelectorAll('.card-text').forEach(el => { if(normalize(el.innerText) === key) found = true; });
+               if(!found) createCard(code, tid, true);
+            } else {
+               newCodes++; // Unassigned count
             }
          });
       }
-      // 3. Generic/Legacy fallback
       else {
-         alert("Unknown CSV format. Importing generic tags if found.");
-         // Basic logic
          rows.forEach(row => {
             const code = row['tag'] || row['code'] || row['Code'];
             if(code) {
                const key = normalize(code);
                if(!codeThemeMap[key]) {
-                 codeThemeMap[key] = 1;
-                 createCard(code, 1, true);
+                 codeThemeMap[key] = 0;
                  newCodes++;
                }
             }
          });
       }
-
-      // Finalize
       saveBoard();
-      attachQuoteListeners(); // refresh UI with new quotes
-      
-      // Auto-populate playground with new codes for better UX
-      [1,2,3,4].forEach(t => populatePlaygroundFromMain(t));
-      
-      alert(`Import Successful!\nAdded ${importedQuotes} quotes.\nFound ${newCodes} new codes.`);
+      attachQuoteListeners(); 
+      // Refresh sidebar to show new unassigned codes
+      if(pgModal.classList.contains('open')) {
+          renderSidebarList(currentTheme);
+      }
+      alert(`Import Successful!\nAdded ${importedQuotes} quotes.\nFound ${newCodes} new codes (Unassigned).`);
     }
 
     document.getElementById('exportPdfBtn').onclick = () => {
@@ -1426,10 +1616,8 @@
        html2pdf().set({ margin:0, filename:'codebook.pdf', image:{type:'jpeg',quality:0.98}, html2canvas:{scale:2}, jsPDF:{unit:'in', format:'letter', orientation:'landscape'} }).from(el).save();
     };
 
-    // Init
     window.onload = () => {
        initBoard();
-       // Try to recover previous playground state, else init from main
        if(!restorePlaygroundState()) {
           [1,2,3,4].forEach(t => populatePlaygroundFromMain(t));
        }
