@@ -1,1084 +1,1159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucía Medina — Interaction Designer</title>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JEPVH1MD2X"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-JEPVH1MD2X');</script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;700;900&family=Barlow+Condensed:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <style>
-        /* GLOBAL TRANSITIONS & RESET */
-        *, *::before, *::after { 
-            box-sizing: border-box; 
-            margin: 0; 
-            padding: 0; 
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Super smooth transitions for everything */
-        }
+  <meta charset="UTF-8" />
+  <title>Code Playground – Braun & Clarke Themes + CSV Analytics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-body: #000000;
+      --bg-app: #000000;
+      --bg-column: #141621;
+      --bg-column-header: #1c1e2b;
+      --border-column: #232636;
+      --accent: #ffb36a;
+      --accent-soft: #ff9b6a;
+      --text-main: #ffffff;
+      --text-muted: #8b8fa7;
+    }
 
-        :root {
-            --blush:  #F2DDD8;
-            --teal:   #0D2B2A;
-            --mid:    #4a7a78;
-            --font:   'Barlow', sans-serif;
-            --cond:   'Barlow Condensed', sans-serif;
-        }
+    body {
+      margin: 0;
+      font-family: "Nunito Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-body);
+      color: var(--text-main);
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
 
-        html { scroll-behavior: smooth; }
+    .app {
+      width: 100%;
+      max-width: 1400px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
 
-        body {
-            background: var(--blush);
-            color: var(--teal);
-            font-family: var(--font);
-            font-weight: 400;
-            overflow-x: hidden;
-            opacity: 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            cursor: none;
-        }
-        body.loaded { opacity: 1; }
-        body[data-page="home"] { overflow: hidden; }
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+    }
 
-        /* CURSOR */
-        #cursor {
-            position: fixed; width: 8px; height: 8px;
-            background: var(--teal); border-radius: 50%;
-            pointer-events: none; z-index: 9999;
-            transform: translate(-50%,-50%);
-            transition: width 0.2s, height 0.2s;
-        }
-        #cursor-ring {
-            position: fixed; width: 32px; height: 32px;
-            border: 1px solid var(--teal);
-            border-radius: 50%;
-            pointer-events: none; z-index: 9998;
-            transform: translate(-50%,-50%);
-            opacity: 0.4;
-            transition: width 0.25s, height 0.25s, opacity 0.25s;
-        }
-        body.hovering #cursor { width: 4px; height: 4px; }
-        body.hovering #cursor-ring { width: 48px; height: 48px; opacity: 0.2; }
+    .top-bar h1 {
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
 
-        /* HEADER */
-        header {
-            position: sticky; top: 0; z-index: 100;
-            background: var(--blush);
-            border-bottom: 2px solid var(--teal);
-            height: 60px;
-            display: flex; align-items: center;
-            flex-shrink: 0;
-        }
-        nav {
-            width: 100%; max-width: 1400px; margin: 0 auto;
-            padding: 0 40px;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .logo {
-            font-family: var(--font);
-            font-size: 0.7rem; font-weight: 700;
-            letter-spacing: 0.2em; text-transform: uppercase;
-            color: var(--teal);
-            background: none; border: none; cursor: pointer;
-            padding: 0;
-            appearance: none; -webkit-appearance: none;
-        }
-        .nav-links { display: flex; gap: 36px; align-items: center; }
-        .nav-link {
-            font-family: var(--font);
-            font-size: 0.65rem; font-weight: 500;
-            letter-spacing: 0.18em; text-transform: uppercase;
-            color: var(--teal); opacity: 0.45;
-            background: none; border: none; cursor: pointer;
-            padding: 0; appearance: none; -webkit-appearance: none;
-        }
-        .nav-link:hover, .nav-link.active { opacity: 1; }
-        .menu-btn { display: none; background: none; border: none; cursor: pointer; color: var(--teal); }
+    .top-bar small {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
 
-        /* MOBILE MENU */
-        #mobile-menu {
-            display: none; position: absolute; top: 60px; left: 0;
-            width: 100%; background: var(--blush);
-            border-bottom: 2px solid var(--teal); z-index: 200;
-            flex-direction: column;
-        }
-        #mobile-menu.open { display: flex; }
-        #mobile-menu button {
-            background: none; border: none; border-bottom: 1px solid rgba(13,43,42,0.15);
-            font-family: var(--font); font-size: 0.7rem;
-            font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
-            color: var(--teal); cursor: pointer; text-align: left;
-            padding: 18px 40px; appearance: none;
-        }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: #10111a;
+      border: 1px solid #24273b;
+    }
 
-        /* MAIN */
-        main { flex-grow: 1; display: flex; flex-direction: column; }
-        .page-section {
-            display: none; opacity: 0;
-        }
-        .page-section.active {
-            display: flex; flex-direction: column; opacity: 1;
-        }
+    .controls input {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #2c3044;
+      outline: none;
+      background: #171826;
+      color: #fff;
+      flex: 1 0 150px;
+      min-width: 150px;
+      font-size: 0.85rem;
+    }
 
-        /* ===================== HOME ===================== */
-        body[data-page="home"] footer { position: fixed; bottom: 0; width: 100%; }
+    .controls input::placeholder {
+      color: #6e7392;
+    }
 
-        #home.active {
-            height: calc(100vh - 60px);
-            position: relative; overflow: hidden;
-        }
+    .controls button {
+      background: var(--accent-soft);
+      padding: 7px 14px;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #1a0f0a;
+      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
 
-        #home::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 50%; width: 50%; height: 100%;
-            background: var(--teal);
-            z-index: 0;
-        }
+    .controls button.secondary {
+      background: transparent;
+      color: #c0c4de;
+      border: 1px solid #343750;
+    }
 
-        #home-content-wrapper {
-            position: relative; z-index: 2;
-            height: 100%;
-            display: flex; flex-direction: column;
-            justify-content: flex-end;
-            padding: 0 40px 80px;
-            max-width: 1400px;
-            margin: 0 auto; width: 100%;
-        }
-        #home-content-wrapper.fade-out { opacity: 0; transform: translateY(-16px); }
+    .controls span.hint {
+      margin-left: auto;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
 
-        .home-label {
-            font-family: var(--font);
-            font-size: 0.6rem; font-weight: 700;
-            letter-spacing: 0.3em; text-transform: uppercase;
-            color: var(--teal); margin-bottom: 16px;
-        }
+    /* Blackboard */
+    .blackboard {
+      background: #0f1018;
+      border-radius: 10px;
+      border: 1px solid #24273b;
+      padding: 8px 10px;
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+    }
 
-        .home-name {
-            font-family: var(--cond);
-            font-size: clamp(5rem, 14vw, 12rem);
-            font-weight: 900;
-            line-height: 0.88;
-            letter-spacing: -0.02em;
-            text-transform: uppercase;
-            color: var(--teal);
-            margin-bottom: 0;
-        }
-        .home-name .line-2 {
-            display: block;
-            color: var(--blush);
-        }
+    .blackboard-header {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #d4d7f4;
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+      align-items: baseline;
+    }
 
-        .home-bottom {
-            display: flex; justify-content: space-between; align-items: flex-end;
-            margin-top: 32px;
-            padding-top: 24px;
-            border-top: 1px solid rgba(13,43,42,0.25);
-        }
+    .blackboard-header span {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: #8b8fa7;
+      text-transform: none;
+      letter-spacing: 0;
+    }
 
-        .home-tagline {
-            font-family: var(--font);
-            font-size: 0.78rem; font-weight: 400;
-            line-height: 1.8; color: var(--teal);
-            max-width: 320px;
-        }
+    .blackboard-body {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      min-height: 40px;
+    }
 
-        .home-cta {
-            display: inline-flex; align-items: center; gap: 14px;
-            font-family: var(--font);
-            font-size: 0.65rem; font-weight: 700;
-            letter-spacing: 0.2em; text-transform: uppercase;
-            color: var(--blush);
-            background: var(--teal);
-            border: none; cursor: pointer;
-            padding: 16px 32px;
-            appearance: none; -webkit-appearance: none;
-        }
-        .home-cta:hover { background: var(--mid); }
+    .blackboard-body.empty::before {
+      content: "Top 10 codes from CSV will appear here – drag them into your theme columns.";
+      font-size: 0.75rem;
+      color: #555;
+      font-style: italic;
+    }
 
-        /* ===================== WORK ===================== */
-        #work {
-            max-width: 1400px; margin: 0 auto;
-            padding: 0 40px 80px; width: 100%;
-        }
+    .board {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+    }
 
-        .section-header {
-            display: flex; justify-content: space-between; align-items: baseline;
-            padding: 32px 0 24px;
-            border-bottom: 2px solid var(--teal);
-            margin-bottom: 0;
-        }
-        .section-title {
-            font-family: var(--cond);
-            font-size: 0.7rem; font-weight: 700;
-            letter-spacing: 0.25em; text-transform: uppercase;
-            color: var(--teal);
-        }
-        .section-meta {
-            font-family: var(--font);
-            font-size: 0.6rem; font-weight: 400;
-            letter-spacing: 0.12em; color: var(--teal); opacity: 0.5;
-        }
+    .column {
+      background: var(--bg-column);
+      border: 1px solid var(--border-column);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      min-height: 230px;
+      overflow: hidden;
+    }
 
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2px;
-            margin-top: 2px;
-        }
+    .column-header {
+      padding: 8px;
+      background: var(--bg-column-header);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #aaa;
+    }
 
-        .project-card {
-            position: relative; overflow: hidden;
-            cursor: pointer; aspect-ratio: 4/3;
-            background: var(--teal);
-        }
-        .project-card:last-child:nth-child(odd) {
-            grid-column: span 2;
-            aspect-ratio: 16/6;
-        }
+    .column-header[contenteditable="true"] {
+      cursor: text;
+    }
 
-        .card-bg {
-            position: absolute; inset: 0;
-            background-size: cover; background-position: center;
-            filter: saturate(0.4) brightness(0.7);
-        }
-        .project-card:hover .card-bg {
-            transform: scale(1.05);
-            filter: saturate(0.15) brightness(0.25);
-        }
+    .column-header:focus {
+      outline: 1px solid var(--accent);
+      outline-offset: -2px;
+    }
 
-        .card-wash {
-            position: absolute; inset: 0;
-            background: var(--teal);
-            opacity: 0;
-            mix-blend-mode: multiply;
-        }
-        .project-card:hover .card-wash { opacity: 0.7; }
+    .column-body {
+      padding: 8px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
 
-        .card-static {
-            position: absolute; inset: 0;
-            display: flex; flex-direction: column;
-            justify-content: flex-end;
-            padding: 28px;
-        }
-        .project-card:hover .card-static { opacity: 0; }
+    .column-body.empty::before {
+      content: "Drop codes here";
+      text-align: center;
+      margin-top: 10px;
+      color: #555;
+      font-size: 0.75rem;
+      font-style: italic;
+    }
 
-        .card-static-num {
-            font-family: var(--cond);
-            font-size: 0.6rem; font-weight: 700;
-            letter-spacing: 0.2em; text-transform: uppercase;
-            color: rgba(242,221,216,0.6);
-            margin-bottom: 8px;
-        }
-        .card-static-title {
-            font-family: var(--cond);
-            font-size: 1.4rem; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 0.02em;
-            color: #fff;
-            line-height: 1;
-            text-shadow: 0 2px 16px rgba(0,0,0,0.5);
-        }
+    .column-body.over {
+      outline: 1px dashed var(--accent);
+      outline-offset: -3px;
+    }
 
-        .card-tag {
-            position: absolute; top: 24px; left: 24px;
-            font-family: var(--font);
-            font-size: 0.55rem; font-weight: 700;
-            letter-spacing: 0.2em; text-transform: uppercase;
-            background: var(--blush); color: var(--teal);
-            padding: 4px 10px;
-        }
+    .card {
+      padding: 6px 8px 6px 10px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #ff9a8b, #ff6a88);
+      font-size: 0.8rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
 
-        .card-content {
-            position: absolute; inset: 0;
-            display: flex; flex-direction: column;
-            justify-content: flex-end;
-            padding: 32px;
-            opacity: 0;
-            transform: translateY(10px);
-        }
-        .project-card:hover .card-content { opacity: 1; transform: translateY(0); }
+    .card,
+    .card-text {
+      user-select: text;
+      -webkit-user-select: text;
+    }
 
-        .card-title {
-            font-family: var(--cond);
-            font-size: clamp(2rem, 4vw, 3.2rem);
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: -0.01em;
-            color: var(--blush);
-            line-height: 0.95;
-            margin-bottom: 10px;
-        }
-        .card-desc {
-            font-size: 0.72rem; font-weight: 400;
-            color: rgba(242,221,216,0.7);
-            line-height: 1.6; margin-bottom: 24px;
-            max-width: 320px;
-        }
-        .card-cta {
-            display: inline-flex; align-items: center; gap: 10px;
-            font-family: var(--font);
-            font-size: 0.6rem; font-weight: 700;
-            letter-spacing: 0.2em; text-transform: uppercase;
-            color: var(--blush);
-        }
+    .card.dragging {
+      opacity: 0.6;
+    }
 
-        /* ===================== ABOUT ===================== */
-        #about {
-            max-width: 1400px; margin: 0 auto;
-            padding: 0 40px 80px; width: 100%;
-        }
+    .card-text {
+      flex: 1;
+      word-break: break-word;
+    }
 
-        .about-grid {
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 2px; margin-top: 2px;
-        }
-        .about-img-col {
-            position: relative;
-        }
-        .about-text-col {
-            background: var(--teal);
-            padding: 56px 48px;
-            display: flex; flex-direction: column; justify-content: space-between;
-        }
+    .delete-card {
+      border: none;
+      background: rgba(0, 0, 0, 0.2);
+      color: #250707;
+      border-radius: 999px;
+      width: 18px;
+      height: 18px;
+      font-size: 0.75rem;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 0;
+      flex-shrink: 0;
+    }
 
-        .slider-wrap {
-            position: relative;
-            height: 100%; min-height: 500px;
-            overflow: hidden;
-            cursor: ew-resize;
-            user-select: none;
-            border: 2px solid var(--teal);
-        }
-        .slider-layer { position: absolute; inset: 0; overflow: hidden; }
-        .slider-layer img {
-            width: 100%; height: 100%;
-            object-fit: cover; object-position: top;
-            display: block; pointer-events: none;
-        }
-        .layer-back img { filter: grayscale(100%) brightness(0.5); }
-        .layer-front {
-            z-index: 10; width: 55%;
-            border-right: 2px solid var(--teal);
-        }
-        .layer-front-inner { position: absolute; inset: 0; }
-        .layer-front-inner img {
-            position: absolute; inset: 0;
-            width: 100%; height: 100%;
-            object-fit: cover; object-position: top;
-            filter: grayscale(100%) brightness(0.55);
-        }
-        .slider-overlay {
-            position: absolute; inset: 0; z-index: 5;
-            background: linear-gradient(to right, rgba(13,43,42,0.9) 0%, rgba(13,43,42,0.6) 70%, rgba(13,43,42,0) 100%);
-            padding: 40px 36px;
-            display: flex; flex-direction: column; justify-content: flex-end;
-        }
-        .slider-handle {
-            position: absolute; top: 50%; right: -18px;
-            width: 36px; height: 36px;
-            background: var(--blush); border: 2px solid var(--teal);
-            display: flex; align-items: center; justify-content: center;
-            color: var(--teal); font-size: 11px;
-            transform: translateY(-50%); z-index: 20;
-            pointer-events: none;
-        }
-        .slider-hint {
-            font-family: var(--font);
-            font-size: 0.55rem; font-weight: 700;
-            letter-spacing: 0.2em; text-transform: uppercase;
-            color: var(--teal); opacity: 0.5;
-            margin-top: 12px;
-        }
+    .delete-card:hover {
+      background: rgba(0, 0, 0, 0.35);
+    }
 
-        .slider-fact-label {
-            font-family: var(--font); font-size: 0.5rem;
-            font-weight: 700; letter-spacing: 0.25em;
-            text-transform: uppercase; color: var(--blush); opacity: 0.5;
-            margin-bottom: 4px;
-        }
-        .slider-fact-val {
-            font-family: var(--font); font-size: 0.72rem;
-            font-weight: 400; color: var(--blush);
-            margin-bottom: 18px;
-        }
+    .descriptor-card {
+      background: linear-gradient(135deg, #ffe4b5, #ffb36a);
+      color: #241307;
+      border: 1px dashed rgba(0, 0, 0, 0.35);
+      font-weight: 600;
+      cursor: default;
+    }
 
-        .about-label {
-            font-family: var(--font); font-size: 0.55rem;
-            font-weight: 700; letter-spacing: 0.3em;
-            text-transform: uppercase; color: var(--blush); opacity: 0.5;
-            margin-bottom: 24px;
-        }
-        .about-heading {
-            font-family: var(--cond);
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 900; text-transform: uppercase;
-            letter-spacing: -0.02em; line-height: 0.92;
-            color: var(--blush);
-            margin-bottom: 36px;
-        }
-        .about-body {
-            font-family: var(--font);
-            font-size: 0.78rem; line-height: 1.85;
-            color: rgba(242,221,216,0.75); font-weight: 400;
-            margin-bottom: 18px;
-        }
-        .about-body strong { color: var(--blush); font-weight: 700; }
-        .about-rule { height: 1px; background: rgba(242,221,216,0.15); margin: 28px 0; }
+    .descriptor-card .card-text {
+      font-size: 0.78rem;
+      line-height: 1.35;
+    }
 
-        .skills-label {
-            font-family: var(--font); font-size: 0.5rem;
-            font-weight: 700; letter-spacing: 0.25em;
-            text-transform: uppercase; color: var(--blush); opacity: 0.5;
-            margin-bottom: 12px;
-        }
-        .skills-list { display: flex; flex-wrap: wrap; gap: 4px; }
-        .skill-tag {
-            font-family: var(--font); font-size: 0.6rem;
-            font-weight: 500; letter-spacing: 0.08em;
-            border: 1px solid rgba(242,221,216,0.25);
-            color: rgba(242,221,216,0.6);
-            padding: 4px 10px;
-        }
-        .skill-tag:hover { border-color: var(--blush); color: var(--blush); }
+    .descriptor-card[draggable="false"] {
+      cursor: default;
+    }
 
-        /* ===================== CONTACT ===================== */
-        #contact {
-            max-width: 1400px; margin: 0 auto;
-            padding: 0 40px 80px; width: 100%;
-            min-height: calc(100vh - 60px - 48px);
-            display: flex; flex-direction: column; justify-content: flex-end;
-        }
+    .analytics {
+      margin-top: 16px;
+      padding: 12px;
+      border-radius: 10px;
+      background: #0f1019;
+      border: 1px solid #22253a;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
 
-        .contact-heading {
-            font-family: var(--cond);
-            font-size: clamp(4rem, 12vw, 10rem);
-            font-weight: 900; text-transform: uppercase;
-            letter-spacing: -0.03em; line-height: 0.88;
-            color: var(--teal); margin-bottom: 48px;
-        }
-        .contact-heading span {
-            display: block;
-            color: var(--blush);
-            background: var(--teal);
-            padding: 0 8px;
-            display: inline-block;
-        }
-        .contact-bottom {
-            display: flex; justify-content: space-between; align-items: flex-end;
-            border-top: 2px solid var(--teal); padding-top: 24px;
-        }
-        .contact-email {
-            font-family: var(--font); font-size: 0.9rem;
-            font-weight: 400; color: var(--teal);
-            text-decoration: none; letter-spacing: 0.03em;
-        }
-        .contact-email:hover { opacity: 0.6; }
-        .contact-socials { display: flex; gap: 24px; }
-        .contact-social {
-            font-family: var(--font); font-size: 0.6rem;
-            font-weight: 700; letter-spacing: 0.18em;
-            text-transform: uppercase; color: var(--teal);
-            text-decoration: none; display: flex;
-            align-items: center; gap: 8px;
-        }
-        .contact-social:hover { opacity: 0.5; }
+    .analytics-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
 
-        /* ===================== FOOTER ===================== */
-        footer {
-            background: var(--blush);
-            border-top: 2px solid var(--teal);
-            padding: 16px 40px;
-            display: flex; justify-content: space-between; align-items: center;
-            font-family: var(--font); font-size: 0.55rem;
-            font-weight: 700; letter-spacing: 0.18em;
-            text-transform: uppercase; color: var(--teal); opacity: 0.5;
-            position: relative; z-index: 1;
-        }
+    .analytics h2 {
+      margin: 0;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
 
-        /* ===================== DETAIL VIEW — UPDATED ===================== */
-        #detail-view {
-            position: fixed; inset: 0;
-            background: var(--blush);
-            z-index: 500;
-            transform: translateY(100%);
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            overflow-y: auto; display: flex; flex-direction: column;
-        }
-        #detail-view.open { transform: translateY(0); }
+    .analytics-summary {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
 
-        .detail-nav {
-            position: sticky; top: 0;
-            background: var(--blush);
-            border-bottom: 2px solid var(--teal);
-            padding: 0 40px; height: 60px;
-            display: flex; justify-content: space-between;
-            align-items: center; z-index: 10;
-        }
-        .detail-back {
-            display: flex; align-items: center; gap: 12px;
-            font-family: var(--font); font-size: 0.6rem;
-            font-weight: 700; letter-spacing: 0.2em;
-            text-transform: uppercase; color: var(--teal);
-            background: none; border: none; cursor: pointer;
-            appearance: none;
-        }
-        .detail-back:hover { opacity: 0.5; }
-        .detail-nav-title {
-            font-family: var(--cond); font-size: 0.65rem;
-            font-weight: 700; letter-spacing: 0.2em;
-            text-transform: uppercase; color: var(--teal); opacity: 0.4;
-        }
+    .code-section {
+      margin-top: 8px;
+      padding-top: 6px;
+      border-top: 1px solid #26293d;
+    }
 
-        .detail-body {
-            max-width: 1400px; margin: 0 auto;
-            padding: 0 40px 80px; width: 100%;
-        }
-        .detail-header {
-            display: grid; grid-template-columns: 1fr auto;
-            gap: 40px; align-items: end;
-            padding: 56px 0 40px;
-            border-bottom: 2px solid var(--teal);
-            margin-bottom: 56px;
-        }
-        .detail-kicker {
-            font-family: var(--font); font-size: 0.55rem;
-            font-weight: 700; letter-spacing: 0.28em;
-            text-transform: uppercase; color: var(--teal); opacity: 0.5;
-            margin-bottom: 12px;
-        }
-        .detail-title {
-            font-family: var(--cond);
-            font-size: clamp(3rem, 8vw, 6.5rem);
-            font-weight: 900; text-transform: uppercase;
-            letter-spacing: -0.02em; line-height: 0.9;
-            color: var(--teal);
-        }
-        .detail-cta {
-            display: inline-flex; align-items: center; gap: 10px;
-            font-family: var(--font); font-size: 0.6rem;
-            font-weight: 700; letter-spacing: 0.2em;
-            text-transform: uppercase; color: var(--blush);
-            background: var(--teal); border: none;
-            padding: 14px 24px; text-decoration: none;
-            white-space: nowrap;
-        }
-        .detail-cta:hover { background: var(--mid); }
+    .code-section-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #d4d7f4;
+      margin-bottom: 4px;
+    }
 
-        .detail-cols {
-            display: grid; grid-template-columns: 2fr 1fr;
-            gap: 80px; margin-bottom: 64px;
-        }
-        /* Increased letter/font sizes for clarity */
-        .detail-col-label {
-            font-family: var(--font); font-size: 0.7rem;
-            font-weight: 700; letter-spacing: 0.28em;
-            text-transform: uppercase; color: var(--teal); opacity: 0.5;
-            margin-bottom: 18px;
-        }
-        .detail-desc {
-            font-family: var(--font); font-size: 1.05rem;
-            line-height: 1.7; color: var(--teal); font-weight: 400;
-        }
-        .detail-desc p { margin-bottom: 14px; }
-        .detail-role-list li, .detail-type-val {
-            font-family: var(--font); font-size: 0.95rem;
-            font-weight: 400; color: var(--teal);
-            padding: 12px 0; border-bottom: 1px solid rgba(13,43,42,0.12);
-        }
+    .code-section-title span {
+      font-weight: 400;
+      color: #8b8fa7;
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 0.75rem;
+    }
 
-        /* Gallery — Removed green backgrounds & updated previews */
-        .gallery-label {
-            font-family: var(--font); font-size: 0.7rem;
-            font-weight: 700; letter-spacing: 0.28em;
-            text-transform: uppercase; color: var(--teal); opacity: 0.5;
-            margin-bottom: 16px;
-        }
-        .gallery-grid { display: grid; gap: 2px; }
-        .gallery-grid.cols-2 { grid-template-columns: 1fr 1fr; }
-        .gallery-grid.cols-1 { grid-template-columns: 1fr; }
-        .gallery-item { overflow: hidden; background: transparent; }
-        .gallery-item img {
-            width: 100%; height: 100%; display: block;
-            object-fit: contain; background: transparent;
-        }
-        .gallery-item:hover img { opacity: 0.85; }
-        .gallery-item.wide { aspect-ratio: 16/9; }
-        .gallery-item.square { aspect-ratio: 1; }
+    .code-stats-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 8px;
+    }
 
-        .carousel-track {
-            display: flex; gap: 2px;
-            overflow-x: auto; scroll-snap-type: x mandatory;
-            scrollbar-width: none;
-        }
-        .carousel-track::-webkit-scrollbar { display: none; }
-        .carousel-item {
-            flex: 0 0 45%; /* Smaller previews (45% instead of 68%) */
-            scroll-snap-align: start;
-            aspect-ratio: 16/9; background: transparent; overflow: hidden;
-        }
-        .carousel-item img { width: 100%; height: 100%; object-fit: contain; }
-        .carousel-hint {
-            font-family: var(--font); font-size: 0.7rem;
-            font-weight: 700; letter-spacing: 0.2em;
-            text-transform: uppercase; color: var(--teal);
-            opacity: 0.4; text-align: right; margin-top: 12px;
-        }
+    .code-stat {
+      background: #151626;
+      border-radius: 8px;
+      padding: 8px 10px;
+      border: 1px solid #26293d;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 0.78rem;
+    }
 
-        /* ===================== MOBILE ===================== */
-        @media (max-width: 768px) {
-            nav { padding: 0 20px; }
-            .nav-links { display: none; }
-            .menu-btn { display: block; }
-            #home-content-wrapper { padding: 0 20px 60px; }
-            #work, #about, #contact { padding: 0 20px 60px; }
-            .projects-grid { grid-template-columns: 1fr; }
-            .project-card:last-child:nth-child(odd) { grid-column: span 1; aspect-ratio: 4/3; }
-            .about-grid { grid-template-columns: 1fr; }
-            .about-text-col { min-height: auto; }
-            .detail-body { padding: 0 20px 60px; }
-            .detail-cols { grid-template-columns: 1fr; gap: 40px; }
-            .detail-nav { padding: 0 20px; }
-            .detail-header { grid-template-columns: 1fr; }
-            .gallery-grid.cols-2 { grid-template-columns: 1fr; }
-            footer { padding: 16px 20px; }
-            #cursor, #cursor-ring { display: none; }
-            body { cursor: auto; }
-            #mobile-menu button { padding: 18px 20px; }
-        }
-    </style>
+    .code-stat-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+      align-items: baseline;
+    }
+
+    .code-name {
+      font-weight: 700;
+      color: #ffd9a0;
+    }
+
+    .code-count {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .example-quote {
+      margin-top: 2px;
+      padding-left: 6px;
+      border-left: 2px solid #343750;
+      font-style: italic;
+      color: #d3d6f2;
+    }
+
+    .example-source {
+      font-size: 0.7rem;
+      color: #9094b5;
+      margin-top: 1px;
+    }
+
+    .analytics-empty {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    @page {
+      size: A4 landscape;
+      margin: 10mm;
+    }
+
+    @media print {
+      html, body {
+        background: #000000 !important;
+        color: #ffffff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        padding: 0;
+        margin: 0;
+      }
+
+      .app {
+        max-width: 100%;
+        padding: 0;
+      }
+
+      .controls {
+        display: none !important;
+      }
+
+      .top-bar small {
+        display: none !important;
+      }
+
+      .top-bar h1 {
+        color: var(--accent) !important;
+        margin-bottom: 6px;
+      }
+
+      .board {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+
+      .column {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        background: var(--bg-column) !important;
+        border-color: var(--border-column) !important;
+      }
+
+      .column-header {
+        background: var(--bg-column-header) !important;
+        color: #aaaaaa !important;
+      }
+
+      .card {
+        box-shadow: none;
+        background: linear-gradient(135deg, #ff9a8b, #ff6a88) !important;
+        color: #250707 !important;
+      }
+
+      .descriptor-card {
+        background: linear-gradient(135deg, #ffe4b5, #ffb36a) !important;
+        color: #241307 !important;
+      }
+
+      .analytics {
+        page-break-before: always;
+      }
+    }
+  </style>
 </head>
-<body data-page="home">
-    <div id="cursor"></div>
-    <div id="cursor-ring"></div>
-
-    <header>
-        <nav>
-            <button class="logo" onclick="switchPage('home')">Lucía Medina</button>
-            <div class="nav-links">
-                <button class="nav-link active" onclick="switchPage('home')" data-page="home">Home</button>
-                <button class="nav-link" onclick="switchPage('work')" data-page="work">Work</button>
-                <button class="nav-link" onclick="switchPage('about')" data-page="about">About</button>
-                <button class="nav-link" onclick="switchPage('contact')" data-page="contact">Contact</button>
-            </div>
-            <button class="menu-btn" id="menu-button">
-                <svg width="22" height="14" viewBox="0 0 22 14"><line x1="0" y1="1" x2="22" y2="1" stroke="currentColor" stroke-width="1.5"/><line x1="0" y1="7" x2="16" y2="7" stroke="currentColor" stroke-width="1.5"/><line x1="0" y1="13" x2="22" y2="13" stroke="currentColor" stroke-width="1.5"/></svg>
-            </button>
-        </nav>
-        <div id="mobile-menu">
-            <button onclick="switchPage('home')">Home</button>
-            <button onclick="switchPage('work')">Work</button>
-            <button onclick="switchPage('about')">About</button>
-            <button onclick="switchPage('contact')">Contact</button>
-        </div>
-    </header>
-
-    <main>
-        <section id="home" class="page-section active">
-            <div id="home-content-wrapper">
-                <div class="home-label">Interaction Designer — Milan</div>
-                <h1 class="home-name">
-                    Lucía<br>
-                    <span class="line-2">Medina</span>
-                </h1>
-                <div class="home-bottom">
-                    <p class="home-tagline">
-                        Crafting intuitive digital experiences.<br>
-                        Where form meets function, with care.
-                    </p>
-                    <button class="home-cta" onclick="triggerHomeExit('work')">
-                        View Selected Work <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <section id="work" class="page-section">
-            <div class="section-header">
-                <span class="section-title">Selected Work</span>
-                <span class="section-meta">2020 — 2025 · 6 Projects</span>
-            </div>
-            <div class="projects-grid">
-                <article class="project-card" onclick="openProject('museon')">
-                    <div class="card-bg" style="background-image:url('https://github.com/Lumystik/PortfolioLucia/blob/main/images/museon-1.png?raw=true')"></div>
-                    <div class="card-wash"></div>
-                    <div class="card-tag">UX / UI</div>
-                    <div class="card-static">
-                        <div class="card-static-num">01</div>
-                        <div class="card-static-title">MUSE*ON</div>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">MUSE*ON</h3>
-                        <p class="card-desc">B2B staff management platform for museums. UX research to high-fidelity prototype.</p>
-                        <div class="card-cta">View Project <i class="fas fa-arrow-right"></i></div>
-                    </div>
-                </article>
-
-                <article class="project-card" onclick="openProject('artbeyond')">
-                    <div class="card-bg" style="background-image:url('https://github.com/Lumystik/PortfolioLucia/blob/main/images/art_1.png?raw=true')"></div>
-                    <div class="card-wash"></div>
-                    <div class="card-tag">Motion / UI</div>
-                    <div class="card-static">
-                        <div class="card-static-num">02</div>
-                        <div class="card-static-title">Art Beyond Dimension</div>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">Art Beyond<br>Dimension</h3>
-                        <p class="card-desc">AI-driven app teaching young people about art through animated narratives.</p>
-                        <div class="card-cta">View Project <i class="fas fa-arrow-right"></i></div>
-                    </div>
-                </article>
-
-                <article class="project-card" onclick="openProject('films')">
-                    <div class="card-bg" style="background-image:url('https://github.com/Lumystik/PortfolioLucia/blob/main/images/screenmainfilm.png?raw=true')"></div>
-                    <div class="card-wash"></div>
-                    <div class="card-tag">Mobile UI</div>
-                    <div class="card-static">
-                        <div class="card-static-num">03</div>
-                        <div class="card-static-title">Films Foundation</div>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">Films<br>Foundation</h3>
-                        <p class="card-desc">Mobile-first cinema archive for Cineteca di Milano.</p>
-                        <div class="card-cta">View Project <i class="fas fa-arrow-right"></i></div>
-                    </div>
-                </article>
-
-                <article class="project-card" onclick="openProject('seedtag')">
-                    <div class="card-bg" style="background-image:url('https://github.com/Lumystik/PortfolioLucia/blob/main/images/carseedtag2.png?raw=true')"></div>
-                    <div class="card-wash"></div>
-                    <div class="card-tag">Creative Ads</div>
-                    <div class="card-static">
-                        <div class="card-static-num">04</div>
-                        <div class="card-static-title">Seedtag</div>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">Seedtag</h3>
-                        <p class="card-desc">150+ interactive ad creatives for global brands. HTML5 / CSS / JS.</p>
-                        <div class="card-cta">View Ads <i class="fas fa-play"></i></div>
-                    </div>
-                </article>
-
-                <article class="project-card" onclick="openProject('thematic')">
-                    <div class="card-bg" style="background-image:url('https://github.com/Lumystik/PortfolioLucia/blob/main/images/taguette.png?raw=true')"></div>
-                    <div class="card-wash"></div>
-                    <div class="card-tag">Frontend Dev</div>
-                    <div class="card-static">
-                        <div class="card-static-num">05</div>
-                        <div class="card-static-title">Thematic Analysis Tool</div>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">Thematic<br>Analysis Tool</h3>
-                        <p class="card-desc">Open-source qualitative research tool. Built for thesis, refined for use.</p>
-                        <div class="card-cta">View Code <i class="fas fa-code"></i></div>
-                    </div>
-                </article>
-
-                <article class="project-card" onclick="openProject('pixela')">
-                    <div class="card-bg" style="background-image:url('https://github.com/Lumystik/PortfolioLucia/blob/main/images/pixela.png?raw=true')"></div>
-                    <div class="card-wash"></div>
-                    <div class="card-tag">Game Dev</div>
-                    <div class="card-static">
-                        <div class="card-static-num">06</div>
-                        <div class="card-static-title">Pixela</div>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">Pixela</h3>
-                        <p class="card-desc">Surrealist first-person escape game through Dalí, Van Gogh & Escher.</p>
-                        <div class="card-cta">View Game <i class="fas fa-gamepad"></i></div>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <section id="about" class="page-section">
-            <div class="section-header">
-                <span class="section-title">About</span>
-            </div>
-            <div class="about-grid">
-                <div class="about-img-col">
-                    <div class="slider-wrap" id="face-slider">
-                        <div class="slider-layer layer-back">
-                            <img src="https://github.com/Lumystik/PortfolioLucia/blob/main/images/mememe.png?raw=true" alt="">
-                        </div>
-                        <div class="slider-layer layer-front" id="face-foreground">
-                            <div class="layer-front-inner" id="face-inner">
-                                <img src="https://github.com/Lumystik/PortfolioLucia/blob/main/images/mememe.png?raw=true" alt="">
-                                <div class="slider-overlay">
-                                    <div>
-                                        <div class="slider-fact-label">Education</div>
-                                        <div class="slider-fact-val">MSc Digital & Interaction Design<br>Politecnico di Milano, 2026</div>
-                                        <div class="slider-fact-label">Experience</div>
-                                        <div class="slider-fact-val">Digital Designer · Seedtag (2020–2024)<br>UX Research · Arduino (2025)</div>
-                                        <div class="slider-fact-label">Location</div>
-                                        <div class="slider-fact-val">Milan — Open to relocation</div>
-                                        <div class="slider-fact-label">Status</div>
-                                        <div class="slider-fact-val">Graduating Mar 2026 · Seeking roles</div>
-                                    </div>
-                                </div>
-                                <div class="slider-handle"><i class="fas fa-arrows-alt-h"></i></div>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="slider-hint"><i class="fas fa-arrows-alt-h"></i> &nbsp; Drag to reveal</p>
-                </div>
-
-                <div class="about-text-col">
-                    <div>
-                        <div class="about-label">Profile</div>
-                        <h2 class="about-heading">Hybrid<br>Designer</h2>
-                        <p class="about-body">
-                            I am an interaction designer with an unusual range — <strong>three years delivering 150+ ad campaigns</strong> at Seedtag, a Master's at Politecnico di Milano, and hands-on UX research at Arduino.
-                        </p>
-                        <p class="about-body">
-                            My thesis explores <strong>designing for transparency</strong> during the age of AI in social media. I write the code behind my designs — HTML, CSS, JavaScript — which changes how I think about interaction.
-                        </p>
-                        <p class="about-body">
-                            I work best where craft and speed coexist. I have learned to respect brand systems, move under real constraints, and still make things that feel considered.
-                        </p>
-                    </div>
-                    <div>
-                        <div class="about-rule"></div>
-                        <div class="skills-label">Tools</div>
-                        <div class="skills-list" style="margin-bottom:16px;">
-                            <span class="skill-tag">Figma</span>
-                            <span class="skill-tag">Illustrator</span>
-                            <span class="skill-tag">Photoshop</span>
-                            <span class="skill-tag">After Effects</span>
-                            <span class="skill-tag">HTML/CSS</span>
-                            <span class="skill-tag">JavaScript</span>
-                            <span class="skill-tag">UX Research</span>
-                        </div>
-                        <div class="skills-label">Languages</div>
-                        <div class="skills-list">
-                            <span class="skill-tag">English — Bilingual</span>
-                            <span class="skill-tag">Spanish — Native</span>
-                            <span class="skill-tag">Italian — B1/B2</span>
-                            <span class="skill-tag">Swedish — B1/B2</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="page-section">
-            <div class="section-header">
-                <span class="section-title">Contact</span>
-            </div>
-            <div style="flex-grow:1; display:flex; flex-direction:column; justify-content:flex-end; padding-top:48px;">
-                <h2 class="contact-heading">
-                    Let's<br><span>Work.</span>
-                </h2>
-                <div class="contact-bottom">
-                    <a href="mailto:lu_1829med@outlook.com" class="contact-email">lu_1829med@outlook.com</a>
-                    <div class="contact-socials">
-                        <a href="https://www.linkedin.com/in/lucia-medina1829" target="_blank" class="contact-social">
-                            <i class="fab fa-linkedin"></i> LinkedIn
-                        </a>
-                        <a href="https://www.behance.net/lucamedinagaln1" target="_blank" class="contact-social">
-                            <i class="fab fa-behance"></i> Behance
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <span>© 2025 Lucía Medina</span>
-        <span>Milan, Italy</span>
-    </footer>
-
-    <div id="detail-view">
-        <div class="detail-nav">
-            <button class="detail-back" onclick="closeProject()">
-                <i class="fas fa-arrow-left"></i> Back
-            </button>
-            <div class="detail-nav-title" id="detail-nav-title"></div>
-            <div style="width:60px;"></div>
-        </div>
-        <div class="detail-body">
-            <div class="detail-header">
-                <div>
-                    <div class="detail-kicker" id="detail-kicker"></div>
-                    <h1 class="detail-title" id="detail-title"></h1>
-                </div>
-                <a class="detail-cta" id="detail-link" href="#" target="_blank">
-                    View Project <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-            <div class="detail-cols">
-                <div>
-                    <div class="detail-col-label">Overview</div>
-                    <div class="detail-desc" id="detail-desc"></div>
-                </div>
-                <div>
-                    <div class="detail-col-label">My Role</div>
-                    <ul class="detail-role-list" id="detail-role"></ul>
-                    <div style="margin-top:32px;">
-                        <div class="detail-col-label">Type</div>
-                        <div class="detail-type-val" id="detail-type"></div>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <div class="gallery-label" id="gallery-label">Visuals</div>
-                <div id="detail-gallery-container"></div>
-            </div>
-        </div>
+<body>
+  <div class="app">
+    <div class="top-bar">
+      <h1>Code Playground</h1>
+      <small>Drag codes, auto-generate Braun & Clarke descriptors, and analyze CSV-coded data by column.</small>
     </div>
 
-    <script>
-    window.addEventListener('load', () => document.body.classList.add('loaded'));
+    <div class="controls">
+      <input id="new-code" type="text" placeholder="Write a new code and press Add or Enter…" />
+      <button id="add-code"><span>＋</span> Add code</button>
+      <button id="add-column" class="secondary">＋ Column</button>
+      <button id="generate-descriptors" class="secondary">Auto-describe themes</button>
+      <button id="save-layout" class="secondary">Save layout</button>
+      <button id="export-csv" class="secondary">Export CSV</button>
 
-    const cur = document.getElementById('cursor');
-    const ring = document.getElementById('cursor-ring');
-    let mx=0,my=0,rx=0,ry=0;
-    document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
-    (function tick(){
-        rx+=(mx-rx)*0.14; ry+=(my-ry)*0.14;
-        if(cur) { cur.style.left=mx+'px'; cur.style.top=my+'px'; }
-        if(ring){ ring.style.left=rx+'px'; ring.style.top=ry+'px'; }
-        requestAnimationFrame(tick);
-    })();
-    document.querySelectorAll('a,button,.project-card,.slider-wrap').forEach(el=>{
-        el.addEventListener('mouseenter',()=>document.body.classList.add('hovering'));
-        el.addEventListener('mouseleave',()=>document.body.classList.remove('hovering'));
-    });
+      <button id="import-csv-trigger" class="secondary">Import codes CSV</button>
+      <input id="import-csv" type="file" accept=".csv" style="display:none;" />
 
-    function triggerHomeExit(page) {
-        const w = document.getElementById('home-content-wrapper');
-        if(w) w.classList.add('fade-out');
-        setTimeout(()=>switchPage(page), 500);
+      <span class="hint">Assumes CSV columns: id, document, tag, content.</span>
+    </div>
+
+    <!-- Blackboard -->
+    <div class="blackboard" id="blackboard">
+      <div class="blackboard-header">
+        <div>Blackboard – sample codes</div>
+        <span>Top 10 most frequent codes from CSV. Drag them into columns to start building themes.</span>
+      </div>
+      <div class="blackboard-body column-body dropzone empty" id="blackboard-body"></div>
+    </div>
+
+    <div class="board" id="board"></div>
+
+    <div class="analytics">
+      <div class="analytics-header">
+        <h2>Code Usage Analytics (by Column)</h2>
+        <div class="analytics-summary" id="analytics-summary">
+          Import your CSV (id, document, tag, content). Codes are grouped by column/theme with counts and up to 3 representative extracts.
+        </div>
+      </div>
+      <div id="code-stats-container">
+        <div class="analytics-empty">
+          No CSV imported yet.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const STORAGE_KEY = "codePlaygroundLayout_v1";
+
+    const board = document.getElementById("board");
+    const input = document.getElementById("new-code");
+    const addButton = document.getElementById("add-code");
+    const saveButton = document.getElementById("save-layout");
+    const addColumnButton = document.getElementById("add-column");
+    const generateDescriptorsButton = document.getElementById("generate-descriptors");
+
+    const exportCsvButton = document.getElementById("export-csv");
+    const importCsvInput = document.getElementById("import-csv");
+    const importCsvTrigger = document.getElementById("import-csv-trigger");
+    const analyticsSummary = document.getElementById("analytics-summary");
+    const codeStatsContainer = document.getElementById("code-stats-container");
+
+    const blackboard = document.getElementById("blackboard");
+    const blackboardBody = document.getElementById("blackboard-body");
+
+    let draggedCard = null;
+    let latestStats = null; // still used for analytics panel
+
+    const STOPWORDS = new Set([
+      "the","and","or","of","to","a","an","in","on","for","with",
+      "is","are","was","were","it","that","this","these","those",
+      "i","you","he","she","they","we","me","my","your","their",
+      "about","like","just","very","really","from","into","around",
+      "when","then","than","because","but","also","more","less"
+    ]);
+
+    function getTopKeywordsFromCodes(codes, max = 3) {
+      const freq = {};
+      codes.forEach(text => {
+        text.toLowerCase()
+          .replace(/[.,!?;:()"']/g, " ")
+          .split(/\s+/)
+          .filter(w => w.length > 3 && !STOPWORDS.has(w))
+          .forEach(w => { freq[w] = (freq[w] || 0) + 1; });
+      });
+
+      return Object.entries(freq)
+        .sort((a,b) => b[1]-a[1])
+        .slice(0,max)
+        .map(([w]) => w);
     }
 
-    function switchPage(pageId) {
-        document.querySelectorAll('.page-section').forEach(s=>s.classList.remove('active'));
-        document.querySelectorAll('.nav-link').forEach(l=>l.classList.toggle('active', l.dataset.page===pageId));
-        setTimeout(()=>{
-            const t = document.getElementById(pageId);
-            if(t){ t.classList.add('active'); window.scrollTo(0,0); }
-            document.body.dataset.page = pageId;
-            const w = document.getElementById('home-content-wrapper');
-            if(w) w.classList.remove('fade-out');
-            if(pageId==='about') setTimeout(initSlider,100);
-        }, 260);
-        document.getElementById('mobile-menu').classList.remove('open');
+    function buildDescriptorText(codes, columnTitle) {
+      if (!codes || codes.length === 0) {
+        return "DESCRIPTOR: No codes in this column yet – add some codes before drafting a theme.";
+      }
+      const trimmedTitle = (columnTitle || "").trim();
+      const keywords = getTopKeywordsFromCodes(codes);
+      const exampleCodes = codes.slice(0,5);
+      const remainingCount = codes.length - exampleCodes.length;
+
+      const codesPart =
+        exampleCodes.map(c => `"${c}"`).join(", ") +
+        (remainingCount > 0 ? ` … (+${remainingCount} more codes)` : "");
+
+      const centralConcept =
+        trimmedTitle ||
+        (keywords[0] ? keywords[0] : "a recurring way participants make sense of this experience");
+
+      const keywordPhrase = keywords.length
+        ? `repeating ideas around ${keywords.join(", ")}`
+        : "a recurring pattern of meaning across different situations";
+
+      return (
+        `DESCRIPTOR: This theme, tentatively named "${centralConcept}", brings together a ` +
+        `pattern of shared meaning rather than just a list of topics. Across codes such as ` +
+        `${codesPart}, the data repeatedly point to ${keywordPhrase}. Taken together, these ` +
+        `codes suggest a central organising concept of "${centralConcept}" – where ` +
+        `participants are not simply talking about this topic, but doing a particular kind ` +
+        `of sense-making. Refine this description to clarify what is unique about this theme, ` +
+        `where its boundaries lie, and how it answers your research question.`
+      );
     }
 
-    document.getElementById('menu-button').addEventListener('click',()=>{
-        document.getElementById('mobile-menu').classList.toggle('open');
-    });
+    function attachDropzoneHandlers(bodyEl) {
+      bodyEl.addEventListener("dragover", e => e.preventDefault());
+      bodyEl.addEventListener("dragenter", function(e) {
+        e.preventDefault();
+        this.classList.add("over");
+      });
+      bodyEl.addEventListener("dragleave", function() {
+        this.classList.remove("over");
+      });
+      bodyEl.addEventListener("drop", function() {
+        this.classList.remove("over");
+        if (draggedCard) {
+          this.appendChild(draggedCard);
+          refreshEmptyStates();
+          saveLayoutFromDOM();
+        }
+      });
+    }
 
-    function initSlider(){
-        const container = document.getElementById('face-slider');
-        const fg = document.getElementById('face-foreground');
-        const inner = document.getElementById('face-inner');
-        if(!container||!fg||!inner) return;
-        inner.style.width = container.offsetWidth+'px';
-        const move = x => {
-            const r = container.getBoundingClientRect();
-            const pct = Math.max(0,Math.min((x-r.left)/r.width*100,100));
-            fg.style.width = pct+'%';
+    function createColumnElement(index, title, cards) {
+      const column = document.createElement("div");
+      column.className = "column";
+
+      const header = document.createElement("div");
+      header.className = "column-header";
+      header.contentEditable = "true";
+      header.textContent = title || `Column ${index + 1}`;
+      header.addEventListener("blur", saveLayoutFromDOM);
+
+      const body = document.createElement("div");
+      body.className = "column-body dropzone";
+      body.dataset.columnIndex = index;
+
+      attachDropzoneHandlers(body);
+
+      if (Array.isArray(cards)) {
+        cards.forEach(cardData => {
+          const card = createCardElement(cardData.text || "", cardData.type || "code");
+          body.appendChild(card);
+        });
+      }
+
+      column.appendChild(header);
+      column.appendChild(body);
+      return column;
+    }
+
+    function createCardElement(text, type="code") {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.dataset.type = type;
+
+      if (type === "descriptor") {
+        card.classList.add("descriptor-card");
+        card.draggable = false;
+      } else {
+        card.draggable = true;
+      }
+
+      const span = document.createElement("span");
+      span.className = "card-text";
+      span.textContent = text;
+
+      const del = document.createElement("button");
+      del.className = "delete-card";
+      del.title = "Delete card";
+      del.textContent = "×";
+      del.addEventListener("click", e => {
+        e.stopPropagation();
+        card.remove();
+        refreshEmptyStates();
+        saveLayoutFromDOM();
+      });
+
+      card.appendChild(span);
+      card.appendChild(del);
+
+      if (type === "code") {
+        card.addEventListener("dragstart", () => {
+          draggedCard = card;
+          card.classList.add("dragging");
+        });
+        card.addEventListener("dragend", () => {
+          card.classList.remove("dragging");
+          draggedCard = null;
+          refreshEmptyStates();
+          saveLayoutFromDOM();
+        });
+      }
+
+      return card;
+    }
+
+    function refreshEmptyStates() {
+      document.querySelectorAll(".column-body").forEach(zone => {
+        zone.classList.toggle("empty", zone.children.length === 0);
+      });
+      blackboardBody.classList.toggle("empty", blackboardBody.children.length === 0);
+    }
+
+    function serializeLayoutFromDOM() {
+      const layout = [];
+      document.querySelectorAll(".column").forEach(col => {
+        const titleEl = col.querySelector(".column-header");
+        const bodyEl = col.querySelector(".column-body");
+        const colObj = {
+          title: (titleEl.textContent || "").trim(),
+          cards: []
         };
-        container.addEventListener('mousemove', e=>move(e.clientX));
-        container.addEventListener('touchmove', e=>{e.preventDefault();move(e.touches[0].clientX);},{passive:false});
-        container.addEventListener('click', e=>move(e.clientX));
-        window.addEventListener('resize',()=>{ inner.style.width=container.offsetWidth+'px'; });
+        bodyEl.querySelectorAll(".card").forEach(card => {
+          const text = card.querySelector(".card-text")?.textContent || "";
+          const type = card.dataset.type || "code";
+          colObj.cards.push({ text: text.trim(), type });
+        });
+        layout.push(colObj);
+      });
+      return layout;
     }
 
-    const projects = {
-        museon:{
-            kicker:'UX Research · Service Design', title:'MUSE*ON',
-            type:'Academic Project · Figma',
-            link:'https://www.figma.com/proto/16viMWZsHOU9SkmpbSpTd5/FINAL-UI-spaced?node-id=2248-9671&starting-point-node-id=703%3A8427&t=zCu4Bl5DESBeok5l-1',
-            role:['UX Research & Environment Mapping','Hero Flows & Wireflows','Mobile UI Design (Figma)','Hi-fi Prototyping'],
-            desc:`<p>MUSE*ON is an <strong>all-in-one platform</strong> for small museum staff — replacing paper-based systems with a cohesive digital ecosystem covering shift management, inventory, and team communication.</p><p>I led the UX research phase, conducting environment mapping and staff interviews to understand the real constraints of working in a small cultural institution.</p>`,
-            layout:'grid-2',
-            images:['https://github.com/Lumystik/PortfolioLucia/blob/main/images/museon-1.png?raw=true','https://github.com/Lumystik/PortfolioLucia/blob/main/images/museon_final.png?raw=true','https://github.com/Lumystik/PortfolioLucia/blob/main/images/museon_wireframe.png?raw=true','https://github.com/Lumystik/PortfolioLucia/blob/main/images/museon%20screen%203.png?raw=true']
-        },
-        artbeyond:{
-            kicker:'Motion Design · UI', title:'Art Beyond Dimension',
-            type:'Academic Project · Figma · After Effects',
-            link:'https://www.figma.com/proto/FnFqrWBxyChSOdL3aVzV9A/Prototype?node-id=616-1949&starting-point-node-id=564%3A1942&scaling=contain&content-scaling=fixed',
-            role:['Motion Graphics (After Effects)','Video Editing (Premiere Pro)','Concept Development','Visual Storytelling'],
-            desc:`<p>How do we make classical art feel urgent to a generation raised on TikTok? Art Beyond Dimension is a prototype that uses AI to create <strong>immersive, narrative-driven entry points</strong> into art history for young audiences.</p><p>I led the motion design and video assets, creating the visual language of the AI assistant and transitions between artistic worlds.</p>`,
-            layout:'mixed',
-            images:['https://github.com/Lumystik/PortfolioLucia/blob/main/images/art_1.png?raw=true','https://github.com/Lumystik/PortfolioLucia/blob/main/images/gifart.gif?raw=true','https://github.com/Lumystik/PortfolioLucia/blob/main/images/dimension2.png?raw=true']
-        },
-        films:{
-            kicker:'Mobile UI · Information Architecture', title:'Films Foundation',
-            type:'UI Design · Figma',
-            link:'https://www.figma.com/proto/MWvYkF7ybuKjE7SPnGi8po/Assignment?node-id=2128-5992&starting-point-node-id=2128%3A5992',
-            role:['Mobile UI Design','Information Architecture','Visual Identity','Responsive Layouts'],
-            desc:`<p>A complete redesign proposal for a major Italian film foundation — organising a <strong>vast historical cinema archive</strong> into a navigable, modern mobile experience.</p><p>The design prioritises rich media as the hero of every screen while maintaining clarity and cinematic elegance.</p>`,
-            layout:'grid-2',
-            images:['https://github.com/Lumystik/PortfolioLucia/blob/main/images/filmsscreen.png?raw=true','https://github.com/Lumystik/PortfolioLucia/blob/main/images/filmsscreen1.png?raw=true','https://github.com/Lumystik/PortfolioLucia/blob/main/images/filmsscreen2.png?raw=true','https://github.com/Lumystik/PortfolioLucia/blob/main/images/phonecinema.gif?raw=true']
-        },
-        seedtag:{
-            kicker:'Ad Tech · Creative Production', title:'Seedtag',
-            type:'Professional · HTML5 / CSS / JS',
-            link:'https://preview.seedtag.com/creative/62e004185650a9002c0208a6?device=Desktop&placement=InImage',
-            role:['Frontend Development (Vanilla JS)','Animation & Motion Logic','Creative QA','Cross-Browser Optimisation'],
-            desc:`<p>Three years delivering <strong>150+ interactive ad campaigns</strong> for brands across automotive, food, fashion and tech — building responsive HTML5/CSS/JS units that performed across placements and devices.</p><p>I developed reusable animation patterns and layout systems that improved production speed without sacrificing creative quality.</p>`,
-            layout:'carousel',
-            images:['https://github.com/Lumystik/PortfolioLucia/blob/main/images/car2.gif?raw=true','https://github.com/Lumystik/PortfolioLucia/blob/main/images/car3.gif?raw=true','https://github.com/Lumystik/PortfolioLucia/blob/main/images/car4.gif?raw=true','https://github.com/Lumystik/PortfolioLucia/blob/main/images/portfolio-10.jpg?raw=true','https://github.com/Lumystik/PortfolioLucia/blob/main/images/starbucks5.gif?raw=true']
-        },
-        thematic:{
-            kicker:'Frontend Dev · Research Tool', title:'Thematic Analysis Tool',
-            type:'Open Source · HTML / CSS / JS',
-            link:'playground.html',
-            role:['Frontend Development','Data Visualisation Logic','UX for Research Tools'],
-            desc:`<p>Qualitative research often means messy spreadsheets. I built this <strong>open-source web tool</strong> to make thematic analysis more visual and intuitive — input raw data, assign codes, group into themes via drag-and-drop.</p>`,
-            layout:'grid-1',
-            images:['https://github.com/Lumystik/PortfolioLucia/blob/main/images/taguette.png?raw=true']
-        },
-        pixela:{
-            kicker:'Game Development · Interactive Narrative', title:'Pixela',
-            type:'Bachelor Project',
-            link:'https://www.behance.net/gallery/201101643/PIXELA',
-            role:['Game Implementation','Post-Production','Interactive Assets','Visual World-Building'],
-            desc:`<p>You are Pixela — an AI anomaly in a project designed to decode the minds of history's greatest artists. Escape by travelling through the worlds of <strong>Dalí, Van Gogh and Escher</strong>, using each artist's logic as a tool.</p>`,
-            layout:'grid-1',
-            images:['https://github.com/Lumystik/PortfolioLucia/blob/main/images/portfolio-5.jpg?raw=true']
-        }
-    };
+    function saveLayoutFromDOM() {
+      const layout = serializeLayoutFromDOM();
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(layout));
+      } catch(e) {
+        console.warn("Could not save layout:", e);
+      }
+      if (latestStats) {
+        renderCodeStatsByColumn(latestStats);
+      }
+    }
 
-    function openProject(id){
-        const p=projects[id]; if(!p) return;
-        document.getElementById('detail-nav-title').textContent=p.title;
-        document.getElementById('detail-kicker').textContent=p.kicker;
-        document.getElementById('detail-title').textContent=p.title;
-        document.getElementById('detail-type').textContent=p.type;
-        document.getElementById('detail-link').href=p.link;
-        document.getElementById('detail-desc').innerHTML=p.desc;
-        document.getElementById('detail-role').innerHTML=p.role.map(r=>`<li>${r}</li>`).join('');
-        const gc=document.getElementById('detail-gallery-container');
-        gc.innerHTML='';
-        document.getElementById('gallery-label').textContent='Visuals';
-        if(p.layout==='carousel'){
-            document.getElementById('gallery-label').textContent='Ad Previews';
-            gc.innerHTML=`<div class=\"carousel-track\">${p.images.map(s=>`<div class=\"carousel-item\"><img src=\"${s}\" alt=\"\"></div>`).join('')}</div><p class=\"carousel-hint\">← scroll →</p>`;
-        } else if(p.layout==='grid-2'){
-            gc.innerHTML=`<div class=\"gallery-grid cols-2\">${p.images.map(s=>`<div class=\"gallery-item wide\"><img src=\"${s}\" alt=\"\"></div>`).join('')}</div>`;
-        } else if(p.layout==='mixed'){
-            gc.innerHTML=`<div class=\"gallery-grid cols-2\"><div class=\"gallery-item\" style=\"aspect-ratio:4/3\"><img src=\"${p.images[0]}\" alt=\"\"></div><div class=\"gallery-item\" style=\"aspect-ratio:4/3;grid-row:span 2\"><img src=\"${p.images[1]}\" alt=\"\"></div><div class=\"gallery-item\" style=\"aspect-ratio:4/3\"><img src=\"${p.images[2]}\" alt=\"\"></div></div>`;
+    function loadLayout() {
+      let layout = null;
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) layout = JSON.parse(stored);
+      } catch(e) {
+        console.warn("Could not load layout:", e);
+      }
+
+      board.innerHTML = "";
+      if (!layout || !Array.isArray(layout) || layout.length === 0) {
+        for (let i=0;i<5;i++) {
+          board.appendChild(createColumnElement(i, `Column ${i+1}`, []));
+        }
+      } else {
+        layout.forEach((colData,index) => {
+          board.appendChild(
+            createColumnElement(index, colData.title || `Column ${index+1}`, colData.cards || [])
+          );
+        });
+      }
+
+      attachDropzoneHandlers(blackboardBody);
+      refreshEmptyStates();
+    }
+
+    function addCode() {
+      const text = input.value.trim();
+      if (!text) return;
+      const firstColumnBody = document.querySelector(".column-body");
+      if (!firstColumnBody) return;
+      const card = createCardElement(text,"code");
+      firstColumnBody.appendChild(card);
+      input.value = "";
+      input.focus();
+      refreshEmptyStates();
+      saveLayoutFromDOM();
+    }
+
+    function addColumn() {
+      const index = document.querySelectorAll(".column").length;
+      board.appendChild(createColumnElement(index, `Column ${index+1}`, []));
+      refreshEmptyStates();
+      saveLayoutFromDOM();
+    }
+
+    function generateDescriptors() {
+      document.querySelectorAll(".column").forEach(col => {
+        const titleEl = col.querySelector(".column-header");
+        const bodyEl = col.querySelector(".column-body");
+        if (!bodyEl) return;
+        const codeCards = Array.from(bodyEl.querySelectorAll(".card"))
+          .filter(c => (c.dataset.type || "code") === "code");
+        const codeTexts = codeCards
+          .map(c => c.querySelector(".card-text")?.textContent.trim())
+          .filter(Boolean);
+        if (codeTexts.length === 0) return;
+
+        const descriptorText = buildDescriptorText(codeTexts, titleEl.textContent);
+        const existingDescriptor = bodyEl.querySelector(".descriptor-card");
+        if (existingDescriptor) existingDescriptor.remove();
+        const descriptorCard = createCardElement(descriptorText,"descriptor");
+        if (bodyEl.firstChild) bodyEl.insertBefore(descriptorCard, bodyEl.firstChild);
+        else bodyEl.appendChild(descriptorCard);
+      });
+
+      refreshEmptyStates();
+      saveLayoutFromDOM();
+      generateDescriptorsButton.textContent = "Descriptors updated!";
+      setTimeout(() => { generateDescriptorsButton.textContent = "Auto-describe themes"; }, 900);
+    }
+
+    // ---------- CSV helpers (for analytics only) ----------
+
+    function parseCSVLine(line) {
+      const result = [];
+      let cur = "";
+      let inQuotes = false;
+      for (let i=0;i<line.length;i++) {
+        const ch = line[i];
+        if (ch === '"') {
+          if (inQuotes && line[i+1] === '"') {
+            cur += '"'; i++;
+          } else {
+            inQuotes = !inQuotes;
+          }
+        } else if (ch === "," && !inQuotes) {
+          result.push(cur);
+          cur = "";
         } else {
-            gc.innerHTML=`<div class=\"gallery-grid cols-1\">${p.images.map(s=>`<div class=\"gallery-item wide\"><img src=\"${s}\" alt=\"\"></div>`).join('')}</div>`;
+          cur += ch;
         }
-        document.getElementById('detail-view').classList.add('open');
-        document.body.style.overflow='hidden';
+      }
+      result.push(cur);
+      return result;
     }
 
-    function closeProject(){
-        document.getElementById('detail-view').classList.remove('open');
-        document.body.style.overflow='';
-        setTimeout(()=>{ document.getElementById('detail-gallery-container').innerHTML=''; },500);
+    function parseCSV(text) {
+      const lines = text.replace(/^\uFEFF/, "")
+        .split(/\r?\n/)
+        .filter(l => l.trim().length > 0);
+      if (lines.length === 0) return [];
+
+      const headerCells = parseCSVLine(lines[0]).map(h => h.trim());
+      const rows = [];
+
+      for (let i=1;i<lines.length;i++) {
+        const cells = parseCSVLine(lines[i]).map(c => c.trim());
+        if (cells.every(c => c === "")) continue;
+        rows.push({ headerCells, cells });
+      }
+
+      return rows;
     }
 
-    document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeProject(); });
-    </script>
+    function cleanQuote(text) {
+      if (!text) return "";
+      let cleaned = text.replace(/\[[0-9:\.\s\u2013\u2014\-–>]+]/g, "");
+      return cleaned.trim();
+    }
+
+    // Hard-wired: id | document | tag | content
+    function buildCodeStatsFromCSV(rows) {
+      if (!rows || rows.length === 0) return [];
+
+      const headerCells = rows[0].headerCells || [];
+      let codeIndex = headerCells.findIndex(h => h.toLowerCase() === "tag");
+      let quoteIndex = headerCells.findIndex(h => h.toLowerCase() === "content");
+      let sourceIndex = headerCells.findIndex(h => h.toLowerCase() === "document");
+
+      if (codeIndex === -1) codeIndex = 2;
+      if (quoteIndex === -1) quoteIndex = 3;
+      if (sourceIndex === -1) sourceIndex = 1;
+
+      const statsMap = new Map();
+
+      rows.forEach(row => {
+        const cells = row.cells;
+        const code = (cells[codeIndex] || "").trim();
+        if (!code) return;
+
+        const rawQuote = quoteIndex >= 0 ? (cells[quoteIndex] || "").trim() : "";
+        const quote = cleanQuote(rawQuote);
+        const source = sourceIndex >= 0 ? (cells[sourceIndex] || "").trim() : "";
+
+        if (!statsMap.has(code)) {
+          statsMap.set(code, { code, count: 0, examples: [] });
+        }
+        const entry = statsMap.get(code);
+        entry.count += 1;
+        if (quote && entry.examples.length < 3) {
+          entry.examples.push({ quote, source });
+        }
+      });
+
+      const statsArray = Array.from(statsMap.values());
+      statsArray.sort((a,b)=> b.count - a.count || a.code.localeCompare(b.code));
+      return statsArray;
+    }
+
+    function populateBlackboard(stats) {
+      blackboardBody.innerHTML = "";
+      if (!stats || stats.length === 0) {
+        blackboard.style.display = "none";
+        blackboardBody.classList.add("empty");
+        return;
+      }
+
+      blackboard.style.display = "flex";
+
+      const top = stats.slice(0, 10);
+      top.forEach(stat => {
+        const card = createCardElement(stat.code, "code");
+        blackboardBody.appendChild(card);
+      });
+
+      refreshEmptyStates();
+    }
+
+    function renderCodeStatsByColumn(stats) {
+      codeStatsContainer.innerHTML = "";
+
+      if (!stats || stats.length === 0) {
+        const empty = document.createElement("div");
+        empty.className = "analytics-empty";
+        empty.textContent = "No valid codes detected in the CSV.";
+        codeStatsContainer.appendChild(empty);
+        return;
+      }
+
+      const columns = Array.from(document.querySelectorAll(".column"));
+      const usedCodes = new Set();
+
+      columns.forEach(col => {
+        const titleEl = col.querySelector(".column-header");
+        const title = (titleEl?.textContent || "").trim() || "Untitled column";
+        const bodyEl = col.querySelector(".column-body");
+        if (!bodyEl) return;
+
+        const columnCodeNames = new Set(
+          Array.from(bodyEl.querySelectorAll(".card"))
+            .filter(c => (c.dataset.type || "code") === "code")
+            .map(c => c.querySelector(".card-text")?.textContent.trim())
+            .filter(Boolean)
+        );
+        if (columnCodeNames.size === 0) return;
+
+        const columnStats = stats.filter(s => columnCodeNames.has(s.code));
+        if (columnStats.length === 0) return;
+
+        columnStats.sort((a,b)=> b.count - a.count || a.code.localeCompare(b.code));
+        columnStats.forEach(s => usedCodes.add(s.code));
+
+        const section = document.createElement("section");
+        section.className = "code-section";
+
+        const heading = document.createElement("div");
+        heading.className = "code-section-title";
+        heading.innerHTML = `${title} <span>(codes used in this column)</span>`;
+        section.appendChild(heading);
+
+        const list = document.createElement("div");
+        list.className = "code-stats-list";
+
+        columnStats.forEach(stat => {
+          const card = document.createElement("div");
+          card.className = "code-stat";
+
+          const header = document.createElement("div");
+          header.className = "code-stat-header";
+
+          const name = document.createElement("div");
+          name.className = "code-name";
+          name.textContent = stat.code;
+
+          const count = document.createElement("div");
+          count.className = "code-count";
+          count.textContent = `${stat.count} occurrence${stat.count>1?"s":""}`;
+
+          header.appendChild(name);
+          header.appendChild(count);
+          card.appendChild(header);
+
+          stat.examples.forEach(ex => {
+            const quoteEl = document.createElement("div");
+            quoteEl.className = "example-quote";
+            quoteEl.textContent = `"${ex.quote}"`;
+            card.appendChild(quoteEl);
+
+            if (ex.source) {
+              const srcEl = document.createElement("div");
+              srcEl.className = "example-source";
+              srcEl.textContent = `Source: ${ex.source}`;
+              card.appendChild(srcEl);
+            }
+          });
+
+          list.appendChild(card);
+        });
+
+        section.appendChild(list);
+        codeStatsContainer.appendChild(section);
+      });
+
+      const unassigned = stats.filter(s => !usedCodes.has(s.code));
+      if (unassigned.length > 0) {
+        const section = document.createElement("section");
+        section.className = "code-section";
+        const heading = document.createElement("div");
+        heading.className = "code-section-title";
+        heading.innerHTML = `Not in any column <span>(codes present in CSV but not yet placed as cards)</span>`;
+        section.appendChild(heading);
+
+        const list = document.createElement("div");
+        list.className = "code-stats-list";
+
+        unassigned.forEach(stat => {
+          const card = document.createElement("div");
+          card.className = "code-stat";
+
+          const header = document.createElement("div");
+          header.className = "code-stat-header";
+
+          const name = document.createElement("div");
+          name.className = "code-name";
+          name.textContent = stat.code;
+
+          const count = document.createElement("div");
+          count.className = "code-count";
+          count.textContent = `${stat.count} occurrence${stat.count>1?"s":""}`;
+
+          header.appendChild(name);
+          header.appendChild(count);
+          card.appendChild(header);
+
+          stat.examples.forEach(ex => {
+            const quoteEl = document.createElement("div");
+            quoteEl.className = "example-quote";
+            quoteEl.textContent = `"${ex.quote}"`;
+            card.appendChild(quoteEl);
+
+            if (ex.source) {
+              const srcEl = document.createElement("div");
+              srcEl.className = "example-source";
+              srcEl.textContent = `Source: ${ex.source}`;
+              card.appendChild(srcEl);
+            }
+          });
+
+          list.appendChild(card);
+        });
+
+        section.appendChild(list);
+        codeStatsContainer.appendChild(section);
+      }
+    }
+
+    function handleCSVImport(file) {
+      const reader = new FileReader();
+      reader.onload = e => {
+        try {
+          const rows = parseCSV(e.target.result);
+          const stats = buildCodeStatsFromCSV(rows);
+          latestStats = stats;
+          renderCodeStatsByColumn(stats);
+          populateBlackboard(stats);
+          analyticsSummary.textContent =
+            `Imported ${rows.length} rows. Using columns: "tag" as code, "content" as quote, "document" as source. Blackboard shows the 10 most frequent codes.`;
+        } catch(err) {
+          console.error(err);
+          analyticsSummary.textContent = "Could not read CSV – check the format and try again.";
+          codeStatsContainer.innerHTML = "";
+          latestStats = null;
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    // ---------- Export CSV: themes + codes + quotes ----------
+    function exportCSV() {
+      const columns = Array.from(document.querySelectorAll(".column"));
+
+      // Header: theme + code + card type + stats + up to 3 quotes
+      const rows = [[
+        "theme",
+        "code",
+        "card_type",
+        "total_occurrences",
+        "example_1",
+        "source_1",
+        "example_2",
+        "source_2",
+        "example_3",
+        "source_3"
+      ]];
+
+      let totalCards = 0;
+
+      columns.forEach(col => {
+        const headerEl = col.querySelector(".column-header");
+        const theme = (headerEl ? headerEl.textContent : "Untitled").trim();
+        const cards = Array.from(col.querySelectorAll(".card"));
+
+        cards.forEach(card => {
+          const span = card.querySelector(".card-text");
+          const text = (span ? span.textContent : "").trim();
+          if (!text) return;
+
+          const type = card.dataset.type || "code";
+
+          let stat = null;
+          if (latestStats && type === "code") {
+            stat = latestStats.find(s => s.code === text) || null;
+          }
+
+          const count = stat ? stat.count : "";
+          const examples = stat ? stat.examples : [];
+
+          const e1 = examples[0] ? examples[0].quote : "";
+          const s1 = examples[0] ? examples[0].source : "";
+          const e2 = examples[1] ? examples[1].quote : "";
+          const s2 = examples[1] ? examples[1].source : "";
+          const e3 = examples[2] ? examples[2].quote : "";
+          const s3 = examples[2] ? examples[2].source : "";
+
+          rows.push([theme, text, type, count, e1, s1, e2, s2, e3, s3]);
+          totalCards++;
+        });
+      });
+
+      if (totalCards === 0) {
+        alert("No cards to export – add some codes first.");
+        return;
+      }
+
+      const csv = rows
+        .map(r =>
+          r
+            .map(v => `"${String(v ?? "").replace(/"/g, '""')}"`)
+            .join(",")
+        )
+        .join("\n");
+
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "themes_with_quotes.csv";
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+
+    // ---------- Events ----------
+    addButton.addEventListener("click", addCode);
+
+    input.addEventListener("keydown", e => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        addCode();
+      }
+    });
+
+    addColumnButton.addEventListener("click", addColumn);
+
+    saveButton.addEventListener("click", () => {
+      saveLayoutFromDOM();
+      saveButton.textContent = "Saved!";
+      setTimeout(() => { saveButton.textContent = "Save layout"; }, 900);
+    });
+
+    generateDescriptorsButton.addEventListener("click", generateDescriptors);
+    exportCsvButton.addEventListener("click", exportCSV);
+
+    importCsvTrigger.addEventListener("click", () => {
+      importCsvInput.value = "";
+      importCsvInput.click();
+    });
+
+    importCsvInput.addEventListener("change", e => {
+      const file = e.target.files[0];
+      if (file) handleCSVImport(file);
+    });
+
+    loadLayout();
+  </script>
 </body>
 </html>
