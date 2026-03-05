@@ -1,1159 +1,1013 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Code Playground – Braun & Clarke Themes + CSV Analytics</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-body: #000000;
-      --bg-app: #000000;
-      --bg-column: #141621;
-      --bg-column-header: #1c1e2b;
-      --border-column: #232636;
-      --accent: #ffb36a;
-      --accent-soft: #ff9b6a;
-      --text-main: #ffffff;
-      --text-muted: #8b8fa7;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucía Medina | Interaction Designer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JEPVH1MD2X"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-    body {
-      margin: 0;
-      font-family: "Nunito Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg-body);
-      color: var(--text-main);
-      padding: 20px;
-      display: flex;
-      justify-content: center;
-    }
+      gtag('config', 'G-JEPVH1MD2X');
+    </script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                    },
+                    colors: {
+                        'black-pure': '#050505',
+                        'gray-dark': '#111111', 
+                        'pastel-gray': '#B9B3F8',
+                        'pastel-blue': '#C0DBEE',
+                        'pastel-purple': '#B9B3F8',
+                        'pastel-green': '#BBEED5',
+                        'pastel-red': '#847A54',
+                        'pastel-lilla': '#CCB1D0',
+                        'pastel-white': '#F0F0F0',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    .app {
-      width: 100%;
-      max-width: 1400px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
+    <style>
+        /* --- CRITICAL FIX FOR LOADING JUMP --- */
+        body {
+            background-color: #050505;
+            color: #F0F0F0;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            
+            /* Start invisible to prevent FOUC (Flash of Unstyled Content) */
+            opacity: 0; 
+            transition: opacity 0.8s ease-in-out;
+        }
 
-    .top-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 10px;
-    }
+        /* Helper class to be added by JS once loaded */
+        body.loaded {
+            opacity: 1;
+        }
 
-    .top-bar h1 {
-      font-size: 1.1rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
+        /* --- GLOBAL ETHEREAL BACKGROUND --- */
+        #global-background {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; 
+            display: flex; justify-content: center; align-items: center;
+            pointer-events: none; overflow: hidden;
+            transition: all 1.5s ease;
+        }
 
-    .top-bar small {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
+        .drawing-path {
+            stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; stroke: url(#gradient-stroke); fill: none;
+            stroke-dasharray: 2000; stroke-dashoffset: 2000; opacity: 0.5;
+            animation: draw 30s linear infinite; 
+            transition: opacity 1s ease;
+        }
+        @keyframes draw { from { opacity: 0.3; stroke-dashoffset: 4000; } to { opacity: 0.6; stroke-dashoffset: 0; } }
 
-    .controls {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
-      padding: 10px 12px;
-      border-radius: 10px;
-      background: #10111a;
-      border: 1px solid #24273b;
-    }
+        #global-background svg {
+            width: 110%; height: 110%; max-width: 1100px; max-height: 980px; object-fit: contain;
+            transition: filter 1.5s ease, opacity 1.5s ease, transform 1.5s ease;
+        }
 
-    .controls input {
-      padding: 6px 10px;
-      border-radius: 6px;
-      border: 1px solid #2c3044;
-      outline: none;
-      background: #171826;
-      color: #fff;
-      flex: 1 0 150px;
-      min-width: 150px;
-      font-size: 0.85rem;
-    }
+        /* --- BACKGROUND STATES --- */
+        body[data-page="home"] #global-background svg {
+            filter: blur(5px);
+            opacity: 0.8;
+            transform: scale(1);
+        }
 
-    .controls input::placeholder {
-      color: #6e7392;
-    }
+        body[data-page="home"].hovering-home #global-background svg {
+            filter: blur(0px);
+            opacity: 1;
+            transform: scale(1.02);
+        }
 
-    .controls button {
-      background: var(--accent-soft);
-      padding: 7px 14px;
-      border: none;
-      border-radius: 999px;
-      cursor: pointer;
-      font-weight: 600;
-      color: #1a0f0a;
-      font-size: 0.8rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      white-space: nowrap;
-    }
+        body:not([data-page="home"]) #global-background svg {
+            filter: blur(20px); 
+            opacity: 0.15; 
+            transform: scale(1.1);
+        }
 
-    .controls button.secondary {
-      background: transparent;
-      color: #c0c4de;
-      border: 1px solid #343750;
-    }
+        /* --- PAGE TRANSITIONS --- */
+        main {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
 
-    .controls span.hint {
-      margin-left: auto;
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      white-space: nowrap;
-    }
+        .page-section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out, transform 0.6s ease-out;
+            width: 100%;
+        }
+        
+        .page-section.active {
+            display: flex; 
+            flex-direction: column;
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-    /* Blackboard */
-    .blackboard {
-      background: #0f1018;
-      border-radius: 10px;
-      border: 1px solid #24273b;
-      padding: 8px 10px;
-      display: none;
-      flex-direction: column;
-      gap: 6px;
-    }
+        .page-section:not(.active) {
+            transform: translateY(20px);
+        }
 
-    .blackboard-header {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #d4d7f4;
-      display: flex;
-      justify-content: space-between;
-      gap: 6px;
-      align-items: baseline;
-    }
+        /* --- SCROLL HANDLING --- */
+        body[data-page="home"] {
+            overflow: hidden;
+        }
 
-    .blackboard-header span {
-      font-size: 0.75rem;
-      font-weight: 400;
-      color: #8b8fa7;
-      text-transform: none;
-      letter-spacing: 0;
-    }
+        body[data-page="home"] footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: transparent;
+            border-top: none;
+        }
 
-    .blackboard-body {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      min-height: 40px;
-    }
+        /* --- HOME LAYOUT (Fixed, No Scroll) --- */
+        #home.active {
+            height: calc(100vh - 80px); 
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
 
-    .blackboard-body.empty::before {
-      content: "Top 10 codes from CSV will appear here – drag them into your theme columns.";
-      font-size: 0.75rem;
-      color: #555;
-      font-style: italic;
-    }
+        /* Hardening the Home Wrapper: Force centering even if Tailwind is slow */
+        #home-content-wrapper {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            width: 100%; /* Ensure it spans width to allow centering */
+            padding-bottom: 10vh; 
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
 
-    .board {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 10px;
-    }
+        /* --- ABOUT SLIDER COMPONENT (UPDATED FOR TEXT INSIDE) --- */
+        .face-slider-container {
+            position: relative;
+            width: 100%;
+            height: 75vh; /* Taller to fit text */
+            min-height: 600px;
+            overflow: hidden;
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.1);
+            user-select: none;
+            cursor: ew-resize; 
+        }
+        
+        .face-slider-layer { 
+            position: absolute; 
+            top: 0; left: 0; 
+            width: 100%; height: 100%; 
+            overflow: hidden; 
+        }
+        
+        /* GENERAL IMAGE STYLE */
+        .face-slider-layer img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            display: block;
+            pointer-events: none;
+            object-position: top;
+        }
 
-    .column {
-      background: var(--bg-column);
-      border: 1px solid var(--border-column);
-      border-radius: 10px;
-      display: flex;
-      flex-direction: column;
-      min-height: 230px;
-      overflow: hidden;
-    }
+        /* BOTTOM LAYER: CLEAN IMAGE (Base) */
+        .layer-base {
+            z-index: 1;
+            background-color: #050505; 
+        }
+        
+        .layer-base img {
+             filter: grayscale(70%) brightness(0.7);
+        }
 
-    .column-header {
-      padding: 8px;
-      background: var(--bg-column-header);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      color: #aaa;
-    }
+        /* TOP LAYER: CONTENT (The "Hybrid Side") */
+        .layer-cover {
+            z-index: 10;
+            width: 60%; /* Initial width */
+            border-right: 2px solid #BBEED5; 
+            background-color: #050505; 
+            
+        }
 
-    .column-header[contenteditable="true"] {
-      cursor: text;
-    }
+        /* Important: Ensure the inner content of the resizing layer stays full width 
+           relative to the container, so it doesn't squash */
+        .layer-cover .layer-inner-fixed {
+            position: absolute;
+            top: 0; left: 0;
+            height: 100%;
+            /* Width will be set by JS to match container width */
+            width: 100vw; 
+            max-width: none;
+        }
 
-    .column-header:focus {
-      outline: 1px solid var(--accent);
-      outline-offset: -2px;
-    }
+        .layer-cover img {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            filter: grayscale(60%) brightness(0.2);
+            object-position: top;
+        }
 
-    .column-body {
-      padding: 8px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
+        /* Text Overlay inside Layer Cover */
+        .slider-text-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 10;
+            background: linear-gradient(to right, rgba(5,5,5,0.95) 0%, rgba(5,5,5,0.8) 70%, rgba(5,5,5,0.4) 100%);
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-    .column-body.empty::before {
-      content: "Drop codes here";
-      text-align: center;
-      margin-top: 10px;
-      color: #555;
-      font-size: 0.75rem;
-      font-style: italic;
-    }
+        /* Slider Handle */
+        .slider-handle {
+            position: absolute;
+            top: 50%;
+            right: -20px; 
+            width: 40px;
+            height: 40px;
+            background: #BBEED5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-size: 16px;
+            box-shadow: 0 0 20px rgba(187, 238, 213, 0.4);
+            transform: translateY(-50%);
+            z-index: 20;
+            pointer-events: none;
+        }
 
-    .column-body.over {
-      outline: 1px dashed var(--accent);
-      outline-offset: -3px;
-    }
+        /* --- DETAIL VIEW & CAROUSEL --- */
+        #detail-view { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease; }
+        .detail-open { overflow: hidden; }
+        .carousel-container { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+        .carousel-container::-webkit-scrollbar { display: none; }
+        .carousel-item { scroll-snap-align: center; flex: 0 0 85%; }
+        @media (min-width: 768px) { .carousel-item { flex: 0 0 60%; } }
+        
+        .nav-link.active { color: #BBEED5; } 
 
-    .card {
-      padding: 6px 8px 6px 10px;
-      border-radius: 8px;
-      background: linear-gradient(135deg, #ff9a8b, #ff6a88);
-      font-size: 0.8rem;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 6px;
-    }
+        /* Custom scrollbar for text area inside slider */
+        .custom-scroll::-webkit-scrollbar { width: 4px; }
+        .custom-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
+        .custom-scroll::-webkit-scrollbar-thumb { background: rgba(187, 238, 213, 0.3); border-radius: 4px; }
 
-    .card,
-    .card-text {
-      user-select: text;
-      -webkit-user-select: text;
-    }
-
-    .card.dragging {
-      opacity: 0.6;
-    }
-
-    .card-text {
-      flex: 1;
-      word-break: break-word;
-    }
-
-    .delete-card {
-      border: none;
-      background: rgba(0, 0, 0, 0.2);
-      color: #250707;
-      border-radius: 999px;
-      width: 18px;
-      height: 18px;
-      font-size: 0.75rem;
-      line-height: 1;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      padding: 0;
-      flex-shrink: 0;
-    }
-
-    .delete-card:hover {
-      background: rgba(0, 0, 0, 0.35);
-    }
-
-    .descriptor-card {
-      background: linear-gradient(135deg, #ffe4b5, #ffb36a);
-      color: #241307;
-      border: 1px dashed rgba(0, 0, 0, 0.35);
-      font-weight: 600;
-      cursor: default;
-    }
-
-    .descriptor-card .card-text {
-      font-size: 0.78rem;
-      line-height: 1.35;
-    }
-
-    .descriptor-card[draggable="false"] {
-      cursor: default;
-    }
-
-    .analytics {
-      margin-top: 16px;
-      padding: 12px;
-      border-radius: 10px;
-      background: #0f1019;
-      border: 1px solid #22253a;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .analytics-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .analytics h2 {
-      margin: 0;
-      font-size: 0.9rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    .analytics-summary {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    .code-section {
-      margin-top: 8px;
-      padding-top: 6px;
-      border-top: 1px solid #26293d;
-    }
-
-    .code-section-title {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #d4d7f4;
-      margin-bottom: 4px;
-    }
-
-    .code-section-title span {
-      font-weight: 400;
-      color: #8b8fa7;
-      text-transform: none;
-      letter-spacing: 0;
-      font-size: 0.75rem;
-    }
-
-    .code-stats-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 8px;
-    }
-
-    .code-stat {
-      background: #151626;
-      border-radius: 8px;
-      padding: 8px 10px;
-      border: 1px solid #26293d;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      font-size: 0.78rem;
-    }
-
-    .code-stat-header {
-      display: flex;
-      justify-content: space-between;
-      gap: 6px;
-      align-items: baseline;
-    }
-
-    .code-name {
-      font-weight: 700;
-      color: #ffd9a0;
-    }
-
-    .code-count {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      white-space: nowrap;
-    }
-
-    .example-quote {
-      margin-top: 2px;
-      padding-left: 6px;
-      border-left: 2px solid #343750;
-      font-style: italic;
-      color: #d3d6f2;
-    }
-
-    .example-source {
-      font-size: 0.7rem;
-      color: #9094b5;
-      margin-top: 1px;
-    }
-
-    .analytics-empty {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      font-style: italic;
-    }
-
-    @page {
-      size: A4 landscape;
-      margin: 10mm;
-    }
-
-    @media print {
-      html, body {
-        background: #000000 !important;
-        color: #ffffff !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-        padding: 0;
-        margin: 0;
-      }
-
-      .app {
-        max-width: 100%;
-        padding: 0;
-      }
-
-      .controls {
-        display: none !important;
-      }
-
-      .top-bar small {
-        display: none !important;
-      }
-
-      .top-bar h1 {
-        color: var(--accent) !important;
-        margin-bottom: 6px;
-      }
-
-      .board {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-      }
-
-      .column {
-        break-inside: avoid;
-        page-break-inside: avoid;
-        background: var(--bg-column) !important;
-        border-color: var(--border-column) !important;
-      }
-
-      .column-header {
-        background: var(--bg-column-header) !important;
-        color: #aaaaaa !important;
-      }
-
-      .card {
-        box-shadow: none;
-        background: linear-gradient(135deg, #ff9a8b, #ff6a88) !important;
-        color: #250707 !important;
-      }
-
-      .descriptor-card {
-        background: linear-gradient(135deg, #ffe4b5, #ffb36a) !important;
-        color: #241307 !important;
-      }
-
-      .analytics {
-        page-break-before: always;
-      }
-    }
-  </style>
+        /* --- CUSTOM ADJUSTMENT FOR GALLERY HEIGHT --- */
+        /* Targets the 2nd item in the gallery grid/carousel to make it taller */
+        /* Only apply to default gallery, not the specific layout for Art Beyond Dimension */
+        #detail-gallery-container:not(.custom-layout) .grid > div:nth-child(2),
+        #detail-gallery-container:not(.custom-layout) .carousel-container > div:nth-child(2) {
+            aspect-ratio: 1 / 1 !important; /* Square is significantly taller than the default 16/9 aspect-video */
+        }
+    </style>
 </head>
-<body>
-  <div class="app">
-    <div class="top-bar">
-      <h1>Code Playground</h1>
-      <small>Drag codes, auto-generate Braun & Clarke descriptors, and analyze CSV-coded data by column.</small>
+<body class="antialiased relative selection:bg-pastel-purple selection:text-black-pure" data-page="home">
+
+    <!-- GLOBAL BACKGROUND -->
+    <div id="global-background">
+        <svg viewBox="0 0 987 878" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="gradient-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#BBEED5" /> <stop offset="40%" stop-color="#C0DBEE" /> <stop offset="70%" stop-color="#B9B3F8" /> <stop offset="100%" stop-color="#CCB1D0" /> </linearGradient>
+            <filter id="filter0_d_75_190" x="0.5" y="0.8" width="986" height="876" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+              <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+              <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+              <feOffset dy="4"/>
+              <feGaussianBlur stdDeviation="2"/>
+              <feComposite in2="hardAlpha" operator="out"/>
+              <feColorMatrix values="0 0 0 0 0.2 0 0 0 0 0.4 0 0 0 0 0.9 0 0 0 0.3 0"/>
+              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+            </filter>
+          </defs>
+          <g filter="url(#filter0_d_75_190)">
+            <path d="M17.7617 646.374C25.7546 676.661 50.6879 692.759 75.3093 701.181C101.467 710.129 149.865 741.192 168.756 761.377C172.71 765.601 175.447 770.816 176.677 776.468L180.224 792.771C192.792 850.529 258.938 878.229 308.913 846.663L325.076 836.453C336.404 829.299 345.554 819.335 354.12 809.033C393.875 761.215 490.712 704.118 642.944 767.831C795.246 831.573 858.919 728.484 876.751 650.37C880.653 633.276 887.453 616.779 899.024 603.606L952.091 543.189C977.366 514.414 980.322 472.305 959.314 440.281L908.296 362.507C891.84 337.42 891.668 305.004 907.857 279.744C933.235 240.146 916.955 187.238 873.707 168.757L727.598 106.32C715.419 101.115 704.623 93.1424 696.065 83.0343L659.798 40.1928C633.149 8.71371 587.772 0.85643 552.09 21.5425L439.597 86.7595C403.942 107.43 358.602 99.6015 331.943 68.1717L309.21 41.3711C273.099 -1.20259 206.477 1.90277 174.482 47.651L129.362 112.167C124.584 118.999 118.9 125.155 111.92 129.714C66.7895 159.187 -17.8498 193.265 35.8118 346.157C108.406 552.994 -8.2777 547.706 17.7617 646.374Z" stroke="url(#gradient-stroke)" fill="none" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" class="drawing-path"/>
+          </g>
+        </svg>
     </div>
 
-    <div class="controls">
-      <input id="new-code" type="text" placeholder="Write a new code and press Add or Enter…" />
-      <button id="add-code"><span>＋</span> Add code</button>
-      <button id="add-column" class="secondary">＋ Column</button>
-      <button id="generate-descriptors" class="secondary">Auto-describe themes</button>
-      <button id="save-layout" class="secondary">Save layout</button>
-      <button id="export-csv" class="secondary">Export CSV</button>
-
-      <button id="import-csv-trigger" class="secondary">Import codes CSV</button>
-      <input id="import-csv" type="file" accept=".csv" style="display:none;" />
-
-      <span class="hint">Assumes CSV columns: id, document, tag, content.</span>
-    </div>
-
-    <!-- Blackboard -->
-    <div class="blackboard" id="blackboard">
-      <div class="blackboard-header">
-        <div>Blackboard – sample codes</div>
-        <span>Top 10 most frequent codes from CSV. Drag them into columns to start building themes.</span>
-      </div>
-      <div class="blackboard-body column-body dropzone empty" id="blackboard-body"></div>
-    </div>
-
-    <div class="board" id="board"></div>
-
-    <div class="analytics">
-      <div class="analytics-header">
-        <h2>Code Usage Analytics (by Column)</h2>
-        <div class="analytics-summary" id="analytics-summary">
-          Import your CSV (id, document, tag, content). Codes are grouped by column/theme with counts and up to 3 representative extracts.
+    <!-- HEADER -->
+    <header class="sticky top-0 z-40 bg-black-pure/90 backdrop-blur-md border-b border-white/5 h-20 flex items-center flex-shrink-0">
+        <nav class="w-full max-w-6xl mx-auto px-6 flex justify-between items-center">
+            <div class="text-sm font-bold text-pastel-purple tracking-widest hover:text-pastel-green transition-colors duration-300 uppercase cursor-pointer" onclick="switchPage('home')">
+                Lucía Medina
+            </div>
+            <div class="hidden md:flex space-x-10 text-pastel-blue/80 font-medium text-sm tracking-widest uppercase">
+                <button onclick="switchPage('home')" class="nav-link hover:text-pastel-green transition duration-200">Home</button>
+                <button onclick="switchPage('work')" class="nav-link hover:text-pastel-green transition duration-200">Work</button>
+                <button onclick="switchPage('about')" class="nav-link hover:text-pastel-green transition duration-200">About</button>
+                <button onclick="switchPage('contact')" class="nav-link hover:text-pastel-green transition duration-200">Contact</button>
+            </div>
+            <button id="menu-button" class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6 text-pastel-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden absolute top-20 left-0 w-full bg-black-pure border-t border-pastel-gray/20 z-50">
+            <button onclick="switchPage('home')" class="block w-full text-left py-4 px-6 text-sm text-pastel-blue hover:text-pastel-green uppercase tracking-widest">Home</button>
+            <button onclick="switchPage('work')" class="block w-full text-left py-4 px-6 text-sm text-pastel-blue hover:text-pastel-green uppercase tracking-widest">Work</button>
+            <button onclick="switchPage('about')" class="block w-full text-left py-4 px-6 text-sm text-pastel-blue hover:text-pastel-green uppercase tracking-widest">About</button>
+            <button onclick="switchPage('contact')" class="block w-full text-left py-4 px-6 text-sm text-pastel-blue hover:text-pastel-green uppercase tracking-widest">Contact</button>
         </div>
-      </div>
-      <div id="code-stats-container">
-        <div class="analytics-empty">
-          No CSV imported yet.
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <!-- === PAGE: HOME === -->
+        <section id="home" class="page-section active max-w-6xl mx-auto px-4 items-center group" onmouseenter="document.body.classList.add('hovering-home')" onmouseleave="document.body.classList.remove('hovering-home')">
+            <div id="home-content-wrapper" class="relative z-10 text-center">
+                <h1 class="text-5xl md:text-7xl font-light mb-6 tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-pastel-blue via-pastel-purple to-pastel-lilla animate-pulse">
+                    Lucía Medina
+                </h1>
+                <p class="text-lg md:text-xl text-pastel-white/80 mb-10 font-light tracking-wide uppercase max-w-3xl mx-auto text-center leading-relaxed">
+                  I turn ideas into <strong class="text-pastel-green font-normal">interactive </strong> and <strong class="text-pastel-purple font-normal">aesthetic systems</strong>.
+                </p>
+                <button onclick="switchPage('work')" class="click-trigger inline-block px-10 py-4 border border-pastel-green text-pastel-green text-xs font-bold uppercase tracking-widest rounded-full hover:bg-pastel-green hover:text-black-pure transition-all duration-300 shadow-[0_0_20px_rgba(187,238,213,0.1)] hover:shadow-[0_0_30px_rgba(187,238,213,0.4)]">
+                    View Projects
+                </button>
+            </div>
+        </section>
+
+        <!-- === PAGE: WORK === -->
+        <section id="work" class="page-section max-w-6xl mx-auto px-4 py-8">
+            <div class="flex items-end justify-between mb-12 border-b border-white/5 pb-4">
+                <h2 class="text-sm font-bold text-pastel-lilla tracking-[0.2em] uppercase">Selected Work</h2>
+                <span class="text-xs text-pastel-white/40 hidden md:block font-mono">2020 — 2025</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pb-10">
+                <!-- Project 1: Museon -->
+                <article class="group cursor-pointer click-trigger border border-white/5 p-8 rounded-sm hover:border-pastel-blue/50 transition-all duration-500 relative overflow-hidden" onclick="openProject('museon')">
+                     <!-- Background Image (Visible Default) -->
+                    <img src="https://github.com/Lumystik/PortfolioLucia/blob/main/images/museon-1.png?raw=true" class="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:opacity-30 group-hover:scale-105 transition-all duration-700 z-0">
+                    
+                    <!-- Dark Overlay (Fade in on hover for text contrast) -->
+                    <div class="absolute inset-0 bg-black-pure/90 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+
+                    <div class="absolute top-0 left-0 w-1 h-full bg-pastel-blue transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 z-30"></div>
+                    
+                    <!-- Content (Hidden Default, Fade/Slide in on hover) -->
+                    <div class="relative z-20 h-full flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                        <div class="flex justify-between items-start mb-10">
+                            <span class="text-xs font-bold tracking-widest text-pastel-blue uppercase border border-pastel-blue/20 px-2 py-1 rounded-full backdrop-blur-sm bg-black-pure/50">UX/UI</span>
+                            <span class="text-xs font-mono text-pastel-white/40">01</span>
+                        </div>
+                        <div>
+                            <h3 class="text-3xl md:text-4xl font-light text-white mb-3 leading-tight group-hover:text-pastel-blue transition-colors">MUSE*ON</h3>
+                            <p class="text-pastel-white/60 font-light text-sm mb-8 max-w-sm">UX Research & Service Design for Museums.</p>
+                            <div class="flex items-center text-xs font-bold text-pastel-white/40 uppercase tracking-widest group-hover:text-pastel-blue transition-colors">
+                                View Project <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 2: Art Beyond Dimension -->
+                <article class="group cursor-pointer click-trigger border border-white/5 p-8 rounded-sm hover:border-pastel-blue/50 transition-all duration-500 relative overflow-hidden" onclick="openProject('artbeyond')">
+                    <!-- Background Image -->
+                    <img src="https://github.com/Lumystik/PortfolioLucia/blob/main/images/art_1.png?raw=true" class="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:opacity-30 group-hover:scale-105 transition-all duration-700 z-0">
+                    
+                    <div class="absolute inset-0 bg-black-pure/90 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+
+                    <div class="absolute top-0 left-0 w-1 h-full bg-pastel-blue transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 z-30"></div>
+                    
+                    <div class="relative z-20 h-full flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                        <div class="flex justify-between items-start mb-10">
+                            <span class="text-xs font-bold tracking-widest text-pastel-blue uppercase border border-pastel-blue/20 px-2 py-1 rounded-full backdrop-blur-sm bg-black-pure/50">UI</span>
+                            <span class="text-xs font-mono text-pastel-white/40">02</span>
+                        </div>
+                        <div>
+                            <h3 class="text-3xl md:text-4xl font-light text-white mb-3 leading-tight group-hover:text-pastel-blue transition-colors">Art Beyond<br>Dimension</h3>
+                            <p class="text-pastel-white/60 font-light text-sm mb-8 max-w-sm">Digital experience to educate the youth about art in museums</p>
+                            <div class="flex items-center text-xs font-bold text-pastel-white/40 uppercase tracking-widest group-hover:text-pastel-blue transition-colors">
+                                View Project <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 3: Films Foundation -->
+                <article class="group cursor-pointer click-trigger border border-white/5 p-8 rounded-sm hover:border-pastel-blue/50 transition-all duration-500 relative overflow-hidden" onclick="openProject('films')">
+                    <!-- Background Image -->
+                    <img src="https://github.com/Lumystik/PortfolioLucia/blob/main/images/screenmainfilm.png?raw=true" class="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:opacity-30 group-hover:scale-105 transition-all duration-700 z-0">
+                    
+                    <div class="absolute inset-0 bg-black-pure/90 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+
+                    <div class="absolute top-0 left-0 w-1 h-full bg-pastel-blue transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 z-30"></div>
+                    
+                    <div class="relative z-20 h-full flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                        <div class="flex justify-between items-start mb-10">
+                            <span class="text-xs font-bold tracking-widest text-pastel-blue uppercase border border-pastel-blue/20 px-2 py-1 rounded-full backdrop-blur-sm bg-black-pure/50">UI</span>
+                            <span class="text-xs font-mono text-pastel-white/40">03</span>
+                        </div>
+                        <div>
+                            <h3 class="text-3xl md:text-4xl font-light text-white mb-3 leading-tight group-hover:text-pastel-blue transition-colors">Films<br>Foundation</h3>
+                            <p class="text-pastel-white/60 font-light text-sm mb-8 max-w-sm">Mobile UI for Cineteca Di Milano</p>
+                            <div class="flex items-center text-xs font-bold text-pastel-white/40 uppercase tracking-widest group-hover:text-pastel-blue transition-colors">
+                                View Project <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 4: Seedtag -->
+                <article class="group cursor-pointer click-trigger border border-white/5 p-8 rounded-sm hover:border-pastel-purple/50 transition-all duration-500 relative overflow-hidden" onclick="openProject('seedtag')">
+                    <!-- Background Image -->
+                    <img src="https://github.com/Lumystik/PortfolioLucia/blob/main/images/carseedtag2.png?raw=true" class="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:opacity-30 group-hover:scale-105 transition-all duration-700 z-0">
+                    
+                    <div class="absolute inset-0 bg-black-pure/90 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+
+                    <div class="absolute top-0 left-0 w-1 h-full bg-pastel-purple transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 z-30"></div>
+                    
+                    <div class="relative z-20 h-full flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                        <div class="flex justify-between items-start mb-10">
+                            <span class="text-xs font-bold tracking-widest text-pastel-purple uppercase border border-pastel-purple/20 px-2 py-1 rounded-full backdrop-blur-sm bg-black-pure/50">Creative Ads</span>
+                            <span class="text-xs font-mono text-pastel-white/40">04</span>
+                        </div>
+                        <div>
+                            <h3 class="text-3xl md:text-4xl font-light text-white mb-3 leading-tight group-hover:text-pastel-purple transition-colors">Seedtag</h3>
+                            <p class="text-pastel-white/60 font-light text-sm mb-8 max-w-sm">Designing engaging and interactive for different brands</p>
+                            <div class="flex items-center text-xs font-bold text-pastel-white/40 uppercase tracking-widest group-hover:text-pastel-purple transition-colors">
+                                View Ads <i class="fas fa-play ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                 <!-- Project 5: Thematic Analysis -->
+                 <article class="group cursor-pointer click-trigger border border-white/5 p-8 rounded-sm hover:border-pastel-purple/50 transition-all duration-500 relative overflow-hidden" onclick="openProject('thematic')">
+                    <!-- Background Image -->
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" class="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:opacity-30 group-hover:scale-105 transition-all duration-700 z-0">
+                    
+                    <div class="absolute inset-0 bg-black-pure/90 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+
+                    <div class="absolute top-0 left-0 w-1 h-full bg-pastel-purple transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 z-30"></div>
+                    
+                    <div class="relative z-20 h-full flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                        <div class="flex justify-between items-start mb-10">
+                            <span class="text-xs font-bold tracking-widest text-pastel-purple uppercase border border-pastel-purple/20 px-2 py-1 rounded-full backdrop-blur-sm bg-black-pure/50">Frontend Dev</span>
+                            <span class="text-xs font-mono text-pastel-white/40">05</span>
+                        </div>
+                        <div>
+                            <h3 class="text-3xl md:text-4xl font-light text-white mb-3 leading-tight group-hover:text-pastel-purple transition-colors">Thematic<br>Analysis Tool</h3>
+                            <p class="text-pastel-white/60 font-light text-sm mb-8 max-w-sm">Open source tool for qualitative analysis after using Taguette.</p>
+                            <div class="flex items-center text-xs font-bold text-pastel-white/40 uppercase tracking-widest group-hover:text-pastel-purple transition-colors">
+                                View Code <i class="fas fa-code ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                 <!-- Project 6: Pixela -->
+                 <article class="group cursor-pointer click-trigger border border-white/5 p-8 rounded-sm hover:border-pastel-green/50 transition-all duration-500 relative overflow-hidden md:col-span-2" onclick="openProject('pixela')">
+                    <!-- Background Image -->
+                    <img src="https://github.com/Lumystik/PortfolioLucia/blob/main/images/pixela.png?raw=true" class="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:opacity-30 group-hover:scale-105 transition-all duration-700 z-0">
+                    
+                    <div class="absolute inset-0 bg-black-pure/90 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+
+                    <div class="absolute top-0 left-0 w-1 h-full bg-pastel-green transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 z-30"></div>
+                    
+                    <div class="relative z-20 h-full flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                        <div class="flex justify-between items-start mb-10">
+                            <span class="text-xs font-bold tracking-widest text-pastel-green uppercase border border-pastel-green/20 px-2 py-1 rounded-full backdrop-blur-sm bg-black-pure/50">Game Dev</span>
+                            <span class="text-xs font-mono text-pastel-white/40">06</span>
+                        </div>
+                        <div class="md:flex justify-between items-end">
+                            <div>
+                                <h3 class="text-3xl md:text-4xl font-light text-white mb-3 leading-tight group-hover:text-pastel-green transition-colors">Pixela</h3>
+                                <p class="text-pastel-white/60 font-light text-sm max-w-md">AI Art Videogame Demo.</p>
+                            </div>
+                            <div class="mt-8 md:mt-0 flex items-center text-xs font-bold text-pastel-white/40 uppercase tracking-widest group-hover:text-pastel-green transition-colors">
+                                View Game <i class="fas fa-gamepad ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- === PAGE: ABOUT (RESTRUCTURED) === -->
+        <section id="about" class="page-section max-w-6xl mx-auto px-4 py-8 h-[85vh]">
+            <h2 class="text-sm font-bold text-pastel-lilla tracking-[0.2em] uppercase mb-4 border-b border-white/5 pb-4">Profile</h2>
+            
+                
+           <!-- Slider Container now takes full width/height -->
+            <div class="face-slider-container" id="face-slider">
+                
+                <!-- Layer 1: Background (Clean Image, Right side content conceptually) -->
+                <div class="face-slider-layer layer-base">
+                    <!-- Image A: Professional / Clean -->
+                    <img src="https://github.com/Lumystik/PortfolioLucia/blob/main/images/mememe.png?raw=true" alt="Lucía Medina">
+                    <!-- Optional: Label for right side -->
+                    <div class="absolute bottom-10 right-10 text-right opacity-40">
+                        <p class="text-sm tracking-widest uppercase font-bold text-white"></p>
+                    </div>
+                </div>
+
+
+                <!-- Layer 2: Foreground (Hybrid/Text Side) -->
+                <div class="face-slider-layer layer-cover" id="face-foreground">
+                    <div class="layer-inner-fixed" id="face-inner-fixed">
+                        <!-- Image B: Casual / Hybrid -->
+                        <img src="https://github.com/Lumystik/PortfolioLucia/blob/main/images/mememe.png?raw=true" alt="Lucía Medina">
+                        
+                        <!-- TEXT CONTENT OVERLAY -->
+                        <div class="slider-text-overlay custom-scroll overflow-y-auto">
+                            <div class="max-w-xl">
+                                <h3 class="text-3xl font-light text-white mb-2">Interaction Designer</h3>
+                                <div class="w-12 h-1 bg-pastel-green mb-8"></div>
+
+                                <p class="text-lg text-pastel-white/90 leading-relaxed font-light mb-8">
+                                    I <strong class="text-pastel-blue font-normal"> have experience as a Digital Designer</strong> with passion for prototyping and creative storytelling. 
+                                </p>
+                                <p class="text-sm text-pastel-white/70 leading-relaxed font-light mb-12">
+                                   I am observant. I enjow using software such as Figma. Proficient in <strong class="text-pastel-white font-normal">HTML5, CSS3, and JavaScript</strong>. 
+                                </p>
+                                
+                                <div class="grid grid-cols-2 gap-8 text-sm">
+                                    <div>
+                                        <h4 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-2">Education</h4>
+                                        <p class="text-pastel-white">MSc Digital & Interaction Design</p>
+                                        <p class="text-pastel-white/40 text-xs mt-1">Politecnico di Milano (Graduating 2026)</p>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-2">Experience</h4>
+                                        <p class="text-pastel-white">Seedtag (dec 2020 - jan 2024) </p>
+                                        <p class="text-pastel-white/40 text-xs mt-1">Digital Designer / Developer</p>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-2">Tech Stack</h4>
+                                        <p class="text-pastel-white/80">Figma, HTML, CSS, JS, Tailwind, Adobe Suite</p>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-2">Status</h4>
+                                        <p class="text-pastel-white">Based in Milan</p>
+                                        <p class="text-pastel-green text-xs mt-1">Seeking Internships / Junior Roles</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slider-handle">
+                        <i class="fas fa-arrows-alt-h"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="text-center text-xs text-pastel-white/30 mt-4 font-mono uppercase tracking-widest">
+                <i class="fas fa-arrows-alt-h mr-2"></i> Drag slider to reveal info
+            </p>
+        </section>
+
+        <!-- === PAGE: CONTACT === -->
+        <section id="contact" class="page-section max-w-4xl mx-auto px-4 flex flex-col justify-center items-center py-24">
+            <h2 class="text-4xl md:text-5xl font-light mb-8 text-pastel-white text-center">Contact me</h2>
+            <p class="text-lg text-pastel-white/60 max-w-xl mx-auto mb-12 font-light text-center">
+                Open for work 
+            </p>
+            <a href="mailto:lucia.medina@mail.polimi.it" class="text-pastel-blue text-lg hover:text-white transition-colors border-b border-pastel-blue/30 hover:border-pastel-blue pb-1 inline-block mb-12">
+               lu_1829med@outlook.com
+            </a>
+            
+            <div class="flex justify-center space-x-12">
+                <a href="https://www.linkedin.com/in/lucia-medina1829" target="_blank" class="text-pastel-gray hover:text-white transition duration-300 text-2xl"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.behance.net/lucamedinagaln1" target="_blank" class="text-pastel-gray hover:text-white transition duration-300 text-2xl"><i class="fab fa-behance"></i></a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-black-pure border-t border-white/5 py-12 text-center text-xs text-pastel-white/20 uppercase tracking-widest font-mono flex-shrink-0">
+        <p>&copy; 2025 Lucía Medina.</p>
+    </footer>
+
+    <!-- ================= DETAIL VIEW OVERLAY ================= -->
+    <div id="detail-view" class="fixed inset-0 bg-black-pure z-50 transform translate-x-full flex flex-col overflow-y-auto">
+        <!-- Detail Navbar -->
+        <div class="sticky top-0 bg-black-pure/95 backdrop-blur-md border-b border-white/5 p-6 flex justify-between items-center z-50">
+            <button onclick="closeProject()" class="flex items-center text-pastel-white/60 hover:text-pastel-green transition-colors text-xs font-bold uppercase tracking-widest">
+                <i class="fas fa-arrow-left mr-3"></i> Back
+            </button>
+            <div class="text-pastel-white/40 font-mono text-xs uppercase" id="detail-nav-title">Project Name</div>
+            <div class="w-16"></div> 
         </div>
-      </div>
+
+        <!-- Detail Content -->
+        <div class="max-w-4xl mx-auto px-6 py-20 flex-grow w-full">
+            <!-- Hero -->
+            <div class="mb-16">
+                <h1 id="detail-title" class="text-4xl md:text-6xl font-light text-white mb-4">Title</h1>
+                <p id="detail-subtitle" class="text-xl text-pastel-blue font-light">Subtitle goes here</p>
+                
+                <a id="detail-link" href="#" target="_blank" class="inline-block mt-8 px-8 py-3 border border-white/20 text-white text-sm hover:bg-white hover:text-black-pure transition-all duration-300">
+                    View Project
+                </a>
+            </div>
+
+            <!-- Two Column Layout: Description & Role -->
+            <div class="grid md:grid-cols-3 gap-16 border-t border-white/5 pt-12">
+                <!-- Main Description (2/3) -->
+                <div class="md:col-span-2">
+                    <h3 class="text-xs font-bold text-pastel-lilla uppercase tracking-widest mb-6">Overview</h3>
+                    <div id="detail-desc" class="text-pastel-white/80 leading-relaxed text-lg font-light space-y-6">
+                        <!-- Dynamic Description -->
+                    </div>
+                </div>
+
+                <!-- Role & Tech (1/3) -->
+                <div class="md:col-span-1 space-y-10">
+                    <div>
+                        <h3 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-4">My Role</h3>
+                        <ul id="detail-role" class="space-y-2 text-pastel-white/60 text-sm font-light">
+                            <!-- Dynamic Role -->
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-4">Type</h3>
+                        <p id="detail-type" class="text-pastel-white/60 text-sm font-light">Web App</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Process / Gallery (DYNAMIC CONTAINER) -->
+            <div class="mt-24">
+                <h3 class="text-xs font-bold text-pastel-lilla uppercase tracking-widest mb-8 text-center" id="gallery-title">Visuals</h3>
+                <div id="detail-gallery-container"></div>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <script>
-    const STORAGE_KEY = "codePlaygroundLayout_v1";
+<script>
+    // --- LOAD HANDLER (FIX FOR FLASHING TEXT) ---
+    window.addEventListener('load', () => {
+        // Only reveal the body when everything (images, fonts, scripts) is ready
+        document.body.classList.add('loaded');
+    });
 
-    const board = document.getElementById("board");
-    const input = document.getElementById("new-code");
-    const addButton = document.getElementById("add-code");
-    const saveButton = document.getElementById("save-layout");
-    const addColumnButton = document.getElementById("add-column");
-    const generateDescriptorsButton = document.getElementById("generate-descriptors");
-
-    const exportCsvButton = document.getElementById("export-csv");
-    const importCsvInput = document.getElementById("import-csv");
-    const importCsvTrigger = document.getElementById("import-csv-trigger");
-    const analyticsSummary = document.getElementById("analytics-summary");
-    const codeStatsContainer = document.getElementById("code-stats-container");
-
-    const blackboard = document.getElementById("blackboard");
-    const blackboardBody = document.getElementById("blackboard-body");
-
-    let draggedCard = null;
-    let latestStats = null; // still used for analytics panel
-
-    const STOPWORDS = new Set([
-      "the","and","or","of","to","a","an","in","on","for","with",
-      "is","are","was","were","it","that","this","these","those",
-      "i","you","he","she","they","we","me","my","your","their",
-      "about","like","just","very","really","from","into","around",
-      "when","then","than","because","but","also","more","less"
-    ]);
-
-    function getTopKeywordsFromCodes(codes, max = 3) {
-      const freq = {};
-      codes.forEach(text => {
-        text.toLowerCase()
-          .replace(/[.,!?;:()"']/g, " ")
-          .split(/\s+/)
-          .filter(w => w.length > 3 && !STOPWORDS.has(w))
-          .forEach(w => { freq[w] = (freq[w] || 0) + 1; });
-      });
-
-      return Object.entries(freq)
-        .sort((a,b) => b[1]-a[1])
-        .slice(0,max)
-        .map(([w]) => w);
-    }
-
-    function buildDescriptorText(codes, columnTitle) {
-      if (!codes || codes.length === 0) {
-        return "DESCRIPTOR: No codes in this column yet – add some codes before drafting a theme.";
-      }
-      const trimmedTitle = (columnTitle || "").trim();
-      const keywords = getTopKeywordsFromCodes(codes);
-      const exampleCodes = codes.slice(0,5);
-      const remainingCount = codes.length - exampleCodes.length;
-
-      const codesPart =
-        exampleCodes.map(c => `"${c}"`).join(", ") +
-        (remainingCount > 0 ? ` … (+${remainingCount} more codes)` : "");
-
-      const centralConcept =
-        trimmedTitle ||
-        (keywords[0] ? keywords[0] : "a recurring way participants make sense of this experience");
-
-      const keywordPhrase = keywords.length
-        ? `repeating ideas around ${keywords.join(", ")}`
-        : "a recurring pattern of meaning across different situations";
-
-      return (
-        `DESCRIPTOR: This theme, tentatively named "${centralConcept}", brings together a ` +
-        `pattern of shared meaning rather than just a list of topics. Across codes such as ` +
-        `${codesPart}, the data repeatedly point to ${keywordPhrase}. Taken together, these ` +
-        `codes suggest a central organising concept of "${centralConcept}" – where ` +
-        `participants are not simply talking about this topic, but doing a particular kind ` +
-        `of sense-making. Refine this description to clarify what is unique about this theme, ` +
-        `where its boundaries lie, and how it answers your research question.`
-      );
-    }
-
-    function attachDropzoneHandlers(bodyEl) {
-      bodyEl.addEventListener("dragover", e => e.preventDefault());
-      bodyEl.addEventListener("dragenter", function(e) {
-        e.preventDefault();
-        this.classList.add("over");
-      });
-      bodyEl.addEventListener("dragleave", function() {
-        this.classList.remove("over");
-      });
-      bodyEl.addEventListener("drop", function() {
-        this.classList.remove("over");
-        if (draggedCard) {
-          this.appendChild(draggedCard);
-          refreshEmptyStates();
-          saveLayoutFromDOM();
-        }
-      });
-    }
-
-    function createColumnElement(index, title, cards) {
-      const column = document.createElement("div");
-      column.className = "column";
-
-      const header = document.createElement("div");
-      header.className = "column-header";
-      header.contentEditable = "true";
-      header.textContent = title || `Column ${index + 1}`;
-      header.addEventListener("blur", saveLayoutFromDOM);
-
-      const body = document.createElement("div");
-      body.className = "column-body dropzone";
-      body.dataset.columnIndex = index;
-
-      attachDropzoneHandlers(body);
-
-      if (Array.isArray(cards)) {
-        cards.forEach(cardData => {
-          const card = createCardElement(cardData.text || "", cardData.type || "code");
-          body.appendChild(card);
-        });
-      }
-
-      column.appendChild(header);
-      column.appendChild(body);
-      return column;
-    }
-
-    function createCardElement(text, type="code") {
-      const card = document.createElement("div");
-      card.className = "card";
-      card.dataset.type = type;
-
-      if (type === "descriptor") {
-        card.classList.add("descriptor-card");
-        card.draggable = false;
-      } else {
-        card.draggable = true;
-      }
-
-      const span = document.createElement("span");
-      span.className = "card-text";
-      span.textContent = text;
-
-      const del = document.createElement("button");
-      del.className = "delete-card";
-      del.title = "Delete card";
-      del.textContent = "×";
-      del.addEventListener("click", e => {
-        e.stopPropagation();
-        card.remove();
-        refreshEmptyStates();
-        saveLayoutFromDOM();
-      });
-
-      card.appendChild(span);
-      card.appendChild(del);
-
-      if (type === "code") {
-        card.addEventListener("dragstart", () => {
-          draggedCard = card;
-          card.classList.add("dragging");
-        });
-        card.addEventListener("dragend", () => {
-          card.classList.remove("dragging");
-          draggedCard = null;
-          refreshEmptyStates();
-          saveLayoutFromDOM();
-        });
-      }
-
-      return card;
-    }
-
-    function refreshEmptyStates() {
-      document.querySelectorAll(".column-body").forEach(zone => {
-        zone.classList.toggle("empty", zone.children.length === 0);
-      });
-      blackboardBody.classList.toggle("empty", blackboardBody.children.length === 0);
-    }
-
-    function serializeLayoutFromDOM() {
-      const layout = [];
-      document.querySelectorAll(".column").forEach(col => {
-        const titleEl = col.querySelector(".column-header");
-        const bodyEl = col.querySelector(".column-body");
-        const colObj = {
-          title: (titleEl.textContent || "").trim(),
-          cards: []
-        };
-        bodyEl.querySelectorAll(".card").forEach(card => {
-          const text = card.querySelector(".card-text")?.textContent || "";
-          const type = card.dataset.type || "code";
-          colObj.cards.push({ text: text.trim(), type });
-        });
-        layout.push(colObj);
-      });
-      return layout;
-    }
-
-    function saveLayoutFromDOM() {
-      const layout = serializeLayoutFromDOM();
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(layout));
-      } catch(e) {
-        console.warn("Could not save layout:", e);
-      }
-      if (latestStats) {
-        renderCodeStatsByColumn(latestStats);
-      }
-    }
-
-    function loadLayout() {
-      let layout = null;
-      try {
-        const stored = localStorage.getItem(STORAGE_KEY);
-        if (stored) layout = JSON.parse(stored);
-      } catch(e) {
-        console.warn("Could not load layout:", e);
-      }
-
-      board.innerHTML = "";
-      if (!layout || !Array.isArray(layout) || layout.length === 0) {
-        for (let i=0;i<5;i++) {
-          board.appendChild(createColumnElement(i, `Column ${i+1}`, []));
-        }
-      } else {
-        layout.forEach((colData,index) => {
-          board.appendChild(
-            createColumnElement(index, colData.title || `Column ${index+1}`, colData.cards || [])
-          );
-        });
-      }
-
-      attachDropzoneHandlers(blackboardBody);
-      refreshEmptyStates();
-    }
-
-    function addCode() {
-      const text = input.value.trim();
-      if (!text) return;
-      const firstColumnBody = document.querySelector(".column-body");
-      if (!firstColumnBody) return;
-      const card = createCardElement(text,"code");
-      firstColumnBody.appendChild(card);
-      input.value = "";
-      input.focus();
-      refreshEmptyStates();
-      saveLayoutFromDOM();
-    }
-
-    function addColumn() {
-      const index = document.querySelectorAll(".column").length;
-      board.appendChild(createColumnElement(index, `Column ${index+1}`, []));
-      refreshEmptyStates();
-      saveLayoutFromDOM();
-    }
-
-    function generateDescriptors() {
-      document.querySelectorAll(".column").forEach(col => {
-        const titleEl = col.querySelector(".column-header");
-        const bodyEl = col.querySelector(".column-body");
-        if (!bodyEl) return;
-        const codeCards = Array.from(bodyEl.querySelectorAll(".card"))
-          .filter(c => (c.dataset.type || "code") === "code");
-        const codeTexts = codeCards
-          .map(c => c.querySelector(".card-text")?.textContent.trim())
-          .filter(Boolean);
-        if (codeTexts.length === 0) return;
-
-        const descriptorText = buildDescriptorText(codeTexts, titleEl.textContent);
-        const existingDescriptor = bodyEl.querySelector(".descriptor-card");
-        if (existingDescriptor) existingDescriptor.remove();
-        const descriptorCard = createCardElement(descriptorText,"descriptor");
-        if (bodyEl.firstChild) bodyEl.insertBefore(descriptorCard, bodyEl.firstChild);
-        else bodyEl.appendChild(descriptorCard);
-      });
-
-      refreshEmptyStates();
-      saveLayoutFromDOM();
-      generateDescriptorsButton.textContent = "Descriptors updated!";
-      setTimeout(() => { generateDescriptorsButton.textContent = "Auto-describe themes"; }, 900);
-    }
-
-    // ---------- CSV helpers (for analytics only) ----------
-
-    function parseCSVLine(line) {
-      const result = [];
-      let cur = "";
-      let inQuotes = false;
-      for (let i=0;i<line.length;i++) {
-        const ch = line[i];
-        if (ch === '"') {
-          if (inQuotes && line[i+1] === '"') {
-            cur += '"'; i++;
-          } else {
-            inQuotes = !inQuotes;
-          }
-        } else if (ch === "," && !inQuotes) {
-          result.push(cur);
-          cur = "";
+    // --- PAGE NAVIGATION LOGIC ---
+    function switchPage(pageId) {
+        // Handle transitions for Home content specifically
+        if(pageId === 'home') {
+            document.body.classList.remove('leaving-home');
         } else {
-          cur += ch;
+            document.body.classList.add('leaving-home');
         }
-      }
-      result.push(cur);
-      return result;
-    }
 
-    function parseCSV(text) {
-      const lines = text.replace(/^\uFEFF/, "")
-        .split(/\r?\n/)
-        .filter(l => l.trim().length > 0);
-      if (lines.length === 0) return [];
-
-      const headerCells = parseCSVLine(lines[0]).map(h => h.trim());
-      const rows = [];
-
-      for (let i=1;i<lines.length;i++) {
-        const cells = parseCSVLine(lines[i]).map(c => c.trim());
-        if (cells.every(c => c === "")) continue;
-        rows.push({ headerCells, cells });
-      }
-
-      return rows;
-    }
-
-    function cleanQuote(text) {
-      if (!text) return "";
-      let cleaned = text.replace(/\[[0-9:\.\s\u2013\u2014\-–>]+]/g, "");
-      return cleaned.trim();
-    }
-
-    // Hard-wired: id | document | tag | content
-    function buildCodeStatsFromCSV(rows) {
-      if (!rows || rows.length === 0) return [];
-
-      const headerCells = rows[0].headerCells || [];
-      let codeIndex = headerCells.findIndex(h => h.toLowerCase() === "tag");
-      let quoteIndex = headerCells.findIndex(h => h.toLowerCase() === "content");
-      let sourceIndex = headerCells.findIndex(h => h.toLowerCase() === "document");
-
-      if (codeIndex === -1) codeIndex = 2;
-      if (quoteIndex === -1) quoteIndex = 3;
-      if (sourceIndex === -1) sourceIndex = 1;
-
-      const statsMap = new Map();
-
-      rows.forEach(row => {
-        const cells = row.cells;
-        const code = (cells[codeIndex] || "").trim();
-        if (!code) return;
-
-        const rawQuote = quoteIndex >= 0 ? (cells[quoteIndex] || "").trim() : "";
-        const quote = cleanQuote(rawQuote);
-        const source = sourceIndex >= 0 ? (cells[sourceIndex] || "").trim() : "";
-
-        if (!statsMap.has(code)) {
-          statsMap.set(code, { code, count: 0, examples: [] });
-        }
-        const entry = statsMap.get(code);
-        entry.count += 1;
-        if (quote && entry.examples.length < 3) {
-          entry.examples.push({ quote, source });
-        }
-      });
-
-      const statsArray = Array.from(statsMap.values());
-      statsArray.sort((a,b)=> b.count - a.count || a.code.localeCompare(b.code));
-      return statsArray;
-    }
-
-    function populateBlackboard(stats) {
-      blackboardBody.innerHTML = "";
-      if (!stats || stats.length === 0) {
-        blackboard.style.display = "none";
-        blackboardBody.classList.add("empty");
-        return;
-      }
-
-      blackboard.style.display = "flex";
-
-      const top = stats.slice(0, 10);
-      top.forEach(stat => {
-        const card = createCardElement(stat.code, "code");
-        blackboardBody.appendChild(card);
-      });
-
-      refreshEmptyStates();
-    }
-
-    function renderCodeStatsByColumn(stats) {
-      codeStatsContainer.innerHTML = "";
-
-      if (!stats || stats.length === 0) {
-        const empty = document.createElement("div");
-        empty.className = "analytics-empty";
-        empty.textContent = "No valid codes detected in the CSV.";
-        codeStatsContainer.appendChild(empty);
-        return;
-      }
-
-      const columns = Array.from(document.querySelectorAll(".column"));
-      const usedCodes = new Set();
-
-      columns.forEach(col => {
-        const titleEl = col.querySelector(".column-header");
-        const title = (titleEl?.textContent || "").trim() || "Untitled column";
-        const bodyEl = col.querySelector(".column-body");
-        if (!bodyEl) return;
-
-        const columnCodeNames = new Set(
-          Array.from(bodyEl.querySelectorAll(".card"))
-            .filter(c => (c.dataset.type || "code") === "code")
-            .map(c => c.querySelector(".card-text")?.textContent.trim())
-            .filter(Boolean)
-        );
-        if (columnCodeNames.size === 0) return;
-
-        const columnStats = stats.filter(s => columnCodeNames.has(s.code));
-        if (columnStats.length === 0) return;
-
-        columnStats.sort((a,b)=> b.count - a.count || a.code.localeCompare(b.code));
-        columnStats.forEach(s => usedCodes.add(s.code));
-
-        const section = document.createElement("section");
-        section.className = "code-section";
-
-        const heading = document.createElement("div");
-        heading.className = "code-section-title";
-        heading.innerHTML = `${title} <span>(codes used in this column)</span>`;
-        section.appendChild(heading);
-
-        const list = document.createElement("div");
-        list.className = "code-stats-list";
-
-        columnStats.forEach(stat => {
-          const card = document.createElement("div");
-          card.className = "code-stat";
-
-          const header = document.createElement("div");
-          header.className = "code-stat-header";
-
-          const name = document.createElement("div");
-          name.className = "code-name";
-          name.textContent = stat.code;
-
-          const count = document.createElement("div");
-          count.className = "code-count";
-          count.textContent = `${stat.count} occurrence${stat.count>1?"s":""}`;
-
-          header.appendChild(name);
-          header.appendChild(count);
-          card.appendChild(header);
-
-          stat.examples.forEach(ex => {
-            const quoteEl = document.createElement("div");
-            quoteEl.className = "example-quote";
-            quoteEl.textContent = `"${ex.quote}"`;
-            card.appendChild(quoteEl);
-
-            if (ex.source) {
-              const srcEl = document.createElement("div");
-              srcEl.className = "example-source";
-              srcEl.textContent = `Source: ${ex.source}`;
-              card.appendChild(srcEl);
+        // Delay switching the active section to allow animations
+        setTimeout(() => {
+            // Hide all pages
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show target page
+            const target = document.getElementById(pageId);
+            if(target) {
+                target.classList.add('active');
+                window.scrollTo(0,0);
             }
-          });
+            
+            // Update Body Data Attribute for Global Background State
+            document.body.dataset.page = pageId;
 
-          list.appendChild(card);
-        });
+        }, 300); // 300ms delay matches CSS transition
 
-        section.appendChild(list);
-        codeStatsContainer.appendChild(section);
-      });
-
-      const unassigned = stats.filter(s => !usedCodes.has(s.code));
-      if (unassigned.length > 0) {
-        const section = document.createElement("section");
-        section.className = "code-section";
-        const heading = document.createElement("div");
-        heading.className = "code-section-title";
-        heading.innerHTML = `Not in any column <span>(codes present in CSV but not yet placed as cards)</span>`;
-        section.appendChild(heading);
-
-        const list = document.createElement("div");
-        list.className = "code-stats-list";
-
-        unassigned.forEach(stat => {
-          const card = document.createElement("div");
-          card.className = "code-stat";
-
-          const header = document.createElement("div");
-          header.className = "code-stat-header";
-
-          const name = document.createElement("div");
-          name.className = "code-name";
-          name.textContent = stat.code;
-
-          const count = document.createElement("div");
-          count.className = "code-count";
-          count.textContent = `${stat.count} occurrence${stat.count>1?"s":""}`;
-
-          header.appendChild(name);
-          header.appendChild(count);
-          card.appendChild(header);
-
-          stat.examples.forEach(ex => {
-            const quoteEl = document.createElement("div");
-            quoteEl.className = "example-quote";
-            quoteEl.textContent = `"${ex.quote}"`;
-            card.appendChild(quoteEl);
-
-            if (ex.source) {
-              const srcEl = document.createElement("div");
-              srcEl.className = "example-source";
-              srcEl.textContent = `Source: ${ex.source}`;
-              card.appendChild(srcEl);
-            }
-          });
-
-          list.appendChild(card);
-        });
-
-        section.appendChild(list);
-        codeStatsContainer.appendChild(section);
-      }
-    }
-
-    function handleCSVImport(file) {
-      const reader = new FileReader();
-      reader.onload = e => {
-        try {
-          const rows = parseCSV(e.target.result);
-          const stats = buildCodeStatsFromCSV(rows);
-          latestStats = stats;
-          renderCodeStatsByColumn(stats);
-          populateBlackboard(stats);
-          analyticsSummary.textContent =
-            `Imported ${rows.length} rows. Using columns: "tag" as code, "content" as quote, "document" as source. Blackboard shows the 10 most frequent codes.`;
-        } catch(err) {
-          console.error(err);
-          analyticsSummary.textContent = "Could not read CSV – check the format and try again.";
-          codeStatsContainer.innerHTML = "";
-          latestStats = null;
+        // Close mobile menu if open
+        const mobileMenu = document.getElementById('mobile-menu');
+        if(!mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
         }
-      };
-      reader.readAsText(file);
     }
 
-    // ---------- Export CSV: themes + codes + quotes ----------
-    function exportCSV() {
-      const columns = Array.from(document.querySelectorAll(".column"));
-
-      // Header: theme + code + card type + stats + up to 3 quotes
-      const rows = [[
-        "theme",
-        "code",
-        "card_type",
-        "total_occurrences",
-        "example_1",
-        "source_1",
-        "example_2",
-        "source_2",
-        "example_3",
-        "source_3"
-      ]];
-
-      let totalCards = 0;
-
-      columns.forEach(col => {
-        const headerEl = col.querySelector(".column-header");
-        const theme = (headerEl ? headerEl.textContent : "Untitled").trim();
-        const cards = Array.from(col.querySelectorAll(".card"));
-
-        cards.forEach(card => {
-          const span = card.querySelector(".card-text");
-          const text = (span ? span.textContent : "").trim();
-          if (!text) return;
-
-          const type = card.dataset.type || "code";
-
-          let stat = null;
-          if (latestStats && type === "code") {
-            stat = latestStats.find(s => s.code === text) || null;
-          }
-
-          const count = stat ? stat.count : "";
-          const examples = stat ? stat.examples : [];
-
-          const e1 = examples[0] ? examples[0].quote : "";
-          const s1 = examples[0] ? examples[0].source : "";
-          const e2 = examples[1] ? examples[1].quote : "";
-          const s2 = examples[1] ? examples[1].source : "";
-          const e3 = examples[2] ? examples[2].quote : "";
-          const s3 = examples[2] ? examples[2].source : "";
-
-          rows.push([theme, text, type, count, e1, s1, e2, s2, e3, s3]);
-          totalCards++;
+    // --- SLIDER INTERACTION LOGIC (ABOUT PAGE) ---
+    const sliderContainer = document.getElementById('face-slider');
+    const foreground = document.getElementById('face-foreground');
+    const innerFixed = document.getElementById('face-inner-fixed');
+    
+    if (sliderContainer && foreground && innerFixed) {
+        // CRITICAL: We need the inner content to remain fixed at the width of the main container
+        // This prevents the text/image from "squashing" as the parent div width changes.
+        const updateSizes = () => {
+            const width = sliderContainer.offsetWidth;
+            // Set the inner fixed container to match the parent's full width
+            innerFixed.style.width = width + 'px';
+        };
+        
+        window.addEventListener('resize', updateSizes);
+        // Initial call after load (timeout ensures render)
+        setTimeout(updateSizes, 100);
+        // Also update when switching to About page to ensure correct calculation
+        document.addEventListener('click', (e) => {
+            if(e.target.closest('[onclick*="about"]')) {
+                setTimeout(updateSizes, 350);
+            }
         });
-      });
 
-      if (totalCards === 0) {
-        alert("No cards to export – add some codes first.");
-        return;
-      }
+        const handleMove = (e) => {
+            const rect = sliderContainer.getBoundingClientRect();
+            // Get X position from mouse or touch
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            
+            let x = clientX - rect.left;
+            
+            // Constrain
+            if (x < 0) x = 0;
+            if (x > rect.width) x = rect.width;
+            
+            const percentage = (x / rect.width) * 100;
+            foreground.style.width = percentage + '%';
+        };
 
-      const csv = rows
-        .map(r =>
-          r
-            .map(v => `"${String(v ?? "").replace(/"/g, '""')}"`)
-            .join(",")
-        )
-        .join("\n");
-
-      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-      const url = URL.createObjectURL(blob);
-
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = "themes_with_quotes.csv";
-
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
+        // Event Listeners
+        sliderContainer.addEventListener('mousemove', handleMove);
+        sliderContainer.addEventListener('touchmove', (e) => {
+            e.preventDefault(); // Prevent page scroll while dragging
+            handleMove(e);
+        });
+        
+        // Optional: Click to jump
+        sliderContainer.addEventListener('click', handleMove);
     }
 
-    // ---------- Events ----------
-    addButton.addEventListener("click", addCode);
-
-    input.addEventListener("keydown", e => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        addCode();
-      }
+    // --- ACCELERATE ANIMATION ON CLICK ---
+    document.querySelectorAll('.click-trigger').forEach(trigger => {
+        trigger.addEventListener('click', () => {
+            const bg = document.querySelector('.hero-background');
+            if(bg) {
+                bg.classList.add('accelerated');
+                setTimeout(() => {
+                    bg.classList.remove('accelerated');
+                }, 2000);
+            }
+        });
     });
 
-    addColumnButton.addEventListener("click", addColumn);
-
-    saveButton.addEventListener("click", () => {
-      saveLayoutFromDOM();
-      saveButton.textContent = "Saved!";
-      setTimeout(() => { saveButton.textContent = "Save layout"; }, 900);
+    // Mobile Menu Logic
+    const menuButton = document.getElementById('menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
     });
 
-    generateDescriptorsButton.addEventListener("click", generateDescriptors);
-    exportCsvButton.addEventListener("click", exportCSV);
+    // --- PROJECT DATA & OPEN/CLOSE (Kept existing) ---
+    const projects = {
+        'seedtag': {
+            title: 'Seedtag Interactive Ads',
+            subtitle: 'Contextual human-centered advertisement ',
+            type: 'Ad Tech (HTML5/JS)',
+            link: 'https://preview.seedtag.com/creative/62e004185650a9002c0208a6?device=Desktop&placement=InImage', 
+            isCarousel: true, 
+            gifs: [
+                'https://github.com/Lumystik/PortfolioLucia/blob/main/images/car2.gif?raw=true',
+                'https://github.com/Lumystik/PortfolioLucia/blob/main/images/car3.gif?raw=true',
+                'https://github.com/Lumystik/PortfolioLucia/blob/main/images/car4.gif?raw=true',
+                'https://github.com/Lumystik/PortfolioLucia/blob/main/images/portfolio-10.jpg?raw=true',
+                'https://github.com/Lumystik/PortfolioLucia/blob/main/images/starbucks5.gif?raw=true'
+            ],
+            role: [
+                'Frontend Development (Vanilla JS)',
+                'Creative QA',
+                'Animation Logic',
+                'Cross-Browser Optimization'
+            ],
+            desc: `
+                <p>I designed and prototyped interactive ads for contextual advertisement for news websites. I worked with diverse clients.</p>
+                <p>The formats were built using diverse software (Photoshop, Illustrator, Pemiere) and tools such as HTML, CSS, and JavaScript.</p>
+                <p><strong>The Challenge:</strong> Creating complex, scalable and engaging ads that ran smoothly.</p>
+            `
+        },
+        'museon': {
+            title: 'MUSE*ON',
+            subtitle: 'B2B Staff Management Platform',
+            type: 'Project',
+            link: 'https://www.figma.com/proto/16viMWZsHOU9SkmpbSpTd5/FINAL-UI-spaced?node-id=2248-9671&starting-point-node-id=703%3A8427&t=zCu4Bl5DESBeok5l-1',
+            role: [
+                'UX Research (Environment Mapping)',
+                'Hero Flows & Wireflows',
+                'Mobile Interface Design (Figma)',
+                'Prototyping'
+            ],
+            images: [
+                'https://github.com/Lumystik/PortfolioLucia/blob/main/images/museon-1.png?raw=true',
+                'https://github.com/Lumystik/PortfolioLucia/blob/main/images/museon_final.png?raw=true',
+                'https://github.com/Lumystik/PortfolioLucia/blob/main/images/museon_wireframe.png?raw=true',
+                'https://github.com/Lumystik/PortfolioLucia/blob/main/images/museon%20screen%203.png?raw=true'
+            ],
+            desc: `
+                <p>MUSE*ON is an <strong>all-in-one software</strong> designed specifically for small museum staff. The platform aims to streamline daily workflows and improve the management of different institutional areas, replacing disjointed paper methods with a cohesive digital ecosystem.</p>
+                <p>My primary role involved deep UX research to understand the staff's reality. I translated these insights into actionable <strong>Hero Flows and Wireflows</strong>, eventually building a high-fidelity mobile interface that allows staff to manage shifts, track inventory, and communicate in real-time.</p>
+            `
+        },
+        'artbeyond': {
+            title: 'Art Beyond Dimension',
+            subtitle: 'Interactive AI Installation',
+            type: 'PoliMi Project',
+            link: 'https://www.figma.com/proto/FnFqrWBxyChSOdL3aVzV9A/Prototype?node-id=616-1949&starting-point-node-id=564%3A1942&scaling=contain&content-scaling=fixed',
+            role: [
+                'Motion Graphics (After Effects)',
+                'Video Editing (Premiere Pro)',
+                'Concept Development',
+                'Visual Storytelling'
+            ],
+            images: [
+                'https://github.com/Lumystik/PortfolioLucia/blob/main/images/art_1.png?raw=true',
+                'https://github.com/Lumystik/PortfolioLucia/blob/main/images/gifart.gif?raw=true',
+                'https://github.com/Lumystik/PortfolioLucia/blob/main/images/dimension2.png?raw=true'
+            ],
+            desc: `
+                <p>How do we make classical art relevant to a generation raised on TikTok and Roblox? Art Beyond Dimension is a futuristic prototype that uses AI to create immersive, narrative-driven entry points into art history.</p>
+                <p>I was responsible for the motion design and video assets that bring the prototype to life. Using Adobe After Effects and Premiere, I created the visual language of the AI assistant, visualizing how the system "scans" art and generates stories for the user.</p>
+            `
+        },
+        'films': {
+            title: 'Films Foundation',
+            subtitle: 'Mobile-First Cinema Archive',
+            type: 'UI Design',
+            link: 'https://www.figma.com/proto/MWvYkF7ybuKjE7SPnGi8po/Assignment?node-id=2128-5992&starting-point-node-id=2128%3A5992',
+            role: [
+                'Mobile UI Design',
+                'Information Architecture',
+                'Visual Identity',
+                'Responsive Layouts'
+            ],
+            images: [
+                'https://github.com/Lumystik/PortfolioLucia/blob/main/images/filmsscreen.png?raw=true',
+                'https://github.com/Lumystik/PortfolioLucia/blob/main/images/filmsscreen1.png?raw=true',
+                'https://github.com/Lumystik/PortfolioLucia/blob/main/images/filmsscreen2.png?raw=true',
+                'https://github.com/Lumystik/PortfolioLucia/blob/main/images/phonecinema.gif?raw=true'
+            ],
+            desc: `
+                <p>A complete redesign proposal for a prominent Italian Film Foundation. The goal was to organize a massive archive of historical cinema into a navigable, modern mobile experience.</p>
+                <p>I focused on the mobile-first implementation, ensuring that the rich media assets (posters, trailers, stills) remained the hero of the experience even on small screens. The design prioritizes clarity and accessibility while maintaining a cinematic elegance.</p>
+            `
+        },
+        'pixela': {
+            title: 'Pixela',
+            subtitle: 'Surrealist First-Person Game',
+            type: 'Bachelor Project',
+            link: 'https://www.behance.net/gallery/201101643/PIXELA',
+            role: [
+                'Video Game Implementation',
+                'Post-Production',
+                'Interactive Assets',
+                'Game Logic'
+            ],
+            images: [
+                'https://github.com/Lumystik/PortfolioLucia/blob/main/images/portfolio-5.jpg?raw=true',
+                'https://images.unsplash.com/photo-1535905557558-afc4877a26fc?auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&w=800&q=80'
+            ],
+            desc: `
+                <p>Pixela is an immersive first-person survival game where you play as an AI named Pixela, who is an unexpected anomaly in a scientific project designed to decode the minds of history's greatest artists.</p>
+                <p>As Pixela, your primary objective is to escape from the scientists who have captured you, using your unique abilities to travel through the worlds of Dalí, Van Gogh and Escher.</p>
+            `
+        },
+        'thematic': {
+            title: 'Thematic Analysis Tool',
+            subtitle: 'Visual Qualitative Research Tool',
+            type: 'Thesis Tool (Code)',
+            link: 'playground.html',
+            role: [
+                'Frontend Development',
+                'Data Visualization Logic',
+                'UX for Research Tools'
+            ],
+            images: [
+                'https://github.com/Lumystik/PortfolioLucia/blob/main/images/taguette.png?raw=true'
+            ],
+            desc: `
+                <p><strong>Note: This is a live tool built for my Master's Thesis.</strong></p>
+                <p>Qualitative research often involves messy spreadsheets and sticky notes. I built this web-based tool to make the process of Thematic Analysis more visual and intuitive.</p>
+                <p>It allows researchers to input raw data, assign codes, and visually group them into themes. It transforms an abstract cognitive process into a tangible, drag-and-drop interface.</p>
+            `
+        }
+    };
 
-    importCsvTrigger.addEventListener("click", () => {
-      importCsvInput.value = "";
-      importCsvInput.click();
-    });
+    function openProject(id) {
+        const p = projects[id];
+        if (!p) return;
 
-    importCsvInput.addEventListener("change", e => {
-      const file = e.target.files[0];
-      if (file) handleCSVImport(file);
-    });
+        document.getElementById('detail-nav-title').innerText = p.title;
+        document.getElementById('detail-title').innerText = p.title;
+        document.getElementById('detail-subtitle').innerText = p.subtitle;
+        document.getElementById('detail-link').href = p.link;
+        document.getElementById('detail-desc').innerHTML = p.desc;
+        document.getElementById('detail-type').innerText = p.type;
 
-    loadLayout();
-  </script>
+        const roleList = document.getElementById('detail-role');
+        roleList.innerHTML = '';
+        p.role.forEach(r => {
+            const li = document.createElement('li');
+            li.innerHTML = r; 
+            roleList.appendChild(li);
+        });
+
+        const galleryContainer = document.getElementById('detail-gallery-container');
+        galleryContainer.innerHTML = ''; 
+
+        // Reset custom layout class for safety
+        galleryContainer.classList.remove('custom-layout');
+
+        // --- 1. CUSTOM LAYOUT: ART BEYOND DIMENSION ---
+        if (id === 'artbeyond') {
+            document.getElementById('gallery-title').innerText = "Visuals";
+            galleryContainer.classList.add('custom-layout');
+            
+            let customHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 h-[500px]">
+                    <!-- Left Column: Stacked Static Images -->
+                    <div class="flex flex-col gap-4 h-full">
+                            <div class="bg-black border border-white/20 p-2 flex items-center justify-center overflow-hidden flex-1">
+                            <img src="${p.images[0]}" class="w-full h-full object-cover hover:opacity-90 transition-opacity duration-300">
+                        </div>
+                            <div class="bg-black border border-white/20 p-2 flex items-center justify-center overflow-hidden flex-1">
+                            <img src="${p.images[2]}" class="w-full h-full object-cover hover:opacity-90 transition-opacity duration-300">
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Single Large GIF (Fit Inside Frame) -->
+                    <!-- CHANGED: Switched to object-contain to stop GIF from being cut -->
+                    <div class="bg-black border border-white/20 p-2 flex items-center justify-center overflow-hidden h-full">
+                        <img src="${p.images[1]}" class="w-full h-full object-contain hover:opacity-90 transition-opacity duration-300">
+                    </div>
+                </div>
+            `;
+            galleryContainer.innerHTML = customHTML;
+
+        // --- 2. STANDARD CAROUSEL (For Seedtag & other projects with isCarousel: true) ---
+        } else if (p.isCarousel) {
+            document.getElementById('gallery-title').innerText = "Interactive Gallery";
+            let carouselHTML = `
+                <div class="carousel-container flex gap-6 pb-4">
+                    ${p.gifs.map(gifSrc => `
+                        <div class="carousel-item relative aspect-video bg-black border border-white/20 p-2 overflow-hidden flex-shrink-0 w-[85%] md:w-[60%]">
+                             <img src="${gifSrc}" alt="Interactive Ad GIF" class="w-full h-full object-contain opacity-80 hover:opacity-100 transition-opacity">
+                             <div class="absolute bottom-3 left-3 bg-black/60 px-3 py-1 text-xs font-bold text-white uppercase tracking-widest backdrop-blur-sm">Ad Preview</div>
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="text-center text-pastel-white/30 text-xs mt-4 font-mono uppercase tracking-widest"><i class="fas fa-arrows-alt-h mr-2"></i> Swipe</div>
+            `;
+            galleryContainer.innerHTML = carouselHTML;
+
+        // --- 3. STANDARD GRID (For other projects) ---
+        } else if (p.images) {
+            document.getElementById('gallery-title').innerText = "Visuals";
+            let gridHTML = `<div class="grid grid-cols-1 gap-4">`;
+            p.images.forEach(imgSrc => {
+                gridHTML += `
+                    <div class="aspect-video bg-black border border-white/20 p-2 flex items-center justify-center overflow-hidden">
+                        <img src="${imgSrc}" class="w-full h-full object-contain hover:opacity-90 transition-opacity duration-300" alt="Project Screenshot">
+                    </div>
+                `;
+            });
+            gridHTML += `</div>`;
+            galleryContainer.innerHTML = gridHTML;
+        }
+
+        document.getElementById('detail-view').classList.remove('translate-x-full');
+        document.body.classList.add('detail-open');
+    }
+
+    function closeProject() {
+        const detailView = document.getElementById('detail-view');
+        detailView.classList.add('translate-x-full');
+        document.body.classList.remove('detail-open');
+
+        // Stop GIFs by clearing content after the transition (400ms)
+        // This ensures they don't loop in the background when the section is inactive
+        setTimeout(() => {
+            if (detailView.classList.contains('translate-x-full')) {
+                document.getElementById('detail-gallery-container').innerHTML = '';
+            }
+        }, 400);
+    }
+</script>
 </body>
 </html>
+
