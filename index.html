@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lucía Medina | Interaction Designer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JEPVH1MD2X"></script>
     <script>
@@ -13,28 +12,6 @@
       gtag('js', new Date());
 
       gtag('config', 'G-JEPVH1MD2X');
-    </script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Inter"', 'sans-serif'],
-                    },
-                    colors: {
-                        'black-pure': '#050505',
-                        'gray-dark': '#111111', 
-                        'pastel-gray': '#B9B3F8',
-                        'pastel-blue': '#C0DBEE',
-                        'pastel-purple': '#B9B3F8',
-                        'pastel-green': '#BBEED5',
-                        'pastel-red': '#847A54',
-                        'pastel-lilla': '#CCB1D0',
-                        'pastel-white': '#F0F0F0',
-                    }
-                }
-            }
-        }
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -283,7 +260,29 @@
         #detail-gallery-container:not(.custom-layout) .carousel-container > div:nth-child(2) {
             aspect-ratio: 1 / 1 !important; /* Square is significantly taller than the default 16/9 aspect-video */
         }
-    </style>
+    </style>    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                    },
+                    colors: {
+                        'black-pure': '#050505',
+                        'gray-dark': '#111111',
+                        'pastel-gray': '#B9B3F8',
+                        'pastel-blue': '#C0DBEE',
+                        'pastel-purple': '#B9B3F8',
+                        'pastel-green': '#BBEED5',
+                        'pastel-red': '#847A54',
+                        'pastel-lilla': '#CCB1D0',
+                        'pastel-white': '#F0F0F0',
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 <body class="antialiased relative selection:bg-pastel-purple selection:text-black-pure" data-page="home">
 
@@ -542,7 +541,7 @@
                                     <div>
                                         <h4 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-2">Status</h4>
                                         <p class="text-pastel-white">Milan open to relocation</p>
-                                        <p class="text-pastel-green text-xs mt-1">Seeking junior and mid-level roles</p>
+
                                     </div>
                                 </div>
                             </div>
@@ -564,8 +563,8 @@
         <section id="contact" class="page-section max-w-4xl mx-auto px-4 flex flex-col justify-center items-center py-24">
             <p class="text-xs font-bold tracking-widest uppercase text-pastel-white/40 mb-6">Get in touch</p>
             <h2 class="text-4xl md:text-5xl font-light mb-10 text-pastel-white text-center">Let's make something together.</h2>
-            <a href="mailto:lu_1829med@outlook.com" class="text-pastel-blue text-lg hover:text-white transition-colors border-b border-pastel-blue/30 hover:border-pastel-blue pb-1 inline-block mb-12">
-                lu_1829med@outlook.com
+            <a href="/cdn-cgi/l/email-protection#fc9089a3cdc4cec5919998bc93898890939397d29f9391" class="text-pastel-blue text-lg hover:text-white transition-colors border-b border-pastel-blue/30 hover:border-pastel-blue pb-1 inline-block mb-12">
+                <span class="__cf_email__" data-cfemail="701c052f414842491d1514301f05041c1f1f1b5e131f1d">[email&#160;protected]</span>
             </a>
             <div class="flex justify-center space-x-12">
                 <a href="https://www.linkedin.com/in/lucia-medina1829" target="_blank" class="text-pastel-gray hover:text-white transition duration-300 text-sm tracking-widest uppercase">LinkedIn</a>
@@ -581,61 +580,46 @@
 
     <!-- ================= DETAIL VIEW OVERLAY ================= -->
     <div id="detail-view" class="fixed inset-0 bg-black-pure z-50 transform translate-x-full flex flex-col overflow-y-auto">
-        <!-- Detail Navbar -->
-        <div class="sticky top-0 bg-black-pure/95 backdrop-blur-md border-b border-white/5 p-6 flex justify-between items-center z-50">
-            <button onclick="closeProject()" class="flex items-center text-pastel-white/60 hover:text-pastel-green transition-colors text-xs font-bold uppercase tracking-widest">
+
+        <!-- Back nav -->
+        <div class="sticky top-0 bg-black-pure/95 backdrop-blur-md border-b border-white/5 px-8 py-4 flex justify-between items-center z-50">
+            <button onclick="closeProject()" class="flex items-center text-pastel-white/50 hover:text-white transition-colors text-xs font-bold uppercase tracking-widest">
                 <i class="fas fa-arrow-left mr-3"></i> Back
             </button>
-            <div class="text-pastel-white/40 font-mono text-xs uppercase" id="detail-nav-title">Project Name</div>
-            <div class="w-16"></div> 
+            <div class="text-pastel-white/30 text-xs uppercase tracking-widest" id="detail-nav-title"></div>
+            <div class="w-16"></div>
         </div>
 
-        <!-- Detail Content -->
-        <div class="max-w-4xl mx-auto px-6 py-20 flex-grow w-full">
-            <!-- Hero -->
-            <div class="mb-16">
-                <h1 id="detail-title" class="text-4xl md:text-6xl font-light text-white mb-4">Title</h1>
-                <p id="detail-subtitle" class="text-xl text-pastel-blue font-light">Subtitle goes here</p>
-                
-                <a id="detail-link" href="#" target="_blank" class="inline-block mt-8 px-8 py-3 border border-white/20 text-white text-sm hover:bg-white hover:text-black-pure transition-all duration-300">
-                    View Project
+        <!-- Big title -->
+        <div class="max-w-5xl mx-auto w-full px-8 pt-20 pb-12">
+            <h1 id="detail-title" class="text-5xl md:text-8xl font-light text-white leading-none tracking-tight mb-6"></h1>
+            <p id="detail-subtitle" class="text-pastel-white/40 text-sm uppercase tracking-widest"></p>
+        </div>
+
+        <!-- Desc left / Role right -->
+        <div class="max-w-5xl mx-auto w-full px-8 pb-16 grid md:grid-cols-2 gap-16 border-t border-white/5 pt-12">
+            <div>
+                <div id="detail-desc" class="text-pastel-white/70 text-sm leading-relaxed space-y-4"></div>
+                <a id="detail-link" href="#" target="_blank" class="inline-flex items-center gap-3 mt-10 text-xs font-bold uppercase tracking-widest text-white border-b border-white/20 pb-1 hover:border-white transition-colors">
+                    View Project <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
-
-            <!-- Two Column Layout: Description & Role -->
-            <div class="grid md:grid-cols-3 gap-16 border-t border-white/5 pt-12">
-                <!-- Main Description (2/3) -->
-                <div class="md:col-span-2">
-                    <h3 class="text-xs font-bold text-pastel-lilla uppercase tracking-widest mb-6">Overview</h3>
-                    <div id="detail-desc" class="text-pastel-white/80 leading-relaxed text-lg font-light space-y-6">
-                        <!-- Dynamic Description -->
-                    </div>
-                </div>
-
-                <!-- Role & Tech (1/3) -->
-                <div class="md:col-span-1 space-y-10">
-                    <div>
-                        <h3 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-4">My Role</h3>
-                        <ul id="detail-role" class="space-y-2 text-pastel-white/60 text-sm font-light">
-                            <!-- Dynamic Role -->
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="text-xs font-bold text-pastel-purple uppercase tracking-widest mb-4">Type</h3>
-                        <p id="detail-type" class="text-pastel-white/60 text-sm font-light">Web App</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Process / Gallery (DYNAMIC CONTAINER) -->
-            <div class="mt-24">
-                <h3 class="text-xs font-bold text-pastel-lilla uppercase tracking-widest mb-8 text-center" id="gallery-title">Visuals</h3>
-                <div id="detail-gallery-container"></div>
+            <div>
+                <p class="text-xs uppercase tracking-widest text-pastel-white/30 mb-5">My role</p>
+                <ul id="detail-role" class="space-y-3 text-pastel-white/60 text-sm"></ul>
+                <p class="text-xs uppercase tracking-widest text-pastel-white/30 mt-8 mb-3">Type</p>
+                <p id="detail-type" class="text-pastel-white/60 text-sm"></p>
             </div>
         </div>
+
+        <!-- Full-width gallery -->
+        <div class="max-w-5xl mx-auto w-full px-8 pb-24">
+            <div id="detail-gallery-container"></div>
+        </div>
+
     </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // --- LOAD HANDLER (FIX FOR FLASHING TEXT) ---
     window.addEventListener('load', () => {
         // Only reveal the body when everything (images, fonts, scripts) is ready
@@ -822,7 +806,7 @@
             desc: `
                 <p>A Politecnico di Milano project exploring how AI could make classical art feel relevant to young audiences who've never considered going to a museum. The answer we landed on: narrative. An AI that looks at a painting and generates a story the user can actually inhabit.</p>
 
-                <p>My role was motion design. I was responsible for defining how the AI felt visually specifically the moment it "reads" a painting and processes it. I went through several directions in After Effects before landing on something that felt intelligent without feeling clinical. From there I produced the full motion assets and video sequences in Premiere Pro, covering the transitions between the AI's states and the worlds the user enters.</p>
+                <p>My role was motion design. I made small motion graphic videos showing the lives of the artists — short narrative pieces that give users context before entering each world. I went through several directions in After Effects before landing on a style that felt warm and cinematic rather than clinical. From there I produced the full motion assets and video sequences in Premiere Pro, covering the transitions between the AI's states and each artist's world.</p>
 
                 <p>Everything fed into a Figma prototype that simulates the full journey from artwork selection to immersive narrative. The motion work was the part that made it feel real rather than conceptual.</p>
             `
@@ -876,8 +860,7 @@
 
                 <p>I worked on the visual design of the environments, translating painterly references into spaces a first-person player could actually move through. Each world needed its own rules Dalí's surrealism, Van Gogh's emotional distortion, Escher's impossible geometry while still being navigable. I also built the interactive objects and handled post-production: colour grading, sound, and the demo video shown at the degree show.</p>
             `
-        },
-
+        }
     };
 
     function openProject(id) {
@@ -907,7 +890,7 @@
 
         // --- 1. CUSTOM LAYOUT: ART BEYOND DIMENSION ---
         if (id === 'artbeyond') {
-            document.getElementById('gallery-title').innerText = "Visuals";
+            
             galleryContainer.classList.add('custom-layout');
             
             let customHTML = `
@@ -933,7 +916,7 @@
 
         // --- 2. STANDARD CAROUSEL (For Seedtag & other projects with isCarousel: true) ---
         } else if (p.isCarousel) {
-            document.getElementById('gallery-title').innerText = "Interactive Gallery";
+            
             let carouselHTML = `
                 <div class="carousel-container flex gap-6 pb-4">
                     ${p.gifs.map(gifSrc => `
@@ -949,7 +932,7 @@
 
         // --- 3. STANDARD GRID (For other projects) ---
         } else if (p.images) {
-            document.getElementById('gallery-title').innerText = "Visuals";
+            
             let gridHTML = `<div class="grid grid-cols-1 gap-4">`;
             p.images.forEach(imgSrc => {
                 gridHTML += `
@@ -971,8 +954,6 @@
         detailView.classList.add('translate-x-full');
         document.body.classList.remove('detail-open');
 
-        // Stop GIFs by clearing content after the transition (400ms)
-        // This ensures they don't loop in the background when the section is inactive
         setTimeout(() => {
             if (detailView.classList.contains('translate-x-full')) {
                 document.getElementById('detail-gallery-container').innerHTML = '';
