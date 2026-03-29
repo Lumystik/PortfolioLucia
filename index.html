@@ -138,33 +138,45 @@
             display: flex;
             align-items: flex-end;
         }
+
+        /* Layer 1: blurred background photo */
         .hero-bg {
             position: absolute;
             inset: 0;
             width: 100%; height: 100%;
             object-fit: cover;
-            filter: grayscale(100%) brightness(0.38);
-            transition: transform 10s ease, filter 0.5s;
+            filter: grayscale(100%) brightness(0.42) blur(14px);
+            transform: scale(1.08); /* scale up to hide blur edge artifacts */
+            transition: filter 0.5s;
         }
-        #hero:hover .hero-bg { transform: scale(1.02); }
 
-        /* Portrait frame that follows cursor */
+        /* Layer 2: sharp photo, clipped to the portrait frame window */
+        .hero-bg-sharp {
+            position: absolute;
+            inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            filter: grayscale(100%) brightness(0.72);
+            z-index: 4;
+            pointer-events: none;
+            /* clip-path is set dynamically by JS to match the frame position */
+            clip-path: inset(0 100% 0 0); /* hidden by default */
+            transition: clip-path 0s; /* instant update via JS */
+        }
+
+        /* Portrait frame — transparent window (no img inside) */
         #portrait-frame {
             position: absolute;
             width: 320px; height: 320px;
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.35);
             pointer-events: none;
             z-index: 10;
-            left: 50%; top: 48%;
+            left: 50%; top: 46%;
             transform: translate(-50%, -50%);
-            overflow: hidden;
             will-change: transform;
-        }
-        #portrait-frame img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            object-position: top;
-            filter: grayscale(100%) brightness(0.85);
+            /* subtle shadow to lift it off the background */
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.08), inset 0 0 40px rgba(0,0,0,0.15);
         }
         .crosshair {
             position: absolute;
@@ -172,8 +184,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: rgba(255,255,255,0.5);
-            font-size: 1.1rem;
+            color: rgba(255,255,255,0.4);
+            font-size: 1rem;
             font-weight: 200;
             pointer-events: none;
             z-index: 2;
@@ -645,12 +657,13 @@
 
 <!-- HERO -->
 <section id="hero">
-    <img class="hero-bg"
+    <img class="hero-bg" id="hero-bg-blur"
         src="https://github.com/Lumystik/PortfolioLucia/blob/main/images/mememe.png?raw=true"
         alt="">
-
+    <img class="hero-bg-sharp" id="hero-bg-sharp"
+        src="https://github.com/Lumystik/PortfolioLucia/blob/main/images/mememe.png?raw=true"
+        alt="">
     <div id="portrait-frame">
-        <img src="https://github.com/Lumystik/PortfolioLucia/blob/main/images/mememe.png?raw=true" alt="Lucía Medina">
         <div class="crosshair">+</div>
     </div>
 
@@ -862,10 +875,25 @@ document.querySelectorAll('a,button,.proj-row,.svc-row').forEach(el=>{
     el.addEventListener('mouseleave',()=>cur.classList.remove('big'));
 });
 
-// ── HERO PORTRAIT PARALLAX ──
+// ── HERO PORTRAIT PARALLAX + CLIP WINDOW ──
 const heroEl = document.getElementById('hero');
 const frame = document.getElementById('portrait-frame');
+const sharpLayer = document.getElementById('hero-bg-sharp');
 let targetX=0,targetY=0,curX=0,curY=0;
+
+function updateClip() {
+    // Get frame's current position relative to the hero section
+    const heroRect = heroEl.getBoundingClientRect();
+    const frameRect = frame.getBoundingClientRect();
+
+    const top    = frameRect.top    - heroRect.top;
+    const left   = frameRect.left   - heroRect.left;
+    const bottom = heroRect.height  - (top + frameRect.height);
+    const right  = heroRect.width   - (left + frameRect.width);
+
+    sharpLayer.style.clipPath =
+        `inset(${top}px ${right}px ${bottom}px ${left}px)`;
+}
 
 heroEl.addEventListener('mousemove', e=>{
     const r = heroEl.getBoundingClientRect();
@@ -873,12 +901,17 @@ heroEl.addEventListener('mousemove', e=>{
     targetX = (e.clientX - cx) * 0.055;
     targetY = (e.clientY - cy) * 0.055;
 });
+
 (function animFrame(){
     curX += (targetX-curX)*0.08;
     curY += (targetY-curY)*0.08;
     frame.style.transform = `translate(calc(-50% + ${curX}px), calc(-50% + ${curY}px))`;
+    updateClip();
     requestAnimationFrame(animFrame);
 })();
+
+// Initial clip on load
+window.addEventListener('load', updateClip);
 
 // ── FLOATING PROJECT IMAGE ──
 const fImg = document.getElementById('float-img');
