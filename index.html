@@ -13,6 +13,11 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Geist + Geist Mono for hero name and contact button -->
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/geist');
+        @import url('https://fonts.cdnfonts.com/css/geist-mono');
+    </style>
 
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -60,23 +65,67 @@
             transform: translate(-50%, -50%);
         }
 
-        /* FLOATING PROJECT IMAGE */
-        #float-img {
-            position: fixed;
-            pointer-events: none;
-            z-index: 200;
-            width: 300px;
-            height: 200px;
-            object-fit: cover;
-            opacity: 0;
-            transform: translate(-50%, -70%) rotate(-4deg) scale(0.85);
-            transition: opacity 0.35s ease, transform 0.35s ease;
-            border: 1px solid rgba(0,0,0,0.08);
-            background: #eee;
+        /* PROJECT STAGGERED LAYOUT */
+        #work {
+            position: relative;
+            overflow: hidden;
         }
-        #float-img.show {
-            opacity: 1;
-            transform: translate(-50%, -70%) rotate(-2deg) scale(1);
+        .proj-images-wrap {
+            position: relative;
+            height: 480px;
+            margin-top: 3rem;
+            margin-bottom: -6rem; /* overlap the heading */
+            z-index: 4;
+        }
+        .proj-img-left {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 38%;
+            max-width: 440px;
+            height: 420px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .proj-img-right {
+            position: absolute;
+            right: 0;
+            top: 4rem;
+            width: 42%;
+            max-width: 500px;
+            height: 420px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .proj-img-left img,
+        .proj-img-right img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            display: block;
+        }
+        .proj-img-left:hover img,
+        .proj-img-right:hover img { transform: scale(1.04); }
+        .proj-img-label {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 0.8rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 100%);
+        }
+        .proj-img-name {
+            font-size: 0.58rem;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.9);
+        }
+        .proj-img-year {
+            font-size: 0.58rem;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.5);
         }
 
         /* NAV */
@@ -116,18 +165,50 @@
         }
         .nav-center a:hover { opacity: 1; }
         .nav-contact {
-            font-size: 0.65rem;
+            font-family: 'Geist Mono', monospace;
+            font-size: 12px;
             font-weight: 500;
-            letter-spacing: 0.12em;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: var(--black);
-            background: var(--white);
-            padding: 0.55rem 1.3rem;
-            border: 1px solid var(--white);
+            color: rgb(0,0,0);
+            background: rgb(255,255,255);
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: none;
             text-decoration: none;
-            transition: all 0.2s;
+            transition: opacity 0.2s;
+            line-height: 16px;
         }
-        .nav-contact:hover { background: transparent; color: var(--white); }
+        .nav-contact:hover { opacity: 0.85; }
+
+        /* Hamburger button */
+        .nav-hamburger {
+            width: 36px; height: 36px;
+            background: rgb(255,255,255);
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            padding: 0;
+            transition: opacity 0.2s;
+        }
+        .nav-hamburger:hover { opacity: 0.85; }
+        .nav-hamburger span {
+            display: block;
+            width: 16px;
+            height: 1.5px;
+            background: rgb(19,19,19);
+            border-radius: 1px;
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
         /* HERO */
         #hero {
@@ -139,44 +220,40 @@
             align-items: flex-end;
         }
 
-        /* Layer 1: blurred background photo */
+        /* Blurred background photo */
         .hero-bg {
             position: absolute;
             inset: 0;
             width: 100%; height: 100%;
             object-fit: cover;
-            filter: grayscale(100%) brightness(0.42) blur(14px);
-            transform: scale(1.08); /* scale up to hide blur edge artifacts */
-            transition: filter 0.5s;
+            object-position: center top;
+            filter: grayscale(100%) brightness(0.42) blur(16px);
+            transform: scale(1.1);
         }
 
-        /* Layer 2: sharp photo, clipped to the portrait frame window */
+        /* Sharp unblurred copy — always full size, clipped to frame via JS */
         .hero-bg-sharp {
             position: absolute;
             inset: 0;
             width: 100%; height: 100%;
             object-fit: cover;
             object-position: center top;
-            filter: grayscale(100%) brightness(0.72);
-            z-index: 4;
+            filter: grayscale(100%) brightness(0.65);
+            z-index: 3;
             pointer-events: none;
-            /* clip-path is set dynamically by JS to match the frame position */
-            clip-path: inset(0 100% 0 0); /* hidden by default */
-            transition: clip-path 0s; /* instant update via JS */
+            clip-path: inset(0 100% 0 0);
         }
 
-        /* Portrait frame — transparent window (no img inside) */
+        /* Portrait frame — follows mouse, no click needed */
         #portrait-frame {
             position: absolute;
-            width: 320px; height: 320px;
-            border: 1px solid rgba(255,255,255,0.35);
-            pointer-events: none;
+            width: 300px; height: 300px;
+            border: 1px solid rgba(255,255,255,0.6);
             z-index: 10;
-            left: 50%; top: 46%;
+            left: 50%; top: 44%;
             transform: translate(-50%, -50%);
             will-change: transform;
-            /* subtle shadow to lift it off the background */
-            box-shadow: 0 0 0 1px rgba(255,255,255,0.08), inset 0 0 40px rgba(0,0,0,0.15);
+            pointer-events: none;
         }
         .crosshair {
             position: absolute;
@@ -184,21 +261,25 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: rgba(255,255,255,0.4);
-            font-size: 1rem;
-            font-weight: 200;
             pointer-events: none;
             z-index: 2;
         }
 
-        /* Role tags row */
+        /* Role tags — stacked vertically on the left */
         .hero-roles {
             position: absolute;
-            left: 0; right: 0;
-            bottom: 18%;
+            left: 2.5rem;
+            bottom: 22%;
             display: flex;
-            justify-content: space-between;
-            padding: 0 2.5rem;
+            flex-direction: column;
+            gap: 0.6rem;
+            z-index: 5;
+        }
+        /* Single role tag on the right */
+        .hero-role-right {
+            position: absolute;
+            right: 2.5rem;
+            bottom: 22%;
             z-index: 5;
         }
         .hero-role {
@@ -206,48 +287,36 @@
             font-weight: 500;
             letter-spacing: 0.22em;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.55);
+            color: rgba(255,255,255,0.6);
         }
 
-        /* Ticker */
-        .ticker {
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            background: rgba(0,0,0,0.55);
-            backdrop-filter: blur(6px);
-            border-top: 1px solid rgba(255,255,255,0.07);
-            padding: 0.8rem 0;
-            overflow: hidden;
-            z-index: 10;
-        }
-        .ticker-track {
-            display: flex;
-            gap: 3rem;
-            animation: tick 22s linear infinite;
-            white-space: nowrap;
-            width: max-content;
-        }
-        .ticker-item {
-            font-size: 0.58rem;
-            font-weight: 500;
-            letter-spacing: 0.28em;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.4);
-            flex-shrink: 0;
-        }
-        @keyframes tick { from { transform:translateX(0); } to { transform:translateX(-50%); } }
 
-        /* Big name */
+
+        /* Big name — Geist font, Framer specs */
         .hero-name {
             position: relative;
             z-index: 5;
-            font-size: clamp(4.5rem, 12.5vw, 13.5rem);
-            font-weight: 500;
-            letter-spacing: -0.035em;
-            line-height: 0.82;
-            color: var(--white);
-            padding: 0 1.5rem 0 1.5rem;
+            font-family: 'Geist', 'DM Sans', sans-serif;
+            font-size: clamp(3rem, 18vw, 271px);
+            font-weight: 400;
+            letter-spacing: -0.04em;
+            line-height: 1.2;
+            color: #ffffff;
+            text-shadow: 0 2px 40px rgba(0,0,0,0.4);
+            padding: 0 1rem;
             pointer-events: none;
+            user-select: none;
+            white-space: nowrap;
+            width: 100%;
+            overflow: hidden;
+        }
+        @media (max-width: 600px) {
+            .hero-name {
+                font-size: clamp(2.5rem, 14vw, 5rem);
+                white-space: normal;
+                line-height: 1.1;
+            }
+        }
             user-select: none;
             white-space: nowrap;
         }
@@ -314,12 +383,13 @@
             position: relative;
         }
         .services-h {
-            font-size: clamp(3rem, 8.5vw, 8.5rem);
+            font-size: clamp(3.5rem, 9.5vw, 10rem);
             font-weight: 500;
             letter-spacing: -0.04em;
             line-height: 0.88;
             color: var(--black);
             margin: 3rem 0 5rem;
+            text-align: right;
         }
         .svc-list { list-style: none; }
         .svc-row {
@@ -354,7 +424,10 @@
             letter-spacing: -0.04em;
             line-height: 0.88;
             color: var(--black);
-            margin: 3rem 0 2rem;
+            margin: 0 0 2rem;
+            position: relative;
+            z-index: 6;
+            padding-top: 2rem;
         }
         .proj-list { list-style: none; }
         .proj-row {
@@ -641,19 +714,31 @@
 
 <div id="cursor"></div>
 <div id="cursor-ring"></div>
-<img id="float-img" src="" alt="">
+
 
 <!-- NAV -->
 <nav>
     <a href="#hero" class="logo">LM</a>
-    <ul class="nav-center">
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#work">Work</a></li>
-    </ul>
-    <a href="#footer" class="nav-contact">Contact</a>
+    <div class="nav-right">
+        <a href="#footer" class="nav-contact">Contact</a>
+        <button class="nav-hamburger" onclick="document.getElementById('nav-menu').classList.toggle('open')">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
 </nav>
+
+<!-- Mobile / hamburger nav -->
+<div id="nav-menu" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.96);z-index:490;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;">
+    <button onclick="document.getElementById('nav-menu').classList.remove('open')" style="position:absolute;top:1.5rem;right:2.5rem;background:none;border:none;color:white;font-size:1.5rem;cursor:pointer;">✕</button>
+    <a href="#about" onclick="document.getElementById('nav-menu').classList.remove('open')" style="font-family:'Geist',sans-serif;font-size:3rem;font-weight:400;color:white;text-decoration:none;letter-spacing:-0.02em;">About</a>
+    <a href="#services" onclick="document.getElementById('nav-menu').classList.remove('open')" style="font-family:'Geist',sans-serif;font-size:3rem;font-weight:400;color:white;text-decoration:none;letter-spacing:-0.02em;">Services</a>
+    <a href="#work" onclick="document.getElementById('nav-menu').classList.remove('open')" style="font-family:'Geist',sans-serif;font-size:3rem;font-weight:400;color:white;text-decoration:none;letter-spacing:-0.02em;">Work</a>
+    <a href="#footer" onclick="document.getElementById('nav-menu').classList.remove('open')" style="font-family:'Geist',sans-serif;font-size:3rem;font-weight:400;color:white;text-decoration:none;letter-spacing:-0.02em;">Contact</a>
+</div>
+
+<style>
+    #nav-menu.open { display: flex !important; }
+</style>
 
 <!-- HERO -->
 <section id="hero">
@@ -664,43 +749,22 @@
         src="https://github.com/Lumystik/PortfolioLucia/blob/main/images/mememe.png?raw=true"
         alt="">
     <div id="portrait-frame">
-        <div class="crosshair">+</div>
+        <div class="crosshair">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" style="pointer-events:none;opacity:0.6;">
+                <path d="M12 5v14M5 12h14"></path>
+            </svg>
+        </div>
     </div>
 
     <div class="hero-roles">
         <span class="hero-role">Interaction Designer</span>
         <span class="hero-role">UX Research</span>
         <span class="hero-role">Frontend Dev</span>
-        <span class="hero-role">Milan, Italy</span>
     </div>
 
-    <div class="ticker">
-        <div class="ticker-track" id="ticker-track">
-            <span class="ticker-item">Interaction Design</span>
-            <span class="ticker-item">·</span>
-            <span class="ticker-item">UX Research</span>
-            <span class="ticker-item">·</span>
-            <span class="ticker-item">Frontend Development</span>
-            <span class="ticker-item">·</span>
-            <span class="ticker-item">Visual Design</span>
-            <span class="ticker-item">·</span>
-            <span class="ticker-item">Service Design</span>
-            <span class="ticker-item">·</span>
-            <span class="ticker-item">Prototyping</span>
-            <span class="ticker-item">·</span>
-            <span class="ticker-item">Interaction Design</span>
-            <span class="ticker-item">·</span>
-            <span class="ticker-item">UX Research</span>
-            <span class="ticker-item">·</span>
-            <span class="ticker-item">Frontend Development</span>
-            <span class="ticker-item">·</span>
-            <span class="ticker-item">Visual Design</span>
-            <span class="ticker-item">·</span>
-            <span class="ticker-item">Service Design</span>
-            <span class="ticker-item">·</span>
-            <span class="ticker-item">Prototyping</span>
-            <span class="ticker-item">·</span>
-        </div>
+    <!-- Role tag on right side -->
+    <div class="hero-role-right">
+        <span class="hero-role">Milan, Italy</span>
     </div>
 
     <h1 class="hero-name">Lucía Medina</h1>
@@ -753,30 +817,46 @@
 <!-- WORK -->
 <section id="work">
     <span class="s-label">Work</span>
+
+    <!-- Two staggered offset images overlapping the heading -->
+    <div class="proj-images-wrap rv">
+        <div class="proj-img-left" onclick="openProject('museon')">
+            <img src="https://github.com/Lumystik/PortfolioLucia/blob/main/images/museon-1.png?raw=true" alt="MUSE*ON">
+            <div class="proj-img-label">
+                <span class="proj-img-name">MUSE*ON</span>
+                <span class="proj-img-year">(2024)</span>
+            </div>
+        </div>
+        <div class="proj-img-right" onclick="openProject('artbeyond')">
+            <img src="https://github.com/Lumystik/PortfolioLucia/blob/main/images/art_1.png?raw=true" alt="Art Beyond Dimension">
+            <div class="proj-img-label">
+                <span class="proj-img-name">Art Beyond Dimension</span>
+                <span class="proj-img-year">(2023)</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- "Projects" heading overlaps the images -->
     <h2 class="work-h rv">Projects</h2>
+
     <ul class="proj-list">
-        <li><a class="proj-row rv" href="#" onclick="openProject('museon');return false;"
-            data-img="https://github.com/Lumystik/PortfolioLucia/blob/main/images/museon-1.png?raw=true">
+        <li><a class="proj-row rv" href="#" onclick="openProject('museon');return false;">
             <div class="proj-left"><span class="proj-name">MUSE*ON</span><span class="proj-year">(2024)</span></div>
             <span class="proj-tag">UX / UI</span>
         </a></li>
-        <li><a class="proj-row rv" href="#" onclick="openProject('artbeyond');return false;"
-            data-img="https://github.com/Lumystik/PortfolioLucia/blob/main/images/art_1.png?raw=true">
+        <li><a class="proj-row rv" href="#" onclick="openProject('artbeyond');return false;">
             <div class="proj-left"><span class="proj-name">Art Beyond Dimension</span><span class="proj-year">(2023)</span></div>
             <span class="proj-tag">Motion / UI</span>
         </a></li>
-        <li><a class="proj-row rv" href="#" onclick="openProject('films');return false;"
-            data-img="https://github.com/Lumystik/PortfolioLucia/blob/main/images/screenmainfilm.png?raw=true">
+        <li><a class="proj-row rv" href="#" onclick="openProject('films');return false;">
             <div class="proj-left"><span class="proj-name">Films Foundation</span><span class="proj-year">(2023)</span></div>
             <span class="proj-tag">UX / UI</span>
         </a></li>
-        <li><a class="proj-row rv" href="#" onclick="openProject('seedtag');return false;"
-            data-img="https://github.com/Lumystik/PortfolioLucia/blob/main/images/carseedtag2.png?raw=true">
+        <li><a class="proj-row rv" href="#" onclick="openProject('seedtag');return false;">
             <div class="proj-left"><span class="proj-name">Seedtag</span><span class="proj-year">(2020–2024)</span></div>
             <span class="proj-tag">Creative Ads</span>
         </a></li>
-        <li><a class="proj-row rv" href="#" onclick="openProject('pixela');return false;"
-            data-img="https://github.com/Lumystik/PortfolioLucia/blob/main/images/pixela.png?raw=true">
+        <li><a class="proj-row rv" href="#" onclick="openProject('pixela');return false;">
             <div class="proj-left"><span class="proj-name">Pixela</span><span class="proj-year">(2022)</span></div>
             <span class="proj-tag">Game Dev</span>
         </a></li>
@@ -875,51 +955,62 @@ document.querySelectorAll('a,button,.proj-row,.svc-row').forEach(el=>{
     el.addEventListener('mouseleave',()=>cur.classList.remove('big'));
 });
 
-// ── HERO PORTRAIT PARALLAX + CLIP WINDOW ──
+// ── HERO FRAME — FOLLOWS MOUSE FREELY ──
 const heroEl = document.getElementById('hero');
 const frame = document.getElementById('portrait-frame');
 const sharpLayer = document.getElementById('hero-bg-sharp');
-let targetX=0,targetY=0,curX=0,curY=0;
+
+const FW = 300, FH = 300;
+// Start centered-ish
+let targetX = 0, targetY = -50;
+let smoothX = 0, smoothY = -50;
+let mouseInsideHero = false;
 
 function updateClip() {
-    // Get frame's current position relative to the hero section
-    const heroRect = heroEl.getBoundingClientRect();
-    const frameRect = frame.getBoundingClientRect();
-
-    const top    = frameRect.top    - heroRect.top;
-    const left   = frameRect.left   - heroRect.left;
-    const bottom = heroRect.height  - (top + frameRect.height);
-    const right  = heroRect.width   - (left + frameRect.width);
-
+    const hr = heroEl.getBoundingClientRect();
+    const fr = frame.getBoundingClientRect();
+    const x1 = fr.left   - hr.left;
+    const y1 = fr.top    - hr.top;
+    const x2 = x1 + FW;
+    const y2 = y1 + FH;
+    // polygon matching Framer's exact clip-path approach
     sharpLayer.style.clipPath =
-        `inset(${top}px ${right}px ${bottom}px ${left}px)`;
+        `polygon(${x1}px ${y1}px, ${x2}px ${y1}px, ${x2}px ${y2}px, ${x1}px ${y2}px)`;
 }
 
-heroEl.addEventListener('mousemove', e=>{
-    const r = heroEl.getBoundingClientRect();
-    const cx = r.left+r.width/2, cy = r.top+r.height/2;
-    targetX = (e.clientX - cx) * 0.055;
-    targetY = (e.clientY - cy) * 0.055;
+heroEl.addEventListener('mousemove', e => {
+    mouseInsideHero = true;
+    const hr = heroEl.getBoundingClientRect();
+    // target = mouse position relative to hero center
+    targetX = e.clientX - hr.left - hr.width  / 2;
+    targetY = e.clientY - hr.top  - hr.height / 2;
+    // clamp so frame stays inside hero
+    const halfW = hr.width  / 2 - FW / 2;
+    const halfH = hr.height / 2 - FH / 2;
+    targetX = Math.max(-halfW, Math.min(halfW, targetX));
+    targetY = Math.max(-halfH, Math.min(halfH, targetY));
 });
 
-(function animFrame(){
-    curX += (targetX-curX)*0.08;
-    curY += (targetY-curY)*0.08;
-    frame.style.transform = `translate(calc(-50% + ${curX}px), calc(-50% + ${curY}px))`;
+heroEl.addEventListener('mouseleave', () => {
+    mouseInsideHero = false;
+    // drift back to center
+    targetX = 0;
+    targetY = -50;
+});
+
+(function animFrame() {
+    // smooth follow — faster (0.12) when mouse inside, slower drift back
+    const speed = mouseInsideHero ? 0.14 : 0.06;
+    smoothX += (targetX - smoothX) * speed;
+    smoothY += (targetY - smoothY) * speed;
+    frame.style.left = '50%';
+    frame.style.top  = '50%';
+    frame.style.transform = `translate(calc(-50% + ${smoothX}px), calc(-50% + ${smoothY}px))`;
     updateClip();
     requestAnimationFrame(animFrame);
 })();
 
-// Initial clip on load
-window.addEventListener('load', updateClip);
-
-// ── FLOATING PROJECT IMAGE ──
-const fImg = document.getElementById('float-img');
-document.querySelectorAll('.proj-row[data-img]').forEach(row=>{
-    row.addEventListener('mouseenter', ()=>{ fImg.src=row.dataset.img; fImg.classList.add('show'); });
-    row.addEventListener('mouseleave', ()=>fImg.classList.remove('show'));
-    row.addEventListener('mousemove', e=>{ fImg.style.left=e.clientX+'px'; fImg.style.top=e.clientY+'px'; });
-});
+// ── PROJECT SCROLL STRIP — clicking handled inline via onclick ──
 
 // ── SCROLL REVEAL ──
 const rvEls = document.querySelectorAll('.rv');
