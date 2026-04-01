@@ -1,0 +1,101 @@
+h1{display: none}
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px; /* Match your inner page max width */
+    margin: 0 auto; /* Center container horizontally */
+    padding: 10px 5%;/* Consistent horizontal padding */
+    box-sizing: border-box;
+    z-index: 1001;
+}
+
+
+.brand a {
+    color: rgba(255, 255, 255);
+    font-size: 2rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 800;
+}
+
+.brand a:hover {
+    color: linear-gradient(
+    to right,
+    #7bdcb5 0%,
+    rgba(67, 68, 218, 0.8) 100%,
+    rgba(49, 98, 255, 0.8) 0%)
+}
+
+/* Navigation Links */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links li {
+    display: inline-block;
+}
+
+.nav-links li a {
+    color: #f0f0f0;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px 15px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    border-radius: 12px;
+    transition: color 0.3s ease;
+    overflow: hidden;
+}
+
+.nav-links li a:hover {
+    color:white;
+    border-radius: 50px;
+    padding: 10px 15px;
+    border: 2px solid transparent; /* Set initial transparent border */
+    /*border-image: linear-gradient(
+    to right,
+    #7bdcb5 0%,
+    rgba(67, 68, 218, 0.8) 100%,
+    rgba(49, 98, 255, 0.8) 0%
+    );*/
+    border-color:rgba(67, 68, 218, 0.8);
+    box-sizing: border-box;
+    border-image-slice: 1;
+    /*color: #7bdcb5;*/
+}
+/* Hamburger Menu Icon */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 4px;
+}
+
+@media (max-width: 768px) {
+    .hamburger { display: flex; }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        background-color: #111;
+        padding: 15px 0;
+        border-radius: 0 0 10px 10px;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.7);
+    }
+
+    .nav-links.show { display: flex; }
+}

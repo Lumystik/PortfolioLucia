@@ -1,0 +1,1921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Codebook Interactive</title>
+
+  <!-- Nunito Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Kalam for notes/circles -->
+  <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- External Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
+  <style>
+    :root {
+      --text-primary: #2F323A;
+      --text-secondary: #848484;
+      --bg-panel: #EEF0F4;
+      --bg-page: #FFFFFF;
+
+      --theme-1-yellow: #f9eea2;
+      --theme-2-green: #BBEED5;
+      --theme-3-purple: #B9B3F8;
+      --theme-4-blue: #C0DBEE;
+      --theme-5-pink: #F5A4AB; /* For new themes */
+
+      --btn-hover: #e2e4e8;
+      --accent-primary: #B9B3F8;
+
+      /* Pastel Charcoal Background for Playground */
+      --pg-bg-charcoal: #464952; 
+      --pg-dot-color: #585c66;
+
+      --note-pink: #fff0f1;
+      --note-yellow: #fffcdb;
+      --note-blue: #e8f4ff;
+      --note-green: #eafaf1;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 20px 40px;
+      background-color: var(--bg-page);
+      border-bottom: 1px solid var(--bg-panel);
+      flex-shrink: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .header-content h1 {
+      margin: 0;
+      font-size: 24px;
+      color: var(--text-primary);
+      font-weight: 800;
+    }
+
+    .header-content p.subtitle {
+      margin: 5px 0 0 0;
+      color: var(--text-secondary);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      background-color: var(--bg-panel);
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: background-color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      user-select: none;
+    }
+
+    .btn:hover { background-color: var(--btn-hover); }
+
+    .btn-primary {
+      background-color: var(--accent-primary);
+      color: #fff;
+    }
+    .btn-primary:hover { opacity: 0.92; }
+
+    .btn-danger {
+      background: #2F323A;
+      color: #fff;
+    }
+    .btn-danger:hover { opacity: 0.92; }
+
+    input[type="file"] { display: none; }
+
+    .board-container {
+      flex: 1;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 30px 40px;
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .column {
+      background-color: var(--bg-panel);
+      min-width: 360px;
+      max-width: 360px;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      max-height: 100%;
+      flex-shrink: 0;
+      transition: box-shadow 0.2s;
+    }
+
+    .column-header {
+      padding: 16px 20px;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      color: var(--text-primary);
+      position: sticky;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      z-index: 10;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .col-title {
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+      cursor: pointer; /* Click to edit */
+    }
+    .col-title:hover {
+        text-decoration: underline;
+        text-decoration-style: dotted;
+    }
+
+    .card-count {
+      background: rgba(255,255,255,0.6);
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--text-primary);
+      white-space: nowrap;
+    }
+
+    /* Theme Delete Button */
+    .theme-delete-btn {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.1);
+      border: none;
+      color: #555;
+      font-weight: 900;
+      font-size: 14px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .theme-delete-btn:hover {
+      background: #ff5252;
+      color: #fff;
+    }
+
+    .card-list {
+      padding: 12px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 50px;
+      /* Scrollbar aesthetic for column */
+      scrollbar-width: thin;
+      scrollbar-color: #D1D5DB transparent;
+    }
+
+    .subsection-title {
+      font-size: 11px;
+      font-weight: 900;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      margin-top: 12px;
+      margin-bottom: 4px;
+      padding-left: 4px;
+      letter-spacing: 0.5px;
+      pointer-events: none;
+    }
+
+    .card {
+      background-color: #FFFFFF;
+      padding: 16px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: 1px solid transparent;
+      cursor: grab;
+      position: relative;
+    }
+
+    .card:active { cursor: grabbing; }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+    }
+
+    /* Delete Button Styles - High Visibility */
+    .card-delete-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 22px;
+      height: 22px;
+      border: none;
+      background: #ffebee; /* Soft Red Background */
+      color: #c62828; /* Dark Red Text */
+      font-weight: 900;
+      font-size: 16px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      opacity: 1; /* Always visible */
+      transition: all 0.2s;
+      z-index: 20;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .card-delete-btn:hover {
+      background: #ef5350;
+      color: #fff;
+      transform: scale(1.1);
+    }
+
+    .card-text {
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--text-primary);
+      font-weight: 800;
+      padding-right: 24px; /* More space for delete btn */
+    }
+
+    .card-type {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 10px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      background-color: var(--bg-panel);
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-weight: 800;
+    }
+
+    .card-quote {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #f0f0f0;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #666;
+      font-style: italic;
+      display: none;
+      white-space: pre-wrap;
+      font-weight: 700;
+    }
+    .card-quote.visible { display: block; }
+
+    .card-quote-actions {
+      margin-top: 8px;
+      display: none;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .card-quote-actions.visible { display:flex; }
+
+    .mini-btn {
+      border: none;
+      background: var(--bg-panel);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--text-primary);
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
+    }
+    .mini-btn:hover { background: var(--btn-hover); }
+
+    .col-theme-1 { background-color: var(--theme-1-yellow); }
+    .col-theme-2 { background-color: var(--theme-2-green); }
+    .col-theme-3 { background-color: var(--theme-3-purple); }
+    .col-theme-4 { background-color: var(--theme-4-blue); }
+    .col-theme-5 { background-color: var(--theme-5-pink); }
+
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #D1D5DB; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #9CA3AF; }
+
+    .sortable-ghost{ opacity: 0.35; }
+
+    /* Playground */
+    .pg-backdrop{ position: fixed; inset: 0; background: rgba(47,50,58,0.10); display:none; z-index: 2000; }
+    .pg-backdrop.open{ display:block; }
+    .pg-modal{ position: fixed; left: 50%; top: 50%; transform: translate(-50%,-50%); width: min(1400px, calc(100vw - 40px)); height: min(900px, calc(100vh - 60px)); background: #fff; border-radius: 18px; border: 1px solid var(--bg-panel); box-shadow: 0 20px 60px rgba(0,0,0,0.14); display:none; z-index: 2001; overflow: hidden; }
+    .pg-modal.open{ display:flex; flex-direction: column; }
+    
+    .pg-header{ padding: 14px 16px; border-bottom: 1px solid var(--bg-panel); display:flex; align-items:center; justify-content: space-between; gap: 12px; background: var(--bg-page); flex: 0 0 auto; }
+    .pg-title{ font-weight: 900; font-size: 16px; letter-spacing: 0.2px; }
+    .icon-btn{ width: 36px; height: 36px; border-radius: 10px; border: none; background: var(--bg-panel); cursor: pointer; font-weight: 900; font-size: 18px; line-height: 1; display:flex; align-items:center; justify-content:center; user-select:none; }
+    .icon-btn:hover{ background: var(--btn-hover); }
+    
+    .pg-content{ display: grid; grid-template-columns: 1fr 320px; flex: 1; overflow: hidden; }
+
+    /* Carousel: ONE theme at a time, full area */
+    .pg-stage{ position: relative; display:flex; flex-direction: column; background: #fafafa; }
+    .pg-carousel{ display:flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; background: #fff; border-bottom: 1px solid rgba(0,0,0,0.04); }
+    .pg-carousel-title{ font-size: 18px; font-weight: 900; letter-spacing: 0.3px; color: #1f2430; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 500px; display:flex; align-items:center; gap:8px;}
+    .pg-dots{ display:flex; gap: 8px; align-items:center; }
+    .pg-dot{ width: 10px; height: 10px; border-radius: 999px; background: rgba(47,50,58,0.15); cursor: pointer; transition: 0.2s; }
+    .pg-dot.active{ background: rgba(47,50,58,0.8); transform: scale(1.2); }
+
+    .pg-canvas-wrapper{ position: relative; flex: 1; min-height: 0; padding: 0; overflow: hidden; }
+    .pg-canvas-inner{ 
+      position: relative; height: 100%; width: 100%;
+      /* Pastel Charcoal Background */
+      background-color: var(--pg-bg-charcoal);
+      background-image: radial-gradient(var(--pg-dot-color) 1px, transparent 1px);
+      background-size: 24px 24px; 
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.2); 
+      overflow: hidden; 
+    }
+    
+    .pg-canvas-screen{ 
+        position:absolute; inset:0; display:block; opacity:0; pointer-events:none; transition: opacity 0.3s ease; 
+        /* Tiny Scroll Implementation */
+        overflow: auto; 
+    }
+    .pg-canvas-screen::-webkit-scrollbar { width: 6px; height: 6px; }
+    .pg-canvas-screen::-webkit-scrollbar-track { background: transparent; }
+    .pg-canvas-screen::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
+    .pg-canvas-screen::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
+
+    .pg-canvas-screen.active{ opacity:1; pointer-events:auto; }
+    
+    /* Content must be large enough to scroll if items are pushed down */
+    .pg-screen-content { position: relative; width: 100%; min-height: 100%; }
+
+    .pg-sidebar{ border-left: 1px solid var(--bg-panel); background: #fff; display:flex; flex-direction: column; min-height: 0; z-index: 20; box-shadow: -4px 0 12px rgba(0,0,0,0.03); }
+    .pg-sidebar-top{ padding: 14px; border-bottom: 1px solid var(--bg-panel); display:flex; flex-direction: column; gap: 10px; }
+    .pg-search{ width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid #ddd; background: #fff; font-size: 13px; font-weight: 800; color: var(--text-primary); outline: none; }
+    
+    .pg-code-list{ padding: 14px; overflow-y: auto; display:flex; flex-direction: column; gap: 8px; flex: 1; }
+    
+    .pg-code-item{ background: #fff; border: 1px solid #ddd; border-left: 4px solid #aaa; border-radius: 6px; padding: 10px 12px; display:flex; align-items:center; justify-content: space-between; gap: 10px; cursor: grab; user-select: none; transition: 0.2s; }
+    .pg-code-item:hover { border-color: #bbb; transform: translateX(2px); }
+    
+    /* Hide used items to prevent repetition */
+    .pg-code-item.used { display: none; } 
+    
+    .pg-code-item:active{ cursor: grabbing; }
+    .pg-code-label{ font-size: 12px; font-weight: 800; color: var(--text-primary); line-height: 1.3; }
+    
+    /* Notes on Playground - CIRCLE STYLE */
+    .note{ 
+      position: absolute; width: 140px; height: 140px; padding: 16px; 
+      border-radius: 50%; /* CIRCLE */
+      background: var(--note-yellow); 
+      box-shadow: 2px 4px 12px rgba(0,0,0,0.25); 
+      cursor: grab; user-select: none; touch-action: none; 
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      transition: box-shadow 0.2s, transform 0.1s;
+      font-family: "Kalam", "Nunito Sans", sans-serif; /* Fallback to Nunito */
+      z-index: 10;
+    }
+    .note:active{ cursor: grabbing; box-shadow: 0 10px 25px rgba(0,0,0,0.4); z-index: 1000 !important; }
+    .note.selected{ outline: 3px dashed #fff; outline-offset: 4px; z-index: 1000; }
+    
+    /* Theme colors for notes */
+    .pg-screen-content[data-theme-id="1"] .note { background-color: #fff9c4; transform: rotate(-2deg); }
+    .pg-screen-content[data-theme-id="2"] .note { background-color: #dcedc8; transform: rotate(2deg); }
+    .pg-screen-content[data-theme-id="3"] .note { background-color: #e1bee7; transform: rotate(-1deg); }
+    .pg-screen-content[data-theme-id="4"] .note { background-color: #b3e5fc; transform: rotate(1deg); }
+    .pg-screen-content[data-theme-id="5"] .note { background-color: #ffccbc; transform: rotate(-2deg); }
+
+    .note-title{ 
+      font-weight: 800; font-size: 12px; line-height: 1.3; color: #333; 
+      max-height: 60px; overflow: hidden; pointer-events: none; 
+      margin-bottom: 24px; /* Space for footer */
+      flex: unset; 
+    }
+    .note-footer{ 
+      position: absolute; bottom: 20px;
+      display:flex; align-items: center; justify-content: center; width: 100%;
+      margin-top: 0; opacity: 1; 
+    }
+    .note-x{ 
+      border: none; background: rgba(0,0,0,0.15); border-radius: 50%; width: 20px; height: 20px;
+      cursor: pointer; font-weight: 900; color: #555; font-size: 12px; line-height: 1;
+      position: absolute; top: 18px; right: 18px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .note-x:hover{ background: #d32f2f; color: white; }
+    
+    .note-quote-btn { 
+      font-size: 10px; padding: 4px 8px; 
+      background: rgba(255,255,255,0.7); 
+      border: 1px solid rgba(0,0,0,0.1); 
+      border-radius: 12px;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .note-quote-btn:hover { background: #fff; transform: scale(1.05); }
+
+    .hint{ font-size: 12px; color: var(--text-secondary); font-weight: 700; line-height: 1.4; }
+
+    /* Group Labels on Canvas (for theme 2) */
+    .group-label {
+      position: absolute;
+      font-size: 14px;
+      font-weight: 900;
+      color: rgba(255,255,255,0.7); /* Light text for charcoal bg */
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      pointer-events: none;
+      z-index: 0;
+      border-bottom: 2px dashed rgba(255,255,255,0.3);
+      width: 200px;
+      padding-bottom: 4px;
+    }
+
+    /* Quote modal */
+    .modal-backdrop{ position: fixed; inset: 0; background: rgba(47,50,58,0.10); display:none; z-index: 2100; }
+    .modal-backdrop.open{ display:block; }
+    .modal{ position: fixed; left: 50%; top: 50%; transform: translate(-50%,-50%); width: min(860px, calc(100vw - 40px)); max-height: min(78vh, 720px); background: #fff; border-radius: 16px; border: 1px solid var(--bg-panel); box-shadow: 0 20px 60px rgba(0,0,0,0.12); display:none; z-index: 2101; overflow: hidden; }
+    .modal.open{ display:block; }
+    .modal-header{ padding: 14px 16px; border-bottom: 1px solid var(--bg-panel); display:flex; align-items:center; justify-content: space-between; gap: 10px; background: var(--bg-page); }
+    .modal-title{ font-weight: 900; font-size: 14px; line-height: 1.2; }
+    .modal-body{ padding: 14px 16px 18px 16px; overflow:auto; display:flex; flex-direction: column; gap: 10px; background: #fff; max-height: 60vh;}
+    .quote-item{ padding: 12px 12px; border-radius: 12px; background: var(--bg-panel); border: 1px solid rgba(0,0,0,0.02); }
+    .quote-text{ font-size: 13px; line-height: 1.45; font-style: italic; color: #555; white-space: pre-wrap; font-weight: 700; }
+    .quote-meta{ margin-top: 8px; font-size: 12px; color: var(--text-secondary); font-weight: 800; }
+   
+    /* Confirm modal buttons */
+    .confirm-actions{ display:flex; gap:10px; justify-content:flex-end; margin-top: 12px; flex-wrap: wrap; }
+
+    /* Auto sync toggle */
+    .switch-container { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 800; color: var(--text-primary); margin-right: 12px; }
+    .switch { position: relative; display: inline-block; width: 34px; height: 20px; }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+    .slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+    input:checked + .slider { background-color: var(--accent-primary); }
+    input:checked + .slider:before { transform: translateX(14px); }
+
+    /* Instruction Modal Content */
+    .instruction-step { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .step-num { flex-shrink: 0; width: 24px; height: 24px; background: var(--accent-primary); color: #fff; border-radius: 50%; font-weight: 900; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+    .step-text { font-size: 14px; line-height: 1.5; color: #444; font-weight: 600; }
+    .step-text strong { color: var(--text-primary); }
+
+  </style>
+
+  <!-- Google Translate -->
+  <script>
+    function translatePage() {
+      new google.translate.TranslateElement(
+        {
+          pageLanguage: 'en',
+          includedLanguages: 'en,it',
+          autoDisplay: false
+        },
+        'google_translate_element'
+      );
+    }
+  </script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=translatePage"></script>
+</head>
+
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Codebook</h1>
+      <p class="subtitle" id="headerSubtitle">Consolidated View: 0 Core Themes</p>
+    </div>
+
+    <div class="controls" data-html2canvas-ignore="true">
+      <button class="btn" id="helpBtn">❓ Instructions</button>
+      <input type="file" id="csvInput" accept=".csv,.html,.htm" />
+      <button class="btn btn-primary" id="importBtn">📂 Import CSV</button>
+      <button class="btn" id="openPlaygroundBtn">🎡 Code Playground</button>
+      <button class="btn" id="addCodeBtn">+ Add Card</button>
+      <button class="btn" id="saveBtn">Save Layout</button>
+      <button class="btn" id="exportPdfBtn">Export PDF</button>
+      <button class="btn btn-danger" id="resetPresetBtn">Reset to Preset</button>
+      <div id="google_translate_element"></div>
+    </div>
+  </header>
+
+  <div style="padding: 24px 40px 0 40px; flex-shrink: 0;">
+    <h1 style="margin: 0; font-size: 20px; font-weight: 800; color: var(--text-primary);">Analysis Overview</h1>
+  </div>
+
+  <div class="board-container" id="board">
+    <!-- Columns populated by JS or preset -->
+    <div class="column" data-theme="1">
+      <div class="column-header col-theme-1">
+        <div class="header-top">
+          <span class="col-title" onclick="promptEditTheme(1)">Theme 1 - Click to Add Name</span>
+          <div style="display:flex; align-items:center; gap:6px;">
+             <span class="card-count">0</span>
+             <button class="theme-delete-btn" onclick="promptDeleteTheme(1)">×</button>
+          </div>
+        </div>
+      </div>
+      <div class="card-list" id="colList1"></div>
+    </div>
+
+    <div class="column" data-theme="2">
+      <div class="column-header col-theme-2">
+        <div class="header-top">
+          <span class="col-title" onclick="promptEditTheme(2)">Theme 2 - Click to Add Name</span>
+          <div style="display:flex; align-items:center; gap:6px;">
+             <span class="card-count">0</span>
+             <button class="theme-delete-btn" onclick="promptDeleteTheme(2)">×</button>
+          </div>
+        </div>
+      </div>
+      <div class="card-list" id="colList2"></div>
+    </div>
+
+    <div class="column" data-theme="3">
+      <div class="column-header col-theme-3">
+        <div class="header-top">
+          <span class="col-title" onclick="promptEditTheme(3)">Theme 3 - Click to Add Name</span>
+          <div style="display:flex; align-items:center; gap:6px;">
+             <span class="card-count">0</span>
+             <button class="theme-delete-btn" onclick="promptDeleteTheme(3)">×</button>
+          </div>
+        </div>
+      </div>
+      <div class="card-list" id="colList3"></div>
+    </div>
+
+    <div class="column" data-theme="4">
+      <div class="column-header col-theme-4">
+        <div class="header-top">
+          <span class="col-title" onclick="promptEditTheme(4)">Theme 4 - Click to Add Name</span>
+          <div style="display:flex; align-items:center; gap:6px;">
+             <span class="card-count">0</span>
+             <button class="theme-delete-btn" onclick="promptDeleteTheme(4)">×</button>
+          </div>
+        </div>
+      </div>
+      <div class="card-list" id="colList4"></div>
+    </div>
+  </div>
+
+  <!-- Playground overlay -->
+  <div class="pg-backdrop" id="pgBackdrop"></div>
+  <div class="pg-modal" id="pgModal" aria-modal="true" role="dialog">
+      <div class="pg-header">
+        <div>
+          <div class="pg-title">Code Playground</div>
+          <div class="hint">Organize codes spatially. Changes here can update the main board instantly.</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <div class="switch-container">
+             <label class="switch">
+               <input type="checkbox" id="pgAutoSync">
+               <span class="slider"></span>
+             </label>
+             Auto-Sync to Main Board
+          </div>
+          <button class="icon-btn" id="closePgBtn" aria-label="Close">×</button>
+        </div>
+      </div>
+
+      <div class="pg-content">
+        <div class="pg-stage">
+          <div class="pg-carousel">
+            <button class="icon-btn" id="pgPrevBtn" title="Previous theme">‹</button>
+            <div style="display:flex;flex-direction:column;gap:4px;min-width:0;align-items:center;flex:1;">
+              <div class="pg-carousel-title">
+                <span id="pgThemeTitle" style="cursor:pointer;" title="Click to edit">Theme 1</span>
+                <button class="mini-btn" id="editThemeBtn" style="margin-left:10px; font-size:11px;">✎ Edit Title</button>
+              </div>
+              <div class="pg-dots" id="pgDots"></div>
+            </div>
+            <button class="icon-btn" id="pgNextBtn" title="Next theme">›</button>
+            <button class="btn btn-primary" id="addThemeBtn" style="margin-left:12px;">➕ New Theme</button>
+          </div>
+
+          <div class="pg-canvas-wrapper">
+            <div class="pg-canvas-inner">
+              <div class="pg-canvas-screen active" data-theme="1"><div class="pg-screen-content" id="pgTheme1Inner" data-theme-id="1"></div></div>
+              <div class="pg-canvas-screen" data-theme="2"><div class="pg-screen-content" id="pgTheme2Inner" data-theme-id="2"></div></div>
+              <div class="pg-canvas-screen" data-theme="3"><div class="pg-screen-content" id="pgTheme3Inner" data-theme-id="3"></div></div>
+              <div class="pg-canvas-screen" data-theme="4"><div class="pg-screen-content" id="pgTheme4Inner" data-theme-id="4"></div></div>
+              <!-- Dynamic themes will append here -->
+            </div>
+          </div>
+        </div>
+
+        <aside class="pg-sidebar">
+          <div class="pg-sidebar-top">
+            <h3 style="margin:0 0 10px 0; font-size:14px; font-weight:900;">Theme Codes</h3>
+            <!-- NEW CREATE BUTTON -->
+            <button class="btn btn-primary" id="pgCreateCodeBtn" style="width:100%; justify-content:center; margin-bottom: 12px;">✨ Create Code</button>
+            
+            <select id="pgSidebarFilter" style="width:100%; padding:6px; font-size:12px; font-weight:700; border-radius:4px; border:1px solid #ddd; margin-bottom:8px;">
+               <option value="current">Current Theme</option>
+               <option value="unassigned">Unassigned (New)</option>
+               <option value="all">All Codes</option>
+            </select>
+            <input class="pg-search" id="pgSearch" placeholder="Filter codes..." />
+            <div class="hint" style="margin-top:6px;">Drag to canvas (used codes are hidden)</div>
+          </div>
+          <div class="pg-code-list" id="pgCodeList"></div>
+          <div style="padding:14px; border-top:1px solid #eee;">
+            <button class="btn btn-primary" id="pgManualSyncBtn" style="width:100%; justify-content:center;">⬆️ Sync to Main Board</button>
+          </div>
+        </aside>
+      </div>
+  </div>
+
+  <!-- Quote Modal -->
+  <div class="modal-backdrop" id="modalBackdrop"></div>
+  <div class="modal" id="quoteModal" role="dialog" aria-modal="true">
+    <div class="modal-header">
+      <div class="modal-title" id="modalTitle">Quotes</div>
+      <button class="icon-btn" id="closeModalBtn" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+
+  <!-- Edit Theme Modal -->
+  <div class="modal" id="editThemeModal" role="dialog" aria-modal="true">
+    <div class="modal-header">
+      <div class="modal-title">Edit Theme Title</div>
+      <button class="icon-btn" id="closeEditThemeBtn" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <div style="margin-bottom: 16px;">
+        <label for="themeTitleInput" style="display:block; font-size:12px; font-weight:700; color:#666; margin-bottom:6px;">Title</label>
+        <input type="text" id="themeTitleInput" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:6px; font-size:14px; font-weight:600;" />
+      </div>
+      <div class="confirm-actions">
+        <button class="btn" id="cancelEditThemeBtn">Cancel</button>
+        <button class="btn btn-primary" id="saveThemeBtn">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Create Code Modal -->
+  <div class="modal" id="createCodeModal" role="dialog" aria-modal="true">
+    <div class="modal-header">
+      <div class="modal-title">Create New Code</div>
+      <button class="icon-btn" id="closeCreateCodeBtn" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <div style="margin-bottom: 16px;">
+        <label for="newCodeInput" style="display:block; font-size:12px; font-weight:700; color:#666; margin-bottom:6px;">Code Name</label>
+        <input type="text" id="newCodeInput" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:6px; font-size:14px; font-weight:600;" placeholder="e.g., Authentic Expression" />
+      </div>
+      <div class="confirm-actions">
+        <button class="btn" id="cancelCreateCodeBtn">Cancel</button>
+        <button class="btn btn-primary" id="confirmCreateCodeBtn">Create & Drop</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Help/Instructions Modal -->
+  <div class="modal" id="helpModal" role="dialog" aria-modal="true">
+    <div class="modal-header">
+      <div class="modal-title">How to use Codebook</div>
+      <button class="icon-btn" id="closeHelpBtn" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="instruction-step">
+        <div class="step-num">1</div>
+        <div class="step-text"><strong>Import your Data.</strong> Click "Import CSV" to load your codes. The tool expects columns named 'code' or 'tag', and 'content' for quotes.</div>
+      </div>
+      <div class="instruction-step">
+        <div class="step-num">2</div>
+        <div class="step-text"><strong>Organize Themes.</strong> The board starts with 4 blank themes. Click the titles (e.g., "Theme 1 - Click to Add Name") to rename them according to your analysis.</div>
+      </div>
+      <div class="instruction-step">
+        <div class="step-num">3</div>
+        <div class="step-text"><strong>Sort and Analyze.</strong> Drag cards between columns to recode them. Click the "Quotes" button on any card to view the underlying qualitative data.</div>
+      </div>
+      <div class="instruction-step">
+        <div class="step-num">4</div>
+        <div class="step-text"><strong>Visual Playground.</strong> Use the "Code Playground" for a 2D spatial view. Drag codes onto the canvas to cluster them visually.</div>
+      </div>
+      <div class="instruction-step">
+        <div class="step-num">5</div>
+        <div class="step-text"><strong>Export.</strong> Once finished, use "Export PDF" to save your codebook or "Save Layout" to keep your progress in this browser.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirm Modal -->
+  <div class="modal-backdrop" id="confirmBackdrop"></div>
+  <div class="modal" id="confirmModal" role="dialog" aria-modal="true">
+    <div class="modal-header">
+      <div class="modal-title" id="confirmTitle">Confirm</div>
+      <button class="icon-btn" id="closeConfirmBtn" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body" id="confirmBody">
+      <div class="hint" id="confirmMessage" style="font-size:14px; color:#333;"></div>
+      <div class="confirm-actions">
+        <button class="btn" id="confirmCancelBtn">Cancel</button>
+        <button class="btn btn-danger" id="confirmOkBtn">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden Embedded Data -->
+  <script id="embeddedQuotesMap" type="application/json">{}</script>
+
+  <script>
+    // --- STORAGE KEYS ---
+    const STORAGE_KEY_BOARD = 'codebookLayout_v25_fixed_final';
+    const STORAGE_KEY_QUOTES = 'codebookQuotesMap_v25_fixed_final';
+    const STORAGE_KEY_THEMEMAP = 'codebookThemeMap_v25_fixed_final';
+    const STORAGE_KEY_PLAYGROUND = 'codebookPlaygroundLayout_v25_fixed_final';
+    const STORAGE_KEY_TITLES = 'codebookThemeTitles_v25_fixed_final';
+
+    // --- STATE ---
+    let quotesMap = {}; 
+    let codeThemeMap = {}; 
+    let currentTheme = 1;
+    let autoSyncEnabled = false;
+    let totalThemes = 4;
+
+    // --- UTILS ---
+    const normalize = (s) => (s || '').trim().toLowerCase();
+    
+    // Default Theme Titles
+    let themeTitles = {
+      1: "Theme 1 - Click to Add Name",
+      2: "Theme 2 - Click to Add Name",
+      3: "Theme 3 - Click to Add Name",
+      4: "Theme 4 - Click to Add Name"
+    };
+
+    // --- DOM REFERENCES ---
+    const boardContainer = document.getElementById('board');
+    const modalBackdrop = document.getElementById('modalBackdrop');
+    const quoteModal = document.getElementById('quoteModal');
+    const helpModal = document.getElementById('helpModal');
+    const pgModal = document.getElementById('pgModal');
+    
+    // --- INITIAL DATA LOAD ---
+    // (Existing PRESET_CODES logic unchanged)
+    const PRESET_CODES = [];
+
+    // --- INIT BOARD ---
+    function initBoard() {
+      // 1. Load Titles
+      const savedTitles = localStorage.getItem(STORAGE_KEY_TITLES);
+      if(savedTitles) {
+        try { 
+           const parsed = JSON.parse(savedTitles);
+           themeTitles = {...themeTitles, ...parsed};
+           const keys = Object.keys(themeTitles).map(k => parseInt(k));
+           if(keys.length > 0) totalThemes = Math.max(4, ...keys);
+        } catch(e) {}
+      }
+
+      // Sync titles to main board headers
+      for(let t=1; t<=4; t++) {
+         const colHeader = document.querySelector(`.column[data-theme="${t}"] .col-title`);
+         if(colHeader && themeTitles[t]) colHeader.textContent = themeTitles[t];
+      }
+
+      const savedThemeMap = localStorage.getItem(STORAGE_KEY_THEMEMAP);
+      if(savedThemeMap) {
+        try { codeThemeMap = JSON.parse(savedThemeMap); } catch(e){}
+      }
+
+      const savedQuotes = localStorage.getItem(STORAGE_KEY_QUOTES);
+      if (savedQuotes) {
+         try { quotesMap = JSON.parse(savedQuotes); } catch(e){ quotesMap = {}; }
+      } else {
+         const embeddedScript = document.getElementById('embeddedQuotesMap');
+         if(embeddedScript) {
+            try { 
+               quotesMap = JSON.parse(embeddedScript.textContent); 
+               localStorage.setItem(STORAGE_KEY_QUOTES, JSON.stringify(quotesMap));
+            } catch(e) { quotesMap = {}; }
+         }
+      }
+
+      const savedBoard = localStorage.getItem(STORAGE_KEY_BOARD);
+      if (savedBoard) {
+        boardContainer.innerHTML = savedBoard;
+      } else {
+        renderPresetBoard();
+      }
+
+      scanBoardForThemes();
+      initSortable();
+      updateCounts();
+      hydrateCards(); // AUTO-FIX: Inject missing buttons & re-attach events
+      hydrateThemes(); // AUTO-FIX: Inject theme delete buttons
+      updateHeaderCount();
+    }
+
+    function updateHeaderCount() {
+       const count = document.querySelectorAll('.column').length;
+       const el = document.getElementById('headerSubtitle');
+       if(el) el.innerText = `Consolidated View: ${count} Core Themes`;
+    }
+
+    function renderPresetBoard() {
+      [1,2,3,4].forEach(t => {
+         const el = document.getElementById(`colList${t}`);
+         if(el) el.innerHTML = '';
+      });
+      PRESET_CODES.forEach(item => {
+        createCard(item.c, item.t, true);
+      });
+      saveBoard();
+    }
+
+    function createCard(text, themeId, append = true) {
+      const list = document.getElementById(`colList${themeId}`);
+      if(!list) return;
+
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <button class="card-delete-btn" title="Delete card">×</button>
+        <div class="card-text">${text}</div>
+        <div class="card-type">code</div>
+        <div class="card-quote"></div>
+        <div class="card-quote-actions"></div>
+      `;
+      
+      // Delete handler
+      card.querySelector('.card-delete-btn').onclick = (e) => {
+          e.stopPropagation();
+          promptDeleteCard(card, text);
+      };
+
+      refreshCardQuotes(card, text);
+      if(append) list.appendChild(card);
+    }
+
+    function refreshCardQuotes(card, text) {
+      const key = normalize(text);
+      const data = quotesMap[key];
+      const actions = card.querySelector('.card-quote-actions');
+      const quoteBody = card.querySelector('.card-quote');
+      
+      if(data && data.quotes && data.quotes.length > 0) {
+        // Show first quote
+        quoteBody.innerText = data.quotes[0].text;
+        quoteBody.classList.add('visible');
+        
+        actions.innerHTML = `<button class="mini-btn">💬 View all (${data.quotes.length})</button>`;
+        actions.classList.add('visible');
+        actions.querySelector('button').onclick = (e) => {
+           e.stopPropagation();
+           openQuoteModal(text);
+        };
+      } else {
+        quoteBody.classList.remove('visible');
+        actions.classList.remove('visible');
+      }
+    }
+
+    function hydrateCards() {
+      document.querySelectorAll('.card').forEach(card => {
+        const txt = card.querySelector('.card-text').innerText;
+        refreshCardQuotes(card, txt);
+
+        // Auto-fix for old data: Inject delete button if missing
+        if (!card.querySelector('.card-delete-btn')) {
+             const btn = document.createElement('button');
+             btn.className = 'card-delete-btn';
+             btn.title = 'Delete card';
+             btn.innerHTML = '×';
+             // Insert at beginning
+             card.insertBefore(btn, card.firstChild);
+             btn.onclick = (e) => {
+                 e.stopPropagation();
+                 promptDeleteCard(card, txt);
+             };
+        } else {
+             // Re-attach event listener if loaded from storage
+             const btn = card.querySelector('.card-delete-btn');
+             btn.onclick = (e) => {
+                 e.stopPropagation();
+                 promptDeleteCard(card, txt);
+             };
+        }
+      });
+    }
+
+    // New Hydration for Themes
+    function hydrateThemes() {
+        document.querySelectorAll('.column').forEach(col => {
+            const tId = col.dataset.theme;
+            const headerTop = col.querySelector('.header-top');
+            
+            // Check if delete button wrapper exists
+            if (!headerTop.querySelector('.theme-delete-btn')) {
+                // Remove existing counter if separate, we will group them
+                const oldCounter = headerTop.querySelector('.card-count');
+                if(oldCounter) oldCounter.remove();
+
+                const group = document.createElement('div');
+                group.style.cssText = "display:flex; align-items:center; gap:6px;";
+                group.innerHTML = `
+                    <span class="card-count">0</span>
+                    <button class="theme-delete-btn" title="Delete Theme">×</button>
+                `;
+                headerTop.appendChild(group);
+                
+                // Attach event
+                group.querySelector('.theme-delete-btn').onclick = () => promptDeleteTheme(tId);
+            } else {
+                // Ensure event is attached
+                const btn = headerTop.querySelector('.theme-delete-btn');
+                btn.onclick = () => promptDeleteTheme(tId);
+            }
+        });
+        updateCounts(); // Refresh counts in new location
+    }
+
+    function scanBoardForThemes() {
+      // Rebuild map from current DOM
+      for(let t=1; t<=totalThemes; t++) {
+        const list = document.getElementById(`colList${t}`);
+        if(list) {
+          list.querySelectorAll('.card-text').forEach(el => {
+             const txt = el.textContent.trim();
+             if(txt) codeThemeMap[normalize(txt)] = t;
+          });
+        }
+      }
+      // Fallback to preset if not in DOM
+      PRESET_CODES.forEach(p => {
+        if(!codeThemeMap[normalize(p.c)]) codeThemeMap[normalize(p.c)] = p.t;
+      });
+      localStorage.setItem(STORAGE_KEY_THEMEMAP, JSON.stringify(codeThemeMap));
+    }
+
+    function initSortable() {
+      document.querySelectorAll('.card-list').forEach(list => {
+        new Sortable(list, {
+          group: 'cards-shared',
+          animation: 150,
+          ghostClass: 'sortable-ghost',
+          onEnd: () => { 
+            updateCounts(); 
+            saveBoard(); 
+            scanBoardForThemes(); 
+          }
+        });
+      });
+    }
+
+    function updateCounts() {
+      document.querySelectorAll('.column').forEach(col => {
+        const count = col.querySelectorAll('.card').length;
+        const counter = col.querySelector('.card-count');
+        if (counter) counter.innerText = count;
+      });
+    }
+
+    function saveBoard() {
+      localStorage.setItem(STORAGE_KEY_BOARD, boardContainer.innerHTML);
+      localStorage.setItem(STORAGE_KEY_QUOTES, JSON.stringify(quotesMap));
+    }
+
+    // --- QUOTE MODAL ---
+    function openQuoteModal(codeText) {
+      const key = normalize(codeText);
+      const data = quotesMap[key];
+      const title = document.getElementById('modalTitle');
+      const body = document.getElementById('modalBody');
+      
+      title.innerText = codeText;
+      body.innerHTML = '';
+
+      if(!data || !data.quotes || data.quotes.length === 0) {
+        body.innerHTML = '<div class="hint">No quotes found for this code.</div>';
+      } else {
+        data.quotes.forEach((q, idx) => {
+           const div = document.createElement('div');
+           div.className = 'quote-item';
+           div.innerHTML = `
+             <div class="quote-text">${q.text}</div>
+             <div class="quote-meta">Source: ${q.source || 'Unknown'}</div>
+           `;
+           body.appendChild(div);
+        });
+      }
+      
+      modalBackdrop.classList.add('open');
+      quoteModal.classList.add('open');
+    }
+    
+    document.getElementById('closeModalBtn').onclick = () => {
+      modalBackdrop.classList.remove('open');
+      quoteModal.classList.remove('open');
+    }
+
+    // --- HELP MODAL ---
+    document.getElementById('helpBtn').onclick = () => {
+       modalBackdrop.classList.add('open');
+       helpModal.classList.add('open');
+    };
+    document.getElementById('closeHelpBtn').onclick = () => {
+       modalBackdrop.classList.remove('open');
+       helpModal.classList.remove('open');
+    };
+
+    // --- PLAYGROUND LOGIC ---
+    
+    const pgSearch = document.getElementById('pgSearch');
+    const pgCodeList = document.getElementById('pgCodeList');
+    const screens = {}; 
+    const filterSelect = document.getElementById('pgSidebarFilter');
+
+    function openPlayground() {
+      pgModal.classList.add('open');
+      document.getElementById('pgBackdrop').classList.add('open');
+      scanBoardForThemes(); 
+      
+      for(let i=1; i<=4; i++) {
+         if(!screens[i]) screens[i] = document.getElementById(`pgTheme${i}Inner`);
+      }
+
+      loadPlaygroundTheme(currentTheme);
+      
+      // Check if we need to auto-populate the playground
+      const screen = ensureScreenExists(currentTheme);
+      if(screen && screen.children.length === 0) {
+         if (currentTheme === 2) {
+           populatePlaygroundGroupsTheme2();
+         } else {
+           populatePlaygroundFromMain(currentTheme);
+         }
+      }
+    }
+
+    function ensureScreenExists(themeId) {
+       if(!screens[themeId]) {
+          const existing = document.getElementById(`pgTheme${themeId}Inner`);
+          if(existing) {
+             screens[themeId] = existing;
+          } else {
+             const inner = document.querySelector('.pg-canvas-inner');
+             const wrap = document.createElement('div');
+             wrap.className = 'pg-canvas-screen';
+             wrap.dataset.theme = themeId;
+             const content = document.createElement('div');
+             content.className = 'pg-screen-content';
+             content.id = `pgTheme${themeId}Inner`;
+             content.dataset.themeId = themeId;
+             wrap.appendChild(content);
+             inner.appendChild(wrap);
+             screens[themeId] = content;
+             
+             wrap.addEventListener('dragover', (e) => { e.preventDefault(); e.dataTransfer.dropEffect = 'copy'; });
+             wrap.addEventListener('drop', (e) => {
+               e.preventDefault();
+               const code = e.dataTransfer.getData('text/plain');
+               if(!code) return;
+               const rect = wrap.getBoundingClientRect();
+               const scrollTop = wrap.scrollTop || 0;
+               const scrollLeft = wrap.scrollLeft || 0;
+               
+               // Assign to this theme map
+               codeThemeMap[normalize(code)] = themeId;
+               localStorage.setItem(STORAGE_KEY_THEMEMAP, JSON.stringify(codeThemeMap));
+
+               addNoteToCanvas(themeId, code, (e.clientX - rect.left) + scrollLeft, (e.clientY - rect.top) + scrollTop);
+               renderSidebarList(themeId);
+             });
+          }
+       }
+       return screens[themeId];
+    }
+
+    function populatePlaygroundGroupsTheme2() {
+       const themeId = 2;
+       const colList = document.getElementById(`colList${themeId}`);
+       if(!colList) return;
+       const cards = Array.from(colList.querySelectorAll('.card .card-text'));
+       if(cards.length === 0) return;
+
+       const container = screens[themeId];
+       container.innerHTML = '';
+
+       const clusters = {
+          'label': { x: 50, y: 50, title: "Labels" },
+          'ai-assisted': { x: 350, y: 50, title: "AI-Assisted" },
+          'co-created': { x: 650, y: 50, title: "Co-Created" },
+          'made with ai': { x: 50, y: 600, title: "Made with AI" },
+          'other': { x: 350, y: 600, title: "Other / General" }
+       };
+
+       Object.values(clusters).forEach(c => {
+          const label = document.createElement('div');
+          label.className = 'group-label';
+          label.textContent = c.title;
+          label.style.left = c.x + 'px';
+          label.style.top = (c.y - 30) + 'px';
+          container.appendChild(label);
+       });
+
+       cards.forEach(card => {
+          const txt = card.textContent.trim();
+          const lower = normalize(txt);
+          let target = clusters['other'];
+
+          if(lower.includes('label')) target = clusters['label'];
+          else if(lower.includes('assist')) target = clusters['ai-assisted'];
+          else if(lower.includes('co-creat') || lower.includes('collabor')) target = clusters['co-created'];
+          else if(lower.includes('made with ai') || lower.includes('generated')) target = clusters['made with ai'];
+
+          const offsetX = (Math.random() * 40);
+          
+          addNoteToCanvas(themeId, txt, target.x + offsetX, target.y);
+          
+          target.y += 100; 
+       });
+       
+       renderSidebarList(themeId);
+    }
+
+    function populatePlaygroundFromMain(themeId) {
+      const colList = document.getElementById(`colList${themeId}`);
+      if(!colList) return;
+      
+      const cards = colList.querySelectorAll('.card .card-text');
+      if(cards.length === 0) return;
+
+      const container = ensureScreenExists(themeId);
+      
+      let containerW = container.offsetWidth;
+      if (containerW < 200) containerW = window.innerWidth - 360; 
+      if (containerW < 400) containerW = 800; 
+
+      const noteW = 140; 
+      const gap = 30; 
+      
+      // Force 4 cols if possible
+      let cols = Math.floor((containerW - 40) / (noteW + gap));
+      if (cols < 4) cols = 4; 
+
+      let x = 20, y = 20;
+      let colCount = 0;
+
+      cards.forEach(card => {
+         const txt = card.textContent.trim();
+         addNoteToCanvas(themeId, txt, x, y);
+         
+         colCount++;
+         if(colCount >= cols) {
+            colCount = 0;
+            x = 20;
+            y += noteW + gap;
+         } else {
+            x += noteW + gap;
+         }
+      });
+      renderSidebarList(themeId);
+    }
+
+    function closePlayground() {
+      pgModal.classList.remove('open');
+      document.getElementById('pgBackdrop').classList.remove('open');
+      savePlaygroundState();
+    }
+
+    function savePlaygroundState() {
+       const state = {};
+       for(let t=1; t<=totalThemes; t++) {
+          if(!screens[t]) continue;
+          const notes = [];
+          const groups = [];
+          screens[t].querySelectorAll('.group-label').forEach(g => {
+             groups.push({
+               text: g.textContent,
+               x: g.style.left,
+               y: g.style.top
+             });
+          });
+
+          screens[t].querySelectorAll('.note').forEach(n => {
+             notes.push({
+               code: n.dataset.code,
+               x: n.style.left,
+               y: n.style.top,
+               deg: n.style.transform
+             });
+          });
+          state[t] = { notes, groups };
+       }
+       localStorage.setItem(STORAGE_KEY_PLAYGROUND, JSON.stringify(state));
+    }
+
+    function restorePlaygroundState() {
+       const raw = localStorage.getItem(STORAGE_KEY_PLAYGROUND);
+       if(!raw) return false;
+       try {
+          const state = JSON.parse(raw);
+          let restoredAny = false;
+          Object.keys(state).forEach(tId => {
+             const t = parseInt(tId);
+             if(t > totalThemes) { 
+               totalThemes = t; 
+               themeTitles[t] = `Theme ${t}`; 
+             }
+             const screen = ensureScreenExists(t);
+             const data = state[tId];
+             const notes = Array.isArray(data) ? data : (data.notes || []);
+             const groups = data.groups || [];
+
+             if(notes.length > 0 || groups.length > 0) {
+               screen.innerHTML = '';
+               restoredAny = true;
+               
+               groups.forEach(g => {
+                  const label = document.createElement('div');
+                  label.className = 'group-label';
+                  label.textContent = g.text;
+                  label.style.left = g.x;
+                  label.style.top = g.y;
+                  screen.appendChild(label);
+               });
+
+               notes.forEach(n => {
+                  addNoteToCanvas(t, n.code, parseFloat(n.x), parseFloat(n.y), n.deg);
+               });
+             }
+          });
+          return restoredAny;
+       } catch(e) { return false; }
+    }
+
+    function loadPlaygroundTheme(themeId) {
+      currentTheme = themeId;
+      const titleEl = document.getElementById('pgThemeTitle');
+      titleEl.textContent = themeTitles[themeId] || `Theme ${themeId}`;
+
+      // Re-bind click event with the current theme ID in closure
+      titleEl.onclick = () => promptEditTheme(themeId);
+      
+      document.querySelectorAll('.pg-canvas-screen').forEach(el => el.classList.remove('active'));
+      const activeScreen = document.querySelector(`.pg-canvas-screen[data-theme="${themeId}"]`);
+      if(activeScreen) activeScreen.classList.add('active');
+
+      const dotsContainer = document.getElementById('pgDots');
+      dotsContainer.innerHTML = '';
+      
+      // Iterate only existing themes from titles map
+      Object.keys(themeTitles).forEach(key => {
+          const t = parseInt(key);
+          const dot = document.createElement('div');
+          dot.className = 'pg-dot' + (t === themeId ? ' active' : '');
+          dot.onclick = () => loadPlaygroundTheme(t);
+          dotsContainer.appendChild(dot);
+      });
+
+      renderSidebarList(themeId);
+      
+      const screen = ensureScreenExists(themeId);
+      // Only auto-populate if TRULY empty (no notes)
+      if(screen.querySelectorAll('.note').length === 0) {
+         if(themeId === 2) populatePlaygroundGroupsTheme2();
+         else populatePlaygroundFromMain(themeId);
+      }
+    }
+
+    document.getElementById('pgPrevBtn').onclick = () => {
+       // Logic to find previous available ID
+       const ids = Object.keys(themeTitles).map(k=>parseInt(k)).sort((a,b)=>a-b);
+       const idx = ids.indexOf(currentTheme);
+       const prev = idx > 0 ? ids[idx-1] : ids[ids.length-1];
+       loadPlaygroundTheme(prev);
+    };
+    document.getElementById('pgNextBtn').onclick = () => {
+       const ids = Object.keys(themeTitles).map(k=>parseInt(k)).sort((a,b)=>a-b);
+       const idx = ids.indexOf(currentTheme);
+       const next = idx < ids.length-1 ? ids[idx+1] : ids[0];
+       loadPlaygroundTheme(next);
+    };
+
+    // Edit Title with Modal
+    let editingThemeId = null;
+    const editThemeModal = document.getElementById('editThemeModal');
+    const themeTitleInput = document.getElementById('themeTitleInput');
+
+    function promptEditTheme(tId) {
+       editingThemeId = tId;
+       const old = themeTitles[tId] || `Theme ${tId}`;
+       themeTitleInput.value = old;
+       modalBackdrop.classList.add('open');
+       editThemeModal.classList.add('open');
+       themeTitleInput.focus();
+    }
+
+    function saveThemeTitle() {
+       if(!editingThemeId) return;
+       const newTitle = themeTitleInput.value.trim();
+       if(newTitle) {
+          themeTitles[editingThemeId] = newTitle;
+          localStorage.setItem(STORAGE_KEY_TITLES, JSON.stringify(themeTitles));
+          
+          // Update main board
+          const colHeader = document.querySelector(`.column[data-theme="${editingThemeId}"] .col-title`);
+          if(colHeader) colHeader.textContent = newTitle;
+
+          // Update playground if open and showing this theme
+          const pgTitle = document.getElementById('pgThemeTitle');
+          if(currentTheme === editingThemeId) {
+             pgTitle.textContent = newTitle;
+          }
+       }
+       closeEditThemeModal();
+    }
+
+    function closeEditThemeModal() {
+       modalBackdrop.classList.remove('open');
+       editThemeModal.classList.remove('open');
+       editingThemeId = null;
+    }
+
+    document.getElementById('saveThemeBtn').onclick = saveThemeTitle;
+    document.getElementById('cancelEditThemeBtn').onclick = closeEditThemeModal;
+    document.getElementById('closeEditThemeBtn').onclick = closeEditThemeModal;
+    
+    // Allow Enter key to save
+    themeTitleInput.addEventListener('keypress', (e) => {
+       if (e.key === 'Enter') saveThemeTitle();
+    });
+    
+    // Attach promptEditTheme globally
+    window.promptEditTheme = promptEditTheme;
+
+    document.getElementById('editThemeBtn').onclick = () => promptEditTheme(currentTheme);
+
+    // Add Theme
+    document.getElementById('addThemeBtn').onclick = () => {
+       totalThemes++;
+       const newId = totalThemes;
+       themeTitles[newId] = `New Theme ${newId}`;
+       localStorage.setItem(STORAGE_KEY_TITLES, JSON.stringify(themeTitles));
+       
+       const board = document.getElementById('board');
+       const col = document.createElement('div');
+       col.className = 'column';
+       col.dataset.theme = newId;
+       col.innerHTML = `
+          <div class="column-header col-theme-5">
+            <div class="header-top">
+              <span class="col-title" onclick="promptEditTheme(${newId})">${themeTitles[newId]}</span>
+              <div style="display:flex; align-items:center; gap:6px;">
+                 <span class="card-count">0</span>
+                 <button class="theme-delete-btn" onclick="promptDeleteTheme(${newId})">×</button>
+              </div>
+            </div>
+          </div>
+          <div class="card-list" id="colList${newId}"></div>
+       `;
+       board.appendChild(col);
+       
+       updateHeaderCount();
+       loadPlaygroundTheme(newId);
+    };
+    
+    // --- CREATE CODE LOGIC (MODAL) ---
+    const createCodeModal = document.getElementById('createCodeModal');
+    const newCodeInput = document.getElementById('newCodeInput');
+
+    function openCreateCodeModal() {
+        newCodeInput.value = '';
+        modalBackdrop.classList.add('open');
+        createCodeModal.classList.add('open');
+        newCodeInput.focus();
+    }
+
+    function closeCreateCodeModal() {
+        modalBackdrop.classList.remove('open');
+        createCodeModal.classList.remove('open');
+    }
+
+    function confirmCreateCode() {
+       const name = newCodeInput.value;
+       if(name && name.trim()) {
+           const finalName = name.trim();
+           const key = normalize(finalName);
+           
+           // Check if exists using hasOwnProperty to prevent 0/false issues
+           if(codeThemeMap.hasOwnProperty(key)) {
+               alert("Code already exists!");
+               return;
+           }
+           
+           // Assign to current theme
+           codeThemeMap[key] = currentTheme;
+           localStorage.setItem(STORAGE_KEY_THEMEMAP, JSON.stringify(codeThemeMap));
+           
+           // Add to canvas in center
+           const screen = screens[currentTheme];
+           // Calculate center relative to visible area
+           const wrapper = screen.parentElement; // .pg-canvas-screen
+           // Center coordinates accounting for current scroll position
+           const centerX = (wrapper.clientWidth / 2) - 70 + wrapper.scrollLeft; 
+           const centerY = (wrapper.clientHeight / 2) - 70 + wrapper.scrollTop;
+           
+           addNoteToCanvas(currentTheme, finalName, centerX, centerY);
+           savePlaygroundState();
+           
+           // Update sidebar to hide it from there
+           renderSidebarList(currentTheme);
+           
+           if(autoSyncEnabled) syncPlaygroundToMain(currentTheme);
+           
+           closeCreateCodeModal();
+       }
+    }
+
+    document.getElementById('pgCreateCodeBtn').onclick = openCreateCodeModal;
+    document.getElementById('closeCreateCodeBtn').onclick = closeCreateCodeModal;
+    document.getElementById('cancelCreateCodeBtn').onclick = closeCreateCodeModal;
+    document.getElementById('confirmCreateCodeBtn').onclick = confirmCreateCode;
+    
+    newCodeInput.addEventListener('keypress', (e) => {
+        if(e.key === 'Enter') confirmCreateCode();
+    });
+
+    // Sidebar Filter
+    filterSelect.onchange = () => renderSidebarList(currentTheme);
+
+    function renderSidebarList(themeId) {
+      pgCodeList.innerHTML = '';
+      const filter = normalize(pgSearch.value);
+      const mode = filterSelect.value; // current, unassigned, all
+      
+      const allKeys = Object.keys(codeThemeMap);
+      allKeys.sort();
+
+      const container = screens[themeId];
+      const existingOnCanvas = new Set();
+      if(container) {
+        container.querySelectorAll('.note').forEach(n => {
+          existingOnCanvas.add(normalize(n.dataset.code));
+        });
+      }
+
+      allKeys.forEach(key => {
+        if(filter && !key.includes(filter)) return;
+        
+        const mappedTheme = codeThemeMap[key];
+        
+        // Filtering Logic
+        if (mode === 'current') {
+           if(mappedTheme !== themeId) return;
+        } else if (mode === 'unassigned') {
+           if(mappedTheme !== 0) return;
+        } 
+        // 'all' passes through everything
+
+        let display = key; 
+        const presetMatch = PRESET_CODES.find(p => normalize(p.c) === key);
+        if(presetMatch) display = presetMatch.c; 
+        else display = key.charAt(0).toUpperCase() + key.slice(1);
+
+        // Hide if on canvas
+        if(existingOnCanvas.has(key)) {
+           return; 
+        }
+
+        const item = document.createElement('div');
+        item.className = 'pg-code-item';
+        item.textContent = display;
+        item.draggable = true;
+
+        item.addEventListener('dragstart', (e) => {
+          e.dataTransfer.setData('text/plain', display);
+          e.dataTransfer.effectAllowed = 'copy';
+        });
+
+        item.ondblclick = () => {
+          // Double click adds to canvas and assigns theme
+          codeThemeMap[key] = themeId;
+          localStorage.setItem(STORAGE_KEY_THEMEMAP, JSON.stringify(codeThemeMap));
+          
+          addNoteToCanvas(themeId, display, 50 + Math.random()*100, 50 + Math.random()*100);
+          renderSidebarList(themeId); 
+        };
+
+        pgCodeList.appendChild(item);
+      });
+    }
+
+    pgSearch.oninput = () => renderSidebarList(currentTheme);
+
+    function addNoteToCanvas(themeId, text, x, y, rotationString = null) {
+      const container = ensureScreenExists(themeId);
+      let exists = false;
+      container.querySelectorAll('.note').forEach(n => {
+        if(normalize(n.dataset.code) === normalize(text)) exists = true;
+      });
+      if(exists) return;
+
+      const note = document.createElement('div');
+      note.className = 'note';
+      note.dataset.code = text;
+      
+      let rot = rotationString;
+      if(!rot) {
+         const deg = (Math.random() * 6) - 3; 
+         rot = `rotate(${deg}deg)`;
+      }
+      note.style.transform = rot;
+      note.style.left = `${x}px`;
+      note.style.top = `${y}px`;
+
+      note.innerHTML = `
+        <button class="note-x" title="Remove">×</button>
+        <div class="note-title">${text}</div>
+        <div class="note-footer">
+          <button class="note-quote-btn">💬 View Quotes</button>
+        </div>
+      `;
+
+      note.querySelector('.note-x').onclick = (e) => {
+        e.stopPropagation(); 
+        note.remove();
+        renderSidebarList(themeId); 
+        if(autoSyncEnabled) syncPlaygroundToMain(themeId);
+      };
+
+      note.querySelector('.note-quote-btn').onclick = (e) => {
+         e.stopPropagation();
+         openQuoteModal(text);
+      };
+
+      makeDraggable(note, container, () => {
+         if(autoSyncEnabled) syncPlaygroundToMain(themeId);
+      });
+      
+      container.appendChild(note);
+
+      const requiredHeight = y + 200; 
+      const currentMin = parseFloat(container.style.minHeight || '0');
+      if(requiredHeight > currentMin) {
+         container.style.minHeight = requiredHeight + 'px';
+      }
+    }
+
+    // UPDATED DRAG FUNCTIONALITY (Mouse + Touch)
+    function makeDraggable(el, container, onDragEnd) {
+      let isDragging = false;
+      let startX, startY, initialLeft, initialTop;
+      
+      const onMove = (clientX, clientY) => {
+        if(!isDragging) return;
+        const dx = clientX - startX;
+        const dy = clientY - startY;
+        let newLeft = initialLeft + dx;
+        let newTop = initialTop + dy;
+        el.style.left = `${newLeft}px`;
+        el.style.top = `${newTop}px`;
+        
+        // Expand container if needed
+        const currentMin = parseFloat(container.style.minHeight || '0');
+        if(newTop + 150 > currentMin) {
+           container.style.minHeight = (newTop + 150) + 'px';
+        }
+      };
+
+      const onEnd = () => {
+        if(isDragging) {
+          isDragging = false;
+          el.style.zIndex = '';
+          el.classList.remove('selected'); 
+          
+          window.removeEventListener('mousemove', onMouseMove);
+          window.removeEventListener('mouseup', onMouseUp);
+          window.removeEventListener('touchmove', onTouchMove);
+          window.removeEventListener('touchend', onTouchEnd);
+          
+          if(onDragEnd) onDragEnd();
+        }
+      };
+
+      // Mouse Wrappers
+      const onMouseMove = (e) => onMove(e.clientX, e.clientY);
+      const onMouseUp = () => onEnd();
+
+      // Touch Wrappers
+      const onTouchMove = (e) => {
+         if(e.cancelable) e.preventDefault(); 
+         const touch = e.touches[0];
+         onMove(touch.clientX, touch.clientY);
+      };
+      const onTouchEnd = () => onEnd();
+
+      const startDrag = (clientX, clientY) => {
+        isDragging = true;
+        startX = clientX;
+        startY = clientY;
+        initialLeft = el.offsetLeft;
+        initialTop = el.offsetTop;
+        el.style.zIndex = 1000;
+        el.classList.add('selected'); 
+      };
+
+      el.addEventListener('mousedown', (e) => {
+        if(e.target.tagName === 'BUTTON') return;
+        e.preventDefault(); // Prevent text selection
+        startDrag(e.clientX, e.clientY);
+        window.addEventListener('mousemove', onMouseMove);
+        window.addEventListener('mouseup', onMouseUp);
+      });
+
+      el.addEventListener('touchstart', (e) => {
+        if(e.target.tagName === 'BUTTON') return;
+        const touch = e.touches[0];
+        startDrag(touch.clientX, touch.clientY);
+        window.addEventListener('touchmove', onTouchMove, { passive: false });
+        window.addEventListener('touchend', onTouchEnd);
+      });
+    }
+
+    function syncPlaygroundToMain(themeId) {
+      const playgroundContainer = screens[themeId];
+      if(!playgroundContainer) return;
+      const mainList = document.getElementById(`colList${themeId}`);
+      if(!mainList) return; 
+
+      const notes = Array.from(playgroundContainer.querySelectorAll('.note'));
+      notes.sort((a, b) => {
+        const ay = a.offsetTop, by = b.offsetTop;
+        if (Math.abs(ay - by) > 40) return ay - by;
+        return a.offsetLeft - b.offsetLeft;
+      });
+
+      mainList.innerHTML = '';
+      if(notes.length > 0) {
+        const playgroundTitle = document.createElement('div');
+        playgroundTitle.className = 'subsection-title';
+        playgroundTitle.innerText = "Playground Layout";
+        mainList.appendChild(playgroundTitle);
+      }
+
+      notes.forEach(n => {
+        createCard(n.dataset.code, themeId, true);
+      });
+
+      updateCounts();
+      saveBoard();
+    }
+
+    document.getElementById('pgManualSyncBtn').onclick = () => {
+      syncPlaygroundToMain(currentTheme);
+      const btn = document.getElementById('pgManualSyncBtn');
+      const old = btn.innerText; btn.innerText = "✅ Synced!";
+      setTimeout(()=> btn.innerText = old, 1000);
+    };
+
+    document.getElementById('pgAutoSync').onchange = (e) => {
+      autoSyncEnabled = e.target.checked;
+      if(autoSyncEnabled) syncPlaygroundToMain(currentTheme);
+    };
+
+    document.getElementById('openPlaygroundBtn').onclick = openPlayground;
+    document.getElementById('closePgBtn').onclick = closePlayground;
+    document.getElementById('pgBackdrop').onclick = closePlayground;
+    
+    document.getElementById('resetPresetBtn').onclick = () => {
+      if(confirm("Reset entire board to default preset? This will clear all imported data.")) {
+        localStorage.clear(); 
+        location.reload();
+      }
+    };
+
+    // --- CSV IMPORT LOGIC ---
+    const fileInput = document.getElementById('csvInput');
+    document.getElementById('importBtn').onclick = () => fileInput.click();
+    fileInput.onchange = (e) => {
+      const file = e.target.files?.[0];
+      if(!file) return;
+      Papa.parse(file, {
+        header: true,
+        skipEmptyLines: true,
+        complete: (results) => {
+           handleImport(results.data);
+           fileInput.value = '';
+        }
+      });
+    };
+
+    function handleImport(rows) {
+      if(!rows || rows.length === 0) return;
+      const headers = Object.keys(rows[0]).map(h => normalize(h));
+      let importedQuotes = 0;
+      let newCodes = 0;
+
+      if(headers.includes('tag') && headers.includes('content') && headers.includes('document')) {
+         rows.forEach(row => {
+            const tag = (row.tag || '').trim();
+            const quoteText = (row.content || '').trim();
+            const source = (row.document || '').trim();
+            if(!tag || !quoteText) return;
+            const key = normalize(tag);
+            if(!quotesMap[key]) quotesMap[key] = { quotes: [], theme: null };
+            quotesMap[key].quotes.push({ text: quoteText, source: source });
+            importedQuotes++;
+            if(!codeThemeMap[key]) {
+               codeThemeMap[key] = 0; // Default to 0 (Unassigned)
+               newCodes++;
+            }
+         });
+      }
+      else if(headers.includes('theme') && headers.includes('code')) {
+         rows.forEach(row => {
+            const themeName = (row.theme || '').trim();
+            const code = (row.code || '').trim();
+            if(!code) return;
+            let tid = 0; // Default 0
+            const tNorm = normalize(themeName);
+            if(tNorm.includes('identity')) tid = 1;
+            else if(tNorm.includes('label')) tid = 2;
+            else if(tNorm.includes('tool') || tNorm.includes('production')) tid = 3;
+            else if(tNorm.includes('dynamics') || tNorm.includes('fear') || tNorm.includes('hope')) tid = 4;
+            const key = normalize(code);
+            codeThemeMap[key] = tid;
+            if(!quotesMap[key]) quotesMap[key] = { quotes: [], theme: tid };
+            ['example_1', 'example_2', 'example_3'].forEach((exField, i) => {
+               const txt = row[exField];
+               const src = row[`source_${i+1}`];
+               if(txt && txt.trim()) {
+                 quotesMap[key].quotes.push({ text: txt, source: src });
+                 importedQuotes++;
+               }
+            });
+            // If recognized theme 1-4, add to main board
+            if(tid > 0) {
+               const list = document.getElementById(`colList${tid}`);
+               let found = false;
+               list.querySelectorAll('.card-text').forEach(el => { if(normalize(el.innerText) === key) found = true; });
+               if(!found) createCard(code, tid, true);
+            } else {
+               newCodes++; // Unassigned count
+            }
+         });
+      }
+      else {
+         rows.forEach(row => {
+            const code = row['tag'] || row['code'] || row['Code'];
+            if(code) {
+               const key = normalize(code);
+               if(!codeThemeMap[key]) {
+                 codeThemeMap[key] = 0;
+                 newCodes++;
+               }
+            }
+         });
+      }
+      saveBoard();
+      attachQuoteListeners(); 
+      // Refresh sidebar to show new unassigned codes
+      if(pgModal.classList.contains('open')) {
+         renderSidebarList(currentTheme);
+      }
+      alert(`Import Successful!\nAdded ${importedQuotes} quotes.\nFound ${newCodes} new codes (Unassigned).`);
+    }
+
+    document.getElementById('exportPdfBtn').onclick = () => {
+       const el = document.body;
+       html2pdf().set({ margin:0, filename:'codebook.pdf', image:{type:'jpeg',quality:0.98}, html2canvas:{scale:2}, jsPDF:{unit:'in', format:'letter', orientation:'landscape'} }).from(el).save();
+    };
+
+    // --- DELETION LOGIC (Card & Theme) ---
+    let deletionTarget = null; // { type: 'card'|'theme', el?: HTMLElement, id?: string|number, text?: string }
+
+    // Global exposed functions for inline onclicks
+    window.promptDeleteCard = (cardElement, text) => {
+        deletionTarget = { type: 'card', el: cardElement, text: text };
+        document.getElementById('confirmMessage').innerText = `Are you sure you want to delete card "${text}"?`;
+        document.getElementById('confirmBackdrop').classList.add('open');
+        document.getElementById('confirmModal').classList.add('open');
+    };
+
+    window.promptDeleteTheme = (themeId) => {
+        const title = themeTitles[themeId] || `Theme ${themeId}`;
+        deletionTarget = { type: 'theme', id: themeId, text: title };
+        document.getElementById('confirmMessage').innerText = `Are you sure you want to delete "${title}"? All codes in this theme will be unassigned.`;
+        document.getElementById('confirmBackdrop').classList.add('open');
+        document.getElementById('confirmModal').classList.add('open');
+    };
+
+    function closeConfirmModal() {
+        document.getElementById('confirmBackdrop').classList.remove('open');
+        document.getElementById('confirmModal').classList.remove('open');
+        deletionTarget = null;
+    }
+
+    document.getElementById('confirmCancelBtn').onclick = closeConfirmModal;
+    document.getElementById('closeConfirmBtn').onclick = closeConfirmModal;
+    
+    document.getElementById('confirmOkBtn').onclick = () => {
+        if (!deletionTarget) return;
+
+        if (deletionTarget.type === 'card') {
+            deletionTarget.el.remove();
+            updateCounts();
+            saveBoard();
+            scanBoardForThemes(); 
+        } 
+        else if (deletionTarget.type === 'theme') {
+            performDeleteTheme(deletionTarget.id);
+        }
+        closeConfirmModal();
+    };
+
+    function performDeleteTheme(tId) {
+        tId = parseInt(tId);
+        
+        // 1. Unassign codes in map
+        Object.keys(codeThemeMap).forEach(key => {
+            if(codeThemeMap[key] === tId) codeThemeMap[key] = 0;
+        });
+        
+        // 2. Remove from title map
+        delete themeTitles[tId];
+        
+        // 3. Remove DOM Column
+        const col = document.querySelector(`.column[data-theme="${tId}"]`);
+        if(col) col.remove();
+        
+        // 4. Update Header Count
+        updateHeaderCount();
+        
+        // 5. Save
+        localStorage.setItem(STORAGE_KEY_TITLES, JSON.stringify(themeTitles));
+        localStorage.setItem(STORAGE_KEY_THEMEMAP, JSON.stringify(codeThemeMap));
+        saveBoard();
+
+        // 6. Handle Playground if active
+        if(pgModal.classList.contains('open') && currentTheme === tId) {
+            // Switch to another valid theme
+            const ids = Object.keys(themeTitles).map(k=>parseInt(k));
+            if(ids.length > 0) loadPlaygroundTheme(ids[0]);
+            else closePlayground(); 
+        }
+    }
+
+    window.onload = () => {
+       initBoard();
+       if(!restorePlaygroundState()) {
+          [1,2,3,4].forEach(t => populatePlaygroundFromMain(t));
+       }
+    };
+
+  </script>
+</body>
+</html>

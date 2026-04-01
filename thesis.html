@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Disclosure Semantics — Lucía Medina</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --orange: #E8510A;
+            --orange-light: #FFF0EA;
+            --text: #1A1A1A;
+            --muted: #6B6B6B;
+            --border: #E8E8E8;
+            --bg: #FAFAF8;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: rgba(250,250,248,0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            padding: 0 40px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        nav .brand { font-weight: 700; font-size: 15px; text-decoration: none; color: var(--text); }
+        nav .back { font-size: 14px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+        nav .back:hover { color: var(--orange); }
+
+        /* HERO */
+        .hero {
+            margin-top: 60px;
+            padding: 80px 40px 60px;
+            max-width: 860px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--orange-light);
+            color: var(--orange);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: clamp(28px, 5vw, 48px);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero .hook {
+            font-size: 20px;
+            color: var(--muted);
+            font-weight: 300;
+            font-style: italic;
+            border-left: 3px solid var(--orange);
+            padding-left: 20px;
+            margin-bottom: 40px;
+            max-width: 640px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+            padding: 28px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .meta-item label {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .meta-item span {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* CONTENT */
+        .content {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 40px 100px;
+        }
+
+        section {
+            margin-top: 70px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--orange);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            font-size: clamp(22px, 3vw, 30px);
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            margin-top: 32px;
+        }
+
+        p {
+            color: #333;
+            margin-bottom: 16px;
+        }
+
+        /* HIGHLIGHT BOX */
+        .highlight {
+            background: var(--orange-light);
+            border-left: 4px solid var(--orange);
+            padding: 24px 28px;
+            border-radius: 0 12px 12px 0;
+            margin: 32px 0;
+        }
+
+        .highlight p {
+            margin: 0;
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        /* QUOTE */
+        blockquote {
+            border-left: 3px solid var(--border);
+            padding: 16px 24px;
+            margin: 24px 0;
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        blockquote cite {
+            display: block;
+            margin-top: 8px;
+            font-size: 13px;
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        /* FINDINGS GRID */
+        .findings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 28px;
+        }
+
+        .finding-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .finding-card .number {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--orange);
+            line-height: 1;
+            margin-bottom: 12px;
+            opacity: 0.4;
+        }
+
+        .finding-card h4 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .finding-card p {
+            font-size: 14px;
+            color: var(--muted);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* DIAGRAM PLACEHOLDER */
+        .diagram-container {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            margin: 32px 0;
+            text-align: center;
+        }
+
+        .diagram-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .diagram-caption {
+            margin-top: 16px;
+            font-size: 13px;
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        /* DIAGRAM SIDE BY SIDE */
+        .diagram-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 32px 0;
+        }
+
+        @media (max-width: 640px) {
+            .diagram-row { grid-template-columns: 1fr; }
+            nav { padding: 0 20px; }
+            .hero, .content { padding-left: 24px; padding-right: 24px; }
+        }
+
+        /* METHOD STEPS */
+        .method-steps {
+            counter-reset: step;
+            margin-top: 24px;
+        }
+
+        .step {
+            display: flex;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .step:last-child { border-bottom: none; }
+
+        .step-num {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            background: var(--orange);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        .step-content h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+        .step-content p { font-size: 14px; color: var(--muted); margin: 0; }
+
+        /* IMPLICATIONS */
+        .implications {
+            margin-top: 28px;
+        }
+
+        .implication {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .implication:last-child { border-bottom: none; }
+
+        .implication-icon {
+            flex-shrink: 0;
+            font-size: 20px;
+            margin-top: 2px;
+        }
+
+        .implication h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+        .implication p { font-size: 14px; color: var(--muted); margin: 0; line-height: 1.6; }
+
+        /* REFLECTION */
+        .reflection {
+            background: #1A1A1A;
+            color: white;
+            border-radius: 16px;
+            padding: 48px;
+            margin-top: 70px;
+        }
+
+        .reflection .section-label { color: #E8510A; }
+        .reflection h2 { color: white; }
+        .reflection p { color: rgba(255,255,255,0.75); }
+
+        /* FOOTER NAV */
+        .bottom-nav {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 40px 40px 80px;
+            border-top: 1px solid var(--border);
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--text);
+            color: white;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .back-button:hover { background: var(--orange); }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a class="brand" href="#">Lucía Medina</a>
+    <a class="back" href="#">← All Work</a>
+</nav>
+
+<div class="hero">
+    <div class="tag">MSc Thesis · Politecnico di Milano · 2026</div>
+    <h1>AI Disclosure Semantics<br>in Visual Design</h1>
+    <p class="hook">"Platforms label AI content as if creativity is binary. It isn't — and that gap is hurting content creators."</p>
+
+    <div class="meta-grid">
+        <div class="meta-item">
+            <label>My Role</label>
+            <span>Lead Researcher & Designer</span>
+        </div>
+        <div class="meta-item">
+            <label>Methods</label>
+            <span>Think-Aloud · Qualitative Interviews · Thematic Analysis</span>
+        </div>
+        <div class="meta-item">
+            <label>Participants</label>
+            <span>6 Content Creators + 1 Expert Interview</span>
+        </div>
+        <div class="meta-item">
+            <label>Tools</label>
+            <span>Taguette · Figma · Adobe Suite</span>
+        </div>
+        <div class="meta-item">
+            <label>Advisor</label>
+            <span>Prof. Margherita Pillan</span>
+        </div>
+        <div class="meta-item">
+            <label>Year</label>
+            <span>2025 – 2026</span>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+
+    <!-- CONTEXT -->
+    <section>
+        <div class="section-label">01 — Context & Problem</div>
+        <h2>The EU AI Act demands transparency. But current labels oversimplify a complex reality.</h2>
+        <p>Since 2023, major platforms — Meta, TikTok, YouTube — have been mandated to label AI-generated content. The goal: protect audiences from synthetic misinformation. The implementation: binary tags like "AI-Generated" or "Made with AI."</p>
+        <p>But creative workflows are not binary. A photographer who uses AI to remove a blemish is not doing the same thing as someone who generates an entire image from a text prompt. Collapsing this spectrum into a single label creates a design problem with real human consequences.</p>
+
+        <div class="highlight">
+            <p>Content creators risk having their perceived authorship erased — not because they used AI as the author, but because a label said so.</p>
+        </div>
+
+        <p>Existing research focuses almost entirely on how <em>audiences</em> react to AI labels. This thesis asks a different question: what happens to the <em>creators</em> who are forced to label their own work?</p>
+    </section>
+
+    <!-- RESEARCH QUESTION -->
+    <section>
+        <div class="section-label">02 — Research Question</div>
+        <h2>How do AI disclosure labels shape creators' sense of authorship — and their willingness to disclose?</h2>
+        <p>Two sub-questions guided the study:</p>
+        <div class="findings-grid">
+            <div class="finding-card">
+                <div class="number">RQ1</div>
+                <h4>Authorship & Credit</h4>
+                <p>How do creators interpret what AI disclosure labels imply about who made the image?</p>
+            </div>
+            <div class="finding-card">
+                <div class="number">RQ2</div>
+                <h4>Willingness to Disclose</h4>
+                <p>Which factors influence a creator's decision to disclose — or not disclose — AI involvement?</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- METHODOLOGY -->
+    <section>
+        <div class="section-label">03 — Methodology</div>
+        <h2>A qualitative study that put creators in the feed.</h2>
+        <p>Six content creators — photographers, illustrators, musicians, 3D artists — from Latin America participated in a simulated social media experience. I also conducted an expert interview with design researcher Chiara Di Lodovico on her AI image-generation workflow.</p>
+
+        <div class="method-steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                    <h4>Stimulus Design</h4>
+                    <p>Four mock social media posts, each combining a specific AI label ("AI-Generated," "AI-Assisted," "Made with AI," "Co-created with AI") with a different visual context: news, digital art, interior design, and speculative art.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                    <h4>Think-Aloud Sessions</h4>
+                    <p>Participants verbalized their reactions in real time while viewing each labeled image. No guidance — just neutral prompts to keep the flow of thought going.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                    <h4>Follow-Up Interview</h4>
+                    <p>Structured questions explored how participants felt about labeling in practice: trust, identity, platform pressure, and what would make them more willing to disclose.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">4</div>
+                <div class="step-content">
+                    <h4>Thematic Analysis</h4>
+                    <p>All sessions were transcribed and coded in Taguette using Braun & Clarke's reflexive thematic analysis framework, identifying patterns across authorship, identity, and trust.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINDINGS -->
+    <section>
+        <div class="section-label">04 — Key Findings</div>
+        <h2>Four themes that challenge how platforms think about disclosure.</h2>
+
+        <div class="findings-grid">
+            <div class="finding-card">
+                <div class="number">01</div>
+                <h4>Ideation is the non-negotiable core of creative identity</h4>
+                <p>Creators don't define themselves by execution — they define themselves by intent. The idea, the concept, the direction: that's where authorship lives. AI can assist, but it cannot originate meaning.</p>
+            </div>
+            <div class="finding-card">
+                <div class="number">02</div>
+                <h4>Precise labels ("AI-Generated") override everything — even visual evidence</h4>
+                <p>When a label says "AI-Generated," participants trusted it even when the image looked organic. Labels function as dominant semiotic signals that override what the eye sees.</p>
+            </div>
+            <div class="finding-card">
+                <div class="number">03</div>
+                <h4>Ambiguous labels ("Co-created," "AI-Assisted") create confusion, not clarity</h4>
+                <p>Participants couldn't determine who deserved credit. "Co-created with AI" felt like it overstated the machine's role. "AI-Assisted" raised more questions than it answered.</p>
+            </div>
+            <div class="finding-card">
+                <div class="number">04</div>
+                <h4>Disclosure is both a moral act and a strategic risk</h4>
+                <p>Creators want to be transparent — but not when it means platform sanctions, reduced reach, or audiences assuming "everything was AI." Disclosure is a negotiation, not a checkbox.</p>
+            </div>
+        </div>
+
+        <blockquote>
+            "Human work is like gourmet food and AI work is like fast food. Fast food exists, but gourmet food exists as well."
+            <cite>— Study Participant #3, Illustrator</cite>
+        </blockquote>
+    </section>
+
+    <!-- DESIGN SYNTHESIS -->
+    <section>
+        <div class="section-label">05 — Design Synthesis</div>
+        <h2>Two frameworks for understanding AI involvement in creative work.</h2>
+
+        <p>The findings pointed to a core design gap: platforms need a vocabulary for the <em>spectrum</em> of AI involvement — not just its presence or absence. I synthesized the research into two visual frameworks.</p>
+
+        <h3>The Spectrum of AI Involvement</h3>
+        <p>Inspired by Parasuraman, Sheridan & Wickens' automation continuum, this framework maps six levels of human-AI creative collaboration — from fully human-made work to fully synthetic output. It gives creators and platforms a shared language for describing what actually happened in a workflow.</p>
+
+        <div class="diagram-container">
+            <!-- Replace src with actual image path in your portfolio -->
+            <img src="images/spectrum-ai-involvement.png" alt="Spectrum of AI Involvement — six levels from Human-Made to Fully Synthetic" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+            <div style="display:none; padding: 60px 20px; background: var(--orange-light); border-radius: 8px; color: var(--muted); font-style: italic;">
+                [Diagram: Spectrum of AI Involvement — Human-Made → Human-Made/AI-Assisted Editing → Human-Led/AI-Assisted Creation → Co-Created → AI-Generated → Fully Synthetic]
+            </div>
+            <p class="diagram-caption">The Spectrum of AI Involvement — a six-level framework for describing human-AI collaboration in visual content creation.</p>
+        </div>
+
+        <h3>Human Creative Agency Across Workflow Stages</h3>
+        <p>Based on an expert interview with design researcher Chiara Di Lodovico, this curve maps how human agency fluctuates across three stages of AI-assisted image creation. Agency starts high (Direction & intent-setting), drops during Generation (the "black box"), and partially recovers during Evaluation & refinement. This demonstrates that even in AI-heavy workflows, human authorship is never fully absent — it's relational and fluctuating.</p>
+
+        <div class="diagram-container">
+            <img src="images/creative-agency-curve.png" alt="Human creative agency curve across Direction, Generation, and Evaluation workflow stages" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+            <div style="display:none; padding: 60px 20px; background: var(--orange-light); border-radius: 8px; color: var(--muted); font-style: italic;">
+                [Diagram: Human Creative Agency Curve — High Agency at Direction → Low Agency at Generation (Black Box) → Hybrid Agency at Evaluation]
+            </div>
+            <p class="diagram-caption">Human creative agency across AI image-generation workflow stages. The shaded band indicates variation across creators and workflows.</p>
+        </div>
+    </section>
+
+    <!-- IMPLICATIONS -->
+    <section>
+        <div class="section-label">06 — Design Implications</div>
+        <h2>What platforms could do differently.</h2>
+        <p>This research doesn't offer prescriptive guidelines — the landscape is evolving too quickly. Instead, it points toward transferable design principles.</p>
+
+        <div class="implications">
+            <div class="implication">
+                <div class="implication-icon">◎</div>
+                <div>
+                    <h4>Move from binary to spectrum-based labeling</h4>
+                    <p>Rather than collapsing all AI involvement into one tag, platforms could surface distinct visual clusters — separating "AI-assisted editing" from "AI-generated" at the interface level. Gestalt principles suggest this is both feasible and perceptually clearer.</p>
+                </div>
+            </div>
+            <div class="implication">
+                <div class="implication-icon">◎</div>
+                <div>
+                    <h4>Design for progressive disclosure, not radical transparency</h4>
+                    <p>Full upfront disclosure may actually erode trust rather than build it. A first-layer label with the option to expand provenance details (as C2PA proposes) respects both audience needs and creator complexity.</p>
+                </div>
+            </div>
+            <div class="implication">
+                <div class="implication-icon">◎</div>
+                <div>
+                    <h4>Make context matter</h4>
+                    <p>A news photograph and a speculative art piece have fundamentally different disclosure needs. Context-sensitive labeling — where the label's weight, wording, and placement adapt to content type — would reduce both friction and stigma.</p>
+                </div>
+            </div>
+            <div class="implication">
+                <div class="implication-icon">◎</div>
+                <div>
+                    <h4>Protect ideation as the locus of authorship</h4>
+                    <p>Label design should communicate not just whether AI was used, but where in the creative process — preserving the creator's role as originator of intent.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REFLECTION -->
+    <div class="reflection">
+        <div class="section-label">07 — Reflection</div>
+        <h2>What this thesis taught me about design.</h2>
+        <p>I came into this research expecting to design a better label. I left it with a much messier conclusion: that the problem isn't really a label problem at all. It's a meaning problem.</p>
+        <p>Labels operate as semiotic signs within a social ecosystem — they don't just describe content, they reshape how audiences perceive effort, authenticity, and human worth. Designing for AI transparency means designing for how meaning is produced and received across an entire platform ecosystem, not just at the interface layer.</p>
+        <p>The hardest realization: in a context where visual realism and synthetic generation are increasingly indistinguishable, the question "did a human make this?" may be less important than "did a human <em>mean</em> this?" That distinction is what current labeling systems fail to capture — and what I believe the next generation of disclosure design must address.</p>
+    </div>
+
+</div>
+
+<div class="bottom-nav">
+    <a class="back-button" href="#">← Back to All Work</a>
+</div>
+
+</body>
+</html>

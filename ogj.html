@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>OGJ Project Overview - Lucía Medina Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../portfolio/styles.css">
+    <link rel="stylesheet" href="../portfolio/nav.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../portfolio/project-details.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <!-- Navigation -->
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div class="brand">
+                    <a href="#home">Lucía Medina</a>
+                </div>
+                <div class="hamburger" aria-label="Toggle navigation">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <ul class="nav-links">
+               <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#work">All Work</a></li>
+                <li><a href="index.html#about">About Me</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- OGJ Project Overview Section -->
+    <section id="project-overview" class="project-details">
+        <div class="hero-image">
+            <img src="../portfolio/images/OGJ/ogj-1.jpg" alt="OGJ Project Hero Image">
+        </div>
+
+        <div class="container">
+            <div class="intro-section">
+                <h1>OGJ Project Overview</h1>
+                <p><strong>Project Introduction:</strong> The OGJ (Observatory of Gender and Youth) website is a platform that promotes gender equality and addresses gender-based violence among youth. It's designed to inform, support, and engage young users and the public.</p>
+            </div>
+
+            <div class="content-card">
+                <h2>Team and Guidance</h2>
+                <p>Team Members: Lucía Medina, Berenice Castro, Frida Castro</p>
+                <p>Guided by Professor Elizabeth Hernández Rosas.</p>
+            </div>
+
+            <div class="content-card">
+                <h2>Solution Strategies</h2>
+                <p>Our project strategies included analyzing client and user needs, defining user profiles, setting front and back-end objectives, and creating a prototype.</p>
+            </div>
+
+            <div class="content-card">
+                <h2>User and Client Needs</h2>
+                <h3>Client Needs</h3>
+                <ul>
+                    <li>Friendly, non-institutional tone</li>
+                    <li>Inclusive and engaging</li>
+                    <li>Educational and simple interface</li>
+                </ul>
+                <h3>User Needs</h3>
+                <ul>
+                    <li>Realistic and practical resources</li>
+                    <li>Accessible information for youth</li>
+                    <li>Supportive resources for all users</li>
+                </ul>
+            </div>
+
+            <div class="content-card">
+                <h2>User Profiles</h2>
+                <p>We identified sample profiles to guide design:</p>
+                <ul>
+                    <li><strong>Mariana:</strong> 20, facing relationship violence, hesitant to seek help.</li>
+                    <li><strong>Rebeca:</strong> 42, researcher focused on gender violence in Mexico.</li>
+                    <li><strong>Víctor:</strong> 22, supporting friends affected by gender violence.</li>
+                </ul>
+            </div>
+
+        <section class="content-card">
+        <!-- First Column with Bullets -->
+        <div class="text-column">
+            <h2>Development Objectives</h2>
+            <h3>Front-End</h3>
+            <ul>
+                <li>Create a site that raises awareness on gender violence</li>
+                <li>Engage users with interactive content</li>
+                <li>Present information clearly without overwhelming users</li>
+            </ul>
+            <h3>Back-End</h3>
+            <ul>
+                <li>Simple content management system</li>
+                <li>Intuitive workspace for administrators</li>
+                <li>Streamlined, easy-to-manage features</li>
+            </ul>
+        </div>
+
+        <!-- Second Column with Image -->
+        <div class="image-column">
+            <img src="../portfolio/images/OGJ/ogj-development.jpg" alt="OGJ Development Objectives Illustration">
+        </div>
+    </section>
+
+            <div class="content-card2">
+                <h2>Prototype and Design Process</h2>
+                <p>The team used mood boards, wireframes, and a business model canvas to map user interactions and define essential sections.</p>
+                <div class="image-container">
+                    <img src="../portfolio/images/OGJ/moodboard.jpg" alt="OGJ Moodboard Image">
+                    <figcaption>OGJ Moodboard</figcaption>
+                </div>
+                <p>We applied Design Thinking, card sorting, and wireframing for consistent and effective page structure.</p>
+            </div>
+
+            <div class="content-card2">
+                <h2>Content and Interaction</h2>
+                <ul>
+                    <li><strong>Learning Sections:</strong> FAQs, articles, statistics on gender equality</li>
+                    <li><strong>Forums:</strong> Safe space for discussions</li>
+                    <li><strong>Victim Support:</strong> Maps and directories for help centers</li>
+                </ul>
+            </div>
+
+
+            <div class="content-card">
+                <h2>Final Features</h2>
+                <ul>
+                    <li>Simple, user-friendly navigation</li>
+                    <li>Minimal text and clutter-free layout</li>
+                    <li>Easy-to-use back-end management for responsiveness</li>
+                </ul>
+            </div>
+
+            <div class="back-to-work">
+                <a href="index.html#work" class="back-button">Back to All Work</a>
+            </div>
+        </div>
+    </section>
+ <script>
+        // Change header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) { // Adjust the scroll threshold as needed
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Hamburger Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+        });
+
+        // Smooth Scrolling with Offset
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetID = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetID);
+                if (targetSection) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
