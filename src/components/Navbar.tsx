@@ -32,8 +32,8 @@ export function Navbar() {
   
   const useDarkTheme = !isHome || isScrolled;
   
-  const textColor = useDarkTheme ? 'text-[#131313]' : 'text-black';
-  const bgColor = useDarkTheme ? 'bg-white/90 shadow-sm' : 'bg-white';
+  const textColor = isScrolled ? 'text-black' : (useDarkTheme ? 'text-[#131313]' : 'text-black');
+  const bgColor = isScrolled ? 'bg-[#FFFFFF] shadow-xl' : (useDarkTheme ? 'bg-white/90 shadow-sm' : 'bg-white');
   const blendMode = isHome && !isScrolled ? 'mix-blend-difference' : '';
 
   return (
@@ -49,7 +49,7 @@ export function Navbar() {
             <img 
               src="https://github.com/Lumystik/PortfolioLucia/blob/main/images/butterfly.png?raw=true" 
               alt="Lucía Medina Logo" 
-              className="w-full h-full object-contain transition-opacity duration-300 group-hover:opacity-0"
+              className={`w-full h-full object-contain transition-all duration-300 group-hover:opacity-0 ${!isHome && !isScrolled ? 'brightness-0' : ''}`}
               referrerPolicy="no-referrer"
             />
             <div 
@@ -68,7 +68,7 @@ export function Navbar() {
           </div>
         </Link>
         
-        <div className={`flex items-center ${bgColor} ${!useDarkTheme ? '' : 'backdrop-blur-md'} px-6 py-3 rounded-full pointer-events-auto transition-all duration-300 hover:bg-white hover:text-[#131313] hover:shadow-lg`}>
+        <div className={`flex items-center ${bgColor} backdrop-blur-md px-6 py-3 rounded-full pointer-events-auto transition-all duration-300 hover:bg-white hover:text-[#131313] hover:shadow-lg`}>
           {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-8">
              <Link to="/#work" className="text-xs font-mono uppercase tracking-widest hover:opacity-70 transition-opacity">Work</Link>
