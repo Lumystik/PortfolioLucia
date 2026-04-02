@@ -9,14 +9,13 @@ const projectsData: Record<string, any> = {
   "museon": {
     id: "museon",
     title: "MUSE*ON",
-    heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/museon-1.png?raw=true",
+    heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/4244e0bc4f60f3ca20ddaa34410c705dd0f46562/images/thumbmuseonin.jpg?raw=true",
     interfaceImage: "[INSERT_GITHUB_IMAGE_LINK_INTERFACE]",
     overview: "Developing an all in one software for small museums staff, that aims to streamline the work-flow and improve the management of the different areas of the institution. In order to optimize the current museum resources.",
     scope: "End-to-End App",
     role: "UX Research, Branding, UX/UI Design",
-    timeline: "100 hours",
     team: "Martina Braidotti, Lucia Medina, Ilario Pedone, Agnese Rosselli, Mark Waisara",
-    prototypeLink: "[INSERT_FIGMA_LINK_HERE]",
+    prototypeLink: "https://www.figma.com/proto/16viMWZsHOU9SkmpbSpTd5/FINAL-UI-spaced?node-id=2248-9671&starting-point-node-id=703%3A8427&scaling=scale-down&content-scaling=fixed&t=aO2g8BW8sOtXyiVT-1?raw=true",
     keyFindings: [
       { stat: "04", label: "full time employees", description: "limited human resources overwhelmed by the workload at hand." },
       { stat: "59", label: "event & exhibitions in 2023", description: "manage several exhibitions and events" },
