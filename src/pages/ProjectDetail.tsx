@@ -579,19 +579,26 @@ export function ProjectDetail() {
         )}
         {/* Pillars / 3 Images */}
         {project.pillars && (
-          <section className="py-24 md:pb-32 w-full bg-white">
-            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+          <section className="py-32 md:py-48 w-full bg-white">
+            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
               {project.pillars.map((pillar: any, idx: number) => (
                 <motion.div 
                   key={idx}
-                  initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
-                  className="flex flex-col gap-6 items-start text-left"
+                  initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.15 }}
+                  className="flex flex-col gap-8 items-start text-left group"
                 >
-                  <div className="w-full aspect-square bg-[#E2F0A4] rounded-xl overflow-hidden">
-                    <img src={pillar.image} alt={pillar.title} className="w-full h-full object-cover" />
+                  <div className="w-full aspect-square bg-[#F9F9F9] rounded-3xl overflow-hidden border border-gray-100 p-8 md:p-12 flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow duration-500">
+                    <img 
+                      src={pillar.image} 
+                      alt={pillar.title} 
+                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-out drop-shadow-lg" 
+                      referrerPolicy="no-referrer"
+                    />
                   </div>
-                  <h3 className="text-2xl font-bold">{pillar.title}</h3>
-                  <p className="text-gray-600">{pillar.description}</p>
+                  <div className="flex flex-col gap-4">
+                    <h3 className="text-2xl md:text-3xl font-bold uppercase tracking-tight leading-tight">{pillar.title}</h3>
+                    <p className="text-lg text-gray-600 leading-relaxed font-light">{pillar.description}</p>
+                  </div>
                 </motion.div>
               ))}
             </div>
