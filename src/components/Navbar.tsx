@@ -30,21 +30,11 @@ export function Navbar() {
     return () => { document.body.style.overflow = 'unset'; };
   }, [isMobileMenuOpen]);
   
-  const [isMouseAtTop, setIsMouseAtTop] = useState(false);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      // If mouse is in the top 120px (where navbar is), trigger high contrast
-      setIsMouseAtTop(e.clientY < 120);
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  const useDarkTheme = !isHome || isScrolled || isMouseAtTop;
+  const useDarkTheme = !isHome || isScrolled;
   
-  const textColor = useDarkTheme ? 'text-[#131313]' : 'text-white';
-  const bgColor = useDarkTheme ? 'bg-white/90 shadow-sm' : 'bg-white/20';
+  const textColor = useDarkTheme ? 'text-[#131313]' : 'text-black';
+  const bgColor = useDarkTheme ? 'bg-white/90 shadow-sm' : 'bg-white';
+  const blendMode = isHome && !isScrolled ? 'mix-blend-difference' : '';
 
   return (
     <>
@@ -52,7 +42,7 @@ export function Navbar() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.8 }}
-        className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 flex items-center justify-between w-full max-w-7xl px-6 ${textColor} pointer-events-none transition-colors duration-300`}
+        className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 flex items-center justify-between w-full max-w-7xl px-6 ${textColor} ${blendMode} pointer-events-none transition-all duration-300`}
       >
         <Link to="/#home" className={`pointer-events-auto flex items-center justify-center transition-all duration-300 ${isScrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
           <div className="relative w-10 h-10 group">
@@ -78,7 +68,7 @@ export function Navbar() {
           </div>
         </Link>
         
-        <div className={`flex items-center ${bgColor} backdrop-blur-md px-6 py-3 rounded-full pointer-events-auto transition-all duration-300 hover:bg-white hover:text-[#131313] hover:shadow-lg`}>
+        <div className={`flex items-center ${bgColor} ${!useDarkTheme ? '' : 'backdrop-blur-md'} px-6 py-3 rounded-full pointer-events-auto transition-all duration-300 hover:bg-white hover:text-[#131313] hover:shadow-lg`}>
           {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-8">
              <Link to="/#work" className="text-xs font-mono uppercase tracking-widest hover:opacity-70 transition-opacity">Work</Link>
