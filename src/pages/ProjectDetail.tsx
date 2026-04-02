@@ -718,7 +718,7 @@ export function ProjectDetail() {
           </section>
         )}
 
-      {/* Branding */}
+   {/* Branding */}
         {project.branding && (
           <section className="py-24 md:py-32 w-full bg-white">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16">
