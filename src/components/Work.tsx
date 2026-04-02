@@ -15,7 +15,7 @@ const projects = [
     id: "art-beyond-dimension",
     title: "Art Beyond Dimension",
     tags: "UX/UI",
-    description: "Digital interactive experience to educate the youth about art in museums.",
+    description: "An interactive museum concept that uses AI (GANs) to let visitors explore, transform, and personalize artworks, creating a more engaging and memorable experience.,
     image: "https://github.com/Lumystik/PortfolioLucia/blob/5d660d2c73f00e82faad2c680dcc90c630cce92b/images/thumbbeyond.jpg?raw=true",
     link: "/project/art-beyond-dimension"
   },
