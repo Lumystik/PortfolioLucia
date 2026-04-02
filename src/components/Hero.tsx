@@ -46,7 +46,7 @@ export function Hero() {
 
   useEffect(() => {
     const getTargetRadius = () => {
-      if (window.innerWidth >= 1280) return 298;
+      if (window.innerWidth >= 1280) return 285;
       if (window.innerWidth >= 1024) return 280;
       if (window.innerWidth >= 768) return 220;
       return 150;
