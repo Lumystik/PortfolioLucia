@@ -46,7 +46,7 @@ export function Hero() {
 
   useEffect(() => {
     const getTargetRadius = () => {
-      if (window.innerWidth >= 1280) return 330;
+      if (window.innerWidth >= 1280) return 300;
       if (window.innerWidth >= 1024) return 280;
       if (window.innerWidth >= 768) return 220;
       return 150;
@@ -62,7 +62,7 @@ export function Hero() {
 
     const updateRadius = () => {
       const newTarget = getTargetRadius();
-      animate(radius, newTarget, { duration: 0.4 });
+      animate(radius, newTarget, { duration: 0.3 });
     };
 
     window.addEventListener('resize', updateRadius);
