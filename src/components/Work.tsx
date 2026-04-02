@@ -8,7 +8,7 @@ const projects = [
     title: "MUSE*ON",
     tags: "UX/UI",
     description: "UX Research & Service Design for Museums.",
-    image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/museon-1.png?raw=true",
+    image: "https://github.com/Lumystik/PortfolioLucia/blob/fdd73d17a16fbafd0cab50f392f48561db1fef98/images/thumbmuseon.jpg?raw=true",
     link: "/project/museon"
   },
   {
