@@ -100,7 +100,7 @@ export function Hero() {
         className="absolute inset-0 z-10 pointer-events-none"
         style={{ clipPath }}
       >
-        <img src="https://github.com/Lumystik/PortfolioLucia/blob/0f006f3fea728a2dda5125bbd7bf46a60e9d0316/images/meedited.jpg?raw=true" className="w-full h-full object-cover" alt="Hero Background Sharp" />
+        <img src="https://github.com/Lumystik/PortfolioLucia/blob/ea32591508b2f8f6f183e96dfd10c25622d0d854/images/meedited.jpg?raw=true" className="w-full h-full object-cover" alt="Hero Background Sharp" />
         <WireframeSketches color="rgba(211, 211, 211, 0.65)" />
       </motion.div>
 
