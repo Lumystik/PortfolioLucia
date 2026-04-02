@@ -104,8 +104,8 @@ const projectsData: Record<string, any> = {
       description: "The design system was built to be clean, accessible, and highly functional, prioritizing data visualization and task management. It includes standardized colors, buttons, dropdown menus, and calendar components.",
       logoDescription: "Developed as part of the Digital Design Studio.",
       images: [
-        "https://github.com/Lumystik/PortfolioLucia/blob/1a39a63649eb9c9d264d3bc7d6d76052987002ea/images/branding.png",
-        "[INSERT_GITHUB_IMAGE_LINK_DESIGN_SYSTEM_2]"
+        "https://github.com/Lumystik/PortfolioLucia/blob/1a39a63649eb9c9d264d3bc7d6d76052987002ea/images/branding.png?raw=true",
+        "https://github.com/Lumystik/PortfolioLucia/blob/8db6fa30110504a2a86d624dcaedef2a053493c5/images/branding1.png?raw=true"
       ]
     },
     keyFunctions: {
