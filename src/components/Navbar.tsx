@@ -30,7 +30,18 @@ export function Navbar() {
     return () => { document.body.style.overflow = 'unset'; };
   }, [isMobileMenuOpen]);
   
-  const useDarkTheme = !isHome || isScrolled;
+  const [isMouseAtTop, setIsMouseAtTop] = useState(false);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      // If mouse is in the top 120px (where navbar is), trigger high contrast
+      setIsMouseAtTop(e.clientY < 120);
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  const useDarkTheme = !isHome || isScrolled || isMouseAtTop;
   
   const textColor = useDarkTheme ? 'text-[#131313]' : 'text-white';
   const bgColor = useDarkTheme ? 'bg-white/90 shadow-sm' : 'bg-white/20';
@@ -46,7 +57,7 @@ export function Navbar() {
         <Link to="/#home" className={`pointer-events-auto flex items-center justify-center transition-all duration-300 ${isScrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
           <div className="relative w-10 h-10 group">
             <img 
-              src="https://github.com/Lumystik/PortfolioLucia/blob/bcadb6f8a10937186892b46a1608beff4e1e520a/images/butterfly.png?raw=true" 
+              src="https://github.com/Lumystik/PortfolioLucia/blob/main/images/butterfly.png?raw=true" 
               alt="Lucía Medina Logo" 
               className="w-full h-full object-contain transition-opacity duration-300 group-hover:opacity-0"
               referrerPolicy="no-referrer"
@@ -54,11 +65,11 @@ export function Navbar() {
             <div 
               className="absolute inset-0 bg-[#E54D2E] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               style={{
-                maskImage: `url(https://github.com/Lumystik/PortfolioLucia/blob/bcadb6f8a10937186892b46a1608beff4e1e520a/images/butterfly.png?raw=true)`,
+                maskImage: `url(https://github.com/Lumystik/PortfolioLucia/blob/main/images/butterfly.png?raw=true)`,
                 maskSize: 'contain',
                 maskRepeat: 'no-repeat',
                 maskPosition: 'center',
-                WebkitMaskImage: `url(https://github.com/Lumystik/PortfolioLucia/blob/bcadb6f8a10937186892b46a1608beff4e1e520a/images/butterfly.png?raw=true)`,
+                WebkitMaskImage: `url(https://github.com/Lumystik/PortfolioLucia/blob/main/images/butterfly.png?raw=true)`,
                 WebkitMaskSize: 'contain',
                 WebkitMaskRepeat: 'no-repeat',
                 WebkitMaskPosition: 'center',
@@ -67,7 +78,7 @@ export function Navbar() {
           </div>
         </Link>
         
-        <div className={`flex items-center ${bgColor} backdrop-blur-md px-6 py-3 rounded-full pointer-events-auto transition-colors duration-300`}>
+        <div className={`flex items-center ${bgColor} backdrop-blur-md px-6 py-3 rounded-full pointer-events-auto transition-all duration-300 hover:bg-white hover:text-[#131313] hover:shadow-lg`}>
           {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-8">
              <Link to="/#work" className="text-xs font-mono uppercase tracking-widest hover:opacity-70 transition-opacity">Work</Link>
