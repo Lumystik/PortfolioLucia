@@ -55,7 +55,7 @@ const projectsData: Record<string, any> = {
       {
         title: "Scenario 2: Assisting Visits",
         description: "Prepare for assisting Alex during a museum visit. Mark checks his assigned tasks and uses smart notes to gather information.",
-        image: "[INSERT_GITHUB_IMAGE_LINK_SCENARIO_2]"
+        image: "https://github.com/Lumystik/PortfolioLucia/blob/592d301d45c6ad6edb47c61f5b858d4c4994a708/images/mytask_museon2.png?raw=true"
       },
       {
         title: "AI Integration",
