@@ -38,11 +38,11 @@ const projectsData: Record<string, any> = {
         { label: "My task shortcut", percentage: 20, color: "#d1d5db" }
       ],
       priorities: [
-        { label: "Complete", size: "w-48 h-48 md:w-64 md:h-64", color: "bg-[#E2F0A4]", position: "absolute bottom-0 left-2 md:bottom-4 md:left-4 z-10" },
-        { label: "All-in one", size: "w-32 h-32 md:w-48 md:h-48", color: "bg-[#D4E68C]", position: "absolute bottom-4 right-4 md:bottom-8 md:right-4 z-20" },
-        { label: "Fast", size: "w-28 h-28 md:w-40 md:h-40", color: "bg-[#C5D97A]", position: "absolute top-16 right-4 md:top-20 md:right-12 z-0" },
-        { label: "Panoramic", size: "w-24 h-24 md:w-32 md:h-32", color: "bg-gray-300", position: "absolute top-12 left-12 md:top-16 md:left-20 z-0" },
-        { label: "Useful", size: "w-20 h-20 md:w-28 md:h-28", color: "bg-gray-400", position: "absolute top-0 right-20 md:top-4 md:right-32 z-10" }
+        { label: "Complete", size: "w-32 h-32 sm:w-40 sm:h-40 md:w-64 md:h-64", color: "bg-[#E2F0A4]", position: "absolute bottom-0 left-0 md:bottom-4 md:left-4 z-10" },
+        { label: "All-in one", size: "w-24 h-24 sm:w-28 sm:h-28 md:w-48 md:h-48", color: "bg-[#D4E68C]", position: "absolute bottom-8 right-0 md:bottom-8 md:right-4 z-20" },
+        { label: "Fast", size: "w-20 h-20 sm:w-24 sm:h-24 md:w-40 md:h-40", color: "bg-[#C5D97A]", position: "absolute top-12 right-2 md:top-20 md:right-12 z-0" },
+        { label: "Panoramic", size: "w-16 h-16 sm:w-20 sm:h-20 md:w-32 md:h-32", color: "bg-gray-300", position: "absolute top-4 left-4 md:top-8 md:left-8 z-0" },
+        { label: "Useful", size: "w-14 h-14 sm:w-16 sm:h-16 md:w-28 md:h-28", color: "bg-gray-400", position: "absolute top-0 right-16 md:top-4 md:right-32 z-10" }
       ]
     },
     pillars: [
@@ -358,7 +358,7 @@ export function ProjectDetail() {
   }
 
   return (
-    <div className="bg-white text-[#131313] min-h-screen font-sans">
+    <div className="bg-white text-[#131313] min-h-screen font-sans overflow-x-hidden">
       <Navbar />
       
       <main className="w-full">
@@ -499,7 +499,7 @@ export function ProjectDetail() {
 
     {/* User Insights (Charts) */}
         {project.userInsights && (
-          <section className="py-24 md:py-32 w-full bg-[#FDFBF7] overflow-x-hidden">
+          <section className="pt-24 md:pt-32 pb-12 md:pb-16 w-full bg-[#FDFBF7] overflow-x-hidden">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-24">
               <h3 className="text-3xl md:text-5xl font-bold uppercase tracking-tight text-left text-[#131313]">
                 User Insights
@@ -508,13 +508,13 @@ export function ProjectDetail() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
                 
                 {/* Donut Chart */}
-                <div className="flex flex-col gap-12 h-full">
-                  <h4 className="text-2xl font-bold uppercase tracking-widest">
+                <div className="flex flex-col gap-12 h-full items-center lg:items-start w-full">
+                  <h4 className="text-2xl font-bold uppercase tracking-widest text-center lg:text-left">
                     User Perceived Benefits
                   </h4>
 
-                  <div className="flex-1 flex items-center justify-center">
-                    <div className="relative w-64 h-64 md:w-80 md:h-80">
+                  <div className="flex-1 flex flex-col sm:flex-row items-center justify-center gap-12 w-full">
+                    <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-80 md:h-80 shrink-0">
                       <div 
                         className="w-full h-full rounded-full"
                         style={{
@@ -527,52 +527,34 @@ export function ProjectDetail() {
                       />
                       <div className="absolute inset-0 m-auto w-3/5 h-3/5 bg-[#FDFBF7] rounded-full" />
 
-                      <div className="absolute top-1/4 -right-12 md:-right-24 text-sm md:text-base font-bold text-[#131313] z-10 max-w-[100px] text-center">
+                      {/* Desktop Labels */}
+                      <div className="hidden lg:block absolute top-1/4 -right-24 text-base font-bold text-[#131313] z-10 max-w-[100px] text-center">
                         {project.userInsights.benefits[1].label}
                       </div>
-                      <div className="absolute bottom-1/4 left-1/2 -translate-x-1/2 text-sm md:text-base font-bold text-[#131313] z-10 max-w-[150px] text-center">
+                      <div className="hidden lg:block absolute bottom-1/4 left-1/2 -translate-x-1/2 text-base font-bold text-[#131313] z-10 max-w-[150px] text-center">
                         {project.userInsights.benefits[0].label}
                       </div>
-                      <div className="absolute top-1/3 -left-12 md:-left-20 text-sm md:text-base font-bold text-[#131313] z-10 max-w-[100px] text-center">
+                      <div className="hidden lg:block absolute top-1/3 -left-20 text-base font-bold text-[#131313] z-10 max-w-[100px] text-center">
                         {project.userInsights.benefits[2].label}
                       </div>
                     </div>
-                  </div>
-                </div>
 
-                {/* Bubble Chart */}
-                <div className="flex flex-col gap-12 h-full">
-                  <h4 className="text-2xl font-bold uppercase tracking-widest">
-                    User Priorities
-                  </h4>
-
-                  <div className="flex-1 flex items-center justify-center">
-                    <div className="relative w-[320px] h-[320px] md:w-[450px] md:h-[450px]">
-                      {project.userInsights.priorities.map((priority: any, idx: number) => (
-                        <motion.div
-                          key={idx}
-                          initial={{ scale: 0, opacity: 0 }}
-                          whileInView={{ scale: 1, opacity: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.5, delay: idx * 0.1, type: "spring" }}
-                          className={`rounded-full flex items-center justify-center text-[#131313] font-bold text-sm md:text-lg text-center p-4 shadow-lg ${priority.color} ${priority.size} ${priority.position}`}
-                        >
-                          {priority.label}
-                        </motion.div>
+                    {/* Mobile Legend */}
+                    <div className="flex flex-col gap-4 lg:hidden w-full max-w-[280px]">
+                      {project.userInsights.benefits.map((benefit: any, idx: number) => (
+                        <div key={idx} className="flex items-center gap-3">
+                          <div className="w-4 h-4 rounded-full shrink-0" style={{ backgroundColor: benefit.color }} />
+                          <span className="text-sm font-bold text-[#131313]">{benefit.label}</span>
+                          <span className="text-sm text-gray-500 ml-auto">{benefit.percentage}%</span>
+                        </div>
                       ))}
                     </div>
                   </div>
                 </div>
-
-              </div>
-            </div>
-          </section>
-        )}
-
  
         {/* Pillars / 3 Images */}
         {project.pillars && (
-          <section className="py-32 md:py-48 w-full bg-white">
+          <section className="pt-12 md:pt-16 pb-32 md:pb-48 w-full bg-white">
             <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
               {project.pillars.map((pillar: any, idx: number) => (
                 <motion.div 
@@ -580,7 +562,7 @@ export function ProjectDetail() {
                   initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.15 }}
                   className="flex flex-col gap-8 items-start text-left group"
                 >
-                  <div className="w-full aspect-square bg-[#F9F9F9] rounded-3xl overflow-hidden border border-gray-100 p-8 md:p-12 flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow duration-500">
+                  <div className="w-full aspect-square md:aspect-[2/3] bg-[#F9F9F9] rounded-3xl overflow-hidden border border-gray-100 p-8 md:p-12 flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow duration-500">
                     <img 
                       src={pillar.image} 
                       alt={pillar.title} 
