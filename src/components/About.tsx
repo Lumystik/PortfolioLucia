@@ -30,7 +30,7 @@ export function About() {
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.3 }}
               className="text-lg md:text-xl font-medium"
             >
-              MSc Digital & Interaction Design at Politecnico di Milano (Graduating 2026)
+              MSc Digital & Interaction Design at Politecnico di Milano
             </motion.p>
           </div>
         </div>
