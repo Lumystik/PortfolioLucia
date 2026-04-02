@@ -144,14 +144,14 @@ export function Hero() {
             <motion.span 
               initial={{ opacity: 0, y: 20 }} 
               animate={{ opacity: 1, y: 0 }} 
-              transition={{ delay: 1.1, duration: 0.7 }}
+              transition={{ delay: 1.4, duration: 0.4 }}
             >
               Interaction Designer
             </motion.span>
             <motion.span 
               initial={{ opacity: 0, y: 20 }} 
               animate={{ opacity: 1, y: 0 }} 
-              transition={{ delay: 1.1, duration: 0.7 }}
+              transition={{ delay: 1.4, duration: 0.4 }}
             >
               UX/UI Designer
             </motion.span>
