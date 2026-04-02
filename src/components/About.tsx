@@ -17,7 +17,7 @@ export function About() {
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.1 }}
             className="text-xl md:text-3xl font-medium leading-snug"
           >
-            I am an Interaction Designer with a background in digital advertising, UX research, and frontend development. I work across the full design process from research to high-fidelity prototype. Proficient in HTML5, CSS3, and JavaScript, I also write the code behind my designs.
+            I am an Interaction Designer with a background in digital graphic design and UI/UX design. I work across the full design process from research to high-fidelity prototype. I also write the code behind my designs.
           </motion.p>
           <div className="flex flex-col gap-4">
             <motion.h3 
