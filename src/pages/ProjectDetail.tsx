@@ -760,7 +760,7 @@ export function ProjectDetail() {
                 <div className="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-6">
                   {project.branding.images.map((img: string, idx: number) => (
                     <div key={idx} className={`w-full bg-[#E2F0A4] rounded-3xl overflow-hidden ${idx === 0 ? 'sm:col-span-2 aspect-video' : 'aspect-square'}`}>
-                      <img src={img} alt={`Branding ${idx}`} className="w-full h-full object-cover" />
+                      <img src={img} alt={`Branding ${idx}`} className="max-w-full max-h-[70vh] object-contain" />
                     </div>
                   ))}
                 </div>
