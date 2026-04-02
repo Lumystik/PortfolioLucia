@@ -701,55 +701,44 @@ export function ProjectDetail() {
         )}
 
       {/* Branding */}
-        {project.branding && (
-          <section className="py-24 md:py-32 w-full bg-white">
-            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16">
-              <div className="flex flex-col md:flex-row gap-12 items-start">
-                <div className="md:w-1/3 flex flex-col gap-6">
-                  <h3 className="text-2xl font-bold uppercase tracking-widest">Building the Brand</h3>
-                  <p className="text-lg leading-relaxed text-gray-600">
-                    {project.branding.description}
-                  </p>
-                  {project.branding.logoDescription && (
-                    <div className="mt-8 pt-8 border-t border-gray-100">
-                      <h4 className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-4">Logo Design</h4>
-                      <p className="text-lg leading-relaxed text-gray-600">
-                        {project.branding.logoDescription}
-                      </p>
-                    </div>
-                  )}
-                </div>
-                
-                <div className=" p-8  md:w-12 grid grid-cols-1 sm:grid-cols-2 gap-12  object-contain">
-                  {project.branding.images.map((img: string, idx: number) => (
-                    <div 
-                      key={idx} 
-                      className={`w-full bg-[#F9F9F9] rounded-[40px] border border-gray-100 flex items-center justify-center p-12 md:p-20 lg:p-24 shadow-sm ${idx === 0 ? 'sm:col-span-2' : ''}`}
-                    >
-                      <img 
-                        src={img} 
-                        alt={`Branding ${idx}`} 
-                        className="max-w-full max-h-[70vh] object-contain drop-shadow-2xl" 
-                        referrerPolicy="no-referrer"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
+{project.branding && (
+  <section className="py-24 md:py-32 w-full bg-white">
+    <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16">
+      <div className="flex flex-col md:flex-row gap-12 items-start">
+        <div className="md:w-1/3 flex flex-col gap-6">
+          <h3 className="text-2xl font-bold uppercase tracking-widest">Building the Brand</h3>
+          <p className="text-lg leading-relaxed text-gray-600">
+            {project.branding.description}
+          </p>
+          {project.branding.logoDescription && (
+            <div className="mt-8 pt-8 border-t border-gray-100">
+              <h4 className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-4">Logo Design</h4>
+              <p className="text-lg leading-relaxed text-gray-600">
+                {project.branding.logoDescription}
+              </p>
             </div>
-          </section>
-        )}
-                <div className="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {project.branding.images.map((img: string, idx: number) => (
-                    <div key={idx} className={`w-full bg-[#E2F0A4] rounded-3xl overflow-hidden ${idx === 0 ? 'sm:col-span-2 aspect-video' : 'aspect-square'}`}>
-                      <img src={img} alt={`Branding ${idx}`} className="max-w-full max-h-[70vh] object-contain" />
-                    </div>
-                  ))}
-                </div>
-              </div>
+          )}
+        </div>
+        
+        <div className="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-12">
+          {project.branding.images.map((img: string, idx: number) => (
+            <div 
+              key={idx} 
+              className={`w-full bg-[#F9F9F9] rounded-[40px] border border-gray-100 flex items-center justify-center p-8 md:p-12 lg:p-16 shadow-sm ${idx === 0 ? 'sm:col-span-2' : ''}`}
+            >
+              <img 
+                src={img} 
+                alt={`Branding ${idx}`} 
+                className="w-full h-auto max-h-[80vh] object-contain drop-shadow-2xl" 
+                referrerPolicy="no-referrer"
+              />
             </div>
-          </section>
-        )}
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+)}
 
         {/* Key Functions */}
         {project.keyFunctions && (
