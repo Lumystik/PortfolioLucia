@@ -41,7 +41,7 @@ export function Navbar() {
       <motion.nav 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6, duration: 0.8 }}
+        transition={{ delay: 1.2, duration: 0.8 }}
         className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 flex items-center justify-between w-full max-w-7xl px-6 ${textColor} ${blendMode} pointer-events-none transition-all duration-300`}
       >
         <Link to="/#home" className={`pointer-events-auto flex items-center justify-center transition-all duration-300 ${isScrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
