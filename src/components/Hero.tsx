@@ -55,7 +55,7 @@ export function Hero() {
     // Initial entrance animation: Scale down from 2000px to the target responsive size
     const target = getTargetRadius();
     animate(radius, target, {
-      duration: 1,
+      duration: 0.6,
       ease: [0.16, 1, 0.3, 1], // Smooth premium ease-out
       delay: 0.1
     });
