@@ -41,9 +41,25 @@ const WireframeSketches = ({ color = "rgba(226, 240, 164, 0.35)" }: { color?: st
 export function Hero() {
   const mouseX = useMotionValue(typeof window !== 'undefined' ? window.innerWidth / 2 : 0);
   const mouseY = useMotionValue(typeof window !== 'undefined' ? window.innerHeight / 2 : 0);
+  const [radius, setRadius] = useState(150);
   const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    const updateRadius = () => {
+      if (window.innerWidth >= 1280) {
+        setRadius(350); // Large Desktop
+      } else if (window.innerWidth >= 1024) {
+        setRadius(280); // Desktop
+      } else if (window.innerWidth >= 768) {
+        setRadius(220); // Tablet
+      } else {
+        setRadius(150); // Mobile
+      }
+    };
+
+    updateRadius();
+    window.addEventListener('resize', updateRadius);
+    
     const handleMove = (e: MouseEvent | TouchEvent) => {
       if (heroRef.current) {
         const rect = heroRef.current.getBoundingClientRect();
@@ -56,18 +72,19 @@ export function Hero() {
     window.addEventListener('mousemove', handleMove);
     window.addEventListener('touchmove', handleMove);
     return () => {
+      window.removeEventListener('resize', updateRadius);
       window.removeEventListener('mousemove', handleMove);
       window.removeEventListener('touchmove', handleMove);
     };
   }, [mouseX, mouseY]);
 
-  const clipPath = useMotionTemplate`circle(150px at ${mouseX}px ${mouseY}px)`;
+  const clipPath = useMotionTemplate`circle(${radius}px at ${mouseX}px ${mouseY}px)`;
 
   return (
     <section ref={heroRef} id="home" className="relative h-screen w-full flex flex-col items-center overflow-hidden bg-[#131313] cursor-default">
       {/* Blurred Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <img src="images/profileme.jpg" className="w-full h-full object-cover blur-[10px] scale-105" alt="Hero Background Blurred" />
+        <img src="https://github.com/Lumystik/PortfolioLucia/blob/main/images/me.jpg?raw=true" className="w-full h-full object-cover blur-[10px] scale-105" alt="Hero Background Blurred" />
         <WireframeSketches color="" />
       </div>
       
