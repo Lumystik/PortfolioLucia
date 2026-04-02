@@ -59,7 +59,7 @@ const projectsData: Record<string, any> = {
       {
         title: "AI Integration",
         description: "AI utilizes conversation transcription to instantly detect tasks with a single click and direct users to the corresponding page.",
-        image: "[INSERT_GITHUB_IMAGE_LINK_SCENARIO_3]"
+        image: "https://github.com/Lumystik/PortfolioLucia/blob/1a39a63649eb9c9d264d3bc7d6d76052987002ea/images/mytask_museon3.png?raw=true"
       }
     ],
     bannerImage: "[INSERT_GITHUB_IMAGE_LINK_BANNER]",
@@ -104,7 +104,7 @@ const projectsData: Record<string, any> = {
       description: "The design system was built to be clean, accessible, and highly functional, prioritizing data visualization and task management. It includes standardized colors, buttons, dropdown menus, and calendar components.",
       logoDescription: "Developed as part of the Digital Design Studio.",
       images: [
-        "[INSERT_GITHUB_IMAGE_LINK_DESIGN_SYSTEM_1]",
+        "https://github.com/Lumystik/PortfolioLucia/blob/1a39a63649eb9c9d264d3bc7d6d76052987002ea/images/branding.png",
         "[INSERT_GITHUB_IMAGE_LINK_DESIGN_SYSTEM_2]"
       ]
     },
