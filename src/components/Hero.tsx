@@ -3,7 +3,7 @@ import { motion, useMotionValue, useMotionTemplate, animate } from 'motion/react
 
 const WireframeSketches = ({ color = "rgba(226, 240, 164, 0.35)" }: { color?: string }) => {
   const transitionProps = (delay: number) => ({
-    duration: 4,
+    duration: 2,
     delay,
     ease: "easeInOut",
     repeat: Infinity,
@@ -46,7 +46,7 @@ export function Hero() {
 
   useEffect(() => {
     const getTargetRadius = () => {
-      if (window.innerWidth >= 1280) return 300;
+      if (window.innerWidth >= 1280) return 298;
       if (window.innerWidth >= 1024) return 280;
       if (window.innerWidth >= 768) return 220;
       return 150;
