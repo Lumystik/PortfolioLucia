@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useMotionValue, useMotionTemplate, animate } from 'motion/react';
 
-const WireframeSketches = ({ color = "rgba(226, 240, 164, 0.55)" }: { color?: string }) => {
+const WireframeSketches = ({ color = "rgba(226, 240, 164, 0.85)" }: { color?: string }) => {
   const transitionProps = (delay: number) => ({
     duration: 4,
     delay,
