@@ -139,15 +139,35 @@ export function Hero() {
         style={{ clipPath }}
       >
         <div className="relative flex flex-col w-full h-full justify-end pb-10 md:pb-8 lg:pb-6">
+          {/* Labels - Centered vertically on desktop */}
           <div className="flex justify-between w-full text-[#E54D2E] font-mono text-[10px] md:text-sm uppercase tracking-widest mb-4 md:mb-0 md:absolute md:top-1/2 md:-translate-y-1/2 md:left-0 md:right-0 md:px-0">
-            <span>Interaction Designer</span>
-            <span>UX/UI Designer</span>
+            <motion.span 
+              initial={{ opacity: 0, y: 20 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ delay: 1.1, duration: 0.7 }}
+            >
+              Interaction Designer
+            </motion.span>
+            <motion.span 
+              initial={{ opacity: 0, y: 20 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ delay: 1.1, duration: 0.7 }}
+            >
+              UX/UI Designer
+            </motion.span>
           </div>
-          <h1 className="w-full flex justify-between text-[11.5vw] md:text-[10vw] lg:text-[9vw] xl:text-[115px] leading-[0.8] tracking-tighter text-transparent font-medium m-0 p-0 whitespace-nowrap">
+
+          {/* Name - Synchronized animation */}
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ delay: 1.1, duration: 0.7 }}
+            className="w-full flex justify-between text-[11.5vw] md:text-[10vw] lg:text-[9vw] xl:text-[115px] leading-[0.8] tracking-tighter text-[#E54D2E] font-medium m-0 p-0 whitespace-nowrap"
+          >
             {"LUCÍA".split('').map((char, i) => <span key={`first-orange-${i}`}>{char}</span>)}
             <span className="w-[4vw] md:w-[3vw]"></span>
             {"MEDINA".split('').map((char, i) => <span key={`last-orange-${i}`}>{char}</span>)}
-          </h1>
+          </motion.h1>
         </div>
       </motion.div>
     </section>
