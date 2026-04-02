@@ -16,7 +16,7 @@ const projects = [
     title: "Art Beyond Dimension",
     tags: "UI",
     description: "Digital experience to educate the youth about art in museums.",
-    image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/art_1.png?raw=true",
+    image: "https://github.com/Lumystik/PortfolioLucia/blob/5d660d2c73f00e82faad2c680dcc90c630cce92b/images/thumbbeyond.jpg?raw=true",
     link: "/project/art-beyond-dimension"
   },
   {
