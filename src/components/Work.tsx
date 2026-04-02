@@ -23,7 +23,7 @@ const projects = [
     id: "films-foundation",
     title: "Films Foundation",
     tags: "UI",
-    description: "Accessible UI for Cineteca Di Milano.",
+    description: "A redesign of Cineteca Milano’s digital platform, including a design system and web/mobile interfaces, focused on improving usability, accessibility, and content organization.",
     image: "https://github.com/Lumystik/PortfolioLucia/blob/99a3aa0ebe21f3353b295d194bbfce9c00d460c0/images/thumbcinema.jpg?raw=true",
     link: "/project/films-foundation"
   },
