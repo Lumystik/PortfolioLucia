@@ -806,26 +806,24 @@ export function ProjectDetail() {
           </section>
         )}
 
-  
-        {/* Interface Image */}
-        {project.interfaceImage && (
-          <section className="pb-24 md:pb-32 w-full bg-white">
-            <div className="max-w-7xl mx-auto px-6">
-              <motion.div 
-                initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
-                className="w-full rounded-3xl overflow-hidden shadow-2xl border border-gray-100 bg-[#000000] p-8 md:p-16 lg:p-24 flex items-center justify-center"
-              >
-                <img 
-                  src={project.interfaceImage} 
-                  alt={`${project.title} Interface`} 
-                  className="w-full h-auto max-h-[80vh] object-contain drop-shadow-xl" 
-                  referrerPolicy="no-referrer"
-                />
-              </motion.div>
-            </div>
-          </section>
-        )}
-
+  {/* Interface Image */}
+{project.interfaceImage && (
+  <section className="pt-24 md:pt-32 pb-24 md:pb-32 w-full bg-white">
+    <div className="max-w-5xl mx-auto px-6">
+      <motion.div 
+        initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
+        className="w-full rounded-3xl overflow-hidden shadow-2xl border border-gray-100 bg-[#000000] p-6 md:p-10 lg:p-12 flex items-center justify-center"
+      >
+        <img 
+          src={project.interfaceImage} 
+          alt={`${project.title} Interface`} 
+          className="w-full h-auto max-h-[60vh] object-contain drop-shadow-xl" 
+          referrerPolicy="no-referrer"
+        />
+      </motion.div>
+    </div>
+  </section>
+)}
         {/* Takeaways */}
         {project.takeaways && (
           <section className="py-24 md:py-32 w-full bg-[#E2F0A4]">
