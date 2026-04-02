@@ -514,7 +514,7 @@ export function ProjectDetail() {
                   </h4>
 
                   <div className="flex-1 flex items-center justify-center">
-                    <div className="relative w-64 h-64 md:w-80 md:h-80 overflow-hidden">
+                    <div className="relative w-64 h-64 md:w-80 md:h-80">
                       <div 
                         className="w-full h-full rounded-full"
                         style={{
@@ -547,7 +547,7 @@ export function ProjectDetail() {
                   </h4>
 
                   <div className="flex-1 flex items-center justify-center">
-                    <div className="relative w-[320px] h-[320px] md:w-[450px] md:h-[450px] overflow-hidden">
+                    <div className="relative w-[320px] h-[320px] md:w-[450px] md:h-[450px]">
                       {project.userInsights.priorities.map((priority: any, idx: number) => (
                         <motion.div
                           key={idx}
@@ -715,23 +715,23 @@ export function ProjectDetail() {
 {project.branding && (
   <section className="py-24 md:py-32 w-full bg-white">
     <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16">
-      <div className="flex flex-col md:flex-row gap-12 items-start">
-        <div className="md:w-1/3 flex flex-col gap-6">
-          <h3 className="text-2xl font-bold uppercase tracking-widest">Building the Brand</h3>
-          <p className="text-lg leading-relaxed text-gray-600">
-            {project.branding.description}
-          </p>
-          {project.branding.logoDescription && (
-            <div className="mt-8 pt-8 border-t border-gray-100">
-              <h4 className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-4">Logo Design</h4>
-              <p className="text-lg leading-relaxed text-gray-600">
-                {project.branding.logoDescription}
-              </p>
-            </div>
-          )}
-        </div>
-        
-        <div className="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-12">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
+                <div className="md:col-span-1 flex flex-col gap-6">
+                  <h3 className="text-2xl font-bold uppercase tracking-widest">Building the Brand</h3>
+                  <p className="text-lg leading-relaxed text-gray-600">
+                    {project.branding.description}
+                  </p>
+                  {project.branding.logoDescription && (
+                    <div className="mt-8 pt-8 border-t border-gray-100">
+                      <h4 className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-4">Logo Design</h4>
+                      <p className="text-lg leading-relaxed text-gray-600">
+                        {project.branding.logoDescription}
+                      </p>
+                    </div>
+                  )}
+                </div>
+                
+                <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-12">
           {project.branding.images.map((img: string, idx: number) => (
             <div 
               key={idx} 
@@ -767,12 +767,12 @@ export function ProjectDetail() {
                   <motion.div 
                     key={idx}
                     initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
-                    className={`flex flex-col gap-6 bg-white p-6 rounded-3xl shadow-sm border border-gray-100 ${idx === 0 ? 'md:col-span-2 lg:col-span-2 flex-row items-center' : ''}`}
+                    className={`flex flex-col gap-6 bg-white p-6 rounded-3xl shadow-sm border border-gray-100 ${idx === 0 ? 'md:col-span-2 lg:col-span-2 md:grid md:grid-cols-2 md:items-center' : ''}`}
                   >
-                    <div className={`w-full bg-[#E2F0A4] rounded-2xl overflow-hidden ${idx === 0 ? 'md:w-1/2 aspect-video' : 'aspect-square'}`}>
+                    <div className={`w-full bg-[#E2F0A4] rounded-2xl overflow-hidden ${idx === 0 ? 'aspect-video' : 'aspect-square'}`}>
                       <img src={func.image} alt={func.title} className="w-full h-full object-cover" />
                     </div>
-                    <div className={`flex flex-col gap-4 ${idx === 0 ? 'md:w-1/2 md:px-6' : ''}`}>
+                    <div className={`flex flex-col gap-4 ${idx === 0 ? 'md:px-6' : ''}`}>
                       <h4 className="text-xl font-bold uppercase">{func.title}</h4>
                       <p className="text-gray-600 leading-relaxed">{func.description}</p>
                     </div>
@@ -820,7 +820,7 @@ export function ProjectDetail() {
   {/* Interface Image */}
 {project.interfaceImage && (
   <section className="pt-24 md:pt-32 pb-24 md:pb-32 w-full bg-white">
-    <div className="max-w-5xl mx-auto px-6">
+    <div className="max-w-7xl mx-auto px-6">
       <motion.div 
         initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
         className="w-full rounded-3xl overflow-hidden shadow-2xl border border-gray-100 bg-[#000000] p-6 md:p-10 lg:p-12 flex items-center justify-center"
