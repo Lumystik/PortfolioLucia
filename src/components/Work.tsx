@@ -7,15 +7,15 @@ const projects = [
     id: "museon",
     title: "MUSE*ON",
     tags: "UX/UI",
-    description: "UX Research & Service Design for Museums.",
+    description: "UX Research & Service Design Platform for Museums.",
     image: "https://github.com/Lumystik/PortfolioLucia/blob/fdd73d17a16fbafd0cab50f392f48561db1fef98/images/thumbmuseon.jpg?raw=true",
     link: "/project/museon"
   },
   {
     id: "art-beyond-dimension",
     title: "Art Beyond Dimension",
-    tags: "UI",
-    description: "Digital experience to educate the youth about art in museums.",
+    tags: "UX/UI",
+    description: "Digital interactive experience to educate the youth about art in museums.",
     image: "https://github.com/Lumystik/PortfolioLucia/blob/5d660d2c73f00e82faad2c680dcc90c630cce92b/images/thumbbeyond.jpg?raw=true",
     link: "/project/art-beyond-dimension"
   },
@@ -23,15 +23,15 @@ const projects = [
     id: "films-foundation",
     title: "Films Foundation",
     tags: "UI",
-    description: "Mobile UI for Cineteca Di Milano.",
-    image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/screenmainfilm.png?raw=true",
+    description: "Accessible UI for Cineteca Di Milano.",
+    image: "https://github.com/Lumystik/PortfolioLucia/blob/99a3aa0ebe21f3353b295d194bbfce9c00d460c0/images/thumbcinema.jpg",
     link: "/project/films-foundation"
   },
   {
     id: "seedtag",
     title: "Seedtag",
     tags: "Creative Ads",
-    description: "Designing interactive ad creatives for global brands.",
+    description: "Interactive ad creatives for global brands.",
     image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/carseedtag2.png?raw=true",
     link: "/project/seedtag"
   },
@@ -39,7 +39,7 @@ const projects = [
     id: "pixela",
     title: "Pixela",
     tags: "Game Dev",
-    description: "AI Art Videogame Demo.",
+    description: "Videogame Demo made in Unity",
     image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/pixela.png?raw=true",
     link: "/project/pixela"
   }
