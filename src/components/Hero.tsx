@@ -3,7 +3,7 @@ import { motion, useMotionValue, useMotionTemplate, animate } from 'motion/react
 
 const WireframeSketches = ({ color = "rgba(226, 240, 164, 0.35)" }: { color?: string }) => {
   const transitionProps = (delay: number) => ({
-    duration: 2,
+    duration: 4,
     delay,
     ease: "easeInOut",
     repeat: Infinity,
@@ -55,9 +55,9 @@ export function Hero() {
     // Initial entrance animation: Scale down from 2000px to the target responsive size
     const target = getTargetRadius();
     animate(radius, target, {
-      duration: 2,
+      duration: 1,
       ease: [0.16, 1, 0.3, 1], // Smooth premium ease-out
-      delay: 0.5
+      delay: 0.1
     });
 
     const updateRadius = () => {
