@@ -84,7 +84,7 @@ export function Hero() {
     <section ref={heroRef} id="home" className="relative h-screen w-full flex flex-col items-center overflow-hidden bg-[#131313] cursor-default">
       {/* Blurred Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <img src="https://github.com/Lumystik/PortfolioLucia/blob/main/images/mememe.png?raw=true" className="w-full h-full object-cover blur-[10px] scale-105" alt="Hero Background Blurred" />
+        <img src="" className="w-full h-full object-cover blur-[10px] scale-105" alt="Hero Background Blurred" />
         <WireframeSketches color="" />
       </div>
       
