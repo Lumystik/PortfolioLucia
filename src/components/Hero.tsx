@@ -47,7 +47,7 @@ export function Hero() {
   useEffect(() => {
     const updateRadius = () => {
       if (window.innerWidth >= 1280) {
-        setRadius(350); // Large Desktop
+        setRadius(300); // Large Desktop
       } else if (window.innerWidth >= 1024) {
         setRadius(280); // Desktop
       } else if (window.innerWidth >= 768) {
@@ -84,7 +84,7 @@ export function Hero() {
     <section ref={heroRef} id="home" className="relative h-screen w-full flex flex-col items-center overflow-hidden bg-[#131313] cursor-default">
       {/* Blurred Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <img src="https://github.com/Lumystik/PortfolioLucia/blob/main/images/me.jpg?raw=true" className="w-full h-full object-cover blur-[10px] scale-105" alt="Hero Background Blurred" />
+        <img background-color="black" className="w-full h-full object-cover blur-[10px] scale-105" alt="Hero Background Blurred" />
         <WireframeSketches color="" />
       </div>
       
