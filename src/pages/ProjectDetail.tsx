@@ -579,7 +579,7 @@ export function ProjectDetail() {
         )}
         {/* Pillars / 3 Images */}
         {project.pillars && (
-          <section className="py-24 w-full bg-white">
+          <section className="py-24 md:pb-32 w-full bg-white">
             <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
               {project.pillars.map((pillar: any, idx: number) => (
                 <motion.div 
