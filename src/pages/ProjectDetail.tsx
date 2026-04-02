@@ -49,17 +49,17 @@ const projectsData: Record<string, any> = {
       {
         title: "Scenario 1: Temporary Exhibition",
         description: "Organizing a new temporary exhibition. Alex uses the platform to select dates, assign tasks with deadlines, and select items from the collection to display.",
-        image: "https://github.com/Lumystik/PortfolioLucia/blob/a27c550d3eb6d90dd32ade97af1761154eeeec42/images/mytask_museon.png?raw=true"
+        image: "https://github.com/Lumystik/PortfolioLucia/blob/0cbe2f18605013698d8943ab0856d195741d6d23/images/New%20task.png?raw=true"
       },
       {
         title: "Scenario 2: Assisting Visits",
         description: "Prepare for assisting Alex during a museum visit. Mark checks his assigned tasks and uses smart notes to gather information.",
-        image: "https://github.com/Lumystik/PortfolioLucia/blob/592d301d45c6ad6edb47c61f5b858d4c4994a708/images/mytask_museon2.png?raw=true"
+        image: "https://github.com/Lumystik/PortfolioLucia/blob/ac040a0ff68481a4ef9745568ded5b5c9b484a5b/images/Message.png?raw=true"
       },
       {
         title: "AI Integration",
         description: "AI utilizes conversation transcription to instantly detect tasks with a single click and direct users to the corresponding page.",
-        image: "https://github.com/Lumystik/PortfolioLucia/blob/1a39a63649eb9c9d264d3bc7d6d76052987002ea/images/mytask_museon3.png?raw=true"
+        image: "https://github.com/Lumystik/PortfolioLucia/blob/ac040a0ff68481a4ef9745568ded5b5c9b484a5b/images/smart%20note%20widget.png?raw=true"
       }
     ],
     bannerImage: "[INSERT_GITHUB_IMAGE_LINK_BANNER]",
@@ -105,7 +105,7 @@ const projectsData: Record<string, any> = {
       logoDescription: "Developed as part of the Digital Design Studio.",
       images: [
         "https://github.com/Lumystik/PortfolioLucia/blob/1a39a63649eb9c9d264d3bc7d6d76052987002ea/images/branding.png?raw=true",
-        "https://github.com/Lumystik/PortfolioLucia/blob/8db6fa30110504a2a86d624dcaedef2a053493c5/images/branding1.png?raw=true"
+        "https://github.com/Lumystik/PortfolioLucia/blob/ac040a0ff68481a4ef9745568ded5b5c9b484a5b/images/museonlogo.png?raw=true"
       ]
     },
     keyFunctions: {
