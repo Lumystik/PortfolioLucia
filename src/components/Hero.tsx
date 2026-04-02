@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion, useMotionValue, useMotionTemplate } from 'motion/react';
+import { motion, useMotionValue, useMotionTemplate, animate } from 'motion/react';
 
 const WireframeSketches = ({ color = "rgba(226, 240, 164, 0.35)" }: { color?: string }) => {
   const transitionProps = (delay: number) => ({
@@ -41,23 +41,30 @@ const WireframeSketches = ({ color = "rgba(226, 240, 164, 0.35)" }: { color?: st
 export function Hero() {
   const mouseX = useMotionValue(typeof window !== 'undefined' ? window.innerWidth / 2 : 0);
   const mouseY = useMotionValue(typeof window !== 'undefined' ? window.innerHeight / 2 : 0);
-  const [radius, setRadius] = useState(150);
+  const radius = useMotionValue(2000); // Start very large to cover the screen
   const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const updateRadius = () => {
-      if (window.innerWidth >= 1280) {
-        setRadius(300); // Large Desktop
-      } else if (window.innerWidth >= 1024) {
-        setRadius(280); // Desktop
-      } else if (window.innerWidth >= 768) {
-        setRadius(220); // Tablet
-      } else {
-        setRadius(150); // Mobile
-      }
+    const getTargetRadius = () => {
+      if (window.innerWidth >= 1280) return 350;
+      if (window.innerWidth >= 1024) return 280;
+      if (window.innerWidth >= 768) return 220;
+      return 150;
     };
 
-    updateRadius();
+    // Initial entrance animation: Scale down from 2000px to the target responsive size
+    const target = getTargetRadius();
+    animate(radius, target, {
+      duration: 2,
+      ease: [0.16, 1, 0.3, 1], // Smooth premium ease-out
+      delay: 0.5
+    });
+
+    const updateRadius = () => {
+      const newTarget = getTargetRadius();
+      animate(radius, newTarget, { duration: 0.4 });
+    };
+
     window.addEventListener('resize', updateRadius);
     
     const handleMove = (e: MouseEvent | TouchEvent) => {
@@ -76,7 +83,7 @@ export function Hero() {
       window.removeEventListener('mousemove', handleMove);
       window.removeEventListener('touchmove', handleMove);
     };
-  }, [mouseX, mouseY]);
+  }, [mouseX, mouseY, radius]);
 
   const clipPath = useMotionTemplate`circle(${radius}px at ${mouseX}px ${mouseY}px)`;
 
@@ -84,7 +91,7 @@ export function Hero() {
     <section ref={heroRef} id="home" className="relative h-screen w-full flex flex-col items-center overflow-hidden bg-[#131313] cursor-default">
       {/* Blurred Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <img background-color="black" className="w-full h-full object-cover blur-[10px] scale-105" alt="Hero Background Blurred" />
+        <img  className="w-full h-full object-cover blur-[10px] scale-105" alt="Hero Background Blurred" />
         <WireframeSketches color="" />
       </div>
       
