@@ -123,7 +123,7 @@ export function Hero() {
           </div>
 
           <motion.h1 
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1, duration: 0.8 }}
+            initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1, duration: 0.8 }}
             className="w-full flex justify-between text-[11.5vw] md:text-[10vw] lg:text-[9vw] xl:text-[115px] leading-[0.8] tracking-tighter text-white font-medium m-0 p-0 whitespace-nowrap"
           >
             {"LUCÍA".split('').map((char, i) => <span key={`first-${i}`}>{char}</span>)}
