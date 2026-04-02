@@ -497,78 +497,77 @@ export function ProjectDetail() {
           </section>
         )}
 
-  {/* User Insights (Charts) */}
-{project.userInsights && (
-  <section className="py-24 md:py-32 w-full bg-[#FDFBF7] overflow-hidden">
-    <div className="max-w-7xl mx-auto px-6 flex flex-col gap-24">
-      <h3 className="text-3xl md:text-5xl font-bold uppercase tracking-tight text-left text-[#131313]">
-        User Insights
-      </h3>
-      
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
-        
-        {/* Donut Chart */}
-        <div className="flex flex-col gap-12 h-full">
-          <h4 className="text-2xl font-bold uppercase tracking-widest">
-            User Perceived Benefits
-          </h4>
+    {/* User Insights (Charts) */}
+        {project.userInsights && (
+          <section className="py-24 md:py-32 w-full bg-[#FDFBF7] overflow-x-hidden">
+            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-24">
+              <h3 className="text-3xl md:text-5xl font-bold uppercase tracking-tight text-left text-[#131313]">
+                User Insights
+              </h3>
+              
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
+                
+                {/* Donut Chart */}
+                <div className="flex flex-col gap-12 h-full">
+                  <h4 className="text-2xl font-bold uppercase tracking-widest">
+                    User Perceived Benefits
+                  </h4>
 
-          <div className="flex-1 flex items-center justify-center">
-            <div className="relative w-64 h-64 md:w-80 md:h-80">
-              <div 
-                className="w-full h-full rounded-full"
-                style={{
-                  background: `conic-gradient(
-                    ${project.userInsights.benefits[0].color} 0% ${project.userInsights.benefits[0].percentage}%, 
-                    ${project.userInsights.benefits[1].color} ${project.userInsights.benefits[0].percentage}% ${project.userInsights.benefits[0].percentage + project.userInsights.benefits[1].percentage}%, 
-                    ${project.userInsights.benefits[2].color} ${project.userInsights.benefits[0].percentage + project.userInsights.benefits[1].percentage}% 100%
-                  )`
-                }}
-              />
-              <div className="absolute inset-0 m-auto w-3/5 h-3/5 bg-[#FDFBF7] rounded-full" />
+                  <div className="flex-1 flex items-center justify-center">
+                    <div className="relative w-64 h-64 md:w-80 md:h-80 overflow-hidden">
+                      <div 
+                        className="w-full h-full rounded-full"
+                        style={{
+                          background: `conic-gradient(
+                            ${project.userInsights.benefits[0].color} 0% ${project.userInsights.benefits[0].percentage}%, 
+                            ${project.userInsights.benefits[1].color} ${project.userInsights.benefits[0].percentage}% ${project.userInsights.benefits[0].percentage + project.userInsights.benefits[1].percentage}%, 
+                            ${project.userInsights.benefits[2].color} ${project.userInsights.benefits[0].percentage + project.userInsights.benefits[1].percentage}% 100%
+                          )`
+                        }}
+                      />
+                      <div className="absolute inset-0 m-auto w-3/5 h-3/5 bg-[#FDFBF7] rounded-full" />
 
-              {/* labels unchanged */}
-              <div className="absolute top-1/4 -right-12 md:-right-24 text-sm md:text-base font-bold text-[#131313] z-10 max-w-[100px] text-center">
-                {project.userInsights.benefits[1].label}
-              </div>
-              <div className="absolute bottom-1/4 left-1/2 -translate-x-1/2 text-sm md:text-base font-bold text-[#131313] z-10 max-w-[150px] text-center">
-                {project.userInsights.benefits[0].label}
-              </div>
-              <div className="absolute top-1/3 -left-12 md:-left-20 text-sm md:text-base font-bold text-[#131313] z-10 max-w-[100px] text-center">
-                {project.userInsights.benefits[2].label}
+                      <div className="absolute top-1/4 -right-12 md:-right-24 text-sm md:text-base font-bold text-[#131313] z-10 max-w-[100px] text-center">
+                        {project.userInsights.benefits[1].label}
+                      </div>
+                      <div className="absolute bottom-1/4 left-1/2 -translate-x-1/2 text-sm md:text-base font-bold text-[#131313] z-10 max-w-[150px] text-center">
+                        {project.userInsights.benefits[0].label}
+                      </div>
+                      <div className="absolute top-1/3 -left-12 md:-left-20 text-sm md:text-base font-bold text-[#131313] z-10 max-w-[100px] text-center">
+                        {project.userInsights.benefits[2].label}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bubble Chart */}
+                <div className="flex flex-col gap-12 h-full">
+                  <h4 className="text-2xl font-bold uppercase tracking-widest">
+                    User Priorities
+                  </h4>
+
+                  <div className="flex-1 flex items-center justify-center">
+                    <div className="relative w-[320px] h-[320px] md:w-[450px] md:h-[450px] overflow-hidden">
+                      {project.userInsights.priorities.map((priority: any, idx: number) => (
+                        <motion.div
+                          key={idx}
+                          initial={{ scale: 0, opacity: 0 }}
+                          whileInView={{ scale: 1, opacity: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: idx * 0.1, type: "spring" }}
+                          className={`rounded-full flex items-center justify-center text-[#131313] font-bold text-sm md:text-lg text-center p-4 shadow-lg ${priority.color} ${priority.size} ${priority.position}`}
+                        >
+                          {priority.label}
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Bubble Chart */}
-        <div className="flex flex-col gap-12 h-full">
-          <h4 className="text-2xl font-bold uppercase tracking-widest">
-            User Priorities
-          </h4>
-
-          <div className="flex-1 flex items-center justify-center">
-            <div className="relative w-[320px] h-[320px] md:w-[450px] md:h-[450px]">
-              {project.userInsights.priorities.map((priority: any, idx: number) => (
-                <motion.div
-                  key={idx}
-                  initial={{ scale: 0, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1, type: "spring" }}
-                  className={`rounded-full flex items-center justify-center text-[#131313] font-bold text-sm md:text-lg text-center p-4 shadow-lg ${priority.color} ${priority.size} ${priority.position}`}
-                >
-                  {priority.label}
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-)}
+          </section>
+        )}
 
  
         {/* Pillars / 3 Images */}
