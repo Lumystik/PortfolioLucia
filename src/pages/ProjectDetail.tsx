@@ -718,7 +718,7 @@ export function ProjectDetail() {
           </section>
         )}
 
-        {/* Branding */}
+      {/* Branding */}
         {project.branding && (
           <section className="py-24 md:py-32 w-full bg-white">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16">
@@ -738,6 +738,25 @@ export function ProjectDetail() {
                   )}
                 </div>
                 
+                <div className="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-8">
+                  {project.branding.images.map((img: string, idx: number) => (
+                    <div 
+                      key={idx} 
+                      className={`w-full bg-[#F9F9F9] rounded-3xl overflow-hidden border border-gray-100 flex items-center justify-center p-8 md:p-12 shadow-sm ${idx === 0 ? 'sm:col-span-2 aspect-video' : 'aspect-square'}`}
+                    >
+                      <img 
+                        src={img} 
+                        alt={`Branding ${idx}`} 
+                        className="w-full h-full object-contain drop-shadow-lg" 
+                        referrerPolicy="no-referrer"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
                 <div className="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-6">
                   {project.branding.images.map((img: string, idx: number) => (
                     <div key={idx} className={`w-full bg-[#E2F0A4] rounded-3xl overflow-hidden ${idx === 0 ? 'sm:col-span-2 aspect-video' : 'aspect-square'}`}>
