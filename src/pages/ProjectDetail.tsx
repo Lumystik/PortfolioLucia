@@ -564,7 +564,7 @@ export function ProjectDetail() {
             <div className="max-w-7xl mx-auto px-6">
               <motion.div 
                 initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
-                className="w-full rounded-3xl overflow-hidden shadow-2xl border border-gray-100 bg-[#E2F0A4]"
+                className="w-full rounded-3xl overflow-hidden shadow-2xl border border-gray-100 bg-[#000000]"
               >
                 <img src={project.interfaceImage} alt={`${project.title} Interface`} className="w-full h-auto" />
               </motion.div>
