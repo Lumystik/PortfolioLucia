@@ -161,8 +161,8 @@ export function Hero() {
           <motion.h1 
             initial={{ opacity: 0, y: 20 }} 
             animate={{ opacity: 1, y: 0 }} 
-            transition={{ delay: 1.1, duration: 0.7 }}
-            className="w-full flex justify-between text-[11.5vw] md:text-[10vw] lg:text-[9vw] xl:text-[115px] leading-[0.8] tracking-tighter text-[#E54D2E] font-medium m-0 p-0 whitespace-nowrap"
+            transition={{ delay: 1.3, duration: 0.7 }}
+            className="w-full flex justify-between text-[11.5vw] md:text-[10vw] lg:text-[9vw] xl:text-[115px] leading-[0.8] tracking-tighter text-[#000000] font-medium m-0 p-0 whitespace-nowrap"
           >
             {"LUCÍA".split('').map((char, i) => <span key={`first-orange-${i}`}>{char}</span>)}
             <span className="w-[4vw] md:w-[3vw]"></span>
