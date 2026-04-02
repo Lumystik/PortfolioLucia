@@ -47,7 +47,7 @@ export function Hero() {
   useEffect(() => {
     const updateRadius = () => {
       if (window.innerWidth >= 1280) {
-        setRadius(350); // Large Desktop
+        setRadius(300); // Large Desktop
       } else if (window.innerWidth >= 1024) {
         setRadius(280); // Desktop
       } else if (window.innerWidth >= 768) {
