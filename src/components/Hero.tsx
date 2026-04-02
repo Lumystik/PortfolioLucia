@@ -47,7 +47,7 @@ export function Hero() {
   useEffect(() => {
     const updateRadius = () => {
       if (window.innerWidth >= 1280) {
-        setRadius(300); // Large Desktop
+        setRadius(350); // Large Desktop
       } else if (window.innerWidth >= 1024) {
         setRadius(280); // Desktop
       } else if (window.innerWidth >= 768) {
@@ -84,7 +84,7 @@ export function Hero() {
     <section ref={heroRef} id="home" className="relative h-screen w-full flex flex-col items-center overflow-hidden bg-[#131313] cursor-default">
       {/* Blurred Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <img background-color="black" className="w-full h-full object-cover blur-[10px] scale-105" alt="Hero Background Blurred" />
+        <img src="https://github.com/Lumystik/PortfolioLucia/blob/main/images/me.jpg?raw=true" className="w-full h-full object-cover blur-[10px] scale-105" alt="Hero Background Blurred" />
         <WireframeSketches color="" />
       </div>
       
@@ -102,7 +102,7 @@ export function Hero() {
         <div className="relative flex flex-col w-full h-full justify-end pb-10 md:pb-8 lg:pb-6">
           
           {/* Labels */}
-          <div className="flex justify-between w-full text-white font-mono text-[10px] md:text-sm uppercase tracking-widest mb-4 md:mb-6">
+          <div className="flex justify-between w-full text-white font-mono text-[10px] md:text-sm uppercase tracking-widest mb-4 md:mb-0 md:absolute md:top-1/2 md:-translate-y-1/2 md:left-0 md:right-0 md:px-0">
             <motion.span 
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.8 }}
             >
@@ -132,7 +132,7 @@ export function Hero() {
         style={{ clipPath }}
       >
         <div className="relative flex flex-col w-full h-full justify-end pb-10 md:pb-8 lg:pb-6">
-          <div className="flex justify-between w-full text-[#E54D2E] font-mono text-[10px] md:text-sm uppercase tracking-widest mb-4 md:mb-6">
+          <div className="flex justify-between w-full text-[#E54D2E] font-mono text-[10px] md:text-sm uppercase tracking-widest mb-4 md:mb-0 md:absolute md:top-1/2 md:-translate-y-1/2 md:left-0 md:right-0 md:px-0">
             <span>Interaction Designer</span>
             <span>UX/UI Designer</span>
           </div>
