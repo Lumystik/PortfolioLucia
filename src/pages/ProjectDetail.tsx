@@ -720,7 +720,7 @@ export function ProjectDetail() {
                   )}
                 </div>
                 
-                <div className="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-12  object-contain">
+                <div className=" p-8  md:w-12 grid grid-cols-1 sm:grid-cols-2 gap-12  object-contain">
                   {project.branding.images.map((img: string, idx: number) => (
                     <div 
                       key={idx} 
