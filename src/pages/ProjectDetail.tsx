@@ -50,7 +50,7 @@ const projectsData: Record<string, any> = {
       {
         title: "Scenario 1: Temporary Exhibition",
         description: "Organizing a new temporary exhibition. Alex uses the platform to select dates, assign tasks with deadlines, and select items from the collection to display.",
-        image: "[INSERT_GITHUB_IMAGE_LINK_SCENARIO_1]"
+        image: "https://github.com/Lumystik/PortfolioLucia/blob/a27c550d3eb6d90dd32ade97af1761154eeeec42/images/mytask_museon.png?raw=true"
       },
       {
         title: "Scenario 2: Assisting Visits",
