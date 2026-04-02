@@ -24,7 +24,7 @@ const projects = [
     title: "Films Foundation",
     tags: "UI",
     description: "Accessible UI for Cineteca Di Milano.",
-    image: "https://github.com/Lumystik/PortfolioLucia/blob/99a3aa0ebe21f3353b295d194bbfce9c00d460c0/images/thumbcinema.jpg",
+    image: "https://github.com/Lumystik/PortfolioLucia/blob/99a3aa0ebe21f3353b295d194bbfce9c00d460c0/images/thumbcinema.jpg?raw=true",
     link: "/project/films-foundation"
   },
   {
