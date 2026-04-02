@@ -46,7 +46,7 @@ export function Hero() {
 
   useEffect(() => {
     const getTargetRadius = () => {
-      if (window.innerWidth >= 1280) return 350;
+      if (window.innerWidth >= 1280) return 330;
       if (window.innerWidth >= 1024) return 280;
       if (window.innerWidth >= 768) return 220;
       return 150;
@@ -111,12 +111,12 @@ export function Hero() {
           {/* Labels */}
           <div className="flex justify-between w-full text-white font-mono text-[10px] md:text-sm uppercase tracking-widest mb-4 md:mb-0 md:absolute md:top-1/2 md:-translate-y-1/2 md:left-0 md:right-0 md:px-0">
             <motion.span 
-              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.8 }}
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.0, duration: 0.8 }}
             >
               Interaction Designer
             </motion.span>
             <motion.span 
-              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.8 }}
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.0, duration: 0.8 }}
             >
               UX/UI Designer
             </motion.span>
