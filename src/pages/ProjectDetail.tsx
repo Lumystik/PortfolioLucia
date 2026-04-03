@@ -776,7 +776,7 @@ export function ProjectDetail() {
         )}
 
         {/* ── NEXT PROJECT ─────────────────────────────────────────────────── */}
-        {/* Deviation: py-32 — deliberate larger breathing room as page closer */}
+        {/* Deviation: py-32 — deliberate larger breathing room as pssage closer */}
         {project.nextProject && (
           <section className="py-32 w-full bg-[#000000] text-white font-sans">
             <div className={GRID}>
