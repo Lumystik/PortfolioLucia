@@ -6,21 +6,15 @@ import { Footer } from '../components/Footer';
 import { useEffect } from 'react';
 
 // ─── GRID COLUMN ALIASES ───────────────────────────────────────────────────
-// FULL     → col-start-2 col-end-10  /  md:col-start-2 md:col-end-26
-// CENTERED → col-start-2 col-end-10  /  md:col-start-4 md:col-end-23
+// FULL     → Spans all columns (1 to 24)
+// CENTERED → Spans middle columns (4 to 21)
 //
-// GRID TEMPLATE (mobile: 8 content cols, desktop: 24 content cols)
-// grid-cols-[var(--sqs-mobile-site-gutter)_repeat(8,minmax(0,1fr))_var(--sqs-mobile-site-gutter)]
-// md:grid-cols-[var(--sqs-site-gutter)_repeat(24,minmax(0,1fr))_var(--sqs-site-gutter)]
-//
-// RADIUS    → rounded-[10px] on all cards/images/buttons
-// SECTION   → py-24 md:py-32  (only hero/next-project deviate)
-// ANIMATION → duration: 0.65, delay: 1  (stagger: +0.1 per item)
+// GRID TEMPLATE (mobile: 8 cols, desktop: 24 cols, max-width: 1440px)
 // ──────────────────────────────────────────────────────────────────────────
 
-const GRID = "w-full grid grid-cols-[var(--sqs-mobile-site-gutter)_repeat(8,minmax(0,1fr))_var(--sqs-mobile-site-gutter)] md:grid-cols-[var(--sqs-site-gutter)_repeat(24,minmax(0,1fr))_var(--sqs-site-gutter)]";
-const FULL = "col-start-2 col-end-10 md:col-start-2 md:col-end-26";
-const CENTERED = "col-start-2 col-end-10 md:col-start-4 md:col-end-23";
+const GRID = "w-full max-w-[1440px] mx-auto grid grid-cols-8 md:grid-cols-24 px-6 md:px-12 gap-y-8 md:gap-y-12";
+const FULL = "col-start-1 col-end-9 md:col-start-1 md:col-end-25";
+const CENTERED = "col-start-1 col-end-9 md:col-start-4 md:col-end-22";
 const SECTION = "py-24 md:py-32 w-full font-sans";
 const ANIM = { duration: 0.65, delay: 0.4 };
 const stagger = (i: number) => ({ duration: 0.35, delay: 0.6 + i * 0.1 });
@@ -289,13 +283,15 @@ export function ProjectDetail() {
           <div className={GRID}>
             <div className={FULL}>
               <motion.div
-                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={ANIM}
-                className="w-full rounded-[10px] overflow-hidden bg-[#F9F9F9]"
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                className="w-full aspect-[21/9] bg-[#F9F9F9] rounded-[20px] md:rounded-[40px] overflow-hidden shadow-2xl"
               >
                 <img
                   src={project.heroImage}
                   alt={project.title}
-                  className="w-full h-auto object-cover max-h-[80vh]"
+                  className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
                 />
               </motion.div>
@@ -309,7 +305,7 @@ export function ProjectDetail() {
           <div className={`${GRID} gap-y-8 md:gap-y-0`}>
 
             {/* Left: Metadata — desktop cols 4–11 (inside CENTERED left half) */}
-            <div className="col-start-2 col-end-10 md:col-start-4 md:col-end-11 flex flex-col gap-8">
+            <div className="col-start-1 col-end-9 md:col-start-4 md:col-end-11 flex flex-col gap-8">
               {[
                 { label: "Project Scope", value: project.scope },
                 { label: "Role", value: project.role },
@@ -336,7 +332,7 @@ export function ProjectDetail() {
             </div>
 
             {/* Right: Title & Overview — desktop cols 12–23 (inside CENTERED right half) */}
-            <div className="col-start-2 col-end-10 md:col-start-12 md:col-end-23 flex flex-col gap-6 mt-8 md:mt-0 min-w-0">
+            <div className="col-start-1 col-end-9 md:col-start-12 md:col-end-23 flex flex-col gap-6 mt-8 md:mt-0 min-w-0">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={ANIM}
                 className="text-[2.3rem] md:text-[3.8rem] font-bold tracking-[-0.03em] leading-[1.4em] m-0 break-words text-[#131313]"
@@ -766,7 +762,10 @@ export function ProjectDetail() {
           <section className={`${SECTION} bg-[#E2F0A4]`}>
             <div className={GRID}>
               <div className={`${CENTERED} flex flex-col items-center text-center gap-12`}>
-                <h3 className="text-[2.3rem] md:text-[3rem] font-bold tracking-[-0.03em] text-[#131313]">Takeaways</h3>
+                <div className="flex flex-col items-center gap-6">
+                  <h3 className="text-[2.3rem] md:text-[3rem] font-bold tracking-[-0.03em] text-[#131313]">Takeaways</h3>
+                  <div className="w-16 h-1.5 bg-[#E54D2E] rounded-full" />
+                </div>
                 <p className="text-[1.1rem] md:text-[1.4rem] leading-[1.5em] font-normal whitespace-pre-line break-words max-w-4xl text-[#131313]">
                   {project.takeaways}
                 </p>
@@ -776,7 +775,7 @@ export function ProjectDetail() {
         )}
 
         {/* ── NEXT PROJECT ─────────────────────────────────────────────────── */}
-        {/* Deviation: py-32 — deliberate larger breathing room as pssage closer */}
+        {/* Deviation: py-32 — deliberate larger breathing room as page closer */}
         {project.nextProject && (
           <section className="py-32 w-full bg-[#000000] text-white font-sans">
             <div className={GRID}>
