@@ -22,8 +22,8 @@ const GRID = "w-full grid grid-cols-[var(--sqs-mobile-site-gutter)_repeat(8,minm
 const FULL = "col-start-2 col-end-10 md:col-start-2 md:col-end-26";
 const CENTERED = "col-start-2 col-end-10 md:col-start-4 md:col-end-23";
 const SECTION = "py-24 md:py-32 w-full font-sans";
-const ANIM = { duration: 0.65, delay: 1 };
-const stagger = (i: number) => ({ duration: 0.65, delay: 1 + i * 0.1 });
+const ANIM = { duration: 0.65, delay: 0.4 };
+const stagger = (i: number) => ({ duration: 0.35, delay: 0.6 + i * 0.1 });
 
 const projectsData: Record<string, any> = {
   "museon": {
@@ -290,7 +290,7 @@ export function ProjectDetail() {
             <div className={FULL}>
               <motion.div
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={ANIM}
-                className="w-full rounded-[10px] overflow-hidden bg-gray-100"
+                className="w-full rounded-[10px] overflow-hidden bg-[#F9F9F9]"
               >
                 <img
                   src={project.heroImage}
@@ -317,8 +317,8 @@ export function ProjectDetail() {
                 project.team ? { label: "Team", value: project.team } : null
               ].filter(Boolean).map((item: any) => (
                 <div key={item.label} className="flex flex-col gap-2">
-                  <h4 className="text-[1rem] font-bold uppercase tracking-widest text-[#131313]">{item.label}</h4>
-                  <p className="text-[1.1rem] font-normal leading-[1.5em] text-gray-700">{item.value}</p>
+                  <h4 className="text-[1rem] font-bold uppercase tracking-widest text-[#131313] opacity-40">{item.label}</h4>
+                  <p className="text-[1.1rem] font-normal leading-[1.5em] text-[#131313]">{item.value}</p>
                 </div>
               ))}
               {project.prototypeLink && (
@@ -339,13 +339,13 @@ export function ProjectDetail() {
             <div className="col-start-2 col-end-10 md:col-start-12 md:col-end-23 flex flex-col gap-6 mt-8 md:mt-0 min-w-0">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={ANIM}
-                className="text-[2.3rem] md:text-[3.8rem] font-bold tracking-[-0.03em] leading-[1.4em] m-0 break-words"
+                className="text-[2.3rem] md:text-[3.8rem] font-bold tracking-[-0.03em] leading-[1.4em] m-0 break-words text-[#131313]"
               >
                 {project.title}
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 1.1 }}
-                className="text-[1.1rem] font-normal leading-[1.5em] text-gray-800 max-w-full break-words mt-4"
+                className="text-[1.1rem] font-normal leading-[1.5em] text-[#131313] opacity-80 max-w-full break-words mt-4"
               >
                 {project.overview}
               </motion.p>
@@ -359,18 +359,18 @@ export function ProjectDetail() {
           <section className={`${SECTION} bg-white`}>
             <div className={GRID}>
               <div className={FULL}>
-                <h3 className="text-[2.3rem] md:text-[3rem] font-bold tracking-[-0.03em] mb-16 text-left">Design Process Map</h3>
+                <h3 className="text-[2.3rem] md:text-[3rem] font-bold tracking-[-0.03em] mb-16 text-left text-[#131313]">Design Process Map</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                   {project.processMap.map((phase: any, idx: number) => (
                     <motion.div
                       key={idx}
                       initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={stagger(idx)}
-                      className="flex flex-col gap-6 text-left bg-[#FAF9F6] p-8 rounded-[10px] shadow-sm border border-gray-100"
+                      className="flex flex-col gap-6 text-left bg-[#FAF9F6] p-8 rounded-[10px] border border-[#F3F4F6]"
                     >
-                      <h4 className="text-[1.5rem] font-bold uppercase tracking-widest text-[#E54D2E] border-b-2 border-gray-100 pb-4">{phase.phase}</h4>
+                      <h4 className="text-[1.5rem] font-bold uppercase tracking-widest text-[#E54D2E] border-b border-[#F3F4F6] pb-4">{phase.phase}</h4>
                       <ul className="flex flex-col gap-4">
                         {phase.steps.map((step: string, stepIdx: number) => (
-                          <li key={stepIdx} className="text-[1.1rem] font-normal leading-[1.5em] text-gray-700 flex items-center gap-3">
+                          <li key={stepIdx} className="text-[1.1rem] font-normal leading-[1.5em] text-[#131313] flex items-center gap-3">
                             <span className="w-2 h-2 rounded-full bg-[#E2F0A4] shrink-0"></span>
                             {step}
                           </li>
@@ -389,7 +389,7 @@ export function ProjectDetail() {
           <section className={`${SECTION} bg-[#131313] text-white`}>
             <div className={GRID}>
               <div className={FULL}>
-                <h3 className="text-[2.3rem] md:text-[3rem] font-bold tracking-[-0.03em] mb-16 text-left text-[#E2F0A4]">Key Findings</h3>
+                <h3 className="text-[2.3rem] md:text-[3rem] font-bold tracking-[-0.03em] mb-16 text-left text-[#E54D2E]">Key Findings</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-24">
                   {project.keyFindings.map((finding: any, idx: number) => (
                     <motion.div
@@ -398,7 +398,7 @@ export function ProjectDetail() {
                       className="flex flex-col gap-4 text-left"
                     >
                       <span className="text-[3rem] md:text-[3.8rem] font-bold text-[#E2F0A4] leading-none tracking-tighter">{finding.stat}</span>
-                      <h4 className="text-[1.1rem] font-bold uppercase tracking-widest">{finding.label}</h4>
+                      <h4 className="text-[1.1rem] font-bold uppercase tracking-widest text-white">{finding.label}</h4>
                       <p className="text-[1rem] font-normal leading-[1.5em] text-gray-400">{finding.description}</p>
                     </motion.div>
                   ))}
@@ -418,16 +418,16 @@ export function ProjectDetail() {
 
                   {/* Benefits donut chart */}
                   <div className="flex flex-col items-center lg:items-start gap-12 w-full">
-                    <h4 className="text-[1.5rem] font-bold uppercase tracking-widest text-center lg:text-left">User Perceived Benefits</h4>
+                    <h4 className="text-[1.5rem] font-bold uppercase tracking-widest text-center lg:text-left text-[#131313]">User Perceived Benefits</h4>
                     <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-12 w-full">
                       <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-80 md:h-80 shrink-0">
                         <div
                           className="w-full h-full rounded-full"
                           style={{
                             background: `conic-gradient(
-                              ${project.userInsights.benefits[0].color} 0% ${project.userInsights.benefits[0].percentage}%,
-                              ${project.userInsights.benefits[1].color} ${project.userInsights.benefits[0].percentage}% ${project.userInsights.benefits[0].percentage + project.userInsights.benefits[1].percentage}%,
-                              ${project.userInsights.benefits[2].color} ${project.userInsights.benefits[0].percentage + project.userInsights.benefits[1].percentage}% 100%
+                              #E2F0A4 0% ${project.userInsights.benefits[0].percentage}%,
+                              #D4E68C ${project.userInsights.benefits[0].percentage}% ${project.userInsights.benefits[0].percentage + project.userInsights.benefits[1].percentage}%,
+                              #C5D97A ${project.userInsights.benefits[0].percentage + project.userInsights.benefits[1].percentage}% 100%
                             )`
                           }}
                         />
@@ -436,7 +436,7 @@ export function ProjectDetail() {
                       <div className="flex flex-col gap-4 w-full max-w-[280px]">
                         {project.userInsights.benefits.map((benefit: any, idx: number) => (
                           <div key={idx} className="flex items-center gap-3">
-                            <div className="w-4 h-4 rounded-full shrink-0" style={{ backgroundColor: benefit.color }} />
+                            <div className="w-4 h-4 rounded-full shrink-0" style={{ backgroundColor: idx === 0 ? '#E2F0A4' : idx === 1 ? '#D4E68C' : '#C5D97A' }} />
                             <span className="text-[1rem] font-bold text-[#131313]">{benefit.label}</span>
                             <span className="text-[1rem] text-gray-500 ml-auto">{benefit.percentage}%</span>
                           </div>
@@ -448,7 +448,7 @@ export function ProjectDetail() {
                   {/* Priorities bubble chart */}
                   {project.userInsights.priorities && (
                     <div className="flex flex-col items-center lg:items-start gap-12 w-full">
-                      <h4 className="text-[1.5rem] font-bold uppercase tracking-widest text-center lg:text-left">User Priorities</h4>
+                      <h4 className="text-[1.5rem] font-bold uppercase tracking-widest text-center lg:text-left text-[#131313]">User Priorities</h4>
                       <div className="relative w-full aspect-square max-w-[400px] md:max-w-[500px] mx-auto lg:mx-0">
                         {project.userInsights.priorities.map((item: any, idx: number) => (
                           <motion.div
@@ -457,7 +457,7 @@ export function ProjectDetail() {
                             whileInView={{ scale: 1, opacity: 1 }}
                             viewport={{ once: true }}
                             transition={stagger(idx)}
-                            className={`${item.size} ${item.color} ${item.position} rounded-full flex items-center justify-center text-center p-4 shadow-lg border border-white/20`}
+                            className={`${item.size} ${idx === 0 ? 'bg-[#E2F0A4]' : idx === 1 ? 'bg-[#D4E68C]' : idx === 2 ? 'bg-[#C5D97A]' : 'bg-gray-300'} ${item.position} rounded-full flex items-center justify-center text-center p-4 shadow-lg border border-white/20`}
                           >
                             <span className="text-[0.8rem] md:text-[1rem] font-bold leading-tight px-2 text-[#131313]">{item.label}</span>
                           </motion.div>
@@ -483,7 +483,7 @@ export function ProjectDetail() {
             )}
             <div className={`relative z-10 ${GRID}`}>
               <div className={CENTERED}>
-                <h2 className="text-[2.3rem] md:text-[3.8rem] font-bold tracking-[-0.03em] leading-[1.4em]">
+                <h2 className="text-[2.3rem] md:text-[3.8rem] font-bold tracking-[-0.03em] leading-[1.4em] text-[#131313]">
                   "{project.bannerQuote}"
                 </h2>
               </div>
@@ -501,10 +501,10 @@ export function ProjectDetail() {
                 <div className={CENTERED}>
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
                     <div className="md:col-span-5 lg:col-span-4">
-                      <h3 className="text-[2.3rem] md:text-[3rem] font-bold tracking-[-0.03em]">Research Objectives</h3>
+                      <h3 className="text-[2.3rem] md:text-[3rem] font-bold tracking-[-0.03em] text-[#131313]">Research Objectives</h3>
                     </div>
                     <div className="md:col-span-7 lg:col-span-8">
-                      <div className="text-[1.1rem] md:text-[1.4rem] leading-[1.5em] font-normal whitespace-pre-line text-gray-800 break-words">
+                      <div className="text-[1.1rem] md:text-[1.4rem] leading-[1.5em] font-normal whitespace-pre-line text-[#131313] break-words opacity-80">
                         {project.researchObjectives}
                       </div>
                     </div>
@@ -520,10 +520,10 @@ export function ProjectDetail() {
                       <motion.div
                         key={idx}
                         initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={stagger(idx)}
-                        className="flex flex-col gap-4 bg-[#FAF9F6] p-10 rounded-[10px] h-full"
+                        className="flex flex-col gap-4 bg-[#F9F9F9] p-10 rounded-[10px] h-full border border-[#F3F4F6]"
                       >
-                        <h4 className="text-[1.1rem] md:text-[1.4rem] font-bold uppercase tracking-widest">{insight.title}</h4>
-                        <p className="text-[1.1rem] text-gray-700 leading-[1.5em] font-normal whitespace-pre-line">{insight.description}</p>
+                        <h4 className="text-[1.1rem] md:text-[1.4rem] font-bold uppercase tracking-widest text-[#131313]">{insight.title}</h4>
+                        <p className="text-[1.1rem] text-[#131313] opacity-70 leading-[1.5em] font-normal whitespace-pre-line">{insight.description}</p>
                       </motion.div>
                     ))}
                   </div>
@@ -536,13 +536,13 @@ export function ProjectDetail() {
 
         {/* ── TARGET USERS ─────────────────────────────────────────────────── */}
         {project.targetUsers && (
-          <section className={`${SECTION} bg-[#E2F0A4] text-[#131313]`}>
+          <section className={`${SECTION} bg-[#FAF9F6] text-[#131313]`}>
             <div className={GRID}>
               <div className={`${FULL} flex flex-col gap-16`}>
 
                 <div className="flex flex-col gap-6 max-w-3xl">
                   <h3 className="text-[2.3rem] md:text-[3rem] font-bold tracking-[-0.03em]">Target Users</h3>
-                  <p className="text-[1.1rem] md:text-[1.4rem] leading-[1.5em] font-normal">{project.targetUsers.description}</p>
+                  <p className="text-[1.1rem] md:text-[1.4rem] leading-[1.5em] font-normal opacity-80">{project.targetUsers.description}</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-8">
@@ -550,14 +550,14 @@ export function ProjectDetail() {
                     <motion.div
                       key={idx}
                       initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={stagger(idx)}
-                      className="flex flex-col gap-8 bg-white/60 p-8 rounded-[10px]"
+                      className="flex flex-col gap-8 bg-white/60 p-8 rounded-[10px] border border-[#F3F4F6]"
                     >
                       <div className="w-full aspect-video bg-white rounded-[10px] overflow-hidden">
                         <img src={persona.image} alt={persona.title} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                       </div>
                       <div className="flex flex-col gap-4">
-                        <h4 className="text-[1.1rem] md:text-[1.4rem] font-bold uppercase tracking-widest">{persona.title}</h4>
-                        <p className="text-[1rem] text-gray-700 leading-[1.5em] font-normal whitespace-pre-line">{persona.description}</p>
+                        <h4 className="text-[1.1rem] md:text-[1.4rem] font-bold uppercase tracking-widest text-[#131313]">{persona.title}</h4>
+                        <p className="text-[1rem] text-[#131313] opacity-70 leading-[1.5em] font-normal whitespace-pre-line">{persona.description}</p>
                       </div>
                     </motion.div>
                   ))}
@@ -585,7 +585,7 @@ export function ProjectDetail() {
                     initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={stagger(idx)}
                     className="flex flex-col gap-8 items-start text-left group"
                   >
-                    <div className="w-full aspect-square md:aspect-[3/6] overflow-hidden flex items-center justify-center group-hover:scale-[1.02] transition-transform duration-500">
+                    <div className="w-full aspect-square md:aspect-[3/6] overflow-hidden flex items-center justify-center group-hover:scale-[1.02] transition-transform duration-500 bg-[#F9F9F9] rounded-[10px]">
                       <img
                         src={pillar.image}
                         alt={pillar.title}
@@ -594,8 +594,8 @@ export function ProjectDetail() {
                       />
                     </div>
                     <div className="flex flex-col gap-4">
-                      <h4 className="text-[1.1rem] md:text-[1.4rem] font-bold uppercase tracking-widest leading-tight">{pillar.title}</h4>
-                      <p className="text-[1rem] text-gray-600 leading-[1.5em] font-normal">{pillar.description}</p>
+                      <h4 className="text-[1.1rem] md:text-[1.4rem] font-bold uppercase tracking-widest leading-tight text-[#131313]">{pillar.title}</h4>
+                      <p className="text-[1rem] text-[#131313] opacity-70 leading-[1.5em] font-normal">{pillar.description}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -609,15 +609,15 @@ export function ProjectDetail() {
           <section className={`${SECTION} bg-[#E2F0A4]`}>
             <div className={GRID}>
               <div className={`${FULL} flex flex-col gap-12`}>
-                <h3 className="text-[2.3rem] md:text-[3rem] font-bold tracking-[-0.03em]">How Might We...</h3>
+                <h3 className="text-[2.3rem] md:text-[3rem] font-bold tracking-[-0.03em] text-[#131313]">How Might We...</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   {project.howMightWe.map((hmw: string, idx: number) => (
                     <motion.div
                       key={idx}
                       initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={stagger(idx)}
-                      className="bg-white/60 p-8 rounded-[10px] flex items-center justify-center text-center min-h-[200px]"
+                      className="bg-white/60 p-8 rounded-[10px] flex items-center justify-center text-center min-h-[200px] border border-white/20"
                     >
-                      <p className="text-[1.1rem] md:text-[1.4rem] font-bold leading-[1.2em]">{hmw}</p>
+                      <p className="text-[1.1rem] md:text-[1.4rem] font-bold leading-[1.2em] text-[#131313]">{hmw}</p>
                     </motion.div>
                   ))}
                 </div>
@@ -635,12 +635,12 @@ export function ProjectDetail() {
 
                   {/* Left: description — 1 of 3 cols */}
                   <div className="md:col-span-1 flex flex-col gap-6">
-                    <h3 className="text-[2.3rem] md:text-[3rem] font-bold tracking-[-0.03em]">Building the Brand</h3>
-                    <p className="text-[1.1rem] leading-[1.5em] font-normal text-gray-600">{project.branding.description}</p>
+                    <h3 className="text-[2.3rem] md:text-[3rem] font-bold tracking-[-0.03em] text-[#131313]">Building the Brand</h3>
+                    <p className="text-[1.1rem] leading-[1.5em] font-normal text-[#131313] opacity-70">{project.branding.description}</p>
                     {project.branding.logoDescription && (
-                      <div className="mt-8 pt-8 border-t border-gray-100">
-                        <h4 className="text-[1rem] font-bold uppercase tracking-widest text-gray-400 mb-4">Logo Design</h4>
-                        <p className="text-[1.1rem] leading-[1.5em] font-normal text-gray-600">{project.branding.logoDescription}</p>
+                      <div className="mt-8 pt-8 border-t border-[#F3F4F6]">
+                        <h4 className="text-[1rem] font-bold uppercase tracking-widest text-[#131313] opacity-40 mb-4">Logo Design</h4>
+                        <p className="text-[1.1rem] leading-[1.5em] font-normal text-[#131313] opacity-70">{project.branding.logoDescription}</p>
                       </div>
                     )}
                   </div>
@@ -650,7 +650,7 @@ export function ProjectDetail() {
                     {project.branding.images.map((img: string, idx: number) => (
                       <div
                         key={idx}
-                        className={`w-full bg-[#F9F9F9] rounded-[10px] overflow-hidden border border-gray-100 flex items-center justify-center shadow-sm ${idx === 0 ? 'sm:col-span-2 p-0 md:p-12 lg:p-16' : 'p-8 md:p-12 lg:p-16'}`}
+                        className={`w-full bg-[#F9F9F9] rounded-[10px] overflow-hidden border border-[#F3F4F6] flex items-center justify-center shadow-sm ${idx === 0 ? 'sm:col-span-2 p-0 md:p-12 lg:p-16' : 'p-8 md:p-12 lg:p-16'}`}
                       >
                         <img
                           src={img}
@@ -670,13 +670,13 @@ export function ProjectDetail() {
 
         {/* ── KEY FUNCTIONS ─────────────────────────────────────────────────── */}
         {project.keyFunctions && (
-          <section className={`${SECTION} bg-[#E2F0A4]`}>
+          <section className={`${SECTION} bg-[#FAF9F6]`}>
             <div className={GRID}>
               <div className={`${FULL} flex flex-col gap-16`}>
 
                 <div className="flex flex-col gap-6 max-w-3xl">
-                  <h3 className="text-[2.3rem] md:text-[3rem] font-bold tracking-[-0.03em]">Key Functions</h3>
-                  <p className="text-[1.1rem] md:text-[1.4rem] leading-[1.5em] font-normal text-gray-800">{project.keyFunctions.description}</p>
+                  <h3 className="text-[2.3rem] md:text-[3rem] font-bold tracking-[-0.03em] text-[#131313]">Key Functions</h3>
+                  <p className="text-[1.1rem] md:text-[1.4rem] leading-[1.5em] font-normal text-[#131313] opacity-80">{project.keyFunctions.description}</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -684,14 +684,14 @@ export function ProjectDetail() {
                     <motion.div
                       key={idx}
                       initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={stagger(idx)}
-                      className={`flex flex-col gap-6 bg-white p-6 rounded-[10px] shadow-sm border border-gray-100 ${idx === 0 ? 'md:col-span-2 lg:col-span-2 md:grid md:grid-cols-2 md:items-center' : ''}`}
+                      className={`flex flex-col gap-6 bg-white p-6 rounded-[10px] shadow-sm border border-[#F3F4F6] ${idx === 0 ? 'md:col-span-2 lg:col-span-2 md:grid md:grid-cols-2 md:items-center' : ''}`}
                     >
-                      <div className={`w-full bg-[#E2F0A4] rounded-[10px] overflow-hidden ${idx === 0 ? 'aspect-video' : 'aspect-square'}`}>
+                      <div className={`w-full bg-[#FAF9F6] rounded-[10px] overflow-hidden ${idx === 0 ? 'aspect-video' : 'aspect-square'}`}>
                         <img src={func.image} alt={func.title} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                       </div>
                       <div className={`flex flex-col gap-4 ${idx === 0 ? 'md:px-6' : ''}`}>
-                        <h4 className="text-[1.1rem] md:text-[1.4rem] font-bold uppercase tracking-widest">{func.title}</h4>
-                        <p className="text-gray-600 leading-[1.5em] font-normal">{func.description}</p>
+                        <h4 className="text-[1.1rem] md:text-[1.4rem] font-bold uppercase tracking-widest text-[#131313]">{func.title}</h4>
+                        <p className="text-[#131313] opacity-70 leading-[1.5em] font-normal">{func.description}</p>
                       </div>
                     </motion.div>
                   ))}
@@ -709,10 +709,10 @@ export function ProjectDetail() {
               <div className={CENTERED}>
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
                   <div className="md:col-span-5 lg:col-span-4">
-                    <h3 className="text-[2.3rem] md:text-[3rem] font-bold tracking-[-0.03em]">Workflow</h3>
+                    <h3 className="text-[2.3rem] md:text-[3rem] font-bold tracking-[-0.03em] text-[#131313]">Workflow</h3>
                   </div>
                   <div className="md:col-span-7 lg:col-span-8">
-                    <div className="text-[1.1rem] md:text-[1.4rem] leading-[1.5em] font-normal whitespace-pre-line text-gray-800">
+                    <div className="text-[1.1rem] md:text-[1.4rem] leading-[1.5em] font-normal whitespace-pre-line text-[#131313] opacity-80">
                       {project.workflow}
                     </div>
                   </div>
@@ -724,13 +724,13 @@ export function ProjectDetail() {
 
         {/* ── GALLERY ──────────────────────────────────────────────────────── */}
         {project.gallery && (
-          <section className={`${SECTION} bg-gray-50`}>
+          <section className={`${SECTION} bg-[#F9FAFB]`}>
             <div className={GRID}>
               <div className={`${FULL} flex flex-col gap-12`}>
-                <h3 className="text-[2.3rem] md:text-[3rem] font-bold tracking-[-0.03em] text-left">Ad Creatives Gallery</h3>
+                <h3 className="text-[2.3rem] md:text-[3rem] font-bold tracking-[-0.03em] text-left text-[#131313]">Ad Creatives Gallery</h3>
                 <div className="flex flex-col md:flex-row md:overflow-x-auto gap-8 pb-8 md:snap-x md:snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] items-center md:items-stretch">
                   {project.gallery.map((img: string, idx: number) => (
-                    <div key={idx} className="w-full max-w-[260px] md:max-w-none md:min-w-[300px] h-[320px] md:h-[400px] bg-white rounded-[10px] overflow-hidden shadow-sm md:snap-center flex-shrink-0 p-4 border border-gray-100">
+                    <div key={idx} className="w-full max-w-[260px] md:max-w-none md:min-w-[300px] h-[320px] md:h-[400px] bg-white rounded-[10px] overflow-hidden shadow-sm md:snap-center flex-shrink-0 p-4 border border-[#F3F4F6]">
                       <img src={img} alt={`Gallery ${idx}`} className="w-full h-full object-contain" referrerPolicy="no-referrer" />
                     </div>
                   ))}
@@ -747,7 +747,7 @@ export function ProjectDetail() {
               <div className={FULL}>
                 <motion.div
                   initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={ANIM}
-                  className="w-full rounded-[10px] overflow-hidden shadow-2xl border border-gray-100 bg-[#131313] p-0 md:p-10 lg:p-12 flex items-center justify-center"
+                  className="w-full rounded-[10px] overflow-hidden shadow-2xl border border-[#F3F4F6] bg-[#000000] p-0 md:p-10 lg:p-12 flex items-center justify-center"
                 >
                   <img
                     src={project.interfaceImage}
@@ -763,11 +763,11 @@ export function ProjectDetail() {
 
         {/* ── TAKEAWAYS ─────────────────────────────────────────────────────── */}
         {project.takeaways && (
-          <section className={`${SECTION} bg-light-accent`}>
+          <section className={`${SECTION} bg-[#E2F0A4]`}>
             <div className={GRID}>
               <div className={`${CENTERED} flex flex-col items-center text-center gap-12`}>
-                <h3 className="text-[2.3rem] md:text-[3rem] font-bold tracking-[-0.03em]">Takeaways</h3>
-                <p className="text-[1.1rem] md:text-[1.4rem] leading-[1.5em] font-normal whitespace-pre-line break-words max-w-4xl">
+                <h3 className="text-[2.3rem] md:text-[3rem] font-bold tracking-[-0.03em] text-[#131313]">Takeaways</h3>
+                <p className="text-[1.1rem] md:text-[1.4rem] leading-[1.5em] font-normal whitespace-pre-line break-words max-w-4xl text-[#131313]">
                   {project.takeaways}
                 </p>
               </div>
@@ -778,13 +778,13 @@ export function ProjectDetail() {
         {/* ── NEXT PROJECT ─────────────────────────────────────────────────── */}
         {/* Deviation: py-32 — deliberate larger breathing room as page closer */}
         {project.nextProject && (
-          <section className="py-32 w-full bg-black text-white font-sans">
+          <section className="py-32 w-full bg-[#000000] text-white font-sans">
             <div className={GRID}>
               <div className={`${CENTERED} flex flex-col md:flex-row justify-between items-start md:items-end gap-6`}>
                 <span className="text-[1rem] font-normal uppercase tracking-widest text-gray-400">Next Project</span>
                 <Link
                   to={project.nextProject.link}
-                  className="text-[3rem] md:text-[7rem] font-bold uppercase tracking-tighter hover:opacity-70 transition-opacity text-left md:text-right leading-none"
+                  className="text-[3rem] md:text-[7rem] font-bold uppercase tracking-tighter hover:opacity-70 transition-opacity text-left md:text-right leading-none text-white"
                 >
                   {project.nextProject.title}
                 </Link>
