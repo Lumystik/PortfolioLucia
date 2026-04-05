@@ -615,7 +615,8 @@ export function ProjectDetail() {
                   initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.15 }}
                   className="flex flex-col gap-8 items-start text-left group"
                 >
-                  <div className="w-full aspect-square bg-[#F9F9F9] rounded-3xl overflow-hidden border border-gray-100 p-8 md:p-12 flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow duration-500">
+                  <div className="w-full aspect-square bg-[#F9F9F9] rounded-3xl overflow-hidden border border-gray-100 
+                p-0 md:p-4 lg:p-6">
                     <img 
                       src={pillar.image} 
                       alt={pillar.title} 
