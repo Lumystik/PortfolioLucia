@@ -497,94 +497,84 @@ export function ProjectDetail() {
           </section>
         )}
 
-  {/* User Insights (Charts) */}
+{/* User Insights (Charts) */}
 {project.userInsights && (
- {/* Donut Chart */}
-<div className="flex flex-col gap-12 h-full">
-  <h4 className="text-2xl font-bold uppercase tracking-widest text-left">
-    User Perceived Benefits
-  </h4>
+  <div className="flex flex-col gap-12 h-full">
+    <h4 className="text-2xl font-bold uppercase tracking-widest text-left">
+      User Perceived Benefits
+    </h4>
 
-  <div className="flex-1 flex items-center justify-center p-12 md:p-16">
-    <div className="relative w-64 h-64 md:w-80 md:h-80">
-      {/* Background Gradient */}
-      <div 
-        className="w-full h-full rounded-full"
-        style={{
-          background: `conic-gradient(
-            ${project.userInsights.benefits[0].color} 0% ${project.userInsights.benefits[0].percentage}%, 
-            ${project.userInsights.benefits[1].color} ${project.userInsights.benefits[0].percentage}% ${project.userInsights.benefits[0].percentage + project.userInsights.benefits[1].percentage}%, 
-            ${project.userInsights.benefits[2].color} ${project.userInsights.benefits[0].percentage + project.userInsights.benefits[1].percentage}% 100%
-          )`
-        }}
-      />
-      {/* Inner Circle to make it a Donut */}
-      <div className="absolute inset-0 m-auto w-3/5 h-3/5 bg-[#FDFBF7] rounded-full" />
+    <div className="flex-1 flex items-center justify-center p-12 md:p-16">
+      <div className="relative w-64 h-64 md:w-80 md:h-80">
+        {/* Background Gradient */}
+        <div 
+          className="w-full h-full rounded-full"
+          style={{
+            background: `conic-gradient(
+              ${project.userInsights.benefits[0].color} 0% ${project.userInsights.benefits[0].percentage}%, 
+              ${project.userInsights.benefits[1].color} ${project.userInsights.benefits[0].percentage}% ${project.userInsights.benefits[0].percentage + project.userInsights.benefits[1].percentage}%, 
+              ${project.userInsights.benefits[2].color} ${project.userInsights.benefits[0].percentage + project.userInsights.benefits[1].percentage}% 100%
+            )`
+          }}
+        />
+        
+        {/* Inner Circle to make it a Donut */}
+        {/* Note: w-3/5 is 60%. Our text radius is 40% (total 80% span), so it sits right in the middle of the color */}
+        <div className="absolute inset-0 m-auto w-3/5 h-3/5 bg-[#FDFBF7] rounded-full" />
 
-      {/* MATH MAGIC: 
-        This inline function calculates the exact center of any slice 
-        based on where it starts and ends in the 0-100% scale.
-      */}
-      {(() => {
-        const getLabelPosition = (startPercent, endPercent) => {
-          // Find the exact middle percentage of this slice
-          const midPercent = startPercent + (endPercent - startPercent) / 2;
-          
-          // Convert percentage to degrees (conic gradients start at top, so we subtract 90 degrees)
-          const angleDeg = (midPercent / 100) * 360 - 90;
-          
-          // Convert degrees to radians for math functions
-          const angleRad = angleDeg * (Math.PI / 180);
-          
-          // Distance from center (40% places it exactly between the 30% inner gap and 50% outer edge)
-          const radius = 40; 
-          
-          // Calculate X and Y coordinates relative to the 50% center point
-          const x = 50 + radius * Math.cos(angleRad);
-          const y = 50 + radius * Math.sin(angleRad);
-          
-          return {
-            left: `${x}%`,
-            top: `${y}%`,
-            transform: 'translate(-50%, -50%)'
+        {(() => {
+          const getLabelPosition = (startPercent: number, endPercent: number) => {
+            const midPercent = startPercent + (endPercent - startPercent) / 2;
+            const angleDeg = (midPercent / 100) * 360 - 90;
+            const angleRad = angleDeg * (Math.PI / 180);
+            
+            // 40 is the sweet spot: exactly between the 30% inner radius and 50% outer edge
+            const radius = 40; 
+            
+            const x = 50 + radius * Math.cos(angleRad);
+            const y = 50 + radius * Math.sin(angleRad);
+            
+            return {
+              left: `${x}%`,
+              top: `${y}%`,
+              transform: 'translate(-50%, -50%)'
+            };
           };
-        };
 
-        const p0 = project.userInsights.benefits[0].percentage;
-        const p1 = project.userInsights.benefits[1].percentage;
-        const p2 = project.userInsights.benefits[2].percentage;
+          const p0 = project.userInsights.benefits[0].percentage;
+          const p1 = project.userInsights.benefits[1].percentage;
 
-        return (
-          <>
-            {/* Slice 0 Label */}
-            <div 
-              className="absolute text-sm md:text-base font-bold text-center text-white w-24 pointer-events-none drop-shadow-md leading-tight"
-              style={getLabelPosition(0, p0)}
-            >
-              {project.userInsights.benefits[0].label}
-            </div>
-            
-            {/* Slice 1 Label */}
-            <div 
-              className="absolute text-sm md:text-base font-bold text-center text-white w-24 pointer-events-none drop-shadow-md leading-tight"
-              style={getLabelPosition(p0, p0 + p1)}
-            >
-              {project.userInsights.benefits[1].label}
-            </div>
-            
-            {/* Slice 2 Label */}
-            <div 
-              className="absolute text-sm md:text-base font-bold text-center text-white w-24 pointer-events-none drop-shadow-md leading-tight"
-              style={getLabelPosition(p0 + p1, 100)}
-            >
-              {project.userInsights.benefits[2].label}
-            </div>
-          </>
-        );
-      })()}
+          return (
+            <>
+              {/* Slice 0 Label */}
+              <div 
+                className="absolute text-[10px] md:text-xs font-bold text-center text-[#131313] w-20 pointer-events-none leading-tight z-20"
+                style={getLabelPosition(0, p0)}
+              >
+                {project.userInsights.benefits[0].label}
+              </div>
+              
+              {/* Slice 1 Label */}
+              <div 
+                className="absolute text-[10px] md:text-xs font-bold text-center text-[#131313] w-20 pointer-events-none leading-tight z-20"
+                style={getLabelPosition(p0, p0 + p1)}
+              >
+                {project.userInsights.benefits[1].label}
+              </div>
+              
+              {/* Slice 2 Label */}
+              <div 
+                className="absolute text-[10px] md:text-xs font-bold text-center text-[#131313] w-20 pointer-events-none leading-tight z-20"
+                style={getLabelPosition(p0 + p1, 100)}
+              >
+                {project.userInsights.benefits[2].label}
+              </div>
+            </>
+          );
+        })()}
+      </div>
     </div>
   </div>
-</div>
         
    
 
