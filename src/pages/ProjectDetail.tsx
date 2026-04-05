@@ -530,20 +530,20 @@ export function ProjectDetail() {
               />
               <div className="absolute inset-0 m-auto w-3/5 h-3/5 bg-[#FDFBF7] rounded-full" />
 
-              {/* Right Label: Centered vertically on the right edge */}
-              <div className="absolute top-1/2 -translate-y-1/2 -right-24 md:-right-32 text-sm md:text-base font-bold text-[#131313] z-10 w-[100px] md:w-[120px] text-center">
-                {project.userInsights.benefits[1].label}
-              </div>
-
-              {/* Bottom Label: Centered horizontally on the bottom edge */}
-              <div className="absolute -bottom-16 md:-bottom-20 left-1/2 -translate-x-1/2 text-sm md:text-base font-bold text-[#131313] z-10 w-[150px] text-center">
-                {project.userInsights.benefits[0].label}
-              </div>
-
-              {/* Left Label: Centered vertically on the left edge */}
-              <div className="absolute top-1/2 -translate-y-1/2 -left-24 md:-left-32 text-sm md:text-base font-bold text-[#131313] z-10 w-[100px] md:w-[120px] text-center">
-                {project.userInsights.benefits[2].label}
-              </div>
+                {/* Slice 1 (Top-Rightish) */}
+                <div className="absolute -top-8 -right-16 text-sm font-bold w-32 text-left">
+                  {project.userInsights.benefits[1].label}
+                </div>
+                
+                {/* Slice 0 (Bottom) */}
+                <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 text-sm font-bold w-40 text-center">
+                  {project.userInsights.benefits[0].label}
+                </div>
+                
+                {/* Slice 2 (Left) */}
+                <div className="absolute top-1/2 -translate-y-1/2 -left-32 text-sm font-bold w-32 text-right">
+                  {project.userInsights.benefits[2].label}
+                </div>
             </div>
           </div>
         </div>
