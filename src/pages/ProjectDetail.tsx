@@ -527,7 +527,7 @@ export function ProjectDetail() {
                   initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.15 }}
                   className="flex flex-col gap-8 items-start text-left group"
                 >
-                  <div className="w-full aspect-square rounded-3xl overflow-hidden border 
+                  <div className="w-full aspect-square rounded-3xl overflow-hidden  border border-gray-100 
                p-0 md:p-2 lg:p-2">
                     <img 
                       src={pillar.image} 
@@ -790,7 +790,7 @@ export function ProjectDetail() {
               <div className="md:col-span-1">
                 <h3 className="text-3xl md:text-5xl font-bold uppercase tracking-tight text-left">Takeaways</h3>
               </div>
-              <div className="md:col-span-1">
+              <div className="md:col-span-2">
                 <p className="text-xl md:text-2xl leading-relaxed whitespace-pre-line text-left">
                   {project.takeaways}
                 </p>
