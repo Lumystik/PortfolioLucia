@@ -627,7 +627,7 @@ export function ProjectDetail() {
                     initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
                     className="flex flex-col gap-4 bg-white p-5 rounded-2xl shadow-sm"
                   >
-                    <div className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-out rounded-xl overflow-hidden">
+                    <div className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-out rounded-2xl overflow-hidden">
                       <img src={func.image} alt={func.title} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-out" />
                     </div>
                     <div className="flex flex-col gap-1">
