@@ -38,7 +38,6 @@ const projectsData: Record<string, any> = {
       insightsImage: "https://github.com/Lumystik/PortfolioLucia/blob/24c105399d5c5b7459ff928e9b9548627bc99a06/images/museon_userinsights.png?raw=true"
     },
     bannerImage: "[INSERT_GITHUB_IMAGE_LINK_BANNER]",
-    bannerQuote: "HOW DO WE OPTIMIZE MUSEUM RESOURCES?",
     researchObjectives: "There is a pressing need to effectively handle the limited human resources in the museum, as they are frequently overwhelmed by the workload at hand.\n\nMuseums need to manage several exhibitions and events per year, collaborating with external partners, donors and institutions. They need an all-in-one platform to facilitate access to functions already in use, displaying them differently according to staff role and responsibility.",
     researchInsights: [
       {
