@@ -318,7 +318,7 @@ export function ProjectDetail() {
       <Navbar />
       
       <main className="w-full">
-        {/* Hero Section */}
+     {/* Hero Section */}
         <section className="w-full pt-24 pb-12 bg-white">
           <div className="max-w-7xl mx-auto px-6">
             <motion.div 
@@ -332,7 +332,10 @@ export function ProjectDetail() {
 
         {/* Project Details & Overview */}
         <section className="pb-24 md:pb-32 w-full bg-white text-[#131313]">
-          <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 text-left">
+          {/* Added "items-center" below to vertically center the left and right columns */}
+          <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-center text-left">
+            
+            {/* Left Column: Metadata */}
             <div className="md:col-span-4 flex flex-col gap-6">
               <div className="flex flex-col gap-1">
                 <h4 className="text-xs font-bold uppercase tracking-widest text-[#131313]">Project Scope</h4>
@@ -360,6 +363,26 @@ export function ProjectDetail() {
                 </div>
               )}
             </div>
+
+            {/* Right Column: Title & Overview (Bolded) */}
+            <div className="md:col-span-8 flex flex-col gap-6">
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1 }}
+                className="text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tight m-0"
+              >
+                {project.title}
+              </motion.h1>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
+                {/* Added font-bold here */}
+                className="text-xl md:text-2xl text-gray-800 leading-relaxed max-w-3xl font-bold"
+              >
+                {project.overview}
+              </motion.p>
+            </div>
+
+          </div>
+        </section>
 
             <div className="md:col-span-8 flex flex-col gap-4">
               <motion.h1 
@@ -418,7 +441,8 @@ export function ProjectDetail() {
                     </h3>
                   </div>
                   <div className="md:col-span-8">
-                    <div className="text-lg md:text-xl leading-relaxed whitespace-pre-line text-gray-800">
+                    {/* Added font-bold here to make the text bold */}
+                    <div className="text-lg md:text-xl font-bold leading-relaxed whitespace-pre-line text-gray-800">
                       {project.problem}
                     </div>
                   </div>
