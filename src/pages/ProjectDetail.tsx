@@ -500,7 +500,7 @@ export function ProjectDetail() {
                   <h4 className="text-2xl font-bold uppercase tracking-widest text-left">
                     User Perceived Benefits
                   </h4>
-                  <div className="w-full rounded-3xl overflow-hidden shadow-sm border border-gray-100 bg-white p-4">
+                  <div className="w-full rounded-3xl overflow-hidden p-4">
                     <img src={project.userInsights.benefitsImage} alt="User Benefits" className="max-w-md h-auto object-contain" referrerPolicy="no-referrer" />
                   </div>
                 </div>
@@ -508,7 +508,7 @@ export function ProjectDetail() {
                   <h4 className="text-2xl font-bold uppercase tracking-widest text-left">
                     User Priorities
                   </h4>
-                  <div className="w-full rounded-3xl overflow-hidden shadow-sm border border-gray-100 bg-white p-4">
+                  <div className="w-full rounded-3xl overflow-hidden p-4">
                     <img src={project.userInsights.insightsImage} alt="User Insights" className="max-w-md h-auto object-contain" referrerPolicy="no-referrer" />
                   </div>
                 </div>
@@ -527,8 +527,8 @@ export function ProjectDetail() {
                   initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.15 }}
                   className="flex flex-col gap-8 items-start text-left group"
                 >
-                  <div className="w-full aspect-square bg-[#F9F9F9] rounded-3xl overflow-hidden border border-gray-100 
-                p-0 md:p-4 lg:p-6">
+                  <div className="w-full aspect-square rounded-3xl overflow-hidden border 
+               p-0 md:p-2 lg:p-2">
                     <img 
                       src={pillar.image} 
                       alt={pillar.title} 
