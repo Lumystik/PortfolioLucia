@@ -342,59 +342,58 @@ export function ProjectDetail() {
           </div>
         </section>
 
-  {/* Project Details & Overview */}
-<section className="pb-24 md:pb-32 w-full bg-white text-[#131313]">
-  {/* 1. Added 'items-center' for vertical centering */}
-  {/* 2. Changed 'max-w-7xl' to 'max-w-6xl' (or 5xl) for more margin on the sides */}
-  <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24 items-center text-left">
-    
-    {/* Left Column: Metadata */}
-    <div className="md:col-span-4 flex flex-col gap-8">
-      <div className="flex flex-col gap-2">
-        <h4 className="text-sm font-bold uppercase tracking-widest text-[#131313]">Project Scope</h4>
-        <p className="text-lg text-gray-700">{project.scope}</p>
-      </div>
-      <div className="flex flex-col gap-2">
-        <h4 className="text-sm font-bold uppercase tracking-widest text-[#131313]">Role</h4>
-        <p className="text-lg text-gray-700">{project.role}</p>
-      </div>
-      <div className="flex flex-col gap-2">
-        <h4 className="text-sm font-bold uppercase tracking-widest text-[#131313]">Project Duration</h4>
-        <p className="text-lg text-gray-700">{project.timeline}</p>
-      </div>
-      {project.team && (
-        <div className="flex flex-col gap-2">
-          <h4 className="text-sm font-bold uppercase tracking-widest text-[#131313]">Team</h4>
-          <p className="text-lg text-gray-700">{project.team}</p>
-        </div>
-      )}
-      {project.prototypeLink && (
-        <div className="mt-4">
-          <a href={project.prototypeLink} target="_blank" rel="noopener noreferrer" className="inline-block border-2 border-[#131313] text-[#131313] px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-[#131313] hover:text-white transition-all duration-300 w-fit">
-            View Final Prototype
-          </a>
-        </div>
-      )}
-    </div>
+{/* Project Details & Overview */}
+        <section className="pb-24 md:pb-32 w-full bg-white text-[#131313]">
+          {/* Changed max-w-7xl to max-w-5xl for much larger side margins */}
+          {/* Added items-center to vertically center the left column with the title */}
+          <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24 items-center text-left">
+            
+            {/* Left Column: Metadata */}
+            <div className="md:col-span-4 flex flex-col gap-8">
+              <div className="flex flex-col gap-2">
+                <h4 className="text-sm font-bold uppercase tracking-widest text-[#131313]">Project Scope</h4>
+                <p className="text-lg text-gray-700">{project.scope}</p>
+              </div>
+              <div className="flex flex-col gap-2">
+                <h4 className="text-sm font-bold uppercase tracking-widest text-[#131313]">Role</h4>
+                <p className="text-lg text-gray-700">{project.role}</p>
+              </div>
+              <div className="flex flex-col gap-2">
+                <h4 className="text-sm font-bold uppercase tracking-widest text-[#131313]">Project Duration</h4>
+                <p className="text-lg text-gray-700">{project.timeline}</p>
+              </div>
+              {project.team && (
+                <div className="flex flex-col gap-2">
+                  <h4 className="text-sm font-bold uppercase tracking-widest text-[#131313]">Team</h4>
+                  <p className="text-lg text-gray-700">{project.team}</p>
+                </div>
+              )}
+              {project.prototypeLink && (
+                <div className="mt-4">
+                  <a href={project.prototypeLink} target="_blank" rel="noopener noreferrer" className="inline-block border-2 border-[#131313] text-[#131313] px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-[#131313] hover:text-white transition-all duration-300 w-fit">
+                    View Final Prototype
+                  </a>
+                </div>
+              )}
+            </div>
 
-    {/* Right Column: Title & Overview */}
-    <div className="md:col-span-8 flex flex-col gap-6">
-      <motion.h1 
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1 }}
-        className="text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tight m-0"
-      >
-        {project.title}
-      </motion.h1>
-      <motion.p 
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
-        {/* Added 'font-bold' to match your preference */}
-        className="text-xl md:text-2xl text-gray-800 leading-relaxed max-w-3xl font-bold"
-      >
-        {project.overview}
-      </motion.p>
-    </div>
-  </div>
-</section>
+            {/* Right Column: Title & Overview */}
+            <div className="md:col-span-8 flex flex-col gap-6">
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1 }}
+                className="text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tight m-0"
+              >
+                {project.title}
+              </motion.h1>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-xl md:text-2xl text-gray-800 leading-relaxed max-w-3xl font-bold"
+              >
+                {project.overview}
+              </motion.p>
+            </div>
+          </div>
+        </section>
 
              {/* Process Map */}
         {project.processMap && (
