@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { useEffect } from 'react';
@@ -96,26 +96,6 @@ const projectsData: Record<string, any> = {
       images: [
         "https://github.com/Lumystik/PortfolioLucia/blob/1a39a63649eb9c9d264d3bc7d6d76052987002ea/images/branding.png?raw=true",
         "https://github.com/Lumystik/PortfolioLucia/blob/ac040a0ff68481a4ef9745568ded5b5c9b484a5b/images/museonlogo.png?raw=true"
-      ]
-    },
-    keyFunctions: {
-      description: "An all-in-one platform designed to reduce switching costs and improve team collaboration.",
-      functions: [
-        {
-          title: "TASK ASSIGNMENT & TRACKING",
-          description: "Assign tasks to colleagues with deadlines and priorities. Users receive notifications and can track their progress on a centralized dashboard.",
-          image: "[INSERT_GITHUB_IMAGE_LINK_FEATURE_1]"
-        },
-        {
-          title: "SHARED CALENDAR OVERVIEW",
-          description: "See the busy and available times of people you have shared your calendar with and plan events accordingly.",
-          image: "[INSERT_GITHUB_IMAGE_LINK_FEATURE_2]"
-        },
-        {
-          title: "COLLECTION MANAGEMENT",
-          description: "A dedicated collection page to easily check contents, export them, and manage items for specific exhibitions.",
-          image: "[INSERT_GITHUB_IMAGE_LINK_FEATURE_3]"
-        }
       ]
     },
     takeaways: "We solved the complexity of creating a smooth experience for small museum staff, enabling them to develop a better experience for visitors. By developing an all-in-one software, we streamlined the workflow and optimized current museum resources.",
@@ -466,20 +446,96 @@ export function ProjectDetail() {
           </section>
         )}
 
-        {/* Key Features */}
-        {project.keyFeatures && (
+        {/* Research Objectives & Insights */}
+        {(project.researchObjectives || project.researchInsights) && (
           <section className="py-24 md:py-32 w-full bg-white">
             <div className="max-w-7xl mx-auto px-6">
-              <h3 className="mb-12 md:mb-16 text-3xl md:text-5xl font-bold uppercase tracking-tight text-left">Key Features</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
-                {project.keyFeatures.map((feature: any, idx: number) => (
+              <h3 className="mb-12 md:mb-16 text-3xl md:text-5xl font-bold uppercase tracking-tight text-left">Research & Context</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24">
+                {project.researchObjectives && (
+                  <div className="flex flex-col gap-6">
+                    <h4 className="text-2xl font-bold uppercase tracking-tight">Objectives & Challenges</h4>
+                    <p className="text-lg text-gray-700 leading-relaxed whitespace-pre-wrap">{project.researchObjectives}</p>
+                  </div>
+                )}
+                
+                {project.researchInsights && (
+                  <div className="flex flex-col gap-8">
+                    {project.researchInsights.map((insight: any, idx: number) => (
+                      <div key={idx} className="flex flex-col gap-2 border-l-4 border-[#E54D2E] pl-6">
+                        <h5 className="text-xl font-bold uppercase">{insight.title}</h5>
+                        <p className="text-lg text-gray-600 leading-relaxed whitespace-pre-wrap">{insight.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Target Users / Personas */}
+        {project.targetUsers && (
+          <section className="py-24 md:py-32 w-full bg-gray-50">
+            <div className="max-w-7xl mx-auto px-6">
+              <h3 className="mb-12 md:mb-16 text-3xl md:text-5xl font-bold uppercase tracking-tight text-left">Target Users</h3>
+              <p className="text-xl text-gray-700 mb-12 max-w-3xl">{project.targetUsers.description}</p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                {project.targetUsers.personas.map((persona: any, idx: number) => (
+                  <div key={idx} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-4">
+                    <h4 className="text-2xl font-bold text-[#E54D2E] uppercase">{persona.title}</h4>
+                    <p className="text-lg text-gray-600 whitespace-pre-wrap leading-relaxed">{persona.description}</p>
+                  </div>
+                ))}
+              </div>
+              
+              {project.targetUsers.conclusion && (
+                <div className="mt-12 p-6 bg-[#131313] text-white rounded-xl">
+                  <p className="text-lg font-medium">{project.targetUsers.conclusion}</p>
+                </div>
+              )}
+            </div>
+          </section>
+        )}
+
+        {/* How Might We */}
+        {project.howMightWe && (
+          <section className="py-24 md:py-32 w-full bg-[#E54D2E] text-white">
+            <div className="max-w-7xl mx-auto px-6 text-center">
+              <h3 className="mb-12 md:mb-16 text-4xl md:text-6xl font-bold uppercase tracking-tight">How Might We...</h3>
+              <div className="flex flex-col gap-6 max-w-4xl mx-auto">
+                {project.howMightWe.map((question: string, idx: number) => (
+                  <motion.p 
+                    key={idx}
+                    initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: idx * 0.1 }}
+                    className="text-2xl md:text-4xl font-medium leading-tight"
+                  >
+                    "{question}"
+                  </motion.p>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Key Features / Functions */}
+        {project.keyFunctions && (
+          <section className="py-24 md:py-32 w-full bg-white">
+            <div className="max-w-7xl mx-auto px-6">
+              <h3 className="mb-12 md:mb-16 text-3xl md:text-5xl font-bold uppercase tracking-tight text-left">Key Features & Functions</h3>
+              {project.keyFunctions.description && (
+                <p className="text-xl text-gray-700 mb-12 max-w-3xl">{project.keyFunctions.description}</p>
+              )}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
+                {project.keyFunctions.functions.map((feature: any, idx: number) => (
                   <motion.div 
                     key={idx}
                     initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
-                    className="flex flex-col gap-4 text-left"
+                    className="flex flex-col gap-4 text-left bg-gray-50 p-8 rounded-2xl"
                   >
-                    <h4 className="text-2xl font-bold uppercase tracking-tight">{feature.title}</h4>
-                    <p className="text-xl text-gray-600 leading-relaxed">{feature.description}</p>
+                    <h4 className="text-2xl font-bold uppercase tracking-tight text-[#E54D2E]">{feature.title}</h4>
+                    <p className="text-lg text-gray-600 leading-relaxed">{feature.description}</p>
                   </motion.div>
                 ))}
               </div>
@@ -513,6 +569,92 @@ export function ProjectDetail() {
                     <img src={project.userInsights.insightsImage} alt="User Insights" className="w-full h-auto" />
                   </div>
                 </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Pillars / Scenarios */}
+        {project.pillars && (
+          <section className="py-24 md:py-32 w-full bg-white">
+            <div className="max-w-7xl mx-auto px-6">
+              <h3 className="mb-12 md:mb-16 text-3xl md:text-5xl font-bold uppercase tracking-tight text-left">Project Pillars</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
+                {project.pillars.map((pillar: any, idx: number) => (
+                  <motion.div 
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
+                    className="flex flex-col gap-6 text-left"
+                  >
+                    <div className="w-full h-64 bg-gray-100 rounded-2xl overflow-hidden">
+                       <img src={pillar.image} alt={pillar.title} className="w-full h-full object-cover" />
+                    </div>
+                    <h4 className="text-2xl font-bold uppercase tracking-tight">{pillar.title}</h4>
+                    <p className="text-lg text-gray-600 leading-relaxed">{pillar.description}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Branding */}
+        {project.branding && (
+          <section className="py-24 md:py-32 w-full bg-gray-50">
+            <div className="max-w-7xl mx-auto px-6">
+              <h3 className="mb-12 md:mb-16 text-3xl md:text-5xl font-bold uppercase tracking-tight text-left">Branding & System</h3>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div className="flex flex-col gap-6">
+                  <p className="text-xl text-gray-700 leading-relaxed">{project.branding.description}</p>
+                  {project.branding.logoDescription && (
+                    <p className="text-lg text-gray-500 italic">{project.branding.logoDescription}</p>
+                  )}
+                </div>
+                {project.branding.images && project.branding.images.length > 0 && (
+                  <div className="grid grid-cols-2 gap-4">
+                     {project.branding.images.map((img: string, idx: number) => (
+                        <img key={idx} src={img} alt="Branding Element" className="w-full h-auto rounded-xl shadow-sm" />
+                     ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Final Interface / Conclusion / Takeaways */}
+        {(project.takeaways || project.interfaceImage) && (
+          <section className="py-24 md:py-32 w-full bg-[#131313] text-white">
+            <div className="max-w-7xl mx-auto px-6">
+              <h3 className="mb-12 md:mb-16 text-3xl md:text-5xl font-bold uppercase tracking-tight text-left">Takeaways & Final Result</h3>
+              
+              <div className="flex flex-col gap-12">
+                {project.takeaways && (
+                  <p className="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-4xl border-l-4 border-[#E2F0A4] pl-6">
+                    {project.takeaways}
+                  </p>
+                )}
+                
+                {project.interfaceImage && (
+                  <div className="w-full rounded-2xl overflow-hidden mt-8 bg-gray-800">
+                    <img src={project.interfaceImage} alt="Final Interface" className="w-full h-auto object-cover" />
+                  </div>
+                )}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Next Project Pagination */}
+        {project.nextProject && (
+          <section className="py-24 w-full bg-white border-t border-gray-100">
+            <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+              <div className="flex flex-col gap-2">
+                <span className="text-sm font-bold uppercase tracking-widest text-gray-400">Up Next</span>
+                <Link to={project.nextProject.link} className="text-3xl md:text-5xl font-bold uppercase hover:text-[#E54D2E] transition-colors duration-300 flex items-center gap-4 group">
+                  {project.nextProject.title}
+                  <ArrowRight className="group-hover:translate-x-2 transition-transform duration-300" size={40} />
+                </Link>
               </div>
             </div>
           </section>
