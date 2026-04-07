@@ -92,12 +92,12 @@ const projectsData: Record<string, any> = {
         {
           title: "SHARED CALENDAR OVERVIEW",
           description: "See the busy and available times of people you have shared your calendar with and plan events accordingly.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/26391787e0d9077298f2f76639afcde92cfec7b1/images/calendar_museon.png"
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/26391787e0d9077298f2f76639afcde92cfec7b1/images/calendar_museon.png?raw=true"
         },
         {
           title: "COLLECTION MANAGEMENT",
           description: "A dedicated collection page to easily check contents, export them, and manage items for specific exhibitions.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/9105bd68639edbb8309a3dd3a5d9993d9314a1b9/images/collection_museon.png"
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/9105bd68639edbb8309a3dd3a5d9993d9314a1b9/images/collection_museon.png?raw=true"
         },
        {
         title: "AI INTEGRATION",
