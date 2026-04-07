@@ -111,30 +111,13 @@ const projectsData: Record<string, any> = {
     id: "art-beyond-dimension",
     title: "Art Beyond Dimension",
     heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/0e95408be9b5b18ff336921926c7889c41d95380/images/hero_dimension.jpg?raw=true",
-    interfaceImage: "[INSERT_GITHUB_IMAGE_LINK_INTERFACE]",
+    interfaceImage: "https://github.com/Lumystik/PortfolioLucia/blob/558663a2cbd0f8601ecb7aad027db58e07270c3e/art_1.png?raw=true",
     overview: "Immersive Experience of Future Museums. Our design solution enables young adults to gain knowledge about art in a fun and engaging way to bridge the information gap and foster greater appreciation for the heritage of museum.",
     scope: "Digital Experience & Totem Interface",
     role: "Digital and Interaction Design",
     timeline: "Final Design Studio",
     team: "Razieh Soleimani, Lucia Medina, Marjan Mehrabi, Fatemeh Khoshbazan",
-    prototypeLink: "[INSERT_FIGMA_LINK_HERE]",
-    pillars: [
-      {
-        title: "Attentive User Engagement",
-        description: "Encourages users to engage more deeply with paintings, educates them about the heritage behind each artwork, and rewards their learning and attention.",
-        image: "[INSERT_GITHUB_IMAGE_LINK_PILLAR_1]"
-      },
-      {
-        title: "Reward System",
-        description: "By actively engaging and paying attention, users are rewarded with personalized printed paintings inspired by the artworks they care most.",
-        image: "[INSERT_GITHUB_IMAGE_LINK_PILLAR_2]"
-      },
-      {
-        title: "Technology Utilization",
-        description: "By introducing this idea, the museum—which currently has no screens—becomes more modern. When visitors aren't interacting with the totems, they serve as screens within the space, displaying the newly generated artworks.",
-        image: "[INSERT_GITHUB_IMAGE_LINK_PILLAR_3]"
-      }
-    ],
+    prototypeLink: "https://www.figma.com/proto/FnFqrWBxyChSOdL3aVzV9A/Prototype?node-id=616-1965&starting-point-node-id=564%3A1942&t=bIX74fMjWA7kTArF-1",
     researchObjectives: "PROBLEMS IDENTIFIED:\n• Corridors block access to the main artwork\n• Other visitors block the relation between screen and artwork\n• Transparent OLED screen is hard to simulate\n\nSOLUTION IMPROVEMENT:\n• One system for all the paintings\n• Silent atmosphere of the museum is not disturbed\n• Users can create an artwork\n• Users can get a printed reward of their own artwork after learning the information",
     keyFunctions: {
       description: "Features two screens positioned next to each other at an angle: one displays previous generated artwork, while the other shows paintings from that floor of museum. Built with Figma/Protopie, utilizing Screen, Speaker, and Ultrasonic Sensor/Passive Infrared.",
@@ -142,17 +125,17 @@ const projectsData: Record<string, any> = {
         {
           title: "INTERACTIVE LEARNING",
           description: "Visitor stands in front of the screen and chooses paintings they are interested in. The user selects a painting to know more about and gets answers from the system. After selecting at least 2 paintings, the option to generate an artwork appears.",
-          image: "[INSERT_GITHUB_IMAGE_LINK_FEATURE_1]"
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/558663a2cbd0f8601ecb7aad027db58e07270c3e/images/question_dimension.png?raw=true""
         },
         {
           title: "AI VOICE PROMPT",
           description: "The system uses voice interaction (e.g., 'You selected Elasticità by Boccioni. Would you like to learn about its concept?'). Users can use voice prompts to modify the art (e.g., 'I want to make it more minimal with less colors'). The AI LLM generates the artwork based on these prompts.",
-          image: "[INSERT_GITHUB_IMAGE_LINK_FEATURE_2]"
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/558663a2cbd0f8601ecb7aad027db58e07270c3e/images/question_dimension.png?raw=true""
         },
         {
           title: "GAMIFIED PRINTING",
           description: "When users choose to print, the system asks related questions about the selected paintings (e.g., style, painter, concept). If answered correctly, the totem provides a printed version of the generated artwork.",
-          image: "[INSERT_GITHUB_IMAGE_LINK_FEATURE_3]"
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/8e602f1e3767619ff568eeb83699dded7863d840/images/gamified_dimension.gif?raw=true""
         }
       ]
     },
