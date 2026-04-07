@@ -85,12 +85,7 @@ const projectsData: Record<string, any> = {
       description: "An all-in-one platform designed to reduce switching costs and improve team collaboration.",
       functions: [
         {
-          title: "TASK ASSIGNMENT & TRACKING",
-          description: "Assign tasks to colleagues with deadlines and priorities. Users receive notifications and can track their progress on a centralized dashboard.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/0cbe2f18605013698d8943ab0856d195741d6d23/images/New%20task.png?raw=true"
-        },
-        {
-          title: "SHARED CALENDAR OVERVIEW",
+          title: "TASK & SHARED CALENDAR OVERVIEW",
           description: "See the busy and available times of people you have shared your calendar with and plan events accordingly.",
           image: "https://github.com/Lumystik/PortfolioLucia/blob/26391787e0d9077298f2f76639afcde92cfec7b1/images/calendar_museon.png?raw=true"
         },
