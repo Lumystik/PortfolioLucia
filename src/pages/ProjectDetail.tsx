@@ -35,23 +35,6 @@ const projectsData: Record<string, any> = {
       benefitsImage: "https://github.com/Lumystik/PortfolioLucia/blob/24c105399d5c5b7459ff928e9b9548627bc99a06/images/museon_userbenefits.png?raw=true",
       insightsImage: "https://github.com/Lumystik/PortfolioLucia/blob/24c105399d5c5b7459ff928e9b9548627bc99a06/images/museon_userinsights.png?raw=true"
     },
-    pillars: [
-      {
-        title: "Scenario 1: Temporary Exhibition",
-        description: "Organizing a new temporary exhibition. Alex uses the platform to select dates, assign tasks with deadlines, and select items from the collection to display.",
-        image: "https://github.com/Lumystik/PortfolioLucia/blob/0cbe2f18605013698d8943ab0856d195741d6d23/images/New%20task.png?raw=true"
-      },
-      {
-        title: "Scenario 2: Assisting Visits",
-        description: "Prepare for assisting Alex during a museum visit. Mark checks his assigned tasks and uses smart notes to gather information.",
-        image: "https://github.com/Lumystik/PortfolioLucia/blob/ac040a0ff68481a4ef9745568ded5b5c9b484a5b/images/Message.png?raw=true"
-      },
-      {
-        title: "AI Integration",
-        description: "AI utilizes conversation transcription to instantly detect tasks with a single click and direct users to the corresponding page.",
-        image: "https://github.com/Lumystik/PortfolioLucia/blob/ac040a0ff68481a4ef9745568ded5b5c9b484a5b/images/smart%20note%20widget.png?raw=true"
-      }
-    ],
     bannerImage: "[INSERT_GITHUB_IMAGE_LINK_BANNER]",
     bannerQuote: "HOW DO WE OPTIMIZE MUSEUM RESOURCES?",
     researchObjectives: "There is a pressing need to effectively handle the limited human resources in the museum, as they are frequently overwhelmed by the workload at hand.\n\nMuseums need to manage several exhibitions and events per year, collaborating with external partners, donors and institutions. They need an all-in-one platform to facilitate access to functions already in use, displaying them differently according to staff role and responsibility.",
@@ -104,18 +87,24 @@ const projectsData: Record<string, any> = {
         {
           title: "TASK ASSIGNMENT & TRACKING",
           description: "Assign tasks to colleagues with deadlines and priorities. Users receive notifications and can track their progress on a centralized dashboard.",
-          image: "[INSERT_GITHUB_IMAGE_LINK_FEATURE_1]"
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/0cbe2f18605013698d8943ab0856d195741d6d23/images/New%20task.png?raw=true"
         },
         {
           title: "SHARED CALENDAR OVERVIEW",
           description: "See the busy and available times of people you have shared your calendar with and plan events accordingly.",
-          image: "[INSERT_GITHUB_IMAGE_LINK_FEATURE_2]"
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/26391787e0d9077298f2f76639afcde92cfec7b1/images/calendar_museon.png"
         },
         {
           title: "COLLECTION MANAGEMENT",
           description: "A dedicated collection page to easily check contents, export them, and manage items for specific exhibitions.",
-          image: "[INSERT_GITHUB_IMAGE_LINK_FEATURE_3]"
-        }
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/9105bd68639edbb8309a3dd3a5d9993d9314a1b9/images/collection_museon.png"
+        },
+       {
+        title: "AI INTEGRATION",
+        description: "AI utilizes conversation transcription to instantly detect tasks with a single click and direct users to the corresponding page.",
+        image: "https://github.com/Lumystik/PortfolioLucia/blob/ac040a0ff68481a4ef9745568ded5b5c9b484a5b/images/smart%20note%20widget.png?raw=true"
+      }
+ 
       ]
     },
     takeaways: "We solved the complexity of creating a smooth experience for small museum staff, enabling them to develop a better experience for visitors. By developing an all-in-one software, we streamlined the workflow and optimized current museum resources.",
