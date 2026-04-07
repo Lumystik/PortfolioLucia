@@ -110,7 +110,7 @@ const projectsData: Record<string, any> = {
   "art-beyond-dimension": {
     id: "art-beyond-dimension",
     title: "Art Beyond Dimension",
-    heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/art_1.png?raw=true",
+    heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/0e95408be9b5b18ff336921926c7889c41d95380/images/hero_dimension.jpg?raw=true",
     interfaceImage: "[INSERT_GITHUB_IMAGE_LINK_INTERFACE]",
     overview: "Immersive Experience of Future Museums. Our design solution enables young adults to gain knowledge about art in a fun and engaging way to bridge the information gap and foster greater appreciation for the heritage of museum.",
     scope: "Digital Experience & Totem Interface",
