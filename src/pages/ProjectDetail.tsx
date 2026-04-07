@@ -125,17 +125,17 @@ const projectsData: Record<string, any> = {
         {
           title: "INTERACTIVE LEARNING",
           description: "Visitor stands in front of the screen and chooses paintings they are interested in. The user selects a painting to know more about and gets answers from the system. After selecting at least 2 paintings, the option to generate an artwork appears.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/558663a2cbd0f8601ecb7aad027db58e07270c3e/images/question_dimension.png?raw=true""
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/558663a2cbd0f8601ecb7aad027db58e07270c3e/images/question_dimension.png?raw=true"
         },
         {
           title: "AI VOICE PROMPT",
           description: "The system uses voice interaction (e.g., 'You selected Elasticità by Boccioni. Would you like to learn about its concept?'). Users can use voice prompts to modify the art (e.g., 'I want to make it more minimal with less colors'). The AI LLM generates the artwork based on these prompts.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/558663a2cbd0f8601ecb7aad027db58e07270c3e/images/question_dimension.png?raw=true""
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/558663a2cbd0f8601ecb7aad027db58e07270c3e/images/question_dimension.png?raw=true"
         },
         {
           title: "GAMIFIED PRINTING",
           description: "When users choose to print, the system asks related questions about the selected paintings (e.g., style, painter, concept). If answered correctly, the totem provides a printed version of the generated artwork.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/8e602f1e3767619ff568eeb83699dded7863d840/images/gamified_dimension.gif?raw=true""
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/8e602f1e3767619ff568eeb83699dded7863d840/images/gamified_dimension.gif?raw=true"
         }
       ]
     },
