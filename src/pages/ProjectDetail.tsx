@@ -342,10 +342,10 @@ export function ProjectDetail() {
           </div>
         </section>
 
-        {/* Project Details & Overview */}
+     {/* Project Details & Overview */}
         <section className="pb-24 md:pb-32 w-full bg-white text-[#131313]">
-          {/* Added 'items-center' here to vertically center the left and right columns */}
-          <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-center text-left">
+          {/* Changed max-w-7xl to max-w-6xl for more side margin */}
+          <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-center text-left">
             
             {/* Left Column: Metadata */}
             <div className="md:col-span-4 flex flex-col gap-6">
@@ -376,7 +376,7 @@ export function ProjectDetail() {
               )}
             </div>
 
-            {/* Right Column: Title & Overview (Centered and Bolded) */}
+            {/* Right Column: Title & Overview */}
             <div className="md:col-span-8 flex flex-col gap-6">
               <motion.h1 
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1 }}
@@ -386,13 +386,11 @@ export function ProjectDetail() {
               </motion.h1>
               <motion.p 
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
-                {/* Added font-bold below */}
                 className="text-xl md:text-2xl text-gray-800 leading-relaxed max-w-3xl font-bold"
               >
                 {project.overview}
               </motion.p>
             </div>
-
           </div>
         </section>
 
