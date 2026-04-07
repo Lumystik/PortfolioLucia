@@ -330,9 +330,21 @@ export function ProjectDetail() {
           </div>
         </section>
 
+     {/* Hero Section */}
+        <section className="w-full pt-24 pb-12 bg-white">
+          <div className="max-w-7xl mx-auto px-6">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}
+              className="w-full rounded-2xl overflow-hidden bg-gray-100"
+            >
+              <img src={project.heroImage} alt={project.title} className="w-full h-auto object-cover max-h-[70vh]" />
+            </motion.div>
+          </div>
+        </section>
+
         {/* Project Details & Overview */}
         <section className="pb-24 md:pb-32 w-full bg-white text-[#131313]">
-          {/* Added "items-center" below to vertically center the left and right columns */}
+          {/* Added 'items-center' here to vertically center the left and right columns */}
           <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-center text-left">
             
             {/* Left Column: Metadata */}
@@ -364,7 +376,7 @@ export function ProjectDetail() {
               )}
             </div>
 
-            {/* Right Column: Title & Overview (Bolded) */}
+            {/* Right Column: Title & Overview (Centered and Bolded) */}
             <div className="md:col-span-8 flex flex-col gap-6">
               <motion.h1 
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1 }}
@@ -374,7 +386,7 @@ export function ProjectDetail() {
               </motion.h1>
               <motion.p 
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
-                {/* Added font-bold here */}
+                {/* Added font-bold below */}
                 className="text-xl md:text-2xl text-gray-800 leading-relaxed max-w-3xl font-bold"
               >
                 {project.overview}
