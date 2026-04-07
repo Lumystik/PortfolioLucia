@@ -15,18 +15,20 @@ const projectsData: Record<string, any> = {
     role: "UX Research, Branding, UX/UI Design",
     team: "Martina Braidotti, Lucia Medina, Ilario Pedone, Agnese Rosselli, Mark Waisara",
     prototypeLink: "https://www.figma.com/proto/16viMWZsHOU9SkmpbSpTd5/FINAL-UI-spaced?node-id=2248-9671&starting-point-node-id=703%3A8427&scaling=scale-down&content-scaling=fixed&t=aO2g8BW8sOtXyiVT-1?raw=true",
-    keyFindings: [
-      { stat: "04", label: "full time employees", description: "limited human resources overwhelmed by the workload at hand." },
-      { stat: "59", label: "event & exhibitions in 2023", description: "manage several exhibitions and events" },
-      { stat: "06", label: "Different tools to manage", description: "facilitate access to functions already in use displaying them differently according to staff role and responsibility" }
-    ],
+ 
     processMap: [
       { phase: "Research", steps: ["Desk research", "On site research", "Ecosystem map", "research key findings"] },
       { phase: "Define", steps: ["Design brief", "Personas & scenarios", "Heroflow & wireflow"] },
       { phase: "Develop", steps: ["User test results", "Design system", "Prototype"] }
     ],
+      researchObjectives: "There is a pressing need to effectively handle the limited human resources in the museum, as they are frequently overwhelmed by the workload at hand.\n\nMuseums need to manage several exhibitions and events per year, collaborating with external partners, donors and institutions. They need an all-in-one platform to facilitate access to functions already in use, displaying them differently according to staff role and responsibility.",
     howMightWe: [ "solve the complexity of creating a smooth experience for small museum staff?", "streamline the workflow and improve the management of different areas of the institution?", "optimize the current museum resources to help staff develop a better experience for visitors?" ],
-    keyFeatures: [
+      keyFindings: [
+      { stat: "04", label: "full time employees", description: "limited human resources overwhelmed by the workload at hand." },
+      { stat: "59", label: "event & exhibitions in 2023", description: "manage several exhibitions and events" },
+      { stat: "06", label: "Different tools to manage", description: "facilitate access to functions already in use displaying them differently according to staff role and responsibility" }
+    ],
+      keyFeatures: [
       
       { title: "SHARED CALENDAR OVERVIEW", description: "With this feature, you can see the busy and available times of people you have shared your calendar with and plan events accordingly." },
       { title: "COLLECTION MANAGEMENT", description: "Collection page to easily check contents and export them. Collection section in the exhibition management to a comprehensive view." },
@@ -38,7 +40,6 @@ const projectsData: Record<string, any> = {
       insightsImage: "https://github.com/Lumystik/PortfolioLucia/blob/24c105399d5c5b7459ff928e9b9548627bc99a06/images/museon_userinsights.png?raw=true"
     },
     bannerImage: "[INSERT_GITHUB_IMAGE_LINK_BANNER]",
-    researchObjectives: "There is a pressing need to effectively handle the limited human resources in the museum, as they are frequently overwhelmed by the workload at hand.\n\nMuseums need to manage several exhibitions and events per year, collaborating with external partners, donors and institutions. They need an all-in-one platform to facilitate access to functions already in use, displaying them differently according to staff role and responsibility.",
     researchInsights: [
       {
         title: "THE CURRENT STATE",
@@ -59,12 +60,12 @@ const projectsData: Record<string, any> = {
         {
           title: "ALEX: THE CURATOR & MANAGER",
           description: "Role: Curator, Education, Office of the President, Guide, Ticket and Relations.\nDrivers: Contributing to cultural education, personal interest in the subject matter.\nEnvironment: Museum office.\nNeeds: Planning, team collaboration, task management.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/d74b8826072feaaf424171e82b01285b00a9abf0/images/alexx_museon.png?raw=true""
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/d74b8826072feaaf424171e82b01285b00a9abf0/images/alexx_museon.png?raw=true"
         },
         {
           title: "MARK: THE INTERN",
           description: "Role: Intern.\nDrivers: Learning and gaining experience in museum operations, impressing supervisors, contributing effectively during the visit.\nEnvironment: Home/On-site.\nNeeds: Clear task assignment, accessibility, collection lists.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/d74b8826072feaaf424171e82b01285b00a9abf0/images/mark_museon.png?raw=true""
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/d74b8826072feaaf424171e82b01285b00a9abf0/images/mark_museon.png?raw=true"
         }
       ],
       conclusion: "Both roles require a centralized dashboard, shared calendar, project tracking, and collection management to reduce switching costs."
