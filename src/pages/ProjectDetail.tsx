@@ -418,7 +418,7 @@ export function ProjectDetail() {
         {project.processMap && (
           <section className="py-24 md:py-32 w-full bg-gray-50">
             <div className="max-w-7xl mx-auto px-6">
-              <h3 className="text-2xl font-bold uppercase tracking-widest mb-16 text-left">Design Process Map</h3>
+              <h3 className="text-3xl md:text-5xl font-bold uppercase tracking-tight text-left">Design Process Map</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                 {project.processMap.map((phase: any, idx: number) => (
                   <motion.div 
@@ -446,7 +446,7 @@ export function ProjectDetail() {
         {project.keyFindings && (
           <section className="py-24 md:py-32 w-full bg-[#131313] text-white">
             <div className="max-w-7xl mx-auto px-6">
-              <h3 className="text-2xl font-bold uppercase tracking-widest mb-16 text-left text-[#E54D2E]">Key Findings</h3>
+              <h3 className="text-3xl md:text-5xl font-bold uppercase tracking-tight text-left">Key Findings</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-24">
                 {project.keyFindings.map((finding: any, idx: number) => (
                   <motion.div 
@@ -470,7 +470,7 @@ export function ProjectDetail() {
         {project.keyFeatures && (
           <section className="py-24 md:py-32 w-full bg-white">
             <div className="max-w-7xl mx-auto px-6">
-              <h3 className="text-2xl font-bold uppercase tracking-widest mb-16 text-left">Key Features</h3>
+              <h3 className="text-3xl md:text-5xl font-bold uppercase tracking-tight text-left">Key Features</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
                 {project.keyFeatures.map((feature: any, idx: number) => (
                   <motion.div 
@@ -569,7 +569,7 @@ export function ProjectDetail() {
               {project.researchObjectives && (
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
                   <div className="md:col-span-5 lg:col-span-4">
-                    <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold uppercase tracking-tight">Research Objectives</h3>
+                    <h3 className="text-3xl md:text-5xl font-bold uppercase tracking-tight text-left">Research Objectives</h3>
                   </div>
                   <div className="md:col-span-7 lg:col-span-8">
                     <div className="text-xl md:text-2xl leading-relaxed whitespace-pre-line text-gray-800">
@@ -602,7 +602,7 @@ export function ProjectDetail() {
           <section className="py-24 md:py-32 w-full bg-[#E2F0A4] text-[#131313]">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16">
               <div className="flex flex-col gap-6 max-w-3xl">
-                <h3 className="text-2xl font-bold uppercase tracking-widest">Target Users</h3>
+                <h3 className="text-3xl md:text-5xl font-bold uppercase tracking-tight text-left">Target Users</h3>
                 <p className="text-xl md:text-2xl leading-relaxed">
                   {project.targetUsers.description}
                 </p>
@@ -641,7 +641,7 @@ export function ProjectDetail() {
         {project.howMightWe && (
           <section className="py-24 md:py-32 w-full bg-[#E2F0A4]">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-12">
-              <h3 className="text-2xl font-bold uppercase tracking-widest">How Might We...</h3>
+              <h3 className="text-3xl md:text-5xl font-bold uppercase tracking-tight text-left">How Might We...</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {project.howMightWe.map((hmw: string, idx: number) => (
                   <motion.div 
@@ -665,7 +665,7 @@ export function ProjectDetail() {
     <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16">
       <div className="flex flex-col md:flex-row gap-12 items-start">
         <div className="md:w-1/3 flex flex-col gap-6">
-          <h3 className="text-2xl font-bold uppercase tracking-widest">Building the Brand</h3>
+          <h3 className="text-3xl md:text-5xl font-bold uppercase tracking-tight text-left">Building the Brand</h3>
           <p className="text-lg leading-relaxed text-gray-600">
             {project.branding.description}
           </p>
@@ -704,7 +704,7 @@ export function ProjectDetail() {
           <section className="py-24 md:py-32 w-full bg-[#E2F0A4]">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16">
               <div className="flex flex-col gap-6 max-w-3xl">
-                <h3 className="text-2xl font-bold uppercase tracking-widest">Key Functions</h3>
+                <h3 className="text-3xl md:text-5xl font-bold uppercase tracking-tight text-left">Key Functions</h3>
                 <p className="text-xl md:text-2xl leading-relaxed text-gray-800">
                   {project.keyFunctions.description}
                 </p>
@@ -753,7 +753,7 @@ export function ProjectDetail() {
         {project.gallery && (
           <section className="py-24 md:py-32 w-full bg-gray-50">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-12">
-              <h3 className="text-2xl font-bold uppercase tracking-widest text-left">Ad Creatives Gallery</h3>
+              <h3 className="text-3xl md:text-5xl font-bold uppercase tracking-tight text-left">Ad Creatives Gallery</h3>
               <div className="flex flex-col md:flex-row md:overflow-x-auto gap-8 pb-8 md:snap-x md:snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] items-center md:items-stretch">
                 {project.gallery.map((img: string, idx: number) => (
                   <div key={idx} className="w-full max-w-[260px] md:max-w-none md:min-w-[300px] h-[320px] md:h-[400px] bg-white rounded-2xl overflow-hidden shadow-sm md:snap-center flex-shrink-0 p-4 border border-gray-100">
@@ -788,9 +788,9 @@ export function ProjectDetail() {
           <section className="py-24 md:py-32 w-full bg-[#E2F0A4]">
             <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
               <div className="md:col-span-1">
-                <h3 className="text-2xl font-bold uppercase tracking-widest">Takeaways</h3>
+                <h3 className="text-3xl md:text-5xl font-bold uppercase tracking-tight text-left">Takeaways</h3>
               </div>
-              <div className="md:col-span-2">
+              <div className="md:col-span-1">
                 <p className="text-xl md:text-2xl leading-relaxed whitespace-pre-line text-left">
                   {project.takeaways}
                 </p>
