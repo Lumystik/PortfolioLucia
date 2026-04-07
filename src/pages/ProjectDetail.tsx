@@ -32,18 +32,8 @@ const projectsData: Record<string, any> = {
       { title: "SWITCHING COSTS REDUCTION", description: "AI utilize conversation transcription to instantly detect tasks with a single click and be directed to the corresponding page." }
     ],
     userInsights: {
-      benefits: [
-        { label: "Projects section and shortcut", percentage: 50, color: "#E2F0A4" },
-        { label: "Calendar section", percentage: 30, color: "#C5D97A" },
-        { label: "My task shortcut", percentage: 20, color: "#d1d5db" }
-      ],
-      priorities: [
-        { label: "Complete", size: "w-48 h-48 md:w-64 md:h-64", color: "bg-[#E2F0A4]", position: "absolute bottom-0 left-2 md:bottom-4 md:left-4 z-10" },
-        { label: "All-in one", size: "w-32 h-32 md:w-48 md:h-48", color: "bg-[#D4E68C]", position: "absolute bottom-4 right-4 md:bottom-8 md:right-4 z-20" },
-        { label: "Fast", size: "w-28 h-28 md:w-40 md:h-40", color: "bg-[#C5D97A]", position: "absolute top-16 right-4 md:top-20 md:right-12 z-0" },
-        { label: "Panoramic", size: "w-24 h-24 md:w-32 md:h-32", color: "bg-gray-300", position: "absolute top-12 left-12 md:top-16 md:left-20 z-0" },
-        { label: "Useful", size: "w-20 h-20 md:w-28 md:h-28", color: "bg-gray-400", position: "absolute top-0 right-20 md:top-4 md:right-32 z-10" }
-      ]
+      benefitsImage: "https://github.com/Lumystik/PortfolioLucia/blob/24c105399d5c5b7459ff928e9b9548627bc99a06/images/museon_userbenefits.png?raw=true",
+      insightsImage: "https://github.com/Lumystik/PortfolioLucia/blob/24c105399d5c5b7459ff928e9b9548627bc99a06/images/museon_userinsights.png?raw=true"
     },
     pillars: [
       {
@@ -497,113 +487,35 @@ export function ProjectDetail() {
           </section>
         )}
 
-{/* User Insights (Charts) */}
-{project.userInsights && (
-  <section className="py-24 md:py-32 w-full bg-[#FDFBF7] text-[#131313]">
-    <div className="max-w-7xl mx-auto px-6 flex flex-col gap-24">
-      <h3 className="text-3xl md:text-5xl font-bold uppercase tracking-tight text-left">
-        User Insights
-      </h3>
+  {/* User Insights (Images) */}
+        {project.userInsights && (
+          <section className="py-24 md:py-32 w-full bg-[#FDFBF7] text-[#131313]">
+            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-24">
+              <h3 className="text-3xl md:text-5xl font-bold uppercase tracking-tight text-left">
+                User Insights
+              </h3>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
-        
-        {/* Donut Chart */}
-        <div className="flex flex-col gap-12 h-full">
-          <h4 className="text-2xl font-bold uppercase tracking-widest text-left">
-            User Perceived Benefits
-          </h4>
-
-          <div className="flex-1 flex items-center justify-center p-12 md:p-16">
-            <div className="relative w-64 h-64 md:w-80 md:h-80">
-              {/* 1. Background Gradient */}
-              <div 
-                className="w-full h-full rounded-full"
-                style={{
-                  background: `conic-gradient(
-                    ${project.userInsights.benefits[0].color} 0% ${project.userInsights.benefits[0].percentage}%, 
-                    ${project.userInsights.benefits[1].color} ${project.userInsights.benefits[0].percentage}% ${project.userInsights.benefits[0].percentage + project.userInsights.benefits[1].percentage}%, 
-                    ${project.userInsights.benefits[2].color} ${project.userInsights.benefits[0].percentage + project.userInsights.benefits[1].percentage}% 100%
-                  )`
-                }}
-              />
-              
-              {/* 2. Inner Hole (White Center) */}
-              <div className="absolute inset-0 m-auto w-3/5 h-3/5 bg-[#FDFBF7] rounded-full z-10" />
-
-              {/* 3. Text Alignment Logic */}
-              {(() => {
-                const p0 = project.userInsights.benefits[0].percentage;
-                const p1 = project.userInsights.benefits[1].percentage;
-
-                const getStyle = (start: number, end: number) => {
-                  const mid = start + (end - start) / 2;
-                  // -90 degrees because CSS conic-gradient starts at the top
-                  const angle = (mid / 100) * 360 - 90;
-                  const rad = (angle * Math.PI) / 180;
-                  
-                  // Radius 40 sits perfectly between the 30% hole and 50% edge
-                  const distance = 40; 
-                  
-                  const x = Math.cos(rad) * distance;
-                  const y = Math.sin(rad) * distance;
-                  
-                  return {
-                    top: `calc(50% + ${y}%)`,
-                    left: `calc(50% + ${x}%)`,
-                    transform: 'translate(-50%, -50%)',
-                  };
-                };
-
-                return (
-                  <div className="absolute inset-0 z-20">
-                    {[
-                      { item: project.userInsights.benefits[0], start: 0, end: p0 },
-                      { item: project.userInsights.benefits[1], start: p0, end: p0 + p1 },
-                      { item: project.userInsights.benefits[2], start: p0 + p1, end: 100 }
-                    ].map((slice, i) => (
-                      <div
-                        key={i}
-                        style={getStyle(slice.start, slice.end)}
-                        className="absolute text-[10px] md:text-xs font-bold text-center w-16 leading-tight pointer-events-none text-[#131313]"
-                      >
-                        {slice.item.label}
-                      </div>
-                    ))}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-start">
+                <div className="flex flex-col gap-8">
+                  <h4 className="text-2xl font-bold uppercase tracking-widest text-left">
+                    User Perceived Benefits
+                  </h4>
+                  <div className="w-full rounded-3xl overflow-hidden shadow-sm border border-gray-100 bg-white p-4">
+                    <img src={project.userInsights.benefitsImage} alt="User Benefits" className="w-full h-auto object-contain" referrerPolicy="no-referrer" />
                   </div>
-                );
-              })()}
+                </div>
+                <div className="flex flex-col gap-8">
+                  <h4 className="text-2xl font-bold uppercase tracking-widest text-left">
+                    User Priorities
+                  </h4>
+                  <div className="w-full rounded-3xl overflow-hidden shadow-sm border border-gray-100 bg-white p-4">
+                    <img src={project.userInsights.insightsImage} alt="User Insights" className="w-full h-auto object-contain" referrerPolicy="no-referrer" />
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        {/* Bubble Chart */}
-        <div className="flex flex-col gap-12 h-full">
-          <h4 className="text-2xl font-bold uppercase tracking-widest">
-            User Priorities
-          </h4>
-          <div className="flex-1 flex items-center justify-center">
-            <div className="relative w-[320px] h-[320px] md:w-[450px] md:h-[450px]">
-              {project.userInsights.priorities.map((priority: any, idx: number) => (
-                <motion.div
-                  key={idx}
-                  initial={{ scale: 0, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1, type: "spring" }}
-                  className={`absolute rounded-full flex items-center justify-center text-[#131313] font-bold text-sm md:text-lg text-center p-4 shadow-lg ${priority.color} ${priority.size} ${priority.position}`}
-                >
-                  {priority.label}
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-)}
-
+          </section>
+        )}
  
         {/* Pillars / 3 Images */}
         {project.pillars && (
