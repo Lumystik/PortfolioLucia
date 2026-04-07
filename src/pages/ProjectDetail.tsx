@@ -118,9 +118,10 @@ const projectsData: Record<string, any> = {
     timeline: "Final Design Studio",
     team: "Razieh Soleimani, Lucia Medina, Marjan Mehrabi, Fatemeh Khoshbazan",
     prototypeLink: "https://www.figma.com/proto/FnFqrWBxyChSOdL3aVzV9A/Prototype?node-id=616-1965&starting-point-node-id=564%3A1942&t=bIX74fMjWA7kTArF-1",
+    problem:"How can we encourage young people to explore the museum in a more interactive way, allowing them to gain valuable insights and develop a deeper appreciation for the heritage behind the artwork?",
     researchObjectives: "PROBLEMS IDENTIFIED:\n• Corridors block access to the main artwork\n• Other visitors block the relation between screen and artwork\n• Transparent OLED screen is hard to simulate\n\nSOLUTION IMPROVEMENT:\n• One system for all the paintings\n• Silent atmosphere of the museum is not disturbed\n• Users can create an artwork\n• Users can get a printed reward of their own artwork after learning the information",
     keyFunctions: {
-      description: "Features two screens positioned next to each other at an angle: one displays previous generated artwork, while the other shows paintings from that floor of museum. Built with Figma/Protopie, utilizing Screen, Speaker, and Ultrasonic Sensor/Passive Infrared.",
+      description: "We aimed to position two screents next to each other at an angle: one displays previous generated artwork (the projection), while the other shows paintings from that floor of museum (the app). Built with Figma. I added in motion graphics that dd visual interest and show the history behind the paintings ",
       functions: [
         {
           title: "INTERACTIVE LEARNING",
@@ -401,6 +402,23 @@ export function ProjectDetail() {
                   </motion.div>
                 ))}
               </div>
+            </div>
+          </section>
+        )}
+        
+        {/* Pillars / 3 Images */}
+        {problem.problem && (
+          <section className="py-16 md:py-20 w-full bg-white">
+            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
+          
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+                  <div className="md:col-span-4">
+                    <h3 className="text-2xl md:text-4xl font-bold uppercase tracking-tight text-left">The problem</h3>
+                  </div>
+                  <div className="md:col-span-8">
+                    <div className="text-lg md:text-xl leading-relaxed whitespace-pre-line text-gray-800">{project.problem}</div>
+                  </div>
+                </div>
             </div>
           </section>
         )}
