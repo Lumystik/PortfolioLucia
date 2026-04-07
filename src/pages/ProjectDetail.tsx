@@ -650,7 +650,7 @@ export function ProjectDetail() {
                     className="flex flex-col gap-4 bg-white p-5 rounded-2xl shadow-sm"
                   >
                     <div className="w-full aspect-video bg-[#E2F0A4] rounded-xl overflow-hidden">
-                      <img src={func.image} alt={func.title} className="w-full h-full object-cover" />
+                      <img src={func.image} alt={func.title} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-out" />
                     </div>
                     <div className="flex flex-col gap-1">
                       <h4 className="text-lg font-bold uppercase">{func.title}</h4>
