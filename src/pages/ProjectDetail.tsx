@@ -501,7 +501,7 @@ export function ProjectDetail() {
                     User Perceived Benefits
                   </h4>
                   <div className="w-full rounded-3xl overflow-hidden shadow-sm border border-gray-100 bg-white p-4">
-                    <img src={project.userInsights.benefitsImage} alt="User Benefits" className="w-full h-auto object-contain" referrerPolicy="no-referrer" />
+                    <img src={project.userInsights.benefitsImage} alt="User Benefits" className="max-w-md h-auto object-contain" referrerPolicy="no-referrer" />
                   </div>
                 </div>
                 <div className="flex flex-col gap-8">
@@ -509,7 +509,7 @@ export function ProjectDetail() {
                     User Priorities
                   </h4>
                   <div className="w-full rounded-3xl overflow-hidden shadow-sm border border-gray-100 bg-white p-4">
-                    <img src={project.userInsights.insightsImage} alt="User Insights" className="w-full h-auto object-contain" referrerPolicy="no-referrer" />
+                    <img src={project.userInsights.insightsImage} alt="User Insights" className="max-w-md h-auto object-contain" referrerPolicy="no-referrer" />
                   </div>
                 </div>
               </div>
