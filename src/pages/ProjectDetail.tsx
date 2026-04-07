@@ -25,7 +25,9 @@ const projectsData: Record<string, any> = {
       { phase: "Define", steps: ["Design brief", "Personas & scenarios", "Heroflow & wireflow"] },
       { phase: "Develop", steps: ["User test results", "Design system", "Prototype"] }
     ],
+    howMightWe: [ "solve the complexity of creating a smooth experience for small museum staff?", "streamline the workflow and improve the management of different areas of the institution?", "optimize the current museum resources to help staff develop a better experience for visitors?" ],
     keyFeatures: [
+      
       { title: "SHARED CALENDAR OVERVIEW", description: "With this feature, you can see the busy and available times of people you have shared your calendar with and plan events accordingly." },
       { title: "COLLECTION MANAGEMENT", description: "Collection page to easily check contents and export them. Collection section in the exhibition management to a comprehensive view." },
       { title: "TASK ASSIGNMENT & TRACKING", description: "Project overview for optimal management of many events." },
@@ -68,11 +70,7 @@ const projectsData: Record<string, any> = {
       ],
       conclusion: "Both roles require a centralized dashboard, shared calendar, project tracking, and collection management to reduce switching costs."
     },
-    howMightWe: [
-      "solve the complexity of creating a smooth experience for small museum staff?",
-      "streamline the workflow and improve the management of different areas of the institution?",
-      "optimize the current museum resources to help staff develop a better experience for visitors?"
-    ],
+    
     branding: {
       description: "The design system was built to be clean, accessible, and highly functional, prioritizing data visualization and task management. It includes standardized colors, buttons, dropdown menus, and calendar components.",
       logoDescription: "Developed as part of the Digital Design Studio.",
