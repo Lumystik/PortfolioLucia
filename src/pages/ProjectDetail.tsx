@@ -353,7 +353,7 @@ export function ProjectDetail() {
       
       <main className="w-full">
         {/* Hero Section (Clear Image) */}
-        <section className="w-full pt-32 md:pt-40 pb-12 md:pb-16 bg-white">
+        <section className="w-full pt-24 pb-12 bg-white">
           <div className="max-w-7xl mx-auto px-6 flex flex-col gap-12 md:gap-16">
             <motion.div 
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}
@@ -365,7 +365,7 @@ export function ProjectDetail() {
         </section>
 
         {/* Project Details & Overview */}
-        <section className="pt-12 md:pt-16 pb-24 md:pb-32 w-full bg-white text-[#131313]">
+        <section className="pb-24 md:pb-32 w-full bg-white text-[#131313]">
           <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 text-left">
             {/* Left Column: Metadata */}
             <div className="md:col-span-4 flex flex-col gap-8">
