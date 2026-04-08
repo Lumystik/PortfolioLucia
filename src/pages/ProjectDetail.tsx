@@ -215,7 +215,7 @@ userInsights: [
     id: "films-foundation",
     title: "Films Foundation (Cineteca Milano)",
     heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/7cf2bd97f7815c8ba8a5a94d05606596cb94f9a9/images/hero_films.jpg?raw=true",
-    interfaceImage: "https://github.com/Lumystik/PortfolioLucia/blob/e32a3f966daecd1813928e8381a9f89b1f636980/images/Minimalist%20Website%20Launch%20Computer%20Mockup%20Instagram%20Post.gif?raw=true",
+    interfaceImage: "https://github.com/Lumystik/PortfolioLucia/blob/7a978a0266769080f98425427d4ed4b545f43ec9/images/Minimalist%20Website%20Launch%20Computer%20Mockup%20Instagram%20Post%20(1).png?raw=true",
     overview: "A comprehensive UX/UI redesign for Cineteca Milano, an Italian film archive and cultural center. The project focuses on improving usability, accessibility, and the overall digital experience for booking tickets, exploring events, and accessing the film archive.",
     scope: "Web & Mobile UX/UI Redesign",
     role: "UX/UI Designer",
