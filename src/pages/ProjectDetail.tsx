@@ -479,7 +479,7 @@ export function ProjectDetail() {
           transition={{ duration: 0.8 }}
           className="bg-[#E2F0A4] p-8 md:p-12 rounded-xl flex items-center min-h-[160px] w-full"
         >
-          <h3 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white m-0">
+          <h3 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-black m-0">
             How Might We...
           </h3>
         </motion.div>
@@ -493,9 +493,9 @@ export function ProjectDetail() {
               whileInView={{ opacity: 1, y: 0 }} 
               viewport={{ once: true }} 
               transition={{ duration: 0.8, delay: idx * 0.1 }}
-              className="bg-[#355E9F] p-8 md:p-12 rounded-xl flex items-center min-h-[160px] w-full"
+              className="bg-[#E2F0A4] p-8 md:p-12 rounded-xl flex items-center min-h-[160px] w-full"
             >
-              <p className="text-lg md:text-xl font-medium leading-relaxed text-white">
+              <p className="text-lg md:text-xl font-medium leading-relaxed text-black">
                 {hmw}
               </p>
             </motion.div>
