@@ -134,7 +134,6 @@ const projectsData: Record<string, any> = {
         description: "Key considerations include maintaining simplicity to avoid cognitive overload, ensuring accessible and high-quality audio interaction, designing for users unfamiliar with AI systems, and providing clear guidance to reduce confusion. Physical context factors such as contrast for holographic displays and crowd flow management were also highlighted."
       }
     ],
-    // ADDED NEW DATA BLOCK FOR USER TESTING
     userTesting: {
       title: "User Testing & Validation",
       description: "We conducted in-person testing sessions to observe how users interacted with the interface naturally. We focused on whether the audio prompts were intuitive and if the gamified printing process felt rewarding.",
@@ -463,49 +462,49 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
-{/* 7. How Might We */}
-{project.howMightWe && project.howMightWe.length > 0 && (
-  <section className="py-16 md:py-20 w-full">
-    <div className="max-w-7xl mx-auto px-6 w-full">
-      {/* 1 column on mobile, 2 columns on md (tablet/desktop) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 w-full">
-        
-        {/* Left Column: Title Card */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }} 
-          whileInView={{ opacity: 1, y: 0 }} 
-          viewport={{ once: true }} 
-          transition={{ duration: 0.8 }}
-          className="bg-[#E2F0A4] p-8 md:p-12 rounded-xl flex items-center min-h-[160px] w-full"
-        >
-          <h3 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-black m-0">
-            How Might We...
-          </h3>
-        </motion.div>
+        {/* 7. How Might We */}
+        {project.howMightWe && project.howMightWe.length > 0 && (
+          <section className="py-16 md:py-20 w-full">
+            <div className="max-w-7xl mx-auto px-6 w-full">
+              {/* 1 column on mobile, 2 columns on md (tablet/desktop) */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 w-full">
+                
+                {/* Left Column: Title Card */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }} 
+                  whileInView={{ opacity: 1, y: 0 }} 
+                  viewport={{ once: true }} 
+                  transition={{ duration: 0.8 }}
+                  className="bg-[#E2F0A4] p-8 md:p-12 rounded-xl flex items-center min-h-[160px] w-full"
+                >
+                  <h3 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-black m-0">
+                    How Might We...
+                  </h3>
+                </motion.div>
 
-        {/* Right Column: Content Card(s) */}
-        <div className="flex flex-col gap-4 md:gap-6 w-full">
-          {project.howMightWe.map((hmw: string, idx: number) => (
-            <motion.div 
-              key={idx}
-              initial={{ opacity: 0, y: 20 }} 
-              whileInView={{ opacity: 1, y: 0 }} 
-              viewport={{ once: true }} 
-              transition={{ duration: 0.8, delay: idx * 0.1 }}
-              className="bg-[#E2F0A4] p-8 md:p-12 rounded-xl flex items-center min-h-[160px] w-full"
-            >
-              <p className="text-lg md:text-xl font-medium leading-relaxed text-black">
-                {hmw}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-        
-      </div>
-    </div>
-  </section>
-)}
-              {/* 8. Process Map */}
+                {/* Right Column: Content Card(s) */}
+                <div className="flex flex-col gap-4 md:gap-6 w-full">
+                  {project.howMightWe.map((hmw: string, idx: number) => (
+                    <motion.div 
+                      key={idx}
+                      initial={{ opacity: 0, y: 20 }} 
+                      whileInView={{ opacity: 1, y: 0 }} 
+                      viewport={{ once: true }} 
+                      transition={{ duration: 0.8, delay: idx * 0.1 }}
+                      className="bg-[#E2F0A4] p-8 md:p-12 rounded-xl flex items-center min-h-[160px] w-full"
+                    >
+                      <p className="text-lg md:text-xl font-medium leading-relaxed text-black">
+                        {hmw}
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
+                
+              </div>
+            </div>
+          </section>
+        )}
+        {/* 8. Process Map */}
         {project.processMap && (
           <section className="py-16 md:py-20 w-full bg-gray-50">
             <div className="max-w-7xl mx-auto px-6">
@@ -532,68 +531,64 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
-      {/* 4. Research Objectives & Insights */}
-{(project.researchObjectives || project.researchInsights) && (
-  <section className="py-16 md:py-20 w-full bg-white">
-    <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16 md:gap-24">
-      
-{project.researchObjectives && (
-  <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-start">
 
-    {/* Left: Title */}
-    <div className="md:col-span-4">
-      <h3 className="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-[0.9] text-black">
-        Research<br />Objectives
-      </h3>
-    </div>
+        {/* 4. Research Objectives & Insights */}
+        {(project.researchObjectives || project.researchInsights) && (
+          <section className="py-16 md:py-20 w-full bg-white">
+            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16 md:gap-24">
+              
+              {project.researchObjectives && (
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-start">
+                  {/* Left: Title */}
+                  <div className="md:col-span-4">
+                    <h3 className="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-[0.9] text-black">
+                      Research<br />Objectives
+                    </h3>
+                  </div>
 
-    {/* Right: Content */}
-    <div className="md:col-span-8">
-      {Array.isArray(project.researchObjectives) ? (
-        <ul className="flex flex-col gap-6">
-          {project.researchObjectives.map((line: string, idx: number) => (
-            <li key={idx} className="flex items-start gap-3 text-lg md:text-xl text-gray-800">
-              <span className="text-black font-bold select-none mt-0.5">•</span>
-              <span className="leading-relaxed">{line}</span>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <div className="text-lg md:text-xl leading-relaxed whitespace-pre-line text-gray-800">
-          {project.researchObjectives}
-        </div>
-      )}
-    </div>
+                  {/* Right: Content */}
+                  <div className="md:col-span-8">
+                    {Array.isArray(project.researchObjectives) ? (
+                      <ul className="flex flex-col gap-6">
+                        {project.researchObjectives.map((line: string, idx: number) => (
+                          <li key={idx} className="flex items-start gap-3 text-lg md:text-xl text-gray-800">
+                            <span className="text-black font-bold select-none mt-0.5">•</span>
+                            <span className="leading-relaxed">{line}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <div className="text-lg md:text-xl leading-relaxed whitespace-pre-line text-gray-800">
+                        {project.researchObjectives}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
 
-  </div>
-)}
-          </div>
-        </div>
-      )}
+              {/* Research Insights */}
+              {project.researchInsights && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                  {project.researchInsights.map((insight: any, idx: number) => (
+                    <motion.div 
+                      key={idx}
+                      initial={{ opacity: 0, y: 20 }} 
+                      whileInView={{ opacity: 1, y: 0 }} 
+                      viewport={{ once: true }} 
+                      transition={{ duration: 0.8, delay: idx * 0.1 }}
+                      className="flex flex-col gap-3 bg-[#FAF9F6] p-8 rounded-xl h-full"
+                    >
+                      <h4 className="text-base font-bold uppercase tracking-wide">{insight.title}</h4>
+                      <p className="text-base text-gray-700 leading-relaxed whitespace-pre-line">{insight.description}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </section>
+        )}
 
-      {/* Research Insights */}
-      {project.researchInsights && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-          {project.researchInsights.map((insight: any, idx: number) => (
-            <motion.div 
-              key={idx}
-              initial={{ opacity: 0, y: 20 }} 
-              whileInView={{ opacity: 1, y: 0 }} 
-              viewport={{ once: true }} 
-              transition={{ duration: 0.8, delay: idx * 0.1 }}
-              className="flex flex-col gap-3 bg-[#FAF9F6] p-8 rounded-xl h-full"
-            >
-              <h4 className="text-base font-bold uppercase tracking-wide">{insight.title}</h4>
-              <p className="text-base text-gray-700 leading-relaxed whitespace-pre-line">{insight.description}</p>
-            </motion.div>
-          ))}
-        </div>
-      )}
-      
-    </div>
-  </section>
-)}
-     {/* 6. Target Users (MOVED UP) */}
+        {/* 6. Target Users (MOVED UP) */}
         {project.targetUsers && (
           <section className="py-16 md:py-20 w-full bg-[#E2F0A4] text-[#131313]">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
@@ -681,7 +676,7 @@ export function ProjectDetail() {
           </section>
         )}
 
-{/* 5B. User Insights - Smart Conditional Rendering */}
+        {/* 5B. User Insights - Smart Conditional Rendering */}
         {(project.userInsights || project.userInsightsCards) && (
           <section className="py-16 md:py-20 w-full bg-[#FDFBF7] text-[#131313]">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-12">
@@ -734,11 +729,6 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
-
-   
-
-
- 
 
         {/* 9. Key Findings Stats */}
         {project.keyFindings && (
