@@ -42,7 +42,7 @@ const projectsData: Record<string, any> = {
     bannerImage: "[INSERT_GITHUB_IMAGE_LINK_BANNER]",
     researchInsights: [
       {
-        title: "THE CURRENT STATE",
+        title: "THE PROBLEM",
         description: "Small museums typically operate with very limited staff (e.g., 4 full-time employees) while managing a high volume of activities (e.g., 59 events & exhibitions in 2023). They currently juggle up to 6 different tools to manage their workflow."
       },
       {
@@ -424,7 +424,7 @@ export function ProjectDetail() {
                   </div>
                   <div className="md:col-span-8">
                     {/* Added font-bold here to make the text bold */}
-                    <div className="text-lg md:text-xl font-bold leading-relaxed whitespace-pre-line text-gray-800">
+                    <div className="text-lg md:text-xl  leading-relaxed whitespace-pre-line text-gray-800">
                       {project.problem}
                     </div>
                   </div>
