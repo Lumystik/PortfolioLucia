@@ -120,20 +120,34 @@ const projectsData: Record<string, any> = {
     prototypeLink: "https://www.figma.com/proto/FnFqrWBxyChSOdL3aVzV9A/Prototype?node-id=616-1965&starting-point-node-id=564%3A1942&t=bIX74fMjWA7kTArF-1",
     problem:"The way young people experience culture is evolving at the same time technology does. They want interactive, personalized experiences. And are moving away from static displays and toward spaces where they can actively participate in cultural exploration.",
     researchObjectives: "\n• To explore ways to reduce information gaps in art understanding among young adults. \n• To investigate how digital interactions can support learning within traditional museum environments.\n• Users can create an artwork. \n• To assess how engagement strategies affect appreciation of artistic heritage.",
- researchInsights: [
-  {
-    title: "EMOTIONAL REACTIONS",
-    description: "Users reported initial confusion, curiosity, and excitement when encountering the concept. Some expressed fear or discomfort, especially among users unfamiliar with the technology. Quotes included: “I’d feel confused but excited because I’ve never seen something like that” and “I’d have a lot of fun interacting with it.”"
-  },
-  {
-    title: "INTERACTION PREFERENCES",
-    description: "Users showed a preference for speaking over touch or typing, describing speech as the most natural form of communication. There was a strong desire for novelty and realism, with comments like “the more realistic it feels, the cooler it would be.” Emotional resonance also emerged as important, such as music being described as something that connects to emotion."
-  },
-  {
-    title: "DESIGN CONSIDERATIONS",
-    description: "Key considerations include maintaining simplicity to avoid cognitive overload, ensuring accessible and high-quality audio interaction, designing for users unfamiliar with AI systems, and providing clear guidance to reduce confusion. Physical context factors such as contrast for holographic displays and crowd flow management were also highlighted."
-  }
-]
+    researchInsights: [
+      {
+        title: "EMOTIONAL REACTIONS",
+        description: "Users reported initial confusion, curiosity, and excitement when encountering the concept. Some expressed fear or discomfort, especially among users unfamiliar with the technology. Quotes included: “I’d feel confused but excited because I’ve never seen something like that” and “I’d have a lot of fun interacting with it.”"
+      },
+      {
+        title: "INTERACTION PREFERENCES",
+        description: "Users showed a preference for speaking over touch or typing, describing speech as the most natural form of communication. There was a strong desire for novelty and realism, with comments like “the more realistic it feels, the cooler it would be.” Emotional resonance also emerged as important, such as music being described as something that connects to emotion."
+      },
+      {
+        title: "DESIGN CONSIDERATIONS",
+        description: "Key considerations include maintaining simplicity to avoid cognitive overload, ensuring accessible and high-quality audio interaction, designing for users unfamiliar with AI systems, and providing clear guidance to reduce confusion. Physical context factors such as contrast for holographic displays and crowd flow management were also highlighted."
+      }
+    ],
+    // ADDED NEW DATA BLOCK FOR USER TESTING
+    userTesting: {
+      title: "User Testing & Validation",
+      description: "We conducted in-person testing sessions to observe how users interacted with the interface naturally. We focused on whether the audio prompts were intuitive and if the gamified printing process felt rewarding.",
+      images: [
+        "[INSERT_USER_TESTING_IMAGE_1]",
+        "[INSERT_USER_TESTING_IMAGE_2]"
+      ]
+    },
+    // ADDED PLACEHOLDERS FOR USER INSIGHTS IMAGES
+    userInsights: {
+      benefitsImage: "[INSERT_INSIGHTS_IMAGE_1]",
+      insightsImage: "[INSERT_INSIGHTS_IMAGE_2]"
+    },
     keyFunctions: {
       description: "We aimed to position two screents next to each other at an angle: one displays previous generated artwork (the projection), while the other shows paintings from that floor of museum (the app). Built with Figma. I added in motion graphics that dd visual interest and show the history behind the paintings ",
       
@@ -362,7 +376,7 @@ export function ProjectDetail() {
       <Navbar />
       
       <main className="w-full">
-     {/* Hero Section */}
+        {/* 1. Hero Section */}
         <section className="w-full pt-24 pb-12 bg-white">
           <div className="max-w-7xl mx-auto px-6">
             <motion.div 
@@ -374,13 +388,9 @@ export function ProjectDetail() {
           </div>
         </section>
 
-{/* Project Details & Overview */}
+        {/* 2. Project Details & Overview */}
         <section className="pb-24 md:pb-32 w-full bg-white text-[#131313]">
-          {/* Changed max-w-7xl to max-w-5xl for much larger side margins */}
-          {/* Added items-center to vertically center the left column with the title */}
           <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24 items-center text-left">
-            
-            {/* Left Column: Metadata */}
             <div className="md:col-span-4 flex flex-col gap-8">
               <div className="flex flex-col gap-2">
                 <h4 className="text-sm font-bold uppercase tracking-widest text-[#131313]">Project Scope</h4>
@@ -409,7 +419,6 @@ export function ProjectDetail() {
               )}
             </div>
 
-            {/* Right Column: Title & Overview */}
             <div className="md:col-span-8 flex flex-col gap-6">
               <motion.h1 
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1 }}
@@ -427,11 +436,10 @@ export function ProjectDetail() {
           </div>
         </section>
         
-{/* The Problem */}
+        {/* 3. The Problem */}
         {project.problem && (
           <section className="py-16 md:py-20 w-full bg-white">
             <div className="max-w-7xl mx-auto px-6">
-              
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
                   <div className="md:col-span-4">
                     <h3 className="text-2xl md:text-4xl font-bold uppercase tracking-tight text-left">
@@ -439,17 +447,16 @@ export function ProjectDetail() {
                     </h3>
                   </div>
                   <div className="md:col-span-8">
-                    {/* Added font-bold here to make the text bold */}
-                    <div className="text-lg md:text-xl  leading-relaxed whitespace-pre-line text-gray-800">
+                    <div className="text-lg md:text-xl font-bold leading-relaxed whitespace-pre-line text-gray-800">
                       {project.problem}
                     </div>
                   </div>
                 </div>
-
             </div>
           </section>
         )}
-   {/* Research Objectives & Insights */}
+
+        {/* 4. Research Objectives & Insights */}
         {(project.researchObjectives || project.researchInsights) && (
           <section className="py-16 md:py-20 w-full bg-white">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-12">
@@ -480,93 +487,58 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
-         {/* Process Map */}
-        {project.processMap && (
-          <section className="py-16 md:py-20 w-full bg-gray-50">
-            <div className="max-w-7xl mx-auto px-6">
-              <h3 className="mb-8 md:mb-10 text-2xl md:text-4xl font-bold uppercase tracking-tight text-left">Design Process Map</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-                {project.processMap.map((phase: any, idx: number) => (
-                  <motion.div 
-                    key={idx}
-                    initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
-                    className="flex flex-col gap-4 text-left bg-white p-6 rounded-2xl shadow-sm border border-gray-100"
-                  >
-                    <h4 className="text-2xl font-bold text-[#E54D2E] border-b-2 border-gray-100 pb-2">{phase.phase}</h4>
-                    <ul className="flex flex-col gap-2">
-                      {phase.steps.map((step: string, stepIdx: number) => (
-                        <li key={stepIdx} className="text-base font-medium text-gray-700 flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#E2F0A4]"></span>
-                          {step}
-                        </li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-     {/* How Might We */}
-        {project.howMightWe && (
-          <section className="py-16 md:py-20 w-full bg-[#E2F0A4]">
-            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
-              <h3 className="text-2xl md:text-4xl font-bold uppercase tracking-tight text-left">How Might We...</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {project.howMightWe.map((hmw: string, idx: number) => (
-                  <motion.div 
-                    key={idx}
-                    initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
-                    className="bg-white/60 p-6 rounded-2xl flex items-center justify-center text-center min-h-[160px]"
-                  >
-                    <p className="text-lg md:text-xl font-medium leading-tight">{hmw}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
- 
-        {/* Pillars / 3 Images */}
-        {project.pillars && (
+
+        {/* 5A. User Testing (NEW SECTION) */}
+        {project.userTesting && (
           <section className="py-16 md:py-20 w-full bg-white">
-            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
-              {project.pillars.map((pillar: any, idx: number) => (
-                <motion.div 
-                  key={idx}
-                  initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.15 }}
-                  className="flex flex-col gap-6 items-start text-left group"
-                >
-                  <div className="w-full aspect-square rounded-2xl overflow-hidden border border-gray-100 p-2">
-                    <img src={pillar.image} alt={pillar.title} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-out" />
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <h3 className="text-xl md:text-2xl font-bold uppercase tracking-tight leading-tight">{pillar.title}</h3>
-                    <p className="text-base text-gray-600 leading-relaxed font-light">{pillar.description}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* Banner Quote */}
-        {project.bannerQuote && (
-          <section className="py-16 md:py-20 relative w-full h-[50vh] flex items-center justify-center bg-[#E2F0A4]">
-            {project.bannerImage && (
-              <div className="absolute inset-0 z-0 opacity-40">
-                <img src={project.bannerImage} alt="Banner" className="w-full h-full object-cover" />
+            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
+              <div className="flex flex-col gap-4 max-w-3xl">
+                <h3 className="text-2xl md:text-4xl font-bold uppercase tracking-tight text-left">
+                  {project.userTesting.title || "User Testing"}
+                </h3>
+                <p className="text-lg md:text-xl leading-relaxed text-gray-800">
+                  {project.userTesting.description}
+                </p>
               </div>
-            )}
-            <div className="relative z-10 w-full max-w-7xl mx-auto px-6 text-left text-[#131313]">
-              <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-tight max-w-4xl leading-tight">"{project.bannerQuote}"</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {project.userTesting.images.map((img: string, idx: number) => (
+                  <motion.div 
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
+                    className="w-full rounded-2xl overflow-hidden bg-[#F9F9F9] border border-gray-100 p-2"
+                  >
+                    <img src={img} alt={`User Testing ${idx + 1}`} className="w-full h-auto object-cover rounded-xl" />
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </section>
         )}
 
-     
+        {/* 5B. User Insights (MOVED UP) */}
+        {project.userInsights && (
+          <section className="py-16 md:py-20 w-full bg-[#FDFBF7] text-[#131313]">
+            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
+              <h3 className="text-2xl md:text-4xl font-bold uppercase tracking-tight text-left">User Insights</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+                <div className="flex flex-col gap-4">
+                  <h4 className="text-xl font-bold uppercase tracking-widest text-left">User Perceived Benefits</h4>
+                  <div className="w-full rounded-2xl overflow-hidden bg-white/40 p-4">
+                    <img src={project.userInsights.benefitsImage} alt="User Benefits" className="max-w-md h-auto object-contain mx-auto" />
+                  </div>
+                </div>
+                <div className="flex flex-col gap-4">
+                  <h4 className="text-xl font-bold uppercase tracking-widest text-left">User Priorities</h4>
+                  <div className="w-full rounded-2xl overflow-hidden bg-white/40 p-4">
+                    <img src={project.userInsights.insightsImage} alt="User Insights" className="max-w-md h-auto object-contain mx-auto" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
 
-        {/* Target Users */}
+        {/* 6. Target Users (MOVED UP) */}
         {project.targetUsers && (
           <section className="py-16 md:py-20 w-full bg-[#E2F0A4] text-[#131313]">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
@@ -594,8 +566,56 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
-      
-        {/* Key Findings Stats */}
+
+        {/* 7. How Might We */}
+        {project.howMightWe && (
+          <section className="py-16 md:py-20 w-full bg-[#E2F0A4]">
+            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
+              <h3 className="text-2xl md:text-4xl font-bold uppercase tracking-tight text-left">How Might We...</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {project.howMightWe.map((hmw: string, idx: number) => (
+                  <motion.div 
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
+                    className="bg-white/60 p-6 rounded-2xl flex items-center justify-center text-center min-h-[160px]"
+                  >
+                    <p className="text-lg md:text-xl font-medium leading-tight">{hmw}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* 8. Process Map */}
+        {project.processMap && (
+          <section className="py-16 md:py-20 w-full bg-gray-50">
+            <div className="max-w-7xl mx-auto px-6">
+              <h3 className="mb-8 md:mb-10 text-2xl md:text-4xl font-bold uppercase tracking-tight text-left">Design Process Map</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+                {project.processMap.map((phase: any, idx: number) => (
+                  <motion.div 
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
+                    className="flex flex-col gap-4 text-left bg-white p-6 rounded-2xl shadow-sm border border-gray-100"
+                  >
+                    <h4 className="text-2xl font-bold text-[#E54D2E] border-b-2 border-gray-100 pb-2">{phase.phase}</h4>
+                    <ul className="flex flex-col gap-2">
+                      {phase.steps.map((step: string, stepIdx: number) => (
+                        <li key={stepIdx} className="text-base font-medium text-gray-700 flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#E2F0A4]"></span>
+                          {step}
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* 9. Key Findings Stats */}
         {project.keyFindings && (
           <section className="py-16 md:py-20 w-full bg-[#131313] text-white">
             <div className="max-w-7xl mx-auto px-6">
@@ -617,7 +637,30 @@ export function ProjectDetail() {
           </section>
         )}
 
-        {/* Key Features */}
+        {/* 10. Pillars / Scenarios */}
+        {project.pillars && (
+          <section className="py-16 md:py-20 w-full bg-white">
+            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
+              {project.pillars.map((pillar: any, idx: number) => (
+                <motion.div 
+                  key={idx}
+                  initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.15 }}
+                  className="flex flex-col gap-6 items-start text-left group"
+                >
+                  <div className="w-full aspect-square rounded-2xl overflow-hidden border border-gray-100 p-2">
+                    <img src={pillar.image} alt={pillar.title} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-out" />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <h3 className="text-xl md:text-2xl font-bold uppercase tracking-tight leading-tight">{pillar.title}</h3>
+                    <p className="text-base text-gray-600 leading-relaxed font-light">{pillar.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* 11. Key Features */}
         {project.keyFeatures && (
           <section className="py-16 md:py-20 w-full bg-white">
             <div className="max-w-7xl mx-auto px-6">
@@ -638,31 +681,7 @@ export function ProjectDetail() {
           </section>
         )}
 
-        {/* User Insights */}
-        {project.userInsights && (
-          <section className="py-16 md:py-20 w-full bg-[#FDFBF7] text-[#131313]">
-            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
-              <h3 className="text-2xl md:text-4xl font-bold uppercase tracking-tight text-left">User Insights</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-                <div className="flex flex-col gap-4">
-                  <h4 className="text-xl font-bold uppercase tracking-widest text-left">User Perceived Benefits</h4>
-                  <div className="w-full rounded-2xl overflow-hidden bg-white/40 p-4">
-                    <img src={project.userInsights.benefitsImage} alt="User Benefits" className="max-w-md h-auto object-contain mx-auto" />
-                  </div>
-                </div>
-                <div className="flex flex-col gap-4">
-                  <h4 className="text-xl font-bold uppercase tracking-widest text-left">User Priorities</h4>
-                  <div className="w-full rounded-2xl overflow-hidden bg-white/40 p-4">
-                    <img src={project.userInsights.insightsImage} alt="User Insights" className="max-w-md h-auto object-contain mx-auto" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
-   
-
-        {/* Branding */}
+        {/* 12. Branding */}
         {project.branding && (
           <section className="py-16 md:py-20 w-full bg-white">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
@@ -683,7 +702,7 @@ export function ProjectDetail() {
           </section>
         )}
 
-        {/* Key Functions */}
+        {/* 13. Key Functions */}
         {project.keyFunctions && (
           <section className="py-16 md:py-20 w-full bg-[#E2F0A4]">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
@@ -712,7 +731,7 @@ export function ProjectDetail() {
           </section>
         )}
 
-        {/* Interface Image */}
+        {/* 14. Interface Image */}
         {project.interfaceImage && (
           <section className="py-16 md:py-20 w-full bg-white">
             <div className="max-w-5xl mx-auto px-6">
@@ -726,7 +745,21 @@ export function ProjectDetail() {
           </section>
         )}
 
-        {/* Takeaways */}
+        {/* 15. Banner Quote (Used as a transition before Takeaways) */}
+        {project.bannerQuote && (
+          <section className="py-16 md:py-20 relative w-full h-[50vh] flex items-center justify-center bg-[#E2F0A4]">
+            {project.bannerImage && (
+              <div className="absolute inset-0 z-0 opacity-40">
+                <img src={project.bannerImage} alt="Banner" className="w-full h-full object-cover" />
+              </div>
+            )}
+            <div className="relative z-10 w-full max-w-7xl mx-auto px-6 text-left text-[#131313]">
+              <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-tight max-w-4xl leading-tight">"{project.bannerQuote}"</h2>
+            </div>
+          </section>
+        )}
+
+        {/* 16. Takeaways */}
         {project.takeaways && (
           <section className="py-16 md:py-20 w-full bg-[#E2F0A4]">
             <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -740,7 +773,7 @@ export function ProjectDetail() {
           </section>
         )}
 
-        {/* Next Project */}
+        {/* 17. Next Project */}
         {project.nextProject && (
           <section className="py-16 md:py-20 w-full bg-[#131313] text-white">
             <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
