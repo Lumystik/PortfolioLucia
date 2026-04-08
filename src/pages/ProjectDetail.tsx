@@ -39,7 +39,6 @@ const projectsData: Record<string, any> = {
       benefitsImage: "https://github.com/Lumystik/PortfolioLucia/blob/24c105399d5c5b7459ff928e9b9548627bc99a06/images/museon_userbenefits.png?raw=true",
       insightsImage: "https://github.com/Lumystik/PortfolioLucia/blob/24c105399d5c5b7459ff928e9b9548627bc99a06/images/museon_userinsights.png?raw=true"
     },
-    bannerImage: "[INSERT_GITHUB_IMAGE_LINK_BANNER]",
     researchInsights: [
       {
         title: "THE PROBLEM",
@@ -189,7 +188,7 @@ userInsights: [
       ],
       conclusion: "She is an experience-driven and socially oriented user who values interactive, flexible, and culturally enriching environments that support both learning and self-expression."
     },
-    
+     bannerImage: "https://github.com/Lumystik/PortfolioLucia/blob/e942b67bef52b6a8237dcd807e02a3f741f791a5/images/wall.jpg?raw=true",
        pillars: [
       {
         title: "Scenario 1: Interactive Art Discovery Experience",
