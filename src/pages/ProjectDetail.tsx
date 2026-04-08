@@ -222,21 +222,21 @@ userInsights: [
     timeline: "Academic Year 2024-25",
     team: "Kadam Tanishka, Lucia Medina Galan, Dilara Tanrıöven, Wang Xinyu, Wu Junxi",
     prototypeLink: "https://www.figma.com/design/MWvYkF7ybuKjE7SPnGi8po/Assignment?node-id=689-5581&p=f&t=Iu5EfBOZk9ZYcJA2-0",
-    pillars: [
+    pillars2: [
       {
         title: "Streamlined Architecture",
         description: "Reorganized the website structure to introduce a clear Home page, categorized Films (In Theaters vs. Archives), and simplified navigation to reduce cognitive load.",
-        image: "[INSERT_GITHUB_IMAGE_LINK_PILLAR_1]"
+        image: "https://github.com/Lumystik/PortfolioLucia/blob/480139cc265caba04a43d21ff472ecb4824be7ea/images/ia.png?raw=true"
       },
       {
         title: "Timeless Rebranding",
         description: "Created a new visual identity using warm, earthy tones and a contemporary typography system to reflect the institution's historical and cultural significance.",
-        image: "[INSERT_GITHUB_IMAGE_LINK_PILLAR_2]"
+        image: "https://github.com/Lumystik/PortfolioLucia/blob/472122f8a272fe070e22e2dfd8f160e41befbb0f/images/timeless_rebrandingfilms.png?raw=true"
       },
       {
         title: "Accessible Design",
         description: "Ensured the new interface passes color blindness accessibility tests (Protanomaly, Deuteranomaly, Achromatopsia) and features highly legible components.",
-        image: "[INSERT_GITHUB_IMAGE_LINK_PILLAR_3]"
+        image: "https://github.com/Lumystik/PortfolioLucia/blob/a6aa894fecb0c8e5cf48a6cb9971194b453a3e30/images/accessibility_test.gif?raw=true"
       }
     ],
     researchObjectives: "ANALYSIS PHASE:\nWe conducted a Cognitive Walkthrough of the existing Cineteca Milano website and identified several pain points:\n• Limited exploration opportunities with no search function\n• Overwhelming and cluttered menu design\n• Confusing navigation with mixed content (activities vs. bookable films)\n• Fragmented and click-heavy ticket booking process\n\nCOMPETITIVE ANALYSIS:\nWe analyzed competitors like TATE, Getty, and Cineteca Bologna to identify industry standards, focusing on their task flows for viewing film details, exploring events, and booking tickets.",
@@ -263,10 +263,10 @@ userInsights: [
     ],
     branding: {
       description: "The redesign moves away from a bold and playful identity to one that is timeless, mature, and elegant. The color palette uses warm, earthy brown and orange tones (#B65929, #2A1002) to reflect values from the past. Typography pairs 'New Spirit' for headings with 'Satoshi' for body text.",
-      logoDescription: "The new logo introduces a distinctive symbol that is abstract yet clear, suggesting an archive. It features soft curves and can stand alone for branding purposes.",
+      logoDescription: "New logo introduces a distinctive symbol. This new logo is abstract yet clear, suggesting an archive. It’s a clean, logo that can stand alone for branding purposes..",
       images: [
-        "[INSERT_GITHUB_IMAGE_LINK_BRANDING_1]",
-        "[INSERT_GITHUB_IMAGE_LINK_BRANDING_2]"
+        "https://github.com/Lumystik/PortfolioLucia/blob/f4d86ca2eb3b0ac3117214ef8ff35634270ddb4b/images/films_branding1.png?raw=true",
+        "https://github.com/Lumystik/PortfolioLucia/blob/6217c5f1edc51584a17ffed9f0a84e2d957e8d24/images/logo_cineteca.png?raw=true"
       ]
     },
     keyFunctions: {
@@ -616,7 +616,78 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
-        
+        {/* 10. Pillars / Scenarios (V2 Layout) */}
+{project.pillars2 && project.pillars2.length > 0 && (
+  <section className="py-16 md:py-20 w-full bg-white">
+    <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16 md:gap-24">
+      
+      {/* Featured Pillar: Information Architecture (Big and Centered) */}
+      {project.pillars2[0] && (
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="w-full"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
+            {/* Text Side */}
+            <div className="md:col-span-4 flex flex-col gap-4">
+              <h3 className="text-2xl md:text-4xl font-bold uppercase tracking-tight leading-tight">
+                {project.pillars2[0].title}
+              </h3>
+              <p className="text-lg text-gray-600 leading-relaxed font-light">
+                {project.pillars2[0].description}
+              </p>
+            </div>
+
+            {/* Big Image Side */}
+            <div className="md:col-span-8 rounded-2xl overflow-hidden border border-gray-100 p-4 bg-white shadow-sm">
+              <img 
+                src={project.pillars2[0].image} 
+                alt={project.pillars2[0].title} 
+                className="w-full h-auto object-contain"
+              />
+            </div>
+          </div>
+        </motion.div>
+      )}
+
+      {/* Grid for the Rest of the Pillars */}
+      {project.pillars2.length > 1 && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12">
+          {project.pillars2.slice(1).map((pillar: any, idx: number) => (
+            <motion.div 
+              key={idx}
+              initial={{ opacity: 0, y: 30 }} 
+              whileInView={{ opacity: 1, y: 0 }} 
+              viewport={{ once: true }} 
+              transition={{ duration: 0.8, delay: idx * 0.15 }}
+              className="flex flex-col gap-6 items-start text-left group"
+            >
+              <div className="w-full aspect-video rounded-2xl overflow-hidden border border-gray-100 p-4 bg-white">
+                <img 
+                  src={pillar.image} 
+                  alt={pillar.title} 
+                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-out" 
+                />
+              </div>
+              <div className="flex flex-col gap-2">
+                <h3 className="text-xl md:text-2xl font-bold uppercase tracking-tight leading-tight">
+                  {pillar.title}
+                </h3>
+                <p className="text-base text-gray-600 leading-relaxed font-light">
+                  {pillar.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      )}
+      
+    </div>
+  </section>
+)}
         {/* 10. Pillars / Scenarios */}
         {project.pillars && (
           <section className="py-16 md:py-20 w-full bg-white">
