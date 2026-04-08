@@ -120,7 +120,7 @@ const projectsData: Record<string, any> = {
     prototypeLink: "https://www.figma.com/proto/FnFqrWBxyChSOdL3aVzV9A/Prototype?node-id=616-1965&starting-point-node-id=564%3A1942&t=bIX74fMjWA7kTArF-1",
     problem:"The way young people experience culture is evolving at the same time technology does. They want interactive, personalized experiences. And are moving away from static displays and toward spaces where they can actively participate in cultural exploration.",
     researchObjectives: "\n• To explore ways to reduce information gaps in art understanding among young adults. \n• To investigate how digital interactions can support learning within traditional museum environments.\n• Users can create an artwork. \n• To assess how engagement strategies affect appreciation of artistic heritage.",
-    researchInsights: [
+    userInsightsCards: [
       {
         title: "EMOTIONAL REACTIONS",
         description: "Users reported initial confusion, curiosity, and excitement when encountering the concept. Some expressed fear or discomfort, especially among users unfamiliar with the technology. Quotes included: “I’d feel confused but excited because I’ve never seen something like that” and “I’d have a lot of fun interacting with it.”"
@@ -523,25 +523,52 @@ export function ProjectDetail() {
           </section>
         )}
 
-        {/* 5B. User Insights (MOVED UP) */}
-        {project.userInsights && (
+{/* 5B. User Insights (Enhanced to handle Images AND Text Cards) */}
+        {(project.userInsights || project.userInsightsCards) && (
           <section className="py-16 md:py-20 w-full bg-[#FDFBF7] text-[#131313]">
-            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
+            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-12">
               <h3 className="text-2xl md:text-4xl font-bold uppercase tracking-tight text-left">User Insights</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-                <div className="flex flex-col gap-4">
-                  <h4 className="text-xl font-bold uppercase tracking-widest text-left">User Perceived Benefits</h4>
-                  <div className="w-full rounded-2xl overflow-hidden bg-white/40 p-4">
-                    <img src={project.userInsights.benefitsImage} alt="User Benefits" className="max-w-md h-auto object-contain mx-auto" />
+              
+              {/* Part A: Image-based Insights */}
+              {project.userInsights && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+                  <div className="flex flex-col gap-4">
+                    <h4 className="text-sm font-bold uppercase tracking-widest text-left opacity-60">User Perceived Benefits</h4>
+                    <div className="w-full rounded-2xl overflow-hidden bg-white/40 p-4 border border-white/20 shadow-sm">
+                      <img src={project.userInsights.benefitsImage} alt="User Benefits" className="max-w-md h-auto object-contain mx-auto" />
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-4">
+                    <h4 className="text-sm font-bold uppercase tracking-widest text-left opacity-60">User Priorities</h4>
+                    <div className="w-full rounded-2xl overflow-hidden bg-white/40 p-4 border border-white/20 shadow-sm">
+                      <img src={project.userInsights.insightsImage} alt="User Insights" className="max-w-md h-auto object-contain mx-auto" />
+                    </div>
                   </div>
                 </div>
-                <div className="flex flex-col gap-4">
-                  <h4 className="text-xl font-bold uppercase tracking-widest text-left">User Priorities</h4>
-                  <div className="w-full rounded-2xl overflow-hidden bg-white/40 p-4">
-                    <img src={project.userInsights.insightsImage} alt="User Insights" className="max-w-md h-auto object-contain mx-auto" />
-                  </div>
+              )}
+
+              {/* Part B: Text Card-based Insights */}
+              {project.userInsightsCards && (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
+                  {project.userInsightsCards.map((card: any, idx: number) => (
+                    <motion.div 
+                      key={idx}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: idx * 0.1 }}
+                      className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-4"
+                    >
+                      <h4 className="text-base font-bold uppercase tracking-wide text-[#E54D2E]">
+                        {card.title}
+                      </h4>
+                      <p className="text-base text-gray-700 leading-relaxed italic">
+                        {card.description}
+                      </p>
+                    </motion.div>
+                  ))}
                 </div>
-              </div>
+              )}
             </div>
           </section>
         )}
