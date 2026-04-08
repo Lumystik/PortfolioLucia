@@ -936,12 +936,13 @@ export function ProjectDetail() {
           </section>
         )}
 
-        {/* 17. Next Project */}
-        {project.nextProject && (
-          <section className="py-16 md:py-20 w-full bg-[#131313] text-white">
-            <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
-              <span className="text-xs font-mono uppercase tracking-widest text-gray-400">Next Project</span>
-              <Link to={project.nextProject.link} className="text-4xl md:text-6xl font-bold uppercase tracking-tighter hover:opacity-70 transition-opacity text-white">
+    {/* Content */}
+            <div className="relative z-10 h-full max-w-7xl mx-auto px-6 flex flex-col justify-center">
+              <span className="text-xs font-mono uppercase tracking-[0.2em] text-gray-300 mb-4 block">Next Project</span>
+              <Link 
+                to={project.nextProject.link} 
+                className="text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter text-white hover:text-gray-200 transition-colors inline-block"
+              >
                 {project.nextProject.title}
               </Link>
             </div>
