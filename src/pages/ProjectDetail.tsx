@@ -120,6 +120,7 @@ const projectsData: Record<string, any> = {
     prototypeLink: "https://www.figma.com/proto/FnFqrWBxyChSOdL3aVzV9A/Prototype?node-id=616-1965&starting-point-node-id=564%3A1942&t=bIX74fMjWA7kTArF-1",
     problem:"The way young people experience culture is evolving at the same time technology does. They want interactive, personalized experiences. And are moving away from static displays and toward spaces where they can actively participate in cultural exploration.",
     researchObjectives: "\n• To explore ways to reduce information gaps in art understanding among young adults. \n• To investigate how digital interactions can support learning within traditional museum environments.\n• Users can create an artwork. \n• To assess how engagement strategies affect appreciation of artistic heritage.",
+    howMightWe: [ "Blend interactive elements with the traditional museum experience to bridge the information gap and foster greater appreciation for the heritage of the art?" ],
     userInsightsCards: [
       {
         title: "EMOTIONAL REACTIONS",
