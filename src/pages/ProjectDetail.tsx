@@ -21,7 +21,7 @@ const projectsData: Record<string, any> = {
       { phase: "Define", steps: ["Design brief", "Personas & scenarios", "Heroflow & wireflow"] },
       { phase: "Develop", steps: ["User test results", "Design system", "Prototype"] }
     ],
-      researchObjectives: "There is a pressing need to effectively handle the limited human resources in the museum, as they are frequently overwhelmed by the workload at hand.\n\nMuseums need to manage several exhibitions and events per year, collaborating with external partners, donors and institutions. They need an all-in-one platform to facilitate access to functions already in use, displaying them differently according to staff role and responsibility.",
+    researchObjectives: "There is a pressing need to effectively handle the limited human resources in the museum, as they are frequently overwhelmed by the workload at hand.\n\nMuseums need to manage several exhibitions and events per year, collaborating with external partners, donors and institutions. They need an all-in-one platform to facilitate access to functions already in use, displaying them differently according to staff role and responsibility.",
     howMightWe: [ "solve the complexity of creating a smooth experience for small museum staff?", "streamline the workflow and improve the management of different areas of the institution?", "optimize the current museum resources to help staff develop a better experience for visitors?" ],
       keyFindings: [
       { stat: "04", label: "full time employees", description: "limited human resources overwhelmed by the workload at hand." },
@@ -936,7 +936,19 @@ export function ProjectDetail() {
           </section>
         )}
 
-    {/* Content */}
+{/* 17. Next Project with Image Overlay */}
+        {project.nextProject && (
+          <section className="relative w-full h-[60vh] md:h-[50vh] overflow-hidden group">
+            {/* Background Image */}
+            <img 
+              src={project.nextProject.image} 
+              alt="Next Project" 
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            {/* Black Overlay */}
+            <div className="absolute inset-0 bg-black/60 transition-opacity duration-500 group-hover:bg-black/40" />
+            
+            {/* Content */}
             <div className="relative z-10 h-full max-w-7xl mx-auto px-6 flex flex-col justify-center">
               <span className="text-xs font-mono uppercase tracking-[0.2em] text-gray-300 mb-4 block">Next Project</span>
               <Link 
