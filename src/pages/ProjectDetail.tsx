@@ -495,14 +495,15 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
-{/* 5A. User Testing (NEW SECTION) */}
+
+        {/* 5A. User Testing (NEW SECTION) */}
         {project.userTesting && (
           <section className="py-16 md:py-20 w-full bg-white">
-            {/* UPDATED: Changed from flex-col to grid layout for 1 col mobile, 2 cols tablet/desktop */}
-            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10 xl:gap-16 items-start">
+            {/* UPDATED: Switched to a 12-column grid for precise width control */}
+            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-10 xl:gap-16 items-start">
               
-              {/* Column 1: Text */}
-              <div className="flex flex-col gap-4">
+              {/* Column 1: Text (Takes up 5 out of 12 columns on desktop) */}
+              <div className="md:col-span-5 flex flex-col gap-4">
                 <h3 className="text-2xl md:text-4xl font-bold uppercase tracking-tight text-left">
                   {project.userTesting.title || "User Testing"}
                 </h3>
@@ -511,8 +512,8 @@ export function ProjectDetail() {
                 </p>
               </div>
 
-              {/* Column 2: Images */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              {/* Column 2: Images (Takes up 7 out of 12 columns on desktop) */}
+              <div className="md:col-span-7 grid grid-cols-1 gap-8">
                 {project.userTesting.images.map((img: string, idx: number) => (
                   <motion.div 
                     key={idx}
@@ -520,7 +521,7 @@ export function ProjectDetail() {
                     whileInView={{ opacity: 1, y: 0 }} 
                     viewport={{ once: true }} 
                     transition={{ duration: 0.8, delay: idx * 0.1 }}
-                    className="w-full rounded-2xl overflow-hidden bg-[#F9F9F9] border border-gray-100 p-2"
+                    className="w-full rounded-2xl overflow-hidden bg-[#F9F9F9] border border-gray-100 p-2 md:p-3"
                   >
                     <img src={img} alt={`User Testing ${idx + 1}`} className="w-full h-auto object-cover rounded-xl" />
                   </motion.div>
