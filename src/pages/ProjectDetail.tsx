@@ -464,25 +464,48 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
-   {/* 7. How Might We */}
-        {project.howMightWe && (
-          <section className="py-16 md:py-20 w-full bg-[#E2F0A4]">
-            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
-              <h3 className="text-2xl md:text-4xl font-bold uppercase tracking-tight text-left">How Might We...</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {project.howMightWe.map((hmw: string, idx: number) => (
-                  <motion.div 
-                    key={idx}
-                    initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
-                    className="bg-white/60 p-6 rounded-2xl flex items-center justify-center text-center min-h-[160px]"
-                  >
-                    <p className="text-lg md:text-xl font-medium leading-tight">{hmw}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
+{/* 7. How Might We */}
+{project.howMightWe && project.howMightWe.length > 0 && (
+  <section className="py-16 md:py-20 w-full bg-[#E2F0A4]">
+    <div className="max-w-7xl mx-auto px-6 w-full">
+      {/* 1 column on mobile, 2 columns on md (tablet/desktop) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 w-full">
+        
+        {/* Left Column: Title Card */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }} 
+          whileInView={{ opacity: 1, y: 0 }} 
+          viewport={{ once: true }} 
+          transition={{ duration: 0.8 }}
+          className="bg-[#355E9F] p-8 md:p-12 rounded-xl flex items-center min-h-[160px] w-full"
+        >
+          <h3 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white m-0">
+            How Might We...
+          </h3>
+        </motion.div>
+
+        {/* Right Column: Content Card(s) */}
+        <div className="flex flex-col gap-4 md:gap-6 w-full">
+          {project.howMightWe.map((hmw: string, idx: number) => (
+            <motion.div 
+              key={idx}
+              initial={{ opacity: 0, y: 20 }} 
+              whileInView={{ opacity: 1, y: 0 }} 
+              viewport={{ once: true }} 
+              transition={{ duration: 0.8, delay: idx * 0.1 }}
+              className="bg-[#355E9F] p-8 md:p-12 rounded-xl flex items-center min-h-[160px] w-full"
+            >
+              <p className="text-lg md:text-xl font-medium leading-relaxed text-white">
+                {hmw}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+        
+      </div>
+    </div>
+  </section>
+)}
               {/* 8. Process Map */}
         {project.processMap && (
           <section className="py-16 md:py-20 w-full bg-gray-50">
