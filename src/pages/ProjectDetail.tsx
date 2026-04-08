@@ -532,37 +532,62 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
-        {/* 4. Research Objectives & Insights */}
-        {(project.researchObjectives || project.researchInsights) && (
-          <section className="py-16 md:py-20 w-full bg-white">
-            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-12">
-              {project.researchObjectives && (
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-                  <div className="md:col-span-4">
-                    <h3 className="text-2xl md:text-4xl font-bold uppercase tracking-tight text-left">Research Objectives</h3>
-                  </div>
-                  <div className="md:col-span-8">
-                    <div className="text-lg md:text-xl leading-relaxed whitespace-pre-line text-gray-800">{project.researchObjectives}</div>
-                  </div>
-                </div>
-              )}
-              {project.researchInsights && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                  {project.researchInsights.map((insight: any, idx: number) => (
-                    <motion.div 
-                      key={idx}
-                      initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
-                      className="flex flex-col gap-3 bg-[#FAF9F6] p-8 rounded-xl h-full"
-                    >
-                      <h4 className="text-base font-bold uppercase tracking-wide">{insight.title}</h4>
-                      <p className="text-base text-gray-700 leading-relaxed whitespace-pre-line">{insight.description}</p>
-                    </motion.div>
-                  ))}
-                </div>
-              )}
-            </div>
-          </section>
-        )}
+      {/* 4. Research Objectives & Insights */}
+{(project.researchObjectives || project.researchInsights) && (
+  <section className="py-16 md:py-20 w-full bg-white">
+    <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16 md:gap-24">
+      
+      {/* Research Objectives */}
+      {project.researchObjectives && (
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
+          <div className="md:col-span-4">
+            <h3 className="text-3xl md:text-5xl font-extrabold uppercase tracking-tighter text-left leading-none text-black">
+              Research<br />Objectives
+            </h3>
+          </div>
+          <div className="md:col-span-8">
+            {Array.isArray(project.researchObjectives) ? (
+              <ul className="flex flex-col gap-4">
+                {project.researchObjectives.map((objective: string, idx: number) => (
+                  <li key={idx} className="flex items-start gap-3 text-lg md:text-xl text-gray-800">
+                    {/* Custom bullet to ensure perfect top-alignment with text */}
+                    <span className="text-black font-bold select-none mt-0.5">•</span>
+                    <span className="leading-relaxed">{objective}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              /* Fallback if your data is still a single string */
+              <div className="text-lg md:text-xl leading-relaxed whitespace-pre-line text-gray-800">
+                {project.researchObjectives}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Research Insights */}
+      {project.researchInsights && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {project.researchInsights.map((insight: any, idx: number) => (
+            <motion.div 
+              key={idx}
+              initial={{ opacity: 0, y: 20 }} 
+              whileInView={{ opacity: 1, y: 0 }} 
+              viewport={{ once: true }} 
+              transition={{ duration: 0.8, delay: idx * 0.1 }}
+              className="flex flex-col gap-3 bg-[#FAF9F6] p-8 rounded-xl h-full"
+            >
+              <h4 className="text-base font-bold uppercase tracking-wide">{insight.title}</h4>
+              <p className="text-base text-gray-700 leading-relaxed whitespace-pre-line">{insight.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      )}
+      
+    </div>
+  </section>
+)}
      {/* 6. Target Users (MOVED UP) */}
         {project.targetUsers && (
           <section className="py-16 md:py-20 w-full bg-[#E2F0A4] text-[#131313]">
