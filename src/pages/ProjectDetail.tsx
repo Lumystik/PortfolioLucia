@@ -285,7 +285,7 @@ userInsights: [
         {
           title: "FRICTIONLESS TICKET BOOKING",
           description: "A step-by-step flow with a clean 'Select Date and Cinema' section. The seat selection interface clearly distinguishes between available, reserved, and selected seats, culminating in a mobile-friendly QR code ticket.",
-          image: "[INSERT_GITHUB_IMAGE_LINK_FEATURE_3]"
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/b64c5d8fa1db8781e593ab48479a5bda00e94823/images/keyfunction_tickets.png?raw=true"
         }
       ]
     },
