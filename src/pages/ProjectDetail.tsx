@@ -111,7 +111,7 @@ const projectsData: Record<string, any> = {
     id: "art-beyond-dimension",
     title: "Art Beyond Dimension",
     heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/0e95408be9b5b18ff336921926c7889c41d95380/images/hero_dimension.jpg?raw=true",
-    interfaceImage: "https://github.com/Lumystik/PortfolioLucia/blob/558663a2cbd0f8601ecb7aad027db58e07270c3e/art_1.png?raw=true",
+    interfaceImage: "https://github.com/Lumystik/PortfolioLucia/blob/85176369bcb78e03b473d799a45522474f753705/images/dimension_final.jpeg?raw=true",
     overview: "Immersive Experience of Future Museums. Our design solution enables young adults to gain knowledge about art in a fun and engaging way to bridge the information gap and foster greater appreciation for the heritage of museum.",
     scope: "Digital Experience & Totem Interface",
     role: "Digital and Interaction Design",
@@ -120,9 +120,24 @@ const projectsData: Record<string, any> = {
     prototypeLink: "https://www.figma.com/proto/FnFqrWBxyChSOdL3aVzV9A/Prototype?node-id=616-1965&starting-point-node-id=564%3A1942&t=bIX74fMjWA7kTArF-1",
     problem:"The way young people experience culture is evolving at the same time technology does. They want interactive, personalized experiences. And are moving away from static displays and toward spaces where they can actively participate in cultural exploration.",
     researchObjectives: "\n• To explore ways to reduce information gaps in art understanding among young adults. \n• To investigate how digital interactions can support learning within traditional museum environments.\n• Users can create an artwork. \n• To assess how engagement strategies affect appreciation of artistic heritage.",
+ researchInsights: [
+  {
+    title: "EMOTIONAL REACTIONS",
+    description: "Users reported initial confusion, curiosity, and excitement when encountering the concept. Some expressed fear or discomfort, especially among users unfamiliar with the technology. Quotes included: “I’d feel confused but excited because I’ve never seen something like that” and “I’d have a lot of fun interacting with it.”"
+  },
+  {
+    title: "INTERACTION PREFERENCES",
+    description: "Users showed a preference for speaking over touch or typing, describing speech as the most natural form of communication. There was a strong desire for novelty and realism, with comments like “the more realistic it feels, the cooler it would be.” Emotional resonance also emerged as important, such as music being described as something that connects to emotion."
+  },
+  {
+    title: "DESIGN CONSIDERATIONS",
+    description: "Key considerations include maintaining simplicity to avoid cognitive overload, ensuring accessible and high-quality audio interaction, designing for users unfamiliar with AI systems, and providing clear guidance to reduce confusion. Physical context factors such as contrast for holographic displays and crowd flow management were also highlighted."
+  }
+]
     keyFunctions: {
       description: "We aimed to position two screents next to each other at an angle: one displays previous generated artwork (the projection), while the other shows paintings from that floor of museum (the app). Built with Figma. I added in motion graphics that dd visual interest and show the history behind the paintings ",
-      functions: [
+      
+     functions: [
         {
           title: "INTERACTIVE LEARNING",
           description: "Visitor stands in front of the screen and chooses paintings they are interested in. The user selects a painting to know more about and gets answers from the system. After selecting at least 2 paintings, the option to generate an artwork appears.",
@@ -134,7 +149,7 @@ const projectsData: Record<string, any> = {
           image: "https://github.com/Lumystik/PortfolioLucia/blob/1b024e88bc55015091152250c65c8c7255d83730/images/questioning_dimension.gif?raw=true"
         },
         {
-          title: "GAMIFIED PRINTING OR SCREEN PROJECTION",
+          title: "GAMIFIED PRINTING & SCREEN PROJECTION",
           description: "When users choose to print, the system asks related questions about the selected paintings (e.g., style, painter, concept). If answered correctly, the totem provides a printed version of the generated artwork.",
           image: "https://github.com/Lumystik/PortfolioLucia/blob/8e602f1e3767619ff568eeb83699dded7863d840/images/gamified_dimension.gif?raw=true"
         }
@@ -151,6 +166,7 @@ const projectsData: Record<string, any> = {
       ],
       conclusion: "She is an experience-driven and socially oriented user who values interactive, flexible, and culturally enriching environments that support both learning and self-expression."
     },
+    
        pillars: [
       {
         title: "Scenario 1: Interactive Art Discovery Experience",
@@ -167,7 +183,7 @@ const projectsData: Record<string, any> = {
         description: "The AI system generates the artwork based on the user’s words as a prompt.",
         image: "https://github.com/Lumystik/PortfolioLucia/blob/2bf3def01ee15c268265d1090683a06785465d18/images/scenario_3.png?raw=true"
       }
-    ]
+    ],
     takeaways: "The idea grabs the visitor's attention, which makes them want to learn. It has the capability of personalization based on the paintings visitors like most. The user can add their opinion to the prompt to add something more than just merging two paintings to the generative artwork with voice.",
     nextProject: {
       title: "FILMS FOUNDATION",
