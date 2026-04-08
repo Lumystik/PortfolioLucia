@@ -475,9 +475,9 @@ export function ProjectDetail() {
                   whileInView={{ opacity: 1, y: 0 }} 
                   viewport={{ once: true }} 
                   transition={{ duration: 0.8 }}
-                  className="bg-[#E2F0A4] p-8 md:p-12 rounded-xl flex items-center min-h-[160px] w-full"
+                  className="bg-black text-white p-8 md:p-12 rounded-xl flex items-center min-h-[160px] w-full"
                 >
-                  <h3 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-black m-0">
+                  <h3 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white m-0">
                     How Might We...
                   </h3>
                 </motion.div>
@@ -491,9 +491,9 @@ export function ProjectDetail() {
                       whileInView={{ opacity: 1, y: 0 }} 
                       viewport={{ once: true }} 
                       transition={{ duration: 0.8, delay: idx * 0.1 }}
-                      className="bg-[#E2F0A4] p-8 md:p-12 rounded-xl flex items-center min-h-[160px] w-full"
+                      className="bg-black text-white p-8 md:p-12 rounded-xl flex items-center min-h-[160px] w-full"
                     >
-                      <p className="text-lg md:text-xl font-medium leading-relaxed text-black">
+                      <p className="text-lg md:text-xl font-medium leading-relaxed text-white">
                         {hmw}
                       </p>
                     </motion.div>
@@ -590,7 +590,7 @@ export function ProjectDetail() {
 
         {/* 6. Target Users (MOVED UP) */}
         {project.targetUsers && (
-          <section className="py-16 md:py-20 w-full bg-[#E2F0A4] text-[#131313]">
+          <section className="py-16 md:py-20 w-full bg-black text-white">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
               <div className="flex flex-col gap-4 max-w-3xl">
                 <h3 className="text-2xl md:text-4xl font-bold uppercase tracking-tight text-left">Target Users</h3>
@@ -601,14 +601,14 @@ export function ProjectDetail() {
                   <motion.div 
                     key={idx}
                     initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
-                    className="flex flex-col gap-6 bg-white/60 p-6 rounded-2xl"
+                    className="flex flex-col gap-6 bg-[#1A1A1A] border border-gray-800 p-6 rounded-2xl"
                   >
                     <div className="w-full aspect-video bg-white rounded-xl overflow-hidden">
                       <img src={persona.image} alt={persona.title} className="w-full h-full object-cover object-[50%_10%]" />
                     </div>
                     <div className="flex flex-col gap-2">
-                      <h4 className="text-xl font-bold uppercase">{persona.title}</h4>
-                      <p className="text-base text-gray-700 leading-relaxed whitespace-pre-line">{persona.description}</p>
+                      <h4 className="text-xl font-bold uppercase text-white">{persona.title}</h4>
+                      <p className="text-base text-gray-300 leading-relaxed whitespace-pre-line">{persona.description}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -867,18 +867,18 @@ export function ProjectDetail() {
 
         {/* 13. Key Functions */}
         {project.keyFunctions && (
-          <section className="py-16 md:py-20 w-full bg-[#E2F0A4]">
+          <section className="py-16 md:py-20 w-full bg-black text-white">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
               <div className="flex flex-col gap-4 max-w-3xl">
                 <h3 className="text-2xl md:text-4xl font-bold uppercase tracking-tight text-left">Key Functions</h3>
-                <p className="text-lg md:text-xl leading-relaxed text-gray-800">{project.keyFunctions.description}</p>
+                <p className="text-lg md:text-xl leading-relaxed text-gray-300">{project.keyFunctions.description}</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {project.keyFunctions.functions.map((func: any, idx: number) => (
                   <motion.div 
                     key={idx}
                     initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
-                    className="flex flex-col gap-4 bg-white p-5 rounded-2xl shadow-sm"
+                    className="flex flex-col gap-4 bg-white text-[#131313] p-5 rounded-2xl shadow-sm"
                   >
                     <div className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-out rounded-2xl overflow-hidden">
                       <img src={func.image} alt={func.title} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-out" />
@@ -910,13 +910,13 @@ export function ProjectDetail() {
 
         {/* 15. Banner Quote (Used as a transition before Takeaways) */}
         {project.bannerQuote && (
-          <section className="py-16 md:py-20 relative w-full h-[50vh] flex items-center justify-center bg-[#E2F0A4]">
+          <section className="py-16 md:py-20 relative w-full h-[50vh] flex items-center justify-center bg-black">
             {project.bannerImage && (
               <div className="absolute inset-0 z-0 opacity-40">
                 <img src={project.bannerImage} alt="Banner" className="w-full h-full object-cover" />
               </div>
             )}
-            <div className="relative z-10 w-full max-w-7xl mx-auto px-6 text-left text-[#131313]">
+            <div className="relative z-10 w-full max-w-7xl mx-auto px-6 text-left text-white">
               <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-tight max-w-4xl leading-tight">"{project.bannerQuote}"</h2>
             </div>
           </section>
@@ -924,7 +924,7 @@ export function ProjectDetail() {
 
         {/* 16. Takeaways */}
         {project.takeaways && (
-          <section className="py-16 md:py-20 w-full bg-[#E2F0A4]">
+          <section className="py-16 md:py-20 w-full bg-black text-white">
             <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="md:col-span-1">
                 <h3 className="text-2xl md:text-4xl font-bold uppercase tracking-tight text-left">Takeaways</h3>
