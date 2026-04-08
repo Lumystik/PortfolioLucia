@@ -280,7 +280,7 @@ userInsights: [
         {
           title: "STREAMLINED EVENT EXPLORATION",
           description: "Events are categorized using a sticky filter bar. A toggle switches between free and ticketed events, and individual event pages feature a 'Show Map' integration for quick location context.",
-          image: "[INSERT_GITHUB_IMAGE_LINK_FEATURE_2]"
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/44bc54f167d5ef916b175ef981126accbc704003/images/keyfunction__events.png?raw=true"
         },
         {
           title: "FRICTIONLESS TICKET BOOKING",
