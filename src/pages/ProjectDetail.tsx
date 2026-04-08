@@ -140,6 +140,34 @@ const projectsData: Record<string, any> = {
         }
       ]
     },
+      targetUsers: {
+      description: "We identified two primary user archetypes within the museum staff ecosystem, each with distinct drivers and needs.",
+      personas: [
+        {
+          title: "Sara: The Explorer",
+          description: "Role: Student.\nDrivers: Desire for new experiences, Drive to document and share experiences on social media.\nEnvironment: Milan, Italy.\nNeeds: Access to engaging and interactive experiences.",
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/d74b8826072feaaf424171e82b01285b00a9abf0/images/alexx_museon.png?raw=true"
+        }
+      ],
+      conclusion: "She is an experience-driven and socially oriented user who values interactive, flexible, and culturally enriching environments that support both learning and self-expression."
+    },
+       pillars: [
+      {
+        title: "Scenario 1: Interactive Art Discovery Experience",
+        description: "Two angled screens display artworks and available paintings. As the visitor approaches, the system activates and invites them to select pieces of interest. The user receives audio-guided information and can explore each artwork interactively.",
+        image: "https://github.com/Lumystik/PortfolioLucia/blob/8d6557cb60be6d6c688474d132989b0a8bec9580/images/scenario_1.png?raw=true"
+      },
+      {
+        title: "Scenario 2: Interactive Art Print Experience",
+        description: "After selecting at least two paintings, users can keep adding more combinations. Once ready, they can generate a new artwork, view it on a second screen, and choose to print it. Before printing, the system asks brief questions about the selected paintings; correct answers unlock the print. A voice guides the process and encourages further exploration.",
+        image: "https://github.com/Lumystik/PortfolioLucia/blob/7f099807a3f294985b4812c48bad188f22b5a349/images/scenario_2.png?raw=true"
+      },
+      {
+        title: "Senario 3: AI Voice Prompt",
+        description: "The AI system generates the artwork based on the user’s words as a prompt.",
+        image: "https://github.com/Lumystik/PortfolioLucia/blob/2bf3def01ee15c268265d1090683a06785465d18/images/scenario_3.png?raw=true"
+      }
+    ]
     takeaways: "The idea grabs the visitor's attention, which makes them want to learn. It has the capability of personalization based on the paintings visitors like most. The user can add their opinion to the prompt to add something more than just merging two paintings to the generative artwork with voice.",
     nextProject: {
       title: "FILMS FOUNDATION",
