@@ -464,7 +464,52 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
-
+   {/* 7. How Might We */}
+        {project.howMightWe && (
+          <section className="py-16 md:py-20 w-full bg-[#E2F0A4]">
+            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
+              <h3 className="text-2xl md:text-4xl font-bold uppercase tracking-tight text-left">How Might We...</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {project.howMightWe.map((hmw: string, idx: number) => (
+                  <motion.div 
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
+                    className="bg-white/60 p-6 rounded-2xl flex items-center justify-center text-center min-h-[160px]"
+                  >
+                    <p className="text-lg md:text-xl font-medium leading-tight">{hmw}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+              {/* 8. Process Map */}
+        {project.processMap && (
+          <section className="py-16 md:py-20 w-full bg-gray-50">
+            <div className="max-w-7xl mx-auto px-6">
+              <h3 className="mb-8 md:mb-10 text-2xl md:text-4xl font-bold uppercase tracking-tight text-left">Design Process Map</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+                {project.processMap.map((phase: any, idx: number) => (
+                  <motion.div 
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
+                    className="flex flex-col gap-4 text-left bg-white p-6 rounded-2xl shadow-sm border border-gray-100"
+                  >
+                    <h4 className="text-2xl font-bold text-[#E54D2E] border-b-2 border-gray-100 pb-2">{phase.phase}</h4>
+                    <ul className="flex flex-col gap-2">
+                      {phase.steps.map((step: string, stepIdx: number) => (
+                        <li key={stepIdx} className="text-base font-medium text-gray-700 flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#E2F0A4]"></span>
+                          {step}
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
         {/* 4. Research Objectives & Insights */}
         {(project.researchObjectives || project.researchInsights) && (
           <section className="py-16 md:py-20 w-full bg-white">
@@ -526,52 +571,8 @@ export function ProjectDetail() {
         )}
 
         
-        {/* 7. How Might We */}
-        {project.howMightWe && (
-          <section className="py-16 md:py-20 w-full bg-[#E2F0A4]">
-            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
-              <h3 className="text-2xl md:text-4xl font-bold uppercase tracking-tight text-left">How Might We...</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {project.howMightWe.map((hmw: string, idx: number) => (
-                  <motion.div 
-                    key={idx}
-                    initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
-                    className="bg-white/60 p-6 rounded-2xl flex items-center justify-center text-center min-h-[160px]"
-                  >
-                    <p className="text-lg md:text-xl font-medium leading-tight">{hmw}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-       {/* 8. Process Map */}
-        {project.processMap && (
-          <section className="py-16 md:py-20 w-full bg-gray-50">
-            <div className="max-w-7xl mx-auto px-6">
-              <h3 className="mb-8 md:mb-10 text-2xl md:text-4xl font-bold uppercase tracking-tight text-left">Design Process Map</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-                {project.processMap.map((phase: any, idx: number) => (
-                  <motion.div 
-                    key={idx}
-                    initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
-                    className="flex flex-col gap-4 text-left bg-white p-6 rounded-2xl shadow-sm border border-gray-100"
-                  >
-                    <h4 className="text-2xl font-bold text-[#E54D2E] border-b-2 border-gray-100 pb-2">{phase.phase}</h4>
-                    <ul className="flex flex-col gap-2">
-                      {phase.steps.map((step: string, stepIdx: number) => (
-                        <li key={stepIdx} className="text-base font-medium text-gray-700 flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#E2F0A4]"></span>
-                          {step}
-                        </li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
+     
+ 
         
         {/* 10. Pillars / Scenarios */}
         {project.pillars && (
