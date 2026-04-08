@@ -495,6 +495,105 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
+     {/* 6. Target Users (MOVED UP) */}
+        {project.targetUsers && (
+          <section className="py-16 md:py-20 w-full bg-[#E2F0A4] text-[#131313]">
+            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
+              <div className="flex flex-col gap-4 max-w-3xl">
+                <h3 className="text-2xl md:text-4xl font-bold uppercase tracking-tight text-left">Target Users</h3>
+                <p className="text-lg md:text-xl leading-relaxed">{project.targetUsers.description}</p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {project.targetUsers.personas.map((persona: any, idx: number) => (
+                  <motion.div 
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
+                    className="flex flex-col gap-6 bg-white/60 p-6 rounded-2xl"
+                  >
+                    <div className="w-full aspect-video bg-white rounded-xl overflow-hidden">
+                      <img src={persona.image} alt={persona.title} className="w-full h-full object-cover object-[50%_10%]" />
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <h4 className="text-xl font-bold uppercase">{persona.title}</h4>
+                      <p className="text-base text-gray-700 leading-relaxed whitespace-pre-line">{persona.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        
+        {/* 7. How Might We */}
+        {project.howMightWe && (
+          <section className="py-16 md:py-20 w-full bg-[#E2F0A4]">
+            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
+              <h3 className="text-2xl md:text-4xl font-bold uppercase tracking-tight text-left">How Might We...</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {project.howMightWe.map((hmw: string, idx: number) => (
+                  <motion.div 
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
+                    className="bg-white/60 p-6 rounded-2xl flex items-center justify-center text-center min-h-[160px]"
+                  >
+                    <p className="text-lg md:text-xl font-medium leading-tight">{hmw}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+       {/* 8. Process Map */}
+        {project.processMap && (
+          <section className="py-16 md:py-20 w-full bg-gray-50">
+            <div className="max-w-7xl mx-auto px-6">
+              <h3 className="mb-8 md:mb-10 text-2xl md:text-4xl font-bold uppercase tracking-tight text-left">Design Process Map</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+                {project.processMap.map((phase: any, idx: number) => (
+                  <motion.div 
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
+                    className="flex flex-col gap-4 text-left bg-white p-6 rounded-2xl shadow-sm border border-gray-100"
+                  >
+                    <h4 className="text-2xl font-bold text-[#E54D2E] border-b-2 border-gray-100 pb-2">{phase.phase}</h4>
+                    <ul className="flex flex-col gap-2">
+                      {phase.steps.map((step: string, stepIdx: number) => (
+                        <li key={stepIdx} className="text-base font-medium text-gray-700 flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#E2F0A4]"></span>
+                          {step}
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+        
+        {/* 10. Pillars / Scenarios */}
+        {project.pillars && (
+          <section className="py-16 md:py-20 w-full bg-white">
+            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
+              {project.pillars.map((pillar: any, idx: number) => (
+                <motion.div 
+                  key={idx}
+                  initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.15 }}
+                  className="flex flex-col gap-6 items-start text-left group"
+                >
+                  <div className="w-full aspect-square rounded-2xl overflow-hidden border border-gray-100 p-2">
+                    <img src={pillar.image} alt={pillar.title} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-out" />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <h3 className="text-xl md:text-2xl font-bold uppercase tracking-tight leading-tight">{pillar.title}</h3>
+                    <p className="text-base text-gray-600 leading-relaxed font-light">{pillar.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* 5A. User Testing (NEW SECTION) */}
         {project.userTesting && (
@@ -586,82 +685,10 @@ export function ProjectDetail() {
           </section>
         )}
 
-        {/* 6. Target Users (MOVED UP) */}
-        {project.targetUsers && (
-          <section className="py-16 md:py-20 w-full bg-[#E2F0A4] text-[#131313]">
-            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
-              <div className="flex flex-col gap-4 max-w-3xl">
-                <h3 className="text-2xl md:text-4xl font-bold uppercase tracking-tight text-left">Target Users</h3>
-                <p className="text-lg md:text-xl leading-relaxed">{project.targetUsers.description}</p>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {project.targetUsers.personas.map((persona: any, idx: number) => (
-                  <motion.div 
-                    key={idx}
-                    initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
-                    className="flex flex-col gap-6 bg-white/60 p-6 rounded-2xl"
-                  >
-                    <div className="w-full aspect-video bg-white rounded-xl overflow-hidden">
-                      <img src={persona.image} alt={persona.title} className="w-full h-full object-cover object-[50%_10%]" />
-                    </div>
-                    <div className="flex flex-col gap-2">
-                      <h4 className="text-xl font-bold uppercase">{persona.title}</h4>
-                      <p className="text-base text-gray-700 leading-relaxed whitespace-pre-line">{persona.description}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
+   
 
-        {/* 7. How Might We */}
-        {project.howMightWe && (
-          <section className="py-16 md:py-20 w-full bg-[#E2F0A4]">
-            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
-              <h3 className="text-2xl md:text-4xl font-bold uppercase tracking-tight text-left">How Might We...</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {project.howMightWe.map((hmw: string, idx: number) => (
-                  <motion.div 
-                    key={idx}
-                    initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
-                    className="bg-white/60 p-6 rounded-2xl flex items-center justify-center text-center min-h-[160px]"
-                  >
-                    <p className="text-lg md:text-xl font-medium leading-tight">{hmw}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
 
-        {/* 8. Process Map */}
-        {project.processMap && (
-          <section className="py-16 md:py-20 w-full bg-gray-50">
-            <div className="max-w-7xl mx-auto px-6">
-              <h3 className="mb-8 md:mb-10 text-2xl md:text-4xl font-bold uppercase tracking-tight text-left">Design Process Map</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-                {project.processMap.map((phase: any, idx: number) => (
-                  <motion.div 
-                    key={idx}
-                    initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
-                    className="flex flex-col gap-4 text-left bg-white p-6 rounded-2xl shadow-sm border border-gray-100"
-                  >
-                    <h4 className="text-2xl font-bold text-[#E54D2E] border-b-2 border-gray-100 pb-2">{phase.phase}</h4>
-                    <ul className="flex flex-col gap-2">
-                      {phase.steps.map((step: string, stepIdx: number) => (
-                        <li key={stepIdx} className="text-base font-medium text-gray-700 flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#E2F0A4]"></span>
-                          {step}
-                        </li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
+ 
 
         {/* 9. Key Findings Stats */}
         {project.keyFindings && (
@@ -681,29 +708,6 @@ export function ProjectDetail() {
                   </motion.div>
                 ))}
               </div>
-            </div>
-          </section>
-        )}
-
-        {/* 10. Pillars / Scenarios */}
-        {project.pillars && (
-          <section className="py-16 md:py-20 w-full bg-white">
-            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
-              {project.pillars.map((pillar: any, idx: number) => (
-                <motion.div 
-                  key={idx}
-                  initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.15 }}
-                  className="flex flex-col gap-6 items-start text-left group"
-                >
-                  <div className="w-full aspect-square rounded-2xl overflow-hidden border border-gray-100 p-2">
-                    <img src={pillar.image} alt={pillar.title} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-out" />
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <h3 className="text-xl md:text-2xl font-bold uppercase tracking-tight leading-tight">{pillar.title}</h3>
-                    <p className="text-base text-gray-600 leading-relaxed font-light">{pillar.description}</p>
-                  </div>
-                </motion.div>
-              ))}
             </div>
           </section>
         )}
