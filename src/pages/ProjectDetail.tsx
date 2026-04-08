@@ -191,8 +191,8 @@ userInsights: [
      bannerImage: "https://github.com/Lumystik/PortfolioLucia/blob/e942b67bef52b6a8237dcd807e02a3f741f791a5/images/wall.jpg?raw=true",
        pillars: [
       {
-        title: "Scenario 1: Interactive Art Discovery Experience",
-        description: "Two angled screens display artworks and available paintings. As the visitor approaches, the system activates and invites them to select pieces of interest. The user receives audio-guided information and can explore each artwork interactively.",
+        title: "Scenario 1: Interactive Art Discovery Experience with tablet and wall projector",
+        description: "Two screens display artworks and available paintings. As the visitor approaches, the system activates and invites them to select pieces of interest. The user receives audio-guided information and can explore each artwork interactively. Then, they can choose to generate their own artwork which will be shared on the wall.",
         image: "https://github.com/Lumystik/PortfolioLucia/blob/8d6557cb60be6d6c688474d132989b0a8bec9580/images/scenario_1.png?raw=true"
       },
       {
