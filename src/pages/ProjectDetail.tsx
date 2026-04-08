@@ -139,15 +139,23 @@ const projectsData: Record<string, any> = {
       title: "User Testing & Validation",
       description: "We conducted in-person testing sessions to observe how users interacted with the interface naturally. We focused on whether the audio prompts were intuitive and if the gamified printing process felt rewarding.",
       images: [
-        "[INSERT_USER_TESTING_IMAGE_1]",
-        "[INSERT_USER_TESTING_IMAGE_2]"
+        "https://github.com/Lumystik/PortfolioLucia/blob/dd95a5f2ca9291229e663073fe9e1c8365466209/images/usertesting_dimension.jpg?raw=true"
       ]
     },
-    // ADDED PLACEHOLDERS FOR USER INSIGHTS IMAGES
-    userInsights: {
-      benefitsImage: "[INSERT_INSIGHTS_IMAGE_1]",
-      insightsImage: "[INSERT_INSIGHTS_IMAGE_2]"
-    },
+userInsights: [
+      {
+        title: "EMOTIONAL REACTIONS",
+        description: "Users reported initial confusion, curiosity, and excitement when encountering the concept. Some expressed fear or discomfort, especially among users unfamiliar with the technology. Quotes included: “I’d feel confused but excited because I’ve never seen something like that” and “I’d have a lot of fun interacting with it.”"
+      },
+      {
+        title: "INTERACTION PREFERENCES",
+        description: "Users showed a preference for speaking over touch or typing, describing speech as the most natural form of communication. There was a strong desire for novelty and realism, with comments like “the more realistic it feels, the cooler it would be.” Emotional resonance also emerged as important, such as music being described as something that connects to emotion."
+      },
+      {
+        title: "DESIGN CONSIDERATIONS",
+        description: "Key considerations include maintaining simplicity to avoid cognitive overload, ensuring accessible and high-quality audio interaction, designing for users unfamiliar with AI systems, and providing clear guidance to reduce confusion. Physical context factors such as contrast for holographic displays and crowd flow management were also highlighted."
+      }
+    ],
     keyFunctions: {
       description: "We aimed to position two screents next to each other at an angle: one displays previous generated artwork (the projection), while the other shows paintings from that floor of museum (the app). Built with Figma. I added in motion graphics that dd visual interest and show the history behind the paintings ",
       
@@ -175,7 +183,7 @@ const projectsData: Record<string, any> = {
         {
           title: "Sara: The Explorer",
           description: "Role: Student.\nDrivers: Desire for new experiences, Drive to document and share experiences on social media.\nEnvironment: Milan, Italy.\nNeeds: Access to engaging and interactive experiences.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/d74b8826072feaaf424171e82b01285b00a9abf0/images/alexx_museon.png?raw=true"
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/45a4994bc6796acff20cf10557be4895111209d5/images/user_dimension.png?raw=true"
         }
       ],
       conclusion: "She is an experience-driven and socially oriented user who values interactive, flexible, and culturally enriching environments that support both learning and self-expression."
