@@ -178,7 +178,7 @@ userInsights: [
       ]
     },
       targetUsers: {
-      description: "We identified two primary user archetypes within the museum staff ecosystem, each with distinct drivers and needs.",
+      description: "We identified one primary user archetype. Our design solution focus mainly on young adults.",
       personas: [
         {
           title: "Sara: The Explorer",
@@ -523,33 +523,37 @@ export function ProjectDetail() {
           </section>
         )}
 
-{/* 5B. User Insights (Enhanced to handle Images AND Text Cards) */}
+{/* 5B. User Insights - Smart Conditional Rendering */}
         {(project.userInsights || project.userInsightsCards) && (
           <section className="py-16 md:py-20 w-full bg-[#FDFBF7] text-[#131313]">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-12">
               <h3 className="text-2xl md:text-4xl font-bold uppercase tracking-tight text-left">User Insights</h3>
               
-              {/* Part A: Image-based Insights */}
-              {project.userInsights && (
+              {/* ONLY show this block if benefitsImage or insightsImage exists */}
+              {project.userInsights && (project.userInsights.benefitsImage || project.userInsights.insightsImage) && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-                  <div className="flex flex-col gap-4">
-                    <h4 className="text-sm font-bold uppercase tracking-widest text-left opacity-60">User Perceived Benefits</h4>
-                    <div className="w-full rounded-2xl overflow-hidden bg-white/40 p-4 border border-white/20 shadow-sm">
-                      <img src={project.userInsights.benefitsImage} alt="User Benefits" className="max-w-md h-auto object-contain mx-auto" />
+                  {project.userInsights.benefitsImage && (
+                    <div className="flex flex-col gap-4">
+                      <h4 className="text-sm font-bold uppercase tracking-widest text-left opacity-60">User Perceived Benefits</h4>
+                      <div className="w-full rounded-2xl overflow-hidden bg-white/40 p-4 border border-white/20 shadow-sm">
+                        <img src={project.userInsights.benefitsImage} alt="User Benefits" className="max-w-md h-auto object-contain mx-auto" />
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex flex-col gap-4">
-                    <h4 className="text-sm font-bold uppercase tracking-widest text-left opacity-60">User Priorities</h4>
-                    <div className="w-full rounded-2xl overflow-hidden bg-white/40 p-4 border border-white/20 shadow-sm">
-                      <img src={project.userInsights.insightsImage} alt="User Insights" className="max-w-md h-auto object-contain mx-auto" />
+                  )}
+                  {project.userInsights.insightsImage && (
+                    <div className="flex flex-col gap-4">
+                      <h4 className="text-sm font-bold uppercase tracking-widest text-left opacity-60">User Priorities</h4>
+                      <div className="w-full rounded-2xl overflow-hidden bg-white/40 p-4 border border-white/20 shadow-sm">
+                        <img src={project.userInsights.insightsImage} alt="User Insights" className="max-w-md h-auto object-contain mx-auto" />
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               )}
 
-              {/* Part B: Text Card-based Insights */}
-              {project.userInsightsCards && (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
+              {/* ONLY show this block if userInsightsCards array exists and has items */}
+              {project.userInsightsCards && project.userInsightsCards.length > 0 && (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {project.userInsightsCards.map((card: any, idx: number) => (
                     <motion.div 
                       key={idx}
@@ -562,7 +566,7 @@ export function ProjectDetail() {
                       <h4 className="text-base font-bold uppercase tracking-wide text-[#E54D2E]">
                         {card.title}
                       </h4>
-                      <p className="text-base text-gray-700 leading-relaxed italic">
+                      <p className="text-base text-gray-700 leading-relaxed">
                         {card.description}
                       </p>
                     </motion.div>
