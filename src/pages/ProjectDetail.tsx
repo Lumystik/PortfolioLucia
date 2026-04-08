@@ -466,7 +466,7 @@ export function ProjectDetail() {
         )}
 {/* 7. How Might We */}
 {project.howMightWe && project.howMightWe.length > 0 && (
-  <section className="py-16 md:py-20 w-full bg-[#E2F0A4]">
+  <section className="py-16 md:py-20 w-full">
     <div className="max-w-7xl mx-auto px-6 w-full">
       {/* 1 column on mobile, 2 columns on md (tablet/desktop) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 w-full">
@@ -477,7 +477,7 @@ export function ProjectDetail() {
           whileInView={{ opacity: 1, y: 0 }} 
           viewport={{ once: true }} 
           transition={{ duration: 0.8 }}
-          className="bg-[#355E9F] p-8 md:p-12 rounded-xl flex items-center min-h-[160px] w-full"
+          className="bg-[#E2F0A4] p-8 md:p-12 rounded-xl flex items-center min-h-[160px] w-full"
         >
           <h3 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white m-0">
             How Might We...
