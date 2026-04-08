@@ -537,31 +537,36 @@ export function ProjectDetail() {
   <section className="py-16 md:py-20 w-full bg-white">
     <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16 md:gap-24">
       
-      {/* Research Objectives */}
-      {project.researchObjectives && (
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
-          <div className="md:col-span-4">
-            <h3 className="text-3xl md:text-5xl font-extrabold uppercase tracking-tighter text-left leading-none text-black">
-              Research<br />Objectives
-            </h3>
-          </div>
-          <div className="md:col-span-8">
-            {Array.isArray(project.researchObjectives) ? (
-              <ul className="flex flex-col gap-4">
-                {project.researchObjectives.map((objective: string, idx: number) => (
-                  <li key={idx} className="flex items-start gap-3 text-lg md:text-xl text-gray-800">
-                    {/* Custom bullet to ensure perfect top-alignment with text */}
-                    <span className="text-black font-bold select-none mt-0.5">•</span>
-                    <span className="leading-relaxed">{objective}</span>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              /* Fallback if your data is still a single string */
-              <div className="text-lg md:text-xl leading-relaxed whitespace-pre-line text-gray-800">
-                {project.researchObjectives}
-              </div>
-            )}
+{project.researchObjectives && (
+  <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-start">
+
+    {/* Left: Title */}
+    <div className="md:col-span-4">
+      <h3 className="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-[0.9] text-black">
+        Research<br />Objectives
+      </h3>
+    </div>
+
+    {/* Right: Content */}
+    <div className="md:col-span-8">
+      {Array.isArray(project.researchObjectives) ? (
+        <ul className="flex flex-col gap-6">
+          {project.researchObjectives.map((line: string, idx: number) => (
+            <li key={idx} className="flex items-start gap-3 text-lg md:text-xl text-gray-800">
+              <span className="text-black font-bold select-none mt-0.5">•</span>
+              <span className="leading-relaxed">{line}</span>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div className="text-lg md:text-xl leading-relaxed whitespace-pre-line text-gray-800">
+          {project.researchObjectives}
+        </div>
+      )}
+    </div>
+
+  </div>
+)}
           </div>
         </div>
       )}
@@ -616,10 +621,6 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
-
-        
-     
- 
         
         {/* 10. Pillars / Scenarios */}
         {project.pillars && (
