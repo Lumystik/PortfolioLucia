@@ -908,12 +908,96 @@ export function ProjectDetail() {
           </section>
         )}
 
-        {/* 15. Banner Quote (Used as a transition before Takeaways) */}
+        {/* 15. Banner Quote (Used as a transition before Takeaways)          <img src={project.bannerImage} alt="Banner" className="w-full h-full object-cover" />*/}
         {project.bannerQuote && (
           <section className="py-16 md:py-20 relative w-full h-[50vh] flex items-center justify-center bg-black">
             {project.bannerImage && (
               <div className="absolute inset-0 z-0 opacity-40">
-                <img src={project.bannerImage} alt="Banner" className="w-full h-full object-cover" />
+                <svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+
+ 
+  <ellipse cx="450" cy="575" rx="300" ry="16" fill="rgba(0,0,0,0.13)" />
+
+  <rect x="95" y="38" width="710" height="460" rx="18" fill="#D0D0D0" />
+
+  <rect x="104" y="46" width="692" height="444" rx="14" fill="#1A1A1A" />
+
+  <rect x="116" y="56" width="668" height="424" rx="9" fill="#0A0A0A" />
+
+  <rect x="402" y="46" width="96" height="16" rx="0" fill="#1A1A1A" />
+  <rect x="410" y="50" width="80" height="10" rx="5" fill="#111" />
+ 
+  <circle cx="450" cy="54" r="3.5" fill="#2a2a2a" />
+  <circle cx="450" cy="54" r="1.5" fill="#111" />
+
+
+  <g transform="translate(435,240) scale(1.5)" opacity="0.18" fill="#999">
+    <path d="M10,2.5 C10,2.5 11.5,0 13.5,0 C13.5,2.5 11.2,3.5 10,3.5 C8.8,3.5 6.5,2.5 6.5,0 C8.5,0 10,2.5 10,2.5 Z M4,5 C1.5,5 0,7.5 0,10 C0,14 2.5,18 5,18 C6.2,18 7,17.2 8.5,17.2 C10,17.2 10.8,18 12,18 C14.5,18 17,14.5 17,11 C15.5,10.5 14,9 14,7 C14,5 15.5,3.8 15.5,3.8 C14.5,2.5 13,2 11.8,2 C10,2 9,3 8,3 C7,3 6,2 4.2,2 C4.2,2 4,5 4,5 Z"/>
+  </g>
+  <foreignObject x="116" y="56" width="668" height="424">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="width:100%;height:100%;overflow:hidden;border-radius:9px;background:#0A0A0A;">
+      <iframe
+        style="border:none;width:100%;height:100%;display:block;"
+        src="https://embed.figma.com/proto/16viMWZsHOU9SkmpbSpTd5/FINAL-UI-spaced?node-id=2248-9671&starting-point-node-id=703%3A8427&scaling=scale-down&content-scaling=fixed&embed-host=share"
+        allowfullscreen="true"
+      ></iframe>
+    </div>
+  </foreignObject>
+
+
+  <rect x="110" y="494" width="680" height="9" rx="4" fill="#B8B8B8" />
+  <rect x="110" y="497" width="680" height="5" rx="2" fill="#C8C8C8" />
+
+
+  <rect x="80" y="500" width="740" height="68" rx="6" fill="#CBCBCB" />
+ 
+  <rect x="100" y="506" width="700" height="52" rx="5" fill="#BEBEBE" />
+
+ 
+  <rect x="362" y="514" width="176" height="36" rx="6" fill="#C0C0C0" stroke="#ADADAD" stroke-width="0.5" />
+
+  <g fill="#ADADAD">
+    <rect x="108" y="508" width="20" height="11" rx="2" opacity="0.6"/>
+    <rect x="132" y="508" width="20" height="11" rx="2" opacity="0.6"/>
+    <rect x="156" y="508" width="20" height="11" rx="2" opacity="0.6"/>
+    <rect x="180" y="508" width="20" height="11" rx="2" opacity="0.6"/>
+    <rect x="204" y="508" width="20" height="11" rx="2" opacity="0.6"/>
+    <rect x="228" y="508" width="20" height="11" rx="2" opacity="0.6"/>
+    <rect x="252" y="508" width="20" height="11" rx="2" opacity="0.6"/>
+    <rect x="276" y="508" width="20" height="11" rx="2" opacity="0.6"/>
+    <rect x="300" y="508" width="20" height="11" rx="2" opacity="0.6"/>
+    <rect x="324" y="508" width="20" height="11" rx="2" opacity="0.6"/>
+    <rect x="116" y="522" width="20" height="11" rx="2" opacity="0.5"/>
+    <rect x="140" y="522" width="20" height="11" rx="2" opacity="0.5"/>
+    <rect x="164" y="522" width="20" height="11" rx="2" opacity="0.5"/>
+    <rect x="188" y="522" width="20" height="11" rx="2" opacity="0.5"/>
+    <rect x="212" y="522" width="20" height="11" rx="2" opacity="0.5"/>
+    <rect x="236" y="522" width="20" height="11" rx="2" opacity="0.5"/>
+    <rect x="260" y="522" width="20" height="11" rx="2" opacity="0.5"/>
+    <rect x="284" y="522" width="20" height="11" rx="2" opacity="0.5"/>
+    <rect x="308" y="522" width="20" height="11" rx="2" opacity="0.5"/>
+    <rect x="332" y="522" width="20" height="11" rx="2" opacity="0.5"/>
+  </g>
+  <g fill="#ADADAD">
+    <rect x="568" y="508" width="20" height="11" rx="2" opacity="0.6"/>
+    <rect x="592" y="508" width="20" height="11" rx="2" opacity="0.6"/>
+    <rect x="616" y="508" width="20" height="11" rx="2" opacity="0.6"/>
+    <rect x="640" y="508" width="20" height="11" rx="2" opacity="0.6"/>
+    <rect x="664" y="508" width="20" height="11" rx="2" opacity="0.6"/>
+    <rect x="688" y="508" width="20" height="11" rx="2" opacity="0.6"/>
+    <rect x="560" y="522" width="20" height="11" rx="2" opacity="0.5"/>
+    <rect x="584" y="522" width="20" height="11" rx="2" opacity="0.5"/>
+    <rect x="608" y="522" width="20" height="11" rx="2" opacity="0.5"/>
+    <rect x="632" y="522" width="20" height="11" rx="2" opacity="0.5"/>
+    <rect x="656" y="522" width="20" height="11" rx="2" opacity="0.5"/>
+    <rect x="680" y="522" width="20" height="11" rx="2" opacity="0.5"/>
+    <rect x="704" y="522" width="20" height="11" rx="2" opacity="0.5"/>
+  </g>
+
+  <rect x="80" y="562" width="740" height="6" rx="3" fill="#BBBBBB" />
+
+</svg>
+       
               </div>
             )}
             <div className="relative z-10 w-full max-w-7xl mx-auto px-6 text-left text-white">
