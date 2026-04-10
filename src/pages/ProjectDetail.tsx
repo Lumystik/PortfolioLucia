@@ -907,33 +907,74 @@ export function ProjectDetail() {
         {project.interfaceImage2 ? (
           /* Option A: Laptop Vector with Figma Embed */
           <div className="w-full max-w-[900px]">
-            <svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto drop-shadow-2xl">
-              <ellipse cx="450" cy="575" rx="300" ry="16" fill="rgba(0,0,0,0.13)" />
-              <rect x="95" y="38" width="710" height="460" rx="18" fill="#D0D0D0" />
-              <rect x="104" y="46" width="692" height="444" rx="14" fill="#1A1A1A" />
-              <rect x="116" y="56" width="668" height="424" rx="9" fill="#0A0A0A" />
-              <rect x="402" y="46" width="96" height="16" rx="0" fill="#1A1A1A" />
-              <rect x="410" y="50" width="80" height="10" rx="5" fill="#111" />
-              <circle cx="450" cy="54" r="3.5" fill="#2a2a2a" />
-              <circle cx="450" cy="54" r="1.5" fill="#111" />
-              
-              <foreignObject x="116" y="56" width="668" height="424">
-                <div xmlns="http://www.w3.org/1999/xhtml" style={{ width: '100%', height: '100%', overflow: 'hidden', borderRadius: '9px', background: '#0A0A0A' }}>
-                  <iframe
-                    style={{ border: 'none', width: '100%', height: '100%', display: 'block' }}
-                    src={project.interfaceImage2}
-                    allowFullScreen={true}
-                  ></iframe>
-                </div>
-              </foreignObject>
+           const [loaded, setLoaded] = useState(false);
 
-              <rect x="110" y="494" width="680" height="9" rx="4" fill="#B8B8B8" />
-              <rect x="110" y="497" width="680" height="5" rx="2" fill="#C8C8C8" />
-              <rect x="80" y="500" width="740" height="68" rx="6" fill="#CBCBCB" />
-              <rect x="100" y="506" width="700" height="52" rx="5" fill="#BEBEBE" />
-              <rect x="362" y="514" width="176" height="36" rx="6" fill="#C0C0C0" stroke="#ADADAD" strokeWidth="0.5" />
-              <rect x="80" y="562" width="740" height="6" rx="3" fill="#BBBBBB" />
-            </svg>
+<svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto drop-shadow-2xl">
+  {/* Shadow */}
+  <ellipse cx="450" cy="510" rx="300" ry="16" fill="rgba(0,0,0,0.13)" />
+
+  {/* Lid */}
+  <rect x="95" y="38" width="710" height="460" rx="18" fill="#D0D0D0" />
+  <rect x="104" y="46" width="692" height="444" rx="14" fill="#1A1A1A" />
+  <rect x="116" y="56" width="668" height="424" rx="9" fill="#0A0A0A" />
+
+  {/* Notch */}
+  <rect x="402" y="46" width="96" height="16" rx="0" fill="#1A1A1A" />
+  <rect x="410" y="50" width="80" height="10" rx="5" fill="#111" />
+  <circle cx="450" cy="54" r="3.5" fill="#2a2a2a" />
+  <circle cx="450" cy="54" r="1.5" fill="#111" />
+
+  {/* Screen content */}
+  <foreignObject x="116" y="56" width="668" height="424">
+    <div
+      xmlns="http://www.w3.org/1999/xhtml"
+      style={{ width: '100%', height: '100%', overflow: 'hidden', borderRadius: '9px', background: '#0A0A0A', position: 'relative' }}
+    >
+      {/* Loading overlay */}
+      {!loaded && (
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: '#0A0A0A',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 10,
+          flexDirection: 'column',
+          gap: '12px',
+        }}>
+          <div style={{
+            width: '28px',
+            height: '28px',
+            border: '2px solid rgba(255,255,255,0.1)',
+            borderTop: '2px solid rgba(255,255,255,0.6)',
+            borderRadius: '50%',
+            animation: 'spin 0.8s linear infinite',
+          }} />
+          <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '13px', fontFamily: 'sans-serif', letterSpacing: '0.02em' }}>
+            Loading prototype
+          </span>
+          <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+        </div>
+      )}
+
+      <iframe
+        style={{ border: 'none', width: '100%', height: '100%', display: 'block' }}
+        src={project.interfaceImage2}
+        allowFullScreen={true}
+        onLoad={() => setLoaded(true)}
+      />
+    </div>
+  </foreignObject>
+
+  {/* Hinge */}
+  <rect x="110" y="494" width="680" height="9" rx="4" fill="#B8B8B8" />
+  <rect x="110" y="497" width="680" height="5" rx="2" fill="#C8C8C8" />
+
+  {/* Base — thin bottom bar only, no keyboard */}
+  <rect x="80" y="500" width="740" height="14" rx="6" fill="#CBCBCB" />
+  <rect x="80" y="508" width="740" height="6" rx="3" fill="#BBBBBB" />
+</svg>
           </div>
         ) : (
           /* Option B: Standard Image (Only shows if interfaceImage2 is null/undefined) */
