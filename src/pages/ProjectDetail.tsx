@@ -907,7 +907,7 @@ export function ProjectDetail() {
               >
                 {project.interfaceImage2 ? (
                   /* Option A: Laptop Vector with Figma Embed */
-                  <div className="w-full max-w-[900px]">
+                  <div className="w-full max-w-7xl">
                     <svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto drop-shadow-2xl">
                       {/* Shadow */}
                       <ellipse cx="450" cy="510" rx="300" ry="16" fill="rgba(0,0,0,0.13)" />
@@ -924,7 +924,7 @@ export function ProjectDetail() {
                       <circle cx="450" cy="54" r="1.5" fill="#111" />
 
                       {/* Screen content */}
-                      <foreignObject x="116" y="56" width="100%" height="100%">
+                      <foreignObject x="116" y="56" width="668" height="424">
                         <div
                           xmlns="http://www.w3.org/1999/xhtml"
                           style={{ width: '100%', height: '100%', overflow: 'hidden', borderRadius: '9px', background: '#0A0A0A', position: 'relative' }}
