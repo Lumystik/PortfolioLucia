@@ -4,7 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { useEffect } from 'react';
-
+import { useEffect, useState } from 'react';
 const projectsData: Record<string, any> = {
   "museon": {
     id: "museon",
@@ -358,9 +358,10 @@ userInsights: [
 export function ProjectDetail() {
   const { id } = useParams<{ id: string }>();
   const project = id ? projectsData[id] : null;
-
+  const [loaded, setLoaded] = useState(false)
   useEffect(() => {
     window.scrollTo(0, 0);
+    setLoaded(false);
   }, [id]);
 
   if (!project) {
