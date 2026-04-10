@@ -23,11 +23,6 @@ const projectsData: Record<string, any> = {
     ],
     researchObjectives: "There is a pressing need to effectively handle the limited human resources in the museum, as they are frequently overwhelmed by the workload at hand.\n\nMuseums need to manage several exhibitions and events per year, collaborating with external partners, donors and institutions. They need an all-in-one platform to facilitate access to functions already in use, displaying them differently according to staff role and responsibility.",
     howMightWe: [ "solve the complexity of creating a smooth experience for small museum staff?", "streamline the workflow and improve the management of different areas of the institution?", "optimize the current museum resources to help staff develop a better experience for visitors?" ],
-      keyFindings: [
-      { stat: "04", label: "full time employees", description: "limited human resources overwhelmed by the workload at hand." },
-      { stat: "59", label: "event & exhibitions in 2023", description: "manage several exhibitions and events" },
-      { stat: "06", label: "Different tools to manage", description: "facilitate access to functions already in use displaying them differently according to staff role and responsibility" }
-    ],
       keyFeatures: [
       
       { title: "SHARED CALENDAR OVERVIEW", description: "With this feature, you can see the busy and available times of people you have shared your calendar with and plan events accordingly." },
