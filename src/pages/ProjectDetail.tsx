@@ -100,7 +100,7 @@ const projectsData: Record<string, any> = {
       ]
     },
     takeaways: "We solved the complexity of creating a smooth experience for small museum staff, enabling them to develop a better experience for visitors. By developing an all-in-one software, we streamlined the workflow and optimized current museum resources.",
-    interfaceImage: "https://github.com/Lumystik/PortfolioLucia/blob/771b8c4bacd02003bc0f433782f36253b98e2e3a/images/museon_final.png?raw=true",
+    interfaceImage2: "https://embed.figma.com/proto/16viMWZsHOU9SkmpbSpTd5/FINAL-UI-spaced?node-id=2248-9671&starting-point-node-id=703%3A8427&scaling=scale-down&content-scaling=fixed&embed-host=share",
     nextProject: {
       title: "ART BEYOND DIMENSION",
       link: "/project/art-beyond-dimension"
@@ -893,20 +893,62 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
+{/* 14. Interface Image / Prototype Embed */}
+{(project.interfaceImage || project.interfaceImage2) && (
+  <section className="py-16 md:py-20 w-full bg-white">
+    <div className="max-w-5xl mx-auto px-6">
+      <motion.div 
+        initial={{ opacity: 0, y: 40 }} 
+        whileInView={{ opacity: 1, y: 0 }} 
+        viewport={{ once: true }} 
+        transition={{ duration: 0.8 }}
+        className="w-full flex items-center justify-center"
+      >
+        {project.interfaceImage2 ? (
+          /* Option A: Laptop Vector with Figma Embed */
+          <div className="w-full max-w-[900px]">
+            <svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto drop-shadow-2xl">
+              <ellipse cx="450" cy="575" rx="300" ry="16" fill="rgba(0,0,0,0.13)" />
+              <rect x="95" y="38" width="710" height="460" rx="18" fill="#D0D0D0" />
+              <rect x="104" y="46" width="692" height="444" rx="14" fill="#1A1A1A" />
+              <rect x="116" y="56" width="668" height="424" rx="9" fill="#0A0A0A" />
+              <rect x="402" y="46" width="96" height="16" rx="0" fill="#1A1A1A" />
+              <rect x="410" y="50" width="80" height="10" rx="5" fill="#111" />
+              <circle cx="450" cy="54" r="3.5" fill="#2a2a2a" />
+              <circle cx="450" cy="54" r="1.5" fill="#111" />
+              
+              <foreignObject x="116" y="56" width="668" height="424">
+                <div xmlns="http://www.w3.org/1999/xhtml" style={{ width: '100%', height: '100%', overflow: 'hidden', borderRadius: '9px', background: '#0A0A0A' }}>
+                  <iframe
+                    style={{ border: 'none', width: '100%', height: '100%', display: 'block' }}
+                    src={project.interfaceImage2}
+                    allowFullScreen={true}
+                  ></iframe>
+                </div>
+              </foreignObject>
 
-        {/* 14. Interface Image */}
-        {project.interfaceImage && (
-          <section className="py-16 md:py-20 w-full bg-white">
-            <div className="max-w-5xl mx-auto px-6">
-              <motion.div 
-                initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
-                className="w-full rounded-2xl overflow-hidden shadow-xl border border-gray-100 bg-[#000000] p-6 flex items-center justify-center"
-              >
-                <img src={project.interfaceImage} alt={`${project.title} Interface`} className="w-full h-auto max-h-[50vh] object-contain" />
-              </motion.div>
-            </div>
-          </section>
+              <rect x="110" y="494" width="680" height="9" rx="4" fill="#B8B8B8" />
+              <rect x="110" y="497" width="680" height="5" rx="2" fill="#C8C8C8" />
+              <rect x="80" y="500" width="740" height="68" rx="6" fill="#CBCBCB" />
+              <rect x="100" y="506" width="700" height="52" rx="5" fill="#BEBEBE" />
+              <rect x="362" y="514" width="176" height="36" rx="6" fill="#C0C0C0" stroke="#ADADAD" strokeWidth="0.5" />
+              <rect x="80" y="562" width="740" height="6" rx="3" fill="#BBBBBB" />
+            </svg>
+          </div>
+        ) : (
+          /* Option B: Standard Image (Only shows if interfaceImage2 is null/undefined) */
+          <div className="w-full rounded-2xl overflow-hidden shadow-xl border border-gray-100 bg-[#000000] p-6 flex items-center justify-center">
+            <img 
+              src={project.interfaceImage} 
+              alt={`${project.title} Interface`} 
+              className="w-full h-auto max-h-[50vh] object-contain" 
+            />
+          </div>
         )}
+      </motion.div>
+    </div>
+  </section>
+)}
 
         {/* 15. Banner Quote (Used as a transition before Takeaways)          <img src={project.bannerImage} alt="Banner" className="w-full h-full object-cover" />*/}
         {project.bannerQuote && (
