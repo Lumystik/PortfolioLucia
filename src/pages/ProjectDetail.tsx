@@ -924,7 +924,7 @@ export function ProjectDetail() {
                       <circle cx="450" cy="54" r="1.5" fill="#111" />
 
                       {/* Screen content */}
-                      <foreignObject x="116" y="56" width="auto" height="auto">
+                      <foreignObject x="116" y="56" width="100%" height="100%">
                         <div
                           xmlns="http://www.w3.org/1999/xhtml"
                           style={{ width: '100%', height: '100%', overflow: 'hidden', borderRadius: '9px', background: '#0A0A0A', position: 'relative' }}
