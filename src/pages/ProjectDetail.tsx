@@ -9,7 +9,7 @@ const projectsData: Record<string, any> = {
   "museon": {
     id: "museon",
     title: "MUSE*ON",
-    heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/18a3d507b05a70194191f0c7ed69c18da38fb833/images/thumbmuseonin.jpg?raw=true",
+    heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/938f07518e8f5f616bc3d2b2f86016523373b5b3/images/Untitled%20(1542%20x%20683%20px).png?raw=true",
     overview: "Developing an all in one software for small museums staff, that aims to streamline the work-flow and improve the management of the different areas of the institution. In order to optimize the current museum resources.",
     scope: "End-to-End App",
     role: "UX Research, Branding, UX/UI Design",
