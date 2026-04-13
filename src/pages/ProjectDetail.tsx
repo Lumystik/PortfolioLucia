@@ -83,7 +83,8 @@ const projectsData: Record<string, any> = {
     interfaceImage2: "https://embed.figma.com/proto/16viMWZsHOU9SkmpbSpTd5/FINAL-UI-spaced?node-id=2248-9671&starting-point-node-id=703%3A8427&scaling=contain&content-scaling=fixed&embed-host=share",
     nextProject: {
       title: "ART BEYOND DIMENSION",
-      link: "/project/art-beyond-dimension"
+      link: "/project/art-beyond-dimension",
+      image: "https://github.com/Lumystik/PortfolioLucia/blob/c39ead2c3b7c47add54a5363ffb7b42cb35b1adf/images/wall.jpg"
     }
   },
   "art-beyond-dimension": {
