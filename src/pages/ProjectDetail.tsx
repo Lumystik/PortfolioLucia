@@ -15,7 +15,6 @@ const projectsData: Record<string, any> = {
     role: "UX Research, Branding, UX/UI Design",
     team: "Martina Braidotti, Lucia Medina, Ilario Pedone, Agnese Rosselli, Mark Waisara",
     prototypeLink: "https://www.figma.com/proto/16viMWZsHOU9SkmpbSpTd5/FINAL-UI-spaced?node-id=2248-9671&starting-point-node-id=703%3A8427&scaling=scale-down&content-scaling=fixed&t=aO2g8BW8sOtXyiVT-1?raw=true",
- 
     processMap: [
       { phase: "Research", steps: ["Desk research", "On site research", "Ecosystem map", "research key findings"] },
       { phase: "Define", steps: ["Design brief", "Personas & scenarios", "Heroflow & wireflow"] },
