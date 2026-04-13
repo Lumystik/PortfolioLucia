@@ -84,7 +84,7 @@ const projectsData: Record<string, any> = {
     nextProject: {
       title: "ART BEYOND DIMENSION",
       link: "/project/art-beyond-dimension",
-      image: "https://github.com/Lumystik/PortfolioLucia/blob/c39ead2c3b7c47add54a5363ffb7b42cb35b1adf/images/wall.jpg"
+      image: "https://github.com/Lumystik/PortfolioLucia/blob/c39ead2c3b7c47add54a5363ffb7b42cb35b1adf/images/wall.jpg?raw=true"
     }
   },
   "art-beyond-dimension": {
