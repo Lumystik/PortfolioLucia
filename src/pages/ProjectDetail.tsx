@@ -837,45 +837,130 @@ export function ProjectDetail() {
 )}
 {/* --- BRANDING SECTION --- */}
         {project.branding && (
-          <>
-            {/* 1. Title + Description - Centered and Aligned to 7xl */}
-            <section className="py-20 bg-white w-full">
-              <div className="max-w-7xl mx-auto px-6 text-center">
-                <h3 className="text-4xl md:text-5xl font-bold uppercase mb-6 text-[#131313]">
+          <div className="bg-white">
+            {/* 1. Building the Brand: Left Aligned Title + Description */}
+            <section className="py-16 md:py-20">
+              <div className="max-w-7xl mx-auto px-6">
+                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313] mb-8">
                   Building the Brand
                 </h3>
-                <p className="text-lg md:text-xl max-w-2xl mx-auto leading-relaxed text-[#131313]">
+                <p className="text-lg md:text-xl leading-relaxed text-[#131313] max-w-3xl">
                   {project.branding.description}
                 </p>
               </div>
             </section>
 
-            {/* 2. Logo Design Description */}
-            {project.branding.logoDescription && (
-              <section className="pb-10 bg-white">
-                <div className="max-w-3xl mx-auto px-6 text-center">
-                  <h4 className="text-xl md:text-2xl font-bold uppercase mb-4 text-[#131313]">
-                    Logo Design
-                  </h4>
-                  <p className="text-base md:text-lg leading-relaxed text-[#131313]">
-                    {project.branding.logoDescription}
-                  </p>
+            {/* 2. Colors/Shapes - Centered and Complete */}
+            {project.branding.shapes && (
+              <section className="py-10 overflow-visible">
+                <div className="max-w-7xl mx-auto px-6 flex justify-center items-center gap-6 flex-wrap">
+                  {project.branding.shapes.map((shape: any, idx: number) => (
+                    <div
+                      key={idx}
+                      className="rounded-full shadow-sm"
+                      style={{
+                        backgroundColor: shape.color,
+                        width: `${shape.size}px`,
+                        height: `${shape.size}px`,
+                        opacity: shape.opacity ?? 1,
+                        filter: `blur(${shape.blur ?? 0}px)`
+                      }}
+                    />
+                  ))}
                 </div>
               </section>
             )}
 
-            {/* 3. Logo Image - Centered and Smaller */}
-            {project.branding.logoImage && (
-              <section className="flex justify-center py-10 px-6 bg-white">
-                <div className="max-w-7xl mx-auto flex justify-center">
-                  <img
-                    src={project.branding.logoImage}
-                    alt="Logo"
-                    className="max-w-xs md:max-w-sm w-full h-auto object-contain"
-                  />
+            {/* 3. Logo Design: 2-Column Desktop Layout */}
+            {(project.branding.logoDescription || project.branding.logoImage) && (
+              <section className="py-16 md:py-24">
+                <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                  {/* Left Column: Text */}
+                  <div className="flex flex-col gap-6">
+                    <h4 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-[#131313]">
+                      Logo Design
+                    </h4>
+                    <p className="text-lg leading-relaxed text-gray-700">
+                      {project.branding.logoDescription}
+                    </p>
+                  </div>
+                  {/* Right Column: Logo Image (Smaller) */}
+                  <div className="flex justify-center md:justify-end">
+                    <img
+                      src={project.branding.logoImage}
+                      alt="Logo"
+                      className="w-full max-w-[280px] md:max-w-sm h-auto object-contain"
+                    />
+                  </div>
                 </div>
               </section>
             )}
+
+            {/* 4. Feature Icons - Full Width Grid */}
+            {project.branding.featuresImage && (
+              <section className="py-16 border-t border-gray-50">
+                <div className="max-w-7xl mx-auto px-6 flex justify-between items-center gap-8 flex-wrap">
+                  <img src={project.branding.featuresImage} alt="Feature" className="h-12 md:h-16 w-auto object-contain opacity-80" />
+                  <img src={project.branding.featuresImage} alt="Feature" className="h-12 md:h-16 w-auto object-contain opacity-80" />
+                  <img src={project.branding.featuresImage} alt="Feature" className="h-12 md:h-16 w-auto object-contain opacity-80" />
+                </div>
+              </section>
+            )}
+          </div>
+        )}
+
+        {/* 13. Key Functions: 2-Column Header Layout */}
+        {project.keyFunctions && (
+          <section className="py-16 md:py-24 w-full bg-black text-white">
+            <div className="max-w-7xl mx-auto px-6">
+              {/* Top Header: 2 Columns */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mb-20">
+                <div className="flex flex-col gap-6">
+                  <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-white">
+                    Key Functions
+                  </h3>
+                  <p className="text-lg md:text-xl leading-relaxed text-gray-300">
+                    {project.keyFunctions.description}
+                  </p>
+                </div>
+                {/* Optional: You can put a secondary graphic or leave this side for balance */}
+                <div className="hidden md:flex justify-end">
+                  <div className="w-32 h-1 bg-[#E2F0A4]/20 rounded-full mt-6"></div>
+                </div>
+              </div>
+
+              {/* Grid of Function Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+                {project.keyFunctions.functions.map((func: any, idx: number) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: idx * 0.1 }}
+                    className="group flex flex-col gap-6"
+                  >
+                    <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden flex items-center justify-center bg-[#1a1a1a] p-8">
+                      <img
+                        src={func.image}
+                        alt={func.title}
+                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-out"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <h4 className="text-xl font-bold uppercase text-left text-white">
+                        {func.title}
+                      </h4>
+                      <p className="text-base text-gray-400 leading-relaxed text-left">
+                        {func.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
             {/* 4. Feature Icons/Images */}
             {project.branding.featuresImage && (
