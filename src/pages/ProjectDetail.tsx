@@ -410,31 +410,31 @@ export function ProjectDetail() {
 {/* 3. The Problem */}
 {project.problem && (
   <section className="py-16 md:py-20 w-full bg-white">
-    <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16 md:gap-24">
+    <div className="max-w-7xl mx-auto px-6">
       
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
         
-        {/* Left Column */}
-        <div className="flex flex-col justify-center py-10 md:py-16 lg:py-20">
-          <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313] mb-6">
+        {/* Left Column: Text */}
+        <div className="lg:col-span-5 flex flex-col justify-center">
+          <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313] mb-6">
             The Problem
           </h3>
-
-          <div className="text-lg md:text-xl font-medium leading-relaxed whitespace-pre-line text-[#131313]">
+          <div className="text-lg md:text-xl text-gray-800 leading-relaxed whitespace-pre-line">
             {project.problem}
           </div>
         </div>
 
-        {/* Right Column */}
-        <div className="flex items-center justify-center py-10 md:py-16 lg:py-20 overflow-hidden">
+        {/* Right Column: Image */}
+        <div className="lg:col-span-7 flex items-center justify-center p-8 md:p-12 overflow-hidden bg-[#F9F9F9] border border-gray-100 rounded-2xl">
           <img
             src={project.problemImage || "/placeholder-phone-mockup.png"}
-            alt="App mockup showing a runner's cheers"
-            className="w-full object-contain drop-shadow-2xl"
+            alt="The Problem Illustration"
+            className="w-full max-w-[350px] object-contain drop-shadow-xl"
           />
         </div>
 
       </div>
+      
     </div>
   </section>
 )}
@@ -926,7 +926,7 @@ export function ProjectDetail() {
           </section>
         )}
 
-        {/* 16. Takeaways */}
+         {/* 16. Takeaways */}
         {project.takeaways && (
           <section className="py-16 md:py-20 w-full bg-black text-white">
             <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -939,7 +939,6 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
-
         {/* 17. Next Project with Image Overlay */}
         {project.nextProject && (
           <section className="relative w-full h-[60vh] md:h-[50vh] overflow-hidden group">
@@ -953,7 +952,7 @@ export function ProjectDetail() {
               <span className="text-xs font-mono uppercase tracking-[0.2em] text-gray-300 mb-4 block">Next Project</span>
               <Link 
                 to={project.nextProject.link} 
-                className="text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter text-white hover:text-gray-200 transition-colors inline-block"
+                className="text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter text-white hover:text-gray-200 inline-block"
               >
                 {project.nextProject.title}
               </Link>
