@@ -410,27 +410,18 @@ export function ProjectDetail() {
   {/* 3. The Problem */}
 {project.problem && (
   <section className="w-full py-16 md:py-20 ">
-    {/* Using a 2-column grid. On smaller screens (mobile), it stacks in 1 column. 
-      On large screens (lg), it splits 50/50.
-    */}
-    <div className="grid grid-cols-1 lg:grid-cols-2">
-      
-      {/* Left Column: Title & Text */}
-      {/* Note: I've added the approximate hex color from your screenshot. Adjust as needed! */}
+
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16>
       <div className="p-10 md:p-16 lg:p-24 flex flex-col justify-center">
         <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313] mb-6">
           The Problem
         </h3>
-        {/* If your text contains HTML tags like <strong> for the bolding in the mockup, 
-            you might need to use dangerouslySetInnerHTML. Otherwise, this renders plain text. */}
         <div className="text-lg md:text-xl font-medium leading-relaxed whitespace-pre-line text-[#131313]">
           {project.problem}
         </div>
       </div>
-
-      {/* Right Column: Image */}
       <div className=" p-10 md:p-16 lg:p-24 flex items-center justify-center relative overflow-hidden">
-        {/* Replace the src with your actual image variable or path */}
+  
         <img 
           src={project.problemImage || "/placeholder-phone-mockup.png"} 
           alt="App mockup showing a runner's cheers" 
