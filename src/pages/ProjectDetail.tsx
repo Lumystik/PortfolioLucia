@@ -9,7 +9,7 @@ const projectsData: Record<string, any> = {
   "museon": {
     id: "museon",
     title: "MUSE*ON",
-    heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/55a0c55eaa14673d42a8815d4a5c3b7f4aba3220/images/museon_hero.png?raw=true",
+    heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/988251ade7a50360d870b2b630818e7291a7d458/images/museon_hero.jpg?raw=true",
     overview: "Developing an all in one software for small museums staff, that aims to streamline the work-flow and improve the management of the different areas of the institution. In order to optimize the current museum resources.",
     scope: "End-to-End App",
     role: "UX Research, Branding, UX/UI Design",
@@ -73,7 +73,7 @@ const projectsData: Record<string, any> = {
  
       ]
     },
-    interfaceImage:"?raw=true",
+    interfaceImage:"https://github.com/Lumystik/PortfolioLucia/blob/988251ade7a50360d870b2b630818e7291a7d458/images/museon_finalinterface%20(10).gif?raw=true",
     takeaways: "We solved the complexity of creating a smooth experience for small museum staff, enabling them to develop a better experience for visitors. By developing an all-in-one software, we streamlined the workflow and optimized current museum resources.",
     interfaceImage: "",
     nextProject: {
