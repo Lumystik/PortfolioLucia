@@ -867,10 +867,7 @@ export function ProjectDetail() {
         )}
 
      
-              </div>
-            </div>
-          </section>
-        )}
+          
 
         {/* 14. Interface Image / Prototype Embed */}
         {(project.interfaceImage || project.interfaceImage2) && (
