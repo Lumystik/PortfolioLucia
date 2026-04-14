@@ -989,7 +989,7 @@ export function ProjectDetail() {
             />
             <div className="absolute inset-0 bg-black/85 transition-colors duration-500 group-hover:bg-black/75" />
             <div className="relative z-10 h-full max-w-7xl mx-auto px-6 flex flex-col justify-center">
-              <span className="text-xs font-mono uppercase tracking-[0.2em] text-gray-300 mb-4 block">Next Project</span>
+              <span className="text-s font-mono uppercase tracking-[0.2em] text-gray-300 mb-4 block">Next Project</span>
               <Link 
                 to={project.nextProject.link} 
                 className="text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter text-white hover:text-gray-200 inline-block"
