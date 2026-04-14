@@ -846,7 +846,7 @@ export function ProjectDetail() {
 
             {project.branding.featuresImage && (
               <section className="py-16 border-t border-gray-50">
-                <div className="max-w-7xl mx-auto px-6 flex justify-between items-center gap-8 flex-wrap">
+                <div className="max-w-7xl mx-auto px-6">
                   <img src={project.branding.featuresImage} alt="Feature" className="h-12 md:h-16 w-auto object-contain opacity-80" />
                 </div>
               </section>
