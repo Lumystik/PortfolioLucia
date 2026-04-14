@@ -956,7 +956,7 @@ export function ProjectDetail() {
 
         {/* --- 16. TAKEAWAYS --- */}
         {project.takeaways && (
-          <section className="py-24 md:py-32 w-full bg-[#E2F0A4] text-[#131313]">
+          <section className="py-24 md:py-32 w-full bg-[#E54D2E] text-[#131313]">
             <div className="max-w-4xl mx-auto px-6 text-center flex flex-col gap-10">
               <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tight">
                 Takeaways
