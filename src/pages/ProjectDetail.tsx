@@ -50,6 +50,21 @@ const projectsData: Record<string, any> = {
   logoImage: "https://github.com/Lumystik/PortfolioLucia/blob/ac040a0ff68481a4ef9745568ded5b5c9b484a5b/images/museonlogo.png?raw=true",       // optional
   featuresImage: "https://github.com/Lumystik/PortfolioLucia/blob/dfc97077f6303fd7953feeb6d4e1a8efdce42b2e/images/button.png?raw=true" // optional
 },
+    branding: {
+ description: "The design system was built to be clean, accessible, and highly functional, prioritizing data visualization and task management. It includes standardized colors, buttons, dropdown menus, and calendar components.",
+  logoDescription: "We were drawn to the asterisk as a symbol of connection, and wanted to incorporate its radiating structure as a mark that points toward information, toward people, toward the institution itself.",
+ 
+  logoImage: "https://github.com/Lumystik/PortfolioLucia/blob/ac040a0ff68481a4ef9745568ded5b5c9b484a5b/images/museonlogo.png?raw=true",       // optional
+  featuresImage: "https://github.com/Lumystik/PortfolioLucia/blob/dfc97077f6303fd7953feeb6d4e1a8efdce42b2e/images/button.png?raw=true" // optional
+
+  shapes: [
+    { color: "#000000", size: 120, x: "20%", y: "10%" },
+    { color: "#6B6A6A", size: 100, x: "50%", y: "10%"},
+    { color: "#D9D9D9", size: 90, x: "75%", y: "10%" },
+    { color: "#1600FF", size: 110, x: "35%", y: "10%"},
+    { color: "#1600FF", size: 110, x: "0%", y: "10%"}
+  ]
+},
     },
     keyFunctions: {
       description: "An all-in-one platform designed to reduce switching costs and improve team collaboration.",
@@ -782,81 +797,101 @@ export function ProjectDetail() {
         )}
 
 {project.branding && (
-  <section className="py-16 md:py-20 w-full bg-white">
-    <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16">
-
-      {/* Top row: title left, description right */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-        <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">
+  <>
+    {/* 1. Title + Description */}
+    <section className="py-20 bg-white">
+      <div className="max-w-6xl mx-auto px-6">
+        <h3 className="text-4xl md:text-5xl font-bold uppercase mb-6 text-[#131313]">
           Building the Brand
         </h3>
-        <p className="text-lg leading-relaxed text-[#131313]">
+
+        <p className="text-lg md:text-xl max-w-2xl leading-relaxed text-[#131313]">
           {project.branding.description}
         </p>
       </div>
+    </section>
 
-      {/* Branding images stacked full width */}
-      {project.branding.images && (
-        <div className="flex flex-col gap-8">
-          {project.branding.images.map((img: string, idx: number) => (
-            <div key={idx} className="w-full bg-[#F9F9F9] rounded-2xl flex items-center justify-center p-6">
-              <img src={img} alt={`Branding ${idx}`} className="w-full h-auto max-h-[60vh] object-contain" />
-            </div>
-          ))}
-        </div>
-      )}
+    {/* 2. Dynamic Decorative Shapes */}
+    {project.branding.shapes && (
+      <div className="relative w-full h-[200px] my-10 overflow-hidden">
+        {project.branding.shapes.map((shape: any, idx: number) => (
+          <div
+            key={idx}
+            className="absolute rounded-full"
+            style={{
+              backgroundColor: shape.color,
+              width: `${shape.size}px`,
+              height: `${shape.size}px`,
+              left: shape.x,
+              top: shape.y,
+              transform: "translate(-50%, -50%)",
+              opacity: shape.opacity ?? 1,
+              filter: `blur(${shape.blur ?? 0}px)`
+            }}
+          />
+        ))}
+      </div>
+    )}
 
-      {/* Logo section: text left, image right */}
-      {(project.branding.logoDescription || project.branding.logoImage) && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          {project.branding.logoDescription && (
-            <div className="flex flex-col gap-3">
-              <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">Logo Design</h4>
-              <p className="text-base leading-relaxed text-[#131313]">
-                {project.branding.logoDescription}
-              </p>
-            </div>
-          )}
-          {project.branding.logoImage && (
-            <div className="w-full bg-[#F9F9F9] rounded-2xl flex items-center justify-center p-6">
-              <img src={project.branding.logoImage} alt="Logo" className="w-full h-auto max-h-[40vh] object-contain" />
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* Features image full width */}
-      {project.branding.featuresImage && (
-        <div className="w-full bg-[#F9F9F9] rounded-2xl flex items-center justify-center p-6">
-          <img src={project.branding.featuresImage} alt="Features" className="w-full h-auto max-h-[60vh] object-contain" />
-        </div>
-      )}
-
-    </div>
-  </section>
-)}
-        
-<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-  {project.keyFunctions.functions.map((func: any, idx: number) => (
-    <motion.div 
-      key={idx}
-      initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
-      className="group flex flex-col items-center gap-4 text-white p-5"
-    >
-      <div className="w-full h-72 flex items-center justify-center overflow-hidden">
-        <img 
-          src={func.image} 
-          alt={func.title} 
-          className="h-full w-auto object-contain group-hover:scale-105 transition-transform duration-700 ease-out" 
+    {/* 3. Hero Image (Full Width) */}
+    {project.branding.images?.[0] && (
+      <section className="w-full my-20">
+        <img
+          src={project.branding.images[0]}
+          alt="Branding hero"
+          className="w-full h-auto object-cover"
         />
-      </div>
-      <div className="flex flex-col gap-1 text-center">
-        <h4 className="text-lg font-bold uppercase text-white">{func.title}</h4>
-        <p className="text-sm text-white leading-relaxed">{func.description}</p>
-      </div>
-    </motion.div>
-  ))}
-</div>
+      </section>
+    )}
+
+    {/* 4. Logo Text */}
+    {project.branding.logoDescription && (
+      <section className="py-20">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <h4 className="text-xl md:text-2xl font-bold uppercase mb-4 text-[#131313]">
+            Logo Design
+          </h4>
+
+          <p className="text-base md:text-lg leading-relaxed text-[#131313]">
+            {project.branding.logoDescription}
+          </p>
+        </div>
+      </section>
+    )}
+
+    {/* 5. Logo Image */}
+    {project.branding.logoImage && (
+      <section className="flex justify-center my-10 px-6">
+        <img
+          src={project.branding.logoImage}
+          alt="Logo"
+          className="max-w-md w-full object-contain"
+        />
+      </section>
+    )}
+
+    {/* 6. Features / Icons Row */}
+    {project.branding.featuresImage && (
+      <section className="flex justify-center gap-10 my-20 flex-wrap px-6">
+        <img
+          src={project.branding.featuresImage}
+          alt="Feature 1"
+          className="w-24 md:w-32 h-auto object-contain"
+        />
+        <img
+          src={project.branding.featuresImage}
+          alt="Feature 2"
+          className="w-24 md:w-32 h-auto object-contain"
+        />
+        <img
+          src={project.branding.featuresImage}
+          alt="Feature 3"
+          className="w-24 md:w-32 h-auto object-contain"
+        />
+      </section>
+    )}
+  </>
+)}
   {/* 13. Key Functions */}
         {project.keyFunctions && (
           <section className="py-16 md:py-20 w-full bg-black text-white">
