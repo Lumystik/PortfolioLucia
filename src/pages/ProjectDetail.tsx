@@ -789,7 +789,7 @@ export function ProjectDetail() {
           </section>
         )}
 
-       {/* 13. Key Functions */}
+  {/* 13. Key Functions */}
         {project.keyFunctions && (
           <section className="py-16 md:py-20 w-full bg-black text-white">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
@@ -802,7 +802,6 @@ export function ProjectDetail() {
                   <motion.div 
                     key={idx}
                     initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
-                    // Added 'group' here so the image hover works!
                     className="group flex flex-col gap-4 text-white p-5 rounded-2xl shadow-sm"
                   >
                    <div className="w-full h-full rounded-2xl overflow-hidden flex items-center justify-center">
@@ -820,7 +819,7 @@ export function ProjectDetail() {
                 ))}
               </div> {/* ADDED: Closing grid div */}
             </div> {/* ADDED: Closing container div */}
-          </section> {/* ADDED: Closing section */}
+          </section>
         )}
 
         {/* 11. Key Features */}
