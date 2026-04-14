@@ -790,14 +790,15 @@ export function ProjectDetail() {
 
 {project.branding && (
   <>
-    {/* 1. Title + Description */}
-    <section className="py-20 bg-white">
-      <div className="max-w-6xl mx-auto px-6">
+    {/* 1. Title + Description - Centered and aligned to 7xl grid */}
+    <section className="py-20 bg-white w-full">
+      <div className="max-w-7xl mx-auto px-6 text-center">
         <h3 className="text-4xl md:text-5xl font-bold uppercase mb-6 text-[#131313]">
           Building the Brand
         </h3>
 
-        <p className="text-lg md:text-xl max-w-2xl leading-relaxed text-[#131313]">
+        {/* mx-auto is crucial here to center the paragraph within the 7xl container */}
+        <p className="text-lg md:text-xl max-w-2xl mx-auto leading-relaxed text-[#131313]">
           {project.branding.description}
         </p>
       </div>
@@ -825,16 +826,21 @@ export function ProjectDetail() {
       </div>
     )}
 
-    {/* 3. Hero Image (Full Width) */}
+    {/* 3. Logo Image - Centered and Smaller */}
     {project.branding.images?.[0] && (
-      <section className="w-full my-20">
-        <img
-          src={project.branding.images[0]}
-          alt="Branding hero"
-          className="w-full h-auto object-cover"
-        />
+      <section className="w-full mb-20 px-6">
+        <div className="max-w-7xl mx-auto flex justify-center">
+          <img
+            src={project.branding.images[0]}
+            alt="Branding logo"
+            {/* max-w-md or max-w-sm controls the logo size */}
+            className="w-full max-w-md md:max-w-lg h-auto object-contain"
+          />
+        </div>
       </section>
     )}
+  </>
+)}
 
     {/* 4. Logo Text */}
     {project.branding.logoDescription && (
