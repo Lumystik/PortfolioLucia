@@ -50,14 +50,6 @@ const projectsData: Record<string, any> = {
   logoImage: "https://github.com/Lumystik/PortfolioLucia/blob/ac040a0ff68481a4ef9745568ded5b5c9b484a5b/images/museonlogo.png?raw=true",       // optional
   featuresImage: "https://github.com/Lumystik/PortfolioLucia/blob/dfc97077f6303fd7953feeb6d4e1a8efdce42b2e/images/button.png?raw=true" // optional
 },
-    branding: {
-      description: "The design system was built to be clean, accessible, and highly functional, prioritizing data visualization and task management. It includes standardized colors, buttons, dropdown menus, and calendar components.",
-      logoDescription: "Developed as part of the Digital Design Studio.",
-      images: [
-        "https://github.com/Lumystik/PortfolioLucia/blob/bb21de5827c3b80e853c7f0e4d5ec110397431d2/images/museoncolor.png?raw=true",
-    
-        "https://github.com/Lumystik/PortfolioLucia/blob/ac040a0ff68481a4ef9745568ded5b5c9b484a5b/images/museonlogo.png?raw=true",
-      ]
     },
     keyFunctions: {
       description: "An all-in-one platform designed to reduce switching costs and improve team collaboration.",
@@ -920,9 +912,9 @@ export function ProjectDetail() {
         )}
         {/* 15. Banner Quote */}
         {project.bannerQuote && (
-          <section className="py-16 md:py-20 relative w-full h-[50vh] flex items-center justify-center bg-black">
+          <section className="py-16 md:py-20 relative w-full h-[50vh] flex items-center justify-center ">
             {project.bannerImage && (
-              <div className="absolute inset-0 z-0 opacity-40">
+              <div className="absolute inset-0 z-0">
                
         <img src={project.bannerImage} alt="Banner" className="w-full h-full object-cover" />
               </div>
