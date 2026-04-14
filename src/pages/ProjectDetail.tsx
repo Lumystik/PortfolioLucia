@@ -416,7 +416,7 @@ export function ProjectDetail() {
         
   {/* 3. The Problem */}
 {project.problem && (
-  <section className="w-full">
+  <section className="w-full py-16 md:py-20 ">
     {/* Using a 2-column grid. On smaller screens (mobile), it stacks in 1 column. 
       On large screens (lg), it splits 50/50.
     */}
@@ -424,7 +424,7 @@ export function ProjectDetail() {
       
       {/* Left Column: Title & Text */}
       {/* Note: I've added the approximate hex color from your screenshot. Adjust as needed! */}
-      <div className="bg-[#cadf3f] p-10 md:p-16 lg:p-24 flex flex-col justify-center">
+      <div className="p-10 md:p-16 lg:p-24 flex flex-col justify-center">
         <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313] mb-6">
           The Problem
         </h3>
