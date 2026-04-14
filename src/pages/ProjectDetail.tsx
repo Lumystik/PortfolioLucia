@@ -20,7 +20,6 @@ const projectsData: Record<string, any> = {
       { phase: "Define", steps: ["Design brief", "Personas & scenarios", "Heroflow & wireflow"] },
       { phase: "Develop", steps: ["User test results", "Design system", "Prototype"] }
     ],
-    problem:"With only 4 full-time staff managing 59 events and exhibitions a year across 6 different tools, the team is constantly stretched thin \n\nMuseums need to manage several exhibitions and events per year, collaborating with external partners, donors and institutions. They need an all-in-one platform to facilitate access to functions already in use, displaying them differently according to staff role and responsibility.",
     howMightWe: [ "solve the complexity of creating a smooth experience for small museum staff?", "streamline the workflow and improve the management of different areas of the institution?", "optimize the current museum resources to help staff develop a better experience for visitors?" ],
       keyFeatures: [
       
@@ -80,7 +79,7 @@ const projectsData: Record<string, any> = {
       ]
     },
     takeaways: "We solved the complexity of creating a smooth experience for small museum staff, enabling them to develop a better experience for visitors. By developing an all-in-one software, we streamlined the workflow and optimized current museum resources.",
-    interfaceImage: "https://github.com/Lumystik/PortfolioLucia/blob/283d0a967417aa10a0ccd5dd352af72e4e5b90d8/images/museon_finalinterface.mp4?raw=true",
+    interfaceImage: "",
     nextProject: {
       title: "ART BEYOND DIMENSION",
       link: "/project/art-beyond-dimension",
