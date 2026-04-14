@@ -835,80 +835,112 @@ export function ProjectDetail() {
     )}
   </>
 )}
-    {project.branding.logoDescription && (
-      <section className="py-20">
-        <div className="max-w-3xl mx-auto px-6 text-center">
-          <h4 className="text-xl md:text-2xl font-bold uppercase mb-4 text-[#131313]">
-            Logo Design
-          </h4>
+{/* --- BRANDING SECTION --- */}
+        {project.branding && (
+          <>
+            {/* 1. Title + Description - Centered and Aligned to 7xl */}
+            <section className="py-20 bg-white w-full">
+              <div className="max-w-7xl mx-auto px-6 text-center">
+                <h3 className="text-4xl md:text-5xl font-bold uppercase mb-6 text-[#131313]">
+                  Building the Brand
+                </h3>
+                <p className="text-lg md:text-xl max-w-2xl mx-auto leading-relaxed text-[#131313]">
+                  {project.branding.description}
+                </p>
+              </div>
+            </section>
 
-          <p className="text-base md:text-lg leading-relaxed text-[#131313]">
-            {project.branding.logoDescription}
-          </p>
-        </div>
-      </section>
-    )}
-        
-    {project.branding.logoImage && (
-      <section className="flex justify-center my-10 px-6">
-        <img
-          src={project.branding.logoImage}
-          alt="Logo"
-          className="max-w-md w-full object-contain"
-        />
-      </section>
-    )}
-    {project.branding.featuresImage && (
-      <section className="flex justify-center gap-10 my-20 flex-wrap px-6">
-        <img
-          src={project.branding.featuresImage}
-          alt="Feature 1"
-          className="w-24 md:w-32 h-auto object-contain"
-        />
-        <img
-          src={project.branding.featuresImage}
-          alt="Feature 2"
-          className="w-24 md:w-32 h-auto object-contain"
-        />
-        <img
-          src={project.branding.featuresImage}
-          alt="Feature 3"
-          className="w-24 md:w-32 h-auto object-contain"
-        />
-      </section>
-    )}
-  </>
-)}
-  {/* 13. Key Functions */}
+            {/* 2. Logo Design Description */}
+            {project.branding.logoDescription && (
+              <section className="pb-10 bg-white">
+                <div className="max-w-3xl mx-auto px-6 text-center">
+                  <h4 className="text-xl md:text-2xl font-bold uppercase mb-4 text-[#131313]">
+                    Logo Design
+                  </h4>
+                  <p className="text-base md:text-lg leading-relaxed text-[#131313]">
+                    {project.branding.logoDescription}
+                  </p>
+                </div>
+              </section>
+            )}
+
+            {/* 3. Logo Image - Centered and Smaller */}
+            {project.branding.logoImage && (
+              <section className="flex justify-center py-10 px-6 bg-white">
+                <div className="max-w-7xl mx-auto flex justify-center">
+                  <img
+                    src={project.branding.logoImage}
+                    alt="Logo"
+                    className="max-w-xs md:max-w-sm w-full h-auto object-contain"
+                  />
+                </div>
+              </section>
+            )}
+
+            {/* 4. Feature Icons/Images */}
+            {project.branding.featuresImage && (
+              <section className="flex justify-center gap-8 md:gap-16 py-20 flex-wrap px-6 bg-white">
+                <img
+                  src={project.branding.featuresImage}
+                  alt="Feature 1"
+                  className="w-20 md:w-28 h-auto object-contain"
+                />
+                <img
+                  src={project.branding.featuresImage}
+                  alt="Feature 2"
+                  className="w-20 md:w-28 h-auto object-contain"
+                />
+                <img
+                  src={project.branding.featuresImage}
+                  alt="Feature 3"
+                  className="w-20 md:w-28 h-auto object-contain"
+                />
+              </section>
+            )}
+          </>
+        )}
+
+        {/* 13. Key Functions */}
         {project.keyFunctions && (
           <section className="py-16 md:py-20 w-full bg-black text-white">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
               <div className="flex flex-col gap-4 max-w-3xl">
-                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-white">Key Functions</h3>
-                <p className="text-lg md:text-xl leading-relaxed text-gray-300">{project.keyFunctions.description}</p>
+                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-white">
+                  Key Functions
+                </h3>
+                <p className="text-lg md:text-xl leading-relaxed text-gray-300">
+                  {project.keyFunctions.description}
+                </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {project.keyFunctions.functions.map((func: any, idx: number) => (
-                  <motion.div 
+                  <motion.div
                     key={idx}
-                    initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
-                    className="group flex flex-col gap-4 text-white p-5 rounded-2xl shadow-sm"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: idx * 0.1 }}
+                    className="group flex flex-col gap-4 text-white p-5 rounded-2xl"
                   >
-                   <div className="w-full h-full rounded-2xl overflow-hidden flex items-center justify-center">
-                    <img 
-                      src={func.image} 
-                      alt={func.title} 
-                      className="w-full h-full md:w-4/5 md:h-4/5 object-contain group-hover:scale-105 transition-transform duration-700 ease-out" 
-                    />
-                  </div>
-                       <div className="flex flex-col gap-1">
-                      <h4 className="text-lg font-bold uppercase text-center text-white">{func.title}</h4>
-                      <p className="text-sm text-white leading-relaxed text-center">{func.description}</p>
+                    <div className="w-full h-48 md:h-64 rounded-2xl overflow-hidden flex items-center justify-center bg-[#1a1a1a]">
+                      <img
+                        src={func.image}
+                        alt={func.title}
+                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-out"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <h4 className="text-lg font-bold uppercase text-center text-white">
+                        {func.title}
+                      </h4>
+                      <p className="text-sm text-gray-400 leading-relaxed text-center">
+                        {func.description}
+                      </p>
                     </div>
                   </motion.div>
                 ))}
-              </div> {/* ADDED: Closing grid div */}
-            </div> {/* ADDED: Closing container div */}
+              </div>
+            </div>
           </section>
         )}
 
@@ -916,63 +948,86 @@ export function ProjectDetail() {
         {project.keyFeatures && (
           <section className="py-16 md:py-20 w-full bg-white">
             <div className="max-w-7xl mx-auto px-6">
-              <h3 className="mb-8 md:mb-10 text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">Key Features</h3>
+              <h3 className="mb-8 md:mb-10 text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">
+                Key Features
+              </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
                 {project.keyFeatures.map((feature: any, idx: number) => (
-                  <motion.div 
+                  <motion.div
                     key={idx}
-                    initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: idx * 0.1 }}
                     className="flex flex-col gap-2 text-left"
                   >
-                    <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">{feature.title}</h4>
-                    <p className="text-lg text-white leading-relaxed">{feature.description}</p>
+                    <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">
+                      {feature.title}
+                    </h4>
+                    <p className="text-lg text-gray-600 leading-relaxed">
+                      {feature.description}
+                    </p>
                   </motion.div>
                 ))}
               </div>
             </div>
           </section>
         )}
+
         {/* 15. Banner Quote */}
         {project.bannerQuote && (
-          <section className="py-16 md:py-20 relative w-full h-[50vh] flex items-center justify-center ">
+          <section className="py-16 md:py-20 relative w-full h-[50vh] flex items-center justify-center">
             {project.bannerImage && (
               <div className="absolute inset-0 z-0">
-               
-        <img src={project.bannerImage} alt="Banner" className="w-full h-full object-cover" />
+                <img
+                  src={project.bannerImage}
+                  alt="Banner"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/40" />
               </div>
             )}
             <div className="relative z-10 w-full max-w-7xl mx-auto px-6 text-left text-white">
-              <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-tight max-w-4xl leading-tight">"{project.bannerQuote}"</h2>
+              <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-tight max-w-4xl leading-tight">
+                "{project.bannerQuote}"
+              </h2>
             </div>
           </section>
         )}
 
-         {/* 16. Takeaways */}
+        {/* 16. Takeaways */}
         {project.takeaways && (
           <section className="py-16 md:py-20 w-full bg-black text-white">
             <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="md:col-span-1">
-                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-white">Takeaways</h3>
+                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-white">
+                  Takeaways
+                </h3>
               </div>
               <div className="md:col-span-2">
-                <p className="text-lg md:text-xl leading-relaxed whitespace-pre-line text-left">{project.takeaways}</p>
+                <p className="text-lg md:text-xl leading-relaxed whitespace-pre-line text-left">
+                  {project.takeaways}
+                </p>
               </div>
             </div>
           </section>
         )}
-        {/* 17. Next Project with Image Overlay */}
+
+        {/* 17. Next Project */}
         {project.nextProject && (
           <section className="relative w-full h-[60vh] md:h-[50vh] overflow-hidden group">
-            <img 
-              src={project.nextProject.image} 
-              alt="Next Project" 
+            <img
+              src={project.nextProject.image}
+              alt="Next Project"
               className="absolute inset-0 w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-black/60 transition-opacity duration-500 group-hover:bg-black/40" />
             <div className="relative z-10 h-full max-w-7xl mx-auto px-6 flex flex-col justify-center">
-              <span className="text-xs font-mono uppercase tracking-[0.2em] text-gray-300 mb-4 block">Next Project</span>
-              <Link 
-                to={project.nextProject.link} 
+              <span className="text-xs font-mono uppercase tracking-[0.2em] text-gray-300 mb-4 block">
+                Next Project
+              </span>
+              <Link
+                to={project.nextProject.link}
                 className="text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter text-white hover:text-gray-200 inline-block"
               >
                 {project.nextProject.title}
