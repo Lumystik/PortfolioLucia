@@ -23,13 +23,6 @@ const projectsData: Record<string, any> = {
       { phase: "Develop", steps: ["User test results", "Design system", "Prototype"] }
     ],
     howMightWe: [ "solve the complexity of creating a smooth experience for small museum staff?", "streamline the workflow and improve the management of different areas of the institution?", "optimize the current museum resources to help staff develop a better experience for visitors?" ],
-      keyFeatures: [
-      
-      { title: "SHARED CALENDAR OVERVIEW", description: "With this feature, you can see the busy and available times of people you have shared your calendar with and plan events accordingly." },
-      { title: "COLLECTION MANAGEMENT", description: "Collection page to easily check contents and export them. Collection section in the exhibition management to a comprehensive view." },
-      { title: "TASK ASSIGNMENT & TRACKING", description: "Project overview for optimal management of many events." },
-      { title: "SWITCHING COSTS REDUCTION", description: "AI utilize conversation transcription to instantly detect tasks with a single click and be directed to the corresponding page." }
-    ],
     userInsights: {
       benefitsImage: "https://github.com/Lumystik/PortfolioLucia/blob/24c105399d5c5b7459ff928e9b9548627bc99a06/images/museon_userbenefits.png?raw=true",
       insightsImage: "https://github.com/Lumystik/PortfolioLucia/blob/24c105399d5c5b7459ff928e9b9548627bc99a06/images/museon_userinsights.png?raw=true"
@@ -80,7 +73,7 @@ const projectsData: Record<string, any> = {
  
       ]
     },
-    interfaceImage2:"https://github.com/Lumystik/PortfolioLucia/blob/e50bec9d9dc9aa5e35694c9f84a10a35a2f1a4a5/images/museon_finalinterface.mp4?raw=true",
+    interfaceImage:"?raw=true",
     takeaways: "We solved the complexity of creating a smooth experience for small museum staff, enabling them to develop a better experience for visitors. By developing an all-in-one software, we streamlined the workflow and optimized current museum resources.",
     interfaceImage: "",
     nextProject: {
@@ -901,7 +894,7 @@ export function ProjectDetail() {
                 ) : (
                   <iframe
                     className="w-full h-full border-none block"
-                    src={project.interfaceImage2}
+                src={project.interfaceImage2}
                     allowFullScreen={true}
                     onLoad={() => setLoaded(true)}
                   />
