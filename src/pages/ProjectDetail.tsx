@@ -716,7 +716,7 @@ export function ProjectDetail() {
           </section>
         )}
 
-        {/* 5B. User Insights */}
+        {/* 5B. User Insightsk */}
         {(project.userInsights || project.userInsightsCards) && (
           <section className="py-16 md:py-20 w-full bg-[#FDFBF7] text-[#131313]">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-12">
