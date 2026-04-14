@@ -915,7 +915,7 @@ export function ProjectDetail() {
                     />
                   </div>
                        <div className="flex flex-col gap-1">
-                      <h4 className="text-lg font-bold uppercase text-white">{func.title}</h4>
+                      <h4 className="text-lg font-bold uppercase text-center text-white">{func.title}</h4>
                       <p className="text-sm text-white leading-relaxed text-center">{func.description}</p>
                     </div>
                   </motion.div>
