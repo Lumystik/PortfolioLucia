@@ -39,12 +39,12 @@ const projectsData: Record<string, any> = {
         {
           title: "ALEX: THE CURATOR & MANAGER",
           description: "Role: Curator, Education, Office of the President, Guide, Ticket and Relations.\nDrivers: Contributing to cultural education, personal interest in the subject matter.\nEnvironment: Museum office.\nNeeds: Planning, team collaboration, task management.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/d74b8826072feaaf424171e82b01285b00a9abf0/images/alexx_museon.png?raw=true"
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/1f47ffc60c8aed64b11e2d796a1dcf14cb0afc69/images/alexx_museon.png?raw=true"
         },
         {
           title: "MARK: THE INTERN",
           description: "Role: Intern.\nDrivers: Learning and gaining experience in museum operations, impressing supervisors, contributing effectively during the visit.\nEnvironment: Home/On-site.\nNeeds: Clear task assignment, accessibility, collection lists.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/d74b8826072feaaf424171e82b01285b00a9abf0/images/mark_museon.png?raw=true"
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/1f47ffc60c8aed64b11e2d796a1dcf14cb0afc69/images/mark_museon.png?raw=true"
         }
       ],
       conclusion: "Both roles require a centralized dashboard, shared calendar, project tracking, and collection management to reduce switching costs."
@@ -774,7 +774,34 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
-
+   {/* 13. Key Functions */}
+        {project.keyFunctions && (
+          <section className="py-16 md:py-20 w-full bg-black text-white">
+            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
+              <div className="flex flex-col gap-4 max-w-3xl">
+                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-white">Key Functions</h3>
+                <p className="text-lg md:text-xl leading-relaxed text-gray-300">{project.keyFunctions.description}</p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {project.keyFunctions.functions.map((func: any, idx: number) => (
+                  <motion.div 
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
+                    className="flex flex-col gap-4 text-white p-5 rounded-2xl shadow-sm"
+                  >
+                   <div className="w-full h-full rounded-2xl overflow-hidden flex items-center justify-center">
+                    <img 
+                      src={func.image} 
+                      alt={func.title} 
+                      className="w-full h-full md:w-4/5 md:h-4/5 object-contain group-hover:scale-105 transition-transform duration-700 ease-out" 
+                    />
+                  </div>
+                       <div className="flex flex-col gap-1">
+                      <h4 className="text-lg font-bold uppercase text-white">{func.title}</h4>
+                      <p className="text-sm text-gray-600 leading-relaxed">{func.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
         {/* 11. Key Features */}
         {project.keyFeatures && (
           <section className="py-16 md:py-20 w-full bg-white">
@@ -817,30 +844,7 @@ export function ProjectDetail() {
           </section>
         )}
 
-        {/* 13. Key Functions */}
-        {project.keyFunctions && (
-          <section className="py-16 md:py-20 w-full bg-black text-white">
-            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
-              <div className="flex flex-col gap-4 max-w-3xl">
-                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-white">Key Functions</h3>
-                <p className="text-lg md:text-xl leading-relaxed text-gray-300">{project.keyFunctions.description}</p>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {project.keyFunctions.functions.map((func: any, idx: number) => (
-                  <motion.div 
-                    key={idx}
-                    initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
-                    className="flex flex-col gap-4 bg-white text-[#131313] p-5 rounded-2xl shadow-sm"
-                  >
-                    <div className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-out rounded-2xl overflow-hidden">
-                      <img src={func.image} alt={func.title} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-out" />
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <h4 className="text-lg font-bold uppercase text-[#131313]">{func.title}</h4>
-                      <p className="text-sm text-gray-600 leading-relaxed">{func.description}</p>
-                    </div>
-                  </motion.div>
-                ))}
+     
               </div>
             </div>
           </section>
