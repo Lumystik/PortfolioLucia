@@ -788,53 +788,7 @@ export function ProjectDetail() {
           </section>
         )}
 
-{project.branding && (
-  <>
-    <section className="py-20 bg-white w-full">
-      <div className="max-w-7xl mx-auto px-6 text-center">
-        <h3 className="text-4xl md:text-5xl font-bold uppercase mb-6 text-[#131313]">
-          Building the Brand
-        </h3>
-        <p className="text-lg md:text-xl max-w-2xl mx-auto leading-relaxed text-[#131313]">
-          {project.branding.description}
-        </p>
-      </div>
-    </section>
 
-    {project.branding.shapes && (
-      <div className="relative w-full h-[200px] my-10 overflow-hidden">
-        {project.branding.shapes.map((shape: any, idx: number) => (
-          <div
-            key={idx}
-            className="absolute rounded-full"
-            style={{
-              backgroundColor: shape.color,
-              width: `${shape.size}px`,
-              height: `${shape.size}px`,
-              left: shape.x,
-              top: shape.y,
-              transform: "translate(-50%, -50%)",
-              opacity: shape.opacity ?? 1,
-              filter: `blur(${shape.blur ?? 0}px)`
-            }}
-          />
-        ))}
-      </div>
-    )}
-
-    {project.branding.images?.[0] && (
-      <section className="w-full mb-20 px-6">
-        <div className="max-w-7xl mx-auto flex justify-center">
-          <img
-            src={project.branding.images[0]}
-            alt="Branding logo"
-            className="w-full max-w-md md:max-w-lg h-auto object-contain"
-          />
-        </div>
-      </section>
-    )}
-  </>
-)}
 {/* --- BRANDING SECTION --- */}
         {project.branding && (
           <div className="bg-white">
@@ -900,7 +854,7 @@ export function ProjectDetail() {
             {project.branding.featuresImage && (
               <section className="py-16 border-t border-gray-50">
                 <div className="max-w-7xl mx-auto px-6 flex justify-between items-center gap-8 flex-wrap">
-                  <img  src={project.branding.logoImage} />
+                  <img  src={project.branding.featuresImage} />
                 </div>
               </section>
             )}
