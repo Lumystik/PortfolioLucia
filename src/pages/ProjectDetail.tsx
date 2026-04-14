@@ -15,7 +15,6 @@ const projectsData: Record<string, any> = {
     role: "UX Research, Branding, UX/UI Design",
     team: "Martina Braidotti, Lucia Medina, Ilario Pedone, Agnese Rosselli, Mark Waisara",
     prototypeLink: "https://www.figma.com/proto/16viMWZsHOU9SkmpbSpTd5/FINAL-UI-spaced?node-id=2248-9671&starting-point-node-id=703%3A8427&scaling=scale-down&content-scaling=fixed&t=aO2g8BW8sOtXyiVT-1?raw=true",
-  {
     problem: "Staff at small museums often face fragmented workflows. \n\n With only 4 full-time staff managing 59 events and exhibitions a year across 6 different tools, the team is constantly stretched thin.",
     problemImage: "https://github.com/Lumystik/PortfolioLucia/blob/56aed6413b71c2bc18bd6c0dcd8054a3b546474d/images/complicatedworkflow_museon.jpg?raw=true",
     processMap: [
@@ -895,6 +894,7 @@ export function ProjectDetail() {
                     loop
                     muted
                     playsInline
+                    preload="none"
                     controlsList="nodownload"
     disablePictureInPicture
                   />
