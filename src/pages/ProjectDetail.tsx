@@ -407,28 +407,34 @@ export function ProjectDetail() {
           </div>
         </section>
         
-  {/* 3. The Problem */}
+{/* 3. The Problem */}
 {project.problem && (
-  <section className="w-full py-16 md:py-20 ">
+  <section className="w-full py-16 md:py-20">
+    <div className="max-w-7xl mx-auto px-6">
+      
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+        
+        {/* Left Column */}
+        <div className="flex flex-col justify-center py-10 md:py-16 lg:py-20">
+          <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313] mb-6">
+            The Problem
+          </h3>
 
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16>
-      <div className="p-10 md:p-16 lg:p-24 flex flex-col justify-center">
-        <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313] mb-6">
-          The Problem
-        </h3>
-        <div className="text-lg md:text-xl font-medium leading-relaxed whitespace-pre-line text-[#131313]">
-          {project.problem}
+          <div className="text-lg md:text-xl font-medium leading-relaxed whitespace-pre-line text-[#131313]">
+            {project.problem}
+          </div>
         </div>
-      </div>
-      <div className=" p-10 md:p-16 lg:p-24 flex items-center justify-center relative overflow-hidden">
-  
-        <img 
-          src={project.problemImage || "/placeholder-phone-mockup.png"} 
-          alt="App mockup showing a runner's cheers" 
-          className="w-full  object-contain drop-shadow-2xl"
-        />
-      </div>
 
+        {/* Right Column */}
+        <div className="flex items-center justify-center py-10 md:py-16 lg:py-20 overflow-hidden">
+          <img
+            src={project.problemImage || "/placeholder-phone-mockup.png"}
+            alt="App mockup showing a runner's cheers"
+            className="w-full object-contain drop-shadow-2xl"
+          />
+        </div>
+
+      </div>
     </div>
   </section>
 )}
