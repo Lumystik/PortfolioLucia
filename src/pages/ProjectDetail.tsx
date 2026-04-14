@@ -43,13 +43,20 @@ const projectsData: Record<string, any> = {
       ],
       conclusion: "Both roles require a centralized dashboard, shared calendar, project tracking, and collection management to reduce switching costs."
     },
-    
+    branding: {
+  description: "The design system was built to be clean, accessible, and highly functional, prioritizing data visualization and task management. It includes standardized colors, buttons, dropdown menus, and calendar components.",
+  logoDescription: "We were drawn to the asterisk as a symbol of connection, and wanted to incorporate its radiating structure as a mark that points toward information, toward people, toward the institution itself.",
+  images: ["https://github.com/Lumystik/PortfolioLucia/blob/dfc97077f6303fd7953feeb6d4e1a8efdce42b2e/images/museoncolor.png?raw=true"],
+  logoImage: "https://github.com/Lumystik/PortfolioLucia/blob/ac040a0ff68481a4ef9745568ded5b5c9b484a5b/images/museonlogo.png?raw=true",       // optional
+  featuresImage: "https://github.com/Lumystik/PortfolioLucia/blob/dfc97077f6303fd7953feeb6d4e1a8efdce42b2e/images/button.png?raw=true" // optional
+},
     branding: {
       description: "The design system was built to be clean, accessible, and highly functional, prioritizing data visualization and task management. It includes standardized colors, buttons, dropdown menus, and calendar components.",
       logoDescription: "Developed as part of the Digital Design Studio.",
       images: [
-        "https://github.com/Lumystik/PortfolioLucia/blob/1a39a63649eb9c9d264d3bc7d6d76052987002ea/images/branding.png?raw=true",
-        "https://github.com/Lumystik/PortfolioLucia/blob/ac040a0ff68481a4ef9745568ded5b5c9b484a5b/images/museonlogo.png?raw=true"
+        "https://github.com/Lumystik/PortfolioLucia/blob/bb21de5827c3b80e853c7f0e4d5ec110397431d2/images/museoncolor.png?raw=true",
+    
+        "https://github.com/Lumystik/PortfolioLucia/blob/ac040a0ff68481a4ef9745568ded5b5c9b484a5b/images/museonlogo.png?raw=true",
       ]
     },
     keyFunctions: {
@@ -75,7 +82,7 @@ const projectsData: Record<string, any> = {
     },
     interfaceImage:"https://github.com/Lumystik/PortfolioLucia/blob/988251ade7a50360d870b2b630818e7291a7d458/images/museon_finalinterface%20(10).gif?raw=true",
     takeaways: "We solved the complexity of creating a smooth experience for small museum staff, enabling them to develop a better experience for visitors. By developing an all-in-one software, we streamlined the workflow and optimized current museum resources.",
-    interfaceImage: "",
+    interfaceImage: "https://github.com/Lumystik/PortfolioLucia/blob/988251ade7a50360d870b2b630818e7291a7d458/images/museon_finalinterface%20(10).gif?raw=true",
     nextProject: {
       title: "ART BEYOND DIMENSION",
       link: "/project/art-beyond-dimension",
@@ -782,27 +789,60 @@ export function ProjectDetail() {
           </section>
         )}
 
+{project.branding && (
+  <section className="py-16 md:py-20 w-full bg-white">
+    <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16">
 
-        {/* 12. Branding */}
-        {project.branding && (
-          <section className="py-16 md:py-20 w-full bg-white">
-            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
-              <div className="flex flex-col lg:flex-row gap-10 items-start">
-                <div className="lg:w-1/3 flex flex-col gap-4">
-                  <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">Building the Brand</h3>
-                  <p className="text-base leading-relaxed text-gray-600">{project.branding.description}</p>
-                </div>
-                <div className="lg:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-8">
-                  {project.branding.images.map((img: string, idx: number) => (
-                    <div key={idx} className={`w-full bg-[#F9F9F9] rounded-2xl border border-gray-100 flex items-center justify-center p-6 shadow-sm ${idx === 0 ? 'sm:col-span-2' : ''}`}>
-                      <img src={img} alt={`Branding ${idx}`} className="w-full h-auto max-h-[60vh] object-contain" />
-                    </div>
-                  ))}
-                </div>
-              </div>
+      {/* Top row: title left, description right */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+        <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">
+          Building the Brand
+        </h3>
+        <p className="text-lg leading-relaxed text-[#131313]">
+          {project.branding.description}
+        </p>
+      </div>
+
+      {/* Branding images stacked full width */}
+      {project.branding.images && (
+        <div className="flex flex-col gap-8">
+          {project.branding.images.map((img: string, idx: number) => (
+            <div key={idx} className="w-full bg-[#F9F9F9] rounded-2xl flex items-center justify-center p-6">
+              <img src={img} alt={`Branding ${idx}`} className="w-full h-auto max-h-[60vh] object-contain" />
             </div>
-          </section>
-        )}
+          ))}
+        </div>
+      )}
+
+      {/* Logo section: text left, image right */}
+      {(project.branding.logoDescription || project.branding.logoImage) && (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          {project.branding.logoDescription && (
+            <div className="flex flex-col gap-3">
+              <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">Logo Design</h4>
+              <p className="text-base leading-relaxed text-[#131313]">
+                {project.branding.logoDescription}
+              </p>
+            </div>
+          )}
+          {project.branding.logoImage && (
+            <div className="w-full bg-[#F9F9F9] rounded-2xl flex items-center justify-center p-6">
+              <img src={project.branding.logoImage} alt="Logo" className="w-full h-auto max-h-[40vh] object-contain" />
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Features image full width */}
+      {project.branding.featuresImage && (
+        <div className="w-full bg-[#F9F9F9] rounded-2xl flex items-center justify-center p-6">
+          <img src={project.branding.featuresImage} alt="Features" className="w-full h-auto max-h-[60vh] object-contain" />
+        </div>
+      )}
+
+    </div>
+  </section>
+)}
         
 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
   {project.keyFunctions.functions.map((func: any, idx: number) => (
