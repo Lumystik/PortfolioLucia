@@ -867,7 +867,7 @@ export function ProjectDetail() {
                   <img 
                     src={project.branding.featuresImage} 
                     alt="Feature" 
-                    className="w-full h-auto max-w-1xl mx-auto object-contain" 
+                    className="w-full h-auto max-w-3xl mx-auto object-contain" 
                   />
                 </div>
               </section>
