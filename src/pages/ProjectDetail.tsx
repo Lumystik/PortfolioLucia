@@ -440,7 +440,7 @@ export function ProjectDetail() {
           <img
             src={project.problemImage || "/placeholder-phone-mockup.png"}
             alt="The Problem Illustration"
-            className="w-full max-w-[350px] object-cover drop-shadow-xl"
+            className="w-full object-cover drop-shadow-xl"
           />
         </div>
 
