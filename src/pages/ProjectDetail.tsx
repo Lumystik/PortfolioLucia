@@ -1011,19 +1011,22 @@ export function ProjectDetail() {
           </section>
         )}
 
-        {/* 15. Banner Quote */}
+       {/* 15. Banner Quote */}
         {project.bannerQuote && (
           <section className="py-16 md:py-20 relative w-full h-[50vh] flex items-center justify-center">
+            {/* Background Image Logic */}
             {project.bannerImage && (
               <div className="absolute inset-0 z-0">
-                <img
-                  src={project.bannerImage}
-                  alt="Banner"
-                  className="w-full h-full object-cover"
+                <img 
+                  src={project.bannerImage} 
+                  alt="Banner" 
+                  className="w-full h-full object-cover" 
                 />
                 <div className="absolute inset-0 bg-black/40" />
               </div>
             )}
+            
+            {/* Foreground Text Logic */}
             <div className="relative z-10 w-full max-w-7xl mx-auto px-6 text-left text-white">
               <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-tight max-w-4xl leading-tight">
                 "{project.bannerQuote}"
