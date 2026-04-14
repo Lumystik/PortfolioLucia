@@ -23,7 +23,26 @@ const projectsData: Record<string, any> = {
       { phase: "Develop", steps: ["User test results", "Design system", "Prototype"] }
     ],
     howMightWe: [ "solve the complexity of creating a smooth experience for small museum staff?", "streamline the workflow and improve the management of different areas of the institution?", "optimize the current museum resources to help staff develop a better experience for visitors?" ],
-  userInsightsCards: [
+  ideation: {
+ question: "How can we build a seamless workflow that maximizes museum staff efficiency? How can the platform adapt to different roles while maintaining a unified database?",
+  heroFlow: "https://github.com/Lumystik/PortfolioLucia/blob/f8b832c9f326ed2f6d2fd32515316ec56fb143fa/images/workflow_museon.png?raw=true",
+  heroFlowCaption: Alex Hero Flow: Organizing a new temporary exhibition.",
+  wireframes: [
+    {
+      image: "https://images.squarespace-cdn.com/content/v1/6709d707e5d31024ea0b5849/24d4733c-0908-4809-b50d-3464c84ddeab/Run+Details+After+-+Supporter+v3.png",
+      caption: "Wireframe 1: Supporter Dashboard"
+    },
+    {
+      image: "https://images.squarespace-cdn.com/content/v1/6709d707e5d31024ea0b5849/485e0617-23e0-4624-b9ce-52ac2e2c797a/Run+Details+EMPTY-+Runner+v2.png",
+      caption: "Wireframe 2: Runner Interface"
+    },
+    {
+      image: "https://images.squarespace-cdn.com/content/v1/6709d707e5d31024ea0b5849/f96fcf85-0563-4fd7-8dfc-0398ebb4c778/Cheer+Dashboard.png",
+      caption: "Wireframe 3: Global Tracking"
+    }
+  ]
+},
+    userInsightsCards: [
   {
     title: "INTEGRATION IS ESSENTIAL",
     description: "Small museum staff emphasized the critical need for a 'Complete' system. Having an 'All-in-one' platform eliminated the mental fatigue of switching between separate tools, ensuring that team collaboration remained centralized and transparent."
@@ -611,6 +630,82 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
+
+  {/* --- 11. IDEATION SECTION --- */}
+{project.ideation && (
+  <section className="py-16 md:py-24 w-full bg-white">
+    <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16">
+      
+      {/* Header: Title and Question */}
+      <div className="flex flex-col gap-8 max-w-4xl">
+        <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">
+          Ideation
+        </h3>
+        <p className="text-xl md:text-2xl leading-relaxed text-gray-800 font-medium">
+          {project.ideation.question}
+        </p>
+      </div>
+
+      {/* 1. HERO FLOW (One Large Image) */}
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="flex flex-col gap-6"
+      >
+        <div className="w-full bg-[#F9F9F9] p-6 md:p-12 rounded-2xl border border-gray-100">
+          <img 
+            src={project.ideation.heroFlow} 
+            alt="Hero Flow" 
+            className="w-full h-auto object-contain max-w-5xl mx-auto" 
+          />
+        </div>
+        <p className="text-xs md:text-sm text-gray-400 font-bold uppercase tracking-widest text-center">
+          {project.ideation.heroFlowCaption}
+        </p>
+      </motion.div>
+
+      {/* 2. WIREFRAMES (3 Column Grid on Desktop, 1 on Mobile) */}
+      <div className="bg-[#FFF4E6] p-8 md:p-16 rounded-[2rem] flex flex-col gap-12">
+        <div className="flex flex-col gap-2">
+            <h4 className="text-sm font-bold uppercase tracking-widest opacity-60">Laying the Foundation</h4>
+            <p className="text-lg font-bold">Initial Wireframe Iterations</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16">
+          {project.ideation.wireframes.map((wire: any, idx: number) => (
+            <motion.div 
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="flex flex-col gap-6"
+            >
+              <div className="w-full aspect-[9/19] rounded-xl overflow-hidden shadow-xl bg-white">
+                <img 
+                  src={wire.image} 
+                  alt={wire.caption} 
+                  className="w-full h-full object-cover" 
+                />
+              </div>
+              <div className="flex flex-col gap-2 text-center">
+                <p className="text-sm font-bold uppercase tracking-tight text-[#131313]">
+                  {wire.caption.split(':')[0]}
+                </p>
+                <p className="text-xs text-gray-600 leading-tight px-4">
+                  {wire.caption.split(':')[1]}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </section>
+)}
+        
         {/* 10. Pillars / Scenarios (V2 Layout) */}
         {project.pillars2 && project.pillars2.length > 0 && (
           <section className="py-16 md:py-20 w-full bg-white">
