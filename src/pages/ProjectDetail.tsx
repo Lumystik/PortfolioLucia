@@ -895,6 +895,8 @@ export function ProjectDetail() {
                     loop
                     muted
                     playsInline
+                    controlsList="nodownload"
+    disablePictureInPicture
                   />
                 ) : (
                   <iframe
