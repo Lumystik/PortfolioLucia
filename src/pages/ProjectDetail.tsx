@@ -20,7 +20,7 @@ const projectsData: Record<string, any> = {
       { phase: "Define", steps: ["Design brief", "Personas & scenarios", "Heroflow & wireflow"] },
       { phase: "Develop", steps: ["User test results", "Design system", "Prototype"] }
     ],
-    researchObjectives: "There is a pressing need to effectively handle the limited human resources in the museum, as they are frequently overwhelmed by the workload at hand.\n\nMuseums need to manage several exhibitions and events per year, collaborating with external partners, donors and institutions. They need an all-in-one platform to facilitate access to functions already in use, displaying them differently according to staff role and responsibility.",
+    problem:"With only 4 full-time staff managing 59 events and exhibitions a year across 6 different tools, the team is constantly stretched thin \n\nMuseums need to manage several exhibitions and events per year, collaborating with external partners, donors and institutions. They need an all-in-one platform to facilitate access to functions already in use, displaying them differently according to staff role and responsibility.",
     howMightWe: [ "solve the complexity of creating a smooth experience for small museum staff?", "streamline the workflow and improve the management of different areas of the institution?", "optimize the current museum resources to help staff develop a better experience for visitors?" ],
       keyFeatures: [
       
@@ -412,22 +412,90 @@ export function ProjectDetail() {
           </div>
         </section>
         
-        {/* 3. The Problem */}
-        {project.problem && (
+  {/* 3. The Problem */}
+{project.problem && (
+  <section className="w-full">
+    {/* Using a 2-column grid. On smaller screens (mobile), it stacks in 1 column. 
+      On large screens (lg), it splits 50/50.
+    */}
+    <div className="grid grid-cols-1 lg:grid-cols-2">
+      
+      {/* Left Column: Title & Text */}
+      {/* Note: I've added the approximate hex color from your screenshot. Adjust as needed! */}
+      <div className="bg-[#cadf3f] p-10 md:p-16 lg:p-24 flex flex-col justify-center">
+        <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313] mb-6">
+          The Problem
+        </h3>
+        {/* If your text contains HTML tags like <strong> for the bolding in the mockup, 
+            you might need to use dangerouslySetInnerHTML. Otherwise, this renders plain text. */}
+        <div className="text-lg md:text-xl font-medium leading-relaxed whitespace-pre-line text-[#131313]">
+          {project.problem}
+        </div>
+      </div>
+
+      {/* Right Column: Image */}
+      <div className="bg-[#f5ead7] p-10 md:p-16 lg:p-24 flex items-center justify-center relative overflow-hidden">
+        {/* Replace the src with your actual image variable or path */}
+        <img 
+          src={project.problemImage || "/placeholder-phone-mockup.png"} 
+          alt="App mockup showing a runner's cheers" 
+          className="w-full max-w-[350px] object-contain drop-shadow-2xl"
+        />
+      </div>
+
+    </div>
+  </section>
+)}
+        
+        {/* 4. Research Objectives & Insights */}
+        {(project.researchObjectives || project.researchInsights) && (
           <section className="py-16 md:py-20 w-full bg-white">
-            <div className="max-w-7xl mx-auto px-6">
+            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16 md:gap-24">
+              
+              {project.researchObjectives && (
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
                   <div className="lg:col-span-4">
                     <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">
-                      The Problem
+                      Research<br />Objectives
                     </h3>
                   </div>
+
                   <div className="lg:col-span-8">
-                    <div className="text-lg md:text-xl font-bold leading-relaxed whitespace-pre-line text-gray-800">
-                      {project.problem}
-                    </div>
+                    {Array.isArray(project.researchObjectives) ? (
+                      <ul className="flex flex-col gap-6">
+                        {project.researchObjectives.map((line: string, idx: number) => (
+                          <li key={idx} className="flex items-start gap-3 text-lg md:text-xl text-gray-800">
+                            <span className="text-[#131313] font-bold select-none mt-0.5">•</span>
+                            <span className="leading-relaxed">{line}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <div className="text-lg md:text-xl leading-relaxed whitespace-pre-line text-gray-800">
+                        {project.researchObjectives}
+                      </div>
+                    )}
                   </div>
                 </div>
+              )}
+
+              {project.researchInsights && (
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+                  {project.researchInsights.map((insight: any, idx: number) => (
+                    <motion.div 
+                      key={idx}
+                      initial={{ opacity: 0, y: 20 }} 
+                      whileInView={{ opacity: 1, y: 0 }} 
+                      viewport={{ once: true }} 
+                      transition={{ duration: 0.8, delay: idx * 0.1 }}
+                      className="flex flex-col gap-3 bg-[#FAF9F6] p-8 rounded-xl h-full"
+                    >
+                      <h4 className="text-base font-bold uppercase tracking-wide text-[#131313]">{insight.title}</h4>
+                      <p className="text-base text-gray-700 leading-relaxed whitespace-pre-line">{insight.description}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              )}
             </div>
           </section>
         )}
@@ -500,58 +568,6 @@ export function ProjectDetail() {
           </section>
         )}
 
-        {/* 4. Research Objectives & Insights */}
-        {(project.researchObjectives || project.researchInsights) && (
-          <section className="py-16 md:py-20 w-full bg-white">
-            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16 md:gap-24">
-              
-              {project.researchObjectives && (
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-                  <div className="lg:col-span-4">
-                    <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">
-                      Research<br />Objectives
-                    </h3>
-                  </div>
-
-                  <div className="lg:col-span-8">
-                    {Array.isArray(project.researchObjectives) ? (
-                      <ul className="flex flex-col gap-6">
-                        {project.researchObjectives.map((line: string, idx: number) => (
-                          <li key={idx} className="flex items-start gap-3 text-lg md:text-xl text-gray-800">
-                            <span className="text-[#131313] font-bold select-none mt-0.5">•</span>
-                            <span className="leading-relaxed">{line}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <div className="text-lg md:text-xl leading-relaxed whitespace-pre-line text-gray-800">
-                        {project.researchObjectives}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              )}
-
-              {project.researchInsights && (
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
-                  {project.researchInsights.map((insight: any, idx: number) => (
-                    <motion.div 
-                      key={idx}
-                      initial={{ opacity: 0, y: 20 }} 
-                      whileInView={{ opacity: 1, y: 0 }} 
-                      viewport={{ once: true }} 
-                      transition={{ duration: 0.8, delay: idx * 0.1 }}
-                      className="flex flex-col gap-3 bg-[#FAF9F6] p-8 rounded-xl h-full"
-                    >
-                      <h4 className="text-base font-bold uppercase tracking-wide text-[#131313]">{insight.title}</h4>
-                      <p className="text-base text-gray-700 leading-relaxed whitespace-pre-line">{insight.description}</p>
-                    </motion.div>
-                  ))}
-                </div>
-              )}
-            </div>
-          </section>
-        )}
 
         {/* 6. Target Users */}
         {project.targetUsers && (
