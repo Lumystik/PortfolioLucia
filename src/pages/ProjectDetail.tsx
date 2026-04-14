@@ -862,12 +862,8 @@ export function ProjectDetail() {
             {project.branding.featuresImage && (
               <section className="py-16 border-t border-gray-50">
                  <div className="flex flex-col gap-6">
-                  <h4 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-[#131313]">
-                     Buttons
-                    </h4>
-                    </div>
                 <div className="max-w-6xl mx-auto px-6">
-                  <img src={project.branding.featuresImage} alt="Feature" className="w-full h-auto max-w-3xl mx-auto object-contain" />
+                  <img src={project.branding.featuresImage} alt="Feature" className="w-full h-auto max-w-2xl mx-auto object-contain" />
                 </div>
               </section>
             )}
