@@ -789,10 +789,9 @@ export function ProjectDetail() {
         )}
 
 
-{/* --- BRANDING SECTION --- */}
+{/* --- 12. BRANDING SECTION --- */}
         {project.branding && (
           <div className="bg-white">
-            {/* 1. Building the Brand: Left Aligned Title + Description */}
             <section className="py-16 md:py-20">
               <div className="max-w-7xl mx-auto px-6">
                 <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313] mb-8">
@@ -803,10 +802,8 @@ export function ProjectDetail() {
                 </p>
               </div>
             </section>
-
-            {/* 2. Colors/Shapes - Centered and Complete */}
             {project.branding.shapes && (
-              <section className="py-10 overflow-visible">
+              <section className="py-10">
                 <div className="max-w-7xl mx-auto px-6 flex justify-center items-center gap-6 flex-wrap">
                   {project.branding.shapes.map((shape: any, idx: number) => (
                     <div
@@ -825,11 +822,9 @@ export function ProjectDetail() {
               </section>
             )}
 
-            {/* 3. Logo Design: 2-Column Desktop Layout */}
             {(project.branding.logoDescription || project.branding.logoImage) && (
               <section className="py-16 md:py-24">
                 <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                  {/* Left Column: Text */}
                   <div className="flex flex-col gap-6">
                     <h4 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-[#131313]">
                       Logo Design
@@ -838,7 +833,6 @@ export function ProjectDetail() {
                       {project.branding.logoDescription}
                     </p>
                   </div>
-                  {/* Right Column: Logo Image (Smaller) */}
                   <div className="flex justify-center md:justify-end">
                     <img
                       src={project.branding.logoImage}
@@ -850,23 +844,24 @@ export function ProjectDetail() {
               </section>
             )}
 
-            {/* 4. Feature Icons - Full Width Grid */}
             {project.branding.featuresImage && (
               <section className="py-16 border-t border-gray-50">
                 <div className="max-w-7xl mx-auto px-6 flex justify-between items-center gap-8 flex-wrap">
-                  <img  src={project.branding.featuresImage} />
+                  <img src={project.branding.featuresImage} alt="Feature" className="h-12 md:h-16 w-auto object-contain opacity-80" />
+                  <img src={project.branding.featuresImage} alt="Feature" className="h-12 md:h-16 w-auto object-contain opacity-80" />
+                  <img src={project.branding.featuresImage} alt="Feature" className="h-12 md:h-16 w-auto object-contain opacity-80" />
                 </div>
               </section>
             )}
           </div>
         )}
 
-        {/* 13. Key Functions: 2-Column Header Layout */}
+        {/* --- 13. KEY FUNCTIONS SECTION --- */}
         {project.keyFunctions && (
           <section className="py-16 md:py-24 w-full bg-black text-white">
             <div className="max-w-7xl mx-auto px-6">
-              {/* Top Header: 2 Columns */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mb-20">
+              {/* Header: 2 Columns */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mb-16">
                 <div className="flex flex-col gap-6">
                   <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-white">
                     Key Functions
@@ -874,10 +869,6 @@ export function ProjectDetail() {
                   <p className="text-lg md:text-xl leading-relaxed text-gray-300">
                     {project.keyFunctions.description}
                   </p>
-                </div>
-                {/* Optional: You can put a secondary graphic or leave this side for balance */}
-                <div className="hidden md:flex justify-end">
-                  <div className="w-32 h-1 bg-[#E2F0A4]/20 rounded-full mt-6"></div>
                 </div>
               </div>
 
@@ -914,119 +905,15 @@ export function ProjectDetail() {
           </section>
         )}
 
-            {/* 4. Feature Icons/Images */}
-            {project.branding.featuresImage && (
-              <section className="flex justify-center gap-8 md:gap-16 py-20 flex-wrap px-6 bg-white">
-                <img
-                  src={project.branding.featuresImage}
-                  alt="Feature 1"
-                  className="w-20 md:w-28 h-auto object-contain"
-                />
-                <img
-                  src={project.branding.featuresImage}
-                  alt="Feature 2"
-                  className="w-20 md:w-28 h-auto object-contain"
-                />
-                <img
-                  src={project.branding.featuresImage}
-                  alt="Feature 3"
-                  className="w-20 md:w-28 h-auto object-contain"
-                />
-              </section>
-            )}
-          </>
-        )}
-
-        {/* 13. Key Functions */}
-        {project.keyFunctions && (
-          <section className="py-16 md:py-20 w-full bg-black text-white">
-            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
-              <div className="flex flex-col gap-4 max-w-3xl">
-                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-white">
-                  Key Functions
-                </h3>
-                <p className="text-lg md:text-xl leading-relaxed text-gray-300">
-                  {project.keyFunctions.description}
-                </p>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {project.keyFunctions.functions.map((func: any, idx: number) => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: idx * 0.1 }}
-                    className="group flex flex-col gap-4 text-white p-5 rounded-2xl"
-                  >
-                    <div className="w-full h-48 md:h-64 rounded-2xl overflow-hidden flex items-center justify-center bg-[#1a1a1a]">
-                      <img
-                        src={func.image}
-                        alt={func.title}
-                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-out"
-                      />
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <h4 className="text-lg font-bold uppercase text-center text-white">
-                        {func.title}
-                      </h4>
-                      <p className="text-sm text-gray-400 leading-relaxed text-center">
-                        {func.description}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* 11. Key Features */}
-        {project.keyFeatures && (
-          <section className="py-16 md:py-20 w-full bg-white">
-            <div className="max-w-7xl mx-auto px-6">
-              <h3 className="mb-8 md:mb-10 text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">
-                Key Features
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-                {project.keyFeatures.map((feature: any, idx: number) => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: idx * 0.1 }}
-                    className="flex flex-col gap-2 text-left"
-                  >
-                    <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">
-                      {feature.title}
-                    </h4>
-                    <p className="text-lg text-gray-600 leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-
-       {/* 15. Banner Quote */}
+        {/* --- 15. BANNER QUOTE --- */}
         {project.bannerQuote && (
           <section className="py-16 md:py-20 relative w-full h-[50vh] flex items-center justify-center">
-            {/* Background Image Logic */}
             {project.bannerImage && (
               <div className="absolute inset-0 z-0">
-                <img 
-                  src={project.bannerImage} 
-                  alt="Banner" 
-                  className="w-full h-full object-cover" 
-                />
+                <img src={project.bannerImage} alt="Banner" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-black/40" />
               </div>
             )}
-            
-            {/* Foreground Text Logic */}
             <div className="relative z-10 w-full max-w-7xl mx-auto px-6 text-left text-white">
               <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-tight max-w-4xl leading-tight">
                 "{project.bannerQuote}"
@@ -1035,7 +922,7 @@ export function ProjectDetail() {
           </section>
         )}
 
-        {/* 16. Takeaways */}
+        {/* --- 16. TAKEAWAYS --- */}
         {project.takeaways && (
           <section className="py-16 md:py-20 w-full bg-black text-white">
             <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -1053,21 +940,19 @@ export function ProjectDetail() {
           </section>
         )}
 
-        {/* 17. Next Project */}
+        {/* --- 17. NEXT PROJECT --- */}
         {project.nextProject && (
           <section className="relative w-full h-[60vh] md:h-[50vh] overflow-hidden group">
-            <img
-              src={project.nextProject.image}
-              alt="Next Project"
+            <img 
+              src={project.nextProject.image} 
+              alt="Next Project" 
               className="absolute inset-0 w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-black/60 transition-opacity duration-500 group-hover:bg-black/40" />
             <div className="relative z-10 h-full max-w-7xl mx-auto px-6 flex flex-col justify-center">
-              <span className="text-xs font-mono uppercase tracking-[0.2em] text-gray-300 mb-4 block">
-                Next Project
-              </span>
-              <Link
-                to={project.nextProject.link}
+              <span className="text-xs font-mono uppercase tracking-[0.2em] text-gray-300 mb-4 block">Next Project</span>
+              <Link 
+                to={project.nextProject.link} 
                 className="text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter text-white hover:text-gray-200 inline-block"
               >
                 {project.nextProject.title}
