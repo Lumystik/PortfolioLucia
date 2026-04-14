@@ -865,6 +865,38 @@ export function ProjectDetail() {
     </motion.div>
   ))}
 </div>
+  {/* 13. Key Functions */}
+        {project.keyFunctions && (
+          <section className="py-16 md:py-20 w-full bg-black text-white">
+            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
+              <div className="flex flex-col gap-4 max-w-3xl">
+                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-white">Key Functions</h3>
+                <p className="text-lg md:text-xl leading-relaxed text-gray-300">{project.keyFunctions.description}</p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {project.keyFunctions.functions.map((func: any, idx: number) => (
+                  <motion.div 
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
+                    className="group flex flex-col gap-4 text-white p-5 rounded-2xl shadow-sm"
+                  >
+                   <div className="w-full h-full rounded-2xl overflow-hidden flex items-center justify-center">
+                    <img 
+                      src={func.image} 
+                      alt={func.title} 
+                      className="w-full h-full md:w-4/5 md:h-4/5 object-contain group-hover:scale-105 transition-transform duration-700 ease-out" 
+                    />
+                  </div>
+                       <div className="flex flex-col gap-1">
+                      <h4 className="text-lg font-bold uppercase text-white">{func.title}</h4>
+                      <p className="text-sm text-white leading-relaxed text-center">{func.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div> {/* ADDED: Closing grid div */}
+            </div> {/* ADDED: Closing container div */}
+          </section>
+        )}
 
         {/* 11. Key Features */}
         {project.keyFeatures && (
@@ -878,7 +910,7 @@ export function ProjectDetail() {
                     initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
                     className="flex flex-col gap-2 text-left"
                   >
-                    <h4 className="text-xl font-bold uppercase tracking-tight text-white]">{feature.title}</h4>
+                    <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">{feature.title}</h4>
                     <p className="text-lg text-white leading-relaxed">{feature.description}</p>
                   </motion.div>
                 ))}
@@ -886,60 +918,6 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
-
-
-
-    {/* 14. Interface Image / Prototype Embed */}
-    {(project.interfaceImage || project.interfaceImage2) && (
-      <section className="py-16 md:py-20 w-full bg-white">
-        <div className="max-w-5xl mx-auto px-6">
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }} 
-            whileInView={{ opacity: 1, y: 0 }} 
-            viewport={{ once: true }} 
-            transition={{ duration: 0.8 }}
-            className="w-full flex items-center justify-center"
-          >
-            {project.interfaceImage2 ? (
-              <div className="w-full max-w-5xl relative aspect-video rounded-2xl overflow-hidden shadow-2xl border border-gray-100 bg-[#0A0A0A]">
-          
-
-                {/* Conditionally render Video or Iframe */}
-                {project.interfaceImage2.match(/\.(mp4|webm|ogg)$/i) ? (
-                  <video
-                  className="w-full h-full object-cover block"
-                    src={project.interfaceImage2}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    preload="metadata"
-                    controlsList="nodownload"
-                    disablePictureInPicture
-                  />
-                ) : (
-                  <iframe
-                    className="w-full h-full border-none block"
-                src={project.interfaceImage2}
-                    allowFullScreen={true}
-                    onLoad={() => setLoaded(true)}
-                  />
-                )}
-              </div>
-            ) : (
-              <div className="w-full rounded-2xl overflow-hidden shadow-xl border border-gray-100 bg-[#000000] p-6 flex items-center justify-center">
-                <img 
-                  src={project.interfaceImage} 
-                  alt={`${project.title} Interface`} 
-                  className="w-full h-auto max-h-[50vh] object-contain" 
-                />
-              </div>
-            )}
-          </motion.div>
-        </div>
-      </section>
-    )}
-
         {/* 15. Banner Quote */}
         {project.bannerQuote && (
           <section className="py-16 md:py-20 relative w-full h-[50vh] flex items-center justify-center bg-black">
