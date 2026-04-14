@@ -79,7 +79,12 @@ const projectsData: Record<string, any> = {
  
       ]
     },
-    bannerImage:"https://github.com/Lumystik/PortfolioLucia/blob/988251ade7a50360d870b2b630818e7291a7d458/images/museon_finalinterface%20(10).gif?raw=true",
+    bannerImage: "https://github.com/Lumystik/PortfolioLucia/blob/988251ade7a50360d870b2b630818e7291a7d458/images/museon_finalinterface%20(10).gif?raw=true",
+    
+    // ADD THIS BLOCK HERE:
+    finalPrototype: {
+      link: "https://www.figma.com/proto/16viMWZsHOU9SkmpbSpTd5/FINAL-UI-spaced?node-id=2248-9671&starting-point-node-id=703%3A8427&scaling=scale-down&content-scaling=fixed&t=aO2g8BW8sOtXyiVT-1?raw=true", // Put your figma or prototype link here
+    },
     takeaways: "We solved the complexity of creating a smooth experience for small museum staff, enabling them to develop a better experience for visitors. By developing an all-in-one software, we streamlined the workflow and optimized current museum resources.",
     nextProject: {
       title: "ART BEYOND DIMENSION",
@@ -903,19 +908,40 @@ export function ProjectDetail() {
           </section>
         )}
 
-        {/* --- 15. BANNER QUOTE --- */}
-        {project.bannerQuote && (
-          <section className="py-16 md:py-20 relative w-full h-[50vh] flex items-center justify-center">
-            {project.bannerImage && (
-              <div className="absolute inset-0 z-0">
-                <img src={project.bannerImage} alt="Banner" className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-black/40" />
+    {/* --- 15. FINAL PROTOTYPE SECTION --- */}
+        {project.finalPrototype && (
+          <section className="py-20 bg-white w-full">
+            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              
+              {/* Left Column: Title and Button */}
+              <div className="flex flex-col items-start gap-8">
+                <h3 className="text-4xl md:text-5xl font-bold uppercase tracking-tight text-[#131313]">
+                  Final Prototype
+                </h3>
+                
+                <a 
+                  href={project.finalPrototype.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="px-10 py-4 border border-[#131313] text-[#131313] uppercase tracking-widest text-xs font-bold hover:bg-[#131313] hover:text-white transition-all duration-300 rounded-md"
+                >
+                  View Final Version
+                </a>
               </div>
-            )}
-            <div className="relative z-10 w-full max-w-7xl mx-auto px-6 text-left text-white">
-              <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-tight max-w-4xl leading-tight">
-                "{project.bannerQuote}"
-              </h2>
+
+              {/* Right Column: The bannerImage */}
+              <div className="w-full">
+                {project.bannerImage && (
+                  <div className="rounded-2xl overflow-hidden shadow-2xl border border-gray-100">
+                    <img 
+                      src={project.bannerImage} 
+                      alt="Final Prototype Showcase" 
+                      className="w-full h-auto object-contain bg-gray-50"
+                    />
+                  </div>
+                )}
+              </div>
+
             </div>
           </section>
         )}
