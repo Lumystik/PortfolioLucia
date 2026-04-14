@@ -979,7 +979,7 @@ export function ProjectDetail() {
             <img 
               src={project.nextProject.image} 
               alt="Next Project" 
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              className="absolute inset-0 w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-black/60 transition-opacity duration-500 group-hover:bg-black/40" />
             <div className="relative z-10 h-full max-w-7xl mx-auto px-6 flex flex-col justify-center">
