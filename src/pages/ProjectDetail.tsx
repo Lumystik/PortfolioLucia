@@ -559,7 +559,7 @@ export function ProjectDetail() {
                     className="flex flex-col gap-6 bg-[#1A1A1A] border border-gray-800 p-6 rounded-2xl"
                   >
                     <div className="w-full aspect-video bg-white rounded-xl overflow-hidden">
-                      <img src={persona.image} alt={persona.title} className="w-full h-full object-cover object-[50%_10%]" />
+                      <img src={persona.image} alt={persona.title} className="w-full h-full object-cover object-[30%_10%]" />
                     </div>
                     <div className="flex flex-col gap-2">
                       <h4 className="text-xl font-bold uppercase text-white">{persona.title}</h4>
