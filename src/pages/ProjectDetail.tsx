@@ -888,15 +888,15 @@ export function ProjectDetail() {
                 {/* Conditionally render Video or Iframe */}
                 {project.interfaceImage2.match(/\.(mp4|webm|ogg)$/i) ? (
                   <video
-                    className="w-full h-full object-cover block"
+                  className="w-full h-full object-cover block"
                     src={project.interfaceImage2}
                     autoPlay
                     loop
                     muted
                     playsInline
-                    preload="none"
+                    preload="metadata"
                     controlsList="nodownload"
-    disablePictureInPicture
+                    disablePictureInPicture
                   />
                 ) : (
                   <iframe
