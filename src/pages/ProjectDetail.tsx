@@ -450,7 +450,7 @@ export function ProjectDetail() {
           <img
             src={project.problemImage || "/placeholder-phone-mockup.png"}
             alt="The Problem Illustration"
-            className="w-full object-cover drop-shadow-xl"
+            className="w-full max-w-[320px] md:max-w-md h-auto object-contain drop-shadow-2xl"
           />
         </div>
 
@@ -852,7 +852,7 @@ export function ProjectDetail() {
                     <img
                       src={project.branding.logoImage}
                       alt="Logo"
-                      className="w-full max-w-[180px] md:max-w-sm max-h-[180px] object-contain"
+                      className="w-full max-w-[280px] md:max-w-sm max-h-[280px] object-contain"
                     />
                   </div>
                 </div>
@@ -862,7 +862,7 @@ export function ProjectDetail() {
             {project.branding.featuresImage && (
               <section className="py-16 border-t border-gray-50">
                 <div className="max-w-7xl mx-auto px-6">
-                  <img src={project.branding.featuresImage} alt="Feature" className="w-full h-auto max-w-5xl mx-auto object-contain" />
+                  <img src={project.branding.featuresImage} alt="Feature" className="w-full h-auto max-w-3xl mx-auto object-contain" />
                 </div>
               </section>
             )}
@@ -896,7 +896,7 @@ export function ProjectDetail() {
                     transition={{ duration: 0.8, delay: idx * 0.1 }}
                     className="group flex flex-col gap-6"
                   >
-                    <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden flex items-center justify-center bg-[#1a1a1a] p-8">
+                    <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden flex items-center justify-center bg-[#1a1a1a] p-0">
                       <img
                         src={func.image}
                         alt={func.title}
