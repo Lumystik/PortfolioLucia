@@ -23,10 +23,20 @@ const projectsData: Record<string, any> = {
       { phase: "Develop", steps: ["User test results", "Design system", "Prototype"] }
     ],
     howMightWe: [ "solve the complexity of creating a smooth experience for small museum staff?", "streamline the workflow and improve the management of different areas of the institution?", "optimize the current museum resources to help staff develop a better experience for visitors?" ],
-    userInsights: {
-      benefitsImage: "https://github.com/Lumystik/PortfolioLucia/blob/24c105399d5c5b7459ff928e9b9548627bc99a06/images/museon_userbenefits.png?raw=true",
-      insightsImage: "https://github.com/Lumystik/PortfolioLucia/blob/24c105399d5c5b7459ff928e9b9548627bc99a06/images/museon_userinsights.png?raw=true"
-    },
+  userInsightsCards: [
+  {
+    title: "INTEGRATION IS ESSENTIAL",
+    description: "Small museum staff emphasized the critical need for a 'Complete' system. Having an 'All-in-one' platform eliminated the mental fatigue of switching between separate tools, ensuring that team collaboration remained centralized and transparent."
+  },
+  {
+    title: "SHORTCUTS DRIVE EFFICIENCY",
+    description: "Staff members are frequently multitasking on-site. The 'My Task' and 'Project' shortcuts were identified as high-value features, allowing users to perform actions 'Fast' and bypass complex navigation during high-pressure exhibition setups."
+  },
+  {
+    title: "VISIBILITY REDUCES FRICTION",
+    description: "Users expressed a strong preference for a 'Panoramic' view of the institution. The ability to see shared calendar availability at a glance removed the guesswork from team collaboration, making the management of resources feel more 'Useful' and controlled."
+  }
+],
     targetUsers: {
       description: "We identified two primary user archetypes within the museum staff ecosystem, each with distinct drivers and needs.",
       personas: [
