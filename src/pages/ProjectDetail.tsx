@@ -409,10 +409,10 @@ export function ProjectDetail() {
         
 {/* 3. The Problem */}
 {project.problem && (
-  <section className="w-full py-16 md:py-20">
+  <section className="py-16 md:py-20 w-full bg-white">
     <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16 md:gap-24">
       
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
         
         {/* Left Column */}
         <div className="flex flex-col justify-center py-10 md:py-16 lg:py-20">
