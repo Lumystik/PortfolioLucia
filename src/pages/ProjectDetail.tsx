@@ -74,17 +74,17 @@ const projectsData: Record<string, any> = {
         {
           title: "TASK & SHARED CALENDAR OVERVIEW",
           description: "See the busy and available times of people you have shared your calendar with and plan events accordingly.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/26391787e0d9077298f2f76639afcde92cfec7b1/images/calendar_museon.png?raw=true"
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/be1755ca40682fbb1c571d38f3aa37d18cc7ada8/images/calendar_museo1.png?raw=true"
         },
         {
           title: "COLLECTION MANAGEMENT",
           description: "A dedicated collection page to easily check contents, export them, and manage items for specific exhibitions.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/9105bd68639edbb8309a3dd3a5d9993d9314a1b9/images/collection_museon.png?raw=true"
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/465f291d0d01afb736e1502a28db9b14b236e818/images/collection_museon1.png?raw=true"
         },
        {
         title: "AI INTEGRATION",
         description: "AI utilizes conversation transcription to instantly detect tasks with a single click and direct users to the corresponding page.",
-        image: "https://github.com/Lumystik/PortfolioLucia/blob/ac040a0ff68481a4ef9745568ded5b5c9b484a5b/images/smart%20note%20widget.png?raw=true"
+        image: "https://github.com/Lumystik/PortfolioLucia/blob/ccd5a596d938ff18c9cd80558a2f7d7f2df76b5e/images/smartnotes_museon1.png?raw=true"
       }
  
       ]
