@@ -814,7 +814,7 @@ export function ProjectDetail() {
                   </div>
                        <div className="flex flex-col gap-1">
                       <h4 className="text-lg font-bold uppercase text-white">{func.title}</h4>
-                      <p className="text-sm text-gray-600 leading-relaxed">{func.description}</p>
+                      <p className="text-sm text-white leading-relaxed text-center">{func.description}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -836,7 +836,7 @@ export function ProjectDetail() {
                     className="flex flex-col gap-2 text-left"
                   >
                     <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">{feature.title}</h4>
-                    <p className="text-lg text-gray-600 leading-relaxed">{feature.description}</p>
+                    <p className="text-lg text-white leading-relaxed">{feature.description}</p>
                   </motion.div>
                 ))}
               </div>
