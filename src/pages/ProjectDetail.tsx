@@ -57,7 +57,6 @@ const projectsData: Record<string, any> = {
     { color: "#1600FF", size: 110, x: "35%", y: "10%"},
     { color: "#1600FF", size: 110, x: "0%", y: "10%"}
   ]
-},
     },
     keyFunctions: {
       description: "An all-in-one platform designed to reduce switching costs and improve team collaboration.",
