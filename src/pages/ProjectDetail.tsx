@@ -491,46 +491,7 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
-        
-        {/* 7. How Might We */}
-        {project.howMightWe && project.howMightWe.length > 0 && (
-          <section className="py-16 md:py-20 w-full">
-            <div className="max-w-7xl mx-auto px-6 w-full">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 w-full">
-                {/* Left Column: Title Card */}
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }} 
-                  whileInView={{ opacity: 1, y: 0 }} 
-                  viewport={{ once: true }} 
-                  transition={{ duration: 0.8 }}
-                  className="bg-black text-white p-8 md:p-12 rounded-xl flex items-center min-h-[160px] w-full"
-                >
-                  <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-white m-0">
-                    How Might We...
-                  </h3>
-                </motion.div>
-
-                {/* Right Column: Content Card(s) */}
-                <div className="flex flex-col gap-4 md:gap-6 w-full">
-                  {project.howMightWe.map((hmw: string, idx: number) => (
-                    <motion.div 
-                      key={idx}
-                      initial={{ opacity: 0, y: 20 }} 
-                      whileInView={{ opacity: 1, y: 0 }} 
-                      viewport={{ once: true }} 
-                      transition={{ duration: 0.8, delay: idx * 0.1 }}
-                      className="bg-black text-white p-8 md:p-12 rounded-xl flex items-center min-h-[160px] w-full"
-                    >
-                      <p className="text-lg md:text-xl font-medium leading-relaxed text-white">
-                        {hmw}
-                      </p>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
+     
 
         {/* 8. Process Map */}
         {project.processMap && (
@@ -589,7 +550,46 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
+   
+        {/* 7. How Might We */}
+        {project.howMightWe && project.howMightWe.length > 0 && (
+          <section className="py-16 md:py-20 w-full">
+            <div className="max-w-7xl mx-auto px-6 w-full">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 w-full">
+                {/* Left Column: Title Card */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }} 
+                  whileInView={{ opacity: 1, y: 0 }} 
+                  viewport={{ once: true }} 
+                  transition={{ duration: 0.8 }}
+                  className="bg-black text-white p-8 md:p-12 rounded-xl flex items-center min-h-[160px] w-full"
+                >
+                  <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-white m-0">
+                    How Might We...
+                  </h3>
+                </motion.div>
 
+                {/* Right Column: Content Card(s) */}
+                <div className="flex flex-col gap-4 md:gap-6 w-full">
+                  {project.howMightWe.map((hmw: string, idx: number) => (
+                    <motion.div 
+                      key={idx}
+                      initial={{ opacity: 0, y: 20 }} 
+                      whileInView={{ opacity: 1, y: 0 }} 
+                      viewport={{ once: true }} 
+                      transition={{ duration: 0.8, delay: idx * 0.1 }}
+                      className="bg-black text-white p-8 md:p-12 rounded-xl flex items-center min-h-[160px] w-full"
+                    >
+                      <p className="text-lg md:text-xl font-medium leading-relaxed text-white">
+                        {hmw}
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
         {/* 10. Pillars / Scenarios (V2 Layout) */}
         {project.pillars2 && project.pillars2.length > 0 && (
           <section className="py-16 md:py-20 w-full bg-white">
@@ -782,59 +782,6 @@ export function ProjectDetail() {
           </section>
         )}
 
-  {/* 13. Key Functions */}
-        {project.keyFunctions && (
-          <section className="py-16 md:py-20 w-full bg-black text-white">
-            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
-              <div className="flex flex-col gap-4 max-w-3xl">
-                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-white">Key Functions</h3>
-                <p className="text-lg md:text-xl leading-relaxed text-gray-300">{project.keyFunctions.description}</p>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {project.keyFunctions.functions.map((func: any, idx: number) => (
-                  <motion.div 
-                    key={idx}
-                    initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
-                    className="group flex flex-col gap-4 text-white p-5 rounded-2xl shadow-sm"
-                  >
-                   <div className="w-full h-full rounded-2xl overflow-hidden flex items-center justify-center">
-                    <img 
-                      src={func.image} 
-                      alt={func.title} 
-                      className="w-full h-full md:w-4/5 md:h-4/5 object-contain group-hover:scale-105 transition-transform duration-700 ease-out" 
-                    />
-                  </div>
-                       <div className="flex flex-col gap-1">
-                      <h4 className="text-lg font-bold uppercase text-white">{func.title}</h4>
-                      <p className="text-sm text-white leading-relaxed text-center">{func.description}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div> {/* ADDED: Closing grid div */}
-            </div> {/* ADDED: Closing container div */}
-          </section>
-        )}
-
-        {/* 11. Key Features */}
-        {project.keyFeatures && (
-          <section className="py-16 md:py-20 w-full bg-white">
-            <div className="max-w-7xl mx-auto px-6">
-              <h3 className="mb-8 md:mb-10 text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">Key Features</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-                {project.keyFeatures.map((feature: any, idx: number) => (
-                  <motion.div 
-                    key={idx}
-                    initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
-                    className="flex flex-col gap-2 text-left"
-                  >
-                    <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">{feature.title}</h4>
-                    <p className="text-lg text-white leading-relaxed">{feature.description}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
 
         {/* 12. Branding */}
         {project.branding && (
@@ -856,9 +803,51 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
+        
+<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+  {project.keyFunctions.functions.map((func: any, idx: number) => (
+    <motion.div 
+      key={idx}
+      initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
+      className="group flex flex-col items-center gap-4 text-white p-5"
+    >
+      <div className="w-full h-72 flex items-center justify-center overflow-hidden">
+        <img 
+          src={func.image} 
+          alt={func.title} 
+          className="h-full w-auto object-contain group-hover:scale-105 transition-transform duration-700 ease-out" 
+        />
+      </div>
+      <div className="flex flex-col gap-1 text-center">
+        <h4 className="text-lg font-bold uppercase text-white">{func.title}</h4>
+        <p className="text-sm text-white leading-relaxed">{func.description}</p>
+      </div>
+    </motion.div>
+  ))}
+</div>
 
-     
-          
+        {/* 11. Key Features */}
+        {project.keyFeatures && (
+          <section className="py-16 md:py-20 w-full bg-white">
+            <div className="max-w-7xl mx-auto px-6">
+              <h3 className="mb-8 md:mb-10 text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">Key Features</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                {project.keyFeatures.map((feature: any, idx: number) => (
+                  <motion.div 
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
+                    className="flex flex-col gap-2 text-left"
+                  >
+                    <h4 className="text-xl font-bold uppercase tracking-tight text-white]">{feature.title}</h4>
+                    <p className="text-lg text-white leading-relaxed">{feature.description}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+
 
     {/* 14. Interface Image / Prototype Embed */}
     {(project.interfaceImage || project.interfaceImage2) && (
