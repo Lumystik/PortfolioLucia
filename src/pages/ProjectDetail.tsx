@@ -884,16 +884,7 @@ export function ProjectDetail() {
           >
             {project.interfaceImage2 ? (
               <div className="w-full max-w-5xl relative aspect-video rounded-2xl overflow-hidden shadow-2xl border border-gray-100 bg-[#0A0A0A]">
-                
-                {/* Loading State */}
-                {!loaded && (
-                  <div className="absolute inset-0 bg-[#0A0A0A] flex flex-col items-center justify-center z-10 gap-3">
-                    <div className="animate-spin w-7 h-7 border-2 border-white/10 border-t-white/60 rounded-full" />
-                    <span className="text-white/50 text-[13px] font-sans tracking-wide">
-                      Loading prototype
-                    </span>
-                  </div>
-                )}
+          
 
                 {/* Conditionally render Video or Iframe */}
                 {project.interfaceImage2.match(/\.(mp4|webm|ogg)$/i) ? (
@@ -904,7 +895,6 @@ export function ProjectDetail() {
                     loop
                     muted
                     playsInline
-                    onLoadedData={() => setLoaded(true)}
                   />
                 ) : (
                   <iframe
