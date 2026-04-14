@@ -436,12 +436,12 @@ export function ProjectDetail() {
       </div>
 
       {/* Right Column: Image */}
-      <div className="bg-[#f5ead7] p-10 md:p-16 lg:p-24 flex items-center justify-center relative overflow-hidden">
+      <div className=" p-10 md:p-16 lg:p-24 flex items-center justify-center relative overflow-hidden">
         {/* Replace the src with your actual image variable or path */}
         <img 
           src={project.problemImage || "/placeholder-phone-mockup.png"} 
           alt="App mockup showing a runner's cheers" 
-          className="w-full max-w-[350px] object-contain drop-shadow-2xl"
+          className="w-full  object-contain drop-shadow-2xl"
         />
       </div>
 
