@@ -78,6 +78,7 @@ const projectsData: Record<string, any> = {
  
       ]
     },
+    interfaceImage2:"https://github.com/Lumystik/PortfolioLucia/blob/e50bec9d9dc9aa5e35694c9f84a10a35a2f1a4a5/images/museon_finalinterface.mp4?raw=true",
     takeaways: "We solved the complexity of creating a smooth experience for small museum staff, enabling them to develop a better experience for visitors. By developing an all-in-one software, we streamlined the workflow and optimized current museum resources.",
     interfaceImage: "",
     nextProject: {
@@ -867,85 +868,63 @@ export function ProjectDetail() {
      
           
 
-        {/* 14. Interface Image / Prototype Embed */}
-        {(project.interfaceImage || project.interfaceImage2) && (
-          <section className="py-16 md:py-20 w-full bg-white">
-            <div className="max-w-5xl mx-auto px-6">
-              <motion.div 
-                initial={{ opacity: 0, y: 40 }} 
-                whileInView={{ opacity: 1, y: 0 }} 
-                viewport={{ once: true }} 
-                transition={{ duration: 0.8 }}
-                className="w-full flex items-center justify-center"
-              >
-                {project.interfaceImage2 ? (
-                  <div className="w-full max-w-7xl">
-                    <svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto drop-shadow-2xl">
-                      <ellipse cx="450" cy="510" rx="300" ry="16" fill="rgba(0,0,0,0.13)" />
-                      <rect x="95" y="38" width="710" height="460" rx="18" fill="#D0D0D0" />
-                      <rect x="104" y="46" width="692" height="444" rx="14" fill="#1A1A1A" />
-                      <rect x="116" y="56" width="668" height="424" rx="9" fill="#0A0A0A" />
-                      <rect x="402" y="46" width="96" height="16" rx="0" fill="#1A1A1A" />
-                      <rect x="410" y="50" width="80" height="10" rx="5" fill="#111" />
-                      <circle cx="450" cy="54" r="3.5" fill="#2a2a2a" />
-                      <circle cx="450" cy="54" r="1.5" fill="#111" />
-                      <foreignObject x="116" y="56" width="668" height="424">
-                        <div
-                          xmlns="http://www.w3.org/1999/xhtml"
-                          style={{ width: '100%', height: '100%', overflow: 'hidden', borderRadius: '9px', background: '#0A0A0A', position: 'relative' }}
-                        >
-                          {!loaded && (
-                            <div style={{
-                              position: 'absolute',
-                              inset: 0,
-                              background: '#0A0A0A',
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              zIndex: 10,
-                              flexDirection: 'column',
-                              gap: '12px',
-                            }}>
-                              <div className="animate-spin" style={{
-                                width: '28px',
-                                height: '28px',
-                                border: '2px solid rgba(255,255,255,0.1)',
-                                borderTop: '2px solid rgba(255,255,255,0.6)',
-                                borderRadius: '50%',
-                              }} />
-                              <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '13px', fontFamily: 'sans-serif', letterSpacing: '0.02em' }}>
-                                Loading prototype
-                              </span>
-                            </div>
-                          )}
-
-                          <iframe
-                            style={{ border: 'none', width: '100%', height: '100%', display: 'block' }}
-                            src={project.interfaceImage2}
-                            allowFullScreen={true}
-                            onLoad={() => setLoaded(true)}
-                          />
-                        </div>
-                      </foreignObject>
-                      <rect x="110" y="494" width="680" height="9" rx="4" fill="#B8B8B8" />
-                      <rect x="110" y="497" width="680" height="5" rx="2" fill="#C8C8C8" />
-                      <rect x="80" y="500" width="740" height="14" rx="6" fill="#CBCBCB" />
-                      <rect x="80" y="508" width="740" height="6" rx="3" fill="#BBBBBB" />
-                    </svg>
-                  </div>
-                ) : (
-                  <div className="w-full rounded-2xl overflow-hidden shadow-xl border border-gray-100 bg-[#000000] p-6 flex items-center justify-center">
-                    <img 
-                      src={project.interfaceImage} 
-                      alt={`${project.title} Interface`} 
-                      className="w-full h-auto max-h-[50vh] object-contain" 
-                    />
+    {/* 14. Interface Image / Prototype Embed */}
+    {(project.interfaceImage || project.interfaceImage2) && (
+      <section className="py-16 md:py-20 w-full bg-white">
+        <div className="max-w-5xl mx-auto px-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }} 
+            whileInView={{ opacity: 1, y: 0 }} 
+            viewport={{ once: true }} 
+            transition={{ duration: 0.8 }}
+            className="w-full flex items-center justify-center"
+          >
+            {project.interfaceImage2 ? (
+              <div className="w-full max-w-5xl relative aspect-video rounded-2xl overflow-hidden shadow-2xl border border-gray-100 bg-[#0A0A0A]">
+                
+                {/* Loading State */}
+                {!loaded && (
+                  <div className="absolute inset-0 bg-[#0A0A0A] flex flex-col items-center justify-center z-10 gap-3">
+                    <div className="animate-spin w-7 h-7 border-2 border-white/10 border-t-white/60 rounded-full" />
+                    <span className="text-white/50 text-[13px] font-sans tracking-wide">
+                      Loading prototype
+                    </span>
                   </div>
                 )}
-              </motion.div>
-            </div>
-          </section>
-        )}
+
+                {/* Conditionally render Video or Iframe */}
+                {project.interfaceImage2.match(/\.(mp4|webm|ogg)$/i) ? (
+                  <video
+                    className="w-full h-full object-cover block"
+                    src={project.interfaceImage2}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    onLoadedData={() => setLoaded(true)}
+                  />
+                ) : (
+                  <iframe
+                    className="w-full h-full border-none block"
+                    src={project.interfaceImage2}
+                    allowFullScreen={true}
+                    onLoad={() => setLoaded(true)}
+                  />
+                )}
+              </div>
+            ) : (
+              <div className="w-full rounded-2xl overflow-hidden shadow-xl border border-gray-100 bg-[#000000] p-6 flex items-center justify-center">
+                <img 
+                  src={project.interfaceImage} 
+                  alt={`${project.title} Interface`} 
+                  className="w-full h-auto max-h-[50vh] object-contain" 
+                />
+              </div>
+            )}
+          </motion.div>
+        </div>
+      </section>
+    )}
 
         {/* 15. Banner Quote */}
         {project.bannerQuote && (
