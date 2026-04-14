@@ -55,7 +55,7 @@ const projectsData: Record<string, any> = {
     { color: "#6B6A6A", size: 100, x: "50%", y: "10%"},
     { color: "#D9D9D9", size: 90, x: "75%", y: "10%" },
     { color: "#1600FF", size: 110, x: "35%", y: "10%"},
-    { color: "#1600FF", size: 110, x: "0%", y: "10%"}
+    { color: "#EE4904", size: 110, x: "0%", y: "10%"}
   ]
     },
     keyFunctions: {
@@ -79,7 +79,7 @@ const projectsData: Record<string, any> = {
  
       ]
     },
-    interfaceImage:"https://github.com/Lumystik/PortfolioLucia/blob/988251ade7a50360d870b2b630818e7291a7d458/images/museon_finalinterface%20(10).gif?raw=true",
+    bannerImage:"https://github.com/Lumystik/PortfolioLucia/blob/988251ade7a50360d870b2b630818e7291a7d458/images/museon_finalinterface%20(10).gif?raw=true",
     takeaways: "We solved the complexity of creating a smooth experience for small museum staff, enabling them to develop a better experience for visitors. By developing an all-in-one software, we streamlined the workflow and optimized current museum resources.",
     nextProject: {
       title: "ART BEYOND DIMENSION",
@@ -847,8 +847,6 @@ export function ProjectDetail() {
             {project.branding.featuresImage && (
               <section className="py-16 border-t border-gray-50">
                 <div className="max-w-7xl mx-auto px-6 flex justify-between items-center gap-8 flex-wrap">
-                  <img src={project.branding.featuresImage} alt="Feature" className="h-12 md:h-16 w-auto object-contain opacity-80" />
-                  <img src={project.branding.featuresImage} alt="Feature" className="h-12 md:h-16 w-auto object-contain opacity-80" />
                   <img src={project.branding.featuresImage} alt="Feature" className="h-12 md:h-16 w-auto object-contain opacity-80" />
                 </div>
               </section>
