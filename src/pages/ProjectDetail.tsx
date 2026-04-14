@@ -956,24 +956,24 @@ export function ProjectDetail() {
           </section>
         )}
 
-        {/* --- 16. TAKEAWAYS --- */}
+     {/* --- 16. TAKEAWAYS --- */}
         {project.takeaways && (
-          <section className="py-16 md:py-20 w-full bg-black text-white">
-            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="md:col-span-1">
-                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-white">
-                  Takeaways
-                </h3>
-              </div>
-              <div className="md:col-span-2">
-                <p className="text-lg md:text-xl leading-relaxed whitespace-pre-line text-left">
-                  {project.takeaways}
-                </p>
-              </div>
+          <section className="py-24 md:py-32 w-full bg-black text-white">
+            <div className="max-w-4xl mx-auto px-6 text-center flex flex-col gap-10">
+              
+              {/* Centered Heading */}
+              <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tight">
+                Takeaways
+              </h3>
+
+              {/* Centered Paragraph with restricted width for readability */}
+              <p className="text-lg md:text-xl leading-relaxed whitespace-pre-line max-w-3xl mx-auto font-medium">
+                {project.takeaways}
+              </p>
+              
             </div>
           </section>
         )}
-
         {/* --- 17. NEXT PROJECT --- */}
         {project.nextProject && (
           <section className="relative w-full h-[60vh] md:h-[50vh] overflow-hidden group">
