@@ -924,7 +924,7 @@ export function ProjectDetail() {
 
         {/* --- 15. FINAL PROTOTYPE SECTION --- */}
         {project.finalPrototype && (
-          <section className="py-20 bg-white w-full">
+          <section className="py-20  w-full">
             <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div className="flex flex-col items-start gap-8">
                 <h3 className="text-4xl md:text-5xl font-bold uppercase tracking-tight text-[#131313]">
@@ -945,7 +945,7 @@ export function ProjectDetail() {
                     <img 
                       src={project.bannerImage} 
                       alt="Final Prototype Showcase" 
-                      className="w-full max-h-[280px] object-contain"
+                      className="w-full max-h-[380px] object-contain"
                     />
                   </div>
                 )}
