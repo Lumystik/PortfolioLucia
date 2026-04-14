@@ -80,7 +80,7 @@ const projectsData: Record<string, any> = {
       ]
     },
     takeaways: "We solved the complexity of creating a smooth experience for small museum staff, enabling them to develop a better experience for visitors. By developing an all-in-one software, we streamlined the workflow and optimized current museum resources.",
-    interfaceImage: "https://www.youtube.com/watch?v=PPNWUQLv5Dw",
+    interfaceImage: "https://github.com/Lumystik/PortfolioLucia/blob/283d0a967417aa10a0ccd5dd352af72e4e5b90d8/images/museon_finalinterface.mp4?raw=true",
     nextProject: {
       title: "ART BEYOND DIMENSION",
       link: "/project/art-beyond-dimension",
