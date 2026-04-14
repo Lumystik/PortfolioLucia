@@ -804,6 +804,7 @@ export function ProjectDetail() {
         )}
 
 
+
 {/* --- 12. BRANDING SECTION --- */}
         {project.branding && (
           <div className="bg-white">
@@ -817,6 +818,7 @@ export function ProjectDetail() {
                 </p>
               </div>
             </section>
+
             {project.branding.shapes && (
               <section className="py-10">
                 <div className="max-w-7xl mx-auto px-6 flex justify-center items-center gap-6 flex-wrap">
@@ -852,7 +854,7 @@ export function ProjectDetail() {
                     <img
                       src={project.branding.logoImage}
                       alt="Logo"
-                      className="w-full max-w-[280px] md:max-w-sm max-h-[280px] object-contain"
+                      className="w-full max-w-[280px] md:max-w-sm h-auto object-contain"
                     />
                   </div>
                 </div>
@@ -861,9 +863,12 @@ export function ProjectDetail() {
 
             {project.branding.featuresImage && (
               <section className="py-16 border-t border-gray-50">
-                 <div className="flex flex-col gap-6">
-                <div className="max-w-6xl mx-auto px-6">
-                  <img src={project.branding.featuresImage} alt="Feature" className="w-full h-auto max-w-2xl mx-auto object-contain" />
+                <div className="max-w-7xl mx-auto px-6">
+                  <img 
+                    src={project.branding.featuresImage} 
+                    alt="Feature" 
+                    className="w-full h-auto max-w-2xl mx-auto object-contain" 
+                  />
                 </div>
               </section>
             )}
@@ -874,9 +879,8 @@ export function ProjectDetail() {
         {project.keyFunctions && (
           <section className="py-16 md:py-24 w-full bg-black text-white">
             <div className="max-w-7xl mx-auto px-6">
-              {/* Header: 2 Columns */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mb-16">
-                <div className="flex flex-col gap-6">
+                <div className="flex flex-col gap-6 text-left">
                   <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-white">
                     Key Functions
                   </h3>
@@ -886,7 +890,6 @@ export function ProjectDetail() {
                 </div>
               </div>
 
-              {/* Grid of Function Cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
                 {project.keyFunctions.functions.map((func: any, idx: number) => (
                   <motion.div
@@ -904,11 +907,11 @@ export function ProjectDetail() {
                         className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-out"
                       />
                     </div>
-                    <div className="flex flex-col gap-2">
-                      <h4 className="text-xl font-bold uppercase text-left text-white">
+                    <div className="flex flex-col gap-2 text-left">
+                      <h4 className="text-xl font-bold uppercase text-white">
                         {func.title}
                       </h4>
-                      <p className="text-base text-gray-400 leading-relaxed text-left">
+                      <p className="text-base text-gray-400 leading-relaxed">
                         {func.description}
                       </p>
                     </div>
@@ -919,17 +922,14 @@ export function ProjectDetail() {
           </section>
         )}
 
-    {/* --- 15. FINAL PROTOTYPE SECTION --- */}
+        {/* --- 15. FINAL PROTOTYPE SECTION --- */}
         {project.finalPrototype && (
           <section className="py-20 bg-white w-full">
             <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              
-              {/* Left Column: Title and Button */}
               <div className="flex flex-col items-start gap-8">
                 <h3 className="text-4xl md:text-5xl font-bold uppercase tracking-tight text-[#131313]">
                   Final Prototype
                 </h3>
-                
                 <a 
                   href={project.finalPrototype.link} 
                   target="_blank" 
@@ -939,8 +939,6 @@ export function ProjectDetail() {
                   View Final Version
                 </a>
               </div>
-
-              {/* Right Column: The bannerImage */}
               <div className="w-full">
                 {project.bannerImage && (
                   <div className="rounded-2xl overflow-hidden shadow-2xl border border-gray-100">
@@ -952,29 +950,24 @@ export function ProjectDetail() {
                   </div>
                 )}
               </div>
-
             </div>
           </section>
         )}
 
-     {/* --- 16. TAKEAWAYS --- */}
+        {/* --- 16. TAKEAWAYS --- */}
         {project.takeaways && (
-          <section className="py-24 md:py-32 w-full bg-black text-white">
+          <section className="py-24 md:py-32 w-full bg-[#E2F0A4] text-[#131313]">
             <div className="max-w-4xl mx-auto px-6 text-center flex flex-col gap-10">
-              
-              {/* Centered Heading */}
               <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tight">
                 Takeaways
               </h3>
-
-              {/* Centered Paragraph with restricted width for readability */}
               <p className="text-lg md:text-xl leading-relaxed whitespace-pre-line max-w-3xl mx-auto font-medium">
                 {project.takeaways}
               </p>
-              
             </div>
           </section>
         )}
+
         {/* --- 17. NEXT PROJECT --- */}
         {project.nextProject && (
           <section className="relative w-full h-[60vh] md:h-[50vh] overflow-hidden group">
@@ -985,7 +978,7 @@ export function ProjectDetail() {
             />
             <div className="absolute inset-0 bg-black/85 transition-colors duration-500 group-hover:bg-black/75" />
             <div className="relative z-10 h-full max-w-7xl mx-auto px-6 flex flex-col justify-center">
-              <span className="text-s font-mono uppercase tracking-[0.2em] text-gray-300 mb-4 block">Next Project</span>
+              <span className="text-xs font-mono uppercase tracking-[0.2em] text-gray-300 mb-4 block">Next Project</span>
               <Link 
                 to={project.nextProject.link} 
                 className="text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter text-white hover:text-gray-200 inline-block"
