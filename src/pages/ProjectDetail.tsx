@@ -867,7 +867,7 @@ export function ProjectDetail() {
                   <img 
                     src={project.branding.featuresImage} 
                     alt="Feature" 
-                    className="w-full h-auto max-w-2xl mx-auto object-contain" 
+                    className="w-full h-auto max-w-1xl mx-auto object-contain" 
                   />
                 </div>
               </section>
@@ -945,7 +945,7 @@ export function ProjectDetail() {
                     <img 
                       src={project.bannerImage} 
                       alt="Final Prototype Showcase" 
-                      className="w-full h-auto object-contain"
+                      className="w-full max-h-[280px] object-contain"
                     />
                   </div>
                 )}
