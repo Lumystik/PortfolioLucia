@@ -297,28 +297,43 @@ ideation: {
       link: "/project/seedtag"
     }
   },
-  "seedtag": {
+"seedtag": {
     id: "seedtag",
     title: "Seedtag Interactive Ads",
     heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/carseedtag2.png?raw=true",
-    overview: "Contextual human-centered advertisement. Built interactive ad creatives for Seedtag, a contextual advertising platform embedded in editorial content. Worked on 150+ campaigns across industries (automotive, food, fashion, tech).",
+    overview: "A Seedtag Digital Designer creates high-impact, AI-enhanced rich media ads and interactive display creatives, modifying brand assets to fit within contextual, privacy-first advertising campaigns. They combine graphic design with animation skills to enhance user engagement, working closely with sales teams and using proprietary AI (Liz) for campaign optimization.",
     scope: "Ad Tech (HTML5/JS)",
-    role: "Frontend Dev (Vanilla JS), Creative QA",
+    role: "Digital Designer / Frontend Dev",
     timeline: "150+ Campaigns",
-    prototypeLink: "https://preview.seedtag.com/creative/62e004185650a9002c0208a6?device=Desktop&placement=InImage",
-    workflow: "My workflow involved taking client briefs and creating custom graphics using Photoshop and Illustrator. I then brought these designs to life by hand-coding creative animations with HTML, CSS, and Vanilla JS (without relying on templates). Finally, these interactive ads were optimized and published directly into digital magazines and editorial content, ensuring flawless performance across all browsers and placements.",
-    gallery: [
-      "https://github.com/Lumystik/PortfolioLucia/blob/main/images/car2.gif?raw=true",
-      "https://github.com/Lumystik/PortfolioLucia/blob/main/images/car3.gif?raw=true",
-      "https://github.com/Lumystik/PortfolioLucia/blob/main/images/car4.gif?raw=true",
-      "https://github.com/Lumystik/PortfolioLucia/blob/main/images/portfolio-10.jpg?raw=true",
-      "https://github.com/Lumystik/PortfolioLucia/blob/main/images/starbucks5.gif?raw=true"
+    // These are the pairs for your two-column layout
+    responsibilities: [
+      {
+        title: "Creative Development",
+        desc: "Designing interactive, high-impact ad formats (rich media) that are tailored to the context of the content, moving beyond static ads.",
+        image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/car2.gif?raw=true"
+      },
+      {
+        title: "AI Integration",
+        desc: "Modifying and enhancing creatives utilizing proprietary Neuro-Contextual AI ('Liz') to optimize, rather than replace, human design.",
+        image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/car3.gif?raw=true"
+      },
+      {
+        title: "Animation & Interactivity",
+        desc: "Adding captivating animations to boost user attention and engagement, turning assets into interactive experiences.",
+        image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/car4.gif?raw=true"
+      },
+      {
+        title: "Collaboration",
+        desc: "Working with sales teams and CSMs to align creatives with client objectives and campaign strategies.",
+        image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/portfolio-10.jpg?raw=true"
+      },
+      {
+        title: "Quality Assurance",
+        desc: "Ensuring high-quality visual standards across all digital assets produced for global publishers.",
+        image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/starbucks5.gif?raw=true"
+      }
     ],
-    takeaways: "Working with global brands requires adaptability and a deep understanding of interactive design principles to drive engagement without being intrusive. I developed a strong intuition for attention and engagement, learning exactly what makes users stop scrolling.",
-    nextProject: {
-      title: "PIXELA",
-      link: "/project/pixela"
-    }
+    takeaways: "Working with global brands requires adaptability and a deep understanding of interactive design principles. I developed a strong intuition for attention and engagement, learning exactly what makes users stop scrolling."
   },
   "pixela": {
     id: "pixela",
