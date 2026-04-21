@@ -1063,20 +1063,6 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
-
-        {/* --- 16. TAKEAWAYS --- */}
-        {project.takeaways && (
-          <section className="py-24 md:py-32 w-full bg-[#E54D2E] text-white">
-            <div className="max-w-4xl mx-auto px-6 text-center flex flex-col gap-10">
-              <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tight">
-                Takeaways
-              </h3>
-              <p className="text-lg md:text-xl leading-relaxed whitespace-pre-line max-w-3xl mx-auto font-medium">
-                {project.takeaways}
-              </p>
-            </div>
-          </section>
-        )}
 {/* Seedtag Specific Scrolling Gallery */}
 {project.id === 'seedtag' && (
   <section className="py-20 bg-white">
@@ -1117,6 +1103,20 @@ export function ProjectDetail() {
     </div>
   </section>
 )}
+        {/* --- 16. TAKEAWAYS --- */}
+        {project.takeaways && (
+          <section className="py-24 md:py-32 w-full bg-[#E54D2E] text-white">
+            <div className="max-w-4xl mx-auto px-6 text-center flex flex-col gap-10">
+              <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tight">
+                Takeaways
+              </h3>
+              <p className="text-lg md:text-xl leading-relaxed whitespace-pre-line max-w-3xl mx-auto font-medium">
+                {project.takeaways}
+              </p>
+            </div>
+          </section>
+        )}
+
         {/* --- 17. NEXT PROJECT --- */}
         {project.nextProject && (
           <section className="relative w-full h-[60vh] md:h-[50vh] overflow-hidden group">
