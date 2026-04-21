@@ -1077,7 +1077,46 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
+{/* Seedtag Specific Scrolling Gallery */}
+{project.id === 'seedtag' && (
+  <section className="py-20 bg-white">
+    <div className="max-w-6xl mx-auto px-6">
+      <h3 className="text-3xl font-bold mb-16 text-center">Key Responsibilities & Focus Areas</h3>
+      
+      <div className="flex flex-col gap-24">
+        {project.responsibilities.map((item: any, index: number) => (
+          <motion.div 
+            key={index}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
+          >
+            {/* Left Column: Text */}
+            <div className={`order-2 ${index % 2 === 0 ? 'md:order-1' : 'md:order-2'}`}>
+              <h4 className="text-2xl font-bold mb-4">{item.title}</h4>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                {item.desc}
+              </p>
+            </div>
 
+            {/* Right Column: Image/GIF */}
+            <div className={`order-1 ${index % 2 === 0 ? 'md:order-2' : 'md:order-1'}`}>
+              <div className="rounded-xl overflow-hidden shadow-xl border border-gray-100">
+                <img 
+                  src={item.image} 
+                  alt={item.title} 
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
         {/* --- 17. NEXT PROJECT --- */}
         {project.nextProject && (
           <section className="relative w-full h-[60vh] md:h-[50vh] overflow-hidden group">
