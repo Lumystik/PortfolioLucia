@@ -300,7 +300,7 @@ ideation: {
 "seedtag": {
     id: "seedtag",
     title: "Seedtag Interactive Ads",
-    heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/carseedtag2.png?raw=true",
+    heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/875f29a845d8d4c9b924b22af2bd821846e5eeae/images/hero_seedtag.png?raw=true",
     overview: "A Seedtag Digital Designer creates high-impact, AI-enhanced rich media ads and interactive display creatives, modifying brand assets to fit within contextual, privacy-first advertising campaigns. They combine graphic design with animation skills to enhance user engagement, working closely with sales teams and using proprietary AI (Liz) for campaign optimization.",
     scope: "Ad Tech (HTML5/JS)",
     role: "Digital Designer / Frontend Dev",
