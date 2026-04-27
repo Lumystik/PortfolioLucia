@@ -10,72 +10,72 @@ const projectsData: Record<string, any> = {
     id: "museon",
     title: "MUSE*ON",
     heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/988251ade7a50360d870b2b630818e7291a7d458/images/museon_hero.jpg?raw=true",
-    overview: "Developing an all in one software for small museums staff, that aims to streamline the work-flow and improve the management of the different areas of the institution. In order to optimize the current museum resources.",
+    overview: "MUSE*ON is an all-in-one management platform designed for small museum teams. The project focuses on reducing fragmented workflows, centralizing daily operations, and helping staff manage exhibitions, collections, tasks, and events with greater clarity and efficiency.",
     scope: "End-to-End App",
     role: "UX Research, Branding, UX/UI Design",
     team: "Martina Braidotti, Lucia Medina, Ilario Pedone, Agnese Rosselli, Mark Waisara",
     prototypeLink: "https://www.figma.com/proto/16viMWZsHOU9SkmpbSpTd5/FINAL-UI-spaced?node-id=2248-9671&starting-point-node-id=703%3A8427&scaling=scale-down&content-scaling=fixed&t=aO2g8BW8sOtXyiVT-1?raw=true",
-    problem: "Staff at small museums often face fragmented workflows. \n\n With only 4 full-time staff managing 59 events and exhibitions a year across 6 different tools, the team is constantly stretched thin.",
+    problem: "Small museum teams often work with limited staff, limited time, and scattered tools.\n\nIn our research context, only 4 full-time staff members were responsible for managing 59 events and exhibitions per year while relying on 6 different tools. This created duplicated work, unclear responsibilities, and constant switching between platforms.",
     problemImage: "https://github.com/Lumystik/PortfolioLucia/blob/56aed6413b71c2bc18bd6c0dcd8054a3b546474d/images/complicatedworkflow_museon.jpg?raw=true",
     processMap: [
-      { phase: "Research", steps: ["Desk research", "On site research", "Ecosystem map", "research key findings"] },
-      { phase: "Define", steps: ["Design brief", "Personas & scenarios", "Heroflow & wireflow"] },
+      { phase: "Research", steps: ["Desk research", "On-site research", "Ecosystem map", "Research key findings"] },
+      { phase: "Define", steps: ["Design brief", "Personas & scenarios", "Hero flow & wireflow"] },
       { phase: "Develop", steps: ["User test results", "Design system", "Prototype"] }
     ],
-    howMightWe: [ "solve the complexity of creating a smooth experience for small museum staff?", "streamline the workflow and improve the management of different areas of the institution?", "optimize the current museum resources to help staff develop a better experience for visitors?" ],
+    howMightWe: [ "How might we reduce workflow complexity for small museum teams?", "How might we centralize the management of different museum operations without overwhelming staff?", "How might we help museum staff use their existing resources more efficiently so they can create a better visitor experience?" ],
 ideation: {
-    question: "How can we build a seamless workflow that maximizes museum staff efficiency? How can the platform adapt to different roles while maintaining a unified database?",
+    question: "How can we create a seamless workflow that supports museum staff across different roles while keeping information centralized, accessible, and easy to act on?",
     heroFlow: "https://github.com/Lumystik/PortfolioLucia/blob/f8b832c9f326ed2f6d2fd32515316ec56fb143fa/images/workflow_museon.png?raw=true",
     heroFlowCaption: "Alex Hero Flow: Organizing a new temporary exhibition.", // Fixed: Added quotes here
     wireframes: [
       {
         image: "https://github.com/Lumystik/PortfolioLucia/blob/465f291d0d01afb736e1502a28db9b14b236e818/images/collection_museon1.png?raw=true",
-        caption: "Dashboard: Centralized management overview"
+        caption: "Dashboard: Centralized overview for daily museum operations"
       },
       {
         image: "https://github.com/Lumystik/PortfolioLucia/blob/be1755ca40682fbb1c571d38f3aa37d18cc7ada8/images/calendar_museo1.png?raw=true",
-        caption: "Calendar: Team availability and scheduling"
+        caption: "Calendar: Shared scheduling and team availability"
       },
       {
         image: "https://github.com/Lumystik/PortfolioLucia/blob/ccd5a596d938ff18c9cd80558a2f7d7f2df76b5e/images/smartnotes_museon1.png?raw=true",
-        caption: "AI Notes: Automated task detection"
+        caption: "AI Notes: Automated task detection from conversations"
       }
     ]
   },
     userInsightsCards: [
   {
     title: "INTEGRATION IS ESSENTIAL",
-    description: "Small museum staff emphasized the critical need for a 'Complete' system. Having an 'All-in-one' platform eliminated the mental fatigue of switching between separate tools, ensuring that team collaboration remained centralized and transparent."
+    description: "Small museum staff needed a complete system that reduced the mental effort of switching between separate tools. A centralized platform made collaboration easier, improved visibility, and helped the team keep track of shared responsibilities."
   },
   {
     title: "SHORTCUTS DRIVE EFFICIENCY",
-    description: "Staff members are frequently multitasking on-site. The 'My Task' and 'Project' shortcuts were identified as high-value features, allowing users to perform actions 'Fast' and bypass complex navigation during high-pressure exhibition setups."
+    description: "Because staff often multitask during exhibition planning and on-site operations, direct access to tasks, projects, and key actions became essential. Shortcuts helped users move faster and avoid unnecessary navigation during time-sensitive work."
   },
   {
     title: "VISIBILITY REDUCES FRICTION",
-    description: "Users expressed a strong preference for a 'Panoramic' view of the institution. The ability to see shared calendar availability at a glance removed the guesswork from team collaboration, making the management of resources feel more 'Useful' and controlled."
+    description: "Users valued a panoramic view of the institution. Seeing calendars, responsibilities, collections, and project status in one place reduced uncertainty and made resource management feel more controlled and transparent."
   }
 ],
     targetUsers: {
-      description: "We identified two primary user archetypes within the museum staff ecosystem, each with distinct drivers and needs.",
+      description: "We identified two main user archetypes within the museum staff ecosystem. Each one had different responsibilities, but both needed clearer coordination and easier access to shared information.",
       personas: [
         {
           title: "ALEX: THE CURATOR & MANAGER",
-          description: "Role: Curator, Education, Office of the President, Guide, Ticket and Relations.\nDrivers: Contributing to cultural education, personal interest in the subject matter.\nEnvironment: Museum office.\nNeeds: Planning, team collaboration, task management.",
+          description: "Role: Curator, education coordinator, office support, guide, ticketing and visitor relations.\nDrivers: Contributing to cultural education and sharing knowledge with visitors.\nEnvironment: Museum office.\nNeeds: Planning, team collaboration, task management, and clear project visibility.",
           image: "https://github.com/Lumystik/PortfolioLucia/blob/544af7d6cc6298448d4e8135adb4ec2bb51850c5/images/alexx.jpg?raw=true"
         },
         {
           title: "MARK: THE INTERN",
-          description: "Role: Intern.\nDrivers: Learning and gaining experience in museum operations, impressing supervisors, contributing effectively during the visit.\nEnvironment: Home/On-site.\nNeeds: Clear task assignment, accessibility, collection lists.",
+          description: "Role: Intern.\nDrivers: Learning museum operations, supporting the team, and contributing effectively during visits and exhibitions.\nEnvironment: Home and on-site.\nNeeds: Clear task assignments, accessible information, and easy-to-use collection lists.",
           image: "https://github.com/Lumystik/PortfolioLucia/blob/670da0db043a6e565e337fb2b744ed6f9f8518b6/images/mark.jpg?raw=true"
         }
       ],
-      conclusion: "Both roles require a centralized dashboard, shared calendar, project tracking, and collection management to reduce switching costs."
+      conclusion: "Both roles required a centralized dashboard, shared calendar, project tracking, and collection management tools to reduce switching costs and support smoother collaboration."
     },
  
     branding: {
- description: "The design system was built to be clean, accessible, and highly functional, prioritizing data visualization and task management. It includes standardized colors, buttons, dropdown menus, and calendar components.",
-  logoDescription: "We were drawn to the asterisk as a symbol of connection, and wanted to incorporate its radiating structure as a mark that points toward information, toward people, toward the institution itself.",
+ description: "The design system was created to be clean, accessible, and task-oriented. We prioritized clarity, data visibility, and reusable components for dashboards, calendars, dropdowns, buttons, and management flows.",
+  logoDescription: "The asterisk became a symbol of connection. Its radiating structure represents information, people, objects, and institutional knowledge coming together in one shared system.",
  logoImage: "https://github.com/Lumystik/PortfolioLucia/blob/ac040a0ff68481a4ef9745568ded5b5c9b484a5b/images/museonlogo.png?raw=true",       // optional
   featuresImage: "https://github.com/Lumystik/PortfolioLucia/blob/dfc97077f6303fd7953feeb6d4e1a8efdce42b2e/images/button.png?raw=true", // optional
 
@@ -88,21 +88,21 @@ ideation: {
   ]
     },
     keyFunctions: {
-      description: "An all-in-one platform designed to reduce switching costs and improve team collaboration.",
+      description: "An all-in-one platform created to reduce switching costs, improve visibility, and support collaboration across small museum teams.",
       functions: [
         {
           title: "TASK & SHARED CALENDAR OVERVIEW",
-          description: "See the busy and available times of people you have shared your calendar with and plan events accordingly.",
+          description: "A shared calendar helps staff understand team availability, plan events, and coordinate responsibilities without relying on separate communication tools.",
           image: "https://github.com/Lumystik/PortfolioLucia/blob/be1755ca40682fbb1c571d38f3aa37d18cc7ada8/images/calendar_museo1.png?raw=true"
         },
         {
           title: "COLLECTION MANAGEMENT",
-          description: "A dedicated collection page to easily check contents, export them, and manage items for specific exhibitions.",
+          description: "A dedicated collection page allows staff to review items, organize exhibition materials, export information, and manage objects from one central space.",
           image: "https://github.com/Lumystik/PortfolioLucia/blob/465f291d0d01afb736e1502a28db9b14b236e818/images/collection_museon1.png?raw=true"
         },
        {
         title: "AI INTEGRATION",
-        description: "AI utilizes conversation transcription to instantly detect tasks with a single click and direct users to the corresponding page.",
+        description: "AI-supported notes transform conversation transcripts into actionable tasks, helping users move directly from discussion to execution.",
         image: "https://github.com/Lumystik/PortfolioLucia/blob/ccd5a596d938ff18c9cd80558a2f7d7f2df76b5e/images/smartnotes_museon1.png?raw=true"
       }
  
@@ -114,7 +114,7 @@ ideation: {
     finalPrototype: {
       link: "https://www.figma.com/proto/16viMWZsHOU9SkmpbSpTd5/FINAL-UI-spaced?node-id=2248-9671&starting-point-node-id=703%3A8427&scaling=scale-down&content-scaling=fixed&t=aO2g8BW8sOtXyiVT-1?raw=true", // Put your figma or prototype link here
     },
-    takeaways: "We solved the complexity of creating a smooth experience for small museum staff, enabling them to develop a better experience for visitors. By developing an all-in-one software, we streamlined the workflow and optimized current museum resources.",
+    takeaways: "MUSE*ON addressed the complexity of small museum operations by bringing tasks, calendars, collections, projects, and AI-supported notes into one connected workflow. The final solution helps staff reduce tool-switching, improve coordination, and dedicate more attention to the visitor experience.",
     nextProject: {
       title: "ART BEYOND DIMENSION",
       link: "/project/art-beyond-dimension",
@@ -127,18 +127,18 @@ ideation: {
     title: "Art Beyond Dimension",
     heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/0e95408be9b5b18ff336921926c7889c41d95380/images/hero_dimension.jpg?raw=true",
     interfaceImage: "https://github.com/Lumystik/PortfolioLucia/blob/85176369bcb78e03b473d799a45522474f753705/images/dimension_final.jpeg?raw=true",
-    overview: "Immersive Experience of Future Museums. Our design solution enables young adults to gain knowledge about art in a fun and engaging way to bridge the information gap and foster greater appreciation for the heritage of museum.",
+    overview: "Art Beyond Dimension explores how future museum experiences can become more interactive, personal, and engaging for young adults. The project uses digital interaction, AI voice prompts, and generative artwork to help visitors understand art in a more active and memorable way.",
     scope: "Digital Experience & Totem Interface",
     role: "Digital and Interaction Design",
     timeline: "Final Design Studio",
     team: "Razieh Soleimani, Lucia Medina, Marjan Mehrabi, Fatemeh Khoshbazan",
     prototypeLink: "https://www.figma.com/proto/FnFqrWBxyChSOdL3aVzV9A/Prototype?node-id=616-1965&starting-point-node-id=564%3A1942&t=bIX74fMjWA7kTArF-1",
-    problem:"The way young people experience culture is evolving at the same time technology does. They want interactive, personalized experiences. And are moving away from static displays and toward spaces where they can actively participate in cultural exploration.",
-    researchObjectives: "\n• To explore ways to reduce information gaps in art understanding among young adults. \n• To investigate how digital interactions can support learning within traditional museum environments.\n• Users can create an artwork. \n• To assess how engagement strategies affect appreciation of artistic heritage.",
-    howMightWe: [ "Blend interactive elements with the traditional museum experience to bridge the information gap and foster greater appreciation for the heritage of the art?" ],
+    problem:"Young visitors increasingly expect cultural spaces to be interactive, personalized, and participatory. Traditional museum displays can feel static, making it harder for younger audiences to connect emotionally with artworks or understand their historical and artistic context.",
+    researchObjectives: "\n• Explore ways to reduce information gaps in art understanding among young adults. \n• Investigate how digital interactions can support learning within traditional museum environments.\n• Understand how visitors can become active participants by creating their own artwork. \n• Assess how engagement strategies influence appreciation of artistic heritage.",
+    howMightWe: [ "How might we combine interactive technology with the traditional museum experience to reduce information gaps and help young visitors build a stronger appreciation for artistic heritage?" ],
     userTesting: {
       title: "User Testing & Validation",
-      description: "We conducted in-person testing sessions to observe how users interacted with the interface naturally. We focused on whether the audio prompts were intuitive and if the gamified printing process felt rewarding.",
+      description: "We conducted in-person testing sessions to observe how users interacted with the interface in a natural setting. We focused on whether the audio guidance was understandable, whether the interaction felt intuitive, and whether the gamified printing process created a rewarding moment.",
       images: [
         "https://github.com/Lumystik/PortfolioLucia/blob/dd95a5f2ca9291229e663073fe9e1c8365466209/images/usertesting_dimension.jpg?raw=true"
       ]
@@ -146,68 +146,68 @@ ideation: {
     userInsightsCards: [
       {
         title: "EMOTIONAL REACTIONS",
-        description: "Users reported initial confusion, curiosity, and excitement when encountering the concept. Some expressed fear or discomfort, especially among users unfamiliar with the technology. Quotes included: “I’d feel confused but excited because I’ve never seen something like that” and “I’d have a lot of fun interacting with it.”"
+        description: "Users described the concept with a mix of curiosity, excitement, and initial uncertainty. For participants unfamiliar with this type of technology, clear guidance became essential to transform confusion into engagement."
       },
       {
         title: "INTERACTION PREFERENCES",
-        description: "Users showed a preference for speaking over touch or typing, describing speech as the most natural form of communication. There was a strong desire for novelty and realism, with comments like “the more realistic it feels, the cooler it would be.” Emotional resonance also emerged as important, such as music being described as something that connects to emotion."
+        description: "Participants preferred speaking over typing or touching the screen, describing voice interaction as more natural and expressive. They also valued realism, novelty, and emotional connection, especially when sound and storytelling supported the experience."
       },
       {
         title: "DESIGN CONSIDERATIONS",
-        description: "Key considerations include maintaining simplicity to avoid cognitive overload, ensuring accessible and high-quality audio interaction, designing for users unfamiliar with AI systems, and providing clear guidance to reduce confusion. Physical context factors such as contrast for holographic displays and crowd flow management were also highlighted."
+        description: "The main design challenges were reducing cognitive overload, making the audio interaction accessible, supporting first-time AI users, and designing for the physical museum context, including visibility, contrast, and crowd flow."
       }
     ],
     keyFunctions: {
-      description: "We aimed to position two screents next to each other at an angle: one displays previous generated artwork (the projection), while the other shows paintings from that floor of museum (the app). Built with Figma. I added in motion graphics that dd visual interest and show the history behind the paintings ",
+      description: "The experience is built around two connected screens: one interface for selecting and learning about artworks, and one projection surface where generated artworks are displayed. Motion graphics support storytelling and help visitors understand the history behind selected paintings.",
       
      functions: [
         {
           title: "INTERACTIVE LEARNING",
-          description: "Visitor stands in front of the screen and chooses paintings they are interested in. The user selects a painting to know more about and gets answers from the system. After selecting at least 2 paintings, the option to generate an artwork appears.",
+          description: "Visitors choose artworks they are interested in and receive guided information about each piece. After selecting at least two paintings, they can generate a new artwork based on their choices.",
           image: "https://github.com/Lumystik/PortfolioLucia/blob/5a21c692a5ce09da24b54267b421feeee842d5f6/images/learning_dimension.gif?raw=true"
         },
         {
           title: "AI VOICE PROMPT",
-          description: "The system uses voice interaction (e.g., 'You selected Elasticità by Boccioni. Would you like to learn about its concept?'). Users can use voice prompts to modify the art (e.g., 'I want to make it more minimal with less colors'). The AI LLM generates the artwork based on these prompts.",
+          description: "The system uses voice interaction to guide visitors and collect creative prompts. Users can ask to modify the generated artwork, for example by making it more minimal, colorful, abstract, or emotional.",
           image: "https://github.com/Lumystik/PortfolioLucia/blob/1b024e88bc55015091152250c65c8c7255d83730/images/questioning_dimension.gif?raw=true"
         },
         {
           title: "GAMIFIED PRINTING & SCREEN PROJECTION",
-          description: "When users choose to print, the system asks related questions about the selected paintings (e.g., style, painter, concept). If answered correctly, the totem provides a printed version of the generated artwork.",
+          description: "Before printing, the system asks short questions about the selected paintings. Correct answers unlock a printed version of the generated artwork, turning learning into a playful reward.",
           image: "https://github.com/Lumystik/PortfolioLucia/blob/8e602f1e3767619ff568eeb83699dded7863d840/images/gamified_dimension.gif?raw=true"
         }
       ]
     },
       targetUsers: {
-      description: "We identified one primary user archetype. Our design solution focus mainly on young adults.",
+      description: "We focused on one primary user archetype: young adults who seek cultural experiences that are interactive, social, and personally meaningful.",
       personas: [
         {
           title: "Sara: The Explorer",
-          description: "Role: Student.\nDrivers: Desire for new experiences, Drive to document and share experiences on social media.\nEnvironment: Milan, Italy.\nNeeds: Access to engaging and interactive experiences.",
+          description: "Role: Student.\nDrivers: Looking for new experiences, documenting meaningful moments, and sharing cultural activities socially.\nEnvironment: Milan, Italy.\nNeeds: Engaging, flexible, and interactive experiences that support both learning and self-expression.",
           image: "https://github.com/Lumystik/PortfolioLucia/blob/45a4994bc6796acff20cf10557be4895111209d5/images/user_dimension.png?raw=true"
         }
       ],
-      conclusion: "She is an experience-driven and socially oriented user who values interactive, flexible, and culturally enriching environments that support both learning and self-expression."
+      conclusion: "Sara represents an experience-driven visitor who values cultural learning when it feels active, personal, and easy to engage with."
     },
      bannerImage: "https://github.com/Lumystik/PortfolioLucia/blob/e942b67bef52b6a8237dcd807e02a3f741f791a5/images/wall.jpg?raw=true",
        pillars: [
       {
         title: "Scenario 1: Interactive Art Discovery Experience with tablet and wall projector",
-        description: "Two screens display artworks and available paintings. As the visitor approaches, the system activates and invites them to select pieces of interest. The user receives audio-guided information and can explore each artwork interactively. Then, they can choose to generate their own artwork which will be shared on the wall.",
+        description: "Two screens display available artworks and generated outputs. As the visitor approaches, the system invites them to select pieces of interest, listen to audio-guided explanations, and explore each artwork interactively. Once ready, they can generate a new artwork that appears on the projection wall.",
         image: "https://github.com/Lumystik/PortfolioLucia/blob/8d6557cb60be6d6c688474d132989b0a8bec9580/images/scenario_1.png?raw=true"
       },
       {
         title: "Scenario 2: Interactive Art Print Experience",
-        description: "After selecting at least two paintings, users can keep adding more combinations. Once ready, they can generate a new artwork, view it on a second screen, and choose to print it. Before printing, the system asks brief questions about the selected paintings; correct answers unlock the print. A voice guides the process and encourages further exploration.",
+        description: "After selecting at least two paintings, visitors can combine them into a new artwork. Before printing, the system asks brief learning questions about the selected works. Correct answers unlock a physical print, creating a memorable reward for engagement.",
         image: "https://github.com/Lumystik/PortfolioLucia/blob/7f099807a3f294985b4812c48bad188f22b5a349/images/scenario_2.png?raw=true"
       },
       {
-        title: "Senario 3: AI Voice Prompt",
-        description: "The AI system generates the artwork based on the user’s words as a prompt.",
+        title: "Scenario 3: AI Voice Prompt",
+        description: "The AI system generates a new artwork based on the visitor’s spoken prompts, allowing them to influence the visual result through language, preference, and interpretation.",
         image: "https://github.com/Lumystik/PortfolioLucia/blob/2bf3def01ee15c268265d1090683a06785465d18/images/scenario_3.png?raw=true"
       }
     ],
-    takeaways: "The idea grabs the visitor's attention, which makes them want to learn. It has the capability of personalization based on the paintings visitors like most. The user can add their opinion to the prompt to add something more than just merging two paintings to the generative artwork with voice.",
+    takeaways: "The final concept uses personalization, voice interaction, and gamification to turn passive observation into active cultural exploration. By allowing visitors to learn, create, and take home a generated artwork, the experience encourages curiosity and makes museum learning more memorable.",
     nextProject: {
       title: "FILMS FOUNDATION",
       link: "/project/films-foundation"
@@ -218,7 +218,7 @@ ideation: {
     title: "Films Foundation",
     heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/7cf2bd97f7815c8ba8a5a94d05606596cb94f9a9/images/hero_films.jpg?raw=true",
     interfaceImage: "https://github.com/Lumystik/PortfolioLucia/blob/111391b1702b61b5aaa76ef9f87035cffd4873b5/images/Minimalist%20Website%20Launch%20Computer%20Mockup%20Instagram%20Post.gif?raw=true",
-    overview: "A comprehensive UX/UI redesign for Cineteca Milano, an Italian film archive and cultural center. The project focuses on improving usability, accessibility, and the overall digital experience for booking tickets, exploring events, and accessing the film archive.",
+    overview: "A UX/UI redesign for Cineteca Milano, an Italian film archive and cultural center. The project focuses on improving usability, accessibility, and the overall digital experience for discovering films, exploring cultural events, and booking tickets.",
     scope: "Web & Mobile UX/UI Redesign",
     role: "UX/UI Designer",
     timeline: "Academic Year 2024-25",
@@ -227,71 +227,71 @@ ideation: {
     pillars2: [
       {
         title: "Streamlined Architecture",
-        description: "Reorganized the website structure to introduce a clear Home page, categorized Films (In Theaters vs. Archives), and simplified navigation to reduce cognitive load.",
+        description: "We reorganized the website structure by introducing a clearer homepage, separating current screenings from archival films, and simplifying navigation to reduce cognitive load.",
         image: "https://github.com/Lumystik/PortfolioLucia/blob/480139cc265caba04a43d21ff472ecb4824be7ea/images/ia.png?raw=true"
       },
       {
         title: "Timeless Rebranding",
-        description: "Created a new visual identity using warm, earthy tones and a contemporary typography system to reflect the institution's historical and cultural significance.",
+        description: "We developed a warmer and more contemporary visual identity that respects the institution’s historical value while making the interface feel more modern and accessible.",
         image: "https://github.com/Lumystik/PortfolioLucia/blob/472122f8a272fe070e22e2dfd8f160e41befbb0f/images/timeless_rebrandingfilms.png?raw=true"
       },
       {
         title: "Accessible Design",
-        description: "Ensured the new interface passes color blindness accessibility tests (Protanomaly, Deuteranomaly, Achromatopsia) and features highly legible components.",
+        description: "We tested the color system for different forms of color blindness and designed components with stronger legibility, contrast, and usability across devices.",
         image: "https://github.com/Lumystik/PortfolioLucia/blob/a6aa894fecb0c8e5cf48a6cb9971194b453a3e30/images/accessibility_test.gif?raw=true"
       }
     ],
-    researchObjectives: "ANALYSIS PHASE:\nWe conducted a Cognitive Walkthrough of the existing Cineteca Milano website and identified several pain points:\n• Limited exploration opportunities with no search function\n• Overwhelming and cluttered menu design\n• Confusing navigation with mixed content (activities vs. bookable films)\n• Fragmented and click-heavy ticket booking process\n\nCOMPETITIVE ANALYSIS:\nWe analyzed competitors like TATE, Getty, and Cineteca Bologna to identify industry standards, focusing on their task flows for viewing film details, exploring events, and booking tickets.",
+    researchObjectives: "ANALYSIS PHASE:\nWe conducted a cognitive walkthrough of the existing Cineteca Milano website and identified several usability pain points:\n• Limited exploration opportunities and no clear search function\n• Overwhelming menu structure\n• Confusing navigation between activities, screenings, and archive content\n• Fragmented and click-heavy ticket booking process\n\nCOMPETITIVE ANALYSIS:\nWe analyzed cultural institutions such as Tate, Getty, and Cineteca Bologna to understand industry standards for film discovery, event exploration, and ticket booking flows.",
     targetUsers: {
-      description: "We developed personas representing diverse user needs, from creative professionals seeking inspiration to casual enthusiasts.",
+      description: "We developed personas representing different user needs, from creative professionals looking for archival material to casual visitors interested in cultural events.",
       personas: [
         {
           title: "THE CREATOR",
-          description: "Costume designers (like Eason) and film students (like Alex) looking for diverse creative inspiration, high-resolution archival films, and networking opportunities. They need reliable access to classic films for study.",
+          description: "Costume designers and film students looking for creative inspiration, high-quality archival films, and reliable resources for research and study.",
           image: "[INSERT_GITHUB_IMAGE_LINK_PERSONA_1]"
         },
         {
           title: "THE ENTHUSIAST",
-          description: "Painters, engineers, and graphic designers (like Marco, Carlo, and Miranda) who enjoy retro films, attend local festivals, and seek quality resources on film history. They want clear event details and easy ticket booking.",
+          description: "Film lovers, artists, engineers, and designers interested in retro films, festivals, and cultural events. They need clear event information and a simple booking experience.",
           image: "[INSERT_GITHUB_IMAGE_LINK_PERSONA_2]"
         }
       ],
-      conclusion: "Users needed a platform that allowed smooth switching between sections, clear event details, and a frictionless ticket booking experience with high error tolerance."
+      conclusion: "Users needed a platform that supported smooth navigation between sections, clearer event details, stronger discoverability, and a ticket booking flow with fewer steps and higher error tolerance."
     },
     howMightWe: [
-      "simplify the ticket booking process to reduce clicks and user frustration?",
-      "reorganize the Information Architecture to make the film archive and current events easily discoverable?",
-      "modernize the brand identity while preserving the historical and artistic significance of Cineteca Milano?"
+      "How might we simplify the ticket booking process to reduce clicks and user frustration?",
+      "How might we reorganize the information architecture so films, events, and archive content become easier to discover?",
+      "How might we modernize the brand identity while preserving the historical and artistic value of Cineteca Milano?"
     ],
     branding: {
-      description: "The redesign moves away from a bold and playful identity to one that is timeless, mature, and elegant. The color palette uses warm, earthy brown and orange tones (#B65929, #2A1002) to reflect values from the past. Typography pairs 'New Spirit' for headings with 'Satoshi' for body text.",
-      logoDescription: "New logo introduces a distinctive symbol. This new logo is abstract yet clear, suggesting an archive. It’s a clean, logo that can stand alone for branding purposes..",
+      description: "The redesign moves from a playful visual identity toward a more timeless, mature, and elegant direction. The color palette uses warm earthy tones to reference the past, while the typography system combines expressive headings with clean, readable body text.",
+      logoDescription: "The new logo introduces a distinctive abstract symbol inspired by the idea of an archive. It is simple enough to work as a standalone mark while giving the platform a stronger and more recognizable identity.",
       images: [
         "https://github.com/Lumystik/PortfolioLucia/blob/f4d86ca2eb3b0ac3117214ef8ff35634270ddb4b/images/films_branding1.png?raw=true",
         "https://github.com/Lumystik/PortfolioLucia/blob/6217c5f1edc51584a17ffed9f0a84e2d957e8d24/images/logo_cineteca.png?raw=true"
       ]
     },
     keyFunctions: {
-      description: "The redesigned platform focuses on three core tasks: Viewing Film Details, Exploring Events, and Booking Tickets across both Web and Mobile.",
+      description: "The redesigned platform focuses on three core tasks: discovering films, exploring events, and booking tickets across desktop and mobile.",
       functions: [
         {
           title: "CENTRALIZED FILM DISCOVERY",
-          description: "A newly added 'All Films' page categorizes content into 'In Theaters' and 'Our Archives'. It features robust filtering, cast highlights, and direct streaming access for archived films.",
+          description: "A new All Films page separates current screenings from archival content and supports discovery through filters, cast highlights, and direct access to archived films.",
           image: "https://github.com/Lumystik/PortfolioLucia/blob/985c14161b727e75b350483da732b98d222fb4db/images/keyfunction_filmpage.png?raw=true"
         },
         {
           title: "STREAMLINED EVENT EXPLORATION",
-          description: "Events are categorized using a sticky filter bar. A toggle switches between free and ticketed events, and individual event pages feature a 'Show Map' integration for quick location context.",
+          description: "Events are organized with a sticky filter bar, free/ticketed event toggles, and location support through map integration, helping users quickly understand what is available and where it happens.",
           image: "https://github.com/Lumystik/PortfolioLucia/blob/44bc54f167d5ef916b175ef981126accbc704003/images/keyfunction__events.png?raw=true"
         },
         {
           title: "FRICTIONLESS TICKET BOOKING",
-          description: "A step-by-step flow with a clean 'Select Date and Cinema' section. The seat selection interface clearly distinguishes between available, reserved, and selected seats, culminating in a mobile-friendly QR code ticket.",
+          description: "A step-by-step booking flow helps users select a date, cinema, and seat with fewer distractions. The mobile ticket includes a QR code for a smoother visit experience.",
           image: "https://github.com/Lumystik/PortfolioLucia/blob/b64c5d8fa1db8781e593ab48479a5bda00e94823/images/keyfunction_tickets.png?raw=true"
         }
       ]
     },
-    takeaways: "By applying ergonomic principles to the design, we transformed a cluttered and confusing website into a highly usable, accessible, and aesthetically pleasing platform. The new design significantly reduces cognitive load, improves task efficiency (e.g., streamlining the ticket booking flow), and provides a responsive experience across desktop and mobile devices.",
+    takeaways: "By applying usability and accessibility principles, we transformed a cluttered website into a clearer and more responsive cultural platform. The redesign reduces cognitive load, improves film and event discovery, and creates a more efficient ticket booking experience across web and mobile.",
     nextProject: {
       title: "SEEDTAG",
       link: "/project/seedtag"
@@ -301,7 +301,7 @@ ideation: {
     id: "seedtag",
     title: "Seedtag Interactive Ads",
     heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/875f29a845d8d4c9b924b22af2bd821846e5eeae/images/hero_seedtag.png?raw=true",
-    overview: "As a Seedtag Digital Designer, I created high-impact, AI-enhanced rich media ads and interactive display creatives, modifying brand assets to fit within contextual, privacy-first advertising campaigns. And combined graphic design with animation skills to enhance user engagement, working closely with sales teams and using proprietary AI (Liz) for campaign optimization.",
+    overview: "As a Digital Designer at Seedtag, I designed high-impact rich media ads and interactive display creatives for contextual, privacy-first advertising campaigns. My work combined visual design, motion, HTML5/CSS/JavaScript, and cross-functional collaboration to adapt global brand assets into engaging digital experiences.",
     scope: "Ad Tech (HTML5/JS)",
     role: "Digital Designer / Frontend Dev",
     timeline: "150+ Campaigns",
@@ -309,62 +309,62 @@ ideation: {
     responsibilities: [
       {
         title: "Creative Development",
-        desc: "Designing interactive, high-impact ad formats (rich media) that are tailored to the context of the content, moving beyond static ads.",
+        desc: "Designed interactive rich media formats that transformed static brand assets into contextual digital experiences tailored to each campaign environment.",
         image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/car2.gif?raw=true"
       },
       {
         title: "AI Integration",
-        desc: "Modifying and enhancing creatives utilizing proprietary Neuro-Contextual AI ('Liz') to optimize, rather than replace, human design.",
+        desc: "Adapted and enhanced creatives using Seedtag’s proprietary Neuro-Contextual AI, using AI as a support tool for optimization while keeping human design judgment at the center.",
         image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/car3.gif?raw=true"
       },
       {
         title: "Animation & Interactivity",
-        desc: "Adding captivating animations to boost user attention and engagement, turning assets into interactive experiences.",
+        desc: "Built animated and interactive elements to increase attention, create stronger engagement, and make each digital ad feel more dynamic across devices.",
         image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/car4.gif?raw=true"
       },
       {
         title: "Collaboration",
-        desc: "Working with sales teams and CSMs to align creatives with client objectives and campaign strategies.",
+        desc: "Worked closely with sales teams and client-facing stakeholders to align creative execution with campaign goals, brand guidelines, and performance expectations.",
         image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/portfolio-10.jpg?raw=true"
       },
       {
         title: "Quality Assurance",
-        desc: "Ensuring high-quality visual standards across all digital assets produced for global publishers.",
+        desc: "Maintained high visual and technical standards across digital assets, ensuring consistency, responsiveness, and polished delivery for global publishers and brands.",
         image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/starbucks5.gif?raw=true"
       }
     ],
-    takeaways: "Working with global brands requires adaptability and a deep understanding of interactive design principles. I developed a strong intuition for attention and engagement, learning exactly what makes users stop scrolling."
+    takeaways: "Working on more than 150 campaigns taught me how to design quickly, adapt to different brand systems, and balance visual impact with technical constraints. I developed a strong understanding of attention, interaction, and what makes users stop scrolling."
   },
   "pixela": {
     id: "pixela",
     title: "Pixela",
     heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/pixela.png?raw=true",
-    overview: "Pixela is an immersive first-person survival game where you play as an AI named Pixela, who is an unexpected anomaly in a scientific project designed to decode the minds of history's greatest artists. As Pixela, your primary objective is to escape from the scientists who have captured you, using your unique abilities to travel through the worlds of Dalí, Van Gogh and Escher.",
+    overview: "Pixela is an immersive first-person survival game where the player becomes an AI anomaly inside a scientific project created to decode the minds of famous artists. The experience takes users through surreal worlds inspired by Dalí, Van Gogh, and Escher, combining escape mechanics with art-driven storytelling.",
     scope: "Unity3D / C# Videogame Demo",
     role: "Game Designer & Developer",
     timeline: "150 hours",
     prototypeLink: "#",
     keyFunctions: {
-      description: "GAME MECHANICS: Travel through the minds of history's greatest artists, each with unique challenges and environments.",
+      description: "GAME MECHANICS: Players travel through the minds of iconic artists, each represented through a unique environment, challenge, and visual logic.",
       functions: [
         {
           title: "VINCENT VAN GOGH",
-          description: "Achieve entering Van Gogh's bedroom and finding the exit door to pass through the portal. Van Gogh chases you, threatening to cut off your ear.",
+          description: "Players enter Van Gogh’s bedroom and search for the exit portal while being chased through an emotionally charged environment inspired by his life and work.",
           image: "[INSERT_GITHUB_IMAGE_LINK_VAN_GOGH]"
         },
         {
           title: "SALVADOR DALÍ",
-          description: "Correctly navigate through the maze to find the portal and try to find an object from Dalí's paintings to escape.",
+          description: "Players navigate a surreal maze and search for an object inspired by Dalí’s paintings in order to progress through the world.",
           image: "[INSERT_GITHUB_IMAGE_LINK_DALI]"
         },
         {
           title: "M. C. ESCHER",
-          description: "Find the portal by traversing a path with altered reality. Stairs that go up and down the ceiling and walls. Villains chase you, and if they catch you, you die.",
+          description: "Players move through an altered architectural space where stairs, ceilings, and walls challenge perception while enemies create pressure and urgency.",
           image: "[INSERT_GITHUB_IMAGE_LINK_ESCHER]"
         }
       ]
     },
-    takeaways: "Integrating AI into game mechanics opened up new possibilities for dynamic art generation, creating a unique experience for every player.",
+    takeaways: "Building Pixela helped me explore how game mechanics, narrative, and visual references can work together to create an immersive interactive experience. It also strengthened my understanding of Unity, C#, and environmental storytelling.",
     nextProject: {
       title: "MUSE*ON",
       link: "/project/museon"
