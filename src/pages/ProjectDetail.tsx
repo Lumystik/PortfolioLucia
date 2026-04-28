@@ -138,7 +138,7 @@ export function ProjectDetail() {
               {project.ideation.wireframes.map((wire: any, idx: number) => (
                 <div key={idx} className="flex flex-col gap-4">
                   
-                  <div className="w-full aspect-[2/3] bg-white rounded-2xl border">
+                  <div className="w-full max-w-[260px] mx-auto aspect-[2/3] bg-white rounded-2xl border">
                     <img src={wire.image} className="w-full h-full object-contain" />
                   </div>
 
