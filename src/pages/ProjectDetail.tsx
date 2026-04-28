@@ -42,18 +42,18 @@ ideation: {
   }
 ]
   },
-    userInsightsCards: [
+userInsightsCards: [
   {
     title: "INTEGRATION IS ESSENTIAL",
-    description: "Small museum staff emphasized the critical need for a 'Complete' system. Having an 'All-in-one' platform eliminated the mental fatigue of switching between separate tools, ensuring that team collaboration remained centralized and transparent."
+    description: "Staff needed one system to reduce tool-switching and improve collaboration."
   },
   {
     title: "SHORTCUTS DRIVE EFFICIENCY",
-    description: "Staff members are frequently multitasking on-site. The 'My Task' and 'Project' shortcuts were identified as high-value features, allowing users to perform actions 'Fast' and bypass complex navigation during high-pressure exhibition setups."
+    description: "Quick access to tasks, projects, and key actions helped staff move faster."
   },
   {
     title: "VISIBILITY REDUCES FRICTION",
-    description: "Users expressed a strong preference for a 'Panoramic' view of the institution. The ability to see shared calendar availability at a glance removed the guesswork from team collaboration, making the management of resources feel more 'Useful' and controlled."
+    description: "A shared overview made calendars, collections, and responsibilities easier to manage."
   }
 ],
     targetUsers: {
@@ -697,14 +697,14 @@ export function ProjectDetail() {
               transition={{ delay: idx * 0.1 }}
               className="flex flex-col gap-6"
             >
-              <div className="w-full max-w-[260px] mx-auto aspect-[2/3] rounded-2xl overflow-hidden shadow-sm border border-gray-100 bg-white">
+              <div className="w-full max-w-[260px] mx-auto aspect-[2/3]  overflow-hidden shadow-sm border border-gray-100 bg-white">
                 <img 
                   src={wire.image} 
                   alt={wire.caption} 
                   className="w-full h-full object-cover" 
                 />
               </div>
-              <div className="flex flex-col gap-2 text-left">
+              <div className="flex flex-col gap-2 text-center">
                 <p className="text-sm font-bold uppercase tracking-tight text-[#131313]">
                   {wire.caption.includes(':') ? wire.caption.split(':')[0] : wire.caption}
                 </p>
