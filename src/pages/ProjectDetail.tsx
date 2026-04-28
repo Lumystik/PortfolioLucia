@@ -42,18 +42,18 @@ ideation: {
       }
     ]
   },
-    userInsightsCards: [
+userInsightsCards: [
   {
     title: "INTEGRATION IS ESSENTIAL",
-    description: "Small museum staff needed a complete system that reduced the mental effort of switching between separate tools. A centralized platform made collaboration easier, improved visibility, and helped the team keep track of shared responsibilities."
+    description: "Staff needed one system to reduce tool-switching and improve collaboration."
   },
   {
     title: "SHORTCUTS DRIVE EFFICIENCY",
-    description: "Because staff often multitask during exhibition planning and on-site operations, direct access to tasks, projects, and key actions became essential. Shortcuts helped users move faster and avoid unnecessary navigation during time-sensitive work."
+    description: "Quick access to tasks, projects, and key actions helped staff move faster."
   },
   {
     title: "VISIBILITY REDUCES FRICTION",
-    description: "Users valued a panoramic view of the institution. Seeing calendars, responsibilities, collections, and project status in one place reduced uncertainty and made resource management feel more controlled and transparent."
+    description: "A shared overview made calendars, collections, and responsibilities easier to manage."
   }
 ],
     targetUsers: {
@@ -680,46 +680,42 @@ export function ProjectDetail() {
         </p>
       </motion.div>
 
-      {/* 2. WIREFRAMES (3 Column Grid) */}
-      <div className="bg-[#FAF9F6] p-8 md:p-16 rounded-[2rem] flex flex-col gap-12">
+{/* 2. WIREFRAMES (3 Column Grid) */}
+<div className="flex flex-col gap-12">
+  <div className="flex flex-col gap-2 text-left">
+    <h4 className="text-sm font-bold uppercase tracking-widest opacity-60">Laying the Foundation</h4>
+    <p className="text-lg font-bold">Initial Wireframe Iterations</p>
+  </div>
+
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+    {project.ideation.wireframes.map((wire: any, idx: number) => (
+      <motion.div 
+        key={idx}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: idx * 0.1 }}
+        className="group flex flex-col gap-6"
+      >
+        <div className="w-full aspect-[2/3] rounded-2xl overflow-hidden flex items-center justify-center bg-white border border-gray-100 shadow-sm p-0">
+          <img 
+            src={wire.image} 
+            alt={wire.caption} 
+            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-out" 
+          />
+        </div>
         <div className="flex flex-col gap-2 text-left">
-            <h4 className="text-sm font-bold uppercase tracking-widest opacity-60">Laying the Foundation</h4>
-            <p className="text-lg font-bold">Initial Wireframe Iterations</p>
+          <p className="text-sm font-bold uppercase tracking-tight text-[#131313]">
+            {wire.caption.includes(':') ? wire.caption.split(':')[0] : wire.caption}
+          </p>
+          <p className="text-xs text-gray-500 leading-tight">
+            {wire.caption.includes(':') ? wire.caption.split(':')[1] : ""}
+          </p>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-          {project.ideation.wireframes.map((wire: any, idx: number) => (
-            <motion.div 
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="flex flex-col gap-6"
-            >
-              <div className="w-full aspect-video rounded-xl overflow-hidden shadow-sm border border-gray-100 bg-white">
-                <img 
-                  src={wire.image} 
-                  alt={wire.caption} 
-                  className="w-full h-full object-cover" 
-                />
-              </div>
-              <div className="flex flex-col gap-2 text-left">
-                <p className="text-sm font-bold uppercase tracking-tight text-[#131313]">
-                  {wire.caption.includes(':') ? wire.caption.split(':')[0] : wire.caption}
-                </p>
-                <p className="text-xs text-gray-500 leading-tight">
-                  {wire.caption.includes(':') ? wire.caption.split(':')[1] : ""}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-
-    </div>
-  </section>
-)}
+      </motion.div>
+    ))}
+  </div>
+</div>
         
         {/* 10. Pillars / Scenarios (V2 Layout) */}
         {project.pillars2 && project.pillars2.length > 0 && (
