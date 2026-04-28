@@ -420,20 +420,20 @@ export function ProjectDetail() {
             <div className="lg:col-span-4 flex flex-col gap-8">
               <div className="flex flex-col gap-2">
                 <h4 className="text-sm font-bold uppercase tracking-widest text-[#131313]">Project Scope</h4>
-                <p className="text-lg text-gray-700">{project.scope}</p>
+                <p className="text-base text-gray-700">{project.scope}</p>
               </div>
               <div className="flex flex-col gap-2">
                 <h4 className="text-sm font-bold uppercase tracking-widest text-[#131313]">Role</h4>
-                <p className="text-lg text-gray-700">{project.role}</p>
+                <p className="text-base text-gray-700">{project.role}</p>
               </div>
               <div className="flex flex-col gap-2">
                 <h4 className="text-sm font-bold uppercase tracking-widest text-[#131313]">Project Duration</h4>
-                <p className="text-lg text-gray-700">{project.timeline}</p>
+                <p className="text-base text-gray-700">{project.timeline}</p>
               </div>
               {project.team && (
                 <div className="flex flex-col gap-2">
                   <h4 className="text-sm font-bold uppercase tracking-widest text-[#131313]">Team</h4>
-                  <p className="text-lg text-gray-700">{project.team}</p>
+                  <p className="text-base text-gray-700">{project.team}</p>
                 </div>
               )}
               {project.prototypeLink && (
@@ -474,7 +474,7 @@ export function ProjectDetail() {
           <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313] mb-6">
             The Problem
           </h3>
-          <div className="text-lg md:text-xl text-gray-800 leading-relaxed whitespace-pre-line">
+          <div className="text-base text-gray-800 leading-relaxed whitespace-pre-line">
             {project.problem}
           </div>
         </div>
@@ -518,7 +518,7 @@ export function ProjectDetail() {
                         ))}
                       </ul>
                     ) : (
-                      <div className="text-lg md:text-xl leading-relaxed whitespace-pre-line text-gray-800">
+                      <div className="text-base leading-relaxed whitespace-pre-line text-gray-800">
                         {project.researchObjectives}
                       </div>
                     )}
@@ -583,7 +583,7 @@ export function ProjectDetail() {
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
               <div className="flex flex-col gap-4 max-w-3xl">
                 <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-white">Target Users</h3>
-                <p className="text-lg md:text-xl leading-relaxed">{project.targetUsers.description}</p>
+                <p className="text-base leading-relaxed">{project.targetUsers.description}</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {project.targetUsers.personas.map((persona: any, idx: number) => (
@@ -648,7 +648,7 @@ export function ProjectDetail() {
 
 {/* --- 11. IDEATION SECTION --- */}
 {project.ideation && (
-  <section className="py-16 md:py-24 w-full bg-white">
+  <section className="py-16 md:py-20 w-full bg-white">
     <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16">
       
       {/* Header: Title and Question */}
@@ -656,7 +656,7 @@ export function ProjectDetail() {
         <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">
           Ideation
         </h3>
-        <p className="text-xl md:text-2xl leading-relaxed text-gray-800 font-medium italic border-l-4 border-[#E2F0A4] pl-6">
+        <p className="text-lg md:text-xl leading-relaxed text-gray-800 font-medium italic border-l-4 border-[#E2F0A4] pl-6">
           {project.ideation.question}
         </p>
       </div>
@@ -684,7 +684,7 @@ export function ProjectDetail() {
       <div className="bg-[#FAF9F6] p-8 md:p-16 rounded-[2rem] flex flex-col gap-12">
         <div className="flex flex-col gap-2 text-left">
             <h4 className="text-sm font-bold uppercase tracking-widest opacity-60">Laying the Foundation</h4>
-            <p className="text-lg font-bold">Initial Wireframe Iterations</p>
+            <p className="text-base font-bold">Initial Wireframe Iterations</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
@@ -738,7 +738,7 @@ export function ProjectDetail() {
                       <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight leading-tight text-[#131313]">
                         {project.pillars2[0].title}
                       </h3>
-                      <p className="text-lg text-gray-600 leading-relaxed font-light">
+                      <p className="text-base text-gray-600 leading-relaxed font-light">
                         {project.pillars2[0].description}
                       </p>
                     </div>
@@ -772,7 +772,7 @@ export function ProjectDetail() {
                         />
                       </div>
                       <div className="flex flex-col gap-2">
-                        <h3 className="text-xl md:text-2xl font-bold uppercase tracking-tight leading-tight text-[#131313]">
+                        <h3 className="text-xl font-bold uppercase tracking-tight leading-tight text-[#131313]">
                           {pillar.title}
                         </h3>
                         <p className="text-base text-gray-600 leading-relaxed font-light">
@@ -801,7 +801,7 @@ export function ProjectDetail() {
                     <img src={pillar.image} alt={pillar.title} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-out" />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <h3 className="text-xl md:text-2xl font-bold uppercase tracking-tight leading-tight text-[#131313]">{pillar.title}</h3>
+                    <h3 className="text-xl font-bold uppercase tracking-tight leading-tight text-[#131313]">{pillar.title}</h3>
                     <p className="text-base text-gray-600 leading-relaxed font-light">{pillar.description}</p>
                   </div>
                 </motion.div>
@@ -818,7 +818,7 @@ export function ProjectDetail() {
                 <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">
                   {project.userTesting.title || "User Testing"}
                 </h3>
-                <p className="text-lg md:text-xl leading-relaxed text-gray-800">
+                <p className="text-base leading-relaxed text-gray-800">
                   {project.userTesting.description}
                 </p>
               </div>
@@ -904,7 +904,7 @@ export function ProjectDetail() {
                     className="flex flex-col gap-2 text-left"
                   >
                     <span className="text-5xl md:text-7xl font-bold text-[#E2F0A4]">{finding.stat}</span>
-                    <h4 className="text-lg font-bold uppercase tracking-wide text-white">{finding.label}</h4>
+                    <h4 className="text-base font-bold uppercase tracking-wide text-white">{finding.label}</h4>
                     <p className="text-gray-400 text-base leading-relaxed">{finding.description}</p>
                   </motion.div>
                 ))}
@@ -923,14 +923,14 @@ export function ProjectDetail() {
                 <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313] mb-8">
                   Building the Brand
                 </h3>
-                <p className="text-lg md:text-xl leading-relaxed text-[#131313] max-w-3xl">
+                <p className="text-base leading-relaxed text-[#131313] max-w-3xl">
                   {project.branding.description}
                 </p>
               </div>
             </section>
 
             {project.branding.shapes && (
-              <section className="py-10">
+              <section className="py-16 md:py-20">
                 <div className="max-w-7xl mx-auto px-6 flex justify-center items-center gap-6 flex-wrap">
                   {project.branding.shapes.map((shape: any, idx: number) => (
                     <div
@@ -950,13 +950,13 @@ export function ProjectDetail() {
             )}
 
             {(project.branding.logoDescription || project.branding.logoImage) && (
-              <section className="py-16 md:py-24">
+              <section className="py-16 md:py-20">
                 <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                   <div className="flex flex-col gap-6">
-                    <h4 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-[#131313]">
+                    <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">
                       Logo Design
                     </h4>
-                    <p className="text-lg leading-relaxed text-gray-700">
+                    <p className="text-base leading-relaxed text-gray-700">
                       {project.branding.logoDescription}
                     </p>
                   </div>
@@ -972,7 +972,7 @@ export function ProjectDetail() {
             )}
 
             {project.branding.featuresImage && (
-              <section className="py-16 border-t border-gray-50">
+              <section className="py-16 md:py-20 border-t border-gray-50">
                 <div className="max-w-7xl mx-auto px-6">
                   <img 
                     src={project.branding.featuresImage} 
@@ -987,14 +987,14 @@ export function ProjectDetail() {
 
         {/* --- 13. KEY FUNCTIONS SECTION --- */}
         {project.keyFunctions && (
-          <section className="py-16 md:py-24 w-full bg-black text-white">
+          <section className="py-16 md:py-20 w-full bg-black text-white">
             <div className="max-w-7xl mx-auto px-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mb-16">
                 <div className="flex flex-col gap-6 text-left">
                   <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-white">
                     Key Functions
                   </h3>
-                  <p className="text-lg md:text-xl leading-relaxed text-gray-300">
+                  <p className="text-base leading-relaxed text-gray-300">
                     {project.keyFunctions.description}
                   </p>
                 </div>
@@ -1034,10 +1034,10 @@ export function ProjectDetail() {
 
         {/* --- 15. FINAL PROTOTYPE SECTION --- */}
         {project.finalPrototype && (
-          <section className="py-20  w-full">
+          <section className="py-16 md:py-20 w-full">
             <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div className="flex flex-col items-start gap-8">
-                <h3 className="text-4xl md:text-5xl font-bold uppercase tracking-tight text-[#131313]">
+                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">
                   Final Prototype
                 </h3>
                 <a 
@@ -1065,7 +1065,7 @@ export function ProjectDetail() {
         )}
 {/* Seedtag Specific Scrolling Gallery */}
 {project.id === 'seedtag' && (
-  <section className="py-20 bg-white">
+  <section className="py-16 md:py-20 bg-white">
     <div className="max-w-6xl mx-auto px-6">
       <h3 className="text-3xl font-bold mb-16 text-center">Key Responsibilities & Focus Areas</h3>
       
@@ -1081,8 +1081,8 @@ export function ProjectDetail() {
           >
             {/* Left Column: Text */}
             <div className={`order-2 ${index % 2 === 0 ? 'md:order-1' : 'md:order-2'}`}>
-              <h4 className="text-2xl font-bold mb-4">{item.title}</h4>
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <h4 className="text-xl font-bold mb-4">{item.title}</h4>
+              <p className="text-base text-gray-600 leading-relaxed">
                 {item.desc}
               </p>
             </div>
@@ -1105,12 +1105,12 @@ export function ProjectDetail() {
 )}
         {/* --- 16. TAKEAWAYS --- */}
         {project.takeaways && (
-          <section className="py-24 md:py-32 w-full bg-[#E54D2E] text-white">
+          <section className="py-16 md:py-20 w-full bg-[#E54D2E] text-white">
             <div className="max-w-4xl mx-auto px-6 text-center flex flex-col gap-10">
-              <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tight">
+              <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight">
                 Takeaways
               </h3>
-              <p className="text-lg md:text-xl leading-relaxed whitespace-pre-line max-w-3xl mx-auto font-medium">
+              <p className="text-base leading-relaxed whitespace-pre-line max-w-3xl mx-auto font-medium">
                 {project.takeaways}
               </p>
             </div>
