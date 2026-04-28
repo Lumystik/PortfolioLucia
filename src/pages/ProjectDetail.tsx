@@ -46,15 +46,15 @@ ideation: {
 userInsightsCards: [
   {
     title: "INTEGRATION IS ESSENTIAL",
-    description: "Staff needed one system to reduce tool-switching and improve collaboration."
+    description: "10 out of 11 users expected tasks, calendars, collections, and notes to work as one connected system."
   },
   {
     title: "SHORTCUTS DRIVE EFFICIENCY",
-    description: "Quick access to tasks, projects, and key actions helped staff move faster."
+    description: "9 out of 11 users looked for faster ways to create tasks, schedule events, or access project information."
   },
   {
     title: "VISIBILITY REDUCES FRICTION",
-    description: "A shared overview made calendars, collections, and responsibilities easier to manage."
+    description: "10 out of 11 users relied on shared calendar and team information before making planning decisions."
   }
 ],
     targetUsers: {
