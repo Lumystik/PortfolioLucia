@@ -30,15 +30,15 @@ ideation: {
   wireframes: [
   {
     image: "https://github.com/Lumystik/PortfolioLucia/blob/78d82c3bb5eae3c9be12ddde7b066b62a51cc24a/images/Dashboard_mobile_wireframe.png?raw=true",
-    caption: "Dashboard: Centralized daily overview"
+    caption: "Dashboard"
   },
   {
     image: "https://github.com/Lumystik/PortfolioLucia/blob/78d82c3bb5eae3c9be12ddde7b066b62a51cc24a/images/Calendar_mobile_wireframe%20(1).png?raw=true",
-    caption: "Calendar: Shared scheduling"
+    caption: "Calendar"
   },
   {
     image: "https://github.com/Lumystik/PortfolioLucia/blob/78d82c3bb5eae3c9be12ddde7b066b62a51cc24a/images/smart%20notes%20pop%20up%20mobile.png?raw=true",
-    caption: "Smart Notes: AI task support"
+    caption: "Smart Notes"
   }
 ]
   },
