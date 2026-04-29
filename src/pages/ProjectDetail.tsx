@@ -9,15 +9,15 @@ const projectsData: Record<string, any> = {
   "museon": {
     id: "museon",
     title: "MUSE*ON",
-    heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/988251ade7a50360d870b2b630818e7291a7d458/images/museon_hero.jpg?raw=true",
+    heroImage: "[https://github.com/Lumystik/PortfolioLucia/blob/988251ade7a50360d870b2b630818e7291a7d458/images/museon_hero.jpg?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/988251ade7a50360d870b2b630818e7291a7d458/images/museon_hero.jpg?raw=true)",
     overview: "Developing an all in one software for small museums staff, that aims to streamline the work-flow and improve the management of the different areas of the institution. In order to optimize the current museum resources.",
     scope: "End-to-End App",
     role: "UX Research, Branding, UX/UI Design",
     timeline:"4 months",
     team: "Martina Braidotti, Lucia Medina, Ilario Pedone, Agnese Rosselli, Mark Waisara",
-    prototypeLink: "https://www.figma.com/proto/16viMWZsHOU9SkmpbSpTd5/FINAL-UI-spaced?node-id=2248-9671&starting-point-node-id=703%3A8427&scaling=scale-down&content-scaling=fixed&t=aO2g8BW8sOtXyiVT-1?raw=true",
+    prototypeLink: "[https://www.figma.com/proto/16viMWZsHOU9SkmpbSpTd5/FINAL-UI-spaced?node-id=2248-9671&starting-point-node-id=703%3A8427&scaling=scale-down&content-scaling=fixed&t=aO2g8BW8sOtXyiVT-1?raw=true](https://www.figma.com/proto/16viMWZsHOU9SkmpbSpTd5/FINAL-UI-spaced?node-id=2248-9671&starting-point-node-id=703%3A8427&scaling=scale-down&content-scaling=fixed&t=aO2g8BW8sOtXyiVT-1?raw=true)",
     problem: "Staff at small museums often face fragmented workflows. \n\n With only 4 full-time staff managing 59 events and exhibitions a year across 6 different tools, the team is constantly stretched thin.",
-    problemImage: "https://github.com/Lumystik/PortfolioLucia/blob/56aed6413b71c2bc18bd6c0dcd8054a3b546474d/images/complicatedworkflow_museon.jpg?raw=true",
+    problemImage: "[https://github.com/Lumystik/PortfolioLucia/blob/56aed6413b71c2bc18bd6c0dcd8054a3b546474d/images/complicatedworkflow_museon.jpg?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/56aed6413b71c2bc18bd6c0dcd8054a3b546474d/images/complicatedworkflow_museon.jpg?raw=true)",
     processMap: [
       { phase: "Research", steps: ["Desk research", "On site research", "Ecosystem map", "research key findings"] },
       { phase: "Define", steps: ["Design brief", "Personas & scenarios", "Heroflow & wireflow"] },
@@ -26,19 +26,20 @@ const projectsData: Record<string, any> = {
     howMightWe: [ "solve the complexity of creating a smooth experience for small museum staff?", "streamline the workflow and improve the management of different areas of the institution?", "optimize the current museum resources to help staff develop a better experience for visitors?" ],
     ideation: {
       question: "How can we build a seamless workflow that maximizes museum staff efficiency? How can the platform adapt to different roles while maintaining a unified database?",
-      heroFlow: "https://github.com/Lumystik/PortfolioLucia/blob/f8b832c9f326ed2f6d2fd32515316ec56fb143fa/images/workflow_museon.png?raw=true",
-      heroFlowCaption: "Alex Hero Flow: Organizing a new temporary exhibition.", 
+      heroFlow: "[https://github.com/Lumystik/PortfolioLucia/blob/f8b832c9f326ed2f6d2fd32515316ec56fb143fa/images/workflow_museon.png?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/f8b832c9f326ed2f6d2fd32515316ec56fb143fa/images/workflow_museon.png?raw=true)",
+      // UPDATED Caption: Remove Alex prefix
+      heroFlowCaption: "Organizing a new temporary exhibition.", 
       wireframes: [
         {
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/78d82c3bb5eae3c9be12ddde7b066b62a51cc24a/images/Dashboard_mobile_wireframe.png?raw=true",
+          image: "[https://github.com/Lumystik/PortfolioLucia/blob/78d82c3bb5eae3c9be12ddde7b066b62a51cc24a/images/Dashboard_mobile_wireframe.png?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/78d82c3bb5eae3c9be12ddde7b066b62a51cc24a/images/Dashboard_mobile_wireframe.png?raw=true)",
           caption: "Dashboard"
         },
         {
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/78d82c3bb5eae3c9be12ddde7b066b62a51cc24a/images/Calendar_mobile_wireframe%20(1).png?raw=true",
+          image: "[https://github.com/Lumystik/PortfolioLucia/blob/78d82c3bb5eae3c9be12ddde7b066b62a51cc24a/images/Calendar_mobile_wireframe%20(1).png?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/78d82c3bb5eae3c9be12ddde7b066b62a51cc24a/images/Calendar_mobile_wireframe%20(1).png?raw=true)",
           caption: "Calendar"
         },
         {
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/78d82c3bb5eae3c9be12ddde7b066b62a51cc24a/images/smart%20notes%20pop%20up%20mobile.png?raw=true",
+          image: "[https://github.com/Lumystik/PortfolioLucia/blob/78d82c3bb5eae3c9be12ddde7b066b62a51cc24a/images/smart%20notes%20pop%20up%20mobile.png?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/78d82c3bb5eae3c9be12ddde7b066b62a51cc24a/images/smart%20notes%20pop%20up%20mobile.png?raw=true)",
           caption: "Smart Notes"
         }
       ]
@@ -61,12 +62,12 @@ const projectsData: Record<string, any> = {
         {
           title: "ADDING CLARIFICATION TO SETTINGS",
           description: "Users found themselves guessing what each input meant, and even though 100% of users correctly interpreted the title, I added a brief description to further clarify.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/be1755ca40682fbb1c571d38f3aa37d18cc7ada8/images/calendar_museo1.png?raw=true" 
+          image: "[https://github.com/Lumystik/PortfolioLucia/blob/be1755ca40682fbb1c571d38f3aa37d18cc7ada8/images/calendar_museo1.png?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/be1755ca40682fbb1c571d38f3aa37d18cc7ada8/images/calendar_museo1.png?raw=true)" 
         },
         {
           title: "UPDATING PRESET VIEWS",
           description: "4 out of the 5 staff members felt that the default monthly view was too broad and preferred a weekly view. Seeing as the majority chose this length, I updated the preset to reflect their preference.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/465f291d0d01afb736e1502a28db9b14b236e818/images/collection_museon1.png?raw=true" 
+          image: "[https://github.com/Lumystik/PortfolioLucia/blob/465f291d0d01afb736e1502a28db9b14b236e818/images/collection_museon1.png?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/465f291d0d01afb736e1502a28db9b14b236e818/images/collection_museon1.png?raw=true)" 
         }
       ]
     },
@@ -100,12 +101,12 @@ const projectsData: Record<string, any> = {
         {
           title: "ALEX: THE CURATOR & MANAGER",
           description: "Role: Curator, Education, Office of the President, Guide, Ticket and Relations.\nDrivers: Contributing to cultural education, personal interest in the subject matter.\nEnvironment: Museum office.\nNeeds: Planning, team collaboration, task management.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/544af7d6cc6298448d4e8135adb4ec2bb51850c5/images/alexx.jpg?raw=true"
+          image: "[https://github.com/Lumystik/PortfolioLucia/blob/544af7d6cc6298448d4e8135adb4ec2bb51850c5/images/alexx.jpg?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/544af7d6cc6298448d4e8135adb4ec2bb51850c5/images/alexx.jpg?raw=true)"
         },
         {
           title: "MARK: THE INTERN",
           description: "Role: Intern.\nDrivers: Learning and gaining experience in museum operations, impressing supervisors, contributing effectively during the visit.\nEnvironment: Home/On-site.\nNeeds: Clear task assignment, accessibility, collection lists.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/670da0db043a6e565e337fb2b744ed6f9f8518b6/images/mark.jpg?raw=true"
+          image: "[https://github.com/Lumystik/PortfolioLucia/blob/670da0db043a6e565e337fb2b744ed6f9f8518b6/images/mark.jpg?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/670da0db043a6e565e337fb2b744ed6f9f8518b6/images/mark.jpg?raw=true)"
         }
       ],
       conclusion: "Both roles require a centralized dashboard, shared calendar, project tracking, and collection management to reduce switching costs."
@@ -114,8 +115,8 @@ const projectsData: Record<string, any> = {
     branding: {
       description: "The design system was built to be clean, accessible, and highly functional, prioritizing data visualization and task management. It includes standardized colors, buttons, dropdown menus, and calendar components.",
       logoDescription: "We were drawn to the asterisk as a symbol of connection, and wanted to incorporate its radiating structure as a mark that points toward information, toward people, toward the institution itself.",
-      logoImage: "https://github.com/Lumystik/PortfolioLucia/blob/ac040a0ff68481a4ef9745568ded5b5c9b484a5b/images/museonlogo.png?raw=true",       
-      featuresImage: "https://github.com/Lumystik/PortfolioLucia/blob/dfc97077f6303fd7953feeb6d4e1a8efdce42b2e/images/button.png?raw=true", 
+      logoImage: "[https://github.com/Lumystik/PortfolioLucia/blob/ac040a0ff68481a4ef9745568ded5b5c9b484a5b/images/museonlogo.png?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/ac040a0ff68481a4ef9745568ded5b5c9b484a5b/images/museonlogo.png?raw=true)",       
+      featuresImage: "[https://github.com/Lumystik/PortfolioLucia/blob/dfc97077f6303fd7953feeb6d4e1a8efdce42b2e/images/button.png?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/dfc97077f6303fd7953feeb6d4e1a8efdce42b2e/images/button.png?raw=true)", 
       shapes: [
         { color: "#000000", size: 120, x: "20%", y: "10%" },
         { color: "#6B6A6A", size: 100, x: "50%", y: "10%"},
@@ -130,43 +131,42 @@ const projectsData: Record<string, any> = {
         {
           title: "TASK & SHARED CALENDAR OVERVIEW",
           description: "See the busy and available times of people you have shared your calendar with and plan events accordingly.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/be1755ca40682fbb1c571d38f3aa37d18cc7ada8/images/calendar_museo1.png?raw=true"
+          image: "[https://github.com/Lumystik/PortfolioLucia/blob/be1755ca40682fbb1c571d38f3aa37d18cc7ada8/images/calendar_museo1.png?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/be1755ca40682fbb1c571d38f3aa37d18cc7ada8/images/calendar_museo1.png?raw=true)"
         },
         {
           title: "COLLECTION MANAGEMENT",
           description: "A dedicated collection page to easily check contents, export them, and manage items for specific exhibitions.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/465f291d0d01afb736e1502a28db9b14b236e818/images/collection_museon1.png?raw=true"
+          image: "[https://github.com/Lumystik/PortfolioLucia/blob/465f291d0d01afb736e1502a28db9b14b236e818/images/collection_museon1.png?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/465f291d0d01afb736e1502a28db9b14b236e818/images/collection_museon1.png?raw=true)"
         },
        {
         title: "AI INTEGRATION",
         description: "AI utilizes conversation transcription to instantly detect tasks with a single click and direct users to the corresponding page.",
-        image: "https://github.com/Lumystik/PortfolioLucia/blob/ccd5a596d938ff18c9cd80558a2f7d7f2df76b5e/images/smartnotes_museon1.png?raw=true"
+        image: "[https://github.com/Lumystik/PortfolioLucia/blob/ccd5a596d938ff18c9cd80558a2f7d7f2df76b5e/images/smartnotes_museon1.png?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/ccd5a596d938ff18c9cd80558a2f7d7f2df76b5e/images/smartnotes_museon1.png?raw=true)"
       }
       ]
     },
-    bannerImage: "https://github.com/Lumystik/PortfolioLucia/blob/988251ade7a50360d870b2b630818e7291a7d458/images/museon_finalinterface%20(10).gif?raw=true",
+    bannerImage: "[https://github.com/Lumystik/PortfolioLucia/blob/988251ade7a50360d870b2b630818e7291a7d458/images/museon_finalinterface%20(10).gif?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/988251ade7a50360d870b2b630818e7291a7d458/images/museon_finalinterface%20(10).gif?raw=true)",
     finalPrototype: {
-      link: "https://www.figma.com/proto/16viMWZsHOU9SkmpbSpTd5/FINAL-UI-spaced?node-id=2248-9671&starting-point-node-id=703%3A8427&scaling=scale-down&content-scaling=fixed&t=aO2g8BW8sOtXyiVT-1?raw=true",
+      link: "[https://www.figma.com/proto/16viMWZsHOU9SkmpbSpTd5/FINAL-UI-spaced?node-id=2248-9671&starting-point-node-id=703%3A8427&scaling=scale-down&content-scaling=fixed&t=aO2g8BW8sOtXyiVT-1?raw=true](https://www.figma.com/proto/16viMWZsHOU9SkmpbSpTd5/FINAL-UI-spaced?node-id=2248-9671&starting-point-node-id=703%3A8427&scaling=scale-down&content-scaling=fixed&t=aO2g8BW8sOtXyiVT-1?raw=true)",
     },
     takeaways: "We solved the complexity of creating a smooth experience for small museum staff, enabling them to develop a better experience for visitors. By developing an all-in-one software, we streamlined the workflow and optimized current museum resources.",
     nextProject: {
       title: "ART BEYOND DIMENSION",
       link: "/project/art-beyond-dimension",
-      image: "https://github.com/Lumystik/PortfolioLucia/blob/c39ead2c3b7c47add54a5363ffb7b42cb35b1adf/images/wall.jpg?raw=true"
+      image: "[https://github.com/Lumystik/PortfolioLucia/blob/c39ead2c3b7c47add54a5363ffb7b42cb35b1adf/images/wall.jpg?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/c39ead2c3b7c47add54a5363ffb7b42cb35b1adf/images/wall.jpg?raw=true)"
     }
   },
   "art-beyond-dimension": {
-    // ... [KEEP ALL EXISTING DATA FOR OTHER PROJECTS EXACTLY AS IS]
     id: "art-beyond-dimension",
     title: "Art Beyond Dimension",
-    heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/0e95408be9b5b18ff336921926c7889c41d95380/images/hero_dimension.jpg?raw=true",
-    interfaceImage: "https://github.com/Lumystik/PortfolioLucia/blob/85176369bcb78e03b473d799a45522474f753705/images/dimension_final.jpeg?raw=true",
+    heroImage: "[https://github.com/Lumystik/PortfolioLucia/blob/0e95408be9b5b18ff336921926c7889c41d95380/images/hero_dimension.jpg?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/0e95408be9b5b18ff336921926c7889c41d95380/images/hero_dimension.jpg?raw=true)",
+    interfaceImage: "[https://github.com/Lumystik/PortfolioLucia/blob/85176369bcb78e03b473d799a45522474f753705/images/dimension_final.jpeg?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/85176369bcb78e03b473d799a45522474f753705/images/dimension_final.jpeg?raw=true)",
     overview: "Immersive Experience of Future Museums. Our design solution enables young adults to gain knowledge about art in a fun and engaging way to bridge the information gap and foster greater appreciation for the heritage of museum.",
     scope: "Digital Experience & Totem Interface",
     role: "Digital and Interaction Design",
     timeline: "Final Design Studio",
     team: "Razieh Soleimani, Lucia Medina, Marjan Mehrabi, Fatemeh Khoshbazan",
-    prototypeLink: "https://www.figma.com/proto/FnFqrWBxyChSOdL3aVzV9A/Prototype?node-id=616-1965&starting-point-node-id=564%3A1942&t=bIX74fMjWA7kTArF-1",
+    prototypeLink: "[https://www.figma.com/proto/FnFqrWBxyChSOdL3aVzV9A/Prototype?node-id=616-1965&starting-point-node-id=564%3A1942&t=bIX74fMjWA7kTArF-1](https://www.figma.com/proto/FnFqrWBxyChSOdL3aVzV9A/Prototype?node-id=616-1965&starting-point-node-id=564%3A1942&t=bIX74fMjWA7kTArF-1)",
     problem:"The way young people experience culture is evolving at the same time technology does. They want interactive, personalized experiences. And are moving away from static displays and toward spaces where they can actively participate in cultural exploration.",
     researchObjectives: "\n• To explore ways to reduce information gaps in art understanding among young adults. \n• To investigate how digital interactions can support learning within traditional museum environments.\n• Users can create an artwork. \n• To assess how engagement strategies affect appreciation of artistic heritage.",
     howMightWe: [ "Blend interactive elements with the traditional museum experience to bridge the information gap and foster greater appreciation for the heritage of the art?" ],
@@ -174,7 +174,7 @@ const projectsData: Record<string, any> = {
       title: "User Testing & Validation",
       description: "We conducted in-person testing sessions to observe how users interacted with the interface naturally. We focused on whether the audio prompts were intuitive and if the gamified printing process felt rewarding.",
       images: [
-        "https://github.com/Lumystik/PortfolioLucia/blob/dd95a5f2ca9291229e663073fe9e1c8365466209/images/usertesting_dimension.jpg?raw=true"
+        "[https://github.com/Lumystik/PortfolioLucia/blob/dd95a5f2ca9291229e663073fe9e1c8365466209/images/usertesting_dimension.jpg?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/dd95a5f2ca9291229e663073fe9e1c8365466209/images/usertesting_dimension.jpg?raw=true)"
       ]
     },
     userInsightsCards: [
@@ -197,17 +197,17 @@ const projectsData: Record<string, any> = {
         {
           title: "INTERACTIVE LEARNING",
           description: "Visitor stands in front of the screen and chooses paintings they are interested in. The user selects a painting to know more about and gets answers from the system. After selecting at least 2 paintings, the option to generate an artwork appears.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/5a21c692a5ce09da24b54267b421feeee842d5f6/images/learning_dimension.gif?raw=true"
+          image: "[https://github.com/Lumystik/PortfolioLucia/blob/5a21c692a5ce09da24b54267b421feeee842d5f6/images/learning_dimension.gif?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/5a21c692a5ce09da24b54267b421feeee842d5f6/images/learning_dimension.gif?raw=true)"
         },
         {
           title: "AI VOICE PROMPT",
           description: "The system uses voice interaction (e.g., 'You selected Elasticità by Boccioni. Would you like to learn about its concept?'). Users can use voice prompts to modify the art (e.g., 'I want to make it more minimal with less colors'). The AI LLM generates the artwork based on these prompts.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/1b024e88bc55015091152250c65c8c7255d83730/images/questioning_dimension.gif?raw=true"
+          image: "[https://github.com/Lumystik/PortfolioLucia/blob/1b024e88bc55015091152250c65c8c7255d83730/images/questioning_dimension.gif?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/1b024e88bc55015091152250c65c8c7255d83730/images/questioning_dimension.gif?raw=true)"
         },
         {
           title: "GAMIFIED PRINTING & SCREEN PROJECTION",
           description: "When users choose to print, the system asks related questions about the selected paintings (e.g., style, painter, concept). If answered correctly, the totem provides a printed version of the generated artwork.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/8e602f1e3767619ff568eeb83699dded7863d840/images/gamified_dimension.gif?raw=true"
+          image: "[https://github.com/Lumystik/PortfolioLucia/blob/8e602f1e3767619ff568eeb83699dded7863d840/images/gamified_dimension.gif?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/8e602f1e3767619ff568eeb83699dded7863d840/images/gamified_dimension.gif?raw=true)"
         }
       ]
     },
@@ -217,27 +217,27 @@ const projectsData: Record<string, any> = {
         {
           title: "Sara: The Explorer",
           description: "Role: Student.\nDrivers: Desire for new experiences, Drive to document and share experiences on social media.\nEnvironment: Milan, Italy.\nNeeds: Access to engaging and interactive experiences.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/45a4994bc6796acff20cf10557be4895111209d5/images/user_dimension.png?raw=true"
+          image: "[https://github.com/Lumystik/PortfolioLucia/blob/45a4994bc6796acff20cf10557be4895111209d5/images/user_dimension.png?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/45a4994bc6796acff20cf10557be4895111209d5/images/user_dimension.png?raw=true)"
         }
       ],
       conclusion: "She is an experience-driven and socially oriented user who values interactive, flexible, and culturally enriching environments that support both learning and self-expression."
     },
-     bannerImage: "https://github.com/Lumystik/PortfolioLucia/blob/e942b67bef52b6a8237dcd807e02a3f741f791a5/images/wall.jpg?raw=true",
+     bannerImage: "[https://github.com/Lumystik/PortfolioLucia/blob/e942b67bef52b6a8237dcd807e02a3f741f791a5/images/wall.jpg?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/e942b67bef52b6a8237dcd807e02a3f741f791a5/images/wall.jpg?raw=true)",
        pillars: [
       {
         title: "Scenario 1: Interactive Art Discovery Experience with tablet and wall projector",
         description: "Two screens display artworks and available paintings. As the visitor approaches, the system activates and invites them to select pieces of interest. The user receives audio-guided information and can explore each artwork interactively. Then, they can choose to generate their own artwork which will be shared on the wall.",
-        image: "https://github.com/Lumystik/PortfolioLucia/blob/8d6557cb60be6d6c688474d132989b0a8bec9580/images/scenario_1.png?raw=true"
+        image: "[https://github.com/Lumystik/PortfolioLucia/blob/8d6557cb60be6d6c688474d132989b0a8bec9580/images/scenario_1.png?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/8d6557cb60be6d6c688474d132989b0a8bec9580/images/scenario_1.png?raw=true)"
       },
       {
         title: "Scenario 2: Interactive Art Print Experience",
         description: "After selecting at least two paintings, users can keep adding more combinations. Once ready, they can generate a new artwork, view it on a second screen, and choose to print it. Before printing, the system asks brief questions about the selected paintings; correct answers unlock the print. A voice guides the process and encourages further exploration.",
-        image: "https://github.com/Lumystik/PortfolioLucia/blob/7f099807a3f294985b4812c48bad188f22b5a349/images/scenario_2.png?raw=true"
+        image: "[https://github.com/Lumystik/PortfolioLucia/blob/7f099807a3f294985b4812c48bad188f22b5a349/images/scenario_2.png?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/7f099807a3f294985b4812c48bad188f22b5a349/images/scenario_2.png?raw=true)"
       },
       {
         title: "Senario 3: AI Voice Prompt",
         description: "The AI system generates the artwork based on the user’s words as a prompt.",
-        image: "https://github.com/Lumystik/PortfolioLucia/blob/2bf3def01ee15c268265d1090683a06785465d18/images/scenario_3.png?raw=true"
+        image: "[https://github.com/Lumystik/PortfolioLucia/blob/2bf3def01ee15c268265d1090683a06785465d18/images/scenario_3.png?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/2bf3def01ee15c268265d1090683a06785465d18/images/scenario_3.png?raw=true)"
       }
     ],
     takeaways: "The idea grabs the visitor's attention, which makes them want to learn. It has the capability of personalization based on the paintings visitors like most. The user can add their opinion to the prompt to add something more than just merging two paintings to the generative artwork with voice.",
@@ -249,29 +249,29 @@ const projectsData: Record<string, any> = {
   "films-foundation": {
     id: "films-foundation",
     title: "Films Foundation",
-    heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/7cf2bd97f7815c8ba8a5a94d05606596cb94f9a9/images/hero_films.jpg?raw=true",
-    interfaceImage: "https://github.com/Lumystik/PortfolioLucia/blob/111391b1702b61b5aaa76ef9f87035cffd4873b5/images/Minimalist%20Website%20Launch%20Computer%20Mockup%20Instagram%20Post.gif?raw=true",
+    heroImage: "[https://github.com/Lumystik/PortfolioLucia/blob/7cf2bd97f7815c8ba8a5a94d05606596cb94f9a9/images/hero_films.jpg?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/7cf2bd97f7815c8ba8a5a94d05606596cb94f9a9/images/hero_films.jpg?raw=true)",
+    interfaceImage: "[https://github.com/Lumystik/PortfolioLucia/blob/111391b1702b61b5aaa76ef9f87035cffd4873b5/images/Minimalist%20Website%20Launch%20Computer%20Mockup%20Instagram%20Post.gif?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/111391b1702b61b5aaa76ef9f87035cffd4873b5/images/Minimalist%20Website%20Launch%20Computer%20Mockup%20Instagram%20Post.gif?raw=true)",
     overview: "A comprehensive UX/UI redesign for Cineteca Milano, an Italian film archive and cultural center. The project focuses on improving usability, accessibility, and the overall digital experience for booking tickets, exploring events, and accessing the film archive.",
     scope: "Web & Mobile UX/UI Redesign",
     role: "UX/UI Designer",
     timeline: "Academic Year 2024-25",
     team: "Kadam Tanishka, Lucia Medina Galan, Dilara Tanrıöven, Wang Xinyu, Wu Junxi",
-    prototypeLink: "https://www.figma.com/design/MWvYkF7ybuKjE7SPnGi8po/Assignment?node-id=689-5581&p=f&t=Iu5EfBOZk9ZYcJA2-0",
+    prototypeLink: "[https://www.figma.com/design/MWvYkF7ybuKjE7SPnGi8po/Assignment?node-id=689-5581&p=f&t=Iu5EfBOZk9ZYcJA2-0](https://www.figma.com/design/MWvYkF7ybuKjE7SPnGi8po/Assignment?node-id=689-5581&p=f&t=Iu5EfBOZk9ZYcJA2-0)",
     pillars2: [
       {
         title: "Streamlined Architecture",
         description: "Reorganized the website structure to introduce a clear Home page, categorized Films (In Theaters vs. Archives), and simplified navigation to reduce cognitive load.",
-        image: "https://github.com/Lumystik/PortfolioLucia/blob/480139cc265caba04a43d21ff472ecb4824be7ea/images/ia.png?raw=true"
+        image: "[https://github.com/Lumystik/PortfolioLucia/blob/480139cc265caba04a43d21ff472ecb4824be7ea/images/ia.png?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/480139cc265caba04a43d21ff472ecb4824be7ea/images/ia.png?raw=true)"
       },
       {
         title: "Timeless Rebranding",
         description: "Created a new visual identity using warm, earthy tones and a contemporary typography system to reflect the institution's historical and cultural significance.",
-        image: "https://github.com/Lumystik/PortfolioLucia/blob/472122f8a272fe070e22e2dfd8f160e41befbb0f/images/timeless_rebrandingfilms.png?raw=true"
+        image: "[https://github.com/Lumystik/PortfolioLucia/blob/472122f8a272fe070e22e2dfd8f160e41befbb0f/images/timeless_rebrandingfilms.png?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/472122f8a272fe070e22e2dfd8f160e41befbb0f/images/timeless_rebrandingfilms.png?raw=true)"
       },
       {
         title: "Accessible Design",
         description: "Ensured the new interface passes color blindness accessibility tests (Protanomaly, Deuteranomaly, Achromatopsia) and features highly legible components.",
-        image: "https://github.com/Lumystik/PortfolioLucia/blob/a6aa894fecb0c8e5cf48a6cb9971194b453a3e30/images/accessibility_test.gif?raw=true"
+        image: "[https://github.com/Lumystik/PortfolioLucia/blob/a6aa894fecb0c8e5cf48a6cb9971194b453a3e30/images/accessibility_test.gif?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/a6aa894fecb0c8e5cf48a6cb9971194b453a3e30/images/accessibility_test.gif?raw=true)"
       }
     ],
     researchObjectives: "ANALYSIS PHASE:\nWe conducted a Cognitive Walkthrough of the existing Cineteca Milano website and identified several pain points:\n• Limited exploration opportunities with no search function\n• Overwhelming and cluttered menu design\n• Confusing navigation with mixed content (activities vs. bookable films)\n• Fragmented and click-heavy ticket booking process\n\nCOMPETITIVE ANALYSIS:\nWe analyzed competitors like TATE, Getty, and Cineteca Bologna to identify industry standards, focusing on their task flows for viewing film details, exploring events, and booking tickets.",
@@ -300,8 +300,8 @@ const projectsData: Record<string, any> = {
       description: "The redesign moves away from a bold and playful identity to one that is timeless, mature, and elegant. The color palette uses warm, earthy brown and orange tones (#B65929, #2A1002) to reflect values from the past. Typography pairs 'New Spirit' for headings with 'Satoshi' for body text.",
       logoDescription: "New logo introduces a distinctive symbol. This new logo is abstract yet clear, suggesting an archive. It’s a clean, logo that can stand alone for branding purposes..",
       images: [
-        "https://github.com/Lumystik/PortfolioLucia/blob/f4d86ca2eb3b0ac3117214ef8ff35634270ddb4b/images/films_branding1.png?raw=true",
-        "https://github.com/Lumystik/PortfolioLucia/blob/6217c5f1edc51584a17ffed9f0a84e2d957e8d24/images/logo_cineteca.png?raw=true"
+        "[https://github.com/Lumystik/PortfolioLucia/blob/f4d86ca2eb3b0ac3117214ef8ff35634270ddb4b/images/films_branding1.png?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/f4d86ca2eb3b0ac3117214ef8ff35634270ddb4b/images/films_branding1.png?raw=true)",
+        "[https://github.com/Lumystik/PortfolioLucia/blob/6217c5f1edc51584a17ffed9f0a84e2d957e8d24/images/logo_cineteca.png?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/6217c5f1edc51584a17ffed9f0a84e2d957e8d24/images/logo_cineteca.png?raw=true)"
       ]
     },
     keyFunctions: {
@@ -310,17 +310,17 @@ const projectsData: Record<string, any> = {
         {
           title: "CENTRALIZED FILM DISCOVERY",
           description: "A newly added 'All Films' page categorizes content into 'In Theaters' and 'Our Archives'. It features robust filtering, cast highlights, and direct streaming access for archived films.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/985c14161b727e75b350483da732b98d222fb4db/images/keyfunction_filmpage.png?raw=true"
+          image: "[https://github.com/Lumystik/PortfolioLucia/blob/985c14161b727e75b350483da732b98d222fb4db/images/keyfunction_filmpage.png?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/985c14161b727e75b350483da732b98d222fb4db/images/keyfunction_filmpage.png?raw=true)"
         },
         {
           title: "STREAMLINED EVENT EXPLORATION",
           description: "Events are categorized using a sticky filter bar. A toggle switches between free and ticketed events, and individual event pages feature a 'Show Map' integration for quick location context.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/44bc54f167d5ef916b175ef981126accbc704003/images/keyfunction__events.png?raw=true"
+          image: "[https://github.com/Lumystik/PortfolioLucia/blob/44bc54f167d5ef916b175ef981126accbc704003/images/keyfunction__events.png?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/44bc54f167d5ef916b175ef981126accbc704003/images/keyfunction__events.png?raw=true)"
         },
         {
           title: "FRICTIONLESS TICKET BOOKING",
           description: "A step-by-step flow with a clean 'Select Date and Cinema' section. The seat selection interface clearly distinguishes between available, reserved, and selected seats, culminating in a mobile-friendly QR code ticket.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/b64c5d8fa1db8781e593ab48479a5bda00e94823/images/keyfunction_tickets.png?raw=true"
+          image: "[https://github.com/Lumystik/PortfolioLucia/blob/b64c5d8fa1db8781e593ab48479a5bda00e94823/images/keyfunction_tickets.png?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/b64c5d8fa1db8781e593ab48479a5bda00e94823/images/keyfunction_tickets.png?raw=true)"
         }
       ]
     },
@@ -333,7 +333,7 @@ const projectsData: Record<string, any> = {
   "seedtag": {
     id: "seedtag",
     title: "Seedtag Interactive Ads",
-    heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/875f29a845d8d4c9b924b22af2bd821846e5eeae/images/hero_seedtag.png?raw=true",
+    heroImage: "[https://github.com/Lumystik/PortfolioLucia/blob/875f29a845d8d4c9b924b22af2bd821846e5eeae/images/hero_seedtag.png?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/875f29a845d8d4c9b924b22af2bd821846e5eeae/images/hero_seedtag.png?raw=true)",
     overview: "As a Seedtag Digital Designer, I created high-impact, AI-enhanced rich media ads and interactive display creatives, modifying brand assets to fit within contextual, privacy-first advertising campaigns. And combined graphic design with animation skills to enhance user engagement, working closely with sales teams and using proprietary AI (Liz) for campaign optimization.",
     scope: "Ad Tech (HTML5/JS)",
     role: "Digital Designer / Frontend Dev",
@@ -342,27 +342,27 @@ const projectsData: Record<string, any> = {
       {
         title: "Creative Development",
         desc: "Designing interactive, high-impact ad formats (rich media) that are tailored to the context of the content, moving beyond static ads.",
-        image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/car2.gif?raw=true"
+        image: "[https://github.com/Lumystik/PortfolioLucia/blob/main/images/car2.gif?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/main/images/car2.gif?raw=true)"
       },
       {
         title: "AI Integration",
         desc: "Modifying and enhancing creatives utilizing proprietary Neuro-Contextual AI ('Liz') to optimize, rather than replace, human design.",
-        image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/car3.gif?raw=true"
+        image: "[https://github.com/Lumystik/PortfolioLucia/blob/main/images/car3.gif?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/main/images/car3.gif?raw=true)"
       },
       {
         title: "Animation & Interactivity",
         desc: "Adding captivating animations to boost user attention and engagement, turning assets into interactive experiences.",
-        image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/car4.gif?raw=true"
+        image: "[https://github.com/Lumystik/PortfolioLucia/blob/main/images/car4.gif?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/main/images/car4.gif?raw=true)"
       },
       {
         title: "Collaboration",
         desc: "Working with sales teams and CSMs to align creatives with client objectives and campaign strategies.",
-        image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/portfolio-10.jpg?raw=true"
+        image: "[https://github.com/Lumystik/PortfolioLucia/blob/main/images/portfolio-10.jpg?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/main/images/portfolio-10.jpg?raw=true)"
       },
       {
         title: "Quality Assurance",
         desc: "Ensuring high-quality visual standards across all digital assets produced for global publishers.",
-        image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/starbucks5.gif?raw=true"
+        image: "[https://github.com/Lumystik/PortfolioLucia/blob/main/images/starbucks5.gif?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/main/images/starbucks5.gif?raw=true)"
       }
     ],
     takeaways: "Working with global brands requires adaptability and a deep understanding of interactive design principles. I developed a strong intuition for attention and engagement, learning exactly what makes users stop scrolling."
@@ -370,7 +370,7 @@ const projectsData: Record<string, any> = {
   "pixela": {
     id: "pixela",
     title: "Pixela",
-    heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/pixela.png?raw=true",
+    heroImage: "[https://github.com/Lumystik/PortfolioLucia/blob/main/images/pixela.png?raw=true](https://github.com/Lumystik/PortfolioLucia/blob/main/images/pixela.png?raw=true)",
     overview: "Pixela is an immersive first-person survival game where you play as an AI named Pixela, who is an unexpected anomaly in a scientific project designed to decode the minds of history's greatest artists. As Pixela, your primary objective is to escape from the scientists who have captured you, using your unique abilities to travel through the worlds of Dalí, Van Gogh and Escher.",
     scope: "Unity3D / C# Videogame Demo",
     role: "Game Designer & Developer",
@@ -511,12 +511,12 @@ export function ProjectDetail() {
                   </div>
                 </div>
 
-                {/* Right Column: Image */}
-                <div className="lg:col-span-7 flex items-center justify-center p-8 md:p-12 overflow-hidden bg-[#F9F9F9] border border-gray-100 rounded-2xl">
+                {/* Right Column: Image - Bigger image, smaller padding */}
+                <div className="lg:col-span-7 flex items-center justify-center p-2 md:p-4 overflow-hidden bg-[#F9F9F9] border border-gray-100 rounded-2xl">
                   <img
                     src={project.problemImage || "/placeholder-phone-mockup.png"}
                     alt="The Problem Illustration"
-                    className="w-full max-w-[280px] h-auto object-contain drop-shadow-2xl"
+                    className="w-full h-auto object-contain drop-shadow-2xl"
                   />
                 </div>
 
@@ -589,13 +589,16 @@ export function ProjectDetail() {
                   <motion.div 
                     key={idx}
                     initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
-                    className="flex flex-col gap-4 text-left bg-white p-6 rounded-2xl shadow-sm border border-gray-100"
+                    // UPDATE: Orange background for each phase card
+                    className="flex flex-col gap-4 text-left bg-[#E54D2E] p-6 rounded-2xl shadow-sm border border-transparent text-white"
                   >
-                    <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313] border-b-2 border-gray-100 pb-2">{phase.phase}</h4>
+                    {/* UPDATE: Border color inside orange card */}
+                    <h4 className="text-xl font-bold uppercase tracking-tight text-white border-b-2 border-white/20 pb-2">{phase.phase}</h4>
                     <ul className="flex flex-col gap-2">
                       {phase.steps.map((step: string, stepIdx: number) => (
-                        <li key={stepIdx} className="text-base md:text-lg text-gray-700 leading-relaxed flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 min-w-[6px] min-h-[6px] rounded-full bg-[#131313]"></span>
+                        // UPDATE: Dot color inside orange card
+                        <li key={stepIdx} className="text-base md:text-lg text-white/90 leading-relaxed flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 min-w-[6px] min-h-[6px] rounded-full bg-white"></span>
                           <span className="break-words">{step}</span>
                         </li>
                       ))}
@@ -686,9 +689,10 @@ export function ProjectDetail() {
                 <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">
                   Ideation
                 </h3>
-                <p className="text-base md:text-lg text-gray-700 leading-relaxed italic border-l-4 border-[#E2F0A4] pl-6">
+                {/* UPDATE: DELETE THE QUESTION TEXT */}
+                {/* <p className="text-base md:text-lg text-gray-700 leading-relaxed italic border-l-4 border-[#E2F0A4] pl-6">
                   {project.ideation.question}
-                </p>
+                </p> */}
               </div>
 
               {/* 1. HERO FLOW (One Large Image) */}
@@ -874,24 +878,25 @@ export function ProjectDetail() {
 
         {/* 5B. User Insights */}
         {(project.userInsights || project.userInsightsCards) && (
-          <section className="py-16 md:py-20 w-full bg-[#FDFBF7] text-[#131313]">
+          // UPDATE: Orange background, white text context
+          <section className="py-16 md:py-20 w-full bg-[#E54D2E] text-white">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-12">
-              <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">User Insights</h3>
+              <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-white">User Insights</h3>
               
               {project.userInsights && (project.userInsights.benefitsImage || project.userInsights.insightsImage) && (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
                   {project.userInsights.benefitsImage && (
                     <div className="flex flex-col gap-4">
-                      <h4 className="text-xl font-bold uppercase tracking-tight text-left text-[#131313]">User Perceived Benefits</h4>
-                      <div className="w-full rounded-2xl overflow-hidden bg-white/40 p-4 border border-white/20 shadow-sm flex items-center justify-center">
+                      <h4 className="text-xl font-bold uppercase tracking-tight text-left text-white">User Perceived Benefits</h4>
+                      <div className="w-full rounded-2xl overflow-hidden bg-white/10 p-4 border border-white/10 shadow-sm flex items-center justify-center">
                         <img src={project.userInsights.benefitsImage} alt="User Benefits" className="w-full max-w-md h-auto object-contain" />
                       </div>
                     </div>
                   )}
                   {project.userInsights.insightsImage && (
                     <div className="flex flex-col gap-4">
-                      <h4 className="text-xl font-bold uppercase tracking-tight text-left text-[#131313]">User Priorities</h4>
-                      <div className="w-full rounded-2xl overflow-hidden bg-white/40 p-4 border border-white/20 shadow-sm flex items-center justify-center">
+                      <h4 className="text-xl font-bold uppercase tracking-tight text-left text-white">User Priorities</h4>
+                      <div className="w-full rounded-2xl overflow-hidden bg-white/10 p-4 border border-white/10 shadow-sm flex items-center justify-center">
                         <img src={project.userInsights.insightsImage} alt="User Insights" className="w-full max-w-md h-auto object-contain" />
                       </div>
                     </div>
@@ -982,7 +987,8 @@ export function ProjectDetail() {
 
             {(project.branding.logoDescription || project.branding.logoImage) && (
               <section className="py-16 md:py-20">
-                <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                {/* UPDATE: Reduced grid gap for text and logo to put them closer */}
+                <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 items-center">
                   <div className="flex flex-col gap-6">
                     <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">
                       Logo Design
@@ -1156,10 +1162,11 @@ export function ProjectDetail() {
               <div className="w-full">
                 {project.bannerImage && (
                   <div className="rounded-2xl overflow-hidden shadow-2xl border border-gray-100">
+                    {/* UPDATE: GIF of final prototype bigger by removing max-height constraint */}
                     <img 
                       src={project.bannerImage} 
                       alt="Final Prototype Showcase" 
-                      className="w-full max-h-[380px] object-contain"
+                      className="w-full h-auto object-contain"
                     />
                   </div>
                 )}
