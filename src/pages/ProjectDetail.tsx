@@ -979,12 +979,12 @@ export function ProjectDetail() {
               </section>
             )}
 
-        {(project.branding.logoDescription || project.branding.logoImage) && (
+{(project.branding.logoDescription || project.branding.logoImage) && (
   <section className="py-16 md:py-20">
-    {/* 1. Changed max-w-7xl to max-w-5xl to bring the two columns closer together */}
-    <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+    {/* Flex-col makes everything stack vertically and items-center horizontally centers everything */}
+    <div className="max-w-3xl mx-auto px-6 flex flex-col items-center text-center gap-8 lg:gap-10">
       
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-4 items-center">
         <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">
           Logo Design
         </h4>
@@ -993,14 +993,11 @@ export function ProjectDetail() {
         </p>
       </div>
 
-      {/* 2. Changed md:justify-end to lg:justify-start to pull the logo leftwards next to the text */}
-      <div className="flex justify-center lg:justify-start">
-        <img
-          src={project.branding.logoImage}
-          alt="Logo"
-          className="w-full max-w-[160px] md:max-w-[200px] h-auto object-contain"
-        />
-      </div>
+      <img
+        src={project.branding.logoImage}
+        alt="Logo"
+        className="w-full max-w-[160px] md:max-w-[200px] h-auto object-contain"
+      />
       
     </div>
   </section>
