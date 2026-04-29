@@ -727,7 +727,7 @@ export function ProjectDetail() {
                       transition={{ delay: idx * 0.1 }}
                       className="flex flex-col gap-6"
                     >
-                      <div className="w-full max-w-[260px] mx-auto aspect-[2/3]  overflow-hidden shadow-sm border border-gray-100 bg-white">
+                      <div className="w-full max-w-[260px] mx-auto aspect-[2/3] overflow-hidden shadow-sm border border-gray-100 bg-white">
                         <img 
                           src={wire.image} 
                           alt={wire.caption} 
