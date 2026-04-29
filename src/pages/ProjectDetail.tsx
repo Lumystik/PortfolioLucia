@@ -154,97 +154,101 @@ const projectsData: Record<string, any> = {
       image: "https://github.com/Lumystik/PortfolioLucia/blob/c39ead2c3b7c47add54a5363ffb7b42cb35b1adf/images/wall.jpg?raw=true"
     }
   },
+{
   "art-beyond-dimension": {
-    id: "art-beyond-dimension",
-    title: "Art Beyond Dimension",
-    heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/0e95408be9b5b18ff336921926c7889c41d95380/images/hero_dimension.jpg?raw=true",
-    interfaceImage: "https://github.com/Lumystik/PortfolioLucia/blob/85176369bcb78e03b473d799a45522474f753705/images/dimension_final.jpeg?raw=true",
-    overview: "Immersive Experience of Future Museums. Our design solution enables young adults to gain knowledge about art in a fun and engaging way to bridge the information gap and foster greater appreciation for the heritage of museum.",
-    scope: "Digital Experience & Totem Interface",
-    role: "Digital and Interaction Design",
-    timeline: "Final Design Studio",
-    team: "Razieh Soleimani, Lucia Medina, Marjan Mehrabi, Fatemeh Khoshbazan",
-    prototypeLink: "https://www.figma.com/proto/FnFqrWBxyChSOdL3aVzV9A/Prototype?node-id=616-1965&starting-point-node-id=564%3A1942&t=bIX74fMjWA7kTArF-1",
-    problem:"The way young people experience culture is evolving at the same time technology does. They want interactive, personalized experiences. And are moving away from static displays and toward spaces where they can actively participate in cultural exploration.",
-    problemImage:"https://github.com/Lumystik/PortfolioLucia/blob/a5eea34a05cf9395d6ed4f8b0ada858d50600186/images/ChatGPT%20Image%20Apr%2029%2C%202026%2C%2006_23_00%20PM.png?raw=true",
-    researchObjectives: "\n• To explore ways to reduce information gaps in art understanding among young adults. \n• To investigate how digital interactions can support learning within traditional museum environments.\n• Users can create an artwork. \n• To assess how engagement strategies affect appreciation of artistic heritage.",
-    howMightWe: [ "Blend interactive elements with the traditional museum experience to bridge the information gap and foster greater appreciation for the heritage of the art?" ],
-    userTesting: {
-      title: "User Testing & Validation",
-      description: "We conducted in-person testing sessions to observe how users interacted with the interface naturally. We focused on whether the audio prompts were intuitive and if the gamified printing process felt rewarding.",
-      images: [
+    "id": "art-beyond-dimension",
+    "title": "Art Beyond Dimension",
+    "heroImage": "https://github.com/Lumystik/PortfolioLucia/blob/0e95408be9b5b18ff336921926c7889c41d95380/images/hero_dimension.jpg?raw=true",
+    "interfaceImage": "https://github.com/Lumystik/PortfolioLucia/blob/85176369bcb78e03b473d799a45522474f753705/images/dimension_final.jpeg?raw=true",
+    "overview": "An immersive digital experience designed to bridge the art information gap for young adults, fostering heritage appreciation through interactive and engaging learning.",
+    "scope": "Digital Experience & Totem Interface",
+    "role": "Digital and Interaction Design",
+    "timeline": "Final Design Studio",
+    "team": "Razieh Soleimani, Lucia Medina, Marjan Mehrabi, Fatemeh Khoshbazan",
+    "prototypeLink": "https://www.figma.com/proto/FnFqrWBxyChSOdL3aVzV9A/Prototype?node-id=616-1965&starting-point-node-id=564%3A1942&t=bIX74fMjWA7kTArF-1",
+    "problem": "Young audiences are moving away from static museum displays, seeking personalized, interactive spaces where they can actively participate in cultural exploration.",
+    "problemImage": "https://github.com/Lumystik/PortfolioLucia/blob/a5eea34a05cf9395d6ed4f8b0ada858d50600186/images/ChatGPT%20Image%20Apr%2029%2C%202026%2C%2006_23_00%20PM.png?raw=true",
+    "researchObjectives": "\n• Reduce art information gaps among young adults.\n• Integrate digital learning into traditional museum environments.\n• Empower users to create their own artwork.\n• Assess how interactive engagement impacts heritage appreciation.",
+    "howMightWe": [
+      "How might we blend interactive elements with the traditional museum experience to bridge the information gap and foster greater art appreciation?"
+    ],
+    "userTesting": {
+      "title": "User Testing & Validation",
+      "description": "In-person testing focused on observing natural interface interactions, verifying if audio prompts were intuitive, and ensuring the gamified printing process felt rewarding.",
+      "images": [
         "https://github.com/Lumystik/PortfolioLucia/blob/dd95a5f2ca9291229e663073fe9e1c8365466209/images/usertesting_dimension.jpg?raw=true"
       ]
     },
-    userInsightsCards: [
+    "userInsightsCards": [
       {
-        title: "EMOTIONAL REACTIONS",
-        description: "Users reported initial confusion, curiosity, and excitement when encountering the concept. Some expressed fear or discomfort, especially among users unfamiliar with the technology. Quotes included: “I’d feel confused but excited because I’ve never seen something like that” and “I’d have a lot of fun interacting with it.”"
+        "title": "EMOTIONAL REACTIONS",
+        "description": "Users felt a mix of confusion, curiosity, and excitement. While thrilled by the novelty (“I’d have a lot of fun interacting with it”), some unfamiliar with the tech needed better onboarding."
       },
       {
-        title: "INTERACTION PREFERENCES",
-        description: "Users showed a preference for speaking over touch or typing, describing speech as the most natural form of communication. There was a strong desire for novelty and realism, with comments like “the more realistic it feels, the cooler it would be.” Emotional resonance also emerged as important, such as music being described as something that connects to emotion."
+        "title": "INTERACTION PREFERENCES",
+        "description": "Strong preference for voice commands over touch or typing. Users valued high realism, novelty, and emotional resonance (e.g., using music to connect with the art)."
       },
       {
-        title: "DESIGN CONSIDERATIONS",
-        description: "Key considerations include maintaining simplicity to avoid cognitive overload, ensuring accessible and high-quality audio interaction, designing for users unfamiliar with AI systems, and providing clear guidance to reduce confusion. Physical context factors such as contrast for holographic displays and crowd flow management were also highlighted."
+        "title": "DESIGN CONSIDERATIONS",
+        "description": "Key takeaways: Keep interfaces simple to prevent cognitive overload, ensure accessible audio/AI guidance, and account for physical space factors like screen contrast and crowd flow."
       }
     ],
-    keyFunctions: {
-      description: "We aimed to position two screents next to each other at an angle: one displays previous generated artwork (the projection), while the other shows paintings from that floor of museum (the app). Built with Figma. I added in motion graphics that dd visual interest and show the history behind the paintings ",
-     functions: [
+    "keyFunctions": {
+      "description": "A dual-screen angled setup built in Figma: one screen projects generated artwork, while the app interface displays historical museum paintings enriched with motion graphics.",
+      "functions": [
         {
-          title: "INTERACTIVE LEARNING",
-          description: "Visitor stands in front of the screen and chooses paintings they are interested in. The user selects a painting to know more about and gets answers from the system. After selecting at least 2 paintings, the option to generate an artwork appears.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/5a21c692a5ce09da24b54267b421feeee842d5f6/images/learning_dimension.gif?raw=true"
+          "title": "INTERACTIVE LEARNING",
+          "description": "Users browse and select paintings to learn about. Choosing at least two pieces unlocks the artwork generator.",
+          "image": "https://github.com/Lumystik/PortfolioLucia/blob/5a21c692a5ce09da24b54267b421feeee842d5f6/images/learning_dimension.gif?raw=true"
         },
         {
-          title: "AI VOICE PROMPT",
-          description: "The system uses voice interaction (e.g., 'You selected Elasticità by Boccioni. Would you like to learn about its concept?'). Users can use voice prompts to modify the art (e.g., 'I want to make it more minimal with less colors'). The AI LLM generates the artwork based on these prompts.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/1b024e88bc55015091152250c65c8c7255d83730/images/questioning_dimension.gif?raw=true"
+          "title": "AI VOICE PROMPT",
+          "description": "A voice-guided system explains art concepts. Users can verbally prompt an AI LLM to modify and generate new artwork (e.g., 'Make it more minimal with fewer colors').",
+          "image": "https://github.com/Lumystik/PortfolioLucia/blob/1b024e88bc55015091152250c65c8c7255d83730/images/questioning_dimension.gif?raw=true"
         },
         {
-          title: "GAMIFIED PRINTING & SCREEN PROJECTION",
-          description: "When users choose to print, the system asks related questions about the selected paintings (e.g., style, painter, concept). If answered correctly, the totem provides a printed version of the generated artwork.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/8e602f1e3767619ff568eeb83699dded7863d840/images/gamified_dimension.gif?raw=true"
+          "title": "GAMIFIED PRINTING",
+          "description": "To print their generated art, users must correctly answer a brief trivia question about their selected historical paintings.",
+          "image": "https://github.com/Lumystik/PortfolioLucia/blob/8e602f1e3767619ff568eeb83699dded7863d840/images/gamified_dimension.gif?raw=true"
         }
       ]
     },
-      targetUsers: {
-      description: "We identified one primary user archetype. Our design solution focus mainly on young adults.",
-      personas: [
+    "targetUsers": {
+      "description": "Our primary design solution focuses on the young adult demographic.",
+      "personas": [
         {
-          title: "Sara: The Explorer",
-          description: "Role: Student.\nDrivers: Desire for new experiences, Drive to document and share experiences on social media.\nEnvironment: Milan, Italy.\nNeeds: Access to engaging and interactive experiences.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/45a4994bc6796acff20cf10557be4895111209d5/images/user_dimension.png?raw=true"
+          "title": "Sara: The Explorer",
+          "description": "Role: Student\nDrivers: Seeking new experiences, documenting/sharing on social media.\nEnvironment: Milan, Italy\nNeeds: Engaging, interactive, and highly visual experiences.",
+          "image": "https://github.com/Lumystik/PortfolioLucia/blob/45a4994bc6796acff20cf10557be4895111209d5/images/user_dimension.png?raw=true"
         }
       ],
-      conclusion: "She is an experience-driven and socially oriented user who values interactive, flexible, and culturally enriching environments that support both learning and self-expression."
+      "conclusion": "An experience-driven, social user seeking interactive, culturally enriching spaces for learning and self-expression."
     },
-     bannerImage: "https://github.com/Lumystik/PortfolioLucia/blob/e942b67bef52b6a8237dcd807e02a3f741f791a5/images/wall.jpg?raw=true",
-       pillars: [
+    "bannerImage": "https://github.com/Lumystik/PortfolioLucia/blob/e942b67bef52b6a8237dcd807e02a3f741f791a5/images/wall.jpg?raw=true",
+    "pillars": [
       {
-        title: "Scenario 1: Interactive Art Discovery Experience with tablet and wall projector",
-        description: "Two screens display artworks and available paintings. As the visitor approaches, the system activates and invites them to select pieces of interest. The user receives audio-guided information and can explore each artwork interactively. Then, they can choose to generate their own artwork which will be shared on the wall.",
-        image: "https://github.com/Lumystik/PortfolioLucia/blob/8d6557cb60be6d6c688474d132989b0a8bec9580/images/scenario_1.png?raw=true"
+        "title": "Scenario 1: Interactive Art Discovery",
+        "description": "Dual screens invite visitors to explore artworks via audio guides, culminating in generating custom art projected directly onto the museum wall.",
+        "image": "https://github.com/Lumystik/PortfolioLucia/blob/8d6557cb60be6d6c688474d132989b0a8bec9580/images/scenario_1.png?raw=true"
       },
       {
-        title: "Scenario 2: Interactive Art Print Experience",
-        description: "After selecting at least two paintings, users can keep adding more combinations. Once ready, they can generate a new artwork, view it on a second screen, and choose to print it. Before printing, the system asks brief questions about the selected paintings; correct answers unlock the print. A voice guides the process and encourages further exploration.",
-        image: "https://github.com/Lumystik/PortfolioLucia/blob/7f099807a3f294985b4812c48bad188f22b5a349/images/scenario_2.png?raw=true"
+        "title": "Scenario 2: Gamified Art Print",
+        "description": "Users generate new art from historical combinations. Correctly answering trivia about their selected pieces unlocks a physical print of their creation.",
+        "image": "https://github.com/Lumystik/PortfolioLucia/blob/7f099807a3f294985b4812c48bad188f22b5a349/images/scenario_2.png?raw=true"
       },
       {
-        title: "Senario 3: AI Voice Prompt",
-        description: "The AI system generates the artwork based on the user’s words as a prompt.",
-        image: "https://github.com/Lumystik/PortfolioLucia/blob/2bf3def01ee15c268265d1090683a06785465d18/images/scenario_3.png?raw=true"
+        "title": "Scenario 3: AI Voice Generation",
+        "description": "AI systems generate personalized artwork based entirely on the user's spoken conversational prompts.",
+        "image": "https://github.com/Lumystik/PortfolioLucia/blob/2bf3def01ee15c268265d1090683a06785465d18/images/scenario_3.png?raw=true"
       }
     ],
-    takeaways: "The idea grabs the visitor's attention, which makes them want to learn. It has the capability of personalization based on the paintings visitors like most. The user can add their opinion to the prompt to add something more than just merging two paintings to the generative artwork with voice.",
-    nextProject: {
-      title: "FILMS FOUNDATION",
-      link: "/project/films-foundation"
+    "takeaways": "This interactive approach captures attention and personalizes learning. Voice-prompted AI generation empowers users to merge historical art with their own creative vision, leaving them with a tangible memory.",
+    "nextProject": {
+      "title": "FILMS FOUNDATION",
+      "link": "/project/films-foundation"
     }
-  },
+  }
+},
   "films-foundation": {
     id: "films-foundation",
     title: "Films Foundation",
