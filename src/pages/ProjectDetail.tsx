@@ -516,7 +516,7 @@ export function ProjectDetail() {
                   <img
                     src={project.problemImage || "/placeholder-phone-mockup.png"}
                     alt="The Problem Illustration"
-                    className="w-full max-w-[220px] md:max-w-md h-auto object-contain drop-shadow-2xl"
+                    className="w-full max-w-[280px] h-auto object-contain drop-shadow-2xl"
                   />
                 </div>
 
@@ -727,7 +727,7 @@ export function ProjectDetail() {
                       transition={{ delay: idx * 0.1 }}
                       className="flex flex-col gap-6"
                     >
-                      <div className="w-full max-w-[260px] mx-auto aspect-[2/3] overflow-hidden shadow-sm border border-gray-100 bg-white">
+                      <div className="w-full max-w-[280px] mx-auto aspect-[2/3] overflow-hidden shadow-sm border border-gray-100 bg-white">
                         <img 
                           src={wire.image} 
                           alt={wire.caption} 
@@ -995,7 +995,7 @@ export function ProjectDetail() {
                     <img
                       src={project.branding.logoImage}
                       alt="Logo"
-                      className="w-full max-w-[280px] md:max-w-sm h-auto object-contain"
+                      className="w-full max-w-[160px] md:max-w-[200px] h-auto object-contain"
                     />
                   </div>
                 </div>
@@ -1041,11 +1041,11 @@ export function ProjectDetail() {
                     transition={{ duration: 0.8, delay: idx * 0.1 }}
                     className="group flex flex-col gap-6"
                   >
-                    <div className="w-full aspect-[2/3] rounded-2xl overflow-hidden flex items-center justify-center bg-[#F9F9F9] border border-gray-100 p-0">
+                    <div className="w-full aspect-[2/3] rounded-2xl overflow-hidden flex items-center justify-center bg-[#F9F9F9] border border-gray-100 p-8">
                       <img
                         src={func.image}
                         alt={func.title}
-                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-out"
+                        className="w-full h-full max-w-[280px] object-contain group-hover:scale-105 transition-transform duration-700 ease-out"
                       />
                     </div>
                     <div className="flex flex-col gap-2 text-left">
