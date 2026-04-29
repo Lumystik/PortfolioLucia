@@ -1189,7 +1189,7 @@ export function ProjectDetail() {
                     <img 
                       src={project.bannerImage} 
                       alt="Final Prototype Showcase" 
-                      className="w-full h-auto object-contain"
+                      className="max-w-[260px] h-auto object-contain"
                     />
                   </div>
                 )}
