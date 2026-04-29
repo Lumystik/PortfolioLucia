@@ -751,78 +751,7 @@ export function ProjectDetail() {
           </section>
         )}
         
-        {/* --- TESTING OBJECTIVES (ADAPTED) --- */}
-        {project.testingObjectives && (
-          <section className="py-16 md:py-20 w-full bg-[#131313] text-white">
-            <div className="max-w-7xl mx-auto px-6">
-              <h3 className="mb-12 text-3xl md:text-4xl font-bold uppercase tracking-tight text-left">Testing Objectives</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {project.testingObjectives.map((obj: any, idx: number) => (
-                  <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }} className="flex flex-col gap-4 p-8 bg-[#1a1a1a] rounded-2xl border border-gray-800">
-                    <h4 className="text-xl font-bold uppercase">{obj.title}</h4>
-                    <p className="text-gray-400 leading-relaxed text-sm">{obj.description}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* --- USABILITY RESULTS (ADAPTED) --- */}
-        {project.usabilityResults && (
-          <section className="py-16 md:py-24 w-full bg-white border-b border-gray-100">
-            <div className="max-w-4xl mx-auto px-6 text-center flex flex-col gap-8">
-              <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">{project.usabilityResults.title}</h3>
-              <p className="text-xl md:text-2xl text-gray-700 leading-relaxed font-medium italic">"{project.usabilityResults.description}"</p>
-            </div>
-          </section>
-        )}
-
-        {/* --- ITERATIONS & REFINEMENT (ADAPTED) --- */}
-        {project.iterations && (
-          <section className="py-16 md:py-24 w-full bg-[#FAF9F6]">
-            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16 md:gap-20">
-              <div className="flex flex-col gap-4 max-w-3xl">
-                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">{project.iterations.title}</h3>
-                <p className="text-lg text-gray-700 leading-relaxed">{project.iterations.description}</p>
-              </div>
-
-              <div className="flex flex-col gap-16 md:gap-32">
-                {project.iterations.items.map((item: any, idx: number) => (
-                  <motion.div key={idx} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-                    <div className={`flex flex-col gap-4 ${idx % 2 === 1 ? 'md:order-2' : ''}`}>
-                      <h4 className="text-2xl font-bold uppercase tracking-tight text-[#131313]">{item.title}</h4>
-                      <p className="text-base text-gray-700 leading-relaxed">{item.description}</p>
-                    </div>
-                    <div className={`w-full rounded-2xl overflow-hidden shadow-sm border border-gray-100 p-2 md:p-6 bg-white flex justify-center ${idx % 2 === 1 ? 'md:order-1' : ''}`}>
-                      <img src={item.image || "/placeholder-image.png"} alt={item.title} className="w-full max-w-[280px] h-auto object-contain drop-shadow-xl my-4" />
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* --- NICE TO HAVES (ADAPTED) --- */}
-        {project.niceToHaves && (
-          <section className="py-16 md:py-20 w-full bg-white">
-            <div className="max-w-7xl mx-auto px-6">
-              <div className="flex flex-col gap-4 mb-12 max-w-3xl">
-                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">{project.niceToHaves.title}</h3>
-                <p className="text-base text-gray-600 leading-relaxed">{project.niceToHaves.description}</p>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {project.niceToHaves.items.map((item: any, idx: number) => (
-                  <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }} className="flex flex-col gap-3 p-8 bg-[#F9F9F9] rounded-2xl border border-gray-100">
-                    <h4 className="text-lg font-bold uppercase text-[#131313] tracking-tight">{item.title}</h4>
-                    <p className="text-gray-600 leading-relaxed text-sm">{item.description}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
+   
         
         {/* 10. Pillars / Scenarios (V2 Layout) */}
         {project.pillars2 && project.pillars2.length > 0 && (
@@ -1091,7 +1020,7 @@ export function ProjectDetail() {
 
         {/* --- 13. KEY FUNCTIONS SECTION --- */}
         {project.keyFunctions && (
-          <section className="py-16 md:py-20 w-full bg-black text-white">
+          <section className="py-16 md:py-20 w-full bg-white text-black">
             <div className="max-w-7xl mx-auto px-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mb-16">
                 <div className="flex flex-col gap-6 text-left">
@@ -1135,7 +1064,78 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
+     {/* --- TESTING OBJECTIVES (ADAPTED) --- */}
+        {project.testingObjectives && (
+          <section className="py-16 md:py-20 w-full bg-[#131313] text-white">
+            <div className="max-w-7xl mx-auto px-6">
+              <h3 className="mb-12 text-3xl md:text-4xl font-bold uppercase tracking-tight text-left">Testing Objectives</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {project.testingObjectives.map((obj: any, idx: number) => (
+                  <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }} className="flex flex-col gap-4 p-8 bg-[#1a1a1a] rounded-2xl border border-gray-800">
+                    <h4 className="text-xl font-bold uppercase">{obj.title}</h4>
+                    <p className="text-gray-400 leading-relaxed text-sm">{obj.description}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
+        {/* --- USABILITY RESULTS (ADAPTED) --- */}
+        {project.usabilityResults && (
+          <section className="py-16 md:py-24 w-full bg-white border-b border-gray-100">
+            <div className="max-w-4xl mx-auto px-6 text-center flex flex-col gap-8">
+              <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">{project.usabilityResults.title}</h3>
+              <p className="text-xl md:text-2xl text-gray-700 leading-relaxed font-medium italic">"{project.usabilityResults.description}"</p>
+            </div>
+          </section>
+        )}
+
+        {/* --- ITERATIONS & REFINEMENT (ADAPTED) --- */}
+        {project.iterations && (
+          <section className="py-16 md:py-24 w-full bg-[#FAF9F6]">
+            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16 md:gap-20">
+              <div className="flex flex-col gap-4 max-w-3xl">
+                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">{project.iterations.title}</h3>
+                <p className="text-lg text-gray-700 leading-relaxed">{project.iterations.description}</p>
+              </div>
+
+              <div className="flex flex-col gap-16 md:gap-32">
+                {project.iterations.items.map((item: any, idx: number) => (
+                  <motion.div key={idx} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                    <div className={`flex flex-col gap-4 ${idx % 2 === 1 ? 'md:order-2' : ''}`}>
+                      <h4 className="text-2xl font-bold uppercase tracking-tight text-[#131313]">{item.title}</h4>
+                      <p className="text-base text-gray-700 leading-relaxed">{item.description}</p>
+                    </div>
+                    <div className={`w-full rounded-2xl overflow-hidden shadow-sm border border-gray-100 p-2 md:p-6 bg-white flex justify-center ${idx % 2 === 1 ? 'md:order-1' : ''}`}>
+                      <img src={item.image || "/placeholder-image.png"} alt={item.title} className="w-full max-w-[280px] h-auto object-contain drop-shadow-xl my-4" />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* --- NICE TO HAVES (ADAPTED) --- */}
+        {project.niceToHaves && (
+          <section className="py-16 md:py-20 w-full bg-white">
+            <div className="max-w-7xl mx-auto px-6">
+              <div className="flex flex-col gap-4 mb-12 max-w-3xl">
+                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">{project.niceToHaves.title}</h3>
+                <p className="text-base text-gray-600 leading-relaxed">{project.niceToHaves.description}</p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {project.niceToHaves.items.map((item: any, idx: number) => (
+                  <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }} className="flex flex-col gap-3 p-8 bg-[#F9F9F9] rounded-2xl border border-gray-100">
+                    <h4 className="text-lg font-bold uppercase text-[#131313] tracking-tight">{item.title}</h4>
+                    <p className="text-gray-600 leading-relaxed text-sm">{item.description}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
         {/* --- 15. FINAL PROTOTYPE SECTION --- */}
         {project.finalPrototype && (
           <section className="py-16 md:py-20 w-full">
