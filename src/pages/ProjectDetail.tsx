@@ -584,7 +584,7 @@ export function ProjectDetail() {
           <section className="py-16 md:py-20 w-full bg-gray-50">
             <div className="max-w-7xl mx-auto px-6">
               <h3 className="mb-8 md:mb-10 text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">Design Process Map</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
                 {project.processMap.map((phase: any, idx: number) => (
                   <motion.div 
                     key={idx}
@@ -615,7 +615,7 @@ export function ProjectDetail() {
                 <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-white">Target Users</h3>
                 <p className="text-base md:text-lg text-white/90 leading-relaxed">{project.targetUsers.description}</p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {project.targetUsers.personas.map((persona: any, idx: number) => (
                   <motion.div 
                     key={idx}
@@ -717,7 +717,7 @@ export function ProjectDetail() {
                     <p className="text-base md:text-lg text-gray-700 leading-relaxed">Initial Wireframe Iterations</p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
                   {project.ideation.wireframes.map((wire: any, idx: number) => (
                     <motion.div 
                       key={idx}
@@ -822,7 +822,7 @@ export function ProjectDetail() {
         {/* 10. Pillars / Scenarios */}
         {project.pillars && (
           <section className="py-16 md:py-20 w-full bg-white">
-            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12">
+            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12">
               {project.pillars.map((pillar: any, idx: number) => (
                 <motion.div 
                   key={idx}
@@ -900,7 +900,7 @@ export function ProjectDetail() {
               )}
 
               {project.userInsightsCards && project.userInsightsCards.length > 0 && (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                   {project.userInsightsCards.map((card: any, idx: number) => (
                     <motion.div 
                       key={idx}
@@ -929,7 +929,7 @@ export function ProjectDetail() {
           <section className="py-16 md:py-20 w-full bg-[#E54D2E] text-white">
             <div className="max-w-7xl mx-auto px-6">
               <h3 className="mb-8 md:mb-10 text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-white">Key Findings</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
                 {project.keyFindings.map((finding: any, idx: number) => (
                   <motion.div 
                     key={idx}
@@ -982,7 +982,7 @@ export function ProjectDetail() {
 
             {(project.branding.logoDescription || project.branding.logoImage) && (
               <section className="py-16 md:py-20">
-                <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                   <div className="flex flex-col gap-6">
                     <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">
                       Logo Design
@@ -1020,7 +1020,7 @@ export function ProjectDetail() {
         {project.keyFunctions && (
           <section className="py-16 md:py-20 w-full bg-white text-[#131313]">
             <div className="max-w-7xl mx-auto px-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mb-16">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-16">
                 <div className="flex flex-col gap-6 text-left">
                   <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">
                     Key Functions
@@ -1031,7 +1031,7 @@ export function ProjectDetail() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
                 {project.keyFunctions.functions.map((func: any, idx: number) => (
                   <motion.div
                     key={idx}
@@ -1068,7 +1068,7 @@ export function ProjectDetail() {
           <section className="py-16 md:py-20 w-full bg-[#131313] text-white">
             <div className="max-w-7xl mx-auto px-6">
               <h3 className="mb-12 text-3xl md:text-4xl font-bold uppercase tracking-tight text-left">Testing Objectives</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {project.testingObjectives.map((obj: any, idx: number) => (
                   <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }} className="flex flex-col gap-4 p-8 bg-[#1a1a1a] rounded-2xl border border-gray-800">
                     <h4 className="text-xl font-bold uppercase tracking-tight">{obj.title}</h4>
@@ -1101,12 +1101,12 @@ export function ProjectDetail() {
 
               <div className="flex flex-col gap-16 md:gap-32">
                 {project.iterations.items.map((item: any, idx: number) => (
-                  <motion.div key={idx} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-                    <div className={`flex flex-col gap-4 ${idx % 2 === 1 ? 'md:order-2' : ''}`}>
+                  <motion.div key={idx} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                    <div className={`flex flex-col gap-4 ${idx % 2 === 1 ? 'lg:order-2' : ''}`}>
                       <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">{item.title}</h4>
                       <p className="text-base md:text-lg text-gray-700 leading-relaxed">{item.description}</p>
                     </div>
-                    <div className={`w-full rounded-2xl overflow-hidden shadow-sm border border-gray-100 p-2 md:p-6 bg-white flex justify-center ${idx % 2 === 1 ? 'md:order-1' : ''}`}>
+                    <div className={`w-full rounded-2xl overflow-hidden shadow-sm border border-gray-100 p-2 md:p-6 bg-white flex justify-center ${idx % 2 === 1 ? 'lg:order-1' : ''}`}>
                       <img src={item.image || "/placeholder-image.png"} alt={item.title} className="w-full max-w-[280px] h-auto object-contain drop-shadow-xl my-4" />
                     </div>
                   </motion.div>
@@ -1124,7 +1124,7 @@ export function ProjectDetail() {
                 <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">{project.niceToHaves.title}</h3>
                 <p className="text-base md:text-lg text-gray-700 leading-relaxed">{project.niceToHaves.description}</p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {project.niceToHaves.items.map((item: any, idx: number) => (
                   <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }} className="flex flex-col gap-3 p-8 bg-[#F9F9F9] rounded-2xl border border-gray-100">
                     <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">{item.title}</h4>
@@ -1139,7 +1139,7 @@ export function ProjectDetail() {
         {/* --- 15. FINAL PROTOTYPE SECTION --- */}
         {project.finalPrototype && (
           <section className="py-16 md:py-20 w-full bg-white">
-            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="flex flex-col items-start gap-8">
                 <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">
                   Final Prototype
@@ -1182,10 +1182,10 @@ export function ProjectDetail() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.6 }}
-                    className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
+                    className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
                   >
                     {/* Left Column: Text */}
-                    <div className={`order-2 ${index % 2 === 0 ? 'md:order-1' : 'md:order-2'}`}>
+                    <div className={`order-2 ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
                       <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313] mb-4">{item.title}</h4>
                       <p className="text-base md:text-lg text-gray-700 leading-relaxed">
                         {item.desc}
@@ -1193,7 +1193,7 @@ export function ProjectDetail() {
                     </div>
 
                     {/* Right Column: Image/GIF */}
-                    <div className={`order-1 ${index % 2 === 0 ? 'md:order-2' : 'md:order-1'}`}>
+                    <div className={`order-1 ${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
                       <div className="rounded-xl overflow-hidden shadow-xl border border-gray-100">
                         <img 
                           src={item.image} 
