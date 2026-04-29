@@ -979,28 +979,32 @@ export function ProjectDetail() {
               </section>
             )}
 
-            {(project.branding.logoDescription || project.branding.logoImage) && (
-              <section className="py-16 md:py-20">
-                {/* UPDATE: Reduced grid gap for text and logo to put them closer */}
-                <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 items-center">
-                  <div className="flex flex-col gap-6">
-                    <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">
-                      Logo Design
-                    </h4>
-                    <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-                      {project.branding.logoDescription}
-                    </p>
-                  </div>
-                  <div className="flex justify-center md:justify-end">
-                    <img
-                      src={project.branding.logoImage}
-                      alt="Logo"
-                      className="w-full max-w-[160px] md:max-w-[200px] h-auto object-contain"
-                    />
-                  </div>
-                </div>
-              </section>
-            )}
+        {(project.branding.logoDescription || project.branding.logoImage) && (
+  <section className="py-16 md:py-20">
+    {/* 1. Changed max-w-7xl to max-w-5xl to bring the two columns closer together */}
+    <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      
+      <div className="flex flex-col gap-6">
+        <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">
+          Logo Design
+        </h4>
+        <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+          {project.branding.logoDescription}
+        </p>
+      </div>
+
+      {/* 2. Changed md:justify-end to lg:justify-start to pull the logo leftwards next to the text */}
+      <div className="flex justify-center lg:justify-start">
+        <img
+          src={project.branding.logoImage}
+          alt="Logo"
+          className="w-full max-w-[160px] md:max-w-[200px] h-auto object-contain"
+        />
+      </div>
+      
+    </div>
+  </section>
+)}
 
             {project.branding.featuresImage && (
               <section className="py-16 md:py-20 border-t border-gray-50">
