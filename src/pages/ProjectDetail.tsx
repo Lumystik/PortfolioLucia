@@ -437,7 +437,7 @@ export function ProjectDetail() {
       <Navbar />
       
       <main className="w-full overflow-hidden">
-        {/* 1. Hero Section */}
+      {/* 1. Hero Section */}
         <section className="w-full pt-24 pb-12 bg-white">
           <div className="max-w-7xl mx-auto px-6">
             <motion.div 
@@ -451,7 +451,8 @@ export function ProjectDetail() {
 
         {/* 2. Project Details & Overview */}
         <section className="pb-24 md:pb-32 w-full bg-white text-[#131313]">
-          <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center text-left">
+          {/* Changed max-w-5xl to max-w-7xl to match the hero section alignment */}
+          <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center text-left">
             <div className="lg:col-span-4 flex flex-col gap-8">
               <div className="flex flex-col gap-2">
                 <h4 className="text-sm font-bold uppercase tracking-widest text-[#131313]">Project Scope</h4>
@@ -496,7 +497,6 @@ export function ProjectDetail() {
             </div>
           </div>
         </section>
-        
         {/* 3. The Problem */}
         {project.problem && (
           <section className="py-16 md:py-20 w-full bg-white">
