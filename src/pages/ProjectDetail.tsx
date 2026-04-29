@@ -530,37 +530,52 @@ export function ProjectDetail() {
           </section>
         )}
         
-        {/* 4. Research Objectives & Insights */}
-        {(project.researchObjectives || project.researchInsights) && (
-          <section className="py-16 md:py-20 w-full bg-white">
-            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16 md:gap-24">
-              
-              {project.researchObjectives && (
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-                  <div className="lg:col-span-4">
-                    <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">
-                      Research<br />Objectives
-                    </h3>
-                  </div>
+{/* 4. Research Objectives & Insights */}
+{(project.researchObjectives || project.researchInsights) && (
+  <section className="py-16 md:py-20 w-full bg-white">
+    <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16 md:gap-24">
+      
+      {project.researchObjectives && (
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start">
+          <div className="lg:col-span-5">
+            <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">
+              Research Objectives
+            </h3>
+          </div>
 
-                  <div className="lg:col-span-8">
-                    {Array.isArray(project.researchObjectives) ? (
-                      <ul className="flex flex-col gap-6">
-                        {project.researchObjectives.map((line: string, idx: number) => (
-                          <li key={idx} className="flex items-start gap-3 text-base md:text-lg text-gray-700 leading-relaxed">
-                            <span className="text-[#131313] font-bold select-none mt-0.5">•</span>
-                            <span className="leading-relaxed">{line}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <div className="text-base md:text-lg text-gray-700 leading-relaxed whitespace-pre-line">
-                        {project.researchObjectives}
-                      </div>
-                    )}
-                  </div>
+          <div className="lg:col-span-7 lg:pt-1">
+            {Array.isArray(project.researchObjectives) ? (
+              <div className="max-w-2xl">
+                <p className="text-base md:text-lg text-[#131313] leading-relaxed mb-6">
+                  Through user interviews and surveys, I wanted to:
+                </p>
+
+                <ul className="flex flex-col gap-5">
+                  {project.researchObjectives.map((line: string, idx: number) => (
+                    <li
+                      key={idx}
+                      className="flex items-start gap-4 text-base md:text-lg text-[#131313] leading-relaxed"
+                    >
+                      <span className="text-[#131313] font-bold select-none mt-1">•</span>
+                      <span className="leading-relaxed">{line}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : (
+              <div className="max-w-2xl">
+                <p className="text-base md:text-lg text-[#131313] leading-relaxed mb-6">
+                  Through user interviews and surveys, I wanted to:
+                </p>
+
+                <div className="text-base md:text-lg text-[#131313] leading-relaxed whitespace-pre-line">
+                  {project.researchObjectives}
                 </div>
-              )}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
               {project.researchInsights && (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
