@@ -979,12 +979,13 @@ export function ProjectDetail() {
           </section>
         )}
 
-  {(project.branding.logoDescription || project.branding.logoImage) && (
+{(project.branding.logoDescription || project.branding.logoImage) && (
   <section className="py-16 md:py-20">
-    {/* Flex-col makes everything stack vertically and items-center horizontally centers everything */}
-    <div className="max-w-3xl mx-auto px-6 flex flex-col items-center text-center gap-8 lg:gap-10">
+    {/* Swapped Grid for Flexbox to tightly group and center the items */}
+    <div className="flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-16 px-6 mx-auto w-full">
       
-      <div className="flex flex-col gap-4 items-center">
+      {/* Added max-w-lg to keep the text block a readable width */}
+      <div className="flex flex-col gap-6 max-w-lg">
         <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">
           Logo Design
         </h4>
@@ -993,11 +994,14 @@ export function ProjectDetail() {
         </p>
       </div>
 
-      <img
-        src={project.branding.logoImage}
-        alt="Logo"
-        className="w-full max-w-[160px] md:max-w-[200px] h-auto object-contain"
-      />
+      {/* Image stays vertically centered next to the text */}
+      <div className="flex justify-center">
+        <img
+          src={project.branding.logoImage}
+          alt="Logo"
+          className="w-full max-w-[160px] md:max-w-[200px] h-auto object-contain"
+        />
+      </div>
       
     </div>
   </section>
