@@ -13,6 +13,7 @@ const projectsData: Record<string, any> = {
     overview: "Developing an all in one software for small museums staff, that aims to streamline the work-flow and improve the management of the different areas of the institution. In order to optimize the current museum resources.",
     scope: "End-to-End App",
     role: "UX Research, Branding, UX/UI Design",
+    timeline:"4 months",
     team: "Martina Braidotti, Lucia Medina, Ilario Pedone, Agnese Rosselli, Mark Waisara",
     prototypeLink: "https://www.figma.com/proto/16viMWZsHOU9SkmpbSpTd5/FINAL-UI-spaced?node-id=2248-9671&starting-point-node-id=703%3A8427&scaling=scale-down&content-scaling=fixed&t=aO2g8BW8sOtXyiVT-1?raw=true",
     problem: "Staff at small museums often face fragmented workflows. \n\n With only 4 full-time staff managing 59 events and exhibitions a year across 6 different tools, the team is constantly stretched thin.",
@@ -23,39 +24,76 @@ const projectsData: Record<string, any> = {
       { phase: "Develop", steps: ["User test results", "Design system", "Prototype"] }
     ],
     howMightWe: [ "solve the complexity of creating a smooth experience for small museum staff?", "streamline the workflow and improve the management of different areas of the institution?", "optimize the current museum resources to help staff develop a better experience for visitors?" ],
-ideation: {
-    question: "How can we build a seamless workflow that maximizes museum staff efficiency? How can the platform adapt to different roles while maintaining a unified database?",
-    heroFlow: "https://github.com/Lumystik/PortfolioLucia/blob/f8b832c9f326ed2f6d2fd32515316ec56fb143fa/images/workflow_museon.png?raw=true",
-    heroFlowCaption: "Alex Hero Flow: Organizing a new temporary exhibition.", // Fixed: Added quotes here
-  wireframes: [
-  {
-    image: "https://github.com/Lumystik/PortfolioLucia/blob/78d82c3bb5eae3c9be12ddde7b066b62a51cc24a/images/Dashboard_mobile_wireframe.png?raw=true",
-    caption: "Dashboard"
-  },
-  {
-    image: "https://github.com/Lumystik/PortfolioLucia/blob/78d82c3bb5eae3c9be12ddde7b066b62a51cc24a/images/Calendar_mobile_wireframe%20(1).png?raw=true",
-    caption: "Calendar"
-  },
-  {
-    image: "https://github.com/Lumystik/PortfolioLucia/blob/78d82c3bb5eae3c9be12ddde7b066b62a51cc24a/images/smart%20notes%20pop%20up%20mobile.png?raw=true",
-    caption: "Smart Notes"
-  }
-]
-  },
-userInsightsCards: [
-  {
-    title: "INTEGRATION IS ESSENTIAL",
-    description: "Staff needed one system to reduce tool-switching and improve collaboration."
-  },
-  {
-    title: "SHORTCUTS DRIVE EFFICIENCY",
-    description: "Quick access to tasks, projects, and key actions helped staff move faster."
-  },
-  {
-    title: "VISIBILITY REDUCES FRICTION",
-    description: "A shared overview made calendars, collections, and responsibilities easier to manage."
-  }
-],
+    ideation: {
+      question: "How can we build a seamless workflow that maximizes museum staff efficiency? How can the platform adapt to different roles while maintaining a unified database?",
+      heroFlow: "https://github.com/Lumystik/PortfolioLucia/blob/f8b832c9f326ed2f6d2fd32515316ec56fb143fa/images/workflow_museon.png?raw=true",
+      heroFlowCaption: "Alex Hero Flow: Organizing a new temporary exhibition.", 
+      wireframes: [
+        {
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/78d82c3bb5eae3c9be12ddde7b066b62a51cc24a/images/Dashboard_mobile_wireframe.png?raw=true",
+          caption: "Dashboard"
+        },
+        {
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/78d82c3bb5eae3c9be12ddde7b066b62a51cc24a/images/Calendar_mobile_wireframe%20(1).png?raw=true",
+          caption: "Calendar"
+        },
+        {
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/78d82c3bb5eae3c9be12ddde7b066b62a51cc24a/images/smart%20notes%20pop%20up%20mobile.png?raw=true",
+          caption: "Smart Notes"
+        }
+      ]
+    },
+    
+    // NEW ITERATION & TESTING DATA ADAPTED FROM REFERENCE
+    testingObjectives: [
+      { title: "VALIDATE CONCEPT", description: "I wanted to ensure that the features are everything the user expects and wants out of this app. Hearing additional feedback and suggestions helped better tailor it towards the staff's needs." },
+      { title: "OBSERVE USER FLOW", description: "Watching first-time users navigate the dashboard determined if the onboarding screens were helpful and if users were able to easily complete their tasks without errors." },
+      { title: "BENCHMARK BRANDING", description: "As a new brand, I wanted to gauge how users responded to the name, color palette, and general aesthetics of the application." }
+    ],
+    usabilityResults: {
+      title: "USABILITY RESULTS",
+      description: "Both museum staff and interns had very positive reactions to the app. Staff had follow-up questions about connecting their existing calendars and internal databases, which indicates that they were considering real-life integration. All of the above were slated on the product roadmap which was extremely validating."
+    },
+    iterations: {
+      title: "ITERATIONS + REFINEMENT",
+      description: "While navigating their dashboard, users all had very similar behavior on the constraints page. This lead me to implement a couple changes:",
+      items: [
+        {
+          title: "ADDING CLARIFICATION TO SETTINGS",
+          description: "Users found themselves guessing what each input meant, and even though 100% of users correctly interpreted the title, I added a brief description to further clarify.",
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/be1755ca40682fbb1c571d38f3aa37d18cc7ada8/images/calendar_museo1.png?raw=true" 
+        },
+        {
+          title: "UPDATING PRESET VIEWS",
+          description: "4 out of the 5 staff members felt that the default monthly view was too broad and preferred a weekly view. Seeing as the majority chose this length, I updated the preset to reflect their preference.",
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/465f291d0d01afb736e1502a28db9b14b236e818/images/collection_museon1.png?raw=true" 
+        }
+      ]
+    },
+    niceToHaves: {
+      title: "NICE TO HAVES",
+      description: "These ideas are not reflected in the prototype, but I believe would positively improve the user experience based on their feedback.",
+      items: [
+        { title: "START OF SHIFT NOTIFICATION", description: "Staff can enable notifications to be alerted when priority tasks are due, so no matter where they are in the museum they'll never miss an update." },
+        { title: "LIVE TRACKING", description: "Major museums have their own dedicated apps for tracking foot traffic, so it would be helpful to centralize that into the app for floor staff." },
+        { title: "INSTANT NOTES", description: "Once a tour begins, staff will have the option to instantly send voice-transcribed notes for immediate documentation." }
+      ]
+    },
+
+    userInsightsCards: [
+      {
+        title: "INTEGRATION IS ESSENTIAL",
+        description: "10 out of 11 users expected tasks, calendars, collections, and notes to work as one connected system."
+      },
+      {
+        title: "SHORTCUTS DRIVE EFFICIENCY",
+        description: "9 out of 11 users looked for faster ways to create tasks, schedule events, or access project information."
+      },
+      {
+        title: "VISIBILITY REDUCES FRICTION",
+        description: "10 out of 11 users relied on shared calendar and team information before making planning decisions."
+      }
+    ],
     targetUsers: {
       description: "We identified two primary user archetypes within the museum staff ecosystem, each with distinct drivers and needs.",
       personas: [
@@ -74,18 +112,17 @@ userInsightsCards: [
     },
  
     branding: {
- description: "The design system was built to be clean, accessible, and highly functional, prioritizing data visualization and task management. It includes standardized colors, buttons, dropdown menus, and calendar components.",
-  logoDescription: "We were drawn to the asterisk as a symbol of connection, and wanted to incorporate its radiating structure as a mark that points toward information, toward people, toward the institution itself.",
- logoImage: "https://github.com/Lumystik/PortfolioLucia/blob/ac040a0ff68481a4ef9745568ded5b5c9b484a5b/images/museonlogo.png?raw=true",       // optional
-  featuresImage: "https://github.com/Lumystik/PortfolioLucia/blob/dfc97077f6303fd7953feeb6d4e1a8efdce42b2e/images/button.png?raw=true", // optional
-
-  shapes: [
-    { color: "#000000", size: 120, x: "20%", y: "10%" },
-    { color: "#6B6A6A", size: 100, x: "50%", y: "10%"},
-    { color: "#D9D9D9", size: 90, x: "75%", y: "10%" },
-    { color: "#1600FF", size: 110, x: "35%", y: "10%"},
-    { color: "#EE4904", size: 110, x: "0%", y: "10%"}
-  ]
+      description: "The design system was built to be clean, accessible, and highly functional, prioritizing data visualization and task management. It includes standardized colors, buttons, dropdown menus, and calendar components.",
+      logoDescription: "We were drawn to the asterisk as a symbol of connection, and wanted to incorporate its radiating structure as a mark that points toward information, toward people, toward the institution itself.",
+      logoImage: "https://github.com/Lumystik/PortfolioLucia/blob/ac040a0ff68481a4ef9745568ded5b5c9b484a5b/images/museonlogo.png?raw=true",       
+      featuresImage: "https://github.com/Lumystik/PortfolioLucia/blob/dfc97077f6303fd7953feeb6d4e1a8efdce42b2e/images/button.png?raw=true", 
+      shapes: [
+        { color: "#000000", size: 120, x: "20%", y: "10%" },
+        { color: "#6B6A6A", size: 100, x: "50%", y: "10%"},
+        { color: "#D9D9D9", size: 90, x: "75%", y: "10%" },
+        { color: "#1600FF", size: 110, x: "35%", y: "10%"},
+        { color: "#EE4904", size: 110, x: "0%", y: "10%"}
+      ]
     },
     keyFunctions: {
       description: "An all-in-one platform designed to reduce switching costs and improve team collaboration.",
@@ -105,24 +142,21 @@ userInsightsCards: [
         description: "AI utilizes conversation transcription to instantly detect tasks with a single click and direct users to the corresponding page.",
         image: "https://github.com/Lumystik/PortfolioLucia/blob/ccd5a596d938ff18c9cd80558a2f7d7f2df76b5e/images/smartnotes_museon1.png?raw=true"
       }
- 
       ]
     },
     bannerImage: "https://github.com/Lumystik/PortfolioLucia/blob/988251ade7a50360d870b2b630818e7291a7d458/images/museon_finalinterface%20(10).gif?raw=true",
-    
-    // ADD THIS BLOCK HERE:
     finalPrototype: {
-      link: "https://www.figma.com/proto/16viMWZsHOU9SkmpbSpTd5/FINAL-UI-spaced?node-id=2248-9671&starting-point-node-id=703%3A8427&scaling=scale-down&content-scaling=fixed&t=aO2g8BW8sOtXyiVT-1?raw=true", // Put your figma or prototype link here
+      link: "https://www.figma.com/proto/16viMWZsHOU9SkmpbSpTd5/FINAL-UI-spaced?node-id=2248-9671&starting-point-node-id=703%3A8427&scaling=scale-down&content-scaling=fixed&t=aO2g8BW8sOtXyiVT-1?raw=true",
     },
     takeaways: "We solved the complexity of creating a smooth experience for small museum staff, enabling them to develop a better experience for visitors. By developing an all-in-one software, we streamlined the workflow and optimized current museum resources.",
     nextProject: {
       title: "ART BEYOND DIMENSION",
       link: "/project/art-beyond-dimension",
       image: "https://github.com/Lumystik/PortfolioLucia/blob/c39ead2c3b7c47add54a5363ffb7b42cb35b1adf/images/wall.jpg?raw=true"
-}
-      
+    }
   },
   "art-beyond-dimension": {
+    // ... [KEEP ALL EXISTING DATA FOR OTHER PROJECTS EXACTLY AS IS]
     id: "art-beyond-dimension",
     title: "Art Beyond Dimension",
     heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/0e95408be9b5b18ff336921926c7889c41d95380/images/hero_dimension.jpg?raw=true",
@@ -159,7 +193,6 @@ userInsightsCards: [
     ],
     keyFunctions: {
       description: "We aimed to position two screents next to each other at an angle: one displays previous generated artwork (the projection), while the other shows paintings from that floor of museum (the app). Built with Figma. I added in motion graphics that dd visual interest and show the history behind the paintings ",
-      
      functions: [
         {
           title: "INTERACTIVE LEARNING",
@@ -297,7 +330,7 @@ userInsightsCards: [
       link: "/project/seedtag"
     }
   },
-"seedtag": {
+  "seedtag": {
     id: "seedtag",
     title: "Seedtag Interactive Ads",
     heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/875f29a845d8d4c9b924b22af2bd821846e5eeae/images/hero_seedtag.png?raw=true",
@@ -305,7 +338,6 @@ userInsightsCards: [
     scope: "Ad Tech (HTML5/JS)",
     role: "Digital Designer / Frontend Dev",
     timeline: "150+ Campaigns",
-    // These are the pairs for your two-column layout
     responsibilities: [
       {
         title: "Creative Development",
@@ -462,37 +494,37 @@ export function ProjectDetail() {
           </div>
         </section>
         
-{/* 3. The Problem */}
-{project.problem && (
-  <section className="py-16 md:py-20 w-full bg-white">
-    <div className="max-w-7xl mx-auto px-6">
-      
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-        
-        {/* Left Column: Text */}
-        <div className="lg:col-span-5 flex flex-col justify-center">
-          <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313] mb-6">
-            The Problem
-          </h3>
-          <div className="text-base text-gray-800 leading-relaxed whitespace-pre-line">
-            {project.problem}
-          </div>
-        </div>
+        {/* 3. The Problem */}
+        {project.problem && (
+          <section className="py-16 md:py-20 w-full bg-white">
+            <div className="max-w-7xl mx-auto px-6">
+              
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+                
+                {/* Left Column: Text */}
+                <div className="lg:col-span-5 flex flex-col justify-center">
+                  <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313] mb-6">
+                    The Problem
+                  </h3>
+                  <div className="text-base text-gray-800 leading-relaxed whitespace-pre-line">
+                    {project.problem}
+                  </div>
+                </div>
 
-        {/* Right Column: Image */}
-        <div className="lg:col-span-7 flex items-center justify-center p-8 md:p-12 overflow-hidden bg-[#F9F9F9] border border-gray-100 rounded-2xl">
-          <img
-            src={project.problemImage || "/placeholder-phone-mockup.png"}
-            alt="The Problem Illustration"
-            className="w-full max-w-[220px] md:max-w-md h-auto object-contain drop-shadow-2xl"
-          />
-        </div>
+                {/* Right Column: Image */}
+                <div className="lg:col-span-7 flex items-center justify-center p-8 md:p-12 overflow-hidden bg-[#F9F9F9] border border-gray-100 rounded-2xl">
+                  <img
+                    src={project.problemImage || "/placeholder-phone-mockup.png"}
+                    alt="The Problem Illustration"
+                    className="w-full max-w-[220px] md:max-w-md h-auto object-contain drop-shadow-2xl"
+                  />
+                </div>
 
-      </div>
-      
-    </div>
-  </section>
-)}
+              </div>
+              
+            </div>
+          </section>
+        )}
         
         {/* 4. Research Objectives & Insights */}
         {(project.researchObjectives || project.researchInsights) && (
@@ -546,7 +578,6 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
-     
 
         {/* 8. Process Map */}
         {project.processMap && (
@@ -575,7 +606,6 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
-
 
         {/* 6. Target Users */}
         {project.targetUsers && (
@@ -646,80 +676,153 @@ export function ProjectDetail() {
           </section>
         )}
 
-{/* --- 11. IDEATION SECTION --- */}
-{project.ideation && (
-  <section className="py-16 md:py-20 w-full bg-white">
-    <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16">
-      
-      {/* Header: Title and Question */}
-      <div className="flex flex-col gap-8 max-w-4xl text-left">
-        <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">
-          Ideation
-        </h3>
-        <p className="text-lg md:text-xl leading-relaxed text-gray-800 font-medium italic border-l-4 border-[#E2F0A4] pl-6">
-          {project.ideation.question}
-        </p>
-      </div>
-
-      {/* 1. HERO FLOW (One Large Image) */}
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="flex flex-col gap-6"
-      >
-        <div className="w-full bg-[#F9F9F9] p-6 md:p-12 rounded-2xl border border-gray-100">
-          <img 
-            src={project.ideation.heroFlow} 
-            alt="Hero Flow" 
-            className="w-full h-auto object-contain max-w-5xl mx-auto" 
-          />
-        </div>
-        <p className="text-xs md:text-sm text-gray-400 font-bold uppercase tracking-widest text-center">
-          {project.ideation.heroFlowCaption}
-        </p>
-      </motion.div>
-
-      {/* 2. WIREFRAMES (3 Column Grid) */}
-      <div className="bg-[#FAF9F6] p-8 md:p-16 rounded-[2rem] flex flex-col gap-12">
-        <div className="flex flex-col gap-2 text-left">
-            <h4 className="text-sm font-bold uppercase tracking-widest opacity-60">Laying the Foundation</h4>
-            <p className="text-base font-bold">Initial Wireframe Iterations</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-          {project.ideation.wireframes.map((wire: any, idx: number) => (
-            <motion.div 
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="flex flex-col gap-6"
-            >
-              <div className="w-full max-w-[260px] mx-auto aspect-[2/3]  overflow-hidden shadow-sm border border-gray-100 bg-white">
-                <img 
-                  src={wire.image} 
-                  alt={wire.caption} 
-                  className="w-full h-full object-cover" 
-                />
-              </div>
-              <div className="flex flex-col gap-2 text-center">
-                <p className="text-sm font-bold uppercase tracking-tight text-[#131313]">
-                  {wire.caption.includes(':') ? wire.caption.split(':')[0] : wire.caption}
-                </p>
-                <p className="text-xs text-gray-500 leading-tight">
-                  {wire.caption.includes(':') ? wire.caption.split(':')[1] : ""}
+        {/* --- 11. IDEATION SECTION --- */}
+        {project.ideation && (
+          <section className="py-16 md:py-20 w-full bg-white">
+            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16">
+              
+              {/* Header: Title and Question */}
+              <div className="flex flex-col gap-8 max-w-4xl text-left">
+                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">
+                  Ideation
+                </h3>
+                <p className="text-lg md:text-xl leading-relaxed text-gray-800 font-medium italic border-l-4 border-[#E2F0A4] pl-6">
+                  {project.ideation.question}
                 </p>
               </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
 
-    </div>
-  </section>
-)}
+              {/* 1. HERO FLOW (One Large Image) */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="flex flex-col gap-6"
+              >
+                <div className="w-full bg-[#F9F9F9] p-6 md:p-12 rounded-2xl border border-gray-100">
+                  <img 
+                    src={project.ideation.heroFlow} 
+                    alt="Hero Flow" 
+                    className="w-full h-auto object-contain max-w-5xl mx-auto" 
+                  />
+                </div>
+                <p className="text-xs md:text-sm text-gray-400 font-bold uppercase tracking-widest text-center">
+                  {project.ideation.heroFlowCaption}
+                </p>
+              </motion.div>
+
+              {/* 2. WIREFRAMES (3 Column Grid) */}
+              <div className="bg-[#FAF9F6] p-8 md:p-16 rounded-[2rem] flex flex-col gap-12">
+                <div className="flex flex-col gap-2 text-left">
+                    <h4 className="text-sm font-bold uppercase tracking-widest opacity-60">Laying the Foundation</h4>
+                    <p className="text-base font-bold">Initial Wireframe Iterations</p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+                  {project.ideation.wireframes.map((wire: any, idx: number) => (
+                    <motion.div 
+                      key={idx}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: idx * 0.1 }}
+                      className="flex flex-col gap-6"
+                    >
+                      <div className="w-full max-w-[260px] mx-auto aspect-[2/3]  overflow-hidden shadow-sm border border-gray-100 bg-white">
+                        <img 
+                          src={wire.image} 
+                          alt={wire.caption} 
+                          className="w-full h-full object-cover" 
+                        />
+                      </div>
+                      <div className="flex flex-col gap-2 text-center">
+                        <p className="text-sm font-bold uppercase tracking-tight text-[#131313]">
+                          {wire.caption.includes(':') ? wire.caption.split(':')[0] : wire.caption}
+                        </p>
+                        <p className="text-xs text-gray-500 leading-tight">
+                          {wire.caption.includes(':') ? wire.caption.split(':')[1] : ""}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+          </section>
+        )}
+        
+        {/* --- TESTING OBJECTIVES (ADAPTED) --- */}
+        {project.testingObjectives && (
+          <section className="py-16 md:py-20 w-full bg-[#131313] text-white">
+            <div className="max-w-7xl mx-auto px-6">
+              <h3 className="mb-12 text-3xl md:text-4xl font-bold uppercase tracking-tight text-left">Testing Objectives</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {project.testingObjectives.map((obj: any, idx: number) => (
+                  <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }} className="flex flex-col gap-4 p-8 bg-[#1a1a1a] rounded-2xl border border-gray-800">
+                    <h4 className="text-xl font-bold uppercase">{obj.title}</h4>
+                    <p className="text-gray-400 leading-relaxed text-sm">{obj.description}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* --- USABILITY RESULTS (ADAPTED) --- */}
+        {project.usabilityResults && (
+          <section className="py-16 md:py-24 w-full bg-white border-b border-gray-100">
+            <div className="max-w-4xl mx-auto px-6 text-center flex flex-col gap-8">
+              <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">{project.usabilityResults.title}</h3>
+              <p className="text-xl md:text-2xl text-gray-700 leading-relaxed font-medium italic">"{project.usabilityResults.description}"</p>
+            </div>
+          </section>
+        )}
+
+        {/* --- ITERATIONS & REFINEMENT (ADAPTED) --- */}
+        {project.iterations && (
+          <section className="py-16 md:py-24 w-full bg-[#FAF9F6]">
+            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16 md:gap-20">
+              <div className="flex flex-col gap-4 max-w-3xl">
+                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">{project.iterations.title}</h3>
+                <p className="text-lg text-gray-700 leading-relaxed">{project.iterations.description}</p>
+              </div>
+
+              <div className="flex flex-col gap-16 md:gap-32">
+                {project.iterations.items.map((item: any, idx: number) => (
+                  <motion.div key={idx} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                    <div className={`flex flex-col gap-4 ${idx % 2 === 1 ? 'md:order-2' : ''}`}>
+                      <h4 className="text-2xl font-bold uppercase tracking-tight text-[#131313]">{item.title}</h4>
+                      <p className="text-base text-gray-700 leading-relaxed">{item.description}</p>
+                    </div>
+                    <div className={`w-full rounded-2xl overflow-hidden shadow-sm border border-gray-100 p-2 md:p-6 bg-white flex justify-center ${idx % 2 === 1 ? 'md:order-1' : ''}`}>
+                      <img src={item.image || "/placeholder-image.png"} alt={item.title} className="w-full max-w-[280px] h-auto object-contain drop-shadow-xl my-4" />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* --- NICE TO HAVES (ADAPTED) --- */}
+        {project.niceToHaves && (
+          <section className="py-16 md:py-20 w-full bg-white">
+            <div className="max-w-7xl mx-auto px-6">
+              <div className="flex flex-col gap-4 mb-12 max-w-3xl">
+                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">{project.niceToHaves.title}</h3>
+                <p className="text-base text-gray-600 leading-relaxed">{project.niceToHaves.description}</p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {project.niceToHaves.items.map((item: any, idx: number) => (
+                  <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }} className="flex flex-col gap-3 p-8 bg-[#F9F9F9] rounded-2xl border border-gray-100">
+                    <h4 className="text-lg font-bold uppercase text-[#131313] tracking-tight">{item.title}</h4>
+                    <p className="text-gray-600 leading-relaxed text-sm">{item.description}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
         
         {/* 10. Pillars / Scenarios (V2 Layout) */}
         {project.pillars2 && project.pillars2.length > 0 && (
@@ -891,7 +994,8 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
-{/* 9. Key Findings Stats */}
+        
+        {/* 9. Key Findings Stats */}
         {project.keyFindings && (
           <section className="py-16 md:py-20 w-full bg-[#131313] text-white">
             <div className="max-w-7xl mx-auto px-6">
@@ -915,7 +1019,7 @@ export function ProjectDetail() {
 
 
 
-{/* --- 12. BRANDING SECTION --- */}
+        {/* --- 12. BRANDING SECTION --- */}
         {project.branding && (
           <div className="bg-white">
             <section className="py-16 md:py-20">
@@ -1063,46 +1167,48 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
-{/* Seedtag Specific Scrolling Gallery */}
-{project.id === 'seedtag' && (
-  <section className="py-16 md:py-20 bg-white">
-    <div className="max-w-6xl mx-auto px-6">
-      <h3 className="text-3xl font-bold mb-16 text-center">Key Responsibilities & Focus Areas</h3>
-      
-      <div className="flex flex-col gap-24">
-        {project.responsibilities.map((item: any, index: number) => (
-          <motion.div 
-            key={index}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
-          >
-            {/* Left Column: Text */}
-            <div className={`order-2 ${index % 2 === 0 ? 'md:order-1' : 'md:order-2'}`}>
-              <h4 className="text-xl font-bold mb-4">{item.title}</h4>
-              <p className="text-base text-gray-600 leading-relaxed">
-                {item.desc}
-              </p>
-            </div>
+        
+        {/* Seedtag Specific Scrolling Gallery */}
+        {project.id === 'seedtag' && (
+          <section className="py-16 md:py-20 bg-white">
+            <div className="max-w-6xl mx-auto px-6">
+              <h3 className="text-3xl font-bold mb-16 text-center">Key Responsibilities & Focus Areas</h3>
+              
+              <div className="flex flex-col gap-24">
+                {project.responsibilities.map((item: any, index: number) => (
+                  <motion.div 
+                    key={index}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.6 }}
+                    className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
+                  >
+                    {/* Left Column: Text */}
+                    <div className={`order-2 ${index % 2 === 0 ? 'md:order-1' : 'md:order-2'}`}>
+                      <h4 className="text-xl font-bold mb-4">{item.title}</h4>
+                      <p className="text-base text-gray-600 leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </div>
 
-            {/* Right Column: Image/GIF */}
-            <div className={`order-1 ${index % 2 === 0 ? 'md:order-2' : 'md:order-1'}`}>
-              <div className="rounded-xl overflow-hidden shadow-xl border border-gray-100">
-                <img 
-                  src={item.image} 
-                  alt={item.title} 
-                  className="w-full h-auto object-cover"
-                />
+                    {/* Right Column: Image/GIF */}
+                    <div className={`order-1 ${index % 2 === 0 ? 'md:order-2' : 'md:order-1'}`}>
+                      <div className="rounded-xl overflow-hidden shadow-xl border border-gray-100">
+                        <img 
+                          src={item.image} 
+                          alt={item.title} 
+                          className="w-full h-auto object-cover"
+                        />
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
             </div>
-          </motion.div>
-        ))}
-      </div>
-    </div>
-  </section>
-)}
+          </section>
+        )}
+        
         {/* --- 16. TAKEAWAYS --- */}
         {project.takeaways && (
           <section className="py-16 md:py-20 w-full bg-[#E54D2E] text-white">
