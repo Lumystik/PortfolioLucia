@@ -27,7 +27,6 @@ const projectsData: Record<string, any> = {
     ideation: {
       question: "How can we build a seamless workflow that maximizes museum staff efficiency? How can the platform adapt to different roles while maintaining a unified database?",
       heroFlow: "https://github.com/Lumystik/PortfolioLucia/blob/f8b832c9f326ed2f6d2fd32515316ec56fb143fa/images/workflow_museon.png?raw=true",
-      // UPDATED Caption from v24: Remove Alex prefix
       heroFlowCaption: "Organizing a new temporary exhibition.", 
       wireframes: [
         {
@@ -465,7 +464,6 @@ export function ProjectDetail() {
 
         {/* 2. Project Details & Overview */}
         <section className="pb-24 md:pb-32 w-full bg-white text-[#131313]">
-          {/* Changed max-w-5xl to max-w-7xl to match the hero section alignment */}
           <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center text-left">
             <div className="lg:col-span-4 flex flex-col gap-8">
               <div className="flex flex-col gap-2">
@@ -511,14 +509,12 @@ export function ProjectDetail() {
             </div>
           </div>
         </section>
+
         {/* 3. The Problem */}
         {project.problem && (
           <section className="py-16 md:py-20 w-full bg-white">
             <div className="max-w-7xl mx-auto px-6">
-              
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-                
-                {/* Left Column: Text */}
                 <div className="lg:col-span-5 flex flex-col justify-center">
                   <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313] mb-6">
                     The Problem
@@ -527,8 +523,6 @@ export function ProjectDetail() {
                     {project.problem}
                   </div>
                 </div>
-
-                {/* Right Column: Image - Bigger image, smaller padding */}
                 <div className="lg:col-span-7 flex items-center justify-center p-2 md:p-4 overflow-hidden bg-[#F9F9F9] border border-gray-100 rounded-2xl">
                   <img
                     src={project.problemImage || "/placeholder-phone-mockup.png"}
@@ -536,59 +530,54 @@ export function ProjectDetail() {
                     className="w-full h-auto object-contain drop-shadow-2xl"
                   />
                 </div>
-
               </div>
-              
             </div>
           </section>
         )}
         
-{/* 4. Research Objectives & Insights */}
-{(project.researchObjectives || project.researchInsights) && (
-  <section className="py-16 md:py-20 w-full bg-white">
-    <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16 md:gap-24">
-      
-      {project.researchObjectives && (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start">
-          <div className="lg:col-span-5">
-            <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">
-              Research Objectives
-            </h3>
-          </div>
+        {/* 4. Research Objectives & Insights */}
+        {(project.researchObjectives || project.researchInsights) && (
+          <section className="py-16 md:py-20 w-full bg-white">
+            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16 md:gap-24">
+              {project.researchObjectives && (
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start">
+                  <div className="lg:col-span-5">
+                    <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">
+                      Research Objectives
+                    </h3>
+                  </div>
 
-          <div className="lg:col-span-7 lg:pt-1">
-            {Array.isArray(project.researchObjectives) ? (
-              <div className="max-w-2xl">
-                <p className="text-base md:text-lg text-[#131313] leading-relaxed mb-6">
-                  Through user interviews and surveys, I wanted to:
-                </p>
-
-                <ul className="flex flex-col gap-5">
-                  {project.researchObjectives.map((line: string, idx: number) => (
-                    <li
-                      key={idx}
-                      className="flex items-start gap-4 text-base md:text-lg text-[#131313] leading-relaxed"
-                    >
-                      <span className="text-[#131313] font-bold select-none mt-1">•</span>
-                      <span className="leading-relaxed">{line}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : (
-              <div className="max-w-2xl">
-                <p className="text-base md:text-lg text-[#131313] leading-relaxed mb-6">
-                  Through user interviews and surveys, I wanted to:
-                </p>
-
-                <div className="text-base md:text-lg text-[#131313] leading-relaxed whitespace-pre-line">
-                  {project.researchObjectives}
+                  <div className="lg:col-span-7 lg:pt-1">
+                    {Array.isArray(project.researchObjectives) ? (
+                      <div className="max-w-2xl">
+                        <p className="text-base md:text-lg text-[#131313] leading-relaxed mb-6">
+                          Through user interviews and surveys, I wanted to:
+                        </p>
+                        <ul className="flex flex-col gap-5">
+                          {project.researchObjectives.map((line: string, idx: number) => (
+                            <li
+                              key={idx}
+                              className="flex items-start gap-4 text-base md:text-lg text-[#131313] leading-relaxed"
+                            >
+                              <span className="text-[#131313] font-bold select-none mt-1">•</span>
+                              <span className="leading-relaxed">{line}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ) : (
+                      <div className="max-w-2xl">
+                        <p className="text-base md:text-lg text-[#131313] leading-relaxed mb-6">
+                          Through user interviews and surveys, I wanted to:
+                        </p>
+                        <div className="text-base md:text-lg text-[#131313] leading-relaxed whitespace-pre-line">
+                          {project.researchObjectives}
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
+              )}
 
               {project.researchInsights && (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
@@ -621,14 +610,11 @@ export function ProjectDetail() {
                   <motion.div 
                     key={idx}
                     initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
-                    // UPDATE: Orange background for each phase card
                     className="flex flex-col gap-4 text-left bg-[#E54D2E] p-6 rounded-2xl shadow-sm border border-transparent text-white"
                   >
-                    {/* UPDATE: Border color inside orange card */}
                     <h4 className="text-xl font-bold uppercase tracking-tight text-white border-b-2 border-white/20 pb-2">{phase.phase}</h4>
                     <ul className="flex flex-col gap-2">
                       {phase.steps.map((step: string, stepIdx: number) => (
-                        // UPDATE: Dot color inside orange card
                         <li key={stepIdx} className="text-base md:text-lg text-white/90 leading-relaxed flex items-center gap-2">
                           <span className="w-1.5 h-1.5 min-w-[6px] min-h-[6px] rounded-full bg-white"></span>
                           <span className="break-words">{step}</span>
@@ -676,7 +662,6 @@ export function ProjectDetail() {
           <section className="py-16 md:py-20 w-full bg-white">
             <div className="max-w-7xl mx-auto px-6 w-full">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 w-full">
-                {/* Left Column: Title Card */}
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }} 
                   whileInView={{ opacity: 1, y: 0 }} 
@@ -689,7 +674,6 @@ export function ProjectDetail() {
                   </h3>
                 </motion.div>
 
-                {/* Right Column: Content Card(s) */}
                 <div className="flex flex-col gap-4 md:gap-6 w-full">
                   {project.howMightWe.map((hmw: string, idx: number) => (
                     <motion.div 
@@ -716,14 +700,12 @@ export function ProjectDetail() {
           <section className="py-16 md:py-20 w-full bg-white">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16">
               
-              {/* Header: Title and Question */}
               <div className="flex flex-col gap-8 max-w-4xl text-left">
                 <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">
                   Ideation
                 </h3>
               </div>
 
-              {/* 1. HERO FLOW (One Large Image) */}
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -742,7 +724,6 @@ export function ProjectDetail() {
                 </p>
               </motion.div>
 
-              {/* 2. WIREFRAMES (3 Column Grid) */}
               <div className="bg-[#FAF9F6] p-8 md:p-16 rounded-[2rem] flex flex-col gap-12">
                 <div className="flex flex-col gap-2 text-left">
                     <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">Laying the Foundation</h4>
@@ -782,8 +763,6 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
-        
-   
         
         {/* 10. Pillars / Scenarios (V2 Layout) */}
         {project.pillars2 && project.pillars2.length > 0 && (
@@ -906,7 +885,6 @@ export function ProjectDetail() {
 
         {/* 5B. User Insights */}
         {(project.userInsights || project.userInsightsCards) && (
-          // UPDATE: Orange background, white text context
           <section className="py-16 md:py-20 w-full bg-[#E54D2E] text-white">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-12">
               <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-white">User Insights</h3>
@@ -979,70 +957,43 @@ export function ProjectDetail() {
           </section>
         )}
 
-{(project.branding.logoDescription || project.branding.logoImage) && (
-  <section className="py-16 md:py-20">
-    {/* Swapped Grid for Flexbox to tightly group and center the items */}
-    <div className="flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-16 px-6 mx-auto w-full">
-      
-      {/* Added max-w-lg to keep the text block a readable width */}
-      <div className="flex flex-col gap-6 max-w-lg">
-        <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">
-          Logo Design
-        </h4>
-        <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-          {project.branding.logoDescription}
-        </p>
-      </div>
+        {/* Logo Design Section */}
+        {(project.branding?.logoDescription || project.branding?.logoImage) && (
+          <section className="py-16 md:py-20">
+            <div className="flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-16 px-6 mx-auto w-full">
+              <div className="flex flex-col gap-6 max-w-lg">
+                <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">
+                  Logo Design
+                </h4>
+                <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                  {project.branding.logoDescription}
+                </p>
+              </div>
 
-      {/* Image stays vertically centered next to the text */}
-      <div className="flex justify-center">
-        <img
-          src={project.branding.logoImage}
-          alt="Logo"
-          className="w-full max-w-[160px] md:max-w-[200px] h-auto object-contain"
-        />
-      </div>
-      
-    </div>
-  </section>
-)}
-
-{(project.branding.logoDescription || project.branding.logoImage) && (
-  <section className="py-16 md:py-20">
-    {/* Flex-col makes everything stack vertically and items-center horizontally centers everything */}
-    <div className="max-w-3xl mx-auto px-6 flex flex-col items-center text-center gap-8 lg:gap-10">
-      
-      <div className="flex flex-col gap-4 items-center">
-        <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">
-          Logo Design
-        </h4>
-        <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-          {project.branding.logoDescription}
-        </p>
-      </div>
-
-      <img
-        src={project.branding.logoImage}
-        alt="Logo"
-        className="w-full max-w-[160px] md:max-w-[200px] h-auto object-contain"
-      />
-      
-    </div>
-  </section>
-)}
-
-            {project.branding.featuresImage && (
-              <section className="py-16 md:py-20 border-t border-gray-50">
-                <div className="max-w-7xl mx-auto px-6">
-                  <img 
-                    src={project.branding.featuresImage} 
-                    alt="Feature" 
-                    className="w-full h-auto max-w-3xl mx-auto object-contain" 
+              {project.branding.logoImage && (
+                <div className="flex justify-center">
+                  <img
+                    src={project.branding.logoImage}
+                    alt="Logo"
+                    className="w-full max-w-[160px] md:max-w-[200px] h-auto object-contain"
                   />
                 </div>
-              </section>
-            )}
-          </div>
+              )}
+            </div>
+          </section>
+        )}
+
+        {/* Features Image Section */}
+        {project.branding?.featuresImage && (
+          <section className="py-16 md:py-20 border-t border-gray-50">
+            <div className="max-w-7xl mx-auto px-6">
+              <img 
+                src={project.branding.featuresImage} 
+                alt="Feature" 
+                className="w-full h-auto max-w-3xl mx-auto object-contain" 
+              />
+            </div>
+          </section>
         )}
 
         {/* --- 13. KEY FUNCTIONS SECTION --- */}
@@ -1185,7 +1136,6 @@ export function ProjectDetail() {
               <div className="w-full">
                 {project.bannerImage && (
                   <div className="rounded-2xl overflow-hidden shadow-2xl border border-gray-100">
-                    {/* UPDATE: GIF of final prototype bigger by removing max-height constraint */}
                     <img 
                       src={project.bannerImage} 
                       alt="Final Prototype Showcase" 
@@ -1214,7 +1164,6 @@ export function ProjectDetail() {
                     transition={{ duration: 0.6 }}
                     className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
                   >
-                    {/* Left Column: Text */}
                     <div className={`order-2 ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
                       <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313] mb-4">{item.title}</h4>
                       <p className="text-base md:text-lg text-gray-700 leading-relaxed">
@@ -1222,7 +1171,6 @@ export function ProjectDetail() {
                       </p>
                     </div>
 
-                    {/* Right Column: Image/GIF */}
                     <div className={`order-1 ${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
                       <div className="rounded-xl overflow-hidden shadow-xl border border-gray-100">
                         <img 
@@ -1255,12 +1203,14 @@ export function ProjectDetail() {
 
         {/* --- 17. NEXT PROJECT --- */}
         {project.nextProject && (
-          <section className="relative w-full h-[60vh] md:h-[50vh] overflow-hidden group">
-            <img 
-              src={project.nextProject.image} 
-              alt="Next Project" 
-              className="absolute inset-0 w-full h-full object-cover"
-            />
+          <section className="relative w-full h-[60vh] md:h-[50vh] overflow-hidden group bg-[#131313]">
+            {project.nextProject.image && (
+              <img 
+                src={project.nextProject.image} 
+                alt="Next Project" 
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            )}
             <div className="absolute inset-0 bg-black/85 transition-colors duration-500 group-hover:bg-black/75" />
             <div className="relative z-10 h-full max-w-7xl mx-auto px-6 flex flex-col justify-center">
               <span className="text-xs font-mono uppercase tracking-[0.2em] text-gray-300 mb-4 block">Next Project</span>
