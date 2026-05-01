@@ -27,7 +27,7 @@ const projectsData: Record<string, any> = {
     ideation: {
       question: "How can we build a seamless workflow that maximizes museum staff efficiency? How can the platform adapt to different roles while maintaining a unified database?",
       heroFlow: "https://github.com/Lumystik/PortfolioLucia/blob/f8b832c9f326ed2f6d2fd32515316ec56fb143fa/images/workflow_museon.png?raw=true",
-      heroFlowCaption: "Organizing a new temporary exhibition.", 
+      heroFlowCaption: "Alex Hero Flow: Organizing a new temporary exhibition.", 
       wireframes: [
         {
           image: "https://github.com/Lumystik/PortfolioLucia/blob/78d82c3bb5eae3c9be12ddde7b066b62a51cc24a/images/Dashboard_mobile_wireframe.png?raw=true",
@@ -43,6 +43,8 @@ const projectsData: Record<string, any> = {
         }
       ]
     },
+    
+    // NEW ITERATION & TESTING DATA ADAPTED FROM REFERENCE
     testingObjectives: [
       { title: "VALIDATE CONCEPT", description: "I wanted to ensure that the features are everything the user expects and wants out of this app. Hearing additional feedback and suggestions helped better tailor it towards the staff's needs." },
       { title: "OBSERVE USER FLOW", description: "Watching first-time users navigate the dashboard determined if the onboarding screens were helpful and if users were able to easily complete their tasks without errors." },
@@ -153,115 +155,97 @@ const projectsData: Record<string, any> = {
       image: "https://github.com/Lumystik/PortfolioLucia/blob/c39ead2c3b7c47add54a5363ffb7b42cb35b1adf/images/wall.jpg?raw=true"
     }
   },
- "art-beyond-dimension": {
+  "art-beyond-dimension": {
+    // ... [KEEP ALL EXISTING DATA FOR OTHER PROJECTS EXACTLY AS IS]
     id: "art-beyond-dimension",
     title: "Art Beyond Dimension",
     heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/0e95408be9b5b18ff336921926c7889c41d95380/images/hero_dimension.jpg?raw=true",
     interfaceImage: "https://github.com/Lumystik/PortfolioLucia/blob/85176369bcb78e03b473d799a45522474f753705/images/dimension_final.jpeg?raw=true",
-    overview: "An immersive museum experience that helps young adults engage with art through interaction, AI, and playful learning.",
+    overview: "Immersive Experience of Future Museums. Our design solution enables young adults to gain knowledge about art in a fun and engaging way to bridge the information gap and foster greater appreciation for the heritage of museum.",
     scope: "Digital Experience & Totem Interface",
     role: "Digital and Interaction Design",
     timeline: "Final Design Studio",
     team: "Razieh Soleimani, Lucia Medina, Marjan Mehrabi, Fatemeh Khoshbazan",
     prototypeLink: "https://www.figma.com/proto/FnFqrWBxyChSOdL3aVzV9A/Prototype?node-id=616-1965&starting-point-node-id=564%3A1942&t=bIX74fMjWA7kTArF-1",
-
-    problem: "Young visitors often disengage from static museum displays and need more active ways to connect with art.",
-    problemImage: "https://github.com/Lumystik/PortfolioLucia/blob/a5eea34a05cf9395d6ed4f8b0ada858d50600186/images/ChatGPT%20Image%20Apr%2029%2C%202026%2C%2006_23_00%20PM.png?raw=true",
-
-    researchObjectives: [
-      "Understand how young adults engage with art in museums.",
-      "Explore how digital interaction can support learning.",
-      "Test whether creative participation increases interest."
-    ],
-
-    howMightWe: [
-      "How might we make museum learning more interactive and personal for young visitors?"
-    ],
-
+    problem:"The way young people experience culture is evolving at the same time technology does. They want interactive, personalized experiences. And are moving away from static displays and toward spaces where they can actively participate in cultural exploration.",
+    researchObjectives: "\n• To explore ways to reduce information gaps in art understanding among young adults. \n• To investigate how digital interactions can support learning within traditional museum environments.\n• Users can create an artwork. \n• To assess how engagement strategies affect appreciation of artistic heritage.",
+    howMightWe: [ "Blend interactive elements with the traditional museum experience to bridge the information gap and foster greater appreciation for the heritage of the art?" ],
     userTesting: {
       title: "User Testing & Validation",
-      description: "Testing focused on clarity, voice guidance, and whether the print reward felt intuitive.",
+      description: "We conducted in-person testing sessions to observe how users interacted with the interface naturally. We focused on whether the audio prompts were intuitive and if the gamified printing process felt rewarding.",
       images: [
         "https://github.com/Lumystik/PortfolioLucia/blob/dd95a5f2ca9291229e663073fe9e1c8365466209/images/usertesting_dimension.jpg?raw=true"
       ]
     },
-
     userInsightsCards: [
       {
-        title: "CURIOSITY",
-        description: "Users were interested in the concept, but needed clearer onboarding."
+        title: "EMOTIONAL REACTIONS",
+        description: "Users reported initial confusion, curiosity, and excitement when encountering the concept. Some expressed fear or discomfort, especially among users unfamiliar with the technology. Quotes included: “I’d feel confused but excited because I’ve never seen something like that” and “I’d have a lot of fun interacting with it.”"
       },
       {
-        title: "VOICE INTERACTION",
-        description: "Voice commands felt more natural than typing or touch."
+        title: "INTERACTION PREFERENCES",
+        description: "Users showed a preference for speaking over touch or typing, describing speech as the most natural form of communication. There was a strong desire for novelty and realism, with comments like “the more realistic it feels, the cooler it would be.” Emotional resonance also emerged as important, such as music being described as something that connects to emotion."
       },
       {
-        title: "SIMPLICITY",
-        description: "The interface needed to stay simple in a busy museum setting."
+        title: "DESIGN CONSIDERATIONS",
+        description: "Key considerations include maintaining simplicity to avoid cognitive overload, ensuring accessible and high-quality audio interaction, designing for users unfamiliar with AI systems, and providing clear guidance to reduce confusion. Physical context factors such as contrast for holographic displays and crowd flow management were also highlighted."
       }
     ],
-
     keyFunctions: {
-      description: "A dual-screen experience combining museum artworks, motion graphics, AI generation, and a printed takeaway.",
-      functions: [
+      description: "We aimed to position two screents next to each other at an angle: one displays previous generated artwork (the projection), while the other shows paintings from that floor of museum (the app). Built with Figma. I added in motion graphics that dd visual interest and show the history behind the paintings ",
+     functions: [
         {
           title: "INTERACTIVE LEARNING",
-          description: "Users explore paintings and unlock the generator after selecting two artworks.",
+          description: "Visitor stands in front of the screen and chooses paintings they are interested in. The user selects a painting to know more about and gets answers from the system. After selecting at least 2 paintings, the option to generate an artwork appears.",
           image: "https://github.com/Lumystik/PortfolioLucia/blob/5a21c692a5ce09da24b54267b421feeee842d5f6/images/learning_dimension.gif?raw=true"
         },
         {
           title: "AI VOICE PROMPT",
-          description: "Users modify the generated artwork through spoken prompts.",
+          description: "The system uses voice interaction (e.g., 'You selected Elasticità by Boccioni. Would you like to learn about its concept?'). Users can use voice prompts to modify the art (e.g., 'I want to make it more minimal with less colors'). The AI LLM generates the artwork based on these prompts.",
           image: "https://github.com/Lumystik/PortfolioLucia/blob/1b024e88bc55015091152250c65c8c7255d83730/images/questioning_dimension.gif?raw=true"
         },
         {
-          title: "GAMIFIED PRINTING",
-          description: "A short trivia question unlocks a printed version of the final artwork.",
+          title: "GAMIFIED PRINTING & SCREEN PROJECTION",
+          description: "When users choose to print, the system asks related questions about the selected paintings (e.g., style, painter, concept). If answered correctly, the totem provides a printed version of the generated artwork.",
           image: "https://github.com/Lumystik/PortfolioLucia/blob/8e602f1e3767619ff568eeb83699dded7863d840/images/gamified_dimension.gif?raw=true"
         }
       ]
     },
-
-    targetUsers: {
-      description: "Young adults seeking visual, social, and interactive cultural experiences.",
+      targetUsers: {
+      description: "We identified one primary user archetype. Our design solution focus mainly on young adults.",
       personas: [
         {
           title: "Sara: The Explorer",
-          description: "Student in Milan who enjoys visual discovery, social sharing, and memorable cultural experiences.",
+          description: "Role: Student.\nDrivers: Desire for new experiences, Drive to document and share experiences on social media.\nEnvironment: Milan, Italy.\nNeeds: Access to engaging and interactive experiences.",
           image: "https://github.com/Lumystik/PortfolioLucia/blob/45a4994bc6796acff20cf10557be4895111209d5/images/user_dimension.png?raw=true"
         }
       ],
-      conclusion: "She wants museum experiences to feel personal, visual, and easy to engage with."
+      conclusion: "She is an experience-driven and socially oriented user who values interactive, flexible, and culturally enriching environments that support both learning and self-expression."
     },
-
-    bannerImage: "https://github.com/Lumystik/PortfolioLucia/blob/e942b67bef52b6a8237dcd807e02a3f741f791a5/images/wall.jpg?raw=true",
-
-    pillars: [
+     bannerImage: "https://github.com/Lumystik/PortfolioLucia/blob/e942b67bef52b6a8237dcd807e02a3f741f791a5/images/wall.jpg?raw=true",
+       pillars: [
       {
-        title: "Scenario 1: Art Discovery",
-        description: "Visitors explore artworks with audio guidance and visual interaction.",
+        title: "Scenario 1: Interactive Art Discovery Experience with tablet and wall projector",
+        description: "Two screens display artworks and available paintings. As the visitor approaches, the system activates and invites them to select pieces of interest. The user receives audio-guided information and can explore each artwork interactively. Then, they can choose to generate their own artwork which will be shared on the wall.",
         image: "https://github.com/Lumystik/PortfolioLucia/blob/8d6557cb60be6d6c688474d132989b0a8bec9580/images/scenario_1.png?raw=true"
       },
       {
-        title: "Scenario 2: Art Print",
-        description: "Users answer trivia to receive a printed version of their generated artwork.",
+        title: "Scenario 2: Interactive Art Print Experience",
+        description: "After selecting at least two paintings, users can keep adding more combinations. Once ready, they can generate a new artwork, view it on a second screen, and choose to print it. Before printing, the system asks brief questions about the selected paintings; correct answers unlock the print. A voice guides the process and encourages further exploration.",
         image: "https://github.com/Lumystik/PortfolioLucia/blob/7f099807a3f294985b4812c48bad188f22b5a349/images/scenario_2.png?raw=true"
       },
       {
-        title: "Scenario 3: Voice Generation",
-        description: "Users create personalized artwork through spoken prompts.",
+        title: "Senario 3: AI Voice Prompt",
+        description: "The AI system generates the artwork based on the user’s words as a prompt.",
         image: "https://github.com/Lumystik/PortfolioLucia/blob/2bf3def01ee15c268265d1090683a06785465d18/images/scenario_3.png?raw=true"
       }
     ],
-
-    takeaways: "The project shows how museums can use interaction and AI to make art learning more active, personal, and memorable.",
-
+    takeaways: "The idea grabs the visitor's attention, which makes them want to learn. It has the capability of personalization based on the paintings visitors like most. The user can add their opinion to the prompt to add something more than just merging two paintings to the generative artwork with voice.",
     nextProject: {
       title: "FILMS FOUNDATION",
       link: "/project/films-foundation"
     }
   },
-
   "films-foundation": {
     id: "films-foundation",
     title: "Films Foundation",
@@ -450,7 +434,7 @@ export function ProjectDetail() {
       <Navbar />
       
       <main className="w-full overflow-hidden">
-      {/* 1. Hero Section */}
+        {/* 1. Hero Section */}
         <section className="w-full pt-24 pb-12 bg-white">
           <div className="max-w-7xl mx-auto px-6">
             <motion.div 
@@ -464,7 +448,7 @@ export function ProjectDetail() {
 
         {/* 2. Project Details & Overview */}
         <section className="pb-24 md:pb-32 w-full bg-white text-[#131313]">
-          <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center text-left">
+          <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center text-left">
             <div className="lg:col-span-4 flex flex-col gap-8">
               <div className="flex flex-col gap-2">
                 <h4 className="text-sm font-bold uppercase tracking-widest text-[#131313]">Project Scope</h4>
@@ -509,12 +493,15 @@ export function ProjectDetail() {
             </div>
           </div>
         </section>
-
+        
         {/* 3. The Problem */}
         {project.problem && (
           <section className="py-16 md:py-20 w-full bg-white">
             <div className="max-w-7xl mx-auto px-6">
+              
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+                
+                {/* Left Column: Text */}
                 <div className="lg:col-span-5 flex flex-col justify-center">
                   <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313] mb-6">
                     The Problem
@@ -523,14 +510,18 @@ export function ProjectDetail() {
                     {project.problem}
                   </div>
                 </div>
-                <div className="lg:col-span-7 flex items-center justify-center p-2 md:p-4 overflow-hidden bg-[#F9F9F9] border border-gray-100 rounded-2xl">
+
+                {/* Right Column: Image */}
+                <div className="lg:col-span-7 flex items-center justify-center p-8 md:p-12 overflow-hidden bg-[#F9F9F9] border border-gray-100 rounded-2xl">
                   <img
                     src={project.problemImage || "/placeholder-phone-mockup.png"}
                     alt="The Problem Illustration"
-                    className="w-full h-auto object-contain drop-shadow-2xl"
+                    className="w-full max-w-[280px] h-auto object-contain drop-shadow-2xl"
                   />
                 </div>
+
               </div>
+              
             </div>
           </section>
         )}
@@ -539,40 +530,28 @@ export function ProjectDetail() {
         {(project.researchObjectives || project.researchInsights) && (
           <section className="py-16 md:py-20 w-full bg-white">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16 md:gap-24">
+              
               {project.researchObjectives && (
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start">
-                  <div className="lg:col-span-5">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+                  <div className="lg:col-span-4">
                     <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">
-                      Research Objectives
+                      Research<br />Objectives
                     </h3>
                   </div>
 
-                  <div className="lg:col-span-7 lg:pt-1">
+                  <div className="lg:col-span-8">
                     {Array.isArray(project.researchObjectives) ? (
-                      <div className="max-w-2xl">
-                        <p className="text-base md:text-lg text-[#131313] leading-relaxed mb-6">
-                          Through user interviews and surveys, I wanted to:
-                        </p>
-                        <ul className="flex flex-col gap-5">
-                          {project.researchObjectives.map((line: string, idx: number) => (
-                            <li
-                              key={idx}
-                              className="flex items-start gap-4 text-base md:text-lg text-[#131313] leading-relaxed"
-                            >
-                              <span className="text-[#131313] font-bold select-none mt-1">•</span>
-                              <span className="leading-relaxed">{line}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+                      <ul className="flex flex-col gap-6">
+                        {project.researchObjectives.map((line: string, idx: number) => (
+                          <li key={idx} className="flex items-start gap-3 text-base md:text-lg text-gray-700 leading-relaxed">
+                            <span className="text-[#131313] font-bold select-none mt-0.5">•</span>
+                            <span className="leading-relaxed">{line}</span>
+                          </li>
+                        ))}
+                      </ul>
                     ) : (
-                      <div className="max-w-2xl">
-                        <p className="text-base md:text-lg text-[#131313] leading-relaxed mb-6">
-                          Through user interviews and surveys, I wanted to:
-                        </p>
-                        <div className="text-base md:text-lg text-[#131313] leading-relaxed whitespace-pre-line">
-                          {project.researchObjectives}
-                        </div>
+                      <div className="text-base md:text-lg text-gray-700 leading-relaxed whitespace-pre-line">
+                        {project.researchObjectives}
                       </div>
                     )}
                   </div>
@@ -610,13 +589,13 @@ export function ProjectDetail() {
                   <motion.div 
                     key={idx}
                     initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
-                    className="flex flex-col gap-4 text-left bg-[#E54D2E] p-6 rounded-2xl shadow-sm border border-transparent text-white"
+                    className="flex flex-col gap-4 text-left bg-white p-6 rounded-2xl shadow-sm border border-gray-100"
                   >
-                    <h4 className="text-xl font-bold uppercase tracking-tight text-white border-b-2 border-white/20 pb-2">{phase.phase}</h4>
+                    <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313] border-b-2 border-gray-100 pb-2">{phase.phase}</h4>
                     <ul className="flex flex-col gap-2">
                       {phase.steps.map((step: string, stepIdx: number) => (
-                        <li key={stepIdx} className="text-base md:text-lg text-white/90 leading-relaxed flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 min-w-[6px] min-h-[6px] rounded-full bg-white"></span>
+                        <li key={stepIdx} className="text-base md:text-lg text-gray-700 leading-relaxed flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 min-w-[6px] min-h-[6px] rounded-full bg-[#131313]"></span>
                           <span className="break-words">{step}</span>
                         </li>
                       ))}
@@ -662,6 +641,7 @@ export function ProjectDetail() {
           <section className="py-16 md:py-20 w-full bg-white">
             <div className="max-w-7xl mx-auto px-6 w-full">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 w-full">
+                {/* Left Column: Title Card */}
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }} 
                   whileInView={{ opacity: 1, y: 0 }} 
@@ -674,6 +654,7 @@ export function ProjectDetail() {
                   </h3>
                 </motion.div>
 
+                {/* Right Column: Content Card(s) */}
                 <div className="flex flex-col gap-4 md:gap-6 w-full">
                   {project.howMightWe.map((hmw: string, idx: number) => (
                     <motion.div 
@@ -700,12 +681,17 @@ export function ProjectDetail() {
           <section className="py-16 md:py-20 w-full bg-white">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16">
               
+              {/* Header: Title and Question */}
               <div className="flex flex-col gap-8 max-w-4xl text-left">
                 <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">
                   Ideation
                 </h3>
+                <p className="text-base md:text-lg text-gray-700 leading-relaxed italic border-l-4 border-[#E2F0A4] pl-6">
+                  {project.ideation.question}
+                </p>
               </div>
 
+              {/* 1. HERO FLOW (One Large Image) */}
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -724,6 +710,7 @@ export function ProjectDetail() {
                 </p>
               </motion.div>
 
+              {/* 2. WIREFRAMES (3 Column Grid) */}
               <div className="bg-[#FAF9F6] p-8 md:p-16 rounded-[2rem] flex flex-col gap-12">
                 <div className="flex flex-col gap-2 text-left">
                     <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">Laying the Foundation</h4>
@@ -744,7 +731,7 @@ export function ProjectDetail() {
                         <img 
                           src={wire.image} 
                           alt={wire.caption} 
-                          className="w-full h-auto object-fit" 
+                          className="w-full h-full object-fit" 
                         />
                       </div>
                       <div className="flex flex-col gap-2 text-center">
@@ -763,6 +750,8 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
+        
+   
         
         {/* 10. Pillars / Scenarios (V2 Layout) */}
         {project.pillars2 && project.pillars2.length > 0 && (
@@ -885,24 +874,24 @@ export function ProjectDetail() {
 
         {/* 5B. User Insights */}
         {(project.userInsights || project.userInsightsCards) && (
-          <section className="py-16 md:py-20 w-full bg-[#E54D2E] text-white">
+          <section className="py-16 md:py-20 w-full bg-[#FDFBF7] text-[#131313]">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-12">
-              <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-white">User Insights</h3>
+              <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">User Insights</h3>
               
               {project.userInsights && (project.userInsights.benefitsImage || project.userInsights.insightsImage) && (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
                   {project.userInsights.benefitsImage && (
                     <div className="flex flex-col gap-4">
-                      <h4 className="text-xl font-bold uppercase tracking-tight text-left text-white">User Perceived Benefits</h4>
-                      <div className="w-full rounded-2xl overflow-hidden bg-white/10 p-4 border border-white/10 shadow-sm flex items-center justify-center">
+                      <h4 className="text-xl font-bold uppercase tracking-tight text-left text-[#131313]">User Perceived Benefits</h4>
+                      <div className="w-full rounded-2xl overflow-hidden bg-white/40 p-4 border border-white/20 shadow-sm flex items-center justify-center">
                         <img src={project.userInsights.benefitsImage} alt="User Benefits" className="w-full max-w-md h-auto object-contain" />
                       </div>
                     </div>
                   )}
                   {project.userInsights.insightsImage && (
                     <div className="flex flex-col gap-4">
-                      <h4 className="text-xl font-bold uppercase tracking-tight text-left text-white">User Priorities</h4>
-                      <div className="w-full rounded-2xl overflow-hidden bg-white/10 p-4 border border-white/10 shadow-sm flex items-center justify-center">
+                      <h4 className="text-xl font-bold uppercase tracking-tight text-left text-[#131313]">User Priorities</h4>
+                      <div className="w-full rounded-2xl overflow-hidden bg-white/40 p-4 border border-white/20 shadow-sm flex items-center justify-center">
                         <img src={project.userInsights.insightsImage} alt="User Insights" className="w-full max-w-md h-auto object-contain" />
                       </div>
                     </div>
@@ -957,43 +946,74 @@ export function ProjectDetail() {
           </section>
         )}
 
-        {/* Logo Design Section */}
-        {(project.branding?.logoDescription || project.branding?.logoImage) && (
-          <section className="py-16 md:py-20">
-            <div className="flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-16 px-6 mx-auto w-full">
-              <div className="flex flex-col gap-6 max-w-lg">
-                <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">
-                  Logo Design
-                </h4>
-                <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-                  {project.branding.logoDescription}
+        {/* --- 12. BRANDING SECTION --- */}
+        {project.branding && (
+          <div className="bg-white">
+            <section className="py-16 md:py-20">
+              <div className="max-w-7xl mx-auto px-6">
+                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313] mb-8">
+                  Building the Brand
+                </h3>
+                <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-3xl">
+                  {project.branding.description}
                 </p>
               </div>
+            </section>
 
-              {project.branding.logoImage && (
-                <div className="flex justify-center">
-                  <img
-                    src={project.branding.logoImage}
-                    alt="Logo"
-                    className="w-full max-w-[160px] md:max-w-[200px] h-auto object-contain"
+            {project.branding.shapes && (
+              <section className="py-16 md:py-20">
+                <div className="max-w-7xl mx-auto px-6 flex justify-center items-center gap-6 flex-wrap">
+                  {project.branding.shapes.map((shape: any, idx: number) => (
+                    <div
+                      key={idx}
+                      className="rounded-full shadow-sm"
+                      style={{
+                        backgroundColor: shape.color,
+                        width: `${shape.size}px`,
+                        height: `${shape.size}px`,
+                        opacity: shape.opacity ?? 1,
+                        filter: `blur(${shape.blur ?? 0}px)`
+                      }}
+                    />
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {(project.branding.logoDescription || project.branding.logoImage) && (
+              <section className="py-16 md:py-20">
+                <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                  <div className="flex flex-col gap-6">
+                    <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">
+                      Logo Design
+                    </h4>
+                    <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                      {project.branding.logoDescription}
+                    </p>
+                  </div>
+                  <div className="flex justify-center md:justify-end">
+                    <img
+                      src={project.branding.logoImage}
+                      alt="Logo"
+                      className="w-full max-w-[160px] md:max-w-[200px] h-auto object-contain"
+                    />
+                  </div>
+                </div>
+              </section>
+            )}
+
+            {project.branding.featuresImage && (
+              <section className="py-16 md:py-20 border-t border-gray-50">
+                <div className="max-w-7xl mx-auto px-6">
+                  <img 
+                    src={project.branding.featuresImage} 
+                    alt="Feature" 
+                    className="w-full h-auto max-w-3xl mx-auto object-contain" 
                   />
                 </div>
-              )}
-            </div>
-          </section>
-        )}
-
-        {/* Features Image Section */}
-        {project.branding?.featuresImage && (
-          <section className="py-16 md:py-20 border-t border-gray-50">
-            <div className="max-w-7xl mx-auto px-6">
-              <img 
-                src={project.branding.featuresImage} 
-                alt="Feature" 
-                className="w-full h-auto max-w-3xl mx-auto object-contain" 
-              />
-            </div>
-          </section>
+              </section>
+            )}
+          </div>
         )}
 
         {/* --- 13. KEY FUNCTIONS SECTION --- */}
@@ -1139,7 +1159,7 @@ export function ProjectDetail() {
                     <img 
                       src={project.bannerImage} 
                       alt="Final Prototype Showcase" 
-                      className="max-w-[260px] h-auto object-contain"
+                      className="w-full max-h-[380px] object-contain"
                     />
                   </div>
                 )}
@@ -1164,6 +1184,7 @@ export function ProjectDetail() {
                     transition={{ duration: 0.6 }}
                     className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
                   >
+                    {/* Left Column: Text */}
                     <div className={`order-2 ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
                       <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313] mb-4">{item.title}</h4>
                       <p className="text-base md:text-lg text-gray-700 leading-relaxed">
@@ -1171,6 +1192,7 @@ export function ProjectDetail() {
                       </p>
                     </div>
 
+                    {/* Right Column: Image/GIF */}
                     <div className={`order-1 ${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
                       <div className="rounded-xl overflow-hidden shadow-xl border border-gray-100">
                         <img 
@@ -1203,14 +1225,12 @@ export function ProjectDetail() {
 
         {/* --- 17. NEXT PROJECT --- */}
         {project.nextProject && (
-          <section className="relative w-full h-[60vh] md:h-[50vh] overflow-hidden group bg-[#131313]">
-            {project.nextProject.image && (
-              <img 
-                src={project.nextProject.image} 
-                alt="Next Project" 
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-            )}
+          <section className="relative w-full h-[60vh] md:h-[50vh] overflow-hidden group">
+            <img 
+              src={project.nextProject.image} 
+              alt="Next Project" 
+              className="absolute inset-0 w-full h-full object-cover"
+            />
             <div className="absolute inset-0 bg-black/85 transition-colors duration-500 group-hover:bg-black/75" />
             <div className="relative z-10 h-full max-w-7xl mx-auto px-6 flex flex-col justify-center">
               <span className="text-xs font-mono uppercase tracking-[0.2em] text-gray-300 mb-4 block">Next Project</span>
