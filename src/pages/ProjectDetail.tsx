@@ -1006,30 +1006,34 @@ export function ProjectDetail() {
   </section>
 )}
 
-{(project.branding.logoDescription || project.branding.logoImage) && (
-  <section className="py-16 md:py-20">
-    {/* Flex-col makes everything stack vertically and items-center horizontally centers everything */}
-    <div className="max-w-3xl mx-auto px-6 flex flex-col items-center text-center gap-8 lg:gap-10">
-      
-      <div className="flex flex-col gap-4 items-center">
-        <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">
-          Logo Design
-        </h4>
-        <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-          {project.branding.logoDescription}
-        </p>
-      </div>
+{/* Logo Design */}
+        {(project.branding.logoDescription || project.branding.logoImage) && (
+          <section className="py-12 md:py-16 w-full">
+            {/* flex-col for mobile, md:flex-row for desktop. Centered items, tighter gap. */}
+            <div className="max-w-4xl mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 text-center md:text-left">
+              
+              {/* Text Block */}
+              <div className="flex flex-col gap-3 max-w-md">
+                <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">
+                  Logo Design
+                </h4>
+                <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                  {project.branding.logoDescription}
+                </p>
+              </div>
 
-      <img
-        src={project.branding.logoImage}
-        alt="Logo"
-        className="w-full max-w-[160px] md:max-w-[200px] h-auto object-contain"
-      />
-      
-    </div>
-  </section>
-)}
-
+              {/* Logo Image */}
+              <div className="flex justify-center shrink-0">
+                <img
+                  src={project.branding.logoImage}
+                  alt="Logo"
+                  className="w-full max-w-[140px] md:max-w-[180px] h-auto object-contain"
+                />
+              </div>
+              
+            </div>
+          </section>
+        )}
             {project.branding.featuresImage && (
               <section className="py-16 md:py-20 border-t border-gray-50">
                 <div className="max-w-7xl mx-auto px-6">
