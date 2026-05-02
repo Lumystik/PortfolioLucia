@@ -763,7 +763,7 @@ export function ProjectDetail() {
                         <img 
                           src={wire.image} 
                           alt={wire.caption} 
-                          className="w-full h-auto object-fit" 
+                          className="w-full h-full object-contain" 
                         />
                       </div>
                       <div className="flex flex-col gap-2 text-center">
