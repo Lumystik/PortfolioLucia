@@ -10,11 +10,11 @@ const projectsData: Record<string, any> = {
     id: "museon",
     title: "MUSE*ON",
     heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/988251ade7a50360d870b2b630818e7291a7d458/images/museon_hero.jpg?raw=true",
-    overview: "Developing an all in one software for small museums staff, that aims to streamline the work-flow and improve the management of the different areas of the institution. In order to optimize the current museum resources.",
+    overview: "Developing an all-in-one software for small museum staff that aims to streamline the workflow and improve the management of different areas of the institution, in order to optimize current museum resources.",
     scope: "End-to-End App",
     role: "UX Research, Branding, UX/UI Design",
     timeline:"4 months",
-    team: "Martina Braidotti, Lucia Medina, Ilario Pedone, Agnese Rosselli, Mark Waisara",
+    team: "LUCIA MEDINA (UX/UI Design), Martina Braidotti, Ilario Pedone, Agnese Rosselli, Mark Waisara",
     prototypeLink: "https://www.figma.com/proto/16viMWZsHOU9SkmpbSpTd5/FINAL-UI-spaced?node-id=2248-9671&starting-point-node-id=703%3A8427&scaling=scale-down&content-scaling=fixed&t=aO2g8BW8sOtXyiVT-1?raw=true",
     problem: "Staff at small museums often face fragmented workflows. \n\n With only 4 full-time staff managing 59 events and exhibitions a year across 6 different tools, the team is constantly stretched thin.",
     problemImage: "https://github.com/Lumystik/PortfolioLucia/blob/56aed6413b71c2bc18bd6c0dcd8054a3b546474d/images/complicatedworkflow_museon.jpg?raw=true",
@@ -98,12 +98,12 @@ const projectsData: Record<string, any> = {
       personas: [
         {
           title: "ALEX: THE CURATOR & MANAGER",
-          description: "Role: Curator, Education, Office of the President, Guide, Ticket and Relations.\nDrivers: Contributing to cultural education, personal interest in the subject matter.\nEnvironment: Museum office.\nNeeds: Planning, team collaboration, task management.",
+          description: "ROLE: Curator, Education, Office of the President, Guide, Ticket and Relations.\nDRIVERS: Contributing to cultural education, personal interest in the subject matter.\nENVIRONMENT: Museum office.\nNEEDS: Planning, team collaboration, task management.",
           image: "https://github.com/Lumystik/PortfolioLucia/blob/544af7d6cc6298448d4e8135adb4ec2bb51850c5/images/alexx.jpg?raw=true"
         },
         {
           title: "MARK: THE INTERN",
-          description: "Role: Intern.\nDrivers: Learning and gaining experience in museum operations, impressing supervisors, contributing effectively during the visit.\nEnvironment: Home/On-site.\nNeeds: Clear task assignment, accessibility, collection lists.",
+          description: "ROLE: Intern.\nDRIVERS: Learning and gaining experience in museum operations, impressing supervisors, contributing effectively during the visit.\nENVIRONMENT: Home/On-site.\nNEEDS: Clear task assignment, accessibility, collection lists.",
           image: "https://github.com/Lumystik/PortfolioLucia/blob/670da0db043a6e565e337fb2b744ed6f9f8518b6/images/mark.jpg?raw=true"
         }
       ],
@@ -159,15 +159,14 @@ const projectsData: Record<string, any> = {
     title: "Art Beyond Dimension",
     heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/0e95408be9b5b18ff336921926c7889c41d95380/images/hero_dimension.jpg?raw=true",
     interfaceImage: "https://github.com/Lumystik/PortfolioLucia/blob/85176369bcb78e03b473d799a45522474f753705/images/dimension_final.jpeg?raw=true",
-    overview: "An immersive museum experience that helps young adults engage with art through interaction, AI, and playful learning.",
+    overview: "An immersive museum experience that helps young adults engage with art through interaction, AI integration, and playful learning.",
     scope: "Digital Experience & Totem Interface",
     role: "Digital and Interaction Design",
-    timeline: "Final Design Studio",
+    timeline: "6 Months (Final Design Studio)",
     team: "Razieh Soleimani, Lucia Medina, Marjan Mehrabi, Fatemeh Khoshbazan",
     prototypeLink: "https://www.figma.com/proto/FnFqrWBxyChSOdL3aVzV9A/Prototype?node-id=616-1965&starting-point-node-id=564%3A1942&t=bIX74fMjWA7kTArF-1",
 
     problem: "Young visitors often disengage from static museum displays and need more active ways to connect with art.",
-    problemImage: "https://github.com/Lumystik/PortfolioLucia/blob/a5eea34a05cf9395d6ed4f8b0ada858d50600186/images/ChatGPT%20Image%20Apr%2029%2C%202026%2C%2006_23_00%20PM.png?raw=true",
 
     researchObjectives: [
       "Understand how young adults engage with art in museums.",
@@ -298,12 +297,12 @@ const projectsData: Record<string, any> = {
         {
           title: "THE CREATOR",
           description: "Costume designers (like Eason) and film students (like Alex) looking for diverse creative inspiration, high-resolution archival films, and networking opportunities. They need reliable access to classic films for study.",
-          image: "[INSERT_GITHUB_IMAGE_LINK_PERSONA_1]"
+          image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80"
         },
         {
           title: "THE ENTHUSIAST",
           description: "Painters, engineers, and graphic designers (like Marco, Carlo, and Miranda) who enjoy retro films, attend local festivals, and seek quality resources on film history. They want clear event details and easy ticket booking.",
-          image: "[INSERT_GITHUB_IMAGE_LINK_PERSONA_2]"
+          image: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=800&q=80"
         }
       ],
       conclusion: "Users needed a platform that allowed smooth switching between sections, clear event details, and a frictionless ticket booking experience with high error tolerance."
@@ -316,6 +315,7 @@ const projectsData: Record<string, any> = {
     branding: {
       description: "The redesign moves away from a bold and playful identity to one that is timeless, mature, and elegant. The color palette uses warm, earthy brown and orange tones (#B65929, #2A1002) to reflect values from the past. Typography pairs 'New Spirit' for headings with 'Satoshi' for body text.",
       logoDescription: "New logo introduces a distinctive symbol. This new logo is abstract yet clear, suggesting an archive. It’s a clean, logo that can stand alone for branding purposes..",
+      logoImage: "https://github.com/Lumystik/PortfolioLucia/blob/6217c5f1edc51584a17ffed9f0a84e2d957e8d24/images/logo_cineteca.png?raw=true",
       images: [
         "https://github.com/Lumystik/PortfolioLucia/blob/f4d86ca2eb3b0ac3117214ef8ff35634270ddb4b/images/films_branding1.png?raw=true",
         "https://github.com/Lumystik/PortfolioLucia/blob/6217c5f1edc51584a17ffed9f0a84e2d957e8d24/images/logo_cineteca.png?raw=true"
@@ -351,9 +351,9 @@ const projectsData: Record<string, any> = {
     id: "seedtag",
     title: "Seedtag Interactive Ads",
     heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/875f29a845d8d4c9b924b22af2bd821846e5eeae/images/hero_seedtag.png?raw=true",
-    overview: "As a Seedtag Digital Designer, I created high-impact, AI-enhanced rich media ads and interactive display creatives, modifying brand assets to fit within contextual, privacy-first advertising campaigns. And combined graphic design with animation skills to enhance user engagement, working closely with sales teams and using proprietary AI (Liz) for campaign optimization.",
+    overview: "As a Seedtag Digital Designer, I created high-impact, AI-enhanced rich media ads and interactive display creatives for diverse global clients—ranging from automotive to food and beverage brands. I modified brand assets to fit within contextual, privacy-first advertising campaigns, and combined graphic design with animation skills to enhance user engagement, working closely with sales teams and using proprietary AI (Liz) for campaign optimization.",
     scope: "Ad Tech (HTML5/JS)",
-    role: "Digital Designer / Frontend Dev",
+    role: "Digital Designer / Frontend Dev (AI Tools)",
     timeline: "150+ Campaigns",
     responsibilities: [
       {
@@ -374,7 +374,7 @@ const projectsData: Record<string, any> = {
       {
         title: "Collaboration",
         desc: "Working with sales teams and CSMs to align creatives with client objectives and campaign strategies.",
-        image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/portfolio-10.jpg?raw=true"
+        image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80"
       },
       {
         title: "Quality Assurance",
@@ -390,26 +390,25 @@ const projectsData: Record<string, any> = {
     heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/pixela.png?raw=true",
     overview: "Pixela is an immersive first-person survival game where you play as an AI named Pixela, who is an unexpected anomaly in a scientific project designed to decode the minds of history's greatest artists. As Pixela, your primary objective is to escape from the scientists who have captured you, using your unique abilities to travel through the worlds of Dalí, Van Gogh and Escher.",
     scope: "Unity3D / C# Videogame Demo",
-    role: "Game Designer & Developer",
+    role: "Game Designer & Developer (AI Integration)",
     timeline: "150 hours",
-    prototypeLink: "#",
     keyFunctions: {
       description: "GAME MECHANICS: Travel through the minds of history's greatest artists, each with unique challenges and environments.",
       functions: [
         {
           title: "VINCENT VAN GOGH",
           description: "Achieve entering Van Gogh's bedroom and finding the exit door to pass through the portal. Van Gogh chases you, threatening to cut off your ear.",
-          image: "[INSERT_GITHUB_IMAGE_LINK_VAN_GOGH]"
+          image: "https://images.unsplash.com/photo-1580136608260-4eb11f4b24fe?w=800&q=80"
         },
         {
           title: "SALVADOR DALÍ",
           description: "Correctly navigate through the maze to find the portal and try to find an object from Dalí's paintings to escape.",
-          image: "[INSERT_GITHUB_IMAGE_LINK_DALI]"
+          image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80"
         },
         {
           title: "M. C. ESCHER",
           description: "Find the portal by traversing a path with altered reality. Stairs that go up and down the ceiling and walls. Villains chase you, and if they catch you, you die.",
-          image: "[INSERT_GITHUB_IMAGE_LINK_ESCHER]"
+          image: "https://images.unsplash.com/photo-1550684376-efcbd6e3f031?w=800&q=80"
         }
       ]
     },
