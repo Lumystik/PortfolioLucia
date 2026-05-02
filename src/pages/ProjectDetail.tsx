@@ -510,15 +510,15 @@ export function ProjectDetail() {
             </div>
           </div>
         </section>
-        {/* 3. The Problem */}
+{/* 3. The Problem */}
         {project.problem && (
           <section className="py-16 md:py-20 w-full bg-white">
             <div className="max-w-7xl mx-auto px-6">
               
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                 
-                {/* Left Column: Text */}
-                <div className="lg:col-span-5 flex flex-col justify-center">
+                {/* Left Column: Text (Reduced span to give image more room) */}
+                <div className="lg:col-span-4 flex flex-col justify-center">
                   <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313] mb-6">
                     The Problem
                   </h3>
@@ -527,12 +527,12 @@ export function ProjectDetail() {
                   </div>
                 </div>
 
-                {/* Right Column: Image - Bigger image, smaller padding */}
-                <div className="lg:col-span-7 flex items-center justify-center p-2 md:p-4 overflow-hidden bg-[#F9F9F9] border border-gray-100 rounded-2xl">
+                {/* Right Column: Image (Increased span, removed padding, w-full to make it bigger) */}
+                <div className="lg:col-span-8 flex items-center justify-center overflow-hidden bg-[#F9F9F9] border border-gray-100 rounded-2xl w-full">
                   <img
                     src={project.problemImage || "/placeholder-phone-mockup.png"}
                     alt="The Problem Illustration"
-                    className="w-full h-auto object-contain drop-shadow-2xl"
+                    className="w-full h-auto object-cover"
                   />
                 </div>
 
