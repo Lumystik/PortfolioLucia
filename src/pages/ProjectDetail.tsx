@@ -99,12 +99,12 @@ const projectsData: Record<string, any> = {
         {
           title: "ALEX: THE CURATOR & MANAGER",
           description: "ROLE: Curator, Education, Office of the President, Guide, Ticket and Relations.\nDRIVERS: Contributing to cultural education, personal interest in the subject matter.\nENVIRONMENT: Museum office.\nNEEDS: Planning, team collaboration, task management.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/544af7d6cc6298448d4e8135adb4ec2bb51850c5/images/alexx.jpg?raw=true"
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/ef20cf53e7c6dffb9f6b8a4408721a8fd6cb4d60/images/curator.png?raw=true"
         },
         {
           title: "MARK: THE INTERN",
           description: "ROLE: Intern.\nDRIVERS: Learning and gaining experience in museum operations, impressing supervisors, contributing effectively during the visit.\nENVIRONMENT: Home/On-site.\nNEEDS: Clear task assignment, accessibility, collection lists.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/670da0db043a6e565e337fb2b744ed6f9f8518b6/images/mark.jpg?raw=true"
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/ef20cf53e7c6dffb9f6b8a4408721a8fd6cb4d60/images/intern.png?raw=true"
         }
       ],
       conclusion: "Both roles require a centralized dashboard, shared calendar, project tracking, and collection management to reduce switching costs."
