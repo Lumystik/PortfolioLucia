@@ -311,7 +311,61 @@ const projectsData: Record<string, any> = {
         image: "https://github.com/Lumystik/PortfolioLucia/blob/a6aa894fecb0c8e5cf48a6cb9971194b453a3e30/images/accessibility_test.gif?raw=true"
       }
     ],
-    researchObjectives: "ANALYSIS PHASE:\nWe conducted a Cognitive Walkthrough of the existing Cineteca Milano website and identified several pain points:\n• Limited exploration opportunities with no search function\n• Overwhelming and cluttered menu design\n• Confusing navigation with mixed content (activities vs. bookable films)\n• Fragmented and click-heavy ticket booking process\n\nCOMPETITIVE ANALYSIS:\nWe analyzed competitors like TATE, Getty, and Cineteca Bologna to identify industry standards, focusing on their task flows for viewing film details, exploring events, and booking tickets.",
+    processMap: [
+  {
+    phase: "Research",
+    steps: [
+      "Cognitive walkthrough",
+      "User task analysis",
+      "Personas & empathy maps",
+      "Competitive analysis"
+    ]
+  },
+  {
+    phase: "Define",
+    steps: [
+      "Pain point mapping",
+      "Existing IA audit",
+      "Card sorting",
+      "New information architecture"
+    ]
+  },
+  {
+    phase: "Develop",
+    steps: [
+      "Wireframes",
+      "Design system",
+      "High-fidelity prototype",
+      "Accessibility testing"
+    ]
+  }
+],
+   ideation: {
+  question:
+    "How can we restructure Cineteca Milano into a clearer, more usable experience for discovering films, exploring events, and booking tickets?",
+
+  heroFlow:
+    "YOUR_INFORMATION_ARCHITECTURE_OR_USER_FLOW_IMAGE_URL",
+
+  heroFlowCaption:
+    "Redesigned IA and core user flows: discovering films, exploring events, and booking tickets.",
+
+  wireframes: [
+    {
+      image: "YOUR_HOME_PAGE_WEB_WIREFRAME_URL",
+      caption: "Discover: Home Page"
+    },
+    {
+      image: "YOUR_ALL_FILMS_WIREFRAME_URL",
+      caption: "Explore: All Films"
+    },
+    {
+      image: "YOUR_BOOKING_FLOW_WIREFRAME_URL",
+      caption: "Book: Ticket Flow"
+    }
+  ]
+},
+    
     targetUsers: {
       description: "We developed personas representing diverse user needs, from creative professionals seeking inspiration to casual enthusiasts.",
       personas: [
@@ -362,6 +416,28 @@ const projectsData: Record<string, any> = {
         }
       ]
     },
+    niceToHaves: {
+  title: "NICE TO HAVES",
+  description:
+    "These features were not fully developed in the prototype, but could further improve personalization and discovery.",
+  items: [
+    {
+      title: "PERSONALIZED RECOMMENDATIONS",
+      description:
+        "Suggest films and events based on previous browsing, saved interests, or favorite genres."
+    },
+    {
+      title: "SCREENING REMINDERS",
+      description:
+        "Allow users to save screenings and receive reminders before tickets sell out or events begin."
+    },
+    {
+      title: "MULTILINGUAL SUPPORT",
+      description:
+        "Improve accessibility for international visitors by offering clearer language switching across the site."
+    }
+  ]
+},
     takeaways: "By applying ergonomic principles to the design, we transformed a cluttered and confusing website into a highly usable, accessible, and aesthetically pleasing platform. The new design significantly reduces cognitive load, improves task efficiency (e.g., streamlining the ticket booking flow), and provides a responsive experience across desktop and mobile devices.",
     nextProject: {
       title: "SEEDTAG",
@@ -876,6 +952,8 @@ export function ProjectDetail() {
                     <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">Laying the Foundation</h4>
                     <p className="text-base md:text-lg text-black leading-relaxed">Initial Wireframe Iterations</p>
                 </div>
+            
+                
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
                   {project.ideation.wireframes.map((wire: any, idx: number) => (
                     <motion.div 
