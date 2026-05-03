@@ -52,7 +52,7 @@ export function Navbar() {
           className={`w-full h-full object-contain transition-all duration-300 group-hover:brightness-0 ${!isHome && !isScrolled ? 'brightness-0' : ''}`}
           referrerPolicy="no-referrer"
         />
-      
+          
         <div 
           className="absolute inset-0 bg-[#E54D2E] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           style={{
