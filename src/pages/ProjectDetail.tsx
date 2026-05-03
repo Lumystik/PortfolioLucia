@@ -723,7 +723,7 @@ export function ProjectDetail() {
                           </div>
                         )}
 
-                        <div className="bg-white border border-gray-200 rounded-2xl p-4">
+                        <div className="bg-black border border-gray-200 rounded-2xl p-4">
                           <h5 className="text-xs font-bold uppercase tracking-widest text-black mb-4">Key Needs</h5>
                           <div className="space-y-4">
                             {personaMetrics.map((item: any, metricIdx: number) => (
@@ -732,7 +732,7 @@ export function ProjectDetail() {
                                   <span>{item.label}</span>
                                   <span>{item.value}%</span>
                                 </div>
-                                <div className="w-full h-2 rounded-full bg-black overflow-hidden">
+                                <div className="w-full h-2 rounded-full bg-white overflow-hidden">
                                   <div className="h-full rounded-full bg-black" style={{ width: `${item.value}%` }} />
                                 </div>
                               </div>
@@ -746,8 +746,8 @@ export function ProjectDetail() {
               </div>
 
               {project.targetUsers.conclusion && (
-                <div className="max-w-4xl bg-[#FAF9F6] border border-gray-200 rounded-2xl p-6 md:p-8">
-                  <p className="text-base md:text-lg text-gray-700 leading-relaxed">{project.targetUsers.conclusion}</p>
+                <div className="max-w-4xl bg-black border border-gray-200 rounded-2xl p-6 md:p-8">
+                  <p className="text-base md:text-lg text-white leading-relaxed">{project.targetUsers.conclusion}</p>
                 </div>
               )}
             </div>
