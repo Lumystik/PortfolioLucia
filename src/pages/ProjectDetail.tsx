@@ -394,6 +394,13 @@ const projectsData: Record<string, any> = {
       images: [
         "https://github.com/Lumystik/PortfolioLucia/blob/f4d86ca2eb3b0ac3117214ef8ff35634270ddb4b/images/films_branding1.png?raw=true",
         "https://github.com/Lumystik/PortfolioLucia/blob/6217c5f1edc51584a17ffed9f0a84e2d957e8d24/images/logo_cineteca.png?raw=true"
+      ],
+        shapes: [
+        { color: "#B65929", size: 120, x: "20%", y: "10%" },
+        { color: "#762C06", size: 100, x: "50%", y: "10%"},
+        { color: "#2A1002", size: 90, x: "75%", y: "10%" },
+        { color: "#6F5548", size: 110, x: "35%", y: "10%"},
+        { color: "#A4948C", size: 110, x: "0%", y: "10%"}
       ]
     },
     keyFunctions: {
