@@ -1075,7 +1075,7 @@ export function ProjectDetail() {
               </div>
               <div className="max-w-6xl mx-auto px-4 md:px-8 w-full my-12 md:my-16">
                 {project.bannerImage && (
-                  <div className="rounded-2xl overflow-hidden shadow-2xl border border-gray-100 relative w-[40vw]">
+                  <div className="rounded-2xl overflow-hidden shadow-2xl border border-gray-100 relative w-full">
                     <img src={project.bannerImage} alt="Final Prototype Showcase"   className="w-full h-auto object-contain"  />
                   </div>
                 )}
