@@ -620,10 +620,10 @@ export function ProjectDetail() {
         )}
 
         {project.targetUsers && (
-          <section className="py-16 md:py-20 w-full bg-white text-[#131313]">
+          <section className="py-16 md:py-20 w-full bg-black text-white">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
               <div className="flex flex-col gap-4 max-w-3xl">
-                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">Target Users</h3>
+                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-white">Target Users</h3>
                 <p className="text-base md:text-lg text-gray-700 leading-relaxed">{project.targetUsers.description}</p>
               </div>
 
