@@ -642,11 +642,11 @@ export function ProjectDetail() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.45, delay: index * 0.08 }}
-              className="relative z-10 rounded-[2rem] border border-neutral-200 bg-[#fafafa] p-6 md:p-8 shadow-sm"
+              className="relative z-10 rounded-[2rem] border border-neutral-200 bg-[#F2F2F2] p-6 md:p-8 shadow-sm overflow-hidden"
             >
               {/* top marker */}
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-full bg-[#131313] text-white flex items-center justify-center text-lg font-bold shrink-0">
+                <div className="w-12 h-12 rounded-full bg-[#050505] text-white flex items-center justify-center text-lg font-bold shrink-0">
                   {index + 1}
                 </div>
 
@@ -667,7 +667,7 @@ export function ProjectDetail() {
                 {phase.steps.map((step: string, stepIndex: number) => (
                   <div
                     key={stepIndex}
-                    className="flex items-start gap-3 rounded-2xl bg-white border border-neutral-200 px-4 py-3"
+                    className="flex items-start gap-3 rounded-2xl bg-white border border-neutral-200 px-4 py-3 shadow-sm"
                   >
                     <div className="w-6 h-6 rounded-full border border-neutral-300 flex items-center justify-center text-xs font-semibold text-neutral-600 shrink-0 mt-0.5">
                       {stepIndex + 1}
@@ -816,16 +816,17 @@ export function ProjectDetail() {
         )}
    
 {project.howMightWe && (
-  <section className="py-16 md:py-20 w-full bg-[#131313]">
+  <section className="py-16 md:py-20 w-full bg-white">
     <div className="max-w-7xl mx-auto px-6">
       <div className="grid grid-cols-1 gap-6">
-        <div className="rounded-[2rem] bg-[#131313] text-white p-8 md:p-12 min-h-[220px] md:min-h-[280px] flex items-center">
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tight">
+        <div className="rounded-[2.5rem] bg-[#050505] text-white p-8 md:p-12 min-h-[220px] md:min-h-[280px] flex items-center border border-neutral-900 overflow-hidden relative">
+          <div className="absolute inset-x-8 top-8 h-px bg-white/10" />
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tight leading-none">
             How Might We...
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {project.howMightWe.map((question: string, index: number) => (
             <motion.div
               key={index}
@@ -833,9 +834,12 @@ export function ProjectDetail() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.45, delay: index * 0.08 }}
-              className="rounded-[2rem] bg-[#131313] text-white p-6 md:p-8 min-h-[220px] flex items-center"
+              className="rounded-[2rem] bg-[#F2F2F2] text-[#131313] p-6 md:p-8 min-h-[220px] flex flex-col justify-between border border-neutral-200 shadow-sm"
             >
-              <p className="text-xl md:text-2xl leading-relaxed font-medium">
+              <span className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500">
+                Question 0{index + 1}
+              </span>
+              <p className="text-xl md:text-2xl leading-relaxed font-medium tracking-[-0.01em]">
                 {question}
               </p>
             </motion.div>
@@ -1009,46 +1013,52 @@ export function ProjectDetail() {
         )}
 
         {(project.userInsights || project.userInsightsCards) && (
-          <section className="py-16 md:py-20 w-full bg-black text-white">
-            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-12">
-              <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-white">User Insights</h3>
-              {project.userInsights && (project.userInsights.benefitsImage || project.userInsights.insightsImage) && (
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-                  {project.userInsights.benefitsImage && (
-                    <div className="flex flex-col gap-4">
-                      <h4 className="text-xl font-bold uppercase tracking-tight text-left text-white">User Perceived Benefits</h4>
-                      <div className="w-full rounded-2xl overflow-hidden bg-white/10 p-4 border border-white/10 shadow-sm flex items-center justify-center">
-                        <img src={project.userInsights.benefitsImage} alt="User Benefits" className="w-full max-w-md h-auto object-contain" />
-                      </div>
-                    </div>
-                  )}
-                  {project.userInsights.insightsImage && (
-                    <div className="flex flex-col gap-4">
-                      <h4 className="text-xl font-bold uppercase tracking-tight text-left text-white">User Priorities</h4>
-                      <div className="w-full rounded-2xl overflow-hidden bg-white/10 p-4 border border-white/10 shadow-sm flex items-center justify-center">
-                        <img src={project.userInsights.insightsImage} alt="User Insights" className="w-full max-w-md h-auto object-contain" />
-                      </div>
-                    </div>
-                  )}
+          <section className="py-16 md:py-20 w-full bg-white text-[#131313]">
+            <div className="max-w-7xl mx-auto px-6">
+              <div className="rounded-[2.5rem] bg-[#050505] text-white p-8 md:p-12 lg:p-16 flex flex-col gap-12 border border-neutral-900 overflow-hidden">
+                <div className="flex flex-col gap-3 max-w-3xl">
+                  <span className="text-xs font-bold uppercase tracking-[0.28em] text-white/45">Research Signal</span>
+                  <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-white">User Insights</h3>
                 </div>
-              )}
-              {project.userInsightsCards && project.userInsightsCards.length > 0 && (
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                  {project.userInsightsCards.map((card: any, idx: number) => (
-                    <motion.div 
-                      key={idx}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: idx * 0.1 }}
-                      className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-4"
-                    >
-                      <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">{card.title}</h4>
-                      <p className="text-base md:text-lg text-gray-700 leading-relaxed">{card.description}</p>
-                    </motion.div>
-                  ))}
-                </div>
-              )}
+                {project.userInsights && (project.userInsights.benefitsImage || project.userInsights.insightsImage) && (
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+                    {project.userInsights.benefitsImage && (
+                      <div className="flex flex-col gap-4">
+                        <h4 className="text-xl font-bold uppercase tracking-tight text-left text-white">User Perceived Benefits</h4>
+                        <div className="w-full rounded-[2rem] overflow-hidden bg-white/10 p-4 border border-white/10 shadow-sm flex items-center justify-center">
+                          <img src={project.userInsights.benefitsImage} alt="User Benefits" className="w-full max-w-md h-auto object-contain" />
+                        </div>
+                      </div>
+                    )}
+                    {project.userInsights.insightsImage && (
+                      <div className="flex flex-col gap-4">
+                        <h4 className="text-xl font-bold uppercase tracking-tight text-left text-white">User Priorities</h4>
+                        <div className="w-full rounded-[2rem] overflow-hidden bg-white/10 p-4 border border-white/10 shadow-sm flex items-center justify-center">
+                          <img src={project.userInsights.insightsImage} alt="User Insights" className="w-full max-w-md h-auto object-contain" />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+                {project.userInsightsCards && project.userInsightsCards.length > 0 && (
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    {project.userInsightsCards.map((card: any, idx: number) => (
+                      <motion.div 
+                        key={idx}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: idx * 0.1 }}
+                        className="bg-[#F2F2F2] p-8 rounded-[2rem] shadow-sm border border-white/10 flex flex-col gap-4"
+                      >
+                        <span className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500">Insight 0{idx + 1}</span>
+                        <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313] leading-tight">{card.title}</h4>
+                        <p className="text-base md:text-lg text-gray-700 leading-relaxed">{card.description}</p>
+                      </motion.div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           </section>
         )}
