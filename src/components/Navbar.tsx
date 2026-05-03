@@ -45,27 +45,28 @@ export function Navbar() {
         className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 flex items-center justify-between w-full max-w-7xl px-6 ${textColor} ${blendMode} pointer-events-none transition-all duration-300`}
       >
         <Link to="/#home" className={`pointer-events-auto flex items-center justify-center transition-all duration-300 ${isScrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-          <div className="relative w-10 h-10 group">
-            <img 
-              src="https://github.com/Lumystik/PortfolioLucia/blob/main/images/butterfly.png?raw=true" 
-              alt="Lucía Medina Logo" 
-              className={`w-full h-full object-contain transition-all duration-300 group-hover:opacity-1 ${!isHome && !isScrolled ? 'brightness-0' : ''}`}
-              referrerPolicy="no-referrer"
-            />
-            <div 
-              className="absolute inset-0 bg-[#E54D2E] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              style={{
-                maskImage: `url(https://github.com/Lumystik/PortfolioLucia/blob/main/images/butterfly.png?raw=true)`,
-                maskSize: 'contain',
-                maskRepeat: 'no-repeat',
-                maskPosition: 'center',
-                WebkitMaskImage: `url(https://github.com/Lumystik/PortfolioLucia/blob/main/images/butterfly.png?raw=true)`,
-                WebkitMaskSize: 'contain',
-                WebkitMaskRepeat: 'no-repeat',
-                WebkitMaskPosition: 'center',
-              }}
-            />
-          </div>
+        <div className="relative w-10 h-10 group transition-transform duration-300 hover:scale-110">
+        <img 
+          src="https://github.com/Lumystik/PortfolioLucia/blob/main/images/butterfly.png?raw=true" 
+          alt="Lucía Medina Logo" 
+          className={`w-full h-full object-contain transition-all duration-300 group-hover:brightness-0 ${!isHome && !isScrolled ? 'brightness-0' : ''}`}
+          referrerPolicy="no-referrer"
+        />
+      
+        <div 
+          className="absolute inset-0 bg-[#E54D2E] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          style={{
+            maskImage: `url(https://github.com/Lumystik/PortfolioLucia/blob/main/images/butterfly.png?raw=true)`,
+            maskSize: 'contain',
+            maskRepeat: 'no-repeat',
+            maskPosition: 'center',
+            WebkitMaskImage: `url(https://github.com/Lumystik/PortfolioLucia/blob/main/images/butterfly.png?raw=true)`,
+            WebkitMaskSize: 'contain',
+            WebkitMaskRepeat: 'no-repeat',
+            WebkitMaskPosition: 'center',
+          }}
+        />
+      </div>
         </Link>
         
         <div className={`flex items-center ${bgColor} backdrop-blur-md px-6 py-3 rounded-full pointer-events-auto transition-all duration-300 hover:bg-white hover:text-[#131313] hover:shadow-lg`}>
