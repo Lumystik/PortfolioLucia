@@ -500,7 +500,7 @@ export function ProjectDetail() {
               </motion.h1>
               <motion.p 
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-base md:text-lg text-gray-800 leading-relaxed font-bold w-0 min-w-full"
+                className="text-base md:text-lg text-gray-800 leading-relaxed font-bold max-w-2xl"
               >
                 {project.overview}
               </motion.p>
