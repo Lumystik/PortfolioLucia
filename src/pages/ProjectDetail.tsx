@@ -450,7 +450,7 @@ export function ProjectDetail() {
       <Navbar />
       
       <main className="w-full overflow-hidden">
-      {/* 1. Hero Section */}
+  
         <section className="w-full pt-24 pb-12 bg-white">
           <div className="max-w-7xl mx-auto px-6">
             <motion.div 
@@ -462,7 +462,6 @@ export function ProjectDetail() {
           </div>
         </section>
 
-        {/* 2. Project Details & Overview */}
         <section className="pb-24 md:pb-32 w-full bg-white text-[#131313]">
           {/* Changed max-w-5xl to max-w-7xl to match the hero section alignment */}
           <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center text-left">
@@ -517,7 +516,6 @@ export function ProjectDetail() {
               
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                 
-                {/* Left Column: Text (Reduced span to give image more room) */}
                 <div className="lg:col-span-4 flex flex-col justify-center">
                   <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313] mb-6">
                     The Problem
@@ -527,7 +525,6 @@ export function ProjectDetail() {
                   </div>
                 </div>
 
-                {/* Right Column: Image (Increased span, removed padding, w-full to make it bigger) */}
                 <div className="lg:col-span-8 flex items-center justify-center overflow-hidden bg-[#F9F9F9] border border-gray-100 rounded-2xl w-full">
                   <img
                     src={project.problemImage || "/placeholder-phone-mockup.png"}
@@ -623,7 +620,6 @@ export function ProjectDetail() {
                     // UPDATE: Orange background for each phase card
                     className="flex flex-col gap-4 text-left bg-[#E54D2E] p-6 rounded-2xl shadow-sm border border-transparent text-white"
                   >
-                    {/* UPDATE: Border color inside orange card */}
                     <h4 className="text-xl font-bold uppercase tracking-tight text-white border-b-2 border-white/20 pb-2">{phase.phase}</h4>
                     <ul className="flex flex-col gap-2">
                       {phase.steps.map((step: string, stepIdx: number) => (
@@ -675,7 +671,7 @@ export function ProjectDetail() {
           <section className="py-16 md:py-20 w-full bg-white">
             <div className="max-w-7xl mx-auto px-6 w-full">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 w-full">
-                {/* Left Column: Title Card */}
+         
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }} 
                   whileInView={{ opacity: 1, y: 0 }} 
@@ -687,8 +683,6 @@ export function ProjectDetail() {
                     How Might We...
                   </h3>
                 </motion.div>
-
-                {/* Right Column: Content Card(s) */}
                 <div className="flex flex-col gap-4 md:gap-6 w-full">
                   {project.howMightWe.map((hmw: string, idx: number) => (
                     <motion.div 
@@ -715,14 +709,13 @@ export function ProjectDetail() {
           <section className="py-16 md:py-20 w-full bg-white">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16">
               
-              {/* Header: Title and Question */}
+        
               <div className="flex flex-col gap-8 max-w-4xl text-left">
                 <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">
                   Ideation
                 </h3>
               </div>
 
-              {/* 1. HERO FLOW (One Large Image) */}
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -741,7 +734,6 @@ export function ProjectDetail() {
                 </p>
               </motion.div>
 
-              {/* 2. WIREFRAMES (3 Column Grid) */}
               <div className="bg-[#FAF9F6] p-8 md:p-16 rounded-[2rem] flex flex-col gap-12">
                 <div className="flex flex-col gap-2 text-left">
                     <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">Laying the Foundation</h4>
@@ -905,7 +897,6 @@ export function ProjectDetail() {
 
         {/* 5B. User Insights */}
         {(project.userInsights || project.userInsightsCards) && (
-          // UPDATE: Orange background, white text context
           <section className="py-16 md:py-20 w-full bg-[#E54D2E] text-white">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-12">
               <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-white">User Insights</h3>
@@ -956,7 +947,6 @@ export function ProjectDetail() {
           </section>
         )}
         
-        {/* 9. Key Findings Stats - Vibrant Red Background */}
         {project.keyFindings && (
           <section className="py-16 md:py-20 w-full bg-[#E54D2E] text-white">
             <div className="max-w-7xl mx-auto px-6">
@@ -980,10 +970,8 @@ export function ProjectDetail() {
 
 {(project.branding.logoDescription || project.branding.logoImage) && (
   <section className="py-16 md:py-20 flex justify-center w-full">
-    {/* Flexbox container: Column on mobile/tablet, Row on desktop. Centered overall. */}
     <div className="flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-16 px-6 mx-auto max-w-5xl w-full">
-      
-      {/* Text Block: Centered text/items on mobile/tablet, left-aligned on desktop */}
+     
       <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-6 max-w-lg">
         <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">
           Logo Design
@@ -993,7 +981,7 @@ export function ProjectDetail() {
         </p>
       </div>
 
-      {/* Image Block: Always centered within its column/row */}
+
       <div className="flex justify-center items-center">
         <img
           src={project.branding.logoImage}
@@ -1009,10 +997,10 @@ export function ProjectDetail() {
 {/* Logo Design */}
         {(project.branding.logoDescription || project.branding.logoImage) && (
           <section className="py-12 md:py-16 w-full">
-            {/* flex-col for mobile, md:flex-row for desktop. Centered items, tighter gap. */}
+       
             <div className="max-w-4xl mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 text-center md:text-left">
               
-              {/* Text Block */}
+            
               <div className="flex flex-col gap-3 max-w-md">
                 <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">
                   Logo Design
@@ -1022,7 +1010,6 @@ export function ProjectDetail() {
                 </p>
               </div>
 
-              {/* Logo Image */}
               <div className="flex justify-center shrink-0">
                 <img
                   src={project.branding.logoImage}
@@ -1048,7 +1035,6 @@ export function ProjectDetail() {
           </div>
         )}
 
-        {/* --- 13. KEY FUNCTIONS SECTION --- */}
         {project.keyFunctions && (
           <section className="py-16 md:py-20 w-full bg-white text-[#131313]">
             <div className="max-w-7xl mx-auto px-6">
@@ -1095,7 +1081,6 @@ export function ProjectDetail() {
           </section>
         )}
 
-        {/* --- TESTING OBJECTIVES (ADAPTED) - Alternate Black Background --- */}
         {project.testingObjectives && (
           <section className="py-16 md:py-20 w-full bg-[#131313] text-white">
             <div className="max-w-7xl mx-auto px-6">
@@ -1112,7 +1097,6 @@ export function ProjectDetail() {
           </section>
         )}
 
-        {/* --- USABILITY RESULTS (ADAPTED) --- */}
         {project.usabilityResults && (
           <section className="py-16 md:py-24 w-full bg-white border-b border-gray-100">
             <div className="max-w-4xl mx-auto px-6 text-center flex flex-col gap-8">
@@ -1121,8 +1105,7 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
-
-        {/* --- ITERATIONS & REFINEMENT (ADAPTED) --- */}
+      
         {project.iterations && (
           <section className="py-16 md:py-24 w-full bg-[#FAF9F6]">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16 md:gap-20">
@@ -1148,7 +1131,6 @@ export function ProjectDetail() {
           </section>
         )}
 
-        {/* --- NICE TO HAVES (ADAPTED) --- */}
         {project.niceToHaves && (
           <section className="py-16 md:py-20 w-full bg-white">
             <div className="max-w-7xl mx-auto px-6">
@@ -1168,7 +1150,6 @@ export function ProjectDetail() {
           </section>
         )}
 
-        {/* --- 15. FINAL PROTOTYPE SECTION --- */}
         {project.finalPrototype && (
           <section className="py-16 md:py-20 w-full bg-white">
             <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -1188,7 +1169,6 @@ export function ProjectDetail() {
               <div className="w-full">
                 {project.bannerImage && (
                   <div className="rounded-2xl overflow-hidden shadow-2xl border border-gray-100">
-                    {/* UPDATE: GIF of final prototype bigger by removing max-height constraint */}
                     <img 
                       src={project.bannerImage} 
                       alt="Final Prototype Showcase" 
@@ -1200,8 +1180,7 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
-        
-        {/* Seedtag Specific Scrolling Gallery */}
+      
         {project.id === 'seedtag' && (
           <section className="py-16 md:py-20 bg-white">
             <div className="max-w-6xl mx-auto px-6">
@@ -1217,7 +1196,7 @@ export function ProjectDetail() {
                     transition={{ duration: 0.6 }}
                     className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
                   >
-                    {/* Left Column: Text */}
+                    
                     <div className={`order-2 ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
                       <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313] mb-4">{item.title}</h4>
                       <p className="text-base md:text-lg text-gray-700 leading-relaxed">
@@ -1225,7 +1204,6 @@ export function ProjectDetail() {
                       </p>
                     </div>
 
-                    {/* Right Column: Image/GIF */}
                     <div className={`order-1 ${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
                       <div className="rounded-xl overflow-hidden shadow-xl border border-gray-100">
                         <img 
