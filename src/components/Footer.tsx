@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
+import { Linkedin, Mail } from 'lucide-react';
 
 export function Footer() {
   return (
@@ -47,13 +48,25 @@ export function Footer() {
               <a href="#" className="text-[10px] md:text-xs font-mono uppercase tracking-widest hover:text-gray-400 transition-colors">LinkedIn</a>
               <a href="mailto:lu_1829med@outlook.com" className="text-[10px] md:text-xs font-mono uppercase tracking-widest hover:text-gray-400 transition-colors">Email me</a>
             </div>
-            <div className="flex flex-col gap-4">
-              <span className="text-[10px] md:text-xs font-mono uppercase tracking-widest text-gray-500">Milan, Italy</span>
-              <div className="flex flex-col gap-1">
-                <span className="text-[10px] md:text-xs font-mono uppercase tracking-widest text-gray-500">Office Hours</span>
-                <span className="text-[10px] md:text-xs font-mono uppercase tracking-widest text-gray-500">M-F, 9 AM - 6 PM</span>
-              </div>
-            </div>
+         <div className="flex items-center gap-6 mt-8">
+  <a 
+    href="https://www.linkedin.com/in/lucia-medina-galan" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="group flex items-center justify-center w-12 h-12 rounded-full border-2 border-[#131313] text-[#131313] hover:bg-[#131313] hover:text-white transition-all duration-300"
+    aria-label="LinkedIn"
+  >
+    <Linkedin size={20} className="group-hover:scale-110 transition-transform duration-300" />
+  </a>
+
+  <a 
+    href="mailto:luciamedinagalan@outlook.com" 
+    className="group flex items-center justify-center w-12 h-12 rounded-full border-2 border-[#131313] text-[#131313] hover:bg-[#131313] hover:text-white transition-all duration-300"
+    aria-label="Email"
+  >
+    <Mail size={20} className="group-hover:scale-110 transition-transform duration-300" />
+  </a>
+</div>
           </div>
         </div>
         
