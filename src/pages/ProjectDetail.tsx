@@ -449,7 +449,7 @@ export function ProjectDetail() {
       <Navbar />
       
       <main className="w-full overflow-hidden">
-  
+        {/* 1. Hero Section */}
         <section className="w-full pt-24 pb-12 bg-white">
           <div className="max-w-7xl mx-auto px-6">
             <motion.div 
@@ -461,6 +461,7 @@ export function ProjectDetail() {
           </div>
         </section>
 
+        {/* 2. Project Details & Overview */}
         <section className="pb-24 md:pb-32 w-full bg-white text-[#131313]">
           <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center text-left">
             <div className="lg:col-span-4 flex flex-col gap-8">
@@ -491,16 +492,16 @@ export function ProjectDetail() {
               )}
             </div>
 
-            <div className="lg:col-span-8 flex flex-col gap-6 w-fit max-w-full">
+            <div className="lg:col-span-8 flex flex-col gap-6">
               <motion.h1 
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1 }}
-                className="text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tight m-0 break-words md:whitespace-nowrap"
+                className="text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tight break-words m-0"
               >
                 {project.title}
               </motion.h1>
               <motion.p 
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-base md:text-lg text-gray-800 leading-relaxed font-bold max-w-2xl"
+                className="text-base md:text-lg text-gray-800 leading-relaxed max-w-3xl font-bold"
               >
                 {project.overview}
               </motion.p>
