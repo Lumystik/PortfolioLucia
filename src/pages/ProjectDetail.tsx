@@ -1009,7 +1009,7 @@ export function ProjectDetail() {
         )}
 
         {(project.userInsights || project.userInsightsCards) && (
-          <section className="py-16 md:py-20 w-full bg-[#E54D2E] text-white">
+          <section className="py-16 md:py-20 w-full bg-black text-white">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-12">
               <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-white">User Insights</h3>
               {project.userInsights && (project.userInsights.benefitsImage || project.userInsights.insightsImage) && (
