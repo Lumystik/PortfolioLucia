@@ -18,11 +18,33 @@ const projectsData: Record<string, any> = {
     prototypeLink: "https://www.figma.com/proto/16viMWZsHOU9SkmpbSpTd5/FINAL-UI-spaced?node-id=2248-9671&starting-point-node-id=703%3A8427&scaling=scale-down&content-scaling=fixed&t=aO2g8BW8sOtXyiVT-1?raw=true",
     problem: "Staff at small museums often face fragmented workflows. \n\n With only 4 full-time staff managing 59 events and exhibitions a year across 6 different tools, the team is constantly stretched thin.",
     problemImage: "https://github.com/Lumystik/PortfolioLucia/blob/e26793d1c7a5be6de4360cc29f526af2d89a09e6/images/museon_problem.png?raw=true",
-    processMap: [
-      { phase: "Research", steps: ["Desk research", "On site research", "Ecosystem map", "research key findings"] },
-      { phase: "Define", steps: ["Design brief", "Personas & scenarios", "Heroflow & wireflow"] },
-      { phase: "Develop", steps: ["User test results", "Design system", "Prototype"] }
-    ],
+   processMap: [
+  {
+    phase: "Research",
+    steps: [
+      "Desk research",
+      "On-site research",
+      "Ecosystem map",
+      "Research key findings"
+    ]
+  },
+  {
+    phase: "Define",
+    steps: [
+      "Design brief",
+      "Personas & scenarios",
+      "Hero flow & wireflow",
+      "User test results"
+    ]
+  },
+  {
+    phase: "Develop",
+    steps: [
+      "Design system",
+      "Prototype"
+    ]
+  }
+],
     howMightWe: [ "solve the complexity of creating a smooth experience for small museum staff?", "streamline the workflow and improve the management of different areas of the institution?", "optimize the current museum resources to help staff develop a better experience for visitors?" ],
     ideation: {
       question: "How can we build a seamless workflow that maximizes museum staff efficiency? How can the platform adapt to different roles while maintaining a unified database?",
@@ -592,32 +614,77 @@ export function ProjectDetail() {
           </section>
         )}
 
-        {project.processMap && (
-          <section className="py-16 md:py-20 w-full bg-gray-50">
-            <div className="max-w-7xl mx-auto px-6">
-              <h3 className="mb-8 md:mb-10 text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">Design Process Map</h3>
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
-                {project.processMap.map((phase: any, idx: number) => (
-                  <motion.div 
-                    key={idx}
-                    initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
-                    className="flex flex-col gap-4 text-left bg-[#E54D2E] p-6 rounded-2xl shadow-sm border border-transparent text-white"
+{project.processMap && (
+  <section className="py-16 md:py-20 w-full bg-white">
+    <div className="max-w-7xl mx-auto px-6">
+      <div className="mb-10 md:mb-14 max-w-3xl">
+        <p className="text-sm uppercase tracking-[0.22em] text-neutral-500 mb-3">
+          Process
+        </p>
+        <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-[#131313] mb-4">
+          Design Process Map
+        </h2>
+        <p className="text-base md:text-lg text-neutral-600 leading-relaxed">
+          A structured journey from research to definition and development,
+          helping transform insights into a clear product direction.
+        </p>
+      </div>
+
+      <div className="relative">
+        {/* Desktop connector line */}
+        <div className="hidden lg:block absolute top-10 left-[16%] right-[16%] border-t border-dashed border-neutral-300 z-0" />
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+          {project.processMap.map((phase: any, index: number) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.45, delay: index * 0.08 }}
+              className="relative z-10 rounded-[2rem] border border-neutral-200 bg-[#fafafa] p-6 md:p-8 shadow-sm"
+            >
+              {/* top marker */}
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-12 h-12 rounded-full bg-[#131313] text-white flex items-center justify-center text-lg font-bold shrink-0">
+                  {index + 1}
+                </div>
+
+                <div>
+                  <p className="text-xs uppercase tracking-[0.18em] text-neutral-500 mb-1">
+                    Step 0{index + 1}
+                  </p>
+                  <h3 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-[#131313]">
+                    {phase.phase}
+                  </h3>
+                </div>
+              </div>
+
+              {/* optional little top dot for desktop */}
+              <div className="hidden lg:block absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full border border-neutral-300 bg-white" />
+
+              <div className="space-y-3">
+                {phase.steps.map((step: string, stepIndex: number) => (
+                  <div
+                    key={stepIndex}
+                    className="flex items-start gap-3 rounded-2xl bg-white border border-neutral-200 px-4 py-3"
                   >
-                    <h4 className="text-xl font-bold uppercase tracking-tight text-white border-b-2 border-white/20 pb-2">{phase.phase}</h4>
-                    <ul className="flex flex-col gap-2">
-                      {phase.steps.map((step: string, stepIdx: number) => (
-                        <li key={stepIdx} className="text-base md:text-lg text-white/90 leading-relaxed flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 min-w-[6px] min-h-[6px] rounded-full bg-white"></span>
-                          <span className="break-words">{step}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </motion.div>
+                    <div className="w-6 h-6 rounded-full border border-neutral-300 flex items-center justify-center text-xs font-semibold text-neutral-600 shrink-0 mt-0.5">
+                      {stepIndex + 1}
+                    </div>
+                    <p className="text-sm md:text-base text-neutral-700 leading-relaxed">
+                      {step}
+                    </p>
+                  </div>
                 ))}
               </div>
-            </div>
-          </section>
-        )}
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+)}
 
    {project.targetUsers && (
           <section className="py-16 md:py-20 w-full bg-white text-[#131313]">
