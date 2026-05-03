@@ -685,15 +685,15 @@ export function ProjectDetail() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.8, delay: idx * 0.1 }}
-                      className="flex flex-col bg-[#FAF9F6] border border-gray-200 rounded-[2rem] overflow-hidden shadow-sm"
+                      className="flex flex-col bg-black border border-gray-200 rounded-[2rem] overflow-hidden shadow-sm"
                     >
                       <div className="p-5 md:p-6 flex flex-col gap-5">
-                        <div className="w-full aspect-[4/3] bg-white rounded-[1.5rem] overflow-hidden border border-gray-100">
+                        <div className="w-full aspect-[4/3] bg-black rounded-[1.5rem] overflow-hidden border border-gray-100">
                           <img src={persona.image} alt={persona.title} className="w-full h-full object-cover object-[50%_20%]" />
                         </div>
 
                         <div className="flex flex-col gap-2">
-                          <h4 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-[#131313]">{persona.title}</h4>
+                          <h4 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white">{persona.title}</h4>
                           {!hasStructuredDetails && (
                             <p className="text-base md:text-lg text-gray-700 leading-relaxed">{persona.description}</p>
                           )}
@@ -724,16 +724,16 @@ export function ProjectDetail() {
                         )}
 
                         <div className="bg-white border border-gray-200 rounded-2xl p-4">
-                          <h5 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Key Needs</h5>
+                          <h5 className="text-xs font-bold uppercase tracking-widest text-black mb-4">Key Needs</h5>
                           <div className="space-y-4">
                             {personaMetrics.map((item: any, metricIdx: number) => (
                               <div key={metricIdx}>
-                                <div className="flex justify-between gap-4 text-xs md:text-sm text-gray-600 mb-1.5">
+                                <div className="flex justify-between gap-4 text-xs md:text-sm text-white mb-1.5">
                                   <span>{item.label}</span>
                                   <span>{item.value}%</span>
                                 </div>
-                                <div className="w-full h-2 rounded-full bg-gray-100 overflow-hidden">
-                                  <div className="h-full rounded-full bg-[#131313]" style={{ width: `${item.value}%` }} />
+                                <div className="w-full h-2 rounded-full bg-black overflow-hidden">
+                                  <div className="h-full rounded-full bg-black" style={{ width: `${item.value}%` }} />
                                 </div>
                               </div>
                             ))}
