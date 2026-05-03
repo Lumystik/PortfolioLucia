@@ -39,9 +39,11 @@ const WireframeSketches = ({ color = "rgba(185, 200, 105, 0.9)" }: { color?: str
 };
 
 export function Hero() {
+  const [isHoverReady, setIsHoverReady] = useState(false);
+
   const mouseX = useMotionValue(typeof window !== 'undefined' ? window.innerWidth / 2 : 0);
   const mouseY = useMotionValue(typeof window !== 'undefined' ? window.innerHeight / 2 : 0);
-  const radius = useMotionValue(2000); // Start very large to cover the screen
+  const radius = useMotionValue(2000);
   const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -52,38 +54,63 @@ export function Hero() {
       return 150;
     };
 
-    // Initial entrance animation: Scale down from 2000px to the target responsive size
+    const centerReveal = () => {
+      if (!heroRef.current) return;
+
+      const rect = heroRef.current.getBoundingClientRect();
+      mouseX.set(rect.width / 2);
+      mouseY.set(rect.height / 2);
+    };
+
+    centerReveal();
+
     const target = getTargetRadius();
-    animate(radius, target, {
+
+    const controls = animate(radius, target, {
       duration: 0.6,
-      ease: [0.16, 1, 0.3, 1], // Smooth premium ease-out
-      delay: 0.1
+      ease: [0.16, 1, 0.3, 1],
+      delay: 0.1,
+      onComplete: () => {
+        setIsHoverReady(true);
+      },
     });
 
     const updateRadius = () => {
       const newTarget = getTargetRadius();
       animate(radius, newTarget, { duration: 0.3 });
+      centerReveal();
     };
 
     window.addEventListener('resize', updateRadius);
-    
+
+    return () => {
+      controls.stop();
+      window.removeEventListener('resize', updateRadius);
+    };
+  }, [mouseX, mouseY, radius]);
+
+  useEffect(() => {
+    if (!isHoverReady) return;
+
     const handleMove = (e: MouseEvent | TouchEvent) => {
       if (heroRef.current) {
         const rect = heroRef.current.getBoundingClientRect();
         const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
         const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+
         mouseX.set(clientX - rect.left);
         mouseY.set(clientY - rect.top);
       }
     };
+
     window.addEventListener('mousemove', handleMove);
     window.addEventListener('touchmove', handleMove);
+
     return () => {
-      window.removeEventListener('resize', updateRadius);
       window.removeEventListener('mousemove', handleMove);
       window.removeEventListener('touchmove', handleMove);
     };
-  }, [mouseX, mouseY, radius]);
+  }, [isHoverReady, mouseX, mouseY]);
 
   const clipPath = useMotionTemplate`circle(${radius}px at ${mouseX}px ${mouseY}px)`;
 
