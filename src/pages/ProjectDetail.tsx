@@ -1066,23 +1066,39 @@ export function ProjectDetail() {
           </section>
         )}
 
-        {project.finalPrototype && (
-          <section className="py-16 md:py-20 w-full bg-white">
-            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="flex flex-col items-start gap-8">
-                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">Final Prototype</h3>
-                <a href={project.finalPrototype.link} target="_blank" rel="noopener noreferrer" className="px-10 py-4 border border-[#131313] text-[#131313] uppercase tracking-widest text-base font-bold hover:bg-[#131313] hover:text-white transition-all duration-300 rounded-md">View Final Version</a>
-              </div>
-              <div className="max-w-6xl mx-auto px-4 md:px-8 w-full my-12 md:my-16">
-                {project.bannerImage && (
-                  <div className="rounded-2xl overflow-hidden shadow-2xl border border-gray-100 relative w-full">
-                    <img src={project.bannerImage} alt="Final Prototype Showcase"   className="w-full h-auto object-contain"  />
-                  </div>
-                )}
-              </div>
-            </div>
-          </section>
+  {project.finalPrototype && (
+  <section className="py-16 md:py-20 w-full bg-white">
+    <div className="max-w-7xl mx-auto px-6">
+      <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-8 lg:gap-12 items-center bg-[#fafafa] rounded-[2rem] p-6 md:p-10 lg:p-12 border border-gray-100 shadow-sm">
+        
+        <div className="flex flex-col items-start gap-6">
+          <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">
+            Final Prototype
+          </h3>
+
+          <a
+            href={project.finalPrototype.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 py-4 border border-[#131313] text-[#131313] uppercase tracking-widest text-sm md:text-base font-bold hover:bg-[#131313] hover:text-white transition-all duration-300 rounded-md"
+          >
+            View Final Version
+          </a>
+        </div>
+
+        {project.bannerImage && (
+          <div className="w-full rounded-2xl overflow-hidden shadow-xl border border-gray-100 bg-white">
+            <img
+              src={project.bannerImage}
+              alt="Final Prototype Showcase"
+              className="w-full h-auto object-contain"
+            />
+          </div>
         )}
+      </div>
+    </div>
+  </section>
+)}
       
         {project.id === 'seedtag' && (
           <section className="py-16 md:py-20 bg-white">
