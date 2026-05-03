@@ -33,7 +33,7 @@ export function Contact() {
             className="mt-8"
           >
             <a href="mailto:lu_1829med@outlook.com" className="text-2xl md:text-4xl font-medium hover:opacity-70 transition-opacity border-b-2 border-[#131313] pb-2">
-              lu_1829med@outlook.com
+              luciamedinagalan@outlook.com
             </a>
           </motion.div>
         </div>
