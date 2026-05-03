@@ -619,11 +619,11 @@ export function ProjectDetail() {
           </section>
         )}
 
-        {project.targetUsers && (
-          <section className="py-16 md:py-20 w-full bg-black text-white">
+   {project.targetUsers && (
+          <section className="py-16 md:py-20 w-full bg-white text-[#131313]">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
               <div className="flex flex-col gap-4 max-w-3xl">
-                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-white">Target Users</h3>
+                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">Target Users</h3>
                 <p className="text-base md:text-lg text-gray-700 leading-relaxed">{project.targetUsers.description}</p>
               </div>
 
@@ -685,15 +685,15 @@ export function ProjectDetail() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.8, delay: idx * 0.1 }}
-                      className="flex flex-col bg-black border border-gray-200 rounded-[2rem] overflow-hidden shadow-sm"
+                      className="flex flex-col bg-[#FAF9F6] border border-gray-200 rounded-[2rem] overflow-hidden shadow-sm"
                     >
                       <div className="p-5 md:p-6 flex flex-col gap-5">
-                        <div className="w-full aspect-[4/3] bg-black rounded-[1.5rem] overflow-hidden border border-gray-100">
+                        <div className="w-full aspect-[4/3] bg-white rounded-[1.5rem] overflow-hidden border border-gray-100">
                           <img src={persona.image} alt={persona.title} className="w-full h-full object-cover object-[50%_20%]" />
                         </div>
 
                         <div className="flex flex-col gap-2">
-                          <h4 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white">{persona.title}</h4>
+                          <h4 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-[#131313]">{persona.title}</h4>
                           {!hasStructuredDetails && (
                             <p className="text-base md:text-lg text-gray-700 leading-relaxed">{persona.description}</p>
                           )}
@@ -723,17 +723,17 @@ export function ProjectDetail() {
                           </div>
                         )}
 
-                        <div className="bg-black border border-gray-200 rounded-2xl p-4">
-                          <h5 className="text-xs font-bold uppercase tracking-widest text-black mb-4">Key Needs</h5>
+                        <div className="bg-white border border-gray-200 rounded-2xl p-4">
+                          <h5 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Key Needs</h5>
                           <div className="space-y-4">
                             {personaMetrics.map((item: any, metricIdx: number) => (
                               <div key={metricIdx}>
-                                <div className="flex justify-between gap-4 text-xs md:text-sm text-white mb-1.5">
+                                <div className="flex justify-between gap-4 text-xs md:text-sm text-gray-600 mb-1.5">
                                   <span>{item.label}</span>
                                   <span>{item.value}%</span>
                                 </div>
-                                <div className="w-full h-2 rounded-full bg-white overflow-hidden">
-                                  <div className="h-full rounded-full bg-black" style={{ width: `${item.value}%` }} />
+                                <div className="w-full h-2 rounded-full bg-gray-100 overflow-hidden">
+                                  <div className="h-full rounded-full bg-[#131313]" style={{ width: `${item.value}%` }} />
                                 </div>
                               </div>
                             ))}
@@ -746,8 +746,8 @@ export function ProjectDetail() {
               </div>
 
               {project.targetUsers.conclusion && (
-                <div className="max-w-4xl bg-black border border-gray-200 rounded-2xl p-6 md:p-8">
-                  <p className="text-base md:text-lg text-white leading-relaxed">{project.targetUsers.conclusion}</p>
+                <div className="max-w-4xl bg-[#FAF9F6] border border-gray-200 rounded-2xl p-6 md:p-8">
+                  <p className="text-base md:text-lg text-gray-700 leading-relaxed">{project.targetUsers.conclusion}</p>
                 </div>
               )}
             </div>
