@@ -1073,7 +1073,7 @@ export function ProjectDetail() {
                 <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">Final Prototype</h3>
                 <a href={project.finalPrototype.link} target="_blank" rel="noopener noreferrer" className="px-10 py-4 border border-[#131313] text-[#131313] uppercase tracking-widest text-base font-bold hover:bg-[#131313] hover:text-white transition-all duration-300 rounded-md">View Final Version</a>
               </div>
-              <div className="w-full">
+              <div className="max-w-6xl mx-auto px-4 md:px-8 w-full my-12 md:my-16">
                 {project.bannerImage && (
                   <div className="rounded-2xl overflow-hidden shadow-2xl border border-gray-100 relative w-[100vw] left-[50%] right-[50%] -ml-[50vw] -mr-[50vw]">
                     <img src={project.bannerImage} alt="Final Prototype Showcase"   className="w-full h-auto object-contain"  />
