@@ -811,12 +811,6 @@ export function ProjectDetail() {
                   );
                 })}
               </div>
-
-              {project.targetUsers.conclusion && (
-                <div className="max-w-4xl bg-black border border-gray-200 rounded-2xl p-6 md:p-8">
-                  <p className="text-base md:text-lg text-white leading-relaxed">{project.targetUsers.conclusion}</p>
-                </div>
-              )}
             </div>
           </section>
         )}
@@ -876,7 +870,7 @@ export function ProjectDetail() {
               <div className="bg-[#FAF9F6] p-8 md:p-16 rounded-[2rem] flex flex-col gap-12">
                 <div className="flex flex-col gap-2 text-left">
                     <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">Laying the Foundation</h4>
-                    <p className="text-base md:text-lg text-gray-700 leading-relaxed">Initial Wireframe Iterations</p>
+                    <p className="text-base md:text-lg text-black leading-relaxed">Initial Wireframe Iterations</p>
                 </div>
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
                   {project.ideation.wireframes.map((wire: any, idx: number) => (
