@@ -43,7 +43,7 @@ export function Hero() {
 
   const mouseX = useMotionValue(typeof window !== 'undefined' ? window.innerWidth / 2 : 0);
   const mouseY = useMotionValue(typeof window !== 'undefined' ? window.innerHeight / 2 : 0);
-  const radius = useMotionValue(2000);
+  const radius = useMotionValue(2000); // Start very large to cover the screen
   const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -64,11 +64,11 @@ export function Hero() {
 
     centerReveal();
 
+    // Initial entrance animation: Scale down from 2000px to the target responsive size
     const target = getTargetRadius();
-
     const controls = animate(radius, target, {
       duration: 0.6,
-      ease: [0.16, 1, 0.3, 1],
+      ease: [0.16, 1, 0.3, 1], // Smooth premium ease-out
       delay: 0.1,
       onComplete: () => {
         setIsHoverReady(true);
@@ -97,7 +97,6 @@ export function Hero() {
         const rect = heroRef.current.getBoundingClientRect();
         const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
         const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
-
         mouseX.set(clientX - rect.left);
         mouseY.set(clientY - rect.top);
       }
@@ -115,10 +114,10 @@ export function Hero() {
   const clipPath = useMotionTemplate`circle(${radius}px at ${mouseX}px ${mouseY}px)`;
 
   return (
-    <section ref={heroRef} id="home" className="relative h-screen w-full flex flex-col items-center overflow-hidden bg-[#131313] cursor-default">
+    <section ref={heroRef} id="home" className="relative min-h-[100svh] md:h-screen w-full flex flex-col items-center overflow-hidden bg-[#131313] cursor-default">
       {/* Blurred Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <img  className="w-full h-full object-cover blur-[10px] scale-105" alt="Hero Background Blurred" />
+        <img className="w-full h-full object-cover blur-[10px] scale-105" alt="Hero Background Blurred" />
         <WireframeSketches color="" />
       </div>
       
@@ -133,7 +132,7 @@ export function Hero() {
 
       {/* Content */}
       <div className="absolute inset-0 z-20 w-full max-w-7xl mx-auto px-6 flex flex-col items-center pointer-events-none">
-        <div className="relative flex flex-col w-full h-full justify-end pb-10 md:pb-8 lg:pb-6">
+        <div className="relative flex flex-col w-full h-full justify-end pb-16 md:pb-8 lg:pb-6">
           
           {/* Labels */}
           <div className="flex justify-between w-full text-white font-mono text-[10px] md:text-sm uppercase tracking-widest mb-4 md:mb-0 md:absolute md:top-1/2 md:-translate-y-1/2 md:left-0 md:right-0 md:px-0">
@@ -151,11 +150,20 @@ export function Hero() {
 
           <motion.h1 
             initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.8 }}
-            className="w-full flex justify-between text-[11.5vw] md:text-[10vw] lg:text-[9vw] xl:text-[115px] leading-[0.8] tracking-tighter text-white font-medium m-0 p-0 whitespace-nowrap"
+            className="w-full text-white font-medium m-0 p-0 tracking-tighter leading-[0.8]"
           >
-            {"LUCÍA".split('').map((char, i) => <span key={`first-${i}`}>{char}</span>)}
-            <span className="w-[4vw] md:w-[3vw]"></span>
-            {"MEDINA".split('').map((char, i) => <span key={`last-${i}`}>{char}</span>)}
+            {/* Mobile stacked name */}
+            <span className="flex md:hidden flex-col text-[22vw] leading-[0.78]">
+              <span>LUCÍA</span>
+              <span>MEDINA</span>
+            </span>
+
+            {/* Desktop horizontal name */}
+            <span className="hidden md:flex w-full justify-between text-[10vw] lg:text-[9vw] xl:text-[115px] whitespace-nowrap">
+              {"LUCÍA".split('').map((char, i) => <span key={`first-${i}`}>{char}</span>)}
+              <span className="w-[3vw]"></span>
+              {"MEDINA".split('').map((char, i) => <span key={`last-${i}`}>{char}</span>)}
+            </span>
           </motion.h1>
         </div>
       </div>
@@ -165,7 +173,7 @@ export function Hero() {
         className="absolute inset-0 z-30 w-full max-w-7xl mx-auto px-6 flex flex-col items-center pointer-events-none"
         style={{ clipPath }}
       >
-        <div className="relative flex flex-col w-full h-full justify-end pb-10 md:pb-8 lg:pb-6">
+        <div className="relative flex flex-col w-full h-full justify-end pb-16 md:pb-8 lg:pb-6">
           {/* Labels - Centered vertically on desktop */}
           <div className="flex justify-between w-full text-[#E54D2E] font-mono text-[10px] md:text-sm uppercase tracking-widest mb-4 md:mb-0 md:absolute md:top-1/2 md:-translate-y-1/2 md:left-0 md:right-0 md:px-0">
             <motion.span 
@@ -189,11 +197,20 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }} 
             animate={{ opacity: 1, y: 0 }} 
             transition={{ delay: 0.6, duration: 0.7 }}
-            className="w-full flex justify-between text-[11.5vw] md:text-[10vw] lg:text-[9vw] xl:text-[115px] leading-[0.8] tracking-tighter text-[#000000] font-medium m-0 p-0 whitespace-nowrap"
+            className="w-full text-[#000000] font-medium m-0 p-0 tracking-tighter leading-[0.8]"
           >
-            {"LUCÍA".split('').map((char, i) => <span key={`first-orange-${i}`}>{char}</span>)}
-            <span className="w-[4vw] md:w-[3vw]"></span>
-            {"MEDINA".split('').map((char, i) => <span key={`last-orange-${i}`}>{char}</span>)}
+            {/* Mobile stacked name */}
+            <span className="flex md:hidden flex-col text-[22vw] leading-[0.78]">
+              <span>LUCÍA</span>
+              <span>MEDINA</span>
+            </span>
+
+            {/* Desktop horizontal name */}
+            <span className="hidden md:flex w-full justify-between text-[10vw] lg:text-[9vw] xl:text-[115px] whitespace-nowrap">
+              {"LUCÍA".split('').map((char, i) => <span key={`first-orange-${i}`}>{char}</span>)}
+              <span className="w-[3vw]"></span>
+              {"MEDINA".split('').map((char, i) => <span key={`last-orange-${i}`}>{char}</span>)}
+            </span>
           </motion.h1>
         </div>
       </motion.div>
