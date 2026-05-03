@@ -758,12 +758,10 @@ export function ProjectDetail() {
                       transition={{ delay: idx * 0.1 }}
                       className="flex flex-col gap-6"
                     >
-                      {/* REMOVED aspect-[2/3], added rounded-xl for smoother UI */}
                       <div className="w-full max-w-[280px] mx-auto overflow-hidden shadow-sm border border-gray-100 bg-white rounded-xl flex justify-center items-center">
                         <img 
                           src={wire.image} 
                           alt={wire.caption} 
-                          {/* CHANGED to h-auto to respect the image's true proportions */}
                           className="w-full h-auto object-contain" 
                         />
                       </div>
