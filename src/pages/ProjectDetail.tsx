@@ -816,7 +816,7 @@ export function ProjectDetail() {
         )}
    
 {project.howMightWe && (
-  <section className="py-16 md:py-20 w-full bg-white">
+  <section className="py-16 md:py-20 w-full bg-[#131313]">
     <div className="max-w-7xl mx-auto px-6">
       <div className="grid grid-cols-1 gap-6">
         <div className="rounded-[2rem] bg-[#131313] text-white p-8 md:p-12 min-h-[220px] md:min-h-[280px] flex items-center">
