@@ -464,7 +464,7 @@ export function ProjectDetail() {
 
         <section className="pb-24 md:pb-32 w-full bg-white text-[#131313]">
           {/* Changed max-w-5xl to max-w-7xl to match the hero section alignment */}
-          <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center text-left">
+          <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center text-left">
             <div className="lg:col-span-4 flex flex-col gap-8">
               <div className="flex flex-col gap-2">
                 <h4 className="text-sm font-bold uppercase tracking-widest text-[#131313]">Project Scope</h4>
