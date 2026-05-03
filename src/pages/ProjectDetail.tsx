@@ -17,7 +17,7 @@ const projectsData: Record<string, any> = {
     team: "LUCIA MEDINA (UX/UI Design), Martina Braidotti, Ilario Pedone, Agnese Rosselli, Mark Waisara",
     prototypeLink: "https://www.figma.com/proto/16viMWZsHOU9SkmpbSpTd5/FINAL-UI-spaced?node-id=2248-9671&starting-point-node-id=703%3A8427&scaling=scale-down&content-scaling=fixed&t=aO2g8BW8sOtXyiVT-1?raw=true",
     problem: "Staff at small museums often face fragmented workflows. \n\n With only 4 full-time staff managing 59 events and exhibitions a year across 6 different tools, the team is constantly stretched thin.",
-    problemImage: "https://github.com/Lumystik/PortfolioLucia/blob/56aed6413b71c2bc18bd6c0dcd8054a3b546474d/images/complicatedworkflow_museon.jpg?raw=true",
+    problemImage: "https://github.com/Lumystik/PortfolioLucia/blob/e26793d1c7a5be6de4360cc29f526af2d89a09e6/images/museon_problem.png?raw=true",
     processMap: [
       { phase: "Research", steps: ["Desk research", "On site research", "Ecosystem map", "research key findings"] },
       { phase: "Define", steps: ["Design brief", "Personas & scenarios", "Heroflow & wireflow"] },
@@ -494,20 +494,20 @@ export function ProjectDetail() {
               )}
             </div>
 
-            <div className="lg:col-span-8 flex flex-col gap-6">
-              <motion.h1 
-                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1 }}
-                className="text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tight break-words m-0"
-              >
-                {project.title}
-              </motion.h1>
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-base md:text-lg text-gray-800 leading-relaxed max-w-3xl font-bold"
-              >
-                {project.overview}
-              </motion.p>
-            </div>
+    <div className="lg:col-span-8 flex flex-col gap-6 w-fit max-w-full">
+  <motion.h1 
+    initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1 }}
+    className="text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tight m-0 break-words md:whitespace-nowrap"
+  >
+    {project.title}
+  </motion.h1>
+  <motion.p 
+    initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
+    className="text-base md:text-lg text-gray-800 leading-relaxed font-bold w-0 min-w-full"
+  >
+    {project.overview}
+  </motion.p>
+</div>
           </div>
         </section>
 {/* 3. The Problem */}
@@ -643,7 +643,7 @@ export function ProjectDetail() {
 
         {/* 6. Target Users - Vibrant Red Background */}
         {project.targetUsers && (
-          <section className="py-16 md:py-20 w-full bg-[#E54D2E] text-white">
+          <section className="py-16 md:py-20 w-full bg-[#000000] text-white">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
               <div className="flex flex-col gap-4 max-w-3xl">
                 <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-white">Target Users</h3>
@@ -681,7 +681,7 @@ export function ProjectDetail() {
                   whileInView={{ opacity: 1, y: 0 }} 
                   viewport={{ once: true }} 
                   transition={{ duration: 0.8 }}
-                  className="bg-[#131313] text-white p-8 md:p-12 rounded-xl flex items-center min-h-[160px] w-full"
+                  className="bg-[#000000] text-white p-8 md:p-12 rounded-xl flex items-center min-h-[160px] w-full"
                 >
                   <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-white m-0">
                     How Might We...
@@ -758,11 +758,13 @@ export function ProjectDetail() {
                       transition={{ delay: idx * 0.1 }}
                       className="flex flex-col gap-6"
                     >
-                      <div className="w-full max-w-[280px] mx-auto aspect-[2/3] overflow-hidden shadow-sm border border-gray-100 bg-white">
+                      {/* REMOVED aspect-[2/3], added rounded-xl for smoother UI */}
+                      <div className="w-full max-w-[280px] mx-auto overflow-hidden shadow-sm border border-gray-100 bg-white rounded-xl flex justify-center items-center">
                         <img 
                           src={wire.image} 
                           alt={wire.caption} 
-                          className="w-full h-full object-contain" 
+                          {/* CHANGED to h-auto to respect the image's true proportions */}
+                          className="w-full h-auto object-contain" 
                         />
                       </div>
                       <div className="flex flex-col gap-2 text-center">
@@ -979,12 +981,12 @@ export function ProjectDetail() {
         )}
 
 {(project.branding.logoDescription || project.branding.logoImage) && (
-  <section className="py-16 md:py-20">
-    {/* Swapped Grid for Flexbox to tightly group and center the items */}
-    <div className="flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-16 px-6 mx-auto w-full">
+  <section className="py-16 md:py-20 flex justify-center w-full">
+    {/* Flexbox container: Column on mobile/tablet, Row on desktop. Centered overall. */}
+    <div className="flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-16 px-6 mx-auto max-w-5xl w-full">
       
-      {/* Added max-w-lg to keep the text block a readable width */}
-      <div className="flex flex-col gap-6 max-w-lg">
+      {/* Text Block: Centered text/items on mobile/tablet, left-aligned on desktop */}
+      <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-6 max-w-lg">
         <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">
           Logo Design
         </h4>
@@ -993,8 +995,8 @@ export function ProjectDetail() {
         </p>
       </div>
 
-      {/* Image stays vertically centered next to the text */}
-      <div className="flex justify-center">
+      {/* Image Block: Always centered within its column/row */}
+      <div className="flex justify-center items-center">
         <img
           src={project.branding.logoImage}
           alt="Logo"
