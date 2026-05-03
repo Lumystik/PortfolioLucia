@@ -113,7 +113,7 @@ const projectsData: Record<string, any> = {
       description: "The design system was built to be clean, accessible, and highly functional, prioritizing data visualization and task management. It includes standardized colors, buttons, dropdown menus, and calendar components.",
       logoDescription: "We were drawn to the asterisk as a symbol of connection, and wanted to incorporate its radiating structure as a mark that points toward information, toward people, toward the institution itself.",
       logoImage: "https://github.com/Lumystik/PortfolioLucia/blob/ac040a0ff68481a4ef9745568ded5b5c9b484a5b/images/museonlogo.png?raw=true",       
-      featuresImage: "https://github.com/Lumystik/PortfolioLucia/blob/dfc97077f6303fd7953feeb6d4e1a8efdce42b2e/images/button.png?raw=true", 
+      featuresImage: "https://github.com/Lumystik/PortfolioLucia/blob/547aa903f1fe2375dc50f7b804b11a979d4fe8ca/images/museon_designsystem.png?raw=true", 
       shapes: [
         { color: "#000000", size: 120, x: "20%", y: "10%" },
         { color: "#6B6A6A", size: 100, x: "50%", y: "10%"},
