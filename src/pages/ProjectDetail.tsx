@@ -183,7 +183,7 @@ const projectsData: Record<string, any> = {
     overview: "An immersive museum experience that helps young adults engage with art through interaction, AI integration, and playful learning.",
     scope: "Digital Experience & Totem Interface",
     role: "Digital and Interaction Design",
-    timeline: "6 Months (Final Design Studio)",
+    timeline: "6 months · Master’s studio project",
     team: "Razieh Soleimani, Lucia Medina, Marjan Mehrabi, Fatemeh Khoshbazan",
     prototypeLink: "https://www.figma.com/proto/FnFqrWBxyChSOdL3aVzV9A/Prototype?node-id=616-1965&starting-point-node-id=564%3A1942&t=bIX74fMjWA7kTArF-1",
 
@@ -448,7 +448,7 @@ const projectsData: Record<string, any> = {
     id: "seedtag",
     title: "Seedtag Interactive Ads",
     heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/875f29a845d8d4c9b924b22af2bd821846e5eeae/images/hero_seedtag.png?raw=true",
-    overview: "As a Seedtag Digital Designer, I created high-impact, AI-enhanced rich media ads and interactive display creatives for diverse global clients—ranging from automotive to food and beverage brands. I modified brand assets to fit within contextual, privacy-first advertising campaigns, and combined graphic design with animation skills to enhance user engagement, working closely with sales teams and using proprietary AI (Liz) for campaign optimization.",
+    overview: "At Seedtag, I designed interactive rich media campaigns for multiple global brands across automotive, food, beverage, and lifestyle sectors, combining visual design, animation, and digital storytelling.",
     scope: "Ad Tech (HTML5/JS)",
     role: "Digital Designer / Frontend Dev (AI Tools)",
     timeline: "150+ Campaigns",
@@ -568,7 +568,7 @@ export function ProjectDetail() {
                 <p className="text-base md:text-lg text-gray-700 leading-relaxed">{project.scope}</p>
               </div>
               <div className="flex flex-col gap-2">
-                <h4 className="text-sm font-bold uppercase tracking-widest text-[#131313]">Role</h4>
+                <h4 className="text-sm font-bold uppercase tracking-widest text-[#131313]">My Role</h4>
                 <p className="text-base md:text-lg text-gray-700 leading-relaxed">{project.role}</p>
               </div>
               <div className="flex flex-col gap-2">
@@ -578,7 +578,16 @@ export function ProjectDetail() {
               {project.team && (
                 <div className="flex flex-col gap-2">
                   <h4 className="text-sm font-bold uppercase tracking-widest text-[#131313]">Team</h4>
-                  <p className="text-base md:text-lg text-gray-700 leading-relaxed">{project.team}</p>
+                  <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                    {project.team.split(', ').map((member: string, index: number, arr: string[]) => (
+                      <span key={member}>
+                        <span className={member.toLowerCase().includes('lucia') ? 'font-bold text-[#131313]' : ''}>
+                          {member}
+                        </span>
+                        {index < arr.length - 1 ? ', ' : ''}
+                      </span>
+                    ))}
+                  </p>
                 </div>
               )}
               {project.prototypeLink && (
@@ -773,7 +782,8 @@ export function ProjectDetail() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                 {project.targetUsers.personas.map((persona: any, idx: number) => {
                   const descriptionParts = persona.description
-                    .split('\n')
+                    .split('
+')
                     .map((part: string) => part.trim())
                     .filter(Boolean);
 
@@ -828,14 +838,18 @@ export function ProjectDetail() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.8, delay: idx * 0.1 }}
-                      className="flex flex-col bg-[#FAF9F6] border border-gray-200 rounded-[2rem] overflow-hidden shadow-sm"
+                      className="flex flex-col bg-[#F2F2F2] border border-neutral-300 rounded-[2rem] overflow-hidden shadow-sm"
                     >
                       <div className="p-5 md:p-6 flex flex-col gap-5">
-                        <div className="w-full aspect-[4/3] bg-white rounded-[1.5rem] overflow-hidden border border-gray-100">
+                        <div className="w-full aspect-[4/3] bg-white rounded-[1.5rem] overflow-hidden border border-neutral-200">
                           <img src={persona.image} alt={persona.title} className="w-full h-full object-cover object-[50%_20%]" />
                         </div>
 
                         <div className="flex flex-col gap-2">
+                          <div className="inline-flex w-fit px-3 py-1 rounded-full bg-[#131313] text-white text-[10px] md:text-xs uppercase tracking-widest">
+                            Persona 0{idx + 1}
+                          </div>
+
                           <h4 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-[#131313]">{persona.title}</h4>
                           {!hasStructuredDetails && (
                             <p className="text-base md:text-lg text-gray-700 leading-relaxed">{persona.description}</p>
@@ -844,7 +858,7 @@ export function ProjectDetail() {
 
                         <div className="flex flex-wrap gap-2">
                           {personaTags.map((tag: string, tagIdx: number) => (
-                            <span key={tagIdx} className="px-3 py-1.5 rounded-full bg-white border border-gray-200 text-xs md:text-sm text-gray-700">
+                            <span key={tagIdx} className="px-3 py-1.5 rounded-full bg-white border border-neutral-200 text-xs md:text-sm text-gray-700">
                               {tag}
                             </span>
                           ))}
@@ -857,7 +871,7 @@ export function ProjectDetail() {
                             {descriptionParts.map((part: string, partIdx: number) => {
                               const [label, ...rest] = part.split(':');
                               return (
-                                <div key={partIdx} className="bg-white border border-gray-200 rounded-2xl p-4">
+                                <div key={partIdx} className="bg-white border border-neutral-200 rounded-2xl p-4">
                                   <p className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">{label}</p>
                                   <p className="text-sm md:text-base text-gray-700 leading-relaxed">{rest.join(':').trim()}</p>
                                 </div>
@@ -866,7 +880,7 @@ export function ProjectDetail() {
                           </div>
                         )}
 
-                        <div className="bg-white border border-gray-200 rounded-2xl p-4">
+                        <div className="bg-white border border-neutral-200 rounded-2xl p-4">
                           <h5 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Key Needs</h5>
                           <div className="space-y-4">
                             {personaMetrics.map((item: any, metricIdx: number) => (
@@ -875,7 +889,7 @@ export function ProjectDetail() {
                                   <span>{item.label}</span>
                                   <span>{item.value}%</span>
                                 </div>
-                                <div className="w-full h-2 rounded-full bg-gray-100 overflow-hidden">
+                                <div className="w-full h-2 rounded-full bg-gray-200 overflow-hidden">
                                   <div className="h-full rounded-full bg-[#131313]" style={{ width: `${item.value}%` }} />
                                 </div>
                               </div>
