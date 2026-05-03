@@ -49,7 +49,7 @@ export function Navbar() {
             <img 
               src="https://github.com/Lumystik/PortfolioLucia/blob/main/images/butterfly.png?raw=true" 
               alt="Lucía Medina Logo" 
-              className={`w-full h-full object-contain transition-all duration-300 group-hover:opacity-0 ${!isHome && !isScrolled ? 'brightness-0' : ''}`}
+              className={`w-full h-full object-contain transition-all duration-300 group-hover:opacity-1 ${!isHome && !isScrolled ? 'brightness-0' : ''}`}
               referrerPolicy="no-referrer"
             />
             <div 
