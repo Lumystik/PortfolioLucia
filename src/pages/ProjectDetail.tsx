@@ -746,8 +746,8 @@ export function ProjectDetail() {
               </div>
 
               {project.targetUsers.conclusion && (
-                <div className="max-w-4xl bg-[#FAF9F6] border border-gray-200 rounded-2xl p-6 md:p-8">
-                  <p className="text-base md:text-lg text-gray-700 leading-relaxed">{project.targetUsers.conclusion}</p>
+                <div className="max-w-4xl bg-black border border-gray-200 rounded-2xl p-6 md:p-8">
+                  <p className="text-base md:text-lg text-white leading-relaxed">{project.targetUsers.conclusion}</p>
                 </div>
               )}
             </div>
