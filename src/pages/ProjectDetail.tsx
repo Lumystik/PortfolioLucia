@@ -168,9 +168,9 @@ const projectsData: Record<string, any> = {
     finalPrototype: {
       link: "https://www.figma.com/proto/16viMWZsHOU9SkmpbSpTd5/FINAL-UI-spaced?node-id=2248-9671&starting-point-node-id=703%3A8427&scaling=scale-down&content-scaling=fixed&t=aO2g8BW8sOtXyiVT-1?raw=true",
     },
-    takeaways: "We solved the complexity of creating a smooth experience for small museum staff, enabling them to develop a better experience for visitors. By developing an all-in-one software, we streamlined the workflow and optimized current museum resources.",
+    takeaways: "We began with an in-depth research phase to understand the museum as an ecosystem of interconnected stakeholders, workflows, and responsibilities. This background-research process was complex and took over a month, as we needed to clearly define the core problem before moving into solutions. Through staff interviews and organizational mapping, we created visual schemas that helped us analyze how the museum operates and explain the problem from a top-down perspective. ",
     nextProject: {
-      title: "ART BEYOND DIMENSION",
+      title: "ART BEYOND DIMENSION", 
       link: "/project/art-beyond-dimension",
       image: "https://github.com/Lumystik/PortfolioLucia/blob/c39ead2c3b7c47add54a5363ffb7b42cb35b1adf/images/wall.jpg?raw=true"
     }
