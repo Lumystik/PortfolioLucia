@@ -821,41 +821,36 @@ export function ProjectDetail() {
           </section>
         )}
    
-        {project.howMightWe && project.howMightWe.length > 0 && (
-          <section className="py-16 md:py-20 w-full bg-white">
-            <div className="max-w-7xl mx-auto px-6 w-full">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 w-full">
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }} 
-                  whileInView={{ opacity: 1, y: 0 }} 
-                  viewport={{ once: true }} 
-                  transition={{ duration: 0.8 }}
-                  className="bg-[#000000] text-white p-8 md:p-12 rounded-xl flex items-center min-h-[160px] w-full"
-                >
-                  <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-white m-0">
-                    How Might We...
-                  </h3>
-                </motion.div>
-                <div className="flex flex-col gap-4 md:gap-6 w-full">
-                  {project.howMightWe.map((hmw: string, idx: number) => (
-                    <motion.div 
-                      key={idx}
-                      initial={{ opacity: 0, y: 20 }} 
-                      whileInView={{ opacity: 1, y: 0 }} 
-                      viewport={{ once: true }} 
-                      transition={{ duration: 0.8, delay: idx * 0.1 }}
-                      className="bg-[#131313] text-white p-8 md:p-12 rounded-xl flex items-center min-h-[160px] w-full"
-                    >
-                      <p className="text-base md:text-lg text-white/90 leading-relaxed">
-                        {hmw}
-                      </p>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
+{project.howMightWe && (
+  <section className="py-16 md:py-20 w-full bg-white">
+    <div className="max-w-7xl mx-auto px-6">
+      <div className="grid grid-cols-1 gap-6">
+        <div className="rounded-[2rem] bg-[#131313] text-white p-8 md:p-12 min-h-[220px] md:min-h-[280px] flex items-center">
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tight">
+            How Might We...
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {project.howMightWe.map((question: string, index: number) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.45, delay: index * 0.08 }}
+              className="rounded-[2rem] bg-[#131313] text-white p-6 md:p-8 min-h-[220px] flex items-center"
+            >
+              <p className="text-xl md:text-2xl leading-relaxed font-medium">
+                {question}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+)}
 
         {project.ideation && (
           <section className="py-16 md:py-20 w-full bg-white">
