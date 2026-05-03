@@ -66,7 +66,7 @@ export function Work() {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="text-sm font-mono uppercase tracking-widest text-gray-500"
           >
-            (2020 – 2025)
+            (2020 – 2026)
           </motion.span>
         </div>
         
