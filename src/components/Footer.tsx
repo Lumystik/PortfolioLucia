@@ -43,9 +43,7 @@ export function Footer() {
               <Link to="/#contact" className="text-[10px] md:text-xs font-mono uppercase tracking-widest hover:text-gray-400 transition-colors">Contact</Link>
             </div>
             <div className="flex flex-col gap-4">
-              <a href="#" className="text-[10px] md:text-xs font-mono uppercase tracking-widest hover:text-gray-400 transition-colors">Instagram</a>
-              <a href="#" className="text-[10px] md:text-xs font-mono uppercase tracking-widest hover:text-gray-400 transition-colors">X</a>
-              <a href="#" className="text-[10px] md:text-xs font-mono uppercase tracking-widest hover:text-gray-400 transition-colors">LinkedIn</a>
+              <a href="www.linkedin.com/in/lucia-medina-galan" className="text-[10px] md:text-xs font-mono uppercase tracking-widest hover:text-gray-400 transition-colors">LinkedIn</a>
               <a href="mailto:lu_1829med@outlook.com" className="text-[10px] md:text-xs font-mono uppercase tracking-widest hover:text-gray-400 transition-colors">Email me</a>
             </div>
          <div className="flex items-center gap-6 mt-8">
