@@ -620,29 +620,136 @@ export function ProjectDetail() {
         )}
 
         {project.targetUsers && (
-          <section className="py-16 md:py-20 w-full bg-[#000000] text-white">
+          <section className="py-16 md:py-20 w-full bg-white text-[#131313]">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
               <div className="flex flex-col gap-4 max-w-3xl">
-                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-white">Target Users</h3>
-                <p className="text-base md:text-lg text-white/90 leading-relaxed">{project.targetUsers.description}</p>
+                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">Target Users</h3>
+                <p className="text-base md:text-lg text-gray-700 leading-relaxed">{project.targetUsers.description}</p>
               </div>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {project.targetUsers.personas.map((persona: any, idx: number) => (
-                  <motion.div 
-                    key={idx}
-                    initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
-                    className="flex flex-col gap-6 bg-black/20 border border-transparent p-6 rounded-2xl"
-                  >
-                    <div className="w-full aspect-video bg-white rounded-xl overflow-hidden">
-                      <img src={persona.image} alt={persona.title} className="w-full h-full object-cover object-[30%_10%]" />
-                    </div>
-                    <div className="flex flex-col gap-2">
-                      <h4 className="text-xl font-bold uppercase tracking-tight text-white">{persona.title}</h4>
-                      <p className="text-base md:text-lg text-white/80 leading-relaxed whitespace-pre-line">{persona.description}</p>
-                    </div>
-                  </motion.div>
-                ))}
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                {project.targetUsers.personas.map((persona: any, idx: number) => {
+                  const descriptionParts = persona.description
+                    .split('\n')
+                    .map((part: string) => part.trim())
+                    .filter(Boolean);
+
+                  const hasStructuredDetails = descriptionParts.some((part: string) => part.includes(':'));
+
+                  const personaMetrics =
+                    project.id === 'museon' && persona.title.toLowerCase().includes('alex')
+                      ? [
+                          { label: 'Planning', value: 95 },
+                          { label: 'Team coordination', value: 90 },
+                          { label: 'Task management', value: 85 }
+                        ]
+                      : project.id === 'museon'
+                      ? [
+                          { label: 'Task clarity', value: 95 },
+                          { label: 'Accessibility', value: 85 },
+                          { label: 'Guided workflow', value: 80 }
+                        ]
+                      : project.id === 'art-beyond-dimension'
+                      ? [
+                          { label: 'Interactivity', value: 95 },
+                          { label: 'Visual discovery', value: 90 },
+                          { label: 'Ease of use', value: 85 }
+                        ]
+                      : project.id === 'films-foundation' && persona.title.toLowerCase().includes('creator')
+                      ? [
+                          { label: 'Archive access', value: 95 },
+                          { label: 'Searchability', value: 90 },
+                          { label: 'Creative inspiration', value: 85 }
+                        ]
+                      : [
+                          { label: 'Easy booking', value: 95 },
+                          { label: 'Event discovery', value: 85 },
+                          { label: 'Mobile clarity', value: 80 }
+                        ];
+
+                  const personaTags =
+                    project.id === 'museon' && persona.title.toLowerCase().includes('alex')
+                      ? ['Museum staff', 'Planning', 'Collaboration', 'Office workflow']
+                      : project.id === 'museon'
+                      ? ['Intern', 'On-site support', 'Clear tasks', 'Learning']
+                      : project.id === 'art-beyond-dimension'
+                      ? ['Young adult', 'Visual discovery', 'Social sharing', 'Interactive learning']
+                      : project.id === 'films-foundation' && persona.title.toLowerCase().includes('creator')
+                      ? ['Creative research', 'Archive access', 'Film references', 'Inspiration']
+                      : ['Cultural visitor', 'Events', 'Ticket booking', 'Mobile use'];
+
+                  return (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8, delay: idx * 0.1 }}
+                      className="flex flex-col bg-[#FAF9F6] border border-gray-200 rounded-[2rem] overflow-hidden shadow-sm"
+                    >
+                      <div className="p-5 md:p-6 flex flex-col gap-5">
+                        <div className="w-full aspect-[4/3] bg-white rounded-[1.5rem] overflow-hidden border border-gray-100">
+                          <img src={persona.image} alt={persona.title} className="w-full h-full object-cover object-[50%_20%]" />
+                        </div>
+
+                        <div className="flex flex-col gap-2">
+                          <h4 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-[#131313]">{persona.title}</h4>
+                          {!hasStructuredDetails && (
+                            <p className="text-base md:text-lg text-gray-700 leading-relaxed">{persona.description}</p>
+                          )}
+                        </div>
+
+                        <div className="flex flex-wrap gap-2">
+                          {personaTags.map((tag: string, tagIdx: number) => (
+                            <span key={tagIdx} className="px-3 py-1.5 rounded-full bg-white border border-gray-200 text-xs md:text-sm text-gray-700">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="px-5 md:px-6 pb-5 md:pb-6 flex flex-col gap-5">
+                        {hasStructuredDetails && (
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            {descriptionParts.map((part: string, partIdx: number) => {
+                              const [label, ...rest] = part.split(':');
+                              return (
+                                <div key={partIdx} className="bg-white border border-gray-200 rounded-2xl p-4">
+                                  <p className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">{label}</p>
+                                  <p className="text-sm md:text-base text-gray-700 leading-relaxed">{rest.join(':').trim()}</p>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        )}
+
+                        <div className="bg-white border border-gray-200 rounded-2xl p-4">
+                          <h5 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Key Needs</h5>
+                          <div className="space-y-4">
+                            {personaMetrics.map((item: any, metricIdx: number) => (
+                              <div key={metricIdx}>
+                                <div className="flex justify-between gap-4 text-xs md:text-sm text-gray-600 mb-1.5">
+                                  <span>{item.label}</span>
+                                  <span>{item.value}%</span>
+                                </div>
+                                <div className="w-full h-2 rounded-full bg-gray-100 overflow-hidden">
+                                  <div className="h-full rounded-full bg-[#131313]" style={{ width: `${item.value}%` }} />
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </div>
+
+              {project.targetUsers.conclusion && (
+                <div className="max-w-4xl bg-[#FAF9F6] border border-gray-200 rounded-2xl p-6 md:p-8">
+                  <p className="text-base md:text-lg text-gray-700 leading-relaxed">{project.targetUsers.conclusion}</p>
+                </div>
+              )}
             </div>
           </section>
         )}
