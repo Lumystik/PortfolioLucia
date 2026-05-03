@@ -49,7 +49,7 @@ const projectsData: Record<string, any> = {
     ideation: {
       question: "How can we build a seamless workflow that maximizes museum staff efficiency? How can the platform adapt to different roles while maintaining a unified database?",
       heroFlow: "https://github.com/Lumystik/PortfolioLucia/blob/f8b832c9f326ed2f6d2fd32515316ec56fb143fa/images/workflow_museon.png?raw=true",
-      heroFlowCaption: "Organizing a new temporary exhibition.", 
+      heroFlowCaption: "Heroflow: Organizing a new temporary exhibition.", 
       wireframes: [
         {
           image: "https://github.com/Lumystik/PortfolioLucia/blob/78d82c3bb5eae3c9be12ddde7b066b62a51cc24a/images/Dashboard_mobile_wireframe.png?raw=true",
@@ -886,7 +886,7 @@ export function ProjectDetail() {
                         <img src={wire.image} alt={wire.caption} className="w-full h-auto object-contain" />
                       </div>
                       <div className="flex flex-col gap-2 text-center">
-                        <p className="text-base md:text-lg font-bold uppercase tracking-tight text-[#131313]">
+                        <p className="text-base md:text-lg font-bold uppercase tracking-tight text-black">
                           {wire.caption.includes(':') ? wire.caption.split(':')[0] : wire.caption}
                         </p>
                         <p className="text-sm md:text-base text-gray-500 leading-relaxed">
