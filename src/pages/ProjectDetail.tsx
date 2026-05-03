@@ -1287,7 +1287,7 @@ export function ProjectDetail() {
         )}
         
         {project.takeaways && (
-          <section className="py-16 md:py-20 w-full bg-[#E54D2E] text-white">
+          <section className="py-16 md:py-20 w-full bg-black text-white">
             <div className="max-w-4xl mx-auto px-6 text-center flex flex-col gap-10">
               <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-white">Takeaways</h3>
               <p className="text-base md:text-lg text-white/90 leading-relaxed whitespace-pre-line max-w-3xl mx-auto font-medium">{project.takeaways}</p>
