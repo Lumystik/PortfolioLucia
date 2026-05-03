@@ -14,7 +14,7 @@ const projectsData: Record<string, any> = {
     scope: "End-to-End App",
     role: "UX Research, Branding, UX/UI Design",
     timeline:"4 months",
-    team: "LUCIA MEDINA (UX/UI Design), Martina Braidotti, Ilario Pedone, Agnese Rosselli, Mark Waisara",
+    team: "Lucia Medina, Martina Braidotti, Ilario Pedone, Agnese Rosselli, Mark Waisara",
     prototypeLink: "https://www.figma.com/proto/16viMWZsHOU9SkmpbSpTd5/FINAL-UI-spaced?node-id=2248-9671&starting-point-node-id=703%3A8427&scaling=scale-down&content-scaling=fixed&t=aO2g8BW8sOtXyiVT-1?raw=true",
     problem: "Staff at small museums often face fragmented workflows. \n\n With only 4 full-time staff managing 59 events and exhibitions a year across 6 different tools, the team is constantly stretched thin.",
     problemImage: "https://github.com/Lumystik/PortfolioLucia/blob/e26793d1c7a5be6de4360cc29f526af2d89a09e6/images/museon_problem.png?raw=true",
