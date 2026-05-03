@@ -1024,7 +1024,7 @@ export function ProjectDetail() {
         )}
       
         {project.iterations && (
-          <section className="py-16 md:py-24 w-full bg-[#FAF9F6]">
+          <section className="py-16 md:py-24 w-full bg-[#FFFFFF]">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16 md:gap-20">
               <div className="flex flex-col gap-4 max-w-3xl">
                 <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">{project.iterations.title}</h3>
