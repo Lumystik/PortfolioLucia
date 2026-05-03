@@ -967,7 +967,39 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
+   {/* --- 12. BRANDING SECTION --- */}
+        {project.branding && (
+          <div className="bg-white">
+            <section className="py-16 md:py-20">
+              <div className="max-w-7xl mx-auto px-6">
+                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313] mb-8">
+                  Building the Brand
+                </h3>
+                <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-3xl">
+                  {project.branding.description}
+                </p>
+              </div>
+            </section>
 
+            {project.branding.shapes && (
+              <section className="py-16 md:py-20">
+                <div className="max-w-7xl mx-auto px-6 flex justify-center items-center gap-6 flex-wrap">
+                  {project.branding.shapes.map((shape: any, idx: number) => (
+                    <div
+                      key={idx}
+                      className="rounded-full shadow-sm"
+                      style={{
+                        backgroundColor: shape.color,
+                        width: `${shape.size}px`,
+                        height: `${shape.size}px`,
+                        opacity: shape.opacity ?? 1,
+                        filter: `blur(${shape.blur ?? 0}px)`
+                      }}
+                    />
+                  ))}
+                </div>
+              </section>
+            )}
 {(project.branding.logoDescription || project.branding.logoImage) && (
   <section className="py-16 md:py-20 flex justify-center w-full">
     <div className="flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-16 px-6 mx-auto max-w-5xl w-full">
