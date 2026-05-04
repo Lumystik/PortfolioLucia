@@ -1188,21 +1188,19 @@ const descriptionParts = persona.description
     </div>
   </section>
 )}
-     {project.howMightWe2 && (
+{project.howMightWe2 && (
   <section className="py-16 md:py-20 w-full bg-white">
     <div className="max-w-7xl mx-auto px-6">
-      <div className="grid grid-cols-1 gap-6">
-        <div className="rounded-[2.5rem] bg-gray text-black p-8 md:p-12 min-h-[220px] md:min-h-[280px] flex items-center border border-neutral-900 overflow-hidden relative">
-          <div className="absolute inset-x-8 top-8 h-px bg-white/10" />
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tight leading-none">
-          <span className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500">
-                Question 0{index + 1}
-              </span>
-              <p className="text-xl md:text-2xl leading-relaxed font-medium tracking-[-0.01em]">
-                {question}
-              </p>
-          </h2>
-        </div>
+      <div className="rounded-[2.5rem] bg-[#F2F2F2] text-[#131313] p-8 md:p-12 min-h-[220px] md:min-h-[280px] flex flex-col justify-between border border-neutral-200 overflow-hidden relative shadow-sm">
+        <div className="absolute inset-x-8 top-8 h-px bg-black/10" />
+
+        <span className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500">
+          Question 01
+        </span>
+
+        <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight leading-tight max-w-5xl">
+          {project.howMightWe2[0]}
+        </h2>
       </div>
     </div>
   </section>
