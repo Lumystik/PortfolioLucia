@@ -493,12 +493,12 @@ processMap: [
   sectionLabel: "Design System",
   title: "Building the Brand",
   intro:
-    "The redesign for Cineteca Milano moves away from a bold and playful identity toward a more timeless, mature, and elegant visual language. Warm earthy tones, restrained typography, and refined iconography were chosen to reflect the institution’s cultural and historical significance.",
+    "Warm earthy tones, restrained typography, and refined iconography were chosen to reflect the institution’s cultural and historical significance. ",
 
   rebranding: {
     title: "Rebranding",
     description:
-      "From Bold to Timeless: The redesign moves away from a bold and playful identity to one that is timeless, mature, and elegant. The soft curves and earthy brown and orange tones reflect the historical and artistic significance of Cineteca Milano."
+      "From Bold to Timeless: The redesign moves away from a bold and playful identity to one that is timeless, mature, and elegant."
   },
 
   colorPalette: {
@@ -536,8 +536,8 @@ processMap: [
   iconSet: {
     title: "Icon Set",
     description:
-      "The line icons are minimalist and thin, reflecting a contemporary and elegant design approach. Rounded edges contribute to a soft, welcoming aesthetic that matches the brand tone. The icon set aligns with the brand’s refined and cultural tone while remaining highly legible.",
-    image: "https://github.com/Lumystik/PortfolioLucia/blob/9ab65c204fbf109f8646069c110efcde6ef45b7d/images/logo_set.png?raw=true"
+      "Rounded edges contribute to a soft, welcoming aesthetic that matches the brand tone. The icon set aligns with the brand’s refined and cultural tone while remaining highly legible.",
+    image: "https://github.com/Lumystik/PortfolioLucia/blob/90447a2f7ee111e8353ee9c4b73e1a751b76556a/images/logo_set.png?raw=true"
   },
 
   logo: {
@@ -552,17 +552,17 @@ processMap: [
       functions: [
         {
           title: "CENTRALIZED FILM DISCOVERY",
-          description: "A newly added 'All Films' page categorizes content into 'In Theaters' and 'Our Archives'. It features robust filtering, cast highlights, and direct streaming access for archived films.",
+          description: "A newly added 'All Films' page categorizes content into 'In Theaters' and 'Our Archives'.",
           image: "https://github.com/Lumystik/PortfolioLucia/blob/985c14161b727e75b350483da732b98d222fb4db/images/keyfunction_filmpage.png?raw=true"
         },
         {
           title: "STREAMLINED EVENT EXPLORATION",
-          description: "Events are categorized using a sticky filter bar. A toggle switches between free and ticketed events, and individual event pages feature a 'Show Map' integration for quick location context.",
+          description: "Events are categorized using a sticky filter bar. ",
           image: "https://github.com/Lumystik/PortfolioLucia/blob/44bc54f167d5ef916b175ef981126accbc704003/images/keyfunction__events.png?raw=true"
         },
         {
           title: "FRICTIONLESS TICKET BOOKING",
-          description: "A step-by-step flow with a clean 'Select Date and Cinema' section. The seat selection interface clearly distinguishes between available, reserved, and selected seats, culminating in a mobile-friendly QR code ticket.",
+          description: "A step-by-step flow with a clean 'Select Date and Cinema' section. ",
           image: "https://github.com/Lumystik/PortfolioLucia/blob/b64c5d8fa1db8781e593ab48479a5bda00e94823/images/keyfunction_tickets.png?raw=true"
         }
       ]
