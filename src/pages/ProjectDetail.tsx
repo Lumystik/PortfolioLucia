@@ -130,20 +130,24 @@ const projectsData: Record<string, any> = {
       ],
       conclusion: "Both roles require a centralized dashboard, shared calendar, project tracking, and collection management to reduce switching costs."
     },
- 
-    branding: {
-      description: "The design system was built to be clean, accessible, and highly functional, prioritizing data visualization and task management. It includes standardized colors, buttons, dropdown menus, and calendar components.",
-      logoDescription: "We were drawn to the asterisk as a symbol of connection, and wanted to incorporate its radiating structure as a mark that points toward information, toward people, toward the institution itself.",
-      logoImage: "https://github.com/Lumystik/PortfolioLucia/blob/ac040a0ff68481a4ef9745568ded5b5c9b484a5b/images/museonlogo.png?raw=true",       
-      featuresImage: "https://github.com/Lumystik/PortfolioLucia/blob/547aa903f1fe2375dc50f7b804b11a979d4fe8ca/images/museon_designsystem.png?raw=true", 
-      shapes: [
-        { color: "#000000", size: 120, x: "20%", y: "10%" },
-        { color: "#6B6A6A", size: 100, x: "50%", y: "10%"},
-        { color: "#D9D9D9", size: 90, x: "75%", y: "10%" },
-        { color: "#1600FF", size: 110, x: "35%", y: "10%"},
-        { color: "#EE4904", size: 110, x: "0%", y: "10%"}
-      ]
-    },
+ branding: {
+  description: "The redesign moves away from a bold and playful identity to one that is timeless, mature, and elegant. The color palette uses warm, earthy brown and orange tones (#B65929, #2A1002) to reflect values from the past. Typography pairs 'New Spirit' for headings with 'Satoshi' for body text.",
+  logoDescription: "New logo introduces a distinctive symbol. This new logo is abstract yet clear, suggesting an archive. It’s a clean, logo that can stand alone for branding purposes.",
+  logoImage: "https://github.com/Lumystik/PortfolioLucia/blob/6217c5f1edc51584a17ffed9f0a84e2d957e8d24/images/logo_cineteca.png?raw=true",
+  images: [
+    "https://github.com/Lumystik/PortfolioLucia/blob/f4d86ca2eb3b0ac3117214ef8ff35634270ddb4b/images/films_branding1.png?raw=true",
+    "https://github.com/Lumystik/PortfolioLucia/blob/6217c5f1edc51584a17ffed9f0a84e2d957e8d24/images/logo_cineteca.png?raw=true"
+  ],
+  shapes: [
+    { color: "#B65929", size: 120 },
+    { color: "#762C06", size: 100 },
+    { color: "#2A1002", size: 90 },
+    { color: "#6F5548", size: 110 },
+    { color: "#A4948C", size: 110 },
+    { color: "#CDC5C0", size: 95 },
+    { color: "#F5F5F7", size: 105 }
+  ]
+},,
     keyFunctions: {
       description: "An all-in-one platform designed to reduce switching costs and improve team collaboration.",
       functions: [
