@@ -467,23 +467,35 @@ processMap: [
     }
   ]
 },
+ targetUsers2: {
+  persona: {
+    name: "Marco Son",
+    role: "Painter",
+    age: "27 years old",
+    archetype: "The Enthusiast",
+    bio: "Marco finds inspiration in the imaginative worlds of sci-fi films, often incorporating futuristic elements into his artwork. Documentaries fuel his curiosity, helping him explore diverse subjects and perspectives. He aims to bridge the gap between art and cinema.",
+    image: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=800&q=80",
     
-    targetUsers: {
-      description: "We developed personas representing diverse user needs, from creative professionals seeking inspiration to casual enthusiasts.",
-      personas: [
-        {
-          title: "THE CREATOR",
-          description: "Costume designers (like Eason) and film students (like Alex) looking for diverse creative inspiration, high-resolution archival films, and networking opportunities. They need reliable access to classic films for study.",
-          image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80"
-        },
-        {
-          title: "THE ENTHUSIAST",
-          description: "Painters, engineers, and graphic designers (like Marco, Carlo, and Miranda) who enjoy retro films, attend local festivals, and seek quality resources on film history. They want clear event details and easy ticket booking.",
-          image: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=800&q=80"
-        }
-      ],
-      conclusion: "Users needed a platform that allowed smooth switching between sections, clear event details, and a frictionless ticket booking experience with high error tolerance."
+    // Personality Sliders (Simple text-based visualization)
+    personality: [
+      { left: "Introvert", right: "Extrovert", value: 40 },
+      { left: "Analytical", right: "Creative", value: 90 },
+      { left: "Passive", right: "Active", value: 60 },
+    ],
+
+    // Empathy Map Data
+    empathyMap: {
+      say: "I need more content that combines art and film.",
+      think: "Will this film spark my creativity?",
+      does: "Notes ideas after watching; shares insights with art communities.",
+      feel: "Frustrated by cluttered interfaces and limited content."
     },
+
+    interests: ["Sci-fi films", "Documentaries", "Art galleries", "Concept art"],
+    goals: ["Host a sci-fi inspired exhibition", "Collaborate with filmmakers"],
+    painPoints: ["Creative blocks", "Cluttered interface", "Poor navigation"]
+  }
+},
     howMightWe: [
       "simplify the ticket booking process to reduce clicks and user frustration?",
       "reorganize the Information Architecture to make the film archive and current events easily discoverable?",
@@ -1066,7 +1078,87 @@ const descriptionParts = persona.description
             </div>
           </section>
         )}
-   
+   {project.targetUsers2 && (
+  <section className="py-24 bg-white text-[#131313]">
+    <div className="max-w-7xl mx-auto px-6">
+      <h2 className="text-sm uppercase tracking-[0.2em] text-neutral-400 mb-16">Detailed Persona</h2>
+      
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+        
+        {/* Column 1: Profile & Bio (4/12) */}
+        <div className="lg:col-span-4 flex flex-col gap-8">
+          <div className="aspect-[4/5] bg-neutral-100 rounded-2xl overflow-hidden">
+            <img src={project.targetUsers2.persona.image} alt="Marco" className="w-full h-full object-cover" />
+          </div>
+          <div>
+            <h3 className="text-4xl font-bold uppercase tracking-tighter">{project.targetUsers2.persona.name}</h3>
+            <p className="text-lg text-neutral-500">{project.targetUsers2.persona.archetype} • {project.targetUsers2.persona.age}</p>
+          </div>
+          <p className="text-gray-600 leading-relaxed">{project.targetUsers2.persona.bio}</p>
+        </div>
+
+        {/* Column 2: Empathy Map (4/12) */}
+        <div className="lg:col-span-5 border-l border-neutral-100 pl-12">
+          <h4 className="text-xs font-black uppercase tracking-widest mb-10 text-neutral-400">Empathy Map</h4>
+          <div className="grid grid-cols-2 gap-y-12 gap-x-8">
+            <div className="flex flex-col gap-3">
+              <span className="text-2xl font-bold italic text-neutral-300">SAY</span>
+              <p className="text-sm text-gray-600 leading-snug">"{project.targetUsers2.persona.empathyMap.say}"</p>
+            </div>
+            <div className="flex flex-col gap-3">
+              <span className="text-2xl font-bold italic text-neutral-300">THINK</span>
+              <p className="text-sm text-gray-600 leading-snug">{project.targetUsers2.persona.empathyMap.think}</p>
+            </div>
+            <div className="flex flex-col gap-3">
+              <span className="text-2xl font-bold italic text-neutral-300">DOES</span>
+              <p className="text-sm text-gray-600 leading-snug">{project.targetUsers2.persona.empathyMap.does}</p>
+            </div>
+            <div className="flex flex-col gap-3">
+              <span className="text-2xl font-bold italic text-neutral-300">FEEL</span>
+              <p className="text-sm text-gray-600 leading-snug">{project.targetUsers2.persona.empathyMap.feel}</p>
+            </div>
+          </div>
+          
+          <div className="mt-16">
+             <h4 className="text-xs font-black uppercase tracking-widest mb-6 text-neutral-400">Personality</h4>
+             {project.targetUsers2.persona.personality.map((trait, i) => (
+               <div key={i} className="mb-4">
+                 <div className="flex justify-between text-[10px] uppercase font-bold mb-1">
+                   <span>{trait.left}</span>
+                   <span>{trait.right}</span>
+                 </div>
+                 <div className="h-[2px] bg-neutral-100 w-full relative">
+                   <div className="absolute h-full bg-[#B65929]" style={{ width: '8px', left: `${trait.value}%` }} />
+                 </div>
+               </div>
+             ))}
+          </div>
+        </div>
+
+        {/* Column 3: Goals & Pains (3/12) */}
+        <div className="lg:col-span-3 flex flex-col gap-12">
+          <div>
+            <h4 className="text-xs font-black uppercase tracking-widest mb-4 text-neutral-400">Goals</h4>
+            <ul className="flex flex-col gap-3">
+              {project.targetUsers2.persona.goals.map((g, i) => (
+                <li key={i} className="text-sm font-bold text-gray-700 leading-tight">/ {g}</li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-xs font-black uppercase tracking-widest mb-4 text-neutral-400">Pain Points</h4>
+            <ul className="flex flex-col gap-3">
+              {project.targetUsers2.persona.painPoints.map((p, i) => (
+                <li key={i} className="text-sm text-gray-500 border-l-2 border-red-100 pl-3">{p}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+)}
 {project.howMightWe && (
   <section className="py-16 md:py-20 w-full bg-white">
     <div className="max-w-7xl mx-auto px-6">
