@@ -943,11 +943,10 @@ export function ProjectDetail() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                 {project.targetUsers.personas.map((persona: any, idx: number) => {
-                  const descriptionParts = persona.description
-                    .split('
-')
-                    .map((part: string) => part.trim())
-                    .filter(Boolean);
+                 
+const descriptionParts = persona.description
+  .split('\n')
+  .map((part: string) => part.trim())
 
                   const hasStructuredDetails = descriptionParts.some((part: string) => part.includes(':'));
 
