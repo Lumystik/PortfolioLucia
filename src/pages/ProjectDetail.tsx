@@ -1260,6 +1260,29 @@ export function ProjectDetail() {
               </section>
             )}
 
+            {(project.branding.logoDescription || project.branding.logoImage) && (
+              <section className="py-16 md:py-20 flex justify-center w-full">
+                <div className="flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-16 px-6 mx-auto max-w-5xl w-full">
+                  <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-6 max-w-lg">
+                    <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">Logo Design</h4>
+                    <p className="text-base md:text-lg text-gray-700 leading-relaxed">{project.branding.logoDescription}</p>
+                  </div>
+                  <div className="flex justify-center items-center">
+                    <img src={project.branding.logoImage} alt="Logo" className="w-full max-w-[160px] md:max-w-[200px] h-auto object-contain" />
+                  </div>
+                </div>
+              </section>
+            )}
+            {project.branding.featuresImage && (
+              <section className="py-16 md:py-20 border-t border-gray-50">
+                <div className="max-w-7xl mx-auto px-6">
+                  <img src={project.branding.featuresImage} alt="Feature" className="w-full h-auto max-w-3xl mx-auto object-contain" />
+                </div>
+              </section>
+            )}
+          </div>
+        )}
+
 {project.branding2 && (
   <section className="py-16 md:py-24 w-full bg-white">
     <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10 md:gap-14">
@@ -1278,10 +1301,9 @@ export function ProjectDetail() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-stretch">
         
-        {/* LEFT COLUMN */}
+   
         <div className="flex flex-col gap-6">
-          
-          {/* Rebranding */}
+     
           <div className="rounded-[2rem] bg-[#F2F2F2] border border-neutral-200 p-6 md:p-8 h-full">
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500 mb-3">
               {project.branding2.rebranding.title}
@@ -1393,30 +1415,6 @@ export function ProjectDetail() {
     </div>
   </section>
 )}
-            
-            {(project.branding.logoDescription || project.branding.logoImage) && (
-              <section className="py-16 md:py-20 flex justify-center w-full">
-                <div className="flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-16 px-6 mx-auto max-w-5xl w-full">
-                  <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-6 max-w-lg">
-                    <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">Logo Design</h4>
-                    <p className="text-base md:text-lg text-gray-700 leading-relaxed">{project.branding.logoDescription}</p>
-                  </div>
-                  <div className="flex justify-center items-center">
-                    <img src={project.branding.logoImage} alt="Logo" className="w-full max-w-[160px] md:max-w-[200px] h-auto object-contain" />
-                  </div>
-                </div>
-              </section>
-            )}
-            {project.branding.featuresImage && (
-              <section className="py-16 md:py-20 border-t border-gray-50">
-                <div className="max-w-7xl mx-auto px-6">
-                  <img src={project.branding.featuresImage} alt="Feature" className="w-full h-auto max-w-3xl mx-auto object-contain" />
-                </div>
-              </section>
-            )}
-          </div>
-        )}
-
         {project.keyFunctions && (
           <section className="py-16 md:py-20 w-full bg-white text-[#131313]">
             <div className="max-w-7xl mx-auto px-6">
