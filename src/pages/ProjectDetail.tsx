@@ -1023,6 +1023,63 @@ export function ProjectDetail() {
     </div>
   </section>
 )}
+                
+        {project.pillars2 && project.pillars2.length > 0 && (
+          <section className="py-16 md:py-20 w-full bg-white">
+            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16 md:gap-24">
+              {project.pillars2[0] && (
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                  className="w-full"
+                >
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                    <div className="lg:col-span-4 flex flex-col gap-4">
+                      <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight leading-tight text-[#131313]">
+                        {project.pillars2[0].title}
+                      </h3>
+                      <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                        {project.pillars2[0].description}
+                      </p>
+                    </div>
+                    <div className="lg:col-span-8 rounded-2xl overflow-hidden border border-gray-100 p-4 bg-white shadow-sm">
+                      <img src={project.pillars2[0].image} alt={project.pillars2[0].title} className="w-full h-auto object-contain" />
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+              {project.pillars2.length > 1 && (
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12">
+                  {project.pillars2.slice(1).map((pillar: any, idx: number) => (
+                    <motion.div 
+                      key={idx}
+                      initial={{ opacity: 0, y: 30 }} 
+                      whileInView={{ opacity: 1, y: 0 }} 
+                      viewport={{ once: true }} 
+                      transition={{ duration: 0.8, delay: idx * 0.15 }}
+                      className="flex flex-col gap-6 items-start text-left group"
+                    >
+                      <div className="w-full aspect-video rounded-2xl overflow-hidden border border-gray-100 p-4 bg-white">
+                        <img src={pillar.image} alt={pillar.title} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-out" />
+                      </div>
+                      <div className="flex flex-col gap-2">
+                        <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">
+                          {pillar.title}
+                        </h4>
+                        <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                          {pillar.description}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </section>
+        )}
+
 
         {project.ideation && (
           <section className="py-16 md:py-20 w-full bg-white">
@@ -1077,62 +1134,6 @@ export function ProjectDetail() {
                   ))}
                 </div>
               </div>
-            </div>
-          </section>
-        )}
-        
-        {project.pillars2 && project.pillars2.length > 0 && (
-          <section className="py-16 md:py-20 w-full bg-white">
-            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16 md:gap-24">
-              {project.pillars2[0] && (
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8 }}
-                  className="w-full"
-                >
-                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                    <div className="lg:col-span-4 flex flex-col gap-4">
-                      <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight leading-tight text-[#131313]">
-                        {project.pillars2[0].title}
-                      </h3>
-                      <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-                        {project.pillars2[0].description}
-                      </p>
-                    </div>
-                    <div className="lg:col-span-8 rounded-2xl overflow-hidden border border-gray-100 p-4 bg-white shadow-sm">
-                      <img src={project.pillars2[0].image} alt={project.pillars2[0].title} className="w-full h-auto object-contain" />
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-              {project.pillars2.length > 1 && (
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12">
-                  {project.pillars2.slice(1).map((pillar: any, idx: number) => (
-                    <motion.div 
-                      key={idx}
-                      initial={{ opacity: 0, y: 30 }} 
-                      whileInView={{ opacity: 1, y: 0 }} 
-                      viewport={{ once: true }} 
-                      transition={{ duration: 0.8, delay: idx * 0.15 }}
-                      className="flex flex-col gap-6 items-start text-left group"
-                    >
-                      <div className="w-full aspect-video rounded-2xl overflow-hidden border border-gray-100 p-4 bg-white">
-                        <img src={pillar.image} alt={pillar.title} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-out" />
-                      </div>
-                      <div className="flex flex-col gap-2">
-                        <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">
-                          {pillar.title}
-                        </h4>
-                        <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-                          {pillar.description}
-                        </p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              )}
             </div>
           </section>
         )}
