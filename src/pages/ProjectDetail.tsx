@@ -278,8 +278,12 @@ const projectsData: Record<string, any> = {
         image: "https://github.com/Lumystik/PortfolioLucia/blob/2bf3def01ee15c268265d1090683a06785465d18/images/scenario_3.png?raw=true"
       }
     ],
+    bannerImage: "https://github.com/Lumystik/PortfolioLucia/blob/11d3fa9ee9136bb0c7e859de3eadc6867282e25b/images/finalinterface_films.png?raw=true",
+    finalPrototype: {
+      link: "https://www.figma.com/design/MWvYkF7ybuKjE7SPnGi8po/Assignment?node-id=689-5581&p=f&t=u3MsALKiA01A94Ii-0?raw=true",
+    },
 
-    takeaways: "The project shows how museums can use interaction and AI to make art learning more active, personal, and memorable.",
+    takeaways: "Information Architecture is the core of projects; the skeleton where design takes place as an intuitive experience.",
 
     nextProject: {
       title: "FILMS FOUNDATION",
