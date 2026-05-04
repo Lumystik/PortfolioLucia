@@ -147,7 +147,7 @@ const projectsData: Record<string, any> = {
     { color: "#CDC5C0", size: 95 },
     { color: "#F5F5F7", size: 105 }
   ]
-},,
+},
     keyFunctions: {
       description: "An all-in-one platform designed to reduce switching costs and improve team collaboration.",
       functions: [
@@ -438,8 +438,9 @@ const projectsData: Record<string, any> = {
   iconSet: {
     title: "Icon Set",
     description:
-      "The line icons are minimalist and thin, with rounded edges that contribute to a soft and elegant design language. The icon set aligns with the brand’s refined cultural tone while remaining legible and functional."
-  },
+      "The line icons are minimalist and thin, reflecting a contemporary and elegant design approach. Rounded edges contribute to a soft, welcoming aesthetic that matches the brand tone. The icon set aligns with the brand’s refined and cultural tone while remaining highly legible.",
+    image: "https://github.com/Lumystik/PortfolioLucia/blob/9ab65c204fbf109f8646069c110efcde6ef45b7d/images/logo_set.png?raw=true""
+  },,
 
   logo: {
     title: "Logo Design",
