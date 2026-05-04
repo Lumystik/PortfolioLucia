@@ -538,7 +538,7 @@ processMap: [
     description:
       "The line icons are minimalist and thin, reflecting a contemporary and elegant design approach. Rounded edges contribute to a soft, welcoming aesthetic that matches the brand tone. The icon set aligns with the brand’s refined and cultural tone while remaining highly legible.",
     image: "https://github.com/Lumystik/PortfolioLucia/blob/9ab65c204fbf109f8646069c110efcde6ef45b7d/images/logo_set.png?raw=true""
-  },,
+  },
 
   logo: {
     title: "Logo Design",
