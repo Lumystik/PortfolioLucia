@@ -367,6 +367,81 @@ processMap: [
     ]
   }
 ],
+    benchmarking: {
+  title: "Benchmarking",
+  subtitle: "Competitive Analysis",
+  description:
+    "We analyzed cultural and archive-based platforms to identify common patterns in film discovery, event exploration, and ticket booking.",
+  competitors: [
+    {
+      name: "TATE",
+      strengths: [
+        "Filterable events with multiple navigation routes.",
+        "Clear visual hierarchy and strong event highlighting.",
+        "Suggested content supports continued exploration."
+      ],
+      weaknesses: [
+        "Booking redirects to another site.",
+        "Some flows require many clicks.",
+        "Menu overlay can feel repetitive on mobile."
+      ]
+    },
+    {
+      name: "Getty",
+      strengths: [
+        "Clean content presentation.",
+        "Clear step-by-step ticket purchase process.",
+        "Strong digital archive and educational resources."
+      ],
+      weaknesses: [
+        "Inconsistent navigation styles across pages.",
+        "Fragmented journeys for tickets and planning.",
+        "No clear back button in some flows."
+      ]
+    },
+    {
+      name: "Cineteca Bologna",
+      strengths: [
+        "Color-coded categories support navigation.",
+        "Flexible film search by title or director.",
+        "Clear ticket interface with seat selection."
+      ],
+      weaknesses: [
+        "No multilingual options.",
+        "Content organization can feel fragmented.",
+        "Some functions are redundant or unclear."
+      ]
+    }
+  ],
+  taskMatrix: [
+    {
+      task: "View Film Details",
+      cineteca: "2 pages / 1 click",
+      tate: "5 pages / 4 clicks",
+      getty: "5 pages / 3 clicks",
+      bologna: "6 pages / 5 clicks"
+    },
+    {
+      task: "Explore Events",
+      cineteca: "3 pages / 2 clicks",
+      tate: "3 pages / 10 clicks",
+      getty: "12 pages / 11 clicks",
+      bologna: "6 pages / 8 clicks"
+    },
+    {
+      task: "Book Tickets",
+      cineteca: "4 pages / 7 clicks",
+      tate: "10 pages / 11 clicks",
+      getty: "9 pages / 12 clicks",
+      bologna: "7 pages / 11 clicks"
+    }
+  ],
+  findings: [
+    "Event filtering and clear categorization were common strengths in competitor platforms.",
+    "Ticket booking often became fragmented when users were redirected or forced through long flows.",
+    "Search, filters, recommendations, and clear CTAs became key patterns to carry into the redesign."
+  ]
+},
    ideation: {
   question:
     "How can we restructure Cineteca Milano into a clearer, more usable experience for discovering films, exploring events, and booking tickets?",
