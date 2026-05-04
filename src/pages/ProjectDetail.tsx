@@ -278,9 +278,9 @@ const projectsData: Record<string, any> = {
         image: "https://github.com/Lumystik/PortfolioLucia/blob/2bf3def01ee15c268265d1090683a06785465d18/images/scenario_3.png?raw=true"
       }
     ],
-    bannerImage: "https://github.com/Lumystik/PortfolioLucia/blob/11d3fa9ee9136bb0c7e859de3eadc6867282e25b/images/finalinterface_films.png?raw=true",
+    bannerImage: "https://github.com/Lumystik/PortfolioLucia/blob/0182dd8ebc2b79c3b2d70c12906039a138c2ca8b/images/Untitled%20design%20(2).gif?raw=true",
     finalPrototype: {
-      link: "https://www.figma.com/design/MWvYkF7ybuKjE7SPnGi8po/Assignment?node-id=689-5581&p=f&t=u3MsALKiA01A94Ii-0?raw=true",
+      link: "https://www.figma.com/proto/FnFqrWBxyChSOdL3aVzV9A/Prototype?node-id=564-1942&starting-point-node-id=564%3A1942&t=qxU8emggwdYKJFm1-1?raw=true",
     },
 
     takeaways: "Information Architecture is the core of projects; the skeleton where design takes place as an intuitive experience.",
@@ -604,6 +604,10 @@ processMap: [
     }
   ]
 },
+    bannerImage: "https://github.com/Lumystik/PortfolioLucia/blob/11d3fa9ee9136bb0c7e859de3eadc6867282e25b/images/finalinterface_films.png?raw=true",
+    finalPrototype: {
+      link: "https://www.figma.com/design/MWvYkF7ybuKjE7SPnGi8po/Assignment?node-id=689-5581&p=f&t=u3MsALKiA01A94Ii-0?raw=true",
+    },
     takeaways: "By applying ergonomic principles to the design, we transformed a cluttered and confusing website into a highly usable, accessible, and aesthetically pleasing platform. The new design significantly reduces cognitive load, improves task efficiency (e.g., streamlining the ticket booking flow), and provides a responsive experience across desktop and mobile devices.",
     nextProject: {
       title: "SEEDTAG",
