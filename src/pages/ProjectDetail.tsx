@@ -391,18 +391,63 @@ const projectsData: Record<string, any> = {
       "reorganize the Information Architecture to make the film archive and current events easily discoverable?",
       "modernize the brand identity while preserving the historical and artistic significance of Cineteca Milano?"
     ],
-    branding: {
-      description: "The redesign moves away from a bold and playful identity to one that is timeless, mature, and elegant. The color palette uses warm, earthy brown and orange tones (#B65929, #2A1002) to reflect values from the past. Typography pairs 'New Spirit' for headings with 'Satoshi' for body text.",
-      logoDescription: "New logo introduces a distinctive symbol. This new logo is abstract yet clear, suggesting an archive. It’s a clean, logo that can stand alone for branding purposes..",
-      logoImage: "https://github.com/Lumystik/PortfolioLucia/blob/6217c5f1edc51584a17ffed9f0a84e2d957e8d24/images/logo_cineteca.png?raw=true",
-      shapes: [
-        { color: "#B65929", size: 120, x: "20%", y: "10%" },
-        { color: "#762C06", size: 100, x: "50%", y: "10%"},
-        { color: "#2A1002", size: 90, x: "75%", y: "10%" },
-        { color: "#6F5548", size: 110, x: "35%", y: "10%"},
-        { color: "#A4948C", size: 110, x: "0%", y: "10%"}
-      ]
+ branding2: {
+  sectionLabel: "Design System",
+  title: "Building the Brand",
+  intro:
+    "The redesign for Cineteca Milano moves away from a bold and playful identity toward a more timeless, mature, and elegant visual language. Warm earthy tones, restrained typography, and refined iconography were chosen to reflect the institution’s cultural and historical significance.",
+
+  rebranding: {
+    title: "Rebranding",
+    description:
+      "From Bold to Timeless: The redesign moves away from a bold and playful identity to one that is timeless, mature, and elegant. The soft curves and earthy brown and orange tones reflect the historical and artistic significance of Cineteca Milano."
+  },
+
+  colorPalette: {
+    title: "Color Palette",
+    description:
+      "The color palette was recreated to reflect Cineteca Milano’s values from the past. Warm tones and a clean visual language resonate with the institution’s cultural significance.",
+    colors: [
+      "#B65929",
+      "#762C06",
+      "#2A1002",
+      "#6F5548",
+      "#A4948C",
+      "#CDC5C0",
+      "#F5F5F7"
+    ]
+  },
+
+  typography: [
+    {
+      name: "New Spirit",
+      role: "Display Typeface",
+      sample: "Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz 0123456789 ?!”:;.,$#%&@*()",
+      description:
+        "Used for headings and key moments in the interface, New Spirit adds a timeless and expressive tone that feels cultural and distinctive."
     },
+    {
+      name: "Satoshi",
+      role: "Body Typeface",
+      sample: "Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz 0123456789 ?!”:;.,$#%&@*()",
+      description:
+        "Chosen for body copy and UI labels, Satoshi offers smooth curves and understated elegance, making the interface readable, contemporary, and highly usable."
+    }
+  ],
+
+  iconSet: {
+    title: "Icon Set",
+    description:
+      "The line icons are minimalist and thin, with rounded edges that contribute to a soft and elegant design language. The icon set aligns with the brand’s refined cultural tone while remaining legible and functional."
+  },
+
+  logo: {
+    title: "Logo Design",
+    description:
+      "The new logo introduces a distinctive symbol that is abstract yet clear, suggesting an archive. It is clean, memorable, and strong enough to stand alone for branding purposes.",
+    image: "https://github.com/Lumystik/PortfolioLucia/blob/6217c5f1edc51584a17ffed9f0a84e2d957e8d24/images/logo_cineteca.png?raw=true"
+  }
+},
     keyFunctions: {
       description: "The redesigned platform focuses on three core tasks: Viewing Film Details, Exploring Events, and Booking Tickets across both Web and Mobile.",
       functions: [
@@ -1214,6 +1259,141 @@ export function ProjectDetail() {
                 </div>
               </section>
             )}
+
+{project.branding2 && (
+  <section className="py-16 md:py-24 w-full bg-white">
+    <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10 md:gap-14">
+      
+      <div className="max-w-3xl">
+        <p className="text-sm uppercase tracking-[0.22em] text-neutral-500 mb-3">
+          {project.branding2.sectionLabel}
+        </p>
+        <h3 className="text-3xl md:text-5xl font-bold tracking-tight text-[#131313] mb-5">
+          {project.branding2.title}
+        </h3>
+        <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+          {project.branding2.intro}
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-stretch">
+        
+        {/* LEFT COLUMN */}
+        <div className="flex flex-col gap-6">
+          
+          {/* Rebranding */}
+          <div className="rounded-[2rem] bg-[#F2F2F2] border border-neutral-200 p-6 md:p-8 h-full">
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500 mb-3">
+              {project.branding2.rebranding.title}
+            </p>
+            <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+              {project.branding2.rebranding.description}
+            </p>
+          </div>
+
+          {/* Color Palette */}
+          <div className="rounded-[2rem] bg-[#F2F2F2] border border-neutral-200 p-6 md:p-8">
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500 mb-3">
+              {project.branding2.colorPalette.title}
+            </p>
+            <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6">
+              {project.branding2.colorPalette.description}
+            </p>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              {project.branding2.colorPalette.colors.map((color: string, idx: number) => (
+                <div
+                  key={idx}
+                  className="rounded-2xl overflow-hidden border border-neutral-200 bg-white"
+                >
+                  <div
+                    className="w-full h-20"
+                    style={{ backgroundColor: color }}
+                  />
+                  <div className="px-4 py-3">
+                    <p className="text-sm font-medium text-[#131313]">{color}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Icon Set */}
+          <div className="rounded-[2rem] bg-[#F2F2F2] border border-neutral-200 p-6 md:p-8">
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500 mb-3">
+              {project.branding2.iconSet.title}
+            </p>
+            <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+              {project.branding2.iconSet.description}
+            </p>
+          </div>
+        </div>
+
+        {/* RIGHT COLUMN */}
+        <div className="flex flex-col gap-6">
+          
+          {/* Typography */}
+          <div className="rounded-[2rem] bg-[#F2F2F2] border border-neutral-200 p-6 md:p-8 flex flex-col gap-6">
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500">
+              Typography
+            </p>
+
+            {project.branding2.typography.map((type: any, idx: number) => (
+              <div
+                key={idx}
+                className="rounded-2xl bg-white border border-neutral-200 p-5 md:p-6"
+              >
+                <div className="flex flex-col gap-2 mb-4">
+                  <h4 className="text-xl md:text-2xl font-bold text-[#131313]">
+                    {type.name}
+                  </h4>
+                  <p className="text-xs md:text-sm uppercase tracking-widest text-neutral-500">
+                    {type.role}
+                  </p>
+                </div>
+
+                <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-4 break-words">
+                  {type.sample}
+                </p>
+
+                <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                  {type.description}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Logo */}
+          <div className="rounded-[2rem] bg-[#F2F2F2] border border-neutral-200 p-6 md:p-8">
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500 mb-3">
+              {project.branding2.logo.title}
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-center">
+              <div>
+                <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                  {project.branding2.logo.description}
+                </p>
+              </div>
+
+              <div className="flex justify-center md:justify-end">
+                <div className="rounded-2xl bg-white border border-neutral-200 p-6">
+                  <img
+                    src={project.branding2.logo.image}
+                    alt="Films Foundation Logo"
+                    className="w-full max-w-[140px] md:max-w-[180px] h-auto object-contain"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+)}
+            
             {(project.branding.logoDescription || project.branding.logoImage) && (
               <section className="py-16 md:py-20 flex justify-center w-full">
                 <div className="flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-16 px-6 mx-auto max-w-5xl w-full">
