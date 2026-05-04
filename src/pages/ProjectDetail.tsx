@@ -183,7 +183,6 @@ const projectsData: Record<string, any> = {
     id: "art-beyond-dimension",
     title: "Art Beyond Dimension",
     heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/0e95408be9b5b18ff336921926c7889c41d95380/images/hero_dimension.jpg?raw=true",
-    interfaceImage: "https://github.com/Lumystik/PortfolioLucia/blob/85176369bcb78e03b473d799a45522474f753705/images/dimension_final.jpeg?raw=true",
     overview: "An immersive museum experience that helps young adults engage with art through interaction, AI integration, and playful learning.",
     scope: "Digital Experience & Totem Interface",
     role: "Digital and Interaction Design",
@@ -192,7 +191,7 @@ const projectsData: Record<string, any> = {
     prototypeLink: "https://www.figma.com/proto/FnFqrWBxyChSOdL3aVzV9A/Prototype?node-id=616-1965&starting-point-node-id=564%3A1942&t=bIX74fMjWA7kTArF-1",
 
     problem: "Young visitors often disengage from static museum displays and need more active ways to connect with art.",
-
+    problemImage:"https://github.com/Lumystik/PortfolioLucia/blob/ffb517c91a1b42a32e021413db4899eddbdbe05f/images/problem_dimensionn.png",
     researchObjectives: [
       "Understand how young adults engage with art in museums.",
       "Explore how digital interaction can support learning.",
