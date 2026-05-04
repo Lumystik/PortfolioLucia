@@ -504,7 +504,7 @@ processMap: [
   colorPalette: {
     title: "Color Palette",
     description:
-      "The color palette was recreated to reflect Cineteca Milano’s values from the past. Warm tones and a clean visual language resonate with the institution’s cultural significance.",
+      "Warm tones and a clean visual language resonate with the institution’s cultural significance.",
     colors: [
       "#B65929",
       "#762C06",
@@ -543,7 +543,7 @@ processMap: [
   logo: {
     title: "Logo Design",
     description:
-      "The new logo introduces a distinctive symbol that is abstract yet clear, suggesting an archive. It is clean, memorable, and strong enough to stand alone for branding purposes.",
+      "The new logo introduces a distinctive symbol that is abstract yet clear, suggesting an archive.",
     image: "https://github.com/Lumystik/PortfolioLucia/blob/6217c5f1edc51584a17ffed9f0a84e2d957e8d24/images/logo_cineteca.png?raw=true"
   }
 },
@@ -567,7 +567,7 @@ processMap: [
         }
       ]
     },
-    niceToHaves: {
+  niceToHaves: {
   title: "NICE TO HAVES",
   description:
     "These features were not fully developed in the prototype, but could further improve personalization and discovery.",
