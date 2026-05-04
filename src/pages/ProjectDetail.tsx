@@ -189,19 +189,16 @@ const projectsData: Record<string, any> = {
     timeline: "6 months · Master’s studio project",
     team: "Razieh Soleimani, Lucia Medina, Marjan Mehrabi, Fatemeh Khoshbazan",
     prototypeLink: "https://www.figma.com/proto/FnFqrWBxyChSOdL3aVzV9A/Prototype?node-id=616-1965&starting-point-node-id=564%3A1942&t=bIX74fMjWA7kTArF-1",
-
     problem: "Young visitors often disengage from static museum displays and need more active ways to connect with art.",
-    problemImage:"https://github.com/Lumystik/PortfolioLucia/blob/ffb517c91a1b42a32e021413db4899eddbdbe05f/images/problem_dimensionn.png",
+    problemImage: "https://github.com/Lumystik/PortfolioLucia/blob/ffb517c91a1b42a32e021413db4899eddbdbe05f/images/problem_dimensionn.png?raw=true",
     researchObjectives: [
       "Understand how young adults engage with art in museums.",
       "Explore how digital interaction can support learning.",
       "Test whether creative participation increases interest."
     ],
-
     howMightWe2: [
       "How might we make museum learning more interactive and personal for young visitors?"
     ],
-
     userTesting: {
       title: "User Testing & Validation",
       description: "Testing focused on clarity, voice guidance, and whether the print reward felt intuitive.",
@@ -209,7 +206,6 @@ const projectsData: Record<string, any> = {
         "https://github.com/Lumystik/PortfolioLucia/blob/dd95a5f2ca9291229e663073fe9e1c8365466209/images/usertesting_dimension.jpg?raw=true"
       ]
     },
-
     userInsightsCards: [
       {
         title: "CURIOSITY",
@@ -224,7 +220,6 @@ const projectsData: Record<string, any> = {
         description: "The interface needed to stay simple in a busy museum setting."
       }
     ],
-
     keyFunctions: {
       description: "A dual-screen experience combining museum artworks, motion graphics, AI generation, and a printed takeaway.",
       functions: [
@@ -245,7 +240,6 @@ const projectsData: Record<string, any> = {
         }
       ]
     },
-
     targetUsers: {
       description: "Young adults seeking visual, social, and interactive cultural experiences.",
       personas: [
@@ -257,9 +251,6 @@ const projectsData: Record<string, any> = {
       ],
       conclusion: "She wants museum experiences to feel personal, visual, and easy to engage with."
     },
-
-    bannerImage: "https://github.com/Lumystik/PortfolioLucia/blob/e942b67bef52b6a8237dcd807e02a3f741f791a5/images/wall.jpg?raw=true",
-
     pillars: [
       {
         title: "Scenario 1: Art Discovery",
@@ -281,9 +272,7 @@ const projectsData: Record<string, any> = {
     finalPrototype: {
       link: "https://www.figma.com/proto/FnFqrWBxyChSOdL3aVzV9A/Prototype?node-id=564-1942&starting-point-node-id=564%3A1942&t=qxU8emggwdYKJFm1-1?raw=true",
     },
-
     takeaways: "Information Architecture is the core of projects; the skeleton where design takes place as an intuitive experience.",
-
     nextProject: {
       title: "FILMS FOUNDATION",
       link: "/project/films-foundation"
