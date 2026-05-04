@@ -473,7 +473,7 @@ processMap: [
 },
  targetUsers2: {
   persona: {
-    name: "Marco Son",
+    name: "Marco",
     role: "Painter",
     age: "27 years old",
     archetype: "The Enthusiast",
@@ -496,8 +496,7 @@ processMap: [
     },
 
     interests: ["Sci-fi films", "Documentaries", "Art galleries", "Concept art"],
-    goals: ["Host a sci-fi inspired exhibition", "Collaborate with filmmakers"],
-    painPoints: ["Creative blocks", "Cluttered interface", "Poor navigation"]
+    goals: ["Host a sci-fi inspired exhibition", "Collaborate with filmmakers"]
   }
 },
     howMightWe: [
@@ -1153,7 +1152,7 @@ const descriptionParts = persona.description
             <h4 className="text-xs font-black uppercase tracking-widest mb-4 text-neutral-400">Pain Points</h4>
             <ul className="flex flex-col gap-3">
               {project.targetUsers2.persona.painPoints.map((p, i) => (
-                <li key={i} className="text-sm text-gray-500 border-l-2 border-red-100 pl-3">{p}</li>
+                <li key={i} className="text-sm text-gray-500 border-l-2 border-red-600 pl-3">{p}</li>
               ))}
             </ul>
           </div>
