@@ -774,7 +774,6 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
-
 {project.processMap && (
   <section className="py-16 md:py-20 w-full bg-white">
     <div className="max-w-7xl mx-auto px-6">
@@ -782,58 +781,78 @@ export function ProjectDetail() {
         <p className="text-sm uppercase tracking-[0.22em] text-neutral-500 mb-3">
           Process
         </p>
+
         <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-[#131313] mb-4">
           Design Process Map
         </h2>
+
         <p className="text-base md:text-lg text-neutral-600 leading-relaxed">
-          A structured overview of the analysis and redesign phases that shaped the Cineteca Milano experience.
+          A structured overview of the research, definition, and design phases that shaped the project.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
-        {project.processMap.map((phase: any, phaseIndex: number) => (
-          <motion.div
-            key={phaseIndex}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.45, delay: phaseIndex * 0.08 }}
-            className="rounded-[2rem] border border-neutral-200 bg-[#F2F2F2] p-6 md:p-8 shadow-sm"
-          >
-            <div className="mb-8">
-              <p className="text-xs uppercase tracking-[0.18em] text-neutral-500 mb-2">
-                Phase 0{phaseIndex + 1}
-              </p>
-              <h3 className="text-2xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">
-                {phase.phase}
-              </h3>
-            </div>
+      <div
+        className={`grid grid-cols-1 ${
+          project.processMap.length === 2 ? "lg:grid-cols-2" : "lg:grid-cols-3"
+        } gap-8 lg:gap-10`}
+      >
+        {project.processMap.map((phase: any, phaseIndex: number) => {
+          const processItems =
+            phase.items ||
+            phase.steps?.map((step: string) => ({
+              title: step,
+              description: ""
+            })) ||
+            [];
 
-            <div className="grid grid-cols-1 gap-4">
-              {phase.items.map((item: any, itemIndex: number) => (
-                <div
-                  key={itemIndex}
-                  className="rounded-[1.5rem] bg-white border border-neutral-200 p-5 md:p-6 shadow-sm"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-[#131313] text-white flex items-center justify-center text-sm font-bold shrink-0">
-                      {String(itemIndex + 1).padStart(2, '0')}
-                    </div>
+          return (
+            <motion.div
+              key={phaseIndex}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.45, delay: phaseIndex * 0.08 }}
+              className="rounded-[2rem] border border-neutral-200 bg-[#F2F2F2] p-6 md:p-8 shadow-sm"
+            >
+              <div className="mb-8">
+                <p className="text-xs uppercase tracking-[0.18em] text-neutral-500 mb-2">
+                  Phase 0{phaseIndex + 1}
+                </p>
 
-                    <div className="flex flex-col gap-2">
-                      <h4 className="text-lg md:text-xl font-bold uppercase tracking-tight text-[#131313]">
-                        {item.title}
-                      </h4>
-                      <p className="text-sm md:text-base text-gray-700 leading-relaxed">
-                        {item.description}
-                      </p>
+                <h3 className="text-2xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">
+                  {phase.phase}
+                </h3>
+              </div>
+
+              <div className="grid grid-cols-1 gap-4">
+                {processItems.map((item: any, itemIndex: number) => (
+                  <div
+                    key={itemIndex}
+                    className="rounded-[1.5rem] bg-white border border-neutral-200 p-5 md:p-6 shadow-sm"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-full bg-[#131313] text-white flex items-center justify-center text-sm font-bold shrink-0">
+                        {String(itemIndex + 1).padStart(2, "0")}
+                      </div>
+
+                      <div className="flex flex-col gap-2">
+                        <h4 className="text-lg md:text-xl font-bold uppercase tracking-tight text-[#131313]">
+                          {item.title}
+                        </h4>
+
+                        {item.description && (
+                          <p className="text-sm md:text-base text-gray-700 leading-relaxed">
+                            {item.description}
+                          </p>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        ))}
+                ))}
+              </div>
+            </motion.div>
+          );
+        })}
       </div>
     </div>
   </section>
