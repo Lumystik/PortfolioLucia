@@ -198,7 +198,7 @@ const projectsData: Record<string, any> = {
       "Test whether creative participation increases interest."
     ],
 
-    howMightWe: [
+    howMightWe2: [
       "How might we make museum learning more interactive and personal for young visitors?"
     ],
 
@@ -1199,7 +1199,26 @@ const descriptionParts = persona.description
     </div>
   </section>
 )}
-                
+     {project.howMightWe2 && (
+  <section className="py-16 md:py-20 w-full bg-white">
+    <div className="max-w-7xl mx-auto px-6">
+      <div className="grid grid-cols-1 gap-6">
+        <div className="rounded-[2.5rem] bg-gray text-black p-8 md:p-12 min-h-[220px] md:min-h-[280px] flex items-center border border-neutral-900 overflow-hidden relative">
+          <div className="absolute inset-x-8 top-8 h-px bg-white/10" />
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tight leading-none">
+          <span className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500">
+                Question 0{index + 1}
+              </span>
+              <p className="text-xl md:text-2xl leading-relaxed font-medium tracking-[-0.01em]">
+                {question}
+              </p>
+          </h2>
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+              
         {project.pillars2 && project.pillars2.length > 0 && (
           <section className="py-16 md:py-20 w-full bg-white">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16 md:gap-24">
