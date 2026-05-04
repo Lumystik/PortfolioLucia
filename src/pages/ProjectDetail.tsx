@@ -1052,8 +1052,8 @@ const descriptionParts = persona.description
                               const [label, ...rest] = part.split(':');
                               return (
                                 <div key={partIdx} className="bg-white border border-neutral-200 rounded-2xl p-4">
-                                  <p className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">{label}</p>
-                                  <p className="text-sm md:text-base text-gray-700 leading-relaxed">{rest.join(':').trim()}</p>
+                                  <p className="text-xs font-bold uppercase tracking-widest text-black mb-2">{label}</p>
+                                  <p className="text-sm md:text-base text-black leading-relaxed">{rest.join(':').trim()}</p>
                                 </div>
                               );
                             })}
@@ -1065,7 +1065,7 @@ const descriptionParts = persona.description
                           <div className="space-y-4">
                             {personaMetrics.map((item: any, metricIdx: number) => (
                               <div key={metricIdx}>
-                                <div className="flex justify-between gap-4 text-xs md:text-sm text-gray-600 mb-1.5">
+                                <div className="flex justify-between gap-4 text-xs md:text-sm text-black mb-1.5">
                                   <span>{item.label}</span>
                                   <span>{item.value}%</span>
                                 </div>
