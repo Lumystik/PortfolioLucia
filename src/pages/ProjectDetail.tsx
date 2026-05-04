@@ -1106,20 +1106,20 @@ const descriptionParts = persona.description
           <h4 className="text-xs font-black uppercase tracking-widest mb-10 text-neutral-400">Empathy Map</h4>
           <div className="grid grid-cols-2 gap-y-12 gap-x-8">
             <div className="flex flex-col gap-3">
-              <span className="text-2xl font-bold italic text-neutral-300">SAY</span>
-              <p className="text-sm text-gray-600 leading-snug">"{project.targetUsers2.persona.empathyMap.say}"</p>
+              <span className="text-2xl font-bold italic">SAY</span>
+              <p className="text-md text-black leading-snug">"{project.targetUsers2.persona.empathyMap.say}"</p>
             </div>
             <div className="flex flex-col gap-3">
-              <span className="text-2xl font-bold italic text-neutral-300">THINK</span>
-              <p className="text-sm text-gray-600 leading-snug">{project.targetUsers2.persona.empathyMap.think}</p>
+              <span className="text-2xl font-bold italic">THINK</span>
+              <p className="text-md text-black leading-snug">{project.targetUsers2.persona.empathyMap.think}</p>
             </div>
             <div className="flex flex-col gap-3">
-              <span className="text-2xl font-bold italic text-neutral-300">DOES</span>
-              <p className="text-sm text-gray-600 leading-snug">{project.targetUsers2.persona.empathyMap.does}</p>
+              <span className="text-2xl font-bold italic">DOES</span>
+              <p className="text-md text-black leading-snug">{project.targetUsers2.persona.empathyMap.does}</p>
             </div>
             <div className="flex flex-col gap-3">
-              <span className="text-2xl font-bold italic text-neutral-300">FEEL</span>
-              <p className="text-sm text-gray-600 leading-snug">{project.targetUsers2.persona.empathyMap.feel}</p>
+              <span className="text-2xl font-bold italic">FEEL</span>
+              <p className="text-md text-black leading-snug">{project.targetUsers2.persona.empathyMap.feel}</p>
             </div>
           </div>
           
