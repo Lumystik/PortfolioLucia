@@ -1032,13 +1032,13 @@ const descriptionParts = persona.description
 
                           <h4 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-[#131313]">{persona.title}</h4>
                           {!hasStructuredDetails && (
-                            <p className="text-base md:text-lg text-gray-700 leading-relaxed">{persona.description}</p>
+                            <p className="text-base md:text-lg text-black leading-relaxed">{persona.description}</p>
                           )}
                         </div>
 
                         <div className="flex flex-wrap gap-2">
                           {personaTags.map((tag: string, tagIdx: number) => (
-                            <span key={tagIdx} className="px-3 py-1.5 rounded-full bg-white border border-neutral-200 text-xs md:text-sm text-gray-700">
+                            <span key={tagIdx} className="px-3 py-1.5 rounded-full bg-white border border-neutral-200 text-xs md:text-sm text-black">
                               {tag}
                             </span>
                           ))}
