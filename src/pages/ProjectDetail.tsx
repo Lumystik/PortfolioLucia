@@ -315,32 +315,55 @@ const projectsData: Record<string, any> = {
         image: "https://github.com/Lumystik/PortfolioLucia/blob/a6aa894fecb0c8e5cf48a6cb9971194b453a3e30/images/accessibility_test.gif?raw=true"
       }
     ],
-    processMap: [
+processMap: [
   {
-    phase: "Research",
-    steps: [
-      "Cognitive walkthrough",
-      "User task analysis",
-      "Personas & empathy maps",
-      "Competitive analysis"
+    phase: "Analysis Phase",
+    items: [
+      {
+        title: "Website",
+        description:
+          "Provide a detailed summary of the website, explaining its main purpose, the type of content or functionality it offers, and the specific services it provides to users."
+      },
+      {
+        title: "Users",
+        description:
+          "Utilize personas to represent target users, allowing for a deeper analysis of their needs and challenges."
+      },
+      {
+        title: "Tasks",
+        description:
+          "Analyze the primary functions of the website while employing heuristic evaluation to identify potential issues and areas for improvement."
+      },
+      {
+        title: "Competitors",
+        description:
+          "Conduct a thorough analysis of similar websites' strengths and weaknesses, identifying their key features, functionalities, and areas for improvement to gain insights for comparison and potential enhancement."
+      }
     ]
   },
   {
-    phase: "Define",
-    steps: [
-      "Pain point mapping",
-      "Existing IA audit",
-      "Card sorting",
-      "New information architecture"
-    ]
-  },
-  {
-    phase: "Develop",
-    steps: [
-      "Wireframes",
-      "Design system",
-      "High-fidelity prototype",
-      "Accessibility testing"
+    phase: "Redesign Phase",
+    items: [
+      {
+        title: "Information Architecture",
+        description:
+          "Existing IA and its problematic areas, a few testing rounds, and the design of the new IA of the website."
+      },
+      {
+        title: "Wireframes",
+        description:
+          "Wireframes for Cineteca Milano are preliminary sketches that outline the website’s structure, navigation flow, and key user interactions, ensuring a seamless and user-focused design."
+      },
+      {
+        title: "Design System",
+        description:
+          "Design patterns and components ensure consistency in branding and user interface."
+      },
+      {
+        title: "High Fidelity",
+        description:
+          "Finalize the user interface design for Cineteca Milano on both desktop and mobile, and simulate interactions to ensure a better user experience."
+      }
     ]
   }
 ],
@@ -763,62 +786,54 @@ export function ProjectDetail() {
           Design Process Map
         </h2>
         <p className="text-base md:text-lg text-neutral-600 leading-relaxed">
-          A structured journey from research to definition and development,
-          helping transform insights into a clear product direction.
+          A structured overview of the analysis and redesign phases that shaped the Cineteca Milano experience.
         </p>
       </div>
 
-      <div className="relative">
-        {/* Desktop connector line */}
-        <div className="hidden lg:block absolute top-10 left-[16%] right-[16%] border-t border-dashed border-neutral-300 z-0" />
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+        {project.processMap.map((phase: any, phaseIndex: number) => (
+          <motion.div
+            key={phaseIndex}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.45, delay: phaseIndex * 0.08 }}
+            className="rounded-[2rem] border border-neutral-200 bg-[#F2F2F2] p-6 md:p-8 shadow-sm"
+          >
+            <div className="mb-8">
+              <p className="text-xs uppercase tracking-[0.18em] text-neutral-500 mb-2">
+                Phase 0{phaseIndex + 1}
+              </p>
+              <h3 className="text-2xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">
+                {phase.phase}
+              </h3>
+            </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
-          {project.processMap.map((phase: any, index: number) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.45, delay: index * 0.08 }}
-              className="relative z-10 rounded-[2rem] border border-neutral-200 bg-[#F2F2F2] p-6 md:p-8 shadow-sm overflow-hidden"
-            >
-              {/* top marker */}
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-full bg-[#050505] text-white flex items-center justify-center text-lg font-bold shrink-0">
-                  {index + 1}
-                </div>
-
-                <div>
-                  <p className="text-xs uppercase tracking-[0.18em] text-neutral-500 mb-1">
-                    Step 0{index + 1}
-                  </p>
-                  <h3 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-[#131313]">
-                    {phase.phase}
-                  </h3>
-                </div>
-              </div>
-
-              {/* optional little top dot for desktop */}
-              <div className="hidden lg:block absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full border border-neutral-300 bg-white" />
-
-              <div className="space-y-3">
-                {phase.steps.map((step: string, stepIndex: number) => (
-                  <div
-                    key={stepIndex}
-                    className="flex items-start gap-3 rounded-2xl bg-white border border-neutral-200 px-4 py-3 shadow-sm"
-                  >
-                    <div className="w-6 h-6 rounded-full border border-neutral-300 flex items-center justify-center text-xs font-semibold text-neutral-600 shrink-0 mt-0.5">
-                      {stepIndex + 1}
+            <div className="grid grid-cols-1 gap-4">
+              {phase.items.map((item: any, itemIndex: number) => (
+                <div
+                  key={itemIndex}
+                  className="rounded-[1.5rem] bg-white border border-neutral-200 p-5 md:p-6 shadow-sm"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-[#131313] text-white flex items-center justify-center text-sm font-bold shrink-0">
+                      {String(itemIndex + 1).padStart(2, '0')}
                     </div>
-                    <p className="text-sm md:text-base text-neutral-700 leading-relaxed">
-                      {step}
-                    </p>
+
+                    <div className="flex flex-col gap-2">
+                      <h4 className="text-lg md:text-xl font-bold uppercase tracking-tight text-[#131313]">
+                        {item.title}
+                      </h4>
+                      <p className="text-sm md:text-base text-gray-700 leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
                   </div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        ))}
       </div>
     </div>
   </section>
