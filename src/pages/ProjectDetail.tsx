@@ -850,78 +850,58 @@ export function ProjectDetail() {
           </section>
         )}
 {project.processMap && (
-  <section className="py-16 md:py-20 w-full bg-white">
+  <section className="py-20 w-full bg-white">
     <div className="max-w-7xl mx-auto px-6">
-      <div className="mb-10 md:mb-14 max-w-3xl">
-        <p className="text-sm uppercase tracking-[0.22em] text-neutral-500 mb-3">
-          Process
+      
+      <div className="mb-16 max-w-3xl">
+        <p className="text-sm uppercase tracking-widest text-neutral-400 mb-3">
+          Methodology
         </p>
-
-        <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-[#131313] mb-4">
-          Design Process Map
+        <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[#131313] mb-4">
+          Design Process
         </h2>
-
-        <p className="text-base md:text-lg text-neutral-600 leading-relaxed">
+        <p className="text-lg text-gray-600 leading-relaxed">
           A structured overview of the research, definition, and design phases that shaped the project.
         </p>
       </div>
 
-      <div
-        className={`grid grid-cols-1 ${
-          project.processMap.length === 2 ? "lg:grid-cols-2" : "lg:grid-cols-3"
-        } gap-8 lg:gap-10`}
-      >
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-neutral-200 pt-12">
         {project.processMap.map((phase: any, phaseIndex: number) => {
           const processItems =
             phase.items ||
-            phase.steps?.map((step: string) => ({
-              title: step,
-              description: ""
-            })) ||
-            [];
+            phase.steps?.map((step: string) => ({ title: step, description: "" })) || [];
 
           return (
             <motion.div
               key={phaseIndex}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.45, delay: phaseIndex * 0.08 }}
-              className="rounded-[2rem] border border-neutral-200 bg-[#F2F2F2] p-6 md:p-8 shadow-sm"
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: phaseIndex * 0.1 }}
+              className="flex flex-col gap-8"
             >
-              <div className="mb-8">
-                <p className="text-xs uppercase tracking-[0.18em] text-neutral-500 mb-2">
-                  Phase 0{phaseIndex + 1}
-                </p>
-
-                <h3 className="text-2xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">
+              {/* Minimalist Phase Header */}
+              <div className="flex flex-col gap-2">
+                <span className="text-4xl font-bold text-neutral-200">
+                  0{phaseIndex + 1}
+                </span>
+                <h3 className="text-2xl font-bold uppercase tracking-tight text-[#131313]">
                   {phase.phase}
                 </h3>
               </div>
 
-              <div className="grid grid-cols-1 gap-4">
+              {/* Clean List of Steps (No Boxes) */}
+              <div className="flex flex-col gap-6">
                 {processItems.map((item: any, itemIndex: number) => (
-                  <div
-                    key={itemIndex}
-                    className="rounded-[1.5rem] bg-white border border-neutral-200 p-5 md:p-6 shadow-sm"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-full bg-[#131313] text-white flex items-center justify-center text-sm font-bold shrink-0">
-                        {String(itemIndex + 1).padStart(2, "0")}
-                      </div>
-
-                      <div className="flex flex-col gap-2">
-                        <h4 className="text-lg md:text-xl font-bold uppercase tracking-tight text-[#131313]">
-                          {item.title}
-                        </h4>
-
-                        {item.description && (
-                          <p className="text-sm md:text-base text-gray-700 leading-relaxed">
-                            {item.description}
-                          </p>
-                        )}
-                      </div>
-                    </div>
+                  <div key={itemIndex} className="flex flex-col gap-1">
+                    <h4 className="text-base font-bold text-[#131313]">
+                      {item.title}
+                    </h4>
+                    {item.description && (
+                      <p className="text-sm text-gray-500 leading-relaxed">
+                        {item.description}
+                      </p>
+                    )}
                   </div>
                 ))}
               </div>
@@ -933,138 +913,81 @@ export function ProjectDetail() {
   </section>
 )}
 
-   {project.targetUsers && (
-          <section className="py-16 md:py-20 w-full bg-white text-[#131313]">
-            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
-              <div className="flex flex-col gap-4 max-w-3xl">
-                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">Target Users</h3>
-                <p className="text-base md:text-lg text-gray-700 leading-relaxed">{project.targetUsers.description}</p>
+{project.targetUsers && (
+  <section className="py-20 w-full bg-white text-[#131313]">
+    <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16">
+      
+      <div className="flex flex-col gap-4 max-w-3xl">
+        <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">
+          Target Users
+        </h3>
+        <p className="text-lg text-gray-600 leading-relaxed">
+          {project.targetUsers.description}
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+        {project.targetUsers.personas.map((persona: any, idx: number) => {
+          const descriptionParts = persona.description.split('\n').map((part: string) => part.trim());
+          const hasStructuredDetails = descriptionParts.some((part: string) => part.includes(':'));
+
+          return (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: idx * 0.1 }}
+              className="flex flex-col gap-8"
+            >
+              {/* Image without heavy bounding boxes */}
+              <div className="w-full aspect-[4/3] overflow-hidden rounded-xl bg-neutral-100">
+                <img 
+                  src={persona.image} 
+                  alt={persona.title} 
+                  className="w-full h-full object-cover object-[50%_20%]" 
+                />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-                {project.targetUsers.personas.map((persona: any, idx: number) => {
-                 
-const descriptionParts = persona.description
-  .split('\n')
-  .map((part: string) => part.trim())
+              <div className="flex flex-col gap-6">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-2">
+                    Persona 0{idx + 1}
+                  </p>
+                  <h4 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-[#131313]">
+                    {persona.title}
+                  </h4>
+                </div>
 
-                  const hasStructuredDetails = descriptionParts.some((part: string) => part.includes(':'));
-
-                  const personaMetrics =
-                    project.id === 'museon' && persona.title.toLowerCase().includes('alex')
-                      ? [
-                          { label: 'Planning', value: 95 },
-                          { label: 'Team coordination', value: 90 },
-                          { label: 'Task management', value: 85 }
-                        ]
-                      : project.id === 'museon'
-                      ? [
-                          { label: 'Task clarity', value: 95 },
-                          { label: 'Accessibility', value: 85 },
-                          { label: 'Guided workflow', value: 80 }
-                        ]
-                      : project.id === 'art-beyond-dimension'
-                      ? [
-                          { label: 'Interactivity', value: 95 },
-                          { label: 'Visual discovery', value: 90 },
-                          { label: 'Ease of use', value: 85 }
-                        ]
-                      : project.id === 'films-foundation' && persona.title.toLowerCase().includes('creator')
-                      ? [
-                          { label: 'Archive access', value: 95 },
-                          { label: 'Searchability', value: 90 },
-                          { label: 'Creative inspiration', value: 85 }
-                        ]
-                      : [
-                          { label: 'Easy booking', value: 95 },
-                          { label: 'Event discovery', value: 85 },
-                          { label: 'Mobile clarity', value: 80 }
-                        ];
-
-                  const personaTags =
-                    project.id === 'museon' && persona.title.toLowerCase().includes('alex')
-                      ? ['Museum staff', 'Planning', 'Collaboration', 'Office workflow']
-                      : project.id === 'museon'
-                      ? ['Intern', 'On-site support', 'Clear tasks', 'Learning']
-                      : project.id === 'art-beyond-dimension'
-                      ? ['Young adult', 'Visual discovery', 'Social sharing', 'Interactive learning']
-                      : project.id === 'films-foundation' && persona.title.toLowerCase().includes('creator')
-                      ? ['Creative research', 'Archive access', 'Film references', 'Inspiration']
-                      : ['Cultural visitor', 'Events', 'Ticket booking', 'Mobile use'];
-
-                  return (
-                    <motion.div
-                      key={idx}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.8, delay: idx * 0.1 }}
-                      className="flex flex-col bg-[#F2F2F2] border border-neutral-300 rounded-[2rem] overflow-hidden shadow-sm"
-                    >
-                      <div className="p-5 md:p-6 flex flex-col gap-5">
-                        <div className="w-full aspect-[4/3] bg-white rounded-[1.5rem] overflow-hidden border border-neutral-200">
-                          <img src={persona.image} alt={persona.title} className="w-full h-full object-cover object-[50%_20%]" />
+                {hasStructuredDetails ? (
+                  <div className="flex flex-col gap-4">
+                    {descriptionParts.map((part: string, partIdx: number) => {
+                      const [label, ...rest] = part.split(':');
+                      return (
+                        <div key={partIdx} className="flex flex-col">
+                          <p className="text-xs font-bold uppercase tracking-widest text-[#131313]">
+                            {label}
+                          </p>
+                          <p className="text-base text-gray-600 leading-relaxed">
+                            {rest.join(':').trim()}
+                          </p>
                         </div>
-
-                        <div className="flex flex-col gap-2">
-                          <div className="inline-flex w-fit px-3 py-1 rounded-full bg-[#131313] text-white text-[10px] md:text-xs uppercase tracking-widest">
-                            Persona 0{idx + 1}
-                          </div>
-
-                          <h4 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-[#131313]">{persona.title}</h4>
-                          {!hasStructuredDetails && (
-                            <p className="text-base md:text-lg text-gray-700 leading-relaxed">{persona.description}</p>
-                          )}
-                        </div>
-
-                        <div className="flex flex-wrap gap-2">
-                          {personaTags.map((tag: string, tagIdx: number) => (
-                            <span key={tagIdx} className="px-3 py-1.5 rounded-full bg-white border border-neutral-200 text-xs md:text-sm text-gray-700">
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div className="px-5 md:px-6 pb-5 md:pb-6 flex flex-col gap-5">
-                        {hasStructuredDetails && (
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            {descriptionParts.map((part: string, partIdx: number) => {
-                              const [label, ...rest] = part.split(':');
-                              return (
-                                <div key={partIdx} className="bg-white border border-neutral-200 rounded-2xl p-4">
-                                  <p className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">{label}</p>
-                                  <p className="text-sm md:text-base text-gray-700 leading-relaxed">{rest.join(':').trim()}</p>
-                                </div>
-                              );
-                            })}
-                          </div>
-                        )}
-
-                        <div className="bg-white border border-neutral-200 rounded-2xl p-4">
-                          <h5 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Key Needs</h5>
-                          <div className="space-y-4">
-                            {personaMetrics.map((item: any, metricIdx: number) => (
-                              <div key={metricIdx}>
-                                <div className="flex justify-between gap-4 text-xs md:text-sm text-gray-600 mb-1.5">
-                                  <span>{item.label}</span>
-                                  <span>{item.value}%</span>
-                                </div>
-                                <div className="w-full h-2 rounded-full bg-gray-200 overflow-hidden">
-                                  <div className="h-full rounded-full bg-[#131313]" style={{ width: `${item.value}%` }} />
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  );
-                })}
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <p className="text-base text-gray-600 leading-relaxed">
+                    {persona.description}
+                  </p>
+                )}
               </div>
-            </div>
-          </section>
-        )}
+            </motion.div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+)}
    
 {project.howMightWe && (
   <section className="py-16 md:py-20 w-full bg-white">
