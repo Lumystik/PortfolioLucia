@@ -8,7 +8,7 @@ const projects = [
     title: "MUSE*ON",
     tags: "UX/UI",
     description: "An all-in-one platform for small museum teams, designed to streamline daily workflows, centralize institutional management, and make better use of limited resources.",
-    image: "https://github.com/Lumystik/PortfolioLucia/blob/fdd73d17a16fbafd0cab50f392f48561db1fef98/images/thumbmuseon.jpg?raw=true",
+    image: "https://github.com/Lumystik/PortfolioLucia/blob/8a3e89318c7d3489181d87c40888a772a070fe9a/images/museon_m.png?raw=true",
     link: "/project/museon"
   },
   {
