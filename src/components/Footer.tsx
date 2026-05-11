@@ -32,7 +32,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-12 border-t border-white/20 pt-12">
           <div className="max-w-xs">
             <p className="text-gray-400 text-xs md:text-sm leading-relaxed">
-              Design-driven solutions for modern brands, built with purpose and passion.
+             Website programmed by me in HTML, CSS, React
             </p>
           </div>
           
