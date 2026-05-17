@@ -446,15 +446,15 @@ processMap: [
 
   wireframes: [
     {
-      image: "YOUR_HOME_PAGE_WEB_WIREFRAME_URL",
+      image: "https://github.com/Lumystik/PortfolioLucia/blob/4823c9e1d3a9abfd4b02520efa9105a9551424c8/images/image.png?raw=true",
       caption: "Discover: Home Page"
     },
     {
-      image: "YOUR_ALL_FILMS_WIREFRAME_URL",
+      image: "https://github.com/Lumystik/PortfolioLucia/blob/4823c9e1d3a9abfd4b02520efa9105a9551424c8/images/image%20(2).png?raw=true",
       caption: "Explore: All Films"
     },
     {
-      image: "YOUR_BOOKING_FLOW_WIREFRAME_URL",
+      image: "https://github.com/Lumystik/PortfolioLucia/blob/4823c9e1d3a9abfd4b02520efa9105a9551424c8/images/image%20(1).png?raw=true",
       caption: "Book: Ticket Flow"
     }
   ]
