@@ -1756,7 +1756,7 @@ const descriptionParts = persona.description
             <img
               src={project.bannerImage}
               alt="Final Prototype Showcase"
-              className="w-full max-w-[800px] h-auto object-contain"
+              className="w-full max-w-[1000px] h-auto object-contain"
             />
           </div>
         )}
