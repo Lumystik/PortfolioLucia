@@ -1116,7 +1116,7 @@ const descriptionParts = persona.description
           
           <div className="mt-16">
              <h4 className="text-xs font-black uppercase tracking-widest mb-6 text-neutral-400">Personality</h4>
-             {project.targetUsers2.persona.personality.map((trait, i) => (
+             {project.targetUsers2.persona.personality.map((trait: any, i: number) => (
                <div key={i} className="mb-4">
                  <div className="flex justify-between text-[10px] uppercase font-bold mb-1">
                    <span>{trait.left}</span>
@@ -1135,15 +1135,15 @@ const descriptionParts = persona.description
           <div>
             <h4 className="text-xs font-black uppercase tracking-widest mb-4 text-neutral-400">Goals</h4>
             <ul className="flex flex-col gap-3">
-  {project.targetUsers2.persona.painPoints.map((p, i) => (
-    <li key={i} className="text-sm text-gray-500 border-l-2 border-red-600 pl-3">{p}</li>
-  ))}
+              {project.targetUsers2.persona.goals?.map((p: string, i: number) => (
+                <li key={i} className="text-sm text-gray-500 border-l-2 border-red-600 pl-3">{p}</li>
+              ))}
             </ul>
           </div>
           <div>
             <h4 className="text-xs font-black uppercase tracking-widest mb-4 text-neutral-400">Pain Points</h4>
             <ul className="flex flex-col gap-3">
-              {project.targetUsers2.persona.painPoints.map((p, i) => (
+              {project.targetUsers2.persona.painPoints?.map((p: string, i: number) => (
                 <li key={i} className="text-sm text-gray-500 border-l-2 border-red-600 pl-3">{p}</li>
               ))}
             </ul>
