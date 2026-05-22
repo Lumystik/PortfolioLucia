@@ -74,6 +74,15 @@ const projectsData: Record<string, any> = {
       title: "USABILITY RESULTS",
       description: "Both museum staff and interns had very positive reactions to the app. Staff had follow-up questions about connecting their existing calendars and internal databases, which indicates that they were considering real-life integration. All of the above were slated on the product roadmap which was extremely validating."
     },
+    conversionRate: {
+      title: "CONVERSION RATE SIMULATION",
+      description: "Results simulated from a 20-user testing group, including current museum staff and interns.",
+      metrics: [
+        { label: "Task Completion", value: "95%" },
+        { label: "Staff Adoption", value: "18/20" },
+        { label: "Workflow Speed", value: "+40%" }
+      ]
+    },
     iterations: {
       title: "ITERATIONS + REFINEMENT",
       description: "While navigating their dashboard, users all had very similar behavior on the constraints page. This lead me to implement a couple changes:",
@@ -1684,6 +1693,25 @@ const descriptionParts = persona.description
             <div className="max-w-4xl mx-auto px-6 text-center flex flex-col gap-8">
               <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">{project.usabilityResults.title}</h3>
               <p className="text-base md:text-lg text-gray-700 leading-relaxed font-medium italic">"{project.usabilityResults.description}"</p>
+            </div>
+          </section>
+        )}
+        
+        {project.conversionRate && (
+          <section className="py-16 md:py-20 w-full bg-[#131313] text-white">
+            <div className="max-w-7xl mx-auto px-6">
+              <div className="flex flex-col gap-4 mb-10 max-w-3xl">
+                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight">{project.conversionRate.title}</h3>
+                <p className="text-base md:text-lg text-gray-300 leading-relaxed">{project.conversionRate.description}</p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {project.conversionRate.metrics.map((metric: any, idx: number) => (
+                  <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }} className="flex flex-col justify-center items-center gap-2 p-10 bg-[#1a1a1a] rounded-2xl border border-gray-800 text-center">
+                    <span className="text-5xl font-bold text-white mb-2">{metric.value}</span>
+                    <span className="text-sm font-bold uppercase tracking-widest text-gray-400">{metric.label}</span>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </section>
         )}
