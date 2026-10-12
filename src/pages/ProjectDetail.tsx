@@ -5,6 +5,9 @@ import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { useEffect, useState } from 'react';
 
+// Shared image style: every content image fits its frame and is centred the same way.
+const mediaImg = "block w-full h-auto max-h-[480px] object-contain mx-auto";
+
 const projectsData: Record<string, any> = {
   "museon": {
     id: "museon",
@@ -687,7 +690,23 @@ processMap: [
     scope: "Cybersecurity Design System & Workspace UI",
     role: "UX/UI Designer (Design System, Prototyping, Handoff)",
     timeline: "Ongoing",
-    team: "Lucia Medina",
+    video: "images/Product%20Walkthrough.mp4",
+    disclosure: "Developed during my internship at AmagisTech Italia. Under my confidentiality agreement, internal product details, data and proprietary layouts are not shown. Screens are abstracted, and the project is presented through process and methodology.",
+    contribution: [
+      {
+        title: "UX Research & Usability",
+        description: "Analysed user journeys, collected feedback and took part in usability testing to find points of friction."
+      },
+      {
+        title: "Wireframing & Prototyping",
+        description: "Worked from rough sketches to interactive Figma prototypes, documenting each iteration."
+      },
+      {
+        title: "Design System & Handoff",
+        description: "Contributed to maintaining the company design system and prepared clean handoff files for the engineering team."
+      }
+    ],
+    team: "AmagisTech. Andrea Curcio (senior designer), Antonio Cervadoro (developer)",
     problem: "Security analysts work through high-volume queues where agents and humans act on the same incidents. Without a shared structure, status, ownership and agent activity become hard to read at a glance.",
     processMap: [
       {
@@ -843,6 +862,41 @@ export function ProjectDetail() {
           </div>
         </section>
 
+        {(project.video || project.contribution || project.disclosure) && (
+          <section className="py-16 md:py-20 w-full bg-white text-[#131313]">
+            <div className="max-w-5xl mx-auto px-6 flex flex-col gap-12">
+              {project.video && (
+                <video
+                  src={project.video}
+                  controls
+                  playsInline
+                  preload="metadata"
+                  className="w-full rounded-2xl border border-gray-100 bg-black"
+                />
+              )}
+              {project.contribution && (
+                <div className="flex flex-col gap-8">
+                  <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">What I Did</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {project.contribution.map((item: any, idx: number) => (
+                      <div key={idx} className="flex flex-col gap-3 p-8 bg-[#F9F9F9] rounded-2xl border border-gray-100">
+                        <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">{item.title}</h4>
+                        <p className="text-base md:text-lg text-gray-700 leading-relaxed">{item.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {project.disclosure && (
+                <p className="text-sm md:text-base text-gray-600 leading-relaxed border-l-2 border-[#131313] pl-4">
+                  <span className="font-bold uppercase tracking-widest text-[#131313]">Confidentiality. </span>
+                  {project.disclosure}
+                </p>
+              )}
+            </div>
+          </section>
+        )}
+
         {project.problem && (
           <section className="py-16 md:py-20 w-full bg-white">
             <div className="max-w-7xl mx-auto px-6">
@@ -859,7 +913,7 @@ export function ProjectDetail() {
                   <img
                     src={project.problemImage || "/placeholder-phone-mockup.png"}
                     alt="The Problem Illustration"
-                    className="w-full h-auto object-cover"
+                    className={mediaImg}
                   />
                 </div>
               </div>
@@ -1080,7 +1134,7 @@ const descriptionParts = persona.description
                     >
                       <div className="p-5 md:p-6 flex flex-col gap-5">
                         <div className="w-full aspect-[4/3] bg-white rounded-[1.5rem] overflow-hidden border border-neutral-200">
-                          <img src={persona.image} alt={persona.title} className="w-full h-full object-cover object-[50%_20%]" />
+                          <img src={persona.image} alt={persona.title} className={mediaImg} />
                         </div>
 
                         <div className="flex flex-col gap-2">
@@ -1152,7 +1206,7 @@ const descriptionParts = persona.description
         {/* Column 1: Profile & Bio (4/12) */}
         <div className="lg:col-span-4 flex flex-col gap-8">
           <div className="aspect-[4/5] bg-neutral-100 rounded-2xl overflow-hidden">
-            <img src={project.targetUsers2.persona.image} alt="Marco" className="w-full h-full object-cover" />
+            <img src={project.targetUsers2.persona.image} alt="Marco" className={mediaImg} />
           </div>
           <div>
             <h3 className="text-4xl font-bold uppercase tracking-tighter">{project.targetUsers2.persona.name}</h3>
@@ -1296,7 +1350,7 @@ const descriptionParts = persona.description
                       </p>
                     </div>
                     <div className="lg:col-span-8 rounded-2xl overflow-hidden border border-gray-100 p-4 bg-white shadow-sm">
-                      <img src={project.pillars2[0].image} alt={project.pillars2[0].title} className="w-full h-auto object-contain" />
+                      <img src={project.pillars2[0].image} alt={project.pillars2[0].title} className={mediaImg} />
                     </div>
                   </div>
                 </motion.div>
@@ -1313,7 +1367,7 @@ const descriptionParts = persona.description
                       className="flex flex-col gap-6 items-start text-left group"
                     >
                       <div className="w-full aspect-video rounded-2xl overflow-hidden border border-gray-100 p-4 bg-white">
-                        <img src={pillar.image} alt={pillar.title} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-out" />
+                        <img src={pillar.image} alt={pillar.title} className={mediaImg} />
                       </div>
                       <div className="flex flex-col gap-2">
                         <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">
@@ -1347,7 +1401,7 @@ const descriptionParts = persona.description
                 className="flex flex-col gap-6"
               >
                 <div className="w-full bg-[#F9F9F9] p-6 md:p-12 rounded-2xl border border-gray-100">
-                  <img src={project.ideation.heroFlow} alt="Hero Flow" className="w-full h-auto object-contain max-w-5xl mx-auto" />
+                  <img src={project.ideation.heroFlow} alt="Hero Flow" className={mediaImg} />
                 </div>
                 <p className="text-xs md:text-sm text-gray-400 font-bold uppercase tracking-widest text-center">
                   {project.ideation.heroFlowCaption}
@@ -1371,7 +1425,7 @@ const descriptionParts = persona.description
                       className="flex flex-col gap-6"
                     >
                       <div className="w-full max-w-[280px] mx-auto overflow-hidden shadow-sm border border-gray-100 rounded-xl flex justify-center items-center">
-                        <img src={wire.image} alt={wire.caption} className="w-full h-auto object-contain" />
+                        <img src={wire.image} alt={wire.caption} className={mediaImg} />
                       </div>
                       <div className="flex flex-col gap-2 text-center">
                         <p className="text-base md:text-lg font-bold uppercase tracking-tight text-black">
@@ -1399,7 +1453,7 @@ const descriptionParts = persona.description
                   className="flex flex-col gap-6 items-start text-left group"
                 >
                   <div className="w-full aspect-square rounded-2xl overflow-hidden border border-gray-100 p-2">
-                    <img src={pillar.image} alt={pillar.title} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-out" />
+                    <img src={pillar.image} alt={pillar.title} className={mediaImg} />
                   </div>
                   <div className="flex flex-col gap-2">
                     <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">{pillar.title}</h4>
@@ -1432,7 +1486,7 @@ const descriptionParts = persona.description
                     transition={{ duration: 0.8, delay: idx * 0.1 }}
                     className="w-full rounded-2xl overflow-hidden bg-[#F9F9F9] border border-gray-100 p-2 md:p-3"
                   >
-                    <img src={img} alt={`User Testing ${idx + 1}`} className="w-full h-auto object-cover rounded-xl" />
+                    <img src={img} alt={`User Testing ${idx + 1}`} className={mediaImg} />
                   </motion.div>
                 ))}
               </div>
@@ -1454,7 +1508,7 @@ const descriptionParts = persona.description
                       <div className="flex flex-col gap-4">
                         <h4 className="text-xl font-bold uppercase tracking-tight text-left text-white">User Perceived Benefits</h4>
                         <div className="w-full rounded-[2rem] overflow-hidden bg-white/10 p-4 border border-white/10 shadow-sm flex items-center justify-center">
-                          <img src={project.userInsights.benefitsImage} alt="User Benefits" className="w-full max-w-md h-auto object-contain" />
+                          <img src={project.userInsights.benefitsImage} alt="User Benefits" className={mediaImg} />
                         </div>
                       </div>
                     )}
@@ -1462,7 +1516,7 @@ const descriptionParts = persona.description
                       <div className="flex flex-col gap-4">
                         <h4 className="text-xl font-bold uppercase tracking-tight text-left text-white">User Priorities</h4>
                         <div className="w-full rounded-[2rem] overflow-hidden bg-white/10 p-4 border border-white/10 shadow-sm flex items-center justify-center">
-                          <img src={project.userInsights.insightsImage} alt="User Insights" className="w-full max-w-md h-auto object-contain" />
+                          <img src={project.userInsights.insightsImage} alt="User Insights" className={mediaImg} />
                         </div>
                       </div>
                     )}
@@ -1552,7 +1606,7 @@ const descriptionParts = persona.description
                     <p className="text-base md:text-lg text-gray-700 leading-relaxed">{project.branding.logoDescription}</p>
                   </div>
                   <div className="flex justify-center items-center">
-                    <img src={project.branding.logoImage} alt="Logo" className="w-full max-w-[160px] md:max-w-[200px] h-auto object-contain" />
+                    <img src={project.branding.logoImage} alt="Logo" className={mediaImg} />
                   </div>
                 </div>
               </section>
@@ -1560,7 +1614,7 @@ const descriptionParts = persona.description
             {project.branding.featuresImage && (
               <section className="py-16 md:py-20 border-t border-gray-50">
                 <div className="max-w-7xl mx-auto px-6">
-                  <img src={project.branding.featuresImage} alt="Feature" className="w-full h-auto max-w-3xl mx-auto object-contain" />
+                  <img src={project.branding.featuresImage} alt="Feature" className={mediaImg} />
                 </div>
               </section>
             )}
@@ -1687,7 +1741,7 @@ const descriptionParts = persona.description
                   <img
                     src={project.branding2.logo.image}
                     alt="Films Foundation Logo"
-                    className="w-full max-w-[140px] md:max-w-[180px] h-auto object-contain"
+                    className={mediaImg}
                   />
                 </div>
               </div>
@@ -1719,7 +1773,7 @@ const descriptionParts = persona.description
                     className="group flex flex-col gap-6"
                   >
                     <div className="w-full aspect-[2/3] rounded-2xl overflow-hidden flex items-center justify-center bg-[#F9F9F9] border border-gray-100 p-8">
-                      <img src={func.image} alt={func.title} className="w-full h-full max-w-[280px] object-contain group-hover:scale-105 transition-transform duration-700 ease-out" />
+                      <img src={func.image} alt={func.title} className={mediaImg} />
                     </div>
                     <div className="flex flex-col gap-2 text-left">
                       <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">{func.title}</h4>
@@ -1791,7 +1845,7 @@ const descriptionParts = persona.description
                       <p className="text-base md:text-lg text-gray-700 leading-relaxed">{item.description}</p>
                     </div>
                     <div className={`w-full rounded-2xl overflow-hidden shadow-sm border border-gray-100 p-2 md:p-6 bg-white flex justify-center ${idx % 2 === 1 ? 'lg:order-1' : ''}`}>
-                      <img src={item.image || "/placeholder-image.png"} alt={item.title} className="w-full max-w-[280px] h-auto object-contain drop-shadow-xl my-4" />
+                      <img src={item.image || "/placeholder-image.png"} alt={item.title} className={mediaImg} />
                     </div>
                   </motion.div>
                 ))}
@@ -1844,7 +1898,7 @@ const descriptionParts = persona.description
             <img
               src={project.bannerImage}
               alt="Final Prototype Showcase"
-              className="w-full max-w-[1000px] h-auto object-contain"
+              className={mediaImg}
             />
           </div>
         )}
@@ -1866,7 +1920,7 @@ const descriptionParts = persona.description
                     </div>
                     <div className={`order-1 ${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
                       <div className="rounded-xl overflow-hidden shadow-xl border border-gray-100">
-                        <img src={item.image} alt={item.title} className="w-full h-auto object-cover" />
+                        <img src={item.image} alt={item.title} className={mediaImg} />
                       </div>
                     </div>
                   </motion.div>
