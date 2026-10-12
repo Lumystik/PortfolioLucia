@@ -707,7 +707,21 @@ processMap: [
       }
     ],
     team: "AmagisTech. Andrea Curcio (senior designer), Antonio Cervadoro (developer)",
-    problem: "Security analysts work through high-volume queues where agents and humans act on the same incidents. Without a shared structure, status, ownership and agent activity become hard to read at a glance.",
+    problem: "Security teams work across many disconnected tools, each with its own login and way of working. Much of the job is repetitive, manual work that doesn't scale as a provider takes on more customers. Analysts should spend their time on judgment, not data entry, and whatever an AI does on their behalf has to stay visible while it happens.",
+    audiences: [
+      {
+        title: "Buyers",
+        description: "Companies looking for centralised AI security management across their whole environment."
+      },
+      {
+        title: "Users",
+        description: "Security analysts who would use it every day inside a security operations centre."
+      }
+    ],
+    testing: {
+      title: "First Iteration: User Testing",
+      description: "A six-step interactive workshop run with participants. First, a card-sorting step to find which building blocks people actually rely on, as opposed to those that would only be nice to have. Then a peer-review round, in which participants reviewed consoles built by others and answered short agreement-scale statements about fit, ease of use and how they prefer to interact with the system."
+    },
     processMap: [
       {
         phase: "Research",
@@ -865,7 +879,15 @@ export function ProjectDetail() {
         {(project.video || project.contribution || project.disclosure) && (
           <section className="py-16 md:py-20 w-full bg-white text-[#131313]">
             <div className="max-w-5xl mx-auto px-6 flex flex-col gap-12">
-              {project.video && (
+              {project.video && (/\.gif(\?|$)/i.test(project.video) ? (
+                <img
+                  src={project.video}
+                  alt={`${project.title} walkthrough`}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full rounded-2xl border border-gray-100 bg-black object-contain"
+                />
+              ) : (
                 <video
                   src={project.video}
                   controls
@@ -873,7 +895,7 @@ export function ProjectDetail() {
                   preload="metadata"
                   className="w-full rounded-2xl border border-gray-100 bg-black"
                 />
-              )}
+              ))}
               {project.contribution && (
                 <div className="flex flex-col gap-8">
                   <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">What I Did</h3>
@@ -885,6 +907,23 @@ export function ProjectDetail() {
                       </div>
                     ))}
                   </div>
+                </div>
+              )}
+              {project.audiences && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {project.audiences.map((aud: any, idx: number) => (
+                    <div key={idx} className="flex flex-col gap-3 p-8 bg-[#F2F2F2] rounded-[2rem] border border-neutral-200">
+                      <span className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500">Audience 0{idx + 1}</span>
+                      <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">{aud.title}</h4>
+                      <p className="text-base md:text-lg text-gray-700 leading-relaxed">{aud.description}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {project.testing && (
+                <div className="flex flex-col gap-4">
+                  <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">{project.testing.title}</h3>
+                  <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-3xl">{project.testing.description}</p>
                 </div>
               )}
               {project.disclosure && (
