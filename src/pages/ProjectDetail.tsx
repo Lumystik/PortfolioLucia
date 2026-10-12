@@ -704,24 +704,6 @@ processMap: [
           level: "molecules",
           description: "Mean time to resolve an incident, shown as one label above one large numeral.",
           image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/MTTR.png?raw=true"
-        },
-        {
-          number: "02",
-          name: "Case grouping causality graph",
-          area: "Case view",
-          type: "Graph",
-          category: "Cases",
-          level: "organisms",
-          description: "Groups related alerts into a single case and shows how they relate to one another."
-        },
-        {
-          number: "03",
-          name: "Top 5 riskiest misconfigurations",
-          area: "Posture view",
-          type: "Data table",
-          category: "Posture",
-          level: "organisms",
-          description: "Ranks the five highest-risk configuration issues, with their severity and owner."
         }
       ],
       levels: [
@@ -753,12 +735,13 @@ processMap: [
           id: "template",
           title: "Template",
           text: "The workspace layout: a window frame that holds a rail, a main column and a collapsible agent panel, with no content yet.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/template.png?raw=true"
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/templates.png?raw=true"
         },
         {
           id: "page",
           title: "Platform",
-          text: "The cases analyst view: the template filled with real content, where tabs, filters and the scrubber respond to the user.",image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/page.png?raw=true"
+          text: "The cases analyst view: the template filled with real content, where tabs, filters and the scrubber respond to the user.",image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/page.png?raw=true",
+         image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/pages.png?raw=true"
         }
       ]
     },
@@ -889,7 +872,7 @@ function DesignCarousel({ levels, cards, image }: { levels: any[]; cards: any[];
               <p className="text-xs uppercase tracking-widest text-neutral-500">
                 {card.type} · {card.area}
               </p>
-              <p className="text-sm md:text-base text-gray-700 leading-relaxed">{card.description}</p>
+              <p className="text-sm md:text-base text-gray-700 leading-relaxed">{card.image}</p>
             </div>
           ))}
         </div>
