@@ -852,7 +852,7 @@ processMap: [
 };
 
 // Walks through the atomic levels; each slide shows the component cards sorted into that level.
-function DesignCarousel({ levels, cards }: { levels: any[]; cards: any[] }) {
+function DesignCarousel({ levels, cards, image }: { levels: any[]; cards: any[]; image: string }) {
   const [index, setIndex] = useState(0);
   const count = levels.length;
   const level = levels[index];
@@ -868,6 +868,13 @@ function DesignCarousel({ levels, cards }: { levels: any[]; cards: any[] }) {
           <h4 className="text-3xl md:text-4xl font-bold uppercase tracking-tight">{level.title}</h4>
           <p className="text-base md:text-lg text-white/80 leading-relaxed max-w-2xl">{level.text}</p>
         </div>
+        <img
+          src={level.image || image}
+          alt={`${level.title} level`}
+          loading="lazy"
+          decoding="async"
+          className="mt-10 w-full max-h-[360px] object-contain rounded-2xl bg-white/5"
+        />
       </div>
 
       {levelCards.length > 0 && (
@@ -1273,7 +1280,11 @@ export function ProjectDetail() {
 
       <div className="flex flex-col gap-6">
         <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">Sorted by Level</h3>
-        <DesignCarousel levels={project.designSystem.levels} cards={project.designSystem.cards} />
+        <DesignCarousel
+          levels={project.designSystem.levels}
+          cards={project.designSystem.cards}
+          image={project.designSystem.image}
+        />
       </div>
     </div>
   </section>
