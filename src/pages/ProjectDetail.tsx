@@ -694,18 +694,6 @@ processMap: [
       method: "Atomic Design",
       description: "The design system was built with Atomic Design: small, single-purpose pieces are combined step by step into components, page regions, a layout template and finally a full analyst view.",
       image: "/images/designsystemsoc.png",
-      cards: [
-        {
-          number: "01",
-          name: "MTTR",
-          area: "Overview · metrics row",
-          type: "Metric card",
-          category: "Metrics",
-          level: "molecules",
-          description: "Mean time to resolve an incident, shown as one label above one large numeral.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/MTTR.png?raw=true"
-        }
-      ],
       levels: [
         {
           id: "foundations",
@@ -723,13 +711,7 @@ processMap: [
           id: "molecules",
           title: "Molecules",
           text: "Atoms working together: metric cards, filter chips and owner badges.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/morecules.png?raw=true"
-        },
-        {
-          id: "organisms",
-          title: "Organisms",
-          text: "Page regions with their own rhythm: the data table, the filter bar, the agent panel and the navigation rail.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/organisms.png?raw=true"
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/morecule.png?raw=true"
         },
         {
           id: "template",
