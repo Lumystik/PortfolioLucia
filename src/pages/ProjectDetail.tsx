@@ -690,6 +690,72 @@ processMap: [
     scope: "Cybersecurity Design System & Workspace UI",
     role: "UX/UI Designer (Design System, Prototyping, Handoff)",
     timeline: "Ongoing",
+    designSystem: {
+      method: "Atomic Design",
+      description: "The design system was built with Atomic Design: small, single-purpose pieces are combined step by step into components, page regions, a layout template and finally a full analyst view.",
+      image: "images/designsystemsoc.png",
+      cards: [
+        {
+          number: "01",
+          name: "MTTR",
+          area: "Overview · metrics row",
+          type: "Metric card",
+          category: "Metrics",
+          level: "molecules",
+          description: "Mean time to resolve an incident, shown as one label above one large numeral."
+        },
+        {
+          number: "02",
+          name: "Case grouping causality graph",
+          area: "Case view",
+          type: "Graph",
+          category: "Cases",
+          level: "organisms",
+          description: "Groups related alerts into a single case and shows how they relate to one another."
+        },
+        {
+          number: "03",
+          name: "Top 5 riskiest misconfigurations",
+          area: "Posture view",
+          type: "Data table",
+          category: "Posture",
+          level: "organisms",
+          description: "Ranks the five highest-risk configuration issues, with their severity and owner."
+        }
+      ],
+      levels: [
+        {
+          id: "foundations",
+          title: "Foundations",
+          text: "Tokens for colour, type, spacing and radius. Colour carries meaning: violet for agent work and selection, teal for human work, and pink for a decision that needs a person."
+        },
+        {
+          id: "atoms",
+          title: "Atoms",
+          text: "The smallest usable pieces: buttons, badges, toggles, status dots and icons. Each atom has one job and no layout of its own."
+        },
+        {
+          id: "molecules",
+          title: "Molecules",
+          text: "Atoms working together: metric cards, filter chips and owner badges."
+        },
+        {
+          id: "organisms",
+          title: "Organisms",
+          text: "Page regions with their own rhythm: the data table, the filter bar, the agent panel and the navigation rail."
+        },
+        {
+          id: "template",
+          title: "Template",
+          text: "The workspace layout: a window frame that holds a rail, a main column and a collapsible agent panel, with no content yet."
+        },
+        {
+          id: "page",
+          title: "Page",
+          text: "The cases analyst view: the template filled with real content, where tabs, filters and the scrubber respond to the user."
+        }
+      ]
+    },
     disclosure: "Developed during my internship at AmagisTech Italia. Under my confidentiality agreement, internal product details, data and proprietary layouts are not shown. Screens are abstracted, and the project is presented through process and methodology.",
     contribution: [
       {
@@ -771,12 +837,97 @@ processMap: [
           title: "TOKENS & ATOMS",
           description: "A documented token set, from atoms to a page template, so the team builds new screens from the same parts.",
           image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/Screenshot%202026-10-12%20at%2015.50.22.png?raw=true"
+        },
+        {
+          title: "CENTRALIZED TOOLS",
+          description: "One workspace brings the separate security tools together, so analysts no longer log in to and switch between each one.",
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/Screenshot%202026-10-12%20at%2015.50.22.png?raw=true"
+        },
+        {
+          title: "NO BLACK BOX",
+          description: "Every action the AI takes is visible as it happens: which tool it called, what it found, and what decision it made.",
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/Screenshot%202026-10-12%20at%2015.50.22.png?raw=true"
+        },
+        {
+          title: "ADAPTABLE TO DIFFERENT USERS",
+          description: "The same system serves executives looking at the overall picture and analysts working through individual cases.",
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/Screenshot%202026-10-12%20at%2015.50.22.png?raw=true"
         }
       ]
     },
     takeaways: "Designing for a dark analyst tool meant that structure, hierarchy and a restrained colour system do the work that shadows and decoration would do elsewhere. Writing the system down as tokens, atoms and regions made handoff to engineering much faster."
   }
 };
+
+// Walks through the atomic levels; each slide shows the component cards sorted into that level.
+function DesignCarousel({ levels, cards }: { levels: any[]; cards: any[] }) {
+  const [index, setIndex] = useState(0);
+  const count = levels.length;
+  const level = levels[index];
+  const levelCards = cards.filter((card: any) => card.level === level.id);
+
+  return (
+    <div className="flex flex-col gap-8">
+      <div className="rounded-[2rem] bg-[#131313] text-white p-8 md:p-12 min-h-[260px] flex flex-col justify-between">
+        <span className="text-xs uppercase tracking-[0.22em] text-white/60">
+          Level {index + 1} of {count}
+        </span>
+        <div className="flex flex-col gap-4 mt-10">
+          <h4 className="text-3xl md:text-4xl font-bold uppercase tracking-tight">{level.title}</h4>
+          <p className="text-base md:text-lg text-white/80 leading-relaxed max-w-2xl">{level.text}</p>
+        </div>
+      </div>
+
+      {levelCards.length > 0 && (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {levelCards.map((card: any) => (
+            <div key={card.number} className="flex flex-col gap-3 p-6 bg-[#F2F2F2] rounded-2xl border border-neutral-200">
+              <div className="flex justify-between text-xs uppercase tracking-[0.18em] text-neutral-500">
+                <span>{card.number}</span>
+                <span>{card.category}</span>
+              </div>
+              <h5 className="text-lg font-bold uppercase tracking-tight text-[#131313]">{card.name}</h5>
+              <p className="text-xs uppercase tracking-widest text-neutral-500">
+                {card.type} · {card.area}
+              </p>
+              <p className="text-sm md:text-base text-gray-700 leading-relaxed">{card.description}</p>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div className="flex items-center justify-between gap-4">
+        <button
+          type="button"
+          onClick={() => setIndex((index - 1 + count) % count)}
+          className="px-6 py-3 rounded-full border-2 border-[#131313] text-xs font-bold uppercase tracking-widest hover:bg-[#131313] hover:text-white transition-all duration-300"
+        >
+          ← Previous
+        </button>
+
+        <div className="flex items-center gap-2">
+          {levels.map((item: any, i: number) => (
+            <button
+              key={item.id}
+              type="button"
+              aria-label={`Go to ${item.title}`}
+              onClick={() => setIndex(i)}
+              className={`h-2 rounded-full transition-all duration-300 ${i === index ? "w-8 bg-[#131313]" : "w-2 bg-neutral-300"}`}
+            />
+          ))}
+        </div>
+
+        <button
+          type="button"
+          onClick={() => setIndex((index + 1) % count)}
+          className="px-6 py-3 rounded-full border-2 border-[#131313] text-xs font-bold uppercase tracking-widest hover:bg-[#131313] hover:text-white transition-all duration-300"
+        >
+          Next →
+        </button>
+      </div>
+    </div>
+  );
+}
 
 export function ProjectDetail() {
   const { id } = useParams<{ id: string }>();
@@ -1096,6 +1247,41 @@ export function ProjectDetail() {
             </motion.div>
           );
         })}
+      </div>
+    </div>
+  </section>
+)}
+
+{project.designSystem && (
+  <section className="py-16 md:py-24 w-full bg-white text-[#131313]">
+    <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16">
+      <div className="max-w-3xl">
+        <p className="text-sm uppercase tracking-[0.22em] text-neutral-500 mb-3">Design System</p>
+        <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-[#131313] mb-4">
+          Built with {project.designSystem.method}
+        </h2>
+        <p className="text-base md:text-lg text-neutral-600 leading-relaxed">{project.designSystem.description}</p>
+      </div>
+
+      <div className="flex flex-col gap-6">
+        <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">How the Components Were Built</h3>
+        <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-3xl">
+          Each component was documented as a card: its area and type, a name, a plain-language description, a sketch of
+          what it shows, a category and a number. Cards such as MTTR, the case grouping causality graph and the Top 5
+          riskiest misconfigurations were then sorted into the levels below.
+        </p>
+        <img
+          src={project.designSystem.image}
+          alt="How the components were built"
+          className={mediaImg}
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
+      <div className="flex flex-col gap-6">
+        <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">Sorted by Level</h3>
+        <DesignCarousel levels={project.designSystem.levels} cards={project.designSystem.cards} />
       </div>
     </div>
   </section>
