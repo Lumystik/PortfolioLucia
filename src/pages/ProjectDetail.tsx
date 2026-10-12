@@ -685,7 +685,7 @@ processMap: [
   "soc": {
     id: "soc",
     title: "Agentic SOC",
-    heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/Screenshot 2026-10-12 at 16.39.17.png?raw=true",
+    heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/Screenshot 2026-10-12 at 16.39.17.png©",
     overview: "A dark, dense design system and analyst workspace where security analysts and AI agents work the same incident queue side by side.",
     scope: "Cybersecurity Design System & Workspace UI",
     role: "UX/UI Designer (Design System, Prototyping, Handoff)",
@@ -727,32 +727,37 @@ processMap: [
         {
           id: "foundations",
           title: "Foundations",
-          text: "Tokens for colour, type, spacing and radius. Colour carries meaning: violet for agent work and selection, teal for human work, and pink for a decision that needs a person."
+          text: "Tokens for colour, type, spacing and radius. Colour carries meaning: violet for agent work and selection, teal for human work, and pink for a decision that needs a person.",
+       image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/foundations.png?raw=true"
         },
         {
           id: "atoms",
           title: "Atoms",
-          text: "The smallest usable pieces: buttons, badges, toggles, status dots and icons. Each atom has one job and no layout of its own."
+          text: "The smallest usable pieces: buttons, badges, toggles, status dots and icons. Each atom has one job and no layout of its own.",
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/atom.png?raw=true"
         },
         {
           id: "molecules",
           title: "Molecules",
-          text: "Atoms working together: metric cards, filter chips and owner badges."
+          text: "Atoms working together: metric cards, filter chips and owner badges.",
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/morecules.png?raw=true"
         },
         {
           id: "organisms",
           title: "Organisms",
-          text: "Page regions with their own rhythm: the data table, the filter bar, the agent panel and the navigation rail."
+          text: "Page regions with their own rhythm: the data table, the filter bar, the agent panel and the navigation rail.",
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/organisms.png?raw=true"
         },
         {
           id: "template",
           title: "Template",
-          text: "The workspace layout: a window frame that holds a rail, a main column and a collapsible agent panel, with no content yet."
+          text: "The workspace layout: a window frame that holds a rail, a main column and a collapsible agent panel, with no content yet.",
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/template.png?raw=true"
         },
         {
           id: "page",
-          title: "Page",
-          text: "The cases analyst view: the template filled with real content, where tabs, filters and the scrubber respond to the user."
+          title: "Platform",
+          text: "The cases analyst view: the template filled with real content, where tabs, filters and the scrubber respond to the user.",image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/page.png?raw=true"
         }
       ]
     },
