@@ -690,7 +690,7 @@ processMap: [
     scope: "Cybersecurity Design System & Workspace UI",
     role: "UX/UI Designer (Design System, Prototyping, Handoff)",
     timeline: "Ongoing",
-    video: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/Product%20Walkthrough.mp4",
+    video: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/Product Walkthrough.gif",
     disclosure: "Developed during my internship at AmagisTech Italia. Under my confidentiality agreement, internal product details, data and proprietary layouts are not shown. Screens are abstracted, and the project is presented through process and methodology.",
     contribution: [
       {
