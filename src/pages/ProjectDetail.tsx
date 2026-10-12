@@ -6,7 +6,7 @@ import { Footer } from '../components/Footer';
 import { useEffect, useState } from 'react';
 
 // Shared image style: every content image fits its frame and is centred the same way.
-const mediaImg = "block w-full h-auto max-h-[480px] object-contain mx-auto";
+const mediaImg = "block w-full h-auto min-h-[120px] max-h-[480px] object-contain mx-auto bg-gray-50";
 
 const projectsData: Record<string, any> = {
   "museon": {
@@ -685,7 +685,7 @@ processMap: [
   "soc": {
     id: "soc",
     title: "Agentic SOC",
-    heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/Screenshot 2026-10-12 at 16.39.17.png?raw=true",
+    heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/Screenshot%202026-10-12%20at%2015.50.22.png?raw=true",
     overview: "A dark, dense design system and analyst workspace where security analysts and AI agents work the same incident queue side by side.",
     scope: "Cybersecurity Design System & Workspace UI",
     role: "UX/UI Designer (Design System, Prototyping, Handoff)",
@@ -800,7 +800,7 @@ export function ProjectDetail() {
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.1 }}
               className="w-full rounded-2xl overflow-hidden bg-gray-100"
             >
-              <img src={project.heroImage} alt={project.title} className="w-full h-auto object-cover max-h-[70vh]" />
+              <img fetchPriority="high" decoding="async" src={project.heroImage} alt={project.title} className="w-full h-auto object-cover max-h-[70vh]" />
             </motion.div>
           </div>
         </section>
@@ -914,7 +914,7 @@ export function ProjectDetail() {
                     src={project.problemImage || "/placeholder-phone-mockup.png"}
                     alt="The Problem Illustration"
                     className={mediaImg}
-                  />
+                   loading="lazy" decoding="async" />
                 </div>
               </div>
             </div>
@@ -1134,7 +1134,7 @@ const descriptionParts = persona.description
                     >
                       <div className="p-5 md:p-6 flex flex-col gap-5">
                         <div className="w-full aspect-[4/3] bg-white rounded-[1.5rem] overflow-hidden border border-neutral-200">
-                          <img src={persona.image} alt={persona.title} className={mediaImg} />
+                          <img src={persona.image} alt={persona.title} className={mediaImg}  loading="lazy" decoding="async" />
                         </div>
 
                         <div className="flex flex-col gap-2">
@@ -1206,7 +1206,7 @@ const descriptionParts = persona.description
         {/* Column 1: Profile & Bio (4/12) */}
         <div className="lg:col-span-4 flex flex-col gap-8">
           <div className="aspect-[4/5] bg-neutral-100 rounded-2xl overflow-hidden">
-            <img src={project.targetUsers2.persona.image} alt="Marco" className={mediaImg} />
+            <img src={project.targetUsers2.persona.image} alt="Marco" className={mediaImg}  loading="lazy" decoding="async" />
           </div>
           <div>
             <h3 className="text-4xl font-bold uppercase tracking-tighter">{project.targetUsers2.persona.name}</h3>
@@ -1350,7 +1350,7 @@ const descriptionParts = persona.description
                       </p>
                     </div>
                     <div className="lg:col-span-8 rounded-2xl overflow-hidden border border-gray-100 p-4 bg-white shadow-sm">
-                      <img src={project.pillars2[0].image} alt={project.pillars2[0].title} className={mediaImg} />
+                      <img src={project.pillars2[0].image} alt={project.pillars2[0].title} className={mediaImg}  loading="lazy" decoding="async" />
                     </div>
                   </div>
                 </motion.div>
@@ -1367,7 +1367,7 @@ const descriptionParts = persona.description
                       className="flex flex-col gap-6 items-start text-left group"
                     >
                       <div className="w-full aspect-video rounded-2xl overflow-hidden border border-gray-100 p-4 bg-white">
-                        <img src={pillar.image} alt={pillar.title} className={mediaImg} />
+                        <img src={pillar.image} alt={pillar.title} className={mediaImg}  loading="lazy" decoding="async" />
                       </div>
                       <div className="flex flex-col gap-2">
                         <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">
@@ -1401,7 +1401,7 @@ const descriptionParts = persona.description
                 className="flex flex-col gap-6"
               >
                 <div className="w-full bg-[#F9F9F9] p-6 md:p-12 rounded-2xl border border-gray-100">
-                  <img src={project.ideation.heroFlow} alt="Hero Flow" className={mediaImg} />
+                  <img src={project.ideation.heroFlow} alt="Hero Flow" className={mediaImg}  loading="lazy" decoding="async" />
                 </div>
                 <p className="text-xs md:text-sm text-gray-400 font-bold uppercase tracking-widest text-center">
                   {project.ideation.heroFlowCaption}
@@ -1425,7 +1425,7 @@ const descriptionParts = persona.description
                       className="flex flex-col gap-6"
                     >
                       <div className="w-full max-w-[280px] mx-auto overflow-hidden shadow-sm border border-gray-100 rounded-xl flex justify-center items-center">
-                        <img src={wire.image} alt={wire.caption} className={mediaImg} />
+                        <img src={wire.image} alt={wire.caption} className={mediaImg}  loading="lazy" decoding="async" />
                       </div>
                       <div className="flex flex-col gap-2 text-center">
                         <p className="text-base md:text-lg font-bold uppercase tracking-tight text-black">
@@ -1453,7 +1453,7 @@ const descriptionParts = persona.description
                   className="flex flex-col gap-6 items-start text-left group"
                 >
                   <div className="w-full aspect-square rounded-2xl overflow-hidden border border-gray-100 p-2">
-                    <img src={pillar.image} alt={pillar.title} className={mediaImg} />
+                    <img src={pillar.image} alt={pillar.title} className={mediaImg}  loading="lazy" decoding="async" />
                   </div>
                   <div className="flex flex-col gap-2">
                     <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">{pillar.title}</h4>
@@ -1486,7 +1486,7 @@ const descriptionParts = persona.description
                     transition={{ duration: 0.8, delay: idx * 0.1 }}
                     className="w-full rounded-2xl overflow-hidden bg-[#F9F9F9] border border-gray-100 p-2 md:p-3"
                   >
-                    <img src={img} alt={`User Testing ${idx + 1}`} className={mediaImg} />
+                    <img src={img} alt={`User Testing ${idx + 1}`} className={mediaImg}  loading="lazy" decoding="async" />
                   </motion.div>
                 ))}
               </div>
@@ -1508,7 +1508,7 @@ const descriptionParts = persona.description
                       <div className="flex flex-col gap-4">
                         <h4 className="text-xl font-bold uppercase tracking-tight text-left text-white">User Perceived Benefits</h4>
                         <div className="w-full rounded-[2rem] overflow-hidden bg-white/10 p-4 border border-white/10 shadow-sm flex items-center justify-center">
-                          <img src={project.userInsights.benefitsImage} alt="User Benefits" className={mediaImg} />
+                          <img src={project.userInsights.benefitsImage} alt="User Benefits" className={mediaImg}  loading="lazy" decoding="async" />
                         </div>
                       </div>
                     )}
@@ -1516,7 +1516,7 @@ const descriptionParts = persona.description
                       <div className="flex flex-col gap-4">
                         <h4 className="text-xl font-bold uppercase tracking-tight text-left text-white">User Priorities</h4>
                         <div className="w-full rounded-[2rem] overflow-hidden bg-white/10 p-4 border border-white/10 shadow-sm flex items-center justify-center">
-                          <img src={project.userInsights.insightsImage} alt="User Insights" className={mediaImg} />
+                          <img src={project.userInsights.insightsImage} alt="User Insights" className={mediaImg}  loading="lazy" decoding="async" />
                         </div>
                       </div>
                     )}
@@ -1606,7 +1606,7 @@ const descriptionParts = persona.description
                     <p className="text-base md:text-lg text-gray-700 leading-relaxed">{project.branding.logoDescription}</p>
                   </div>
                   <div className="flex justify-center items-center">
-                    <img src={project.branding.logoImage} alt="Logo" className={mediaImg} />
+                    <img src={project.branding.logoImage} alt="Logo" className={mediaImg}  loading="lazy" decoding="async" />
                   </div>
                 </div>
               </section>
@@ -1614,7 +1614,7 @@ const descriptionParts = persona.description
             {project.branding.featuresImage && (
               <section className="py-16 md:py-20 border-t border-gray-50">
                 <div className="max-w-7xl mx-auto px-6">
-                  <img src={project.branding.featuresImage} alt="Feature" className={mediaImg} />
+                  <img src={project.branding.featuresImage} alt="Feature" className={mediaImg}  loading="lazy" decoding="async" />
                 </div>
               </section>
             )}
@@ -1742,7 +1742,7 @@ const descriptionParts = persona.description
                     src={project.branding2.logo.image}
                     alt="Films Foundation Logo"
                     className={mediaImg}
-                  />
+                   loading="lazy" decoding="async" />
                 </div>
               </div>
             </div>
@@ -1773,7 +1773,7 @@ const descriptionParts = persona.description
                     className="group flex flex-col gap-6"
                   >
                     <div className="w-full aspect-[2/3] rounded-2xl overflow-hidden flex items-center justify-center bg-[#F9F9F9] border border-gray-100 p-8">
-                      <img src={func.image} alt={func.title} className={mediaImg} />
+                      <img src={func.image} alt={func.title} className={mediaImg}  loading="lazy" decoding="async" />
                     </div>
                     <div className="flex flex-col gap-2 text-left">
                       <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">{func.title}</h4>
@@ -1845,7 +1845,7 @@ const descriptionParts = persona.description
                       <p className="text-base md:text-lg text-gray-700 leading-relaxed">{item.description}</p>
                     </div>
                     <div className={`w-full rounded-2xl overflow-hidden shadow-sm border border-gray-100 p-2 md:p-6 bg-white flex justify-center ${idx % 2 === 1 ? 'lg:order-1' : ''}`}>
-                      <img src={item.image || "/placeholder-image.png"} alt={item.title} className={mediaImg} />
+                      <img src={item.image || "/placeholder-image.png"} alt={item.title} className={mediaImg}  loading="lazy" decoding="async" />
                     </div>
                   </motion.div>
                 ))}
@@ -1899,7 +1899,7 @@ const descriptionParts = persona.description
               src={project.bannerImage}
               alt="Final Prototype Showcase"
               className={mediaImg}
-            />
+             loading="lazy" decoding="async" />
           </div>
         )}
       </div>
@@ -1920,7 +1920,7 @@ const descriptionParts = persona.description
                     </div>
                     <div className={`order-1 ${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
                       <div className="rounded-xl overflow-hidden shadow-xl border border-gray-100">
-                        <img src={item.image} alt={item.title} className={mediaImg} />
+                        <img src={item.image} alt={item.title} className={mediaImg}  loading="lazy" decoding="async" />
                       </div>
                     </div>
                   </motion.div>
@@ -1941,7 +1941,7 @@ const descriptionParts = persona.description
 
         {project.nextProject && (
           <section className="relative w-full h-[60vh] md:h-[50vh] overflow-hidden group">
-            <img src={project.nextProject.image} alt="Next Project" className="absolute inset-0 w-full h-full object-cover" />
+            <img src={project.nextProject.image} alt="Next Project" className="absolute inset-0 w-full h-full object-cover"  loading="lazy" decoding="async" />
             <div className="absolute inset-0 bg-black/85 transition-colors duration-500 group-hover:bg-black/75" />
             <div className="relative z-10 h-full max-w-7xl mx-auto px-6 flex flex-col justify-center">
               <span className="text-xs font-mono uppercase tracking-[0.2em] text-gray-300 mb-4 block">Next Project</span>
