@@ -49,7 +49,7 @@ const projectsData: Record<string, any> = {
     ideation: {
       question: "How can we build a seamless workflow that maximizes museum staff efficiency? How can the platform adapt to different roles while maintaining a unified database?",
       heroFlow: "https://github.com/Lumystik/PortfolioLucia/blob/f8b832c9f326ed2f6d2fd32515316ec56fb143fa/images/workflow_museon.png?raw=true",
-      heroFlowCaption: "Heroflow: Organizing a new temporary exhibition.", 
+      heroFlowCaption: "Heroflow: Organizing a new temporary exhibition.",
       wireframes: [
         {
           image: "https://github.com/Lumystik/PortfolioLucia/blob/78d82c3bb5eae3c9be12ddde7b066b62a51cc24a/images/Dashboard_mobile_wireframe.png?raw=true",
@@ -90,12 +90,12 @@ const projectsData: Record<string, any> = {
         {
           title: "ADDING CLARIFICATION TO SETTINGS",
           description: "Users found themselves guessing what each input meant, and even though 100% of users correctly interpreted the title, I added a brief description to further clarify.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/be1755ca40682fbb1c571d38f3aa37d18cc7ada8/images/calendar_museo1.png?raw=true" 
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/be1755ca40682fbb1c571d38f3aa37d18cc7ada8/images/calendar_museo1.png?raw=true"
         },
         {
           title: "UPDATING PRESET VIEWS",
           description: "4 out of the 5 staff members felt that the default monthly view was too broad and preferred a weekly view. Seeing as the majority chose this length, I updated the preset to reflect their preference.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/465f291d0d01afb736e1502a28db9b14b236e818/images/collection_museon1.png?raw=true" 
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/465f291d0d01afb736e1502a28db9b14b236e818/images/collection_museon1.png?raw=true"
         }
       ]
     },
@@ -171,7 +171,7 @@ const projectsData: Record<string, any> = {
         description: "AI utilizes conversation transcription to instantly detect tasks with a single click and direct users to the corresponding page.",
         image: "https://github.com/Lumystik/PortfolioLucia/blob/ccd5a596d938ff18c9cd80558a2f7d7f2df76b5e/images/smartnotes_museon1.png?raw=true"
       }
- 
+
       ]
     },
     bannerImage: "https://github.com/Lumystik/PortfolioLucia/blob/988251ade7a50360d870b2b630818e7291a7d458/images/museon_finalinterface%20(10).gif?raw=true",
@@ -180,7 +180,7 @@ const projectsData: Record<string, any> = {
     },
     takeaways: "We began with an in-depth research phase to understand the museum as an ecosystem of interconnected stakeholders, workflows, and responsibilities. This background-research process was complex and took over a month, as we needed to clearly define the core problem before moving into solutions. Through staff interviews and organizational mapping, we created visual schemas that helped us analyze how the museum operates and explain the problem from a top-down perspective. ",
     nextProject: {
-      title: "ART BEYOND DIMENSION", 
+      title: "ART BEYOND DIMENSION",
       link: "/project/art-beyond-dimension",
       image: "https://github.com/Lumystik/PortfolioLucia/blob/c39ead2c3b7c47add54a5363ffb7b42cb35b1adf/images/wall.jpg?raw=true"
     }
@@ -473,7 +473,7 @@ processMap: [
     archetype: "The Enthusiast",
     bio: "Marco finds inspiration in the imaginative worlds of sci-fi films, often incorporating futuristic elements into his artwork. Documentaries fuel his curiosity, helping him explore diverse subjects and perspectives. He aims to bridge the gap between art and cinema.",
     image: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=800&q=80",
-    
+
     // Personality Sliders (Simple text-based visualization)
     personality: [
       { left: "Introvert", right: "Extrovert", value: 40 },
@@ -678,6 +678,69 @@ processMap: [
       title: "MUSE*ON",
       link: "/project/museon"
     }
+  },
+  "soc": {
+    id: "soc",
+    title: "AI-Driven SOC Workspace",
+    heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/Screenshot%202026-10-12%20at%2015.50.22.png?raw=true",
+    overview: "A dark, dense design system and analyst workspace where security analysts and AI agents work the same incident queue side by side.",
+    scope: "Cybersecurity Design System & Workspace UI",
+    role: "UX/UI Designer (Design System, Prototyping, Handoff)",
+    timeline: "Ongoing",
+    team: "Lucia Medina",
+    problem: "Security analysts work through high-volume queues where agents and humans act on the same incidents. Without a shared structure, status, ownership and agent activity become hard to read at a glance.",
+    processMap: [
+      {
+        phase: "Research",
+        steps: [
+          "Analyst workflow review",
+          "Queue and incident patterns",
+          "Competitive UX analysis"
+        ]
+      },
+      {
+        phase: "Define",
+        steps: [
+          "Tokens & foundations",
+          "Atoms, molecules & page regions",
+          "Workspace layout"
+        ]
+      },
+      {
+        phase: "Develop",
+        steps: [
+          "Design system documentation",
+          "Composed analyst view",
+          "Developer handoff"
+        ]
+      }
+    ],
+    howMightWe: [
+      "make agent activity and human decisions readable in the same queue?",
+      "keep a dense analyst interface calm and scannable over long sessions?",
+      "give a design system one vocabulary for people and agents?"
+    ],
+    keyFunctions: {
+      description: "The workspace is built from a small set of reusable parts: a navigation rail, page header, filter bar, data table and an agent panel.",
+      functions: [
+        {
+          title: "AGENT + HUMAN QUEUE",
+          description: "Colour carries meaning: violet marks agent work, teal marks human work, and pink flags a decision that needs a person.",
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/Screenshot%202026-10-12%20at%2015.50.22.png?raw=true"
+        },
+        {
+          title: "DATA TABLE & FILTERS",
+          description: "Hairline rows, a consistent 40px height and a sticky filter bar keep incidents comparable across severity, status and owner.",
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/Screenshot%202026-10-12%20at%2015.50.22.png?raw=true"
+        },
+        {
+          title: "TOKENS & ATOMS",
+          description: "A documented token set, from atoms to a page template, so the team builds new screens from the same parts.",
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/Screenshot%202026-10-12%20at%2015.50.22.png?raw=true"
+        }
+      ]
+    },
+    takeaways: "Designing for a dark analyst tool meant that structure, hierarchy and a restrained colour system do the work that shadows and decoration would do elsewhere. Writing the system down as tokens, atoms and regions made handoff to engineering much faster."
   }
 };
 
@@ -709,12 +772,12 @@ export function ProjectDetail() {
   return (
     <div className="bg-white text-[#131313] min-h-screen font-sans">
       <Navbar />
-      
+
       <main className="w-full overflow-hidden">
         {/* 1. Hero Section */}
         <section className="w-full pt-24 pb-12 bg-white">
           <div className="max-w-7xl mx-auto px-6">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.1 }}
               className="w-full rounded-2xl overflow-hidden bg-gray-100"
             >
@@ -764,13 +827,13 @@ export function ProjectDetail() {
             </div>
 
             <div className="lg:col-span-8 flex flex-col gap-6">
-              <motion.h1 
+              <motion.h1
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1 }}
                 className="text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tight break-words m-0"
               >
                 {project.title}
               </motion.h1>
-              <motion.p 
+              <motion.p
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
                 className="text-base md:text-lg text-gray-800 leading-relaxed max-w-3xl font-bold"
               >
@@ -803,7 +866,7 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
-        
+
         {(project.researchObjectives || project.researchInsights) && (
           <section className="py-16 md:py-20 w-full bg-white">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16 md:gap-24">
@@ -845,11 +908,11 @@ export function ProjectDetail() {
               {project.researchInsights && (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
                   {project.researchInsights.map((insight: any, idx: number) => (
-                    <motion.div 
+                    <motion.div
                       key={idx}
-                      initial={{ opacity: 0, y: 20 }} 
-                      whileInView={{ opacity: 1, y: 0 }} 
-                      viewport={{ once: true }} 
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
                       transition={{ duration: 0.8, delay: idx * 0.1 }}
                       className="flex flex-col gap-3 bg-[#FAF9F6] p-8 rounded-xl h-full"
                     >
@@ -957,7 +1020,7 @@ export function ProjectDetail() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                 {project.targetUsers.personas.map((persona: any, idx: number) => {
-                 
+
 const descriptionParts = persona.description
   .split('\n')
   .map((part: string) => part.trim())
@@ -1083,9 +1146,9 @@ const descriptionParts = persona.description
   <section className="py-24 bg-white text-[#131313]">
     <div className="max-w-7xl mx-auto px-6">
       <h2 className="text-sm uppercase tracking-[0.2em] text-neutral-400 mb-16">Detailed Persona</h2>
-      
+
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-        
+
         {/* Column 1: Profile & Bio (4/12) */}
         <div className="lg:col-span-4 flex flex-col gap-8">
           <div className="aspect-[4/5] bg-neutral-100 rounded-2xl overflow-hidden">
@@ -1119,7 +1182,7 @@ const descriptionParts = persona.description
               <p className="text-md text-black leading-snug">{project.targetUsers2.persona.empathyMap.feel}</p>
             </div>
           </div>
-          
+
           <div className="mt-16">
              <h4 className="text-xs font-black uppercase tracking-widest mb-6 text-neutral-400">Personality</h4>
              {project.targetUsers2.persona.personality.map((trait: any, i: number) => (
@@ -1211,7 +1274,7 @@ const descriptionParts = persona.description
     </div>
   </section>
 )}
-              
+
         {project.pillars2 && project.pillars2.length > 0 && (
           <section className="py-16 md:py-20 w-full bg-white">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16 md:gap-24">
@@ -1241,11 +1304,11 @@ const descriptionParts = persona.description
               {project.pillars2.length > 1 && (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12">
                   {project.pillars2.slice(1).map((pillar: any, idx: number) => (
-                    <motion.div 
+                    <motion.div
                       key={idx}
-                      initial={{ opacity: 0, y: 30 }} 
-                      whileInView={{ opacity: 1, y: 0 }} 
-                      viewport={{ once: true }} 
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
                       transition={{ duration: 0.8, delay: idx * 0.15 }}
                       className="flex flex-col gap-6 items-start text-left group"
                     >
@@ -1277,7 +1340,7 @@ const descriptionParts = persona.description
                   Ideation
                 </h3>
               </div>
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -1295,11 +1358,11 @@ const descriptionParts = persona.description
                     <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">Laying the Foundation</h4>
                     <p className="text-base md:text-lg text-black leading-relaxed">Initial Wireframe Iterations</p>
                 </div>
-            
-                
+
+
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
                   {project.ideation.wireframes.map((wire: any, idx: number) => (
-                    <motion.div 
+                    <motion.div
                       key={idx}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
@@ -1330,7 +1393,7 @@ const descriptionParts = persona.description
           <section className="py-16 md:py-20 w-full bg-white">
             <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12">
               {project.pillars.map((pillar: any, idx: number) => (
-                <motion.div 
+                <motion.div
                   key={idx}
                   initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.15 }}
                   className="flex flex-col gap-6 items-start text-left group"
@@ -1361,11 +1424,11 @@ const descriptionParts = persona.description
               </div>
               <div className="lg:col-span-7 grid grid-cols-1 gap-8">
                 {project.userTesting.images.map((img: string, idx: number) => (
-                  <motion.div 
+                  <motion.div
                     key={idx}
-                    initial={{ opacity: 0, y: 20 }} 
-                    whileInView={{ opacity: 1, y: 0 }} 
-                    viewport={{ once: true }} 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: idx * 0.1 }}
                     className="w-full rounded-2xl overflow-hidden bg-[#F9F9F9] border border-gray-100 p-2 md:p-3"
                   >
@@ -1408,7 +1471,7 @@ const descriptionParts = persona.description
                 {project.userInsightsCards && project.userInsightsCards.length > 0 && (
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     {project.userInsightsCards.map((card: any, idx: number) => (
-                      <motion.div 
+                      <motion.div
                         key={idx}
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -1427,14 +1490,14 @@ const descriptionParts = persona.description
             </div>
           </section>
         )}
-        
+
         {project.keyFindings && (
           <section className="py-16 md:py-20 w-full bg-[#E54D2E] text-white">
             <div className="max-w-7xl mx-auto px-6">
               <h3 className="mb-8 md:mb-10 text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-white">Key Findings</h3>
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
                 {project.keyFindings.map((finding: any, idx: number) => (
-                  <motion.div 
+                  <motion.div
                     key={idx}
                     initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
                     className="flex flex-col gap-2 text-left"
@@ -1507,7 +1570,7 @@ const descriptionParts = persona.description
 {project.branding2 && (
   <section className="py-16 md:py-24 w-full bg-white">
     <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10 md:gap-14">
-      
+
       <div className="max-w-3xl">
         <p className="text-sm uppercase tracking-[0.22em] text-neutral-500 mb-3">
           {project.branding2.sectionLabel}
@@ -1521,10 +1584,10 @@ const descriptionParts = persona.description
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-stretch">
-        
-   
+
+
         <div className="flex flex-col gap-6">
-     
+
           <div className="rounded-[2rem] bg-[#F2F2F2] border border-neutral-200 p-6 md:p-8 h-full">
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500 mb-3">
               {project.branding2.rebranding.title}
@@ -1574,7 +1637,7 @@ const descriptionParts = persona.description
 
         {/* RIGHT COLUMN */}
         <div className="flex flex-col gap-6">
-          
+
           {/* Typography */}
           <div className="rounded-[2rem] bg-[#F2F2F2] border border-neutral-200 p-6 md:p-8 flex flex-col gap-6">
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500">
@@ -1693,7 +1756,7 @@ const descriptionParts = persona.description
             </div>
           </section>
         )}
-        
+
         {project.conversionRate && (
           <section className="py-16 md:py-20 w-full bg-[#131313] text-white">
             <div className="max-w-7xl mx-auto px-6">
@@ -1712,7 +1775,7 @@ const descriptionParts = persona.description
             </div>
           </section>
         )}
-      
+
         {project.iterations && (
           <section className="py-16 md:py-24 w-full bg-[#FFFFFF]">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16 md:gap-20">
@@ -1760,7 +1823,7 @@ const descriptionParts = persona.description
   <section className="py-16 md:py-20 w-full bg-white">
     <div className="max-w-7xl mx-auto px-6">
       <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-8 lg:gap-12 items-center bg-[#fafafa] rounded-[2rem] p-6 md:p-10 lg:p-12 border border-gray-100 shadow-sm">
-        
+
         <div className="flex flex-col items-start gap-6">
           <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">
             Final Prototype
@@ -1789,7 +1852,7 @@ const descriptionParts = persona.description
     </div>
   </section>
 )}
-      
+
         {project.id === 'seedtag' && (
           <section className="py-16 md:py-20 bg-white">
             <div className="max-w-6xl mx-auto px-6">
@@ -1812,7 +1875,7 @@ const descriptionParts = persona.description
             </div>
           </section>
         )}
-        
+
         {project.takeaways && (
           <section className="py-16 md:py-20 w-full bg-black text-white">
             <div className="max-w-4xl mx-auto px-6 text-center flex flex-col gap-10">
