@@ -690,7 +690,6 @@ processMap: [
     scope: "Cybersecurity Design System & Workspace UI",
     role: "UX/UI Designer (Design System, Prototyping, Handoff)",
     timeline: "Ongoing",
-    image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/ProductWalkthrough.gif?raw=true",
     disclosure: "Developed during my internship at AmagisTech Italia. Under my confidentiality agreement, internal product details, data and proprietary layouts are not shown. Screens are abstracted, and the project is presented through process and methodology.",
     contribution: [
       {
@@ -708,6 +707,7 @@ processMap: [
     ],
     team: "AmagisTech. Andrea Curcio (senior designer), Antonio Cervadoro (developer)",
     problem: "Security teams work across many disconnected tools, each with its own login and way of working. Much of the job is repetitive, manual work that doesn't scale as a provider takes on more customers. Analysts should spend their time on judgment, not data entry, and whatever an AI does on their behalf has to stay visible while it happens.",
+    problemImage: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/problem.png?raw=true",
     audiences: [
       {
         title: "Buyers",
