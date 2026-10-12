@@ -685,12 +685,12 @@ processMap: [
   "soc": {
     id: "soc",
     title: "Agentic SOC",
-    heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/Screenshot%202026-10-12%20at%2015.50.22.png?raw=true",
+    heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/Screenshot 2026-10-12 at 16.39.17.png?raw=true",
     overview: "A dark, dense design system and analyst workspace where security analysts and AI agents work the same incident queue side by side.",
     scope: "Cybersecurity Design System & Workspace UI",
     role: "UX/UI Designer (Design System, Prototyping, Handoff)",
     timeline: "Ongoing",
-    video: "images/Product%20Walkthrough.mp4",
+    video: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/Product%20Walkthrough.mp4",
     disclosure: "Developed during my internship at AmagisTech Italia. Under my confidentiality agreement, internal product details, data and proprietary layouts are not shown. Screens are abstracted, and the project is presented through process and methodology.",
     contribution: [
       {
