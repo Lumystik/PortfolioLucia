@@ -728,6 +728,7 @@ processMap: [
         steps: [
           "Webinar 1 co-design with Andrea Curcio (Senior Designer)",
           "Full SOC component map",
+          "Vendor analysis",
           "Card sorting & CISO questionnaire (14 executive cybersecurity chiefs, CTF session)"
         ]
       },
@@ -1019,9 +1020,9 @@ export function ProjectDetail() {
           </section>
         )}
 {project.processMap && (
-  <section className="py-16 md:py-20 w-full bg-white">
+  <section className="py-16 md:py-24 w-full bg-white">
     <div className="max-w-7xl mx-auto px-6">
-      <div className="mb-10 md:mb-14 max-w-3xl">
+      <div className="mb-12 md:mb-16 max-w-3xl">
         <p className="text-sm uppercase tracking-[0.22em] text-neutral-500 mb-3">
           Process
         </p>
@@ -1035,11 +1036,7 @@ export function ProjectDetail() {
         </p>
       </div>
 
-      <div
-        className={`grid grid-cols-1 ${
-          project.processMap.length === 2 ? "lg:grid-cols-2" : "lg:grid-cols-3"
-        } gap-8 lg:gap-10`}
-      >
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10">
         {project.processMap.map((phase: any, phaseIndex: number) => {
           const processItems =
             phase.items ||
@@ -1056,44 +1053,46 @@ export function ProjectDetail() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.45, delay: phaseIndex * 0.08 }}
-              className="rounded-[2rem] border border-neutral-200 bg-[#F2F2F2] p-6 md:p-8 shadow-sm"
+              className="relative flex flex-col rounded-[2rem] bg-[#131313] text-white p-6 md:p-8 shadow-sm"
             >
-              <div className="mb-8">
-                <p className="text-xs uppercase tracking-[0.18em] text-neutral-500 mb-2">
-                  Phase 0{phaseIndex + 1}
-                </p>
-
-                <h3 className="text-2xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">
-                  {phase.phase}
-                </h3>
+              <div className="flex items-start justify-between mb-8">
+                <span className="text-6xl md:text-7xl font-bold leading-none text-white/15">
+                  0{phaseIndex + 1}
+                </span>
+                <span className="text-xs uppercase tracking-[0.18em] text-white/60 mt-2">
+                  Phase {phaseIndex + 1} of {project.processMap.length}
+                </span>
               </div>
 
-              <div className="grid grid-cols-1 gap-4">
+              <h3 className="text-2xl md:text-3xl font-bold uppercase tracking-tight mb-8">
+                {phase.phase}
+              </h3>
+
+              <ol className="relative flex flex-col gap-6 pl-6 border-l border-white/25">
                 {processItems.map((item: any, itemIndex: number) => (
-                  <div
-                    key={itemIndex}
-                    className="rounded-[1.5rem] bg-white border border-neutral-200 p-5 md:p-6 shadow-sm"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-full bg-[#131313] text-white flex items-center justify-center text-sm font-bold shrink-0">
-                        {String(itemIndex + 1).padStart(2, "0")}
-                      </div>
+                  <li key={itemIndex} className="relative">
+                    <span className="absolute -left-[30px] top-1.5 w-3 h-3 rounded-full bg-white" />
+                    <p className="text-sm md:text-base font-bold uppercase tracking-tight">
+                      {item.title}
+                    </p>
 
-                      <div className="flex flex-col gap-2">
-                        <h4 className="text-lg md:text-xl font-bold uppercase tracking-tight text-[#131313]">
-                          {item.title}
-                        </h4>
-
-                        {item.description && (
-                          <p className="text-sm md:text-base text-gray-700 leading-relaxed">
-                            {item.description}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  </div>
+                    {item.description && (
+                      <p className="text-sm text-white/70 leading-relaxed mt-1">
+                        {item.description}
+                      </p>
+                    )}
+                  </li>
                 ))}
-              </div>
+              </ol>
+
+              {phaseIndex < project.processMap.length - 1 && (
+                <div
+                  aria-hidden="true"
+                  className="hidden lg:flex absolute top-1/2 -right-7 z-10 w-6 h-6 items-center justify-center rounded-full bg-white text-[#131313] text-xs font-bold shadow-sm"
+                >
+                  →
+                </div>
+              )}
             </motion.div>
           );
         })}
@@ -1102,8 +1101,7 @@ export function ProjectDetail() {
   </section>
 )}
 
-
-   {project.targetUsers && (
+{project.targetUsers && (
           <section className="py-16 md:py-20 w-full bg-white text-[#131313]">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
               <div className="flex flex-col gap-4 max-w-3xl">
