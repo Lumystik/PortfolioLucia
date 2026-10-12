@@ -42,6 +42,14 @@ const projects = [
     description: "Videogame Demo made in Unity",
     image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/pixela.png?raw=true",
     link: "/project/pixela"
+  },
+  {
+    id: "soc",
+    title: "Agentic SOC",
+    tags: "Cybersecurity",
+    description: "Agentic SOC for Analysts and Executives. In partnership with Google.",
+    image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/Screenshot 2026-10-12 at 15.50.22.png?raw=true",
+    link: "/project/pixela"
   }
 ];
 
