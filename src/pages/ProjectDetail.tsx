@@ -873,7 +873,7 @@ function DesignCarousel({ levels, cards, image }: { levels: any[]; cards: any[];
           alt={`${level.title} level`}
           loading="lazy"
           decoding="async"
-          className="mt-10 w-full max-h-[360px] object-contain rounded-2xl bg-white/5"
+          className="mt-10 w-full max-h-[200px] object-contain rounded-2xl bg-white/5"
         />
       </div>
 
