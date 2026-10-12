@@ -685,7 +685,7 @@ processMap: [
   "soc": {
     id: "soc",
     title: "Agentic SOC",
-    heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/Screenshot 2026-10-12 at 16.39.17.png©",
+    heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/Screenshot 2026-10-12 at 16.39.17.png?raw=true",
     overview: "A dark, dense design system and analyst workspace where security analysts and AI agents work the same incident queue side by side.",
     scope: "Cybersecurity Design System & Workspace UI",
     role: "UX/UI Designer (Design System, Prototyping, Handoff)",
@@ -693,7 +693,7 @@ processMap: [
     designSystem: {
       method: "Atomic Design",
       description: "The design system was built with Atomic Design: small, single-purpose pieces are combined step by step into components, page regions, a layout template and finally a full analyst view.",
-      image: "images/designsystemsoc.png",
+      image: "/images/designsystemsoc.png",
       cards: [
         {
           number: "01",
@@ -702,7 +702,8 @@ processMap: [
           type: "Metric card",
           category: "Metrics",
           level: "molecules",
-          description: "Mean time to resolve an incident, shown as one label above one large numeral."
+          description: "Mean time to resolve an incident, shown as one label above one large numeral.",
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/MTTR.png?raw=true"
         },
         {
           number: "02",
