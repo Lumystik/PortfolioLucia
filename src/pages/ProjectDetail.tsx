@@ -681,7 +681,7 @@ processMap: [
   },
   "soc": {
     id: "soc",
-    title: "AI-Driven SOC Workspace",
+    title: "Agentic SOC",
     heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/Screenshot%202026-10-12%20at%2015.50.22.png?raw=true",
     overview: "A dark, dense design system and analyst workspace where security analysts and AI agents work the same incident queue side by side.",
     scope: "Cybersecurity Design System & Workspace UI",
@@ -693,24 +693,24 @@ processMap: [
       {
         phase: "Research",
         steps: [
-          "Analyst workflow review",
-          "Queue and incident patterns",
-          "Competitive UX analysis"
+          "Webinar 1 co-design with Andrea Curcio (Senior Designer)",
+          "Full SOC component map",
+          "Card sorting & CISO questionnaire (14 executive cybersecurity chiefs, CTF session)"
         ]
       },
       {
         phase: "Define",
         steps: [
-          "Tokens & foundations",
-          "Atoms, molecules & page regions",
-          "Workspace layout"
+          "Analysis of card sorting & questionnaire data",
+          "Component placement agreement (CISO & Analyst)",
+          "Webinar 2: CISO and Analyst screens"
         ]
       },
       {
         phase: "Develop",
         steps: [
-          "Design system documentation",
-          "Composed analyst view",
+          "Atomic design system (tokens, atoms, molecules, organisms)",
+          "UX/UI project scope document with the developer team",
           "Developer handoff"
         ]
       }
