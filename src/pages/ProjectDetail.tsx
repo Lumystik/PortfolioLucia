@@ -828,21 +828,7 @@ processMap: [
     keyFunctions: {
       description: "The workspace is built from a small set of reusable parts: a navigation rail, page header, filter bar, data table and an agent panel.",
       functions: [
-        {
-          title: "AGENT + HUMAN QUEUE",
-          description: "Colour carries meaning: violet marks agent work, teal marks human work, and pink flags a decision that needs a person.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/Screenshot%202026-10-12%20at%2015.50.22.png?raw=true"
-        },
-        {
-          title: "DATA TABLE & FILTERS",
-          description: "Hairline rows, a consistent 40px height and a sticky filter bar keep incidents comparable across severity, status and owner.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/Screenshot%202026-10-12%20at%2015.50.22.png?raw=true"
-        },
-        {
-          title: "TOKENS & ATOMS",
-          description: "A documented token set, from atoms to a page template, so the team builds new screens from the same parts.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/Screenshot%202026-10-12%20at%2015.50.22.png?raw=true"
-        },
+      
         {
           title: "CENTRALIZED TOOLS",
           description: "One workspace brings the separate security tools together, so analysts no longer log in to and switch between each one.",
