@@ -694,6 +694,36 @@ processMap: [
       method: "Atomic Design",
       description: "The design system was built with Atomic Design: small, single-purpose pieces are combined step by step into components, page regions, a layout template and finally a full analyst view.",
       image: "/images/designsystemsoc.png",
+      cards: [
+        {
+          number: "01",
+          name: "MTTR",
+          area: "Overview · metrics row",
+          type: "Metric card",
+          category: "Metrics",
+          level: "molecules",
+          description: "Mean time to resolve an incident, shown as one label above one large numeral.",
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/MTTR.png?raw=true"
+        },
+        {
+          number: "02",
+          name: "Case grouping causality graph",
+          area: "Case view",
+          type: "Graph",
+          category: "Cases",
+          level: "organisms",
+          description: "Groups related alerts into a single case and shows how they relate to one another."
+        },
+        {
+          number: "03",
+          name: "Top 5 riskiest misconfigurations",
+          area: "Posture view",
+          type: "Data table",
+          category: "Posture",
+          level: "organisms",
+          description: "Ranks the five highest-risk configuration issues, with their severity and owner."
+        }
+      ],
       levels: [
         {
           id: "foundations",
@@ -711,19 +741,24 @@ processMap: [
           id: "molecules",
           title: "Molecules",
           text: "Atoms working together: metric cards, filter chips and owner badges.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/morecule.png?raw=true"
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/morecules.png?raw=true"
+        },
+        {
+          id: "organisms",
+          title: "Organisms",
+          text: "Page regions with their own rhythm: the data table, the filter bar, the agent panel and the navigation rail.",
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/organisms.png?raw=true"
         },
         {
           id: "template",
           title: "Template",
           text: "The workspace layout: a window frame that holds a rail, a main column and a collapsible agent panel, with no content yet.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/templates.png?raw=true"
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/template.png?raw=true"
         },
         {
           id: "page",
           title: "Platform",
-          text: "The cases analyst view: the template filled with real content, where tabs, filters and the scrubber respond to the user.",image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/page.png?raw=true",
-         image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/pages.png?raw=true"
+          text: "The cases analyst view: the template filled with real content, where tabs, filters and the scrubber respond to the user.",image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/page.png?raw=true"
         }
       ]
     },
@@ -838,7 +873,7 @@ function DesignCarousel({ levels, cards, image }: { levels: any[]; cards: any[];
           alt={`${level.title} level`}
           loading="lazy"
           decoding="async"
-          className="mt-10 w-full max-h-[200px] object-contain rounded-2xl bg-white/5"
+          className="mt-10 w-full max-h-[360px] object-contain rounded-2xl bg-white/5"
         />
       </div>
 
@@ -854,7 +889,7 @@ function DesignCarousel({ levels, cards, image }: { levels: any[]; cards: any[];
               <p className="text-xs uppercase tracking-widest text-neutral-500">
                 {card.type} · {card.area}
               </p>
-              <p className="text-sm md:text-base text-gray-700 leading-relaxed">{card.image}</p>
+              <p className="text-sm md:text-base text-gray-700 leading-relaxed">{card.description}</p>
             </div>
           ))}
         </div>
