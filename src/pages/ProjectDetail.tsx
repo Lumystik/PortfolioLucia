@@ -990,7 +990,7 @@ function DesignCarousel({ levels, cards, image }: { levels: any[]; cards: any[];
   const [index, setIndex] = useState(0);
   const count = levels.length;
   const level = levels[index];
-  const levelCards = cards.filter((card: any) => card.level === level.id);
+  const levelCards = (cards ?? []).filter((card: any) => card.level === level.id);
 
   return (
     <div className="flex flex-col gap-8">
