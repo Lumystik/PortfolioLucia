@@ -735,19 +735,19 @@ processMap: [
           id: "atoms",
           title: "Atoms",
           text: "The smallest usable pieces: buttons, badges, toggles, status dots and icons. Each atom has one job and no layout of its own.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/atom.png?raw=true"
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/atoms.svg?raw=true"
         },
         {
           id: "molecules",
           title: "Molecules",
           text: "Atoms working together: metric cards, filter chips and owner badges.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/morecules.png?raw=true"
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/morecules.svg?raw=true"
         },
         {
           id: "organisms",
           title: "Organisms",
           text: "Page regions with their own rhythm: the data table, the filter bar, the agent panel and the navigation rail.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/organisms.png?raw=true"
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/organisms.svg?raw=true"
         },
         {
           id: "template",
@@ -758,7 +758,8 @@ processMap: [
         {
           id: "page",
           title: "Platform",
-          text: "The cases analyst view: the template filled with real content, where tabs, filters and the scrubber respond to the user.",image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/page.png?raw=true"
+          text: "The cases analyst view: the template filled with real content, where tabs, filters and the scrubber respond to the user.",
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/pages.svg?raw=true"
         }
       ]
     },
