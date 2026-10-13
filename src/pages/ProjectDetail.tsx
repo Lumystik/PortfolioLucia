@@ -1256,7 +1256,7 @@ export function ProjectDetail() {
                     {project.problem}
                   </div>
                 </div>
-                <div className="lg:col-span-8 flex items-center justify-center overflow-hidden bg-[#F9F9F9] border border-gray-100 rounded-2xl w-full">
+                <div className="lg:col-span-8 flex items-center justify-center overflow-hidden rounded-2xl w-full">
                   {project.id === 'soc' ? (
                     <ProblemFolder tools={["Endpoint protection", "Threat intelligence feeds", "Security information system", "Ticketing"]} />
                   ) : (
