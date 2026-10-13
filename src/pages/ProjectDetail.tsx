@@ -780,6 +780,7 @@ processMap: [
     team: "AmagisTech. Andrea Curcio (senior designer), Antonio Cervadoro (developer)",
     problem: "Security teams work across many disconnected tools, each with its own login and way of working. Much of the job is repetitive, manual work that doesn't scale as a provider takes on more customers. Analysts should spend their time on judgment, not data entry, and whatever an AI does on their behalf has to stay visible while it happens.",
     problemImage: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/problem.png?raw=true",
+    solution: "An AI layer that sits across the existing tools and handles the repetitive, well-defined work. A coordinating AI understands a request, such as onboarding a new customer or looking into an alert, and hands it to a specialised AI worker built for that one job. Analysts keep the judgment calls, and whoever oversees the system sees each tool call, finding and decision as it happens.",
     audiences: [
       {
         title: "Buyers",
@@ -851,6 +852,168 @@ processMap: [
   }
 };
 
+// Problem folder: click to open, and the tools named in the problem spill out of it.
+const problemFolderCss = `
+.pf-card { position: relative; display: block; width: 100%; max-width: 380px; height: 280px; margin: 0 auto; cursor: pointer; }
+.pf-toggle { position: absolute; opacity: 0; pointer-events: none; }
+.pf-hint { position: absolute; top: 0; right: 0; color: #9259DB; font: 600 12px/1 Inter, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; transition: opacity 0.3s; }
+.pf-toggle:checked ~ .pf-hint { opacity: 0; }
+.pf-container { position: absolute; inset: 28px 0 0 0; }
+.pf-back { position: absolute; inset: 0; border-radius: 14px; background: #3B1F73; }
+.pf-file { position: absolute; left: 10%; right: 10%; bottom: 16%; height: 130px; display: flex; flex-direction: column; justify-content: space-between; padding: 14px; border-radius: 10px; border: 1px solid rgba(146, 89, 219, 0.45); background: #171726; color: #fff; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+.pf-file-text { font: 600 14px/1.2 Inter, sans-serif; }
+.pf-file-tag { font: 500 11px/1 "JetBrains Mono", monospace; color: #A78BFA; letter-spacing: 0.06em; text-transform: uppercase; }
+.pf-file-1 { z-index: 1; }
+.pf-file-2 { z-index: 2; }
+.pf-file-3 { z-index: 3; }
+.pf-file-4 { z-index: 4; }
+.pf-toggle:checked ~ .pf-container .pf-file-1 { transform: translateY(-70px) rotate(-4deg); }
+.pf-toggle:checked ~ .pf-container .pf-file-2 { transform: translateY(-110px) rotate(2deg); }
+.pf-toggle:checked ~ .pf-container .pf-file-3 { transform: translateY(-150px) rotate(-2deg); }
+.pf-toggle:checked ~ .pf-container .pf-file-4 { transform: translateY(-190px) rotate(3deg); }
+.pf-front { position: absolute; left: 0; right: 0; bottom: 0; height: 62%; z-index: 10; border-radius: 14px; background: linear-gradient(160deg, rgba(146, 89, 219, 0.9), rgba(109, 40, 217, 0.85)); box-shadow: 0 0 30px rgba(146, 89, 219, 0.35); padding: 18px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+.pf-toggle:checked ~ .pf-container .pf-front { transform: translateY(38%); }
+.pf-counter { display: flex; align-items: center; gap: 8px; color: #fff; font: 600 11px/1 "JetBrains Mono", monospace; letter-spacing: 0.1em; }
+.pf-dot { width: 7px; height: 7px; border-radius: 9999px; background: #37FF8B; box-shadow: 0 0 8px #37FF8B; }
+.pf-label { color: #fff; font: 700 18px/1.2 Inter, sans-serif; }
+`;
+
+function ProblemFolder({ tools }: { tools: string[] }) {
+  return (
+    <>
+      <style>{problemFolderCss}</style>
+      <label className="pf-card">
+        <input type="checkbox" className="pf-toggle" />
+        <div className="pf-hint">Click to open</div>
+        <div className="pf-container">
+          <div className="pf-back" />
+          {tools.slice(0, 4).map((tool, i) => (
+            <div key={tool} className={`pf-file pf-file-${i + 1}`}>
+              <span className="pf-file-text">{tool}</span>
+              <span className="pf-file-tag">Tool {String(i + 1).padStart(2, "0")}</span>
+            </div>
+          ))}
+          <div className="pf-front">
+            <div className="pf-counter">
+              <span className="pf-dot" />
+              <span>TOOLS</span>
+              <span>{String(Math.min(tools.length, 4)).padStart(2, "0")}</span>
+            </div>
+            <div className="pf-label">Too many tools, one analyst</div>
+          </div>
+        </div>
+      </label>
+    </>
+  );
+}
+
+// CISO-only component: an executive summary card. Values are placeholders, not real results.
+function CisoRiskCard() {
+  return (
+    <div className="group relative w-full max-w-sm overflow-hidden rounded-2xl bg-neutral-950 p-6 font-sans shadow-2xl">
+      <div className="absolute -top-1/2 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-violet-500/10 blur-3xl transition-all duration-700 group-hover:bg-violet-500/15" />
+
+      <div className="relative flex flex-col gap-5">
+        <div className="flex items-start justify-between border-b border-neutral-800 pb-5">
+          <div className="flex items-center gap-3">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-violet-400/10">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 text-violet-400"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M3 12m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+                <path d="M9 8m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+                <path d="M15 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+                <path d="M4 20l14 0" />
+              </svg>
+            </div>
+            <div>
+              <p className="font-semibold text-neutral-200">Executive Risk Overview</p>
+              <p className="text-xs text-neutral-500">For CISO review</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex divide-x divide-neutral-800">
+          <div className="flex-1 pr-6">
+            <p className="text-xs font-medium text-neutral-500">Open risks</p>
+            <p className="text-xl font-semibold text-neutral-100">—</p>
+            <p className="mt-1 text-xs font-medium text-violet-400">Tracked</p>
+          </div>
+          <div className="flex-1 pl-6">
+            <p className="text-xs font-medium text-neutral-500">Mean time to resolve</p>
+            <p className="text-xl font-semibold text-neutral-100">—</p>
+            <p className="mt-1 text-xs font-medium text-violet-400">Tracked</p>
+          </div>
+        </div>
+
+        <div className="relative h-24 w-full">
+          <svg className="h-full w-full" viewBox="0 0 300 100" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="ciso-risk-gradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#9259DB" stopOpacity="0.25" />
+                <stop offset="100%" stopColor="#9259DB" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+            <path d="M0,65 C50,20 80,80 150,70 S250,50 300,85" fill="none" stroke="#9259DB" strokeWidth="2" />
+            <path d="M0,100 L0,65 C50,20 80,80 150,70 S250,50 300,85 L300,100 Z" fill="url(#ciso-risk-gradient)" />
+          </svg>
+          <div className="absolute right-[-1px] top-[81px]">
+            <div className="absolute h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-400 shadow-lg shadow-violet-400/50" />
+            <div className="absolute h-full w-full animate-pulse rounded-full bg-violet-400/25" />
+          </div>
+        </div>
+
+        <div className="border-t border-neutral-800 pt-5">
+          <button
+            type="button"
+            className="w-full rounded-lg border border-violet-400/50 bg-transparent px-4 py-2 text-sm font-medium text-violet-400 transition-colors duration-300 hover:bg-violet-400 hover:text-neutral-950"
+          >
+            View Full Report
+          </button>
+        </div>
+
+        <p className="text-xs text-neutral-500">Illustrative layout. Values are not shown.</p>
+      </div>
+    </div>
+  );
+}
+
+// Title with a violet outline-fill hover effect. Only used on the Agentic SOC project.
+const hoverTitleCss = `
+.soc-hover-title { position: relative; display: inline-block; }
+.soc-hover-overlay {
+  position: absolute; inset: 0; box-sizing: border-box;
+  color: #9259DB; width: 0%; overflow: hidden; white-space: nowrap;
+  border-right: 6px solid #9259DB;
+  -webkit-text-stroke: 1px #9259DB;
+  transition: width 0.5s;
+}
+.soc-hover-title:hover .soc-hover-overlay {
+  width: 100%;
+  filter: drop-shadow(0 0 23px #9259DB);
+}
+`;
+
+function HoverTitle({ text }: { text: string }) {
+  return (
+    <>
+      <style>{hoverTitleCss}</style>
+      <span className="soc-hover-title" data-text={text}>
+        <span>{text}</span>
+        <span aria-hidden="true" className="soc-hover-overlay">{text}</span>
+      </span>
+    </>
+  );
+}
+
 // Walks through the atomic levels; each slide shows the component cards sorted into that level.
 function DesignCarousel({ levels, cards, image }: { levels: any[]; cards: any[]; image: string }) {
   const [index, setIndex] = useState(0);
@@ -880,16 +1043,33 @@ function DesignCarousel({ levels, cards, image }: { levels: any[]; cards: any[];
       {levelCards.length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {levelCards.map((card: any) => (
-            <div key={card.number} className="flex flex-col gap-3 p-6 bg-[#F2F2F2] rounded-2xl border border-neutral-200">
-              <div className="flex justify-between text-xs uppercase tracking-[0.18em] text-neutral-500">
-                <span>{card.number}</span>
-                <span>{card.category}</span>
+            <div
+              key={card.number}
+              className="group relative flex w-full flex-col rounded-xl bg-slate-950 p-4 shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:shadow-violet-500/20"
+            >
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-violet-500 via-purple-500 to-violet-400 opacity-20 blur-sm transition-opacity duration-300 group-hover:opacity-30" />
+              <div className="absolute inset-px rounded-[11px] bg-slate-950" />
+
+              <div className="relative">
+                <div className="mb-4 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500 to-purple-500">
+                      <span className="text-xs font-bold text-white">{card.number}</span>
+                    </div>
+                    <h5 className="text-sm font-semibold text-white">{card.name}</h5>
+                  </div>
+
+                  <span className="flex items-center gap-1 rounded-full bg-violet-500/10 px-2 py-1 text-xs font-medium text-violet-400">
+                    <span className="h-1.5 w-1.5 rounded-full bg-violet-400" />
+                    {card.category}
+                  </span>
+                </div>
+
+                <p className="mb-2 text-xs font-medium text-slate-400">
+                  {card.type} · {card.area}
+                </p>
+                <p className="text-sm leading-relaxed text-slate-300">{card.description}</p>
               </div>
-              <h5 className="text-lg font-bold uppercase tracking-tight text-[#131313]">{card.name}</h5>
-              <p className="text-xs uppercase tracking-widest text-neutral-500">
-                {card.type} · {card.area}
-              </p>
-              <p className="text-sm md:text-base text-gray-700 leading-relaxed">{card.description}</p>
             </div>
           ))}
         </div>
@@ -1015,7 +1195,7 @@ export function ProjectDetail() {
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1 }}
                 className="text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tight break-words m-0"
               >
-                {project.title}
+                {project.id === 'soc' ? <HoverTitle text={project.title} /> : project.title}
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
@@ -1060,6 +1240,12 @@ export function ProjectDetail() {
                   </div>
                 </div>
               )}
+              {project.solution && (
+                <div className="flex flex-col gap-4">
+                  <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">The Solution</h3>
+                  <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-3xl">{project.solution}</p>
+                </div>
+              )}
               {project.audiences && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {project.audiences.map((aud: any, idx: number) => (
@@ -1100,11 +1286,14 @@ export function ProjectDetail() {
                   </div>
                 </div>
                 <div className="lg:col-span-8 flex items-center justify-center overflow-hidden bg-[#F9F9F9] border border-gray-100 rounded-2xl w-full">
-                  <img
+                  {project.id === 'soc' ? (
+                    <ProblemFolder tools={["Endpoint protection", "Threat intelligence feeds", "Security information system", "Ticketing"]} />
+                  ) : (
+                    <img
                     src={project.problemImage || "/placeholder-phone-mockup.png"}
                     alt="The Problem Illustration"
                     className={mediaImg}
-                   loading="lazy" decoding="async" />
+                   loading="lazy" decoding="async" />)}
                 </div>
               </div>
             </div>
@@ -1285,6 +1474,14 @@ export function ProjectDetail() {
           cards={project.designSystem.cards}
           image={project.designSystem.image}
         />
+
+        <div className="flex flex-col gap-6">
+          <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">CISO Component</h3>
+          <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-3xl">
+            A summary card for the CISO screen, giving leadership an overview without the analyst detail.
+          </p>
+          <CisoRiskCard />
+        </div>
       </div>
     </div>
   </section>
