@@ -694,42 +694,12 @@ processMap: [
       method: "Atomic Design",
       description: "The design system was built with Atomic Design: small, single-purpose pieces are combined step by step into components, page regions, a layout template and finally a full analyst view.",
       image: "/images/designsystemsoc.png",
-      cards: [
-        {
-          number: "01",
-          name: "MTTR",
-          area: "Overview · metrics row",
-          type: "Metric card",
-          category: "Metrics",
-          level: "molecules",
-          description: "Mean time to resolve an incident, shown as one label above one large numeral.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/MTTR.png?raw=true"
-        },
-        {
-          number: "02",
-          name: "Case grouping causality graph",
-          area: "Case view",
-          type: "Graph",
-          category: "Cases",
-          level: "organisms",
-          description: "Groups related alerts into a single case and shows how they relate to one another."
-        },
-        {
-          number: "03",
-          name: "Top 5 riskiest misconfigurations",
-          area: "Posture view",
-          type: "Data table",
-          category: "Posture",
-          level: "organisms",
-          description: "Ranks the five highest-risk configuration issues, with their severity and owner."
-        }
-      ],
       levels: [
         {
           id: "foundations",
           title: "Foundations",
           text: "Tokens for colour, type, spacing and radius. Colour carries meaning: violet for agent work and selection, teal for human work, and pink for a decision that needs a person.",
-       image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/foundations.png?raw=true"
+       image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/foundations.svg?raw=true"
         },
         {
           id: "atoms",
@@ -741,7 +711,7 @@ processMap: [
           id: "molecules",
           title: "Molecules",
           text: "Atoms working together: metric cards, filter chips and owner badges.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/morecules.svg?raw=true"
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/molecules.svg?raw=true"
         },
         {
           id: "organisms",
