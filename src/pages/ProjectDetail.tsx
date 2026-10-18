@@ -847,7 +847,7 @@ processMap: [
         {
           title: "NO BLACK BOX FOR ANALYSTS",
           description: "Every action the AI takes is visible as it happens: which tool it called, what it found, and what decision it made.",
-          image: "hhttps://github.com/Lumystik/PortfolioLucia/blob/main/images/soc_no_black_box.png?raw=true"
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/soc_no_black_box.png?raw=true"
         },
         {
           title: "ADAPTABLE TO CISOs TOO",
