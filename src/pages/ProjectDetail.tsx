@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 // Shared image style: every content image fits its frame and is centred the same way.
 const mediaImg = "block w-full h-auto min-h-[120px] max-h-[480px] object-contain mx-auto bg-gray-50";
@@ -18,7 +18,7 @@ const projectsData: Record<string, any> = {
     role: "UX Research, Branding, UX/UI Design",
     timeline:"4 months",
     team: "Lucia Medina, Martina Braidotti, Ilario Pedone, Agnese Rosselli, Mark Waisara",
-    prototypeLink: "https://www.figma.com/proto/16viMWZsHOU9SkmpbSpTd5/FINAL-UI-spaced?node-id=2248-9671&starting-point-node-id=703%3A8427&scaling=scale-down&content-scaling=fixed&t=aO2g8BW8sOtXyiVT-1?raw=true",
+    prototypeLink: "https://www.figma.com/proto/16viMWZsHOU9SkmpbSpTd5/FINAL-UI-spaced?node-id=2248-9671&starting-point-node-id=703%3A8427&scaling=scale-down&content-scaling=fixed&t=aO2g8BW8sOtXyiVT-1",
     problem: "Staff at small museums often face fragmented workflows. \n\n With only 4 full-time staff managing 59 events and exhibitions a year across 6 different tools, the team is constantly stretched thin.",
     problemImage: "https://github.com/Lumystik/PortfolioLucia/blob/e26793d1c7a5be6de4360cc29f526af2d89a09e6/images/museon_problem.png?raw=true",
    processMap: [
@@ -88,7 +88,7 @@ const projectsData: Record<string, any> = {
     },
     iterations: {
       title: "ITERATIONS + REFINEMENT",
-      description: "While navigating their dashboard, users all had very similar behavior on the constraints page. This lead me to implement a couple changes:",
+      description: "While navigating their dashboard, users all had very similar behavior on the constraints page. This led me to implement a couple of changes:",
       items: [
         {
           title: "ADDING CLARIFICATION TO SETTINGS",
@@ -179,7 +179,7 @@ const projectsData: Record<string, any> = {
     },
     bannerImage: "https://github.com/Lumystik/PortfolioLucia/blob/988251ade7a50360d870b2b630818e7291a7d458/images/museon_finalinterface%20(10).gif?raw=true",
     finalPrototype: {
-      link: "https://www.figma.com/proto/16viMWZsHOU9SkmpbSpTd5/FINAL-UI-spaced?node-id=2248-9671&starting-point-node-id=703%3A8427&scaling=scale-down&content-scaling=fixed&t=aO2g8BW8sOtXyiVT-1?raw=true",
+      link: "https://www.figma.com/proto/16viMWZsHOU9SkmpbSpTd5/FINAL-UI-spaced?node-id=2248-9671&starting-point-node-id=703%3A8427&scaling=scale-down&content-scaling=fixed&t=aO2g8BW8sOtXyiVT-1",
     },
     takeaways: "We began with an in-depth research phase to understand the museum as an ecosystem of interconnected stakeholders, workflows, and responsibilities. This background-research process was complex and took over a month, as we needed to clearly define the core problem before moving into solutions. Through staff interviews and organizational mapping, we created visual schemas that helped us analyze how the museum operates and explain the problem from a top-down perspective. ",
     nextProject: {
@@ -279,7 +279,7 @@ const projectsData: Record<string, any> = {
     ],
     bannerImage: "https://github.com/Lumystik/PortfolioLucia/blob/0182dd8ebc2b79c3b2d70c12906039a138c2ca8b/images/Untitled%20design%20(2).gif?raw=true",
     finalPrototype: {
-      link: "https://www.figma.com/proto/FnFqrWBxyChSOdL3aVzV9A/Prototype?node-id=564-1942&starting-point-node-id=564%3A1942&t=qxU8emggwdYKJFm1-1?raw=true",
+      link: "https://www.figma.com/proto/FnFqrWBxyChSOdL3aVzV9A/Prototype?node-id=564-1942&starting-point-node-id=564%3A1942&t=qxU8emggwdYKJFm1-1",
     },
     takeaways: "Information Architecture is the core of projects; the skeleton where design takes place as an intuitive experience.",
     nextProject: {
@@ -448,7 +448,7 @@ processMap: [
     "How can we restructure Cineteca Milano into a clearer, more usable experience for discovering films, exploring events, and booking tickets?",
 
   heroFlow:
-    "YOUR_INFORMATION_ARCHITECTURE_OR_USER_FLOW_IMAGE_URL",
+    "https://github.com/Lumystik/PortfolioLucia/blob/480139cc265caba04a43d21ff472ecb4824be7ea/images/ia.png?raw=true",
 
   heroFlowCaption:
     "Redesigned IA and core user flows: discovering films, exploring events, and booking tickets.",
@@ -603,7 +603,7 @@ processMap: [
 },
     bannerImage: "https://github.com/Lumystik/PortfolioLucia/blob/11d3fa9ee9136bb0c7e859de3eadc6867282e25b/images/finalinterface_films.png?raw=true",
     finalPrototype: {
-      link: "https://www.figma.com/design/MWvYkF7ybuKjE7SPnGi8po/Assignment?node-id=689-5581&p=f&t=u3MsALKiA01A94Ii-0?raw=true",
+      link: "https://www.figma.com/design/MWvYkF7ybuKjE7SPnGi8po/Assignment?node-id=689-5581&p=f&t=u3MsALKiA01A94Ii-0",
     },
     takeaways: "By applying ergonomic principles to the design, we transformed a cluttered and confusing website into a highly usable, accessible, and aesthetically pleasing platform. The new design significantly reduces cognitive load, improves task efficiency (e.g., streamlining the ticket booking flow), and provides a responsive experience across desktop and mobile devices.",
     nextProject: {
@@ -646,7 +646,11 @@ processMap: [
         image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/starbucks5.gif?raw=true"
       }
     ],
-    takeaways: "Working with global brands requires adaptability and a deep understanding of interactive design principles. I developed a strong intuition for attention and engagement, learning exactly what makes users stop scrolling."
+    takeaways: "Working with global brands requires adaptability and a deep understanding of interactive design principles. I developed a strong intuition for attention and engagement, learning exactly what makes users stop scrolling.",
+    nextProject: {
+      title: "AGENTIC SOC",
+      link: "/project/soc"
+    }
   },
   "pixela": {
     id: "pixela",
@@ -785,10 +789,10 @@ processMap: [
         description: "Ran card sorting with CISOs and analysts, then worked from rough sketches to interactive Figma prototypes, documenting each iteration."
       }
     ],
-      howMightWe: [
+    howMightWe: [
       "make agent activity and human decisions readable in the same queue?",
-      "keep a dense analyst interface calm and scannable over long sessions and an interface that an executive/CISO would actually need?",
-      "give a design system one vocabulary for an agentic system?"
+      "keep a dense analyst interface calm and scannable over long sessions, while giving executives and CISOs the view they actually need?",
+      "give a design system one shared vocabulary for an agentic system?"
     ],
     team: "AmagisTech. Andrea Curcio (senior designer), Antonio Cervadoro (developer)",
     problem: "Security teams work across many disconnected tools, each with its own login and way of working. Much of the job is repetitive, manual work that doesn't scale as a provider takes on more customers. Analysts should spend their time on judgment, not data entry, and whatever an AI does on their behalf has to stay visible while it happens.",
@@ -850,13 +854,17 @@ processMap: [
           image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/soc_no_black_box.png?raw=true"
         },
         {
-          title: "ADAPTABLE TO CISOs TOO",
+          title: "ADAPTABLE TO CISOS TOO",
           description: "The same system serves executives looking at the overall picture and analysts working through individual cases.",
           image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/soc_ciso_interface.jpg?raw=true"
         }
       ]
     },
-    takeaways: "Designing for a dark analyst tool meant that structure, hierarchy and a restrained colour system do the work that shadows and decoration would do elsewhere. Writing the system down as tokens, atoms and regions made handoff to engineering much faster, and designing a separate CISO view showed how one system can serve very different users."
+    takeaways: "Designing for a dark analyst tool meant that structure, hierarchy and a restrained colour system do the work that shadows and decoration would do elsewhere. Writing the system down as tokens, atoms and regions made handoff to engineering much faster, and designing a separate CISO view showed how one system can serve very different users.",
+    nextProject: {
+      title: "PIXELA",
+      link: "/project/pixela"
+    }
   }
 };
 
@@ -946,11 +954,8 @@ function HoverTitle({ text }: { text: string }) {
 export function ProjectDetail() {
   const { id } = useParams<{ id: string }>();
   const project = id ? projectsData[id] : null;
-  const [loaded, setLoaded] = useState(false);
-
   useEffect(() => {
     window.scrollTo(0, 0);
-    setLoaded(false);
   }, [id]);
 
   if (!project) {
@@ -1304,11 +1309,28 @@ export function ProjectDetail() {
 
       <div className="flex flex-col gap-6">
         <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">Sorted by Level</h3>
-        <DesignCarousel
-          levels={project.designSystem.levels}
-          cards={project.designSystem.cards}
-          image={project.designSystem.image}
-        />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {project.designSystem.levels.map((level: any, idx: number) => (
+            <motion.div
+              key={level.id}
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.06 }}
+              className="rounded-[2rem] bg-[#131313] text-white p-6 md:p-8 flex flex-col gap-5"
+            >
+              <span className="text-xs uppercase tracking-[0.22em] text-white/60">
+                Level {idx + 1} of {project.designSystem.levels.length}
+              </span>
+              <img
+                src={level.image}
+                alt={`${level.title} level`}
+                loading="lazy"
+                decoding="async"
+                className="w-full h-48 object-contain rounded-2xl bg-white/5"
+              />
+              <h4 className="text-2xl font-bold uppercase tracking-tight">{level.title}</h4>
+              <p className="text-sm md:text-base text-white/75 leading-relaxed">{level.text}</p>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </div>
   </section>
@@ -1622,7 +1644,7 @@ const descriptionParts = persona.description
   <section className="py-16 md:py-20 w-full bg-white">
     <div className="max-w-7xl mx-auto px-6">
       <div className="grid grid-cols-1 gap-6">
-        <div className="rounded-[2.5rem] bg-gray text-black p-8 md:p-12 min-h-[220px] md:min-h-[280px] flex items-center border border-neutral-900 overflow-hidden relative">
+        <div className="rounded-[2.5rem] bg-[#F2F2F2] text-black p-8 md:p-12 min-h-[220px] md:min-h-[280px] flex items-center border border-neutral-900 overflow-hidden relative">
           <div className="absolute inset-x-8 top-8 h-px bg-white/10" />
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tight leading-none">
             How Might We...
@@ -2282,8 +2304,10 @@ const descriptionParts = persona.description
 
         {project.nextProject && (
           <section className="relative w-full h-[60vh] md:h-[50vh] overflow-hidden group">
-            <img src={project.nextProject.image} alt="Next Project" className="absolute inset-0 w-full h-full object-cover"  loading="lazy" decoding="async" />
-            <div className="absolute inset-0 bg-black/85 transition-colors duration-500 group-hover:bg-black/75" />
+            {project.nextProject.image && (
+              <img src={project.nextProject.image} alt="Next Project" className="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
+            )}
+            <div className="absolute inset-0 bg-[#131313]/90 transition-colors duration-500 group-hover:bg-[#131313]/80" />
             <div className="relative z-10 h-full max-w-7xl mx-auto px-6 flex flex-col justify-center">
               <span className="text-xs font-mono uppercase tracking-[0.2em] text-gray-300 mb-4 block">Next Project</span>
               <Link to={project.nextProject.link} className="text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter text-white hover:text-gray-200 inline-block">{project.nextProject.title}</Link>
