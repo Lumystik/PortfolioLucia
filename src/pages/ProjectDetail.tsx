@@ -1058,7 +1058,7 @@ function CentralizedChip() {
             </g>
 
             <rect
-              x="330" y="190" width="140" height="100" rx="20" ry="20"
+              x="330" y="170" width="140" height="160" rx="20" ry="20"
               fill="url(#cc-chipGradient)" stroke="#222" strokeWidth="3"
               style={{ filter: "drop-shadow(0 0 6px rgba(0,0,0,0.8))" }}
             />
@@ -1086,7 +1086,7 @@ function CentralizedChip() {
 
             <text
               x="400" y="250"
-              fontFamily="Arial, sans-serif" fontSize="16"
+              fontFamily="Arial, sans-serif" fontSize="19"
               fill="url(#cc-textGradient)" textAnchor="middle" dominantBaseline="middle"
               className="cc-chip-text"
             >
@@ -2316,7 +2316,7 @@ const descriptionParts = persona.description
                   <p className="text-base md:text-lg text-gray-700 leading-relaxed">{project.keyFunctions.description}</p>
                 </div>
               </div>
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
                 {project.keyFunctions.functions.map((func: any, idx: number) => (
                   <motion.div
                     key={idx}
@@ -2326,11 +2326,23 @@ const descriptionParts = persona.description
                     transition={{ duration: 0.8, delay: idx * 0.1 }}
                     className="group flex flex-col gap-6"
                   >
-                    <div className={`w-full aspect-[2/3] rounded-2xl overflow-hidden flex items-center justify-center border p-8 ${func.visual === 'chip' ? 'bg-[#0E0E12] border-[#222]' : 'bg-[#F9F9F9] border-gray-100'}`}>
+                    <div
+                      className={`w-full aspect-[2/3] rounded-2xl overflow-hidden flex items-center justify-center border ${
+                        project.id === 'soc'
+                          ? `bg-[#0E0E12] border-[#222] ${func.visual === 'chip' ? 'p-6 sm:p-8' : ''}`
+                          : 'bg-[#F9F9F9] border-gray-100 p-8'
+                      }`}
+                    >
                       {func.visual === 'chip' ? (
                         <CentralizedChip />
                       ) : (
-                        <img src={func.image} alt={func.title} className={mediaImg} loading="lazy" decoding="async" />
+                        <img
+                          src={func.image}
+                          alt={func.title}
+                          className={project.id === 'soc' ? 'block w-full h-full object-cover object-top' : mediaImg}
+                          loading="lazy"
+                          decoding="async"
+                        />
                       )}
                     </div>
                     <div className="flex flex-col gap-2 text-left">
