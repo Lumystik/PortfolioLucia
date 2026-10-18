@@ -685,21 +685,32 @@ processMap: [
   "soc": {
     id: "soc",
     title: "Agentic SOC",
-    heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/Screenshot 2026-10-12 at 16.39.17.png?raw=true",
-    overview: "A dark, dense design system and analyst workspace where security analysts and AI agents work the same incident queue side by side.",
-    scope: "Cybersecurity Design System & Workspace UI",
-    role: "UX/UI Designer (Design System, Prototyping, Handoff)",
+    heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/Screenshot%202026-10-12%20at%2016.39.17.png?raw=true",
+    overview: "I'm building the design system for AmagisTech's Agentic SOC platform, which runs as a Google plugin: a dark, dense workspace where security analysts and AI agents work the same incident queue side by side.",
+    scope: "Cybersecurity Design System, CISO Interface & Conversational Agent",
+    role: "UX/UI Designer (Design System, CISO Interface, Prototyping, Handoff)",
     timeline: "Ongoing",
     designSystem: {
       method: "Atomic Design",
       description: "The design system was built with Atomic Design: small, single-purpose pieces are combined step by step into components, page regions, a layout template and finally a full analyst view.",
-      image: "/images/designsystemsoc.png",
+      image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/designsystemsoc.png?raw=true",
+      tokens: {
+        title: "Colour That Carries Meaning",
+        image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/soc_tokens.jpg?raw=true",
+        atomsImage: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/soc_atoms_full.jpg?raw=true",
+        principles: [
+          { title: "One accent", text: "Purple marks agents and the current selection, teal marks people, pink marks a decision waiting on someone." },
+          { title: "Depth without shadow", text: "Seven near-black surface steps and hairline borders separate layers. Nothing glows or floats." },
+          { title: "Mono for machine text", text: "IDs, timestamps and column labels use JetBrains Mono so they scan as data. Inter is used for the interface." },
+          { title: "Dense, even rhythm", text: "40px rows, 32px controls and 16px gaps on a 4px base grid." }
+        ]
+      },
       levels: [
         {
           id: "foundations",
           title: "Foundations",
           text: "Tokens for colour, type, spacing and radius. Colour carries meaning: violet for agent work and selection, teal for human work, and pink for a decision that needs a person.",
-       image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/foundations.svg?raw=true"
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/foundations.svg?raw=true"
         },
         {
           id: "atoms",
@@ -733,19 +744,45 @@ processMap: [
         }
       ]
     },
-    disclosure: "Developed during my internship at AmagisTech Italia. Under my confidentiality agreement, internal product details, data and proprietary layouts are not shown. Screens are abstracted, and the project is presented through process and methodology.",
+    cisoInterface: {
+      label: "CISO & Executive Interface",
+      title: "The Big Picture, On Request",
+      description: "I designed a dedicated interface for CISOs and executives, who need the overall picture rather than analyst detail.",
+      image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/soc_ciso_interface.jpg?raw=true",
+      features: [
+        { title: "Quarterly milestones", description: "Losses avoided, analyst hours reclaimed, mean time to contain and the share of alerts handled without a human." },
+        { title: "Suggested questions", description: "Recent, frequent and recommended questions to start from instead of a blank page." },
+        { title: "One-tap reports", description: "Quick reports such as MTTR, weekly ROI and threat status." },
+        { title: "Ask and it's built", description: "Executives ask for any report in plain language and the agent builds it." },
+        { title: "Autonomy always visible", description: "A status line always shows the agents' current autonomy level." }
+      ],
+      note: "Figures shown are illustrative."
+    },
+    conversationalAgent: {
+      label: "Conversational Agent",
+      title: "A Persistent Workspace, Not a Chat Log",
+      description: "As a team, we designed a conversational agent built around a persistent workspace, so context, actions and assumptions stay visible while the analyst and the agent work through a problem together.",
+      image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/soc_agent_workspace.png?raw=true",
+      features: [
+        { title: "Session state rail", description: "Keeps the active goal, target host and timeframe in view." },
+        { title: "Conversation feed", description: "Every tool call the agent makes is shown as it happens." },
+        { title: "Visual canvas", description: "Anchors such as network topology diagrams, tied to the conversation." },
+        { title: "Ghost layer", description: "Shows the assumptions the agent inferred, so the analyst can check or correct them." }
+      ]
+    },
+    disclosure: "Developed during my internship at AmagisTech Italia. Figures and case data shown are illustrative, and internal product details are omitted under my confidentiality agreement.",
     contribution: [
       {
-        title: "UX Research & Usability",
-        description: "Analysed user journeys, collected feedback and took part in usability testing to find points of friction."
+        title: "Design System",
+        description: "Building the platform's design system, from tokens and atoms to page templates, and preparing clean handoff files for the engineering team."
       },
       {
-        title: "Wireframing & Prototyping",
-        description: "Worked from rough sketches to interactive Figma prototypes, documenting each iteration."
+        title: "CISO Interface",
+        description: "Designed a dedicated interface for CISOs and executives with milestones, suggested questions and on-demand reports."
       },
       {
-        title: "Design System & Handoff",
-        description: "Contributed to maintaining the company design system and prepared clean handoff files for the engineering team."
+        title: "Research & Prototyping",
+        description: "Ran card sorting with CISOs and analysts, then worked from rough sketches to interactive Figma prototypes, documenting each iteration."
       }
     ],
     team: "AmagisTech. Andrea Curcio (senior designer), Antonio Cervadoro (developer)",
@@ -788,6 +825,7 @@ processMap: [
         phase: "Develop",
         steps: [
           "Atomic design system (tokens, atoms, molecules, organisms)",
+          "CISO interface & conversational agent",
           "UX/UI project scope document with the developer team",
           "Developer handoff"
         ]
@@ -801,7 +839,6 @@ processMap: [
     keyFunctions: {
       description: "The workspace is built from a small set of reusable parts: a navigation rail, page header, filter bar, data table and an agent panel.",
       functions: [
-      
         {
           title: "CENTRALIZED TOOLS",
           description: "One workspace brings the separate security tools together, so analysts no longer log in to and switch between each one.",
@@ -810,16 +847,16 @@ processMap: [
         {
           title: "NO BLACK BOX",
           description: "Every action the AI takes is visible as it happens: which tool it called, what it found, and what decision it made.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/Screenshot%202026-10-12%20at%2015.50.22.png?raw=true"
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/soc_agent_workspace.png?raw=true"
         },
         {
           title: "ADAPTABLE TO DIFFERENT USERS",
           description: "The same system serves executives looking at the overall picture and analysts working through individual cases.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/Screenshot%202026-10-12%20at%2015.50.22.png?raw=true"
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/soc_ciso_interface.jpg?raw=true"
         }
       ]
     },
-    takeaways: "Designing for a dark analyst tool meant that structure, hierarchy and a restrained colour system do the work that shadows and decoration would do elsewhere. Writing the system down as tokens, atoms and regions made handoff to engineering much faster."
+    takeaways: "Designing for a dark analyst tool meant that structure, hierarchy and a restrained colour system do the work that shadows and decoration would do elsewhere. Writing the system down as tokens, atoms and regions made handoff to engineering much faster, and designing a separate CISO view showed how one system can serve very different users."
   }
 };
 
@@ -1452,6 +1489,97 @@ export function ProjectDetail() {
             A summary card for the CISO screen, giving leadership an overview without the analyst detail.
           </p>
           <CisoRiskCard />
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
+{/* Agentic SOC: tokens & atoms */}
+{project.designSystem?.tokens && (
+  <section className="py-16 md:py-24 w-full bg-[#131313] text-white">
+    <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
+      <div className="max-w-3xl">
+        <p className="text-sm uppercase tracking-[0.22em] text-violet-300 mb-3">Design System · Tokens & Atoms</p>
+        <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-tight">{project.designSystem.tokens.title}</h2>
+      </div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <div className="flex flex-col gap-6">
+          <div className="rounded-2xl overflow-hidden border border-white/10 bg-black">
+            <img src={project.designSystem.tokens.image} alt="Colour tokens" className="block w-full h-auto" loading="lazy" decoding="async" />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {project.designSystem.tokens.principles.map((p: any, idx: number) => (
+              <div key={idx} className="rounded-2xl bg-[#1f1f1f] border border-white/10 p-6">
+                <h4 className="text-base font-bold uppercase tracking-tight mb-2">{p.title}</h4>
+                <p className="text-sm md:text-base text-white/70 leading-relaxed">{p.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="rounded-2xl overflow-hidden border border-white/10 bg-black">
+          <img src={project.designSystem.tokens.atomsImage} alt="Atoms" className="block w-full h-auto" loading="lazy" decoding="async" />
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
+{/* Agentic SOC: CISO & executive interface */}
+{project.cisoInterface && (
+  <section className="py-16 md:py-24 w-full bg-[#131313] text-white border-t border-white/10">
+    <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
+        className="lg:col-span-5 rounded-2xl overflow-hidden"
+      >
+        <img src={project.cisoInterface.image} alt="CISO interface" className="block w-full h-auto max-h-[760px] object-contain mx-auto" loading="lazy" decoding="async" />
+      </motion.div>
+      <div className="lg:col-span-7 flex flex-col gap-6">
+        <p className="text-sm uppercase tracking-[0.22em] text-violet-300">{project.cisoInterface.label}</p>
+        <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-tight">{project.cisoInterface.title}</h2>
+        <p className="text-base md:text-lg text-white/85 leading-relaxed font-medium">{project.cisoInterface.description}</p>
+        <ul className="flex flex-col divide-y divide-white/10">
+          {project.cisoInterface.features.map((f: any, idx: number) => (
+            <li key={idx} className="py-4 flex gap-4">
+              <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-violet-400" />
+              <p className="text-base md:text-lg text-white/75 leading-relaxed">
+                <span className="font-bold text-white">{f.title}: </span>{f.description}
+              </p>
+            </li>
+          ))}
+        </ul>
+        {project.cisoInterface.note && <p className="text-sm text-white/50">{project.cisoInterface.note}</p>}
+      </div>
+    </div>
+  </section>
+)}
+
+{/* Agentic SOC: conversational agent */}
+{project.conversationalAgent && (
+  <section className="py-16 md:py-24 w-full bg-white text-[#131313]">
+    <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
+      <div className="max-w-3xl flex flex-col gap-4">
+        <p className="text-sm uppercase tracking-[0.22em] text-neutral-500">{project.conversationalAgent.label}</p>
+        <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-tight">{project.conversationalAgent.title}</h2>
+        <p className="text-base md:text-lg text-gray-700 leading-relaxed">{project.conversationalAgent.description}</p>
+      </div>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div className="lg:col-span-7 rounded-2xl border border-gray-100 bg-white p-4 md:p-6 shadow-sm">
+          <img src={project.conversationalAgent.image} alt="Persistent workspace" className="block w-full h-auto" loading="lazy" decoding="async" />
+        </div>
+        <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {project.conversationalAgent.features.map((f: any, idx: number) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.08 }}
+              className="rounded-2xl bg-[#F2F2F2] border border-neutral-200 p-6 flex flex-col gap-2"
+            >
+              <span className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500">0{idx + 1}</span>
+              <h4 className="text-lg font-bold uppercase tracking-tight">{f.title}</h4>
+              <p className="text-sm md:text-base text-gray-700 leading-relaxed">{f.description}</p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </div>
