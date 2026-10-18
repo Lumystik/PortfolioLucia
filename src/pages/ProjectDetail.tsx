@@ -785,6 +785,11 @@ processMap: [
         description: "Ran card sorting with CISOs and analysts, then worked from rough sketches to interactive Figma prototypes, documenting each iteration."
       }
     ],
+      howMightWe: [
+      "make agent activity and human decisions readable in the same queue?",
+      "keep a dense analyst interface calm and scannable over long sessions and an interface that an executive/CISO would actually need?",
+      "give a design system one vocabulary for an agentic system?"
+    ],
     team: "AmagisTech. Andrea Curcio (senior designer), Antonio Cervadoro (developer)",
     problem: "Security teams work across many disconnected tools, each with its own login and way of working. Much of the job is repetitive, manual work that doesn't scale as a provider takes on more customers. Analysts should spend their time on judgment, not data entry, and whatever an AI does on their behalf has to stay visible while it happens.",
     problemImage: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/problem.png?raw=true",
@@ -831,26 +836,21 @@ processMap: [
         ]
       }
     ],
-    howMightWe: [
-      "make agent activity and human decisions readable in the same queue?",
-      "keep a dense analyst interface calm and scannable over long sessions?",
-      "give a design system one vocabulary for people and agents?"
-    ],
     keyFunctions: {
       description: "The workspace is built from a small set of reusable parts: a navigation rail, page header, filter bar, data table and an agent panel.",
       functions: [
         {
           title: "CENTRALIZED TOOLS",
           description: "One workspace brings the separate security tools together, so analysts no longer log in to and switch between each one.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/Screenshot%202026-10-12%20at%2015.50.22.png?raw=true"
+          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/soc_centralized_tools.png?raw=true"
         },
         {
-          title: "NO BLACK BOX",
+          title: "NO BLACK BOX FOR ANALYSTS",
           description: "Every action the AI takes is visible as it happens: which tool it called, what it found, and what decision it made.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/soc_agent_workspace.png?raw=true"
+          image: "hhttps://github.com/Lumystik/PortfolioLucia/blob/main/images/soc_no_black_box.png?raw=true"
         },
         {
-          title: "ADAPTABLE TO DIFFERENT USERS",
+          title: "ADAPTABLE TO CISOs TOO",
           description: "The same system serves executives looking at the overall picture and analysts working through individual cases.",
           image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/soc_ciso_interface.jpg?raw=true"
         }
