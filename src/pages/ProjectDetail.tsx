@@ -915,85 +915,6 @@ function ProblemFolder({ tools }: { tools: string[] }) {
   );
 }
 
-// CISO-only component: an executive summary card. Values are placeholders, not real results.
-function CisoRiskCard() {
-  return (
-    <div className="group relative w-full max-w-sm overflow-hidden rounded-2xl bg-neutral-950 p-6 font-sans shadow-2xl">
-      <div className="absolute -top-1/2 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-violet-500/10 blur-3xl transition-all duration-700 group-hover:bg-violet-500/15" />
-
-      <div className="relative flex flex-col gap-5">
-        <div className="flex items-start justify-between border-b border-neutral-800 pb-5">
-          <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-violet-400/10">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 text-violet-400"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M3 12m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
-                <path d="M9 8m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
-                <path d="M15 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
-                <path d="M4 20l14 0" />
-              </svg>
-            </div>
-            <div>
-              <p className="font-semibold text-neutral-200">Executive Risk Overview</p>
-              <p className="text-xs text-neutral-500">For CISO review</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex divide-x divide-neutral-800">
-          <div className="flex-1 pr-6">
-            <p className="text-xs font-medium text-neutral-500">Open risks</p>
-            <p className="text-xl font-semibold text-neutral-100">—</p>
-            <p className="mt-1 text-xs font-medium text-violet-400">Tracked</p>
-          </div>
-          <div className="flex-1 pl-6">
-            <p className="text-xs font-medium text-neutral-500">Mean time to resolve</p>
-            <p className="text-xl font-semibold text-neutral-100">—</p>
-            <p className="mt-1 text-xs font-medium text-violet-400">Tracked</p>
-          </div>
-        </div>
-
-        <div className="relative h-24 w-full">
-          <svg className="h-full w-full" viewBox="0 0 300 100" preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="ciso-risk-gradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#9259DB" stopOpacity="0.25" />
-                <stop offset="100%" stopColor="#9259DB" stopOpacity="0" />
-              </linearGradient>
-            </defs>
-            <path d="M0,65 C50,20 80,80 150,70 S250,50 300,85" fill="none" stroke="#9259DB" strokeWidth="2" />
-            <path d="M0,100 L0,65 C50,20 80,80 150,70 S250,50 300,85 L300,100 Z" fill="url(#ciso-risk-gradient)" />
-          </svg>
-          <div className="absolute right-[-1px] top-[81px]">
-            <div className="absolute h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-400 shadow-lg shadow-violet-400/50" />
-            <div className="absolute h-full w-full animate-pulse rounded-full bg-violet-400/25" />
-          </div>
-        </div>
-
-        <div className="border-t border-neutral-800 pt-5">
-          <button
-            type="button"
-            className="w-full rounded-lg border border-violet-400/50 bg-transparent px-4 py-2 text-sm font-medium text-violet-400 transition-colors duration-300 hover:bg-violet-400 hover:text-neutral-950"
-          >
-            View Full Report
-          </button>
-        </div>
-
-        <p className="text-xs text-neutral-500">Illustrative layout. Values are not shown.</p>
-      </div>
-    </div>
-  );
-}
-
 // Title with a violet outline-fill hover effect. Only used on the Agentic SOC project.
 const hoverTitleCss = `
 .soc-hover-title { position: relative; display: inline-block; }
@@ -1293,7 +1214,7 @@ export function ProjectDetail() {
                     {project.problem}
                   </div>
                 </div>
-                <div className="lg:col-span-8 flex items-center justify-center overflow-hidden rounded-2xl w-full">
+                <div className={`lg:col-span-8 flex items-center justify-center w-full ${project.id === 'soc' ? 'overflow-visible pt-32 pb-4' : 'overflow-hidden rounded-2xl'}`}>
                   {project.id === 'soc' ? (
                     <ProblemFolder tools={["Endpoint protection", "Threat intelligence feeds", "Security information system", "Ticketing"]} />
                   ) : (
@@ -1482,14 +1403,6 @@ export function ProjectDetail() {
           cards={project.designSystem.cards}
           image={project.designSystem.image}
         />
-
-        <div className="flex flex-col gap-6">
-          <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">CISO Component</h3>
-          <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-3xl">
-            A summary card for the CISO screen, giving leadership an overview without the analyst detail.
-          </p>
-          <CisoRiskCard />
-        </div>
       </div>
     </div>
   </section>
