@@ -797,6 +797,7 @@ processMap: [
     team: "AmagisTech. Andrea Curcio (senior designer), Antonio Cervadoro (developer)",
     problem: "Security teams work across many disconnected tools, each with its own login and way of working. Much of the job is repetitive, manual work that doesn't scale as a provider takes on more customers. Analysts should spend their time on judgment, not data entry, and whatever an AI does on their behalf has to stay visible while it happens.",
     problemImage: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/problem.png?raw=true",
+    problem2: "SOCs currently consider only one stakeholder: the analyst. But CISOs and executives need to understand what the SOC is doing too, including the risk it removes and the value it delivers, without digging through analyst-level detail.",
     solution: "An AI layer that sits across the existing tools and handles the repetitive, well-defined work. A coordinating AI understands a request, such as onboarding a new customer or looking into an alert, and hands it to a specialised AI worker built for that one job. Analysts keep the judgment calls, and whoever oversees the system sees each tool call, finding and decision as it happens.",
     audiences: [
       {
@@ -846,7 +847,7 @@ processMap: [
         {
           title: "CENTRALIZED TOOLS",
           description: "One workspace brings the separate security tools together, so analysts no longer log in to and switch between each one.",
-          image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/soc_centralized_tools.png?raw=true"
+          visual: "chip"
         },
         {
           title: "NO BLACK BOX FOR ANALYSTS",
@@ -919,6 +920,181 @@ function ProblemFolder({ tools }: { tools: string[] }) {
           </div>
         </div>
       </label>
+    </>
+  );
+}
+
+// Terminal showing the single-stakeholder problem.
+/* Terminal styling based on a component from Uiverse.io by Kemboi-Dun */
+const stakeholderTerminalCss = `
+.st-container { width: 100%; max-width: 440px; height: 232px; margin: 0 auto; }
+.st-toolbar { display: flex; height: 30px; align-items: center; padding: 0 8px; box-sizing: border-box; border-top-left-radius: 5px; border-top-right-radius: 5px; background: #212121; justify-content: space-between; }
+.st-butt { display: flex; align-items: center; }
+.st-btn { display: flex; justify-content: center; align-items: center; padding: 0; margin-right: 5px; font-size: 8px; height: 12px; width: 12px; box-sizing: border-box; border: none; border-radius: 100%; background: linear-gradient(#7d7871 0%, #595953 100%); text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.2); box-shadow: 0px 0px 1px 0px #41403A, 0px 1px 1px 0px #474642; }
+.st-btn:hover { cursor: pointer; }
+.st-btn:focus { outline: none; }
+.st-btn--exit { background: linear-gradient(#f37458 0%, #de4c12 100%); }
+.st-user { color: #d5d0ce; margin-left: 6px; font-size: 14px; line-height: 15px; font-family: "JetBrains Mono", ui-monospace, monospace; }
+.st-add-tab { border: 1px solid #fff; color: #fff; padding: 0 6px; border-radius: 4px 4px 0 0; border-bottom: none; cursor: pointer; font-family: ui-monospace, monospace; }
+.st-body { background: rgba(0, 0, 0, 0.85); height: calc(100% - 30px); padding: 10px 12px; margin-top: -1px; font-size: 13px; line-height: 1.7; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; font-family: "JetBrains Mono", ui-monospace, monospace; color: #dddddd; }
+.st-prompt { display: flex; align-items: center; flex-wrap: wrap; }
+.st-prompt span { margin-left: 4px; }
+.st-prompt span:first-child { margin-left: 0; }
+.st-user-name { color: #1eff8e; }
+.st-location { color: #4878c0; }
+.st-bling { color: #dddddd; }
+.st-out { color: #a5a5b8; padding-left: 14px; }
+.st-missing { color: #ff3e75; }
+.st-cursor { display: block; height: 14px; width: 6px; margin-left: 10px; animation: st-curbl 1200ms linear infinite; }
+@keyframes st-curbl { 0% { background: #ffffff; } 49% { background: #ffffff; } 60% { background: transparent; } 99% { background: transparent; } 100% { background: #ffffff; } }
+`;
+
+function StakeholderTerminal() {
+  return (
+    <>
+      <style>{stakeholderTerminalCss}</style>
+      <div className="st-container" aria-label="Terminal: the SOC only supports the analyst">
+        <div className="st-toolbar">
+          <div className="st-butt">
+            <button type="button" className="st-btn st-btn--exit" aria-hidden="true" tabIndex={-1} />
+            <button type="button" className="st-btn" aria-hidden="true" tabIndex={-1} />
+            <button type="button" className="st-btn" aria-hidden="true" tabIndex={-1} />
+          </div>
+          <p className="st-user">analyst@soc: ~</p>
+          <div className="st-add-tab">+</div>
+        </div>
+        <div className="st-body">
+          <div className="st-prompt">
+            <span className="st-user-name">analyst@soc:</span>
+            <span className="st-location">~</span>
+            <span className="st-bling">$ stakeholders --supported</span>
+          </div>
+          <div className="st-out">→ analyst</div>
+          <div className="st-prompt">
+            <span className="st-user-name">analyst@soc:</span>
+            <span className="st-location">~</span>
+            <span className="st-bling">$ stakeholders --missing</span>
+          </div>
+          <div className="st-out st-missing">→ ciso, executives</div>
+          <div className="st-prompt">
+            <span className="st-user-name">ciso@soc:</span>
+            <span className="st-location">~</span>
+            <span className="st-bling">$ show risk overview</span>
+          </div>
+          <div className="st-out st-missing">→ view not available</div>
+          <div className="st-prompt">
+            <span className="st-user-name">ciso@soc:</span>
+            <span className="st-location">~</span>
+            <span className="st-bling">$</span>
+            <span className="st-cursor" />
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+// Animated chip for the "Centralized tools" key function: separate tools flow into one centre.
+const centralizedChipCss = `
+.cc-main-container { display: flex; justify-content: center; align-items: center; height: 100%; width: 100%; }
+.cc-loader { width: 100%; height: 100%; }
+.cc-loader svg { display: block; width: 100%; height: 100%; }
+.cc-trace-bg { stroke: #333; stroke-width: 1.8; fill: none; }
+.cc-trace-flow { stroke-width: 1.8; fill: none; stroke-dasharray: 40 400; stroke-dashoffset: 438; filter: drop-shadow(0 0 6px currentColor); animation: cc-flow 3s cubic-bezier(0.5, 0, 0.9, 1) infinite; }
+.cc-yellow { stroke: #ffea00; color: #ffea00; }
+.cc-blue { stroke: #00ccff; color: #00ccff; }
+.cc-green { stroke: #00ff15; color: #00ff15; }
+.cc-purple { stroke: #9900ff; color: #9900ff; }
+.cc-red { stroke: #ff3300; color: #ff3300; }
+.cc-chip-text { font-weight: bold; letter-spacing: 1px; }
+.cc-chip-pin { stroke: #444; stroke-width: 0.5; filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.6)); }
+.cc-dot { fill: #555; }
+@keyframes cc-flow { to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) { .cc-trace-flow { animation: none; stroke-dasharray: none; } }
+`;
+
+function CentralizedChip() {
+  return (
+    <>
+      <style>{centralizedChipCss}</style>
+      <div className="cc-main-container">
+        <div className="cc-loader">
+          <svg viewBox="280 -110 300 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Separate security tools connecting into one centralised workspace">
+            <defs>
+              <linearGradient id="cc-chipGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#2d2d2d" />
+                <stop offset="100%" stopColor="#0f0f0f" />
+              </linearGradient>
+              <linearGradient id="cc-textGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#eeeeee" />
+                <stop offset="100%" stopColor="#888888" />
+              </linearGradient>
+              <linearGradient id="cc-pinGradient" x1="1" y1="0" x2="0" y2="0">
+                <stop offset="0%" stopColor="#bbbbbb" />
+                <stop offset="50%" stopColor="#888888" />
+                <stop offset="100%" stopColor="#555555" />
+              </linearGradient>
+            </defs>
+
+            {/* Rotated 90° so the tools flow in from the top and bottom of the vertical card */}
+            <g transform="rotate(90 400 250)">
+            <g>
+          <path d="M100 100 H200 V210 H326" className="cc-trace-bg" />
+          <path d="M100 100 H200 V210 H326" className="cc-trace-flow cc-purple" />
+          <path d="M80 180 H180 V230 H326" className="cc-trace-bg" />
+          <path d="M80 180 H180 V230 H326" className="cc-trace-flow cc-blue" />
+          <path d="M60 260 H150 V250 H326" className="cc-trace-bg" />
+          <path d="M60 260 H150 V250 H326" className="cc-trace-flow cc-yellow" />
+          <path d="M100 350 H200 V270 H326" className="cc-trace-bg" />
+          <path d="M100 350 H200 V270 H326" className="cc-trace-flow cc-green" />
+          <path d="M700 90 H560 V210 H474" className="cc-trace-bg" />
+          <path d="M700 90 H560 V210 H474" className="cc-trace-flow cc-blue" />
+          <path d="M740 160 H580 V230 H474" className="cc-trace-bg" />
+          <path d="M740 160 H580 V230 H474" className="cc-trace-flow cc-green" />
+          <path d="M720 250 H590 V250 H474" className="cc-trace-bg" />
+          <path d="M720 250 H590 V250 H474" className="cc-trace-flow cc-red" />
+          <path d="M680 340 H570 V270 H474" className="cc-trace-bg" />
+          <path d="M680 340 H570 V270 H474" className="cc-trace-flow cc-yellow" />
+            </g>
+
+            <rect
+              x="330" y="190" width="140" height="100" rx="20" ry="20"
+              fill="url(#cc-chipGradient)" stroke="#222" strokeWidth="3"
+              style={{ filter: "drop-shadow(0 0 6px rgba(0,0,0,0.8))" }}
+            />
+
+            <g>
+          <rect x="322" y="205" width="8" height="10" fill="url(#cc-pinGradient)" rx="2" className="cc-chip-pin" />
+          <rect x="322" y="225" width="8" height="10" fill="url(#cc-pinGradient)" rx="2" className="cc-chip-pin" />
+          <rect x="322" y="245" width="8" height="10" fill="url(#cc-pinGradient)" rx="2" className="cc-chip-pin" />
+          <rect x="322" y="265" width="8" height="10" fill="url(#cc-pinGradient)" rx="2" className="cc-chip-pin" />
+          <rect x="470" y="205" width="8" height="10" fill="url(#cc-pinGradient)" rx="2" className="cc-chip-pin" />
+          <rect x="470" y="225" width="8" height="10" fill="url(#cc-pinGradient)" rx="2" className="cc-chip-pin" />
+          <rect x="470" y="245" width="8" height="10" fill="url(#cc-pinGradient)" rx="2" className="cc-chip-pin" />
+          <rect x="470" y="265" width="8" height="10" fill="url(#cc-pinGradient)" rx="2" className="cc-chip-pin" />
+            </g>
+
+        <circle cx="100" cy="100" r="5" className="cc-dot" />
+        <circle cx="80" cy="180" r="5" className="cc-dot" />
+        <circle cx="60" cy="260" r="5" className="cc-dot" />
+        <circle cx="100" cy="350" r="5" className="cc-dot" />
+        <circle cx="700" cy="90" r="5" className="cc-dot" />
+        <circle cx="740" cy="160" r="5" className="cc-dot" />
+        <circle cx="720" cy="250" r="5" className="cc-dot" />
+        <circle cx="680" cy="340" r="5" className="cc-dot" />
+            </g>
+
+            <text
+              x="400" y="250"
+              fontFamily="Arial, sans-serif" fontSize="16"
+              fill="url(#cc-textGradient)" textAnchor="middle" dominantBaseline="middle"
+              className="cc-chip-text"
+            >
+              Centralised
+            </text>
+          </svg>
+        </div>
+      </div>
     </>
   );
 }
@@ -1136,6 +1312,21 @@ export function ProjectDetail() {
                    loading="lazy" decoding="async" />)}
                 </div>
               </div>
+              {project.problem2 && (
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center mt-16 md:mt-24">
+                  <div className="lg:col-span-4 flex flex-col justify-center">
+                    <h4 className="text-xl md:text-2xl font-bold uppercase tracking-tight text-[#131313] mb-4">
+                      One Stakeholder, Not Enough
+                    </h4>
+                    <div className="text-base md:text-lg text-gray-700 leading-relaxed whitespace-pre-line">
+                      {project.problem2}
+                    </div>
+                  </div>
+                  <div className="lg:col-span-8 flex items-center justify-center w-full">
+                    <StakeholderTerminal />
+                  </div>
+                </div>
+              )}
             </div>
           </section>
         )}
@@ -2135,8 +2326,12 @@ const descriptionParts = persona.description
                     transition={{ duration: 0.8, delay: idx * 0.1 }}
                     className="group flex flex-col gap-6"
                   >
-                    <div className="w-full aspect-[2/3] rounded-2xl overflow-hidden flex items-center justify-center bg-[#F9F9F9] border border-gray-100 p-8">
-                      <img src={func.image} alt={func.title} className={mediaImg}  loading="lazy" decoding="async" />
+                    <div className={`w-full aspect-[2/3] rounded-2xl overflow-hidden flex items-center justify-center border p-8 ${func.visual === 'chip' ? 'bg-[#0E0E12] border-[#222]' : 'bg-[#F9F9F9] border-gray-100'}`}>
+                      {func.visual === 'chip' ? (
+                        <CentralizedChip />
+                      ) : (
+                        <img src={func.image} alt={func.title} className={mediaImg} loading="lazy" decoding="async" />
+                      )}
                     </div>
                     <div className="flex flex-col gap-2 text-left">
                       <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">{func.title}</h4>
