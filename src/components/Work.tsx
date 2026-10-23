@@ -8,7 +8,7 @@ const projects = [
     title: "Agentic SOC",
     tags: "Cybersecurity",
     description: "Agentic SOC for Analysts and Executives. In partnership with Google.",
-    image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/Screenshot 2026-10-12 at 22.37.17.png?raw=true",
+    image: "https://github.com/Lumystik/PortfolioLucia/blob/main/images/Orange Gradient Modern Laptop Mockup Instagram Post (826 x 428 px).png?raw=true",
     link: "/project/soc"
   },
   {
