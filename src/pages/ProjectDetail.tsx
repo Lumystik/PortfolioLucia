@@ -1530,25 +1530,6 @@ export function ProjectDetail() {
 {/* Agentic SOC: tokens & atoms */}
 {project.designSystem?.tokens && (
   <section className="py-16 md:py-24 w-full bg-[#131313] text-white">
-    <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
-      <div className="max-w-3xl">
-        <p className="text-sm uppercase tracking-[0.22em] text-violet-300 mb-3">Design System · Tokens & Atoms</p>
-        <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-tight">{project.designSystem.tokens.title}</h2>
-      </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-        <div className="flex flex-col gap-6">
-          <div className="rounded-2xl overflow-hidden border border-white/10 bg-black">
-            <img src={project.designSystem.tokens.image} alt="Colour tokens" className="block w-full h-auto" loading="lazy" decoding="async" />
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {project.designSystem.tokens.principles.map((p: any, idx: number) => (
-              <div key={idx} className="rounded-2xl bg-[#1f1f1f] border border-white/10 p-6">
-                <h4 className="text-base font-bold uppercase tracking-tight mb-2">{p.title}</h4>
-                <p className="text-sm md:text-base text-white/70 leading-relaxed">{p.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
         <div className="rounded-2xl overflow-hidden border border-white/10 bg-black">
           <img src={project.designSystem.tokens.atomsImage} alt="Atoms" className="block w-full h-auto" loading="lazy" decoding="async" />
         </div>
