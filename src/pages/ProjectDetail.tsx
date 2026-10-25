@@ -1630,7 +1630,7 @@ export function ProjectDetail() {
 
         <section className="pt-8 md:pt-10 pb-12 md:pb-16 w-full bg-white text-black">
           <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-start text-left">
-            <div className="lg:col-span-4 flex flex-col gap-8">
+            <div className="lg:col-span-4 flex flex-col gap-8 lg:pt-[20vh]">
               <div className="flex flex-col gap-2">
                 <h4 className="text-sm font-bold uppercase tracking-widest text-black">Project Scope</h4>
                 <p className="text-base md:text-lg text-black leading-relaxed">{project.scope}</p>
