@@ -185,7 +185,8 @@ const projectsData: Record<string, any> = {
       image: "https://github.com/Lumystik/PortfolioLucia/blob/c39ead2c3b7c47add54a5363ffb7b42cb35b1adf/images/wall.jpg?raw=true"
     }
   },
- "art-beyond-dimension": {
+
+  "art-beyond-dimension": {
     id: "art-beyond-dimension",
     title: "Art Beyond Dimension",
     heroImage: "https://github.com/Lumystik/PortfolioLucia/blob/0e95408be9b5b18ff336921926c7889c41d95380/images/hero_dimension.jpg?raw=true",
@@ -284,6 +285,7 @@ const projectsData: Record<string, any> = {
       link: "/project/films-foundation"
     }
   },
+
   "films-foundation": {
     id: "films-foundation",
     title: "Films Foundation",
@@ -596,6 +598,7 @@ processMap: [
       link: "/project/seedtag"
     }
   },
+
   "seedtag": {
     id: "seedtag",
     title: "Seedtag Interactive Ads",
@@ -637,6 +640,7 @@ processMap: [
       link: "/project/soc"
     }
   },
+
   "pixela": {
     id: "pixela",
     title: "Pixela",
@@ -671,6 +675,7 @@ processMap: [
       link: "/project/museon"
     }
   },
+
   "soc": {
     id: "soc",
     title: "Agentic SOC",
@@ -1441,7 +1446,7 @@ export function ProjectDetail() {
                             </div>
                           </div>
                           
-                          <div className="px-5 md:px-6 py-5 md:py-6 flex flex-col gap-5">
+                          <div className="px-5 md:px-6 py-5 md:px-6 flex flex-col gap-5">
                             {hasStructuredDetails && (
                               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                 {descriptionParts.map((part: string, partIdx: number) => {
@@ -2041,46 +2046,38 @@ export function ProjectDetail() {
                     </h2>
                     <p className="text-base md:text-lg text-black leading-relaxed">{project.designSystem.description}</p>
                   </div>
-                  <div className="flex flex-col gap-6">
-                    <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-black">How the Components Were Built</h3>
-                    <p className="text-base md:text-lg text-black leading-relaxed max-w-3xl">
-                      Each component was documented as a card: its area and type, a name, a plain-language description, a sketch of
-                      what it shows, a category and a number. Cards such as MTTR, the case grouping causality graph and the Top 5
-                      riskiest misconfigurations were then sorted into the levels below.
-                    </p>
-                    <img
-                      src={project.designSystem.image}
-                      alt="How the components were built"
-                      className={`${mediaImg} border border-black rounded-xl`}
-                      loading="lazy"
-                      decoding="async"
-                    />
+                  
+                  <img
+                    src={project.designSystem.image}
+                    alt="Design System Overview"
+                    className={`${mediaImg} border border-black rounded-xl`}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {project.designSystem.levels.map((level: any, idx: number) => (
+                      <motion.div
+                        key={level.id}
+                        initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.06 }}
+                        className="rounded-[2rem] bg-white border border-black text-black p-6 md:p-8 flex flex-col gap-5"
+                      >
+                        <span className="text-xs uppercase tracking-[0.22em] text-black">
+                          Level {idx + 1} of {project.designSystem.levels.length}
+                        </span>
+                        <img
+                          src={level.image}
+                          alt={`${level.title} level`}
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-48 object-contain rounded-2xl border border-black"
+                        />
+                        <h4 className="text-2xl font-bold uppercase tracking-tight text-black">{level.title}</h4>
+                        <p className="text-sm md:text-base text-black leading-relaxed">{level.text}</p>
+                      </motion.div>
+                    ))}
                   </div>
-                  <div className="flex flex-col gap-6">
-                    <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-black">Sorted by Level</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      {project.designSystem.levels.map((level: any, idx: number) => (
-                        <motion.div
-                          key={level.id}
-                          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.06 }}
-                          className="rounded-[2rem] bg-white border border-black text-black p-6 md:p-8 flex flex-col gap-5"
-                        >
-                          <span className="text-xs uppercase tracking-[0.22em] text-black">
-                            Level {idx + 1} of {project.designSystem.levels.length}
-                          </span>
-                          <img
-                            src={level.image}
-                            alt={`${level.title} level`}
-                            loading="lazy"
-                            decoding="async"
-                            className="w-full h-48 object-contain rounded-2xl border border-black"
-                          />
-                          <h4 className="text-2xl font-bold uppercase tracking-tight text-black">{level.title}</h4>
-                          <p className="text-sm md:text-base text-black leading-relaxed">{level.text}</p>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </div>
+                  
                   {project.designSystem?.tokens && (
                     <div className="rounded-2xl overflow-hidden border border-black bg-white">
                       <img src={project.designSystem.tokens.atomsImage} alt="Atoms" className="block w-full h-auto" loading="lazy" decoding="async" />
