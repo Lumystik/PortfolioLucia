@@ -1628,7 +1628,7 @@ export function ProjectDetail() {
           </div>
         </section>
 
-        <section className="pt-8 md:pt-10 pb-12 md:pb-16 w-full bg-white text-black">
+        <section className="pt-8 lg:pt-[30vh] pb-12 md:pb-16 w-full bg-white text-black">
           <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-start text-left">
             <div className="lg:col-span-4 flex flex-col gap-8">
               <div className="flex flex-col gap-2">
