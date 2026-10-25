@@ -9,7 +9,7 @@ import { useEffect, useRef, useState } from 'react';
 const mediaImg = "block w-full h-auto min-h-[120px] max-h-[480px] object-contain mx-auto bg-white";
 
 // One vertical rhythm for every section, so the gutter between any two sections is identical.
-const SECTION_Y = "py-20 md:py-28";
+const SECTION_Y = "py-12 md:py-16";
 
 const projectsData: Record<string, any> = {
   "museon": {
@@ -1617,7 +1617,7 @@ export function ProjectDetail() {
         {/* ========================================================= */}
         {/* 1. OVERVIEW & CONTEXT */}
         {/* ========================================================= */}
-        <section className="w-full bg-white pt-32 md:pt-36 pb-20 md:pb-28">
+        <section className="w-full bg-white pt-28 md:pt-32 pb-12 md:pb-16">
           <div className="max-w-7xl mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.1 }}
