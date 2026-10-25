@@ -6,7 +6,7 @@ import { Footer } from '../components/Footer';
 import { useEffect } from 'react';
 
 // Shared image style: every content image fits its frame and is centred the same way.
-const mediaImg = "block w-full h-auto min-h-[120px] max-h-[480px] object-contain mx-auto bg-gray-50";
+const mediaImg = "block w-full h-auto min-h-[120px] max-h-[480px] object-contain mx-auto bg-white";
 
 const projectsData: Record<string, any> = {
   "museon": {
@@ -111,7 +111,6 @@ const projectsData: Record<string, any> = {
         { title: "INSTANT NOTES", description: "Once a tour begins, staff will have the option to instantly send voice-transcribed notes for immediate documentation." }
       ]
     },
-
     userInsightsCards: [
       {
         title: "INTEGRATION IS ESSENTIAL",
@@ -147,13 +146,12 @@ const projectsData: Record<string, any> = {
   logoDescription: "We were drawn to the asterisk as a symbol of connection, and wanted to incorporate its radiating structure as a mark that points toward information, toward people, toward the institution itself.",
  logoImage: "https://github.com/Lumystik/PortfolioLucia/blob/ac040a0ff68481a4ef9745568ded5b5c9b484a5b/images/museonlogo.png?raw=true",       // optional
   featuresImage: "https://github.com/Lumystik/PortfolioLucia/blob/dfc97077f6303fd7953feeb6d4e1a8efdce42b2e/images/button.png?raw=true", // optional
-
   shapes: [
     { color: "#000000", size: 120, x: "20%", y: "10%" },
-    { color: "#6B6A6A", size: 100, x: "50%", y: "10%"},
-    { color: "#D9D9D9", size: 90, x: "75%", y: "10%" },
-    { color: "#1600FF", size: 110, x: "35%", y: "10%"},
-    { color: "#EE4904", size: 110, x: "0%", y: "10%"}
+    { color: "#000000", size: 100, x: "50%", y: "10%"},
+    { color: "#000000", size: 90, x: "75%", y: "10%" },
+    { color: "#000000", size: 110, x: "35%", y: "10%"},
+    { color: "#000000", size: 110, x: "0%", y: "10%"}
   ]
     },
     keyFunctions: {
@@ -174,7 +172,6 @@ const projectsData: Record<string, any> = {
         description: "AI utilizes conversation transcription to instantly detect tasks with a single click and direct users to the corresponding page.",
         image: "https://github.com/Lumystik/PortfolioLucia/blob/ccd5a596d938ff18c9cd80558a2f7d7f2df76b5e/images/smartnotes_museon1.png?raw=true"
       }
-
       ]
     },
     bannerImage: "https://github.com/Lumystik/PortfolioLucia/blob/988251ade7a50360d870b2b630818e7291a7d458/images/museon_finalinterface%20(10).gif?raw=true",
@@ -287,7 +284,6 @@ const projectsData: Record<string, any> = {
       link: "/project/films-foundation"
     }
   },
-
   "films-foundation": {
     id: "films-foundation",
     title: "Films Foundation",
@@ -446,13 +442,10 @@ processMap: [
    ideation: {
   question:
     "How can we restructure Cineteca Milano into a clearer, more usable experience for discovering films, exploring events, and booking tickets?",
-
   heroFlow:
     "https://github.com/Lumystik/PortfolioLucia/blob/480139cc265caba04a43d21ff472ecb4824be7ea/images/ia.png?raw=true",
-
   heroFlowCaption:
     "Redesigned IA and core user flows: discovering films, exploring events, and booking tickets.",
-
   wireframes: [
     {
       image: "https://github.com/Lumystik/PortfolioLucia/blob/4823c9e1d3a9abfd4b02520efa9105a9551424c8/images/image.png?raw=true",
@@ -476,14 +469,12 @@ processMap: [
     archetype: "The Enthusiast",
     bio: "Marco finds inspiration in the imaginative worlds of sci-fi films, often incorporating futuristic elements into his artwork. Documentaries fuel his curiosity, helping him explore diverse subjects and perspectives. He aims to bridge the gap between art and cinema.",
     image: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=800&q=80",
-
     // Personality Sliders (Simple text-based visualization)
     personality: [
       { left: "Introvert", right: "Extrovert", value: 40 },
       { left: "Analytical", right: "Creative", value: 90 },
       { left: "Passive", right: "Active", value: 60 },
     ],
-
     // Empathy Map Data
     empathyMap: {
       say: "I need more content that combines art and film.",
@@ -491,7 +482,6 @@ processMap: [
       does: "Notes ideas after watching; shares insights with art communities.",
       feel: "Frustrated by cluttered interfaces and limited content."
     },
-
     interests: ["Sci-fi films", "Documentaries", "Art galleries", "Concept art"],
     goals: ["Host a sci-fi inspired exhibition", "Collaborate with filmmakers"]
   }
@@ -506,13 +496,11 @@ processMap: [
   title: "Building the Brand",
   intro:
     "Warm earthy tones, restrained typography, and refined iconography were chosen to reflect the institution’s cultural and historical significance. ",
-
   rebranding: {
     title: "Rebranding",
     description:
       "From Bold to Timeless: The redesign moves away from a bold and playful identity to one that is timeless, mature, and elegant."
   },
-
   colorPalette: {
     title: "Color Palette",
     description:
@@ -527,7 +515,6 @@ processMap: [
       "#F5F5F7"
     ]
   },
-
   typography: [
     {
       name: "New Spirit",
@@ -544,14 +531,12 @@ processMap: [
         "Chosen for body copy and UI labels, Satoshi offers smooth curves and understated elegance, making the interface readable, contemporary, and highly usable."
     }
   ],
-
   iconSet: {
     title: "Icon Set",
     description:
       "Rounded edges contribute to a soft, welcoming aesthetic that matches the brand tone. The icon set aligns with the brand’s refined and cultural tone while remaining highly legible.",
     image: "https://github.com/Lumystik/PortfolioLucia/blob/90447a2f7ee111e8353ee9c4b73e1a751b76556a/images/logo_set.png?raw=true"
   },
-
   logo: {
     title: "Logo Design",
     description:
@@ -873,13 +858,13 @@ processMap: [
 const problemFolderCss = `
 .pf-card { position: relative; display: block; width: 100%; max-width: 380px; height: 280px; margin: 0 auto; cursor: pointer; }
 .pf-toggle { position: absolute; opacity: 0; pointer-events: none; }
-.pf-hint { position: absolute; top: 0; right: 0; color: #9259DB; font: 600 12px/1 Inter, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; transition: opacity 0.3s; }
+.pf-hint { position: absolute; top: 0; right: 0; color: #000; font: 600 12px/1 Inter, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; transition: opacity 0.3s; }
 .pf-toggle:checked ~ .pf-hint { opacity: 0; }
 .pf-container { position: absolute; inset: 28px 0 0 0; }
-.pf-back { position: absolute; inset: 0; border-radius: 14px; background: #3B1F73; }
-.pf-file { position: absolute; left: 10%; right: 10%; bottom: 16%; height: 130px; display: flex; flex-direction: column; justify-content: space-between; padding: 14px; border-radius: 10px; border: 1px solid rgba(146, 89, 219, 0.45); background: #171726; color: #fff; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+.pf-back { position: absolute; inset: 0; border-radius: 14px; background: #fff; border: 1px solid #000; }
+.pf-file { position: absolute; left: 10%; right: 10%; bottom: 16%; height: 130px; display: flex; flex-direction: column; justify-content: space-between; padding: 14px; border-radius: 10px; border: 1px solid #000; background: #fff; color: #000; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
 .pf-file-text { font: 600 14px/1.2 Inter, sans-serif; }
-.pf-file-tag { font: 500 11px/1 "JetBrains Mono", monospace; color: #A78BFA; letter-spacing: 0.06em; text-transform: uppercase; }
+.pf-file-tag { font: 500 11px/1 "JetBrains Mono", monospace; color: #000; letter-spacing: 0.06em; text-transform: uppercase; }
 .pf-file-1 { z-index: 1; }
 .pf-file-2 { z-index: 2; }
 .pf-file-3 { z-index: 3; }
@@ -888,11 +873,11 @@ const problemFolderCss = `
 .pf-toggle:checked ~ .pf-container .pf-file-2 { transform: translateY(-110px) rotate(2deg); }
 .pf-toggle:checked ~ .pf-container .pf-file-3 { transform: translateY(-150px) rotate(-2deg); }
 .pf-toggle:checked ~ .pf-container .pf-file-4 { transform: translateY(-190px) rotate(3deg); }
-.pf-front { position: absolute; left: 0; right: 0; bottom: 0; height: 62%; z-index: 10; border-radius: 14px; background: linear-gradient(160deg, rgba(146, 89, 219, 0.9), rgba(109, 40, 217, 0.85)); box-shadow: 0 0 30px rgba(146, 89, 219, 0.35); padding: 18px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+.pf-front { position: absolute; left: 0; right: 0; bottom: 0; height: 62%; z-index: 10; border-radius: 14px; background: #fff; border: 1px solid #000; padding: 18px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
 .pf-toggle:checked ~ .pf-container .pf-front { transform: translateY(38%); }
-.pf-counter { display: flex; align-items: center; gap: 8px; color: #fff; font: 600 11px/1 "JetBrains Mono", monospace; letter-spacing: 0.1em; }
-.pf-dot { width: 7px; height: 7px; border-radius: 9999px; background: #37FF8B; box-shadow: 0 0 8px #37FF8B; }
-.pf-label { color: #fff; font: 700 18px/1.2 Inter, sans-serif; }
+.pf-counter { display: flex; align-items: center; gap: 8px; color: #000; font: 600 11px/1 "JetBrains Mono", monospace; letter-spacing: 0.1em; }
+.pf-dot { width: 7px; height: 7px; border-radius: 9999px; background: #000; }
+.pf-label { color: #000; font: 700 18px/1.2 Inter, sans-serif; }
 `;
 
 function ProblemFolder({ tools }: { tools: string[] }) {
@@ -928,25 +913,24 @@ function ProblemFolder({ tools }: { tools: string[] }) {
 /* Terminal styling based on a component from Uiverse.io by Kemboi-Dun */
 const stakeholderTerminalCss = `
 .st-container { width: 100%; max-width: 440px; height: 232px; margin: 0 auto; }
-.st-toolbar { display: flex; height: 30px; align-items: center; padding: 0 8px; box-sizing: border-box; border-top-left-radius: 5px; border-top-right-radius: 5px; background: #212121; justify-content: space-between; }
+.st-toolbar { display: flex; height: 30px; align-items: center; padding: 0 8px; box-sizing: border-box; border-top-left-radius: 5px; border-top-right-radius: 5px; background: #fff; border: 1px solid #000; border-bottom: none; justify-content: space-between; }
 .st-butt { display: flex; align-items: center; }
-.st-btn { display: flex; justify-content: center; align-items: center; padding: 0; margin-right: 5px; font-size: 8px; height: 12px; width: 12px; box-sizing: border-box; border: none; border-radius: 100%; background: linear-gradient(#7d7871 0%, #595953 100%); text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.2); box-shadow: 0px 0px 1px 0px #41403A, 0px 1px 1px 0px #474642; }
+.st-btn { display: flex; justify-content: center; align-items: center; padding: 0; margin-right: 5px; font-size: 8px; height: 12px; width: 12px; box-sizing: border-box; border: 1px solid #000; border-radius: 100%; background: #fff; }
 .st-btn:hover { cursor: pointer; }
 .st-btn:focus { outline: none; }
-.st-btn--exit { background: linear-gradient(#f37458 0%, #de4c12 100%); }
-.st-user { color: #d5d0ce; margin-left: 6px; font-size: 14px; line-height: 15px; font-family: "JetBrains Mono", ui-monospace, monospace; }
-.st-add-tab { border: 1px solid #fff; color: #fff; padding: 0 6px; border-radius: 4px 4px 0 0; border-bottom: none; cursor: pointer; font-family: ui-monospace, monospace; }
-.st-body { background: rgba(0, 0, 0, 0.85); height: calc(100% - 30px); padding: 10px 12px; margin-top: -1px; font-size: 13px; line-height: 1.7; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; font-family: "JetBrains Mono", ui-monospace, monospace; color: #dddddd; }
+.st-user { color: #000; margin-left: 6px; font-size: 14px; line-height: 15px; font-family: "JetBrains Mono", ui-monospace, monospace; }
+.st-add-tab { border: 1px solid #000; color: #000; padding: 0 6px; border-radius: 4px 4px 0 0; border-bottom: none; cursor: pointer; font-family: ui-monospace, monospace; }
+.st-body { background: #fff; border: 1px solid #000; height: calc(100% - 30px); padding: 10px 12px; margin-top: -1px; font-size: 13px; line-height: 1.7; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; font-family: "JetBrains Mono", ui-monospace, monospace; color: #000; }
 .st-prompt { display: flex; align-items: center; flex-wrap: wrap; }
 .st-prompt span { margin-left: 4px; }
 .st-prompt span:first-child { margin-left: 0; }
-.st-user-name { color: #1eff8e; }
-.st-location { color: #4878c0; }
-.st-bling { color: #dddddd; }
-.st-out { color: #a5a5b8; padding-left: 14px; }
-.st-missing { color: #ff3e75; }
-.st-cursor { display: block; height: 14px; width: 6px; margin-left: 10px; animation: st-curbl 1200ms linear infinite; }
-@keyframes st-curbl { 0% { background: #ffffff; } 49% { background: #ffffff; } 60% { background: transparent; } 99% { background: transparent; } 100% { background: #ffffff; } }
+.st-user-name { color: #000; }
+.st-location { color: #000; }
+.st-bling { color: #000; }
+.st-out { color: #000; padding-left: 14px; }
+.st-missing { color: #000; font-weight: bold; }
+.st-cursor { display: block; height: 14px; width: 6px; margin-left: 10px; background: #000; animation: st-curbl 1200ms linear infinite; }
+@keyframes st-curbl { 0% { opacity: 1; } 49% { opacity: 1; } 50% { opacity: 0; } 99% { opacity: 0; } 100% { opacity: 1; } }
 `;
 
 function StakeholderTerminal() {
@@ -999,16 +983,11 @@ const centralizedChipCss = `
 .cc-main-container { display: flex; justify-content: center; align-items: center; height: 100%; width: 100%; }
 .cc-loader { width: 100%; height: 100%; }
 .cc-loader svg { display: block; width: 100%; height: 100%; }
-.cc-trace-bg { stroke: #333; stroke-width: 1.8; fill: none; }
-.cc-trace-flow { stroke-width: 1.8; fill: none; stroke-dasharray: 40 400; stroke-dashoffset: 438; filter: drop-shadow(0 0 6px currentColor); animation: cc-flow 3s cubic-bezier(0.5, 0, 0.9, 1) infinite; }
-.cc-yellow { stroke: #ffea00; color: #ffea00; }
-.cc-blue { stroke: #00ccff; color: #00ccff; }
-.cc-green { stroke: #00ff15; color: #00ff15; }
-.cc-purple { stroke: #9900ff; color: #9900ff; }
-.cc-red { stroke: #ff3300; color: #ff3300; }
-.cc-chip-text { font-weight: bold; letter-spacing: 1px; }
-.cc-chip-pin { stroke: #444; stroke-width: 0.5; filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.6)); }
-.cc-dot { fill: #555; }
+.cc-trace-bg { stroke: #000; stroke-width: 1.8; fill: none; }
+.cc-trace-flow { stroke-width: 1.8; stroke: #000; fill: none; stroke-dasharray: 40 400; stroke-dashoffset: 438; animation: cc-flow 3s cubic-bezier(0.5, 0, 0.9, 1) infinite; }
+.cc-chip-text { font-weight: bold; letter-spacing: 1px; fill: #000; }
+.cc-chip-pin { stroke: #000; stroke-width: 0.5; fill: #fff; }
+.cc-dot { fill: #000; }
 @keyframes cc-flow { to { stroke-dashoffset: 0; } }
 @media (prefers-reduced-motion: reduce) { .cc-trace-flow { animation: none; stroke-dasharray: none; } }
 `;
@@ -1020,74 +999,57 @@ function CentralizedChip() {
       <div className="cc-main-container">
         <div className="cc-loader">
           <svg viewBox="280 -110 300 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Separate security tools connecting into one centralised workspace">
-            <defs>
-              <linearGradient id="cc-chipGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#2d2d2d" />
-                <stop offset="100%" stopColor="#0f0f0f" />
-              </linearGradient>
-              <linearGradient id="cc-textGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#eeeeee" />
-                <stop offset="100%" stopColor="#888888" />
-              </linearGradient>
-              <linearGradient id="cc-pinGradient" x1="1" y1="0" x2="0" y2="0">
-                <stop offset="0%" stopColor="#bbbbbb" />
-                <stop offset="50%" stopColor="#888888" />
-                <stop offset="100%" stopColor="#555555" />
-              </linearGradient>
-            </defs>
-
             {/* Rotated 90° so the tools flow in from the top and bottom of the vertical card */}
             <g transform="rotate(90 400 250)">
-            <g>
-          <path d="M100 100 H200 V210 H326" className="cc-trace-bg" />
-          <path d="M100 100 H200 V210 H326" className="cc-trace-flow cc-purple" />
-          <path d="M80 180 H180 V230 H326" className="cc-trace-bg" />
-          <path d="M80 180 H180 V230 H326" className="cc-trace-flow cc-blue" />
-          <path d="M60 260 H150 V250 H326" className="cc-trace-bg" />
-          <path d="M60 260 H150 V250 H326" className="cc-trace-flow cc-yellow" />
-          <path d="M100 350 H200 V270 H326" className="cc-trace-bg" />
-          <path d="M100 350 H200 V270 H326" className="cc-trace-flow cc-green" />
-          <path d="M700 90 H560 V210 H474" className="cc-trace-bg" />
-          <path d="M700 90 H560 V210 H474" className="cc-trace-flow cc-blue" />
-          <path d="M740 160 H580 V230 H474" className="cc-trace-bg" />
-          <path d="M740 160 H580 V230 H474" className="cc-trace-flow cc-green" />
-          <path d="M720 250 H590 V250 H474" className="cc-trace-bg" />
-          <path d="M720 250 H590 V250 H474" className="cc-trace-flow cc-red" />
-          <path d="M680 340 H570 V270 H474" className="cc-trace-bg" />
-          <path d="M680 340 H570 V270 H474" className="cc-trace-flow cc-yellow" />
-            </g>
+              <g>
+                <path d="M100 100 H200 V210 H326" className="cc-trace-bg" />
+                <path d="M100 100 H200 V210 H326" className="cc-trace-flow" />
+                <path d="M80 180 H180 V230 H326" className="cc-trace-bg" />
+                <path d="M80 180 H180 V230 H326" className="cc-trace-flow" />
+                <path d="M60 260 H150 V250 H326" className="cc-trace-bg" />
+                <path d="M60 260 H150 V250 H326" className="cc-trace-flow" />
+                <path d="M100 350 H200 V270 H326" className="cc-trace-bg" />
+                <path d="M100 350 H200 V270 H326" className="cc-trace-flow" />
+                <path d="M700 90 H560 V210 H474" className="cc-trace-bg" />
+                <path d="M700 90 H560 V210 H474" className="cc-trace-flow" />
+                <path d="M740 160 H580 V230 H474" className="cc-trace-bg" />
+                <path d="M740 160 H580 V230 H474" className="cc-trace-flow" />
+                <path d="M720 250 H590 V250 H474" className="cc-trace-bg" />
+                <path d="M720 250 H590 V250 H474" className="cc-trace-flow" />
+                <path d="M680 340 H570 V270 H474" className="cc-trace-bg" />
+                <path d="M680 340 H570 V270 H474" className="cc-trace-flow" />
+              </g>
 
-            <rect
-              x="330" y="170" width="140" height="160" rx="20" ry="20"
-              fill="url(#cc-chipGradient)" stroke="#222" strokeWidth="3"
-              style={{ filter: "drop-shadow(0 0 6px rgba(0,0,0,0.8))" }}
-            />
+              <rect
+                x="330" y="170" width="140" height="160" rx="20" ry="20"
+                fill="#fff" stroke="#000" strokeWidth="3"
+              />
 
-            <g>
-          <rect x="322" y="205" width="8" height="10" fill="url(#cc-pinGradient)" rx="2" className="cc-chip-pin" />
-          <rect x="322" y="225" width="8" height="10" fill="url(#cc-pinGradient)" rx="2" className="cc-chip-pin" />
-          <rect x="322" y="245" width="8" height="10" fill="url(#cc-pinGradient)" rx="2" className="cc-chip-pin" />
-          <rect x="322" y="265" width="8" height="10" fill="url(#cc-pinGradient)" rx="2" className="cc-chip-pin" />
-          <rect x="470" y="205" width="8" height="10" fill="url(#cc-pinGradient)" rx="2" className="cc-chip-pin" />
-          <rect x="470" y="225" width="8" height="10" fill="url(#cc-pinGradient)" rx="2" className="cc-chip-pin" />
-          <rect x="470" y="245" width="8" height="10" fill="url(#cc-pinGradient)" rx="2" className="cc-chip-pin" />
-          <rect x="470" y="265" width="8" height="10" fill="url(#cc-pinGradient)" rx="2" className="cc-chip-pin" />
-            </g>
+              <g>
+                <rect x="322" y="205" width="8" height="10" rx="2" className="cc-chip-pin" />
+                <rect x="322" y="225" width="8" height="10" rx="2" className="cc-chip-pin" />
+                <rect x="322" y="245" width="8" height="10" rx="2" className="cc-chip-pin" />
+                <rect x="322" y="265" width="8" height="10" rx="2" className="cc-chip-pin" />
+                <rect x="470" y="205" width="8" height="10" rx="2" className="cc-chip-pin" />
+                <rect x="470" y="225" width="8" height="10" rx="2" className="cc-chip-pin" />
+                <rect x="470" y="245" width="8" height="10" rx="2" className="cc-chip-pin" />
+                <rect x="470" y="265" width="8" height="10" rx="2" className="cc-chip-pin" />
+              </g>
 
-        <circle cx="100" cy="100" r="5" className="cc-dot" />
-        <circle cx="80" cy="180" r="5" className="cc-dot" />
-        <circle cx="60" cy="260" r="5" className="cc-dot" />
-        <circle cx="100" cy="350" r="5" className="cc-dot" />
-        <circle cx="700" cy="90" r="5" className="cc-dot" />
-        <circle cx="740" cy="160" r="5" className="cc-dot" />
-        <circle cx="720" cy="250" r="5" className="cc-dot" />
-        <circle cx="680" cy="340" r="5" className="cc-dot" />
+              <circle cx="100" cy="100" r="5" className="cc-dot" />
+              <circle cx="80" cy="180" r="5" className="cc-dot" />
+              <circle cx="60" cy="260" r="5" className="cc-dot" />
+              <circle cx="100" cy="350" r="5" className="cc-dot" />
+              <circle cx="700" cy="90" r="5" className="cc-dot" />
+              <circle cx="740" cy="160" r="5" className="cc-dot" />
+              <circle cx="720" cy="250" r="5" className="cc-dot" />
+              <circle cx="680" cy="340" r="5" className="cc-dot" />
             </g>
 
             <text
               x="400" y="250"
               fontFamily="Arial, sans-serif" fontSize="19"
-              fill="url(#cc-textGradient)" textAnchor="middle" dominantBaseline="middle"
+              textAnchor="middle" dominantBaseline="middle"
               className="cc-chip-text"
             >
               Centralised
@@ -1099,19 +1061,18 @@ function CentralizedChip() {
   );
 }
 
-// Title with a violet outline-fill hover effect. Only used on the Agentic SOC project.
+// Title with a violet outline-fill hover effect. Converted to B&W here.
 const hoverTitleCss = `
 .soc-hover-title { position: relative; display: inline-block; }
 .soc-hover-overlay {
   position: absolute; inset: 0; box-sizing: border-box;
-  color: #9259DB; width: 0%; overflow: hidden; white-space: nowrap;
-  border-right: 6px solid #9259DB;
-  -webkit-text-stroke: 1px #9259DB;
+  color: #000; width: 0%; overflow: hidden; white-space: nowrap;
+  border-right: 6px solid #000;
+  -webkit-text-stroke: 1px #000;
   transition: width 0.5s;
 }
 .soc-hover-title:hover .soc-hover-overlay {
   width: 100%;
-  filter: drop-shadow(0 0 23px #9259DB);
 }
 `;
 
@@ -1130,6 +1091,7 @@ function HoverTitle({ text }: { text: string }) {
 export function ProjectDetail() {
   const { id } = useParams<{ id: string }>();
   const project = id ? projectsData[id] : null;
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
@@ -1139,8 +1101,8 @@ export function ProjectDetail() {
       <div className="min-h-screen flex flex-col bg-white">
         <Navbar />
         <div className="flex-grow flex items-center justify-center flex-col gap-6">
-          <h1 className="text-4xl font-bold">Project Not Found</h1>
-          <Link to="/" className="text-[#131313] hover:underline flex items-center gap-2 text-base md:text-lg">
+          <h1 className="text-4xl font-bold text-black">Project Not Found</h1>
+          <Link to="/" className="text-black hover:underline flex items-center gap-2 text-base md:text-lg">
             <ArrowLeft size={20} /> Back to Home
           </Link>
         </div>
@@ -1150,45 +1112,48 @@ export function ProjectDetail() {
   }
 
   return (
-    <div className="bg-white text-[#131313] min-h-screen font-sans">
+    <div className="bg-white text-black min-h-screen font-sans">
       <Navbar />
 
       <main className="w-full overflow-hidden">
-        {/* 1. Hero Section */}
+        
+        {/* ========================================================= */}
+        {/* 1. OVERVIEW & CONTEXT */}
+        {/* ========================================================= */}
+        
         <section className="w-full pt-24 pb-12 bg-white">
           <div className="max-w-7xl mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.1 }}
-              className="w-full rounded-2xl overflow-hidden bg-gray-100"
+              className="w-full rounded-2xl overflow-hidden bg-white border border-black"
             >
               <img fetchPriority="high" decoding="async" src={project.heroImage} alt={project.title} className="w-full h-auto object-cover max-h-[70vh]" />
             </motion.div>
           </div>
         </section>
 
-        {/* 2. Project Details & Overview */}
-        <section className="pb-24 md:pb-32 w-full bg-white text-[#131313]">
+        <section className="pb-24 md:pb-32 w-full bg-white text-black">
           <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center text-left">
             <div className="lg:col-span-4 flex flex-col gap-8">
               <div className="flex flex-col gap-2">
-                <h4 className="text-sm font-bold uppercase tracking-widest text-[#131313]">Project Scope</h4>
-                <p className="text-base md:text-lg text-gray-700 leading-relaxed">{project.scope}</p>
+                <h4 className="text-sm font-bold uppercase tracking-widest text-black">Project Scope</h4>
+                <p className="text-base md:text-lg text-black leading-relaxed">{project.scope}</p>
               </div>
               <div className="flex flex-col gap-2">
-                <h4 className="text-sm font-bold uppercase tracking-widest text-[#131313]">My Role</h4>
-                <p className="text-base md:text-lg text-gray-700 leading-relaxed">{project.role}</p>
+                <h4 className="text-sm font-bold uppercase tracking-widest text-black">My Role</h4>
+                <p className="text-base md:text-lg text-black leading-relaxed">{project.role}</p>
               </div>
               <div className="flex flex-col gap-2">
-                <h4 className="text-sm font-bold uppercase tracking-widest text-[#131313]">Project Duration</h4>
-                <p className="text-base md:text-lg text-gray-700 leading-relaxed">{project.timeline}</p>
+                <h4 className="text-sm font-bold uppercase tracking-widest text-black">Project Duration</h4>
+                <p className="text-base md:text-lg text-black leading-relaxed">{project.timeline}</p>
               </div>
               {project.team && (
                 <div className="flex flex-col gap-2">
-                  <h4 className="text-sm font-bold uppercase tracking-widest text-[#131313]">Team</h4>
-                  <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                  <h4 className="text-sm font-bold uppercase tracking-widest text-black">Team</h4>
+                  <p className="text-base md:text-lg text-black leading-relaxed">
                     {project.team.split(', ').map((member: string, index: number, arr: string[]) => (
                       <span key={member}>
-                        <span className={member.toLowerCase().includes('lucia') ? 'font-bold text-[#131313]' : ''}>
+                        <span className={member.toLowerCase().includes('lucia') ? 'font-bold text-black' : ''}>
                           {member}
                         </span>
                         {index < arr.length - 1 ? ', ' : ''}
@@ -1199,7 +1164,7 @@ export function ProjectDetail() {
               )}
               {project.prototypeLink && (
                 <div className="mt-4">
-                  <a href={project.prototypeLink} target="_blank" rel="noopener noreferrer" className="inline-block border-2 border-[#131313] text-[#131313] px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-[#131313] hover:text-white transition-all duration-300 w-fit">
+                  <a href={project.prototypeLink} target="_blank" rel="noopener noreferrer" className="inline-block border border-black text-black px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-all duration-300 w-fit">
                     View Final Prototype
                   </a>
                 </div>
@@ -1209,13 +1174,13 @@ export function ProjectDetail() {
             <div className="lg:col-span-8 flex flex-col gap-6">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1 }}
-                className="text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tight break-words m-0"
+                className="text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tight break-words m-0 text-black"
               >
                 {project.id === 'soc' ? <HoverTitle text={project.title} /> : project.title}
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-base md:text-lg text-gray-800 leading-relaxed max-w-3xl font-bold"
+                className="text-base md:text-lg text-black leading-relaxed max-w-3xl font-bold"
               >
                 {project.overview}
               </motion.p>
@@ -1224,7 +1189,7 @@ export function ProjectDetail() {
         </section>
 
         {(project.video || project.contribution || project.disclosure) && (
-          <section className="py-16 md:py-20 w-full bg-white text-[#131313]">
+          <section className="py-16 md:py-20 w-full bg-white text-black">
             <div className="max-w-5xl mx-auto px-6 flex flex-col gap-12">
               {project.video && (/\.gif(\?|$)/i.test(project.video) ? (
                 <img
@@ -1232,7 +1197,7 @@ export function ProjectDetail() {
                   alt={`${project.title} walkthrough`}
                   loading="lazy"
                   decoding="async"
-                  className="w-full rounded-2xl border border-gray-100 bg-black object-contain"
+                  className="w-full rounded-2xl border border-black bg-white object-contain"
                 />
               ) : (
                 <video
@@ -1240,48 +1205,25 @@ export function ProjectDetail() {
                   controls
                   playsInline
                   preload="metadata"
-                  className="w-full rounded-2xl border border-gray-100 bg-black"
+                  className="w-full rounded-2xl border border-black bg-white"
                 />
               ))}
               {project.contribution && (
                 <div className="flex flex-col gap-8">
-                  <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">What I Did</h3>
+                  <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-black">What I Did</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {project.contribution.map((item: any, idx: number) => (
-                      <div key={idx} className="flex flex-col gap-3 p-8 bg-[#F9F9F9] rounded-2xl border border-gray-100">
-                        <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">{item.title}</h4>
-                        <p className="text-base md:text-lg text-gray-700 leading-relaxed">{item.description}</p>
+                      <div key={idx} className="flex flex-col gap-3 p-8 bg-white rounded-2xl border border-black">
+                        <h4 className="text-xl font-bold uppercase tracking-tight text-black">{item.title}</h4>
+                        <p className="text-base md:text-lg text-black leading-relaxed">{item.description}</p>
                       </div>
                     ))}
                   </div>
                 </div>
               )}
-              {project.solution && (
-                <div className="flex flex-col gap-4">
-                  <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">The Solution</h3>
-                  <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-3xl">{project.solution}</p>
-                </div>
-              )}
-              {project.audiences && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {project.audiences.map((aud: any, idx: number) => (
-                    <div key={idx} className="flex flex-col gap-3 p-8 bg-[#F2F2F2] rounded-[2rem] border border-neutral-200">
-                      <span className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500">Audience 0{idx + 1}</span>
-                      <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">{aud.title}</h4>
-                      <p className="text-base md:text-lg text-gray-700 leading-relaxed">{aud.description}</p>
-                    </div>
-                  ))}
-                </div>
-              )}
-              {project.testing && (
-                <div className="flex flex-col gap-4">
-                  <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">{project.testing.title}</h3>
-                  <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-3xl">{project.testing.description}</p>
-                </div>
-              )}
               {project.disclosure && (
-                <p className="text-sm md:text-base text-gray-600 leading-relaxed border-l-2 border-[#131313] pl-4">
-                  <span className="font-bold uppercase tracking-widest text-[#131313]">Confidentiality. </span>
+                <p className="text-sm md:text-base text-black leading-relaxed border-l-2 border-black pl-4">
+                  <span className="font-bold uppercase tracking-widest text-black">Confidentiality. </span>
                   {project.disclosure}
                 </p>
               )}
@@ -1289,15 +1231,96 @@ export function ProjectDetail() {
           </section>
         )}
 
+        {/* ========================================================= */}
+        {/* 2. PROCESS MAP */}
+        {/* ========================================================= */}
+
+        {project.processMap && (
+          <section className="py-16 md:py-24 w-full bg-white">
+            <div className="max-w-7xl mx-auto px-6">
+              <div className="mb-12 md:mb-16 max-w-3xl">
+                <p className="text-sm uppercase tracking-[0.22em] text-black mb-3">
+                  Process
+                </p>
+                <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-black mb-4">
+                  Design Process Map
+                </h2>
+                <p className="text-base md:text-lg text-black leading-relaxed">
+                  A structured overview of the research, definition, and design phases that shaped the project.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10">
+                {project.processMap.map((phase: any, phaseIndex: number) => {
+                  const processItems = phase.items || phase.steps?.map((step: string) => ({ title: step, description: "" })) || [];
+
+                  return (
+                    <motion.div
+                      key={phaseIndex}
+                      initial={{ opacity: 0, y: 24 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.2 }}
+                      transition={{ duration: 0.45, delay: phaseIndex * 0.08 }}
+                      className="relative flex flex-col rounded-[2rem] bg-white border border-black text-black p-6 md:p-8"
+                    >
+                      <div className="flex items-start justify-between mb-8">
+                        <span className="text-6xl md:text-7xl font-bold leading-none text-black">
+                          0{phaseIndex + 1}
+                        </span>
+                        <span className="text-xs uppercase tracking-[0.18em] text-black mt-2">
+                          Phase {phaseIndex + 1} of {project.processMap.length}
+                        </span>
+                      </div>
+
+                      <h3 className="text-2xl md:text-3xl font-bold uppercase tracking-tight mb-8">
+                        {phase.phase}
+                      </h3>
+
+                      <ol className="relative flex flex-col gap-6 pl-6 border-l border-black">
+                        {processItems.map((item: any, itemIndex: number) => (
+                          <li key={itemIndex} className="relative">
+                            <span className="absolute -left-[30px] top-1.5 w-3 h-3 rounded-full bg-black" />
+                            <p className="text-sm md:text-base font-bold uppercase tracking-tight text-black">
+                              {item.title}
+                            </p>
+                            {item.description && (
+                              <p className="text-sm text-black leading-relaxed mt-1">
+                                {item.description}
+                              </p>
+                            )}
+                          </li>
+                        ))}
+                      </ol>
+
+                      {phaseIndex < project.processMap.length - 1 && (
+                        <div
+                          aria-hidden="true"
+                          className="hidden lg:flex absolute top-1/2 -right-7 z-10 w-6 h-6 items-center justify-center rounded-full bg-white text-black border border-black text-xs font-bold"
+                        >
+                          →
+                        </div>
+                      )}
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* ========================================================= */}
+        {/* 3. PROBLEM SPACE */}
+        {/* ========================================================= */}
+
         {project.problem && (
           <section className="py-16 md:py-20 w-full bg-white">
             <div className="max-w-7xl mx-auto px-6">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                 <div className="lg:col-span-4 flex flex-col justify-center">
-                  <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313] mb-6">
+                  <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-black mb-6">
                     The Problem
                   </h3>
-                  <div className="text-base md:text-lg text-gray-700 leading-relaxed whitespace-pre-line">
+                  <div className="text-base md:text-lg text-black leading-relaxed whitespace-pre-line">
                     {project.problem}
                   </div>
                 </div>
@@ -1306,19 +1329,21 @@ export function ProjectDetail() {
                     <ProblemFolder tools={["Endpoint protection", "Threat intelligence feeds", "Security information system", "Ticketing"]} />
                   ) : (
                     <img
-                    src={project.problemImage || "/placeholder-phone-mockup.png"}
-                    alt="The Problem Illustration"
-                    className={mediaImg}
-                   loading="lazy" decoding="async" />)}
+                      src={project.problemImage || "/placeholder-phone-mockup.png"}
+                      alt="The Problem Illustration"
+                      className={`${mediaImg} border border-black rounded-2xl`}
+                      loading="lazy" decoding="async" 
+                    />
+                  )}
                 </div>
               </div>
               {project.problem2 && (
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center mt-16 md:mt-24">
                   <div className="lg:col-span-4 flex flex-col justify-center">
-                    <h4 className="text-xl md:text-2xl font-bold uppercase tracking-tight text-[#131313] mb-4">
+                    <h4 className="text-xl md:text-2xl font-bold uppercase tracking-tight text-black mb-4">
                       One Stakeholder, Not Enough
                     </h4>
-                    <div className="text-base md:text-lg text-gray-700 leading-relaxed whitespace-pre-line">
+                    <div className="text-base md:text-lg text-black leading-relaxed whitespace-pre-line">
                       {project.problem2}
                     </div>
                   </div>
@@ -1331,26 +1356,220 @@ export function ProjectDetail() {
           </section>
         )}
 
-        {(project.researchObjectives || project.researchInsights) && (
-          <section className="py-16 md:py-20 w-full bg-white">
+        {/* ========================================================= */}
+        {/* 4. RESEARCH & EMPATHY */}
+        {/* ========================================================= */}
+
+        {(project.audiences || project.targetUsers || project.targetUsers2 || project.researchObjectives || project.researchInsights || project.userInsightsCards || project.keyFindings) && (
+          <section className="py-16 md:py-20 w-full bg-white text-black">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16 md:gap-24">
+              
+              {/* Audiences extracted to Research step */}
+              {project.audiences && (
+                <div className="max-w-5xl mx-auto w-full">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {project.audiences.map((aud: any, idx: number) => (
+                      <div key={idx} className="flex flex-col gap-3 p-8 bg-white rounded-[2rem] border border-black">
+                        <span className="text-xs font-bold uppercase tracking-[0.22em] text-black">Audience 0{idx + 1}</span>
+                        <h4 className="text-xl font-bold uppercase tracking-tight text-black">{aud.title}</h4>
+                        <p className="text-base md:text-lg text-black leading-relaxed">{aud.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {project.targetUsers && (
+                <div className="flex flex-col gap-10">
+                  <div className="flex flex-col gap-4 max-w-3xl">
+                    <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-black">Target Users</h3>
+                    <p className="text-base md:text-lg text-black leading-relaxed">{project.targetUsers.description}</p>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                    {project.targetUsers.personas.map((persona: any, idx: number) => {
+                      const descriptionParts = persona.description.split('\n').map((part: string) => part.trim());
+                      const hasStructuredDetails = descriptionParts.some((part: string) => part.includes(':'));
+                      
+                      const personaMetrics =
+                        project.id === 'museon' && persona.title.toLowerCase().includes('alex')
+                          ? [ { label: 'Planning', value: 95 }, { label: 'Team coordination', value: 90 }, { label: 'Task management', value: 85 } ]
+                          : project.id === 'museon'
+                          ? [ { label: 'Task clarity', value: 95 }, { label: 'Accessibility', value: 85 }, { label: 'Guided workflow', value: 80 } ]
+                          : project.id === 'art-beyond-dimension'
+                          ? [ { label: 'Interactivity', value: 95 }, { label: 'Visual discovery', value: 90 }, { label: 'Ease of use', value: 85 } ]
+                          : project.id === 'films-foundation' && persona.title.toLowerCase().includes('creator')
+                          ? [ { label: 'Archive access', value: 95 }, { label: 'Searchability', value: 90 }, { label: 'Creative inspiration', value: 85 } ]
+                          : [ { label: 'Easy booking', value: 95 }, { label: 'Event discovery', value: 85 }, { label: 'Mobile clarity', value: 80 } ];
+                      
+                      const personaTags =
+                        project.id === 'museon' && persona.title.toLowerCase().includes('alex')
+                          ? ['Museum staff', 'Planning', 'Collaboration', 'Office workflow']
+                          : project.id === 'museon'
+                          ? ['Intern', 'On-site support', 'Clear tasks', 'Learning']
+                          : project.id === 'art-beyond-dimension'
+                          ? ['Young adult', 'Visual discovery', 'Social sharing', 'Interactive learning']
+                          : project.id === 'films-foundation' && persona.title.toLowerCase().includes('creator')
+                          ? ['Creative research', 'Archive access', 'Film references', 'Inspiration']
+                          : ['Cultural visitor', 'Events', 'Ticket booking', 'Mobile use'];
+
+                      return (
+                        <motion.div
+                          key={idx}
+                          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
+                          className="flex flex-col bg-white border border-black rounded-[2rem] overflow-hidden"
+                        >
+                          <div className="p-5 md:p-6 flex flex-col gap-5 border-b border-black">
+                            <div className="w-full aspect-[4/3] bg-white rounded-[1.5rem] overflow-hidden border border-black">
+                              <img src={persona.image} alt={persona.title} className={mediaImg}  loading="lazy" decoding="async" />
+                            </div>
+                            <div className="flex flex-col gap-2">
+                              <div className="inline-flex w-fit px-3 py-1 rounded-full bg-white border border-black text-black text-[10px] md:text-xs uppercase tracking-widest">
+                                Persona 0{idx + 1}
+                              </div>
+                              <h4 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-black">{persona.title}</h4>
+                              {!hasStructuredDetails && (
+                                <p className="text-base md:text-lg text-black leading-relaxed">{persona.description}</p>
+                              )}
+                            </div>
+                            <div className="flex flex-wrap gap-2">
+                              {personaTags.map((tag: string, tagIdx: number) => (
+                                <span key={tagIdx} className="px-3 py-1.5 rounded-full bg-white border border-black text-xs md:text-sm text-black">
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                          
+                          <div className="px-5 md:px-6 py-5 md:py-6 flex flex-col gap-5">
+                            {hasStructuredDetails && (
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                {descriptionParts.map((part: string, partIdx: number) => {
+                                  const [label, ...rest] = part.split(':');
+                                  return (
+                                    <div key={partIdx} className="bg-white border border-black rounded-2xl p-4">
+                                      <p className="text-xs font-bold uppercase tracking-widest text-black mb-2">{label}</p>
+                                      <p className="text-sm md:text-base text-black leading-relaxed">{rest.join(':').trim()}</p>
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            )}
+                            <div className="bg-white border border-black rounded-2xl p-4">
+                              <h5 className="text-xs font-bold uppercase tracking-widest text-black mb-4">Key Needs</h5>
+                              <div className="space-y-4">
+                                {personaMetrics.map((item: any, metricIdx: number) => (
+                                  <div key={metricIdx}>
+                                    <div className="flex justify-between gap-4 text-xs md:text-sm text-black mb-1.5">
+                                      <span>{item.label}</span>
+                                      <span>{item.value}%</span>
+                                    </div>
+                                    <div className="w-full h-2 rounded-full bg-white border border-black overflow-hidden">
+                                      <div className="h-full bg-black" style={{ width: `${item.value}%` }} />
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {project.targetUsers2 && (
+                <div>
+                  <h2 className="text-sm uppercase tracking-[0.2em] text-black mb-16">Detailed Persona</h2>
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+                    <div className="lg:col-span-4 flex flex-col gap-8">
+                      <div className="aspect-[4/5] bg-white border border-black rounded-2xl overflow-hidden">
+                        <img src={project.targetUsers2.persona.image} alt="Marco" className={mediaImg}  loading="lazy" decoding="async" />
+                      </div>
+                      <div>
+                        <h3 className="text-4xl font-bold uppercase tracking-tighter text-black">{project.targetUsers2.persona.name}</h3>
+                        <p className="text-lg text-black">{project.targetUsers2.persona.archetype} • {project.targetUsers2.persona.age}</p>
+                      </div>
+                      <p className="text-black leading-relaxed">{project.targetUsers2.persona.bio}</p>
+                    </div>
+
+                    <div className="lg:col-span-5 border-l border-black pl-12">
+                      <h4 className="text-xs font-black uppercase tracking-widest mb-10 text-black">Empathy Map</h4>
+                      <div className="grid grid-cols-2 gap-y-12 gap-x-8">
+                        <div className="flex flex-col gap-3">
+                          <span className="text-2xl font-bold italic text-black">SAY</span>
+                          <p className="text-md text-black leading-snug">"{project.targetUsers2.persona.empathyMap.say}"</p>
+                        </div>
+                        <div className="flex flex-col gap-3">
+                          <span className="text-2xl font-bold italic text-black">THINK</span>
+                          <p className="text-md text-black leading-snug">{project.targetUsers2.persona.empathyMap.think}</p>
+                        </div>
+                        <div className="flex flex-col gap-3">
+                          <span className="text-2xl font-bold italic text-black">DOES</span>
+                          <p className="text-md text-black leading-snug">{project.targetUsers2.persona.empathyMap.does}</p>
+                        </div>
+                        <div className="flex flex-col gap-3">
+                          <span className="text-2xl font-bold italic text-black">FEEL</span>
+                          <p className="text-md text-black leading-snug">{project.targetUsers2.persona.empathyMap.feel}</p>
+                        </div>
+                      </div>
+                      
+                      <div className="mt-16">
+                         <h4 className="text-xs font-black uppercase tracking-widest mb-6 text-black">Personality</h4>
+                         {project.targetUsers2.persona.personality.map((trait: any, i: number) => (
+                           <div key={i} className="mb-4">
+                             <div className="flex justify-between text-[10px] text-black uppercase font-bold mb-1">
+                               <span>{trait.left}</span>
+                               <span>{trait.right}</span>
+                             </div>
+                             <div className="h-[4px] bg-white border border-black w-full relative">
+                               <div className="absolute h-full bg-black" style={{ width: '8px', top: '-1px', left: `${trait.value}%` }} />
+                             </div>
+                           </div>
+                         ))}
+                      </div>
+                    </div>
+
+                    <div className="lg:col-span-3 flex flex-col gap-12">
+                      <div>
+                        <h4 className="text-xs font-black uppercase tracking-widest mb-4 text-black">Goals</h4>
+                        <ul className="flex flex-col gap-3">
+                          {project.targetUsers2.persona.goals?.map((p: string, i: number) => (
+                            <li key={i} className="text-sm text-black border-l-2 border-black pl-3">{p}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 className="text-xs font-black uppercase tracking-widest mb-4 text-black">Pain Points</h4>
+                        <ul className="flex flex-col gap-3">
+                          {project.targetUsers2.persona.painPoints?.map((p: string, i: number) => (
+                            <li key={i} className="text-sm text-black border-l-2 border-black pl-3">{p}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               {project.researchObjectives && (
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start">
                   <div className="lg:col-span-5">
-                    <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">
+                    <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-black">
                       Research Objectives
                     </h3>
                   </div>
                   <div className="lg:col-span-7 lg:pt-1">
                     {Array.isArray(project.researchObjectives) ? (
                       <div className="max-w-2xl">
-                        <p className="text-base md:text-lg text-[#131313] leading-relaxed mb-6">
+                        <p className="text-base md:text-lg text-black leading-relaxed mb-6">
                           Through user interviews and surveys, I wanted to:
                         </p>
                         <ul className="flex flex-col gap-5">
                           {project.researchObjectives.map((line: string, idx: number) => (
-                            <li key={idx} className="flex items-start gap-4 text-base md:text-lg text-[#131313] leading-relaxed">
-                              <span className="text-[#131313] font-bold select-none mt-1">•</span>
+                            <li key={idx} className="flex items-start gap-4 text-base md:text-lg text-black leading-relaxed">
+                              <span className="text-black font-bold select-none mt-1">•</span>
                               <span className="leading-relaxed">{line}</span>
                             </li>
                           ))}
@@ -1358,10 +1577,10 @@ export function ProjectDetail() {
                       </div>
                     ) : (
                       <div className="max-w-2xl">
-                        <p className="text-base md:text-lg text-[#131313] leading-relaxed mb-6">
+                        <p className="text-base md:text-lg text-black leading-relaxed mb-6">
                           Through user interviews and surveys, I wanted to:
                         </p>
-                        <div className="text-base md:text-lg text-[#131313] leading-relaxed whitespace-pre-line">
+                        <div className="text-base md:text-lg text-black leading-relaxed whitespace-pre-line">
                           {project.researchObjectives}
                         </div>
                       </div>
@@ -1369,6 +1588,7 @@ export function ProjectDetail() {
                   </div>
                 </div>
               )}
+
               {project.researchInsights && (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
                   {project.researchInsights.map((insight: any, idx: number) => (
@@ -1378,1132 +1598,806 @@ export function ProjectDetail() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.8, delay: idx * 0.1 }}
-                      className="flex flex-col gap-3 bg-[#FAF9F6] p-8 rounded-xl h-full"
+                      className="flex flex-col gap-3 bg-white border border-black p-8 rounded-xl h-full"
                     >
-                      <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">{insight.title}</h4>
-                      <p className="text-base md:text-lg text-gray-700 leading-relaxed whitespace-pre-line">{insight.description}</p>
+                      <h4 className="text-xl font-bold uppercase tracking-tight text-black">{insight.title}</h4>
+                      <p className="text-base md:text-lg text-black leading-relaxed whitespace-pre-line">{insight.description}</p>
                     </motion.div>
                   ))}
                 </div>
               )}
-            </div>
-          </section>
-        )}
-{project.processMap && (
-  <section className="py-16 md:py-24 w-full bg-white">
-    <div className="max-w-7xl mx-auto px-6">
-      <div className="mb-12 md:mb-16 max-w-3xl">
-        <p className="text-sm uppercase tracking-[0.22em] text-neutral-500 mb-3">
-          Process
-        </p>
 
-        <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-[#131313] mb-4">
-          Design Process Map
-        </h2>
-
-        <p className="text-base md:text-lg text-neutral-600 leading-relaxed">
-          A structured overview of the research, definition, and design phases that shaped the project.
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10">
-        {project.processMap.map((phase: any, phaseIndex: number) => {
-          const processItems =
-            phase.items ||
-            phase.steps?.map((step: string) => ({
-              title: step,
-              description: ""
-            })) ||
-            [];
-
-          return (
-            <motion.div
-              key={phaseIndex}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.45, delay: phaseIndex * 0.08 }}
-              className="relative flex flex-col rounded-[2rem] bg-[#131313] text-white p-6 md:p-8 shadow-sm"
-            >
-              <div className="flex items-start justify-between mb-8">
-                <span className="text-6xl md:text-7xl font-bold leading-none text-white/15">
-                  0{phaseIndex + 1}
-                </span>
-                <span className="text-xs uppercase tracking-[0.18em] text-white/60 mt-2">
-                  Phase {phaseIndex + 1} of {project.processMap.length}
-                </span>
-              </div>
-
-              <h3 className="text-2xl md:text-3xl font-bold uppercase tracking-tight mb-8">
-                {phase.phase}
-              </h3>
-
-              <ol className="relative flex flex-col gap-6 pl-6 border-l border-white/25">
-                {processItems.map((item: any, itemIndex: number) => (
-                  <li key={itemIndex} className="relative">
-                    <span className="absolute -left-[30px] top-1.5 w-3 h-3 rounded-full bg-white" />
-                    <p className="text-sm md:text-base font-bold uppercase tracking-tight">
-                      {item.title}
-                    </p>
-
-                    {item.description && (
-                      <p className="text-sm text-white/70 leading-relaxed mt-1">
-                        {item.description}
-                      </p>
-                    )}
-                  </li>
-                ))}
-              </ol>
-
-              {phaseIndex < project.processMap.length - 1 && (
-                <div
-                  aria-hidden="true"
-                  className="hidden lg:flex absolute top-1/2 -right-7 z-10 w-6 h-6 items-center justify-center rounded-full bg-white text-[#131313] text-xs font-bold shadow-sm"
-                >
-                  →
+              {(project.userInsights || project.userInsightsCards) && (
+                <div className="rounded-[2.5rem] bg-white border border-black p-8 md:p-12 lg:p-16 flex flex-col gap-12">
+                  <div className="flex flex-col gap-3 max-w-3xl">
+                    <span className="text-xs font-bold uppercase tracking-[0.28em] text-black">Research Signal</span>
+                    <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-black">User Insights</h3>
+                  </div>
+                  {project.userInsights && (project.userInsights.benefitsImage || project.userInsights.insightsImage) && (
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+                      {project.userInsights.benefitsImage && (
+                        <div className="flex flex-col gap-4">
+                          <h4 className="text-xl font-bold uppercase tracking-tight text-left text-black">User Perceived Benefits</h4>
+                          <div className="w-full rounded-[2rem] overflow-hidden bg-white p-4 border border-black flex items-center justify-center">
+                            <img src={project.userInsights.benefitsImage} alt="User Benefits" className={mediaImg}  loading="lazy" decoding="async" />
+                          </div>
+                        </div>
+                      )}
+                      {project.userInsights.insightsImage && (
+                        <div className="flex flex-col gap-4">
+                          <h4 className="text-xl font-bold uppercase tracking-tight text-left text-black">User Priorities</h4>
+                          <div className="w-full rounded-[2rem] overflow-hidden bg-white p-4 border border-black flex items-center justify-center">
+                            <img src={project.userInsights.insightsImage} alt="User Insights" className={mediaImg}  loading="lazy" decoding="async" />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                  {project.userInsightsCards && project.userInsightsCards.length > 0 && (
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                      {project.userInsightsCards.map((card: any, idx: number) => (
+                        <motion.div
+                          key={idx}
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.6, delay: idx * 0.1 }}
+                          className="bg-white p-8 rounded-[2rem] border border-black flex flex-col gap-4"
+                        >
+                          <span className="text-xs font-bold uppercase tracking-[0.22em] text-black">Insight 0{idx + 1}</span>
+                          <h4 className="text-xl font-bold uppercase tracking-tight text-black leading-tight">{card.title}</h4>
+                          <p className="text-base md:text-lg text-black leading-relaxed">{card.description}</p>
+                        </motion.div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               )}
-            </motion.div>
-          );
-        })}
-      </div>
-    </div>
-  </section>
-)}
 
-{project.designSystem && (
-  <section className="py-16 md:py-24 w-full bg-white text-[#131313]">
-    <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16">
-      <div className="max-w-3xl">
-        <p className="text-sm uppercase tracking-[0.22em] text-neutral-500 mb-3">Design System</p>
-        <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-[#131313] mb-4">
-          Built with {project.designSystem.method}
-        </h2>
-        <p className="text-base md:text-lg text-neutral-600 leading-relaxed">{project.designSystem.description}</p>
-      </div>
-
-      <div className="flex flex-col gap-6">
-        <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">How the Components Were Built</h3>
-        <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-3xl">
-          Each component was documented as a card: its area and type, a name, a plain-language description, a sketch of
-          what it shows, a category and a number. Cards such as MTTR, the case grouping causality graph and the Top 5
-          riskiest misconfigurations were then sorted into the levels below.
-        </p>
-        <img
-          src={project.designSystem.image}
-          alt="How the components were built"
-          className={mediaImg}
-          loading="lazy"
-          decoding="async"
-        />
-      </div>
-
-      <div className="flex flex-col gap-6">
-        <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">Sorted by Level</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {project.designSystem.levels.map((level: any, idx: number) => (
-            <motion.div
-              key={level.id}
-              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.06 }}
-              className="rounded-[2rem] bg-[#131313] text-white p-6 md:p-8 flex flex-col gap-5"
-            >
-              <span className="text-xs uppercase tracking-[0.22em] text-white/60">
-                Level {idx + 1} of {project.designSystem.levels.length}
-              </span>
-              <img
-                src={level.image}
-                alt={`${level.title} level`}
-                loading="lazy"
-                decoding="async"
-                className="w-full h-48 object-contain rounded-2xl bg-white/5"
-              />
-              <h4 className="text-2xl font-bold uppercase tracking-tight">{level.title}</h4>
-              <p className="text-sm md:text-base text-white/75 leading-relaxed">{level.text}</p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-)}
-
-{/* Agentic SOC: tokens & atoms */}
-{project.designSystem?.tokens && (
-  <section className="py-16 md:py-24 w-full bg-[#131313] text-white">
-        <div className="rounded-2xl overflow-hidden border border-white/10 bg-black">
-          <img src={project.designSystem.tokens.atomsImage} alt="Atoms" className="block w-full h-auto" loading="lazy" decoding="async" />
-        </div>
-      </div>
-    </div>
-  </section>
-)}
-
-{/* Agentic SOC: CISO & executive interface */}
-{project.cisoInterface && (
-  <section className="py-16 md:py-24 w-full bg-[#131313] text-white border-t border-white/10">
-    <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
-        className="lg:col-span-5 rounded-2xl overflow-hidden"
-      >
-        <img src={project.cisoInterface.image} alt="CISO interface" className="block w-full h-auto max-h-[760px] object-contain mx-auto" loading="lazy" decoding="async" />
-      </motion.div>
-      <div className="lg:col-span-7 flex flex-col gap-6">
-        <p className="text-sm uppercase tracking-[0.22em] text-violet-300">{project.cisoInterface.label}</p>
-        <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-tight">{project.cisoInterface.title}</h2>
-        <p className="text-base md:text-lg text-white/85 leading-relaxed font-medium">{project.cisoInterface.description}</p>
-        <ul className="flex flex-col divide-y divide-white/10">
-          {project.cisoInterface.features.map((f: any, idx: number) => (
-            <li key={idx} className="py-4 flex gap-4">
-              <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-violet-400" />
-              <p className="text-base md:text-lg text-white/75 leading-relaxed">
-                <span className="font-bold text-white">{f.title}: </span>{f.description}
-              </p>
-            </li>
-          ))}
-        </ul>
-        {project.cisoInterface.note && <p className="text-sm text-white/50">{project.cisoInterface.note}</p>}
-      </div>
-    </div>
-  </section>
-)}
-
-{/* Agentic SOC: conversational agent */}
-{project.conversationalAgent && (
-  <section className="py-16 md:py-24 w-full bg-white text-[#131313]">
-    <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
-      <div className="max-w-3xl flex flex-col gap-4">
-        <p className="text-sm uppercase tracking-[0.22em] text-neutral-500">{project.conversationalAgent.label}</p>
-        <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-tight">{project.conversationalAgent.title}</h2>
-        <p className="text-base md:text-lg text-gray-700 leading-relaxed">{project.conversationalAgent.description}</p>
-      </div>
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        <div className="lg:col-span-7 rounded-2xl border border-gray-100 bg-white p-4 md:p-6 shadow-sm">
-          <img src={project.conversationalAgent.image} alt="Persistent workspace" className="block w-full h-auto" loading="lazy" decoding="async" />
-        </div>
-        <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {project.conversationalAgent.features.map((f: any, idx: number) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.08 }}
-              className="rounded-2xl bg-[#F2F2F2] border border-neutral-200 p-6 flex flex-col gap-2"
-            >
-              <span className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500">0{idx + 1}</span>
-              <h4 className="text-lg font-bold uppercase tracking-tight">{f.title}</h4>
-              <p className="text-sm md:text-base text-gray-700 leading-relaxed">{f.description}</p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-)}
-
-{project.targetUsers && (
-          <section className="py-16 md:py-20 w-full bg-white text-[#131313]">
-            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
-              <div className="flex flex-col gap-4 max-w-3xl">
-                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">Target Users</h3>
-                <p className="text-base md:text-lg text-gray-700 leading-relaxed">{project.targetUsers.description}</p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-                {project.targetUsers.personas.map((persona: any, idx: number) => {
-
-const descriptionParts = persona.description
-  .split('\n')
-  .map((part: string) => part.trim())
-
-                  const hasStructuredDetails = descriptionParts.some((part: string) => part.includes(':'));
-
-                  const personaMetrics =
-                    project.id === 'museon' && persona.title.toLowerCase().includes('alex')
-                      ? [
-                          { label: 'Planning', value: 95 },
-                          { label: 'Team coordination', value: 90 },
-                          { label: 'Task management', value: 85 }
-                        ]
-                      : project.id === 'museon'
-                      ? [
-                          { label: 'Task clarity', value: 95 },
-                          { label: 'Accessibility', value: 85 },
-                          { label: 'Guided workflow', value: 80 }
-                        ]
-                      : project.id === 'art-beyond-dimension'
-                      ? [
-                          { label: 'Interactivity', value: 95 },
-                          { label: 'Visual discovery', value: 90 },
-                          { label: 'Ease of use', value: 85 }
-                        ]
-                      : project.id === 'films-foundation' && persona.title.toLowerCase().includes('creator')
-                      ? [
-                          { label: 'Archive access', value: 95 },
-                          { label: 'Searchability', value: 90 },
-                          { label: 'Creative inspiration', value: 85 }
-                        ]
-                      : [
-                          { label: 'Easy booking', value: 95 },
-                          { label: 'Event discovery', value: 85 },
-                          { label: 'Mobile clarity', value: 80 }
-                        ];
-
-                  const personaTags =
-                    project.id === 'museon' && persona.title.toLowerCase().includes('alex')
-                      ? ['Museum staff', 'Planning', 'Collaboration', 'Office workflow']
-                      : project.id === 'museon'
-                      ? ['Intern', 'On-site support', 'Clear tasks', 'Learning']
-                      : project.id === 'art-beyond-dimension'
-                      ? ['Young adult', 'Visual discovery', 'Social sharing', 'Interactive learning']
-                      : project.id === 'films-foundation' && persona.title.toLowerCase().includes('creator')
-                      ? ['Creative research', 'Archive access', 'Film references', 'Inspiration']
-                      : ['Cultural visitor', 'Events', 'Ticket booking', 'Mobile use'];
-
-                  return (
-                    <motion.div
-                      key={idx}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.8, delay: idx * 0.1 }}
-                      className="flex flex-col bg-[#F2F2F2] border border-neutral-300 rounded-[2rem] overflow-hidden shadow-sm"
-                    >
-                      <div className="p-5 md:p-6 flex flex-col gap-5">
-                        <div className="w-full aspect-[4/3] bg-white rounded-[1.5rem] overflow-hidden border border-neutral-200">
-                          <img src={persona.image} alt={persona.title} className={mediaImg}  loading="lazy" decoding="async" />
-                        </div>
-
-                        <div className="flex flex-col gap-2">
-                          <div className="inline-flex w-fit px-3 py-1 rounded-full bg-[#131313] text-white text-[10px] md:text-xs uppercase tracking-widest">
-                            Persona 0{idx + 1}
-                          </div>
-
-                          <h4 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-[#131313]">{persona.title}</h4>
-                          {!hasStructuredDetails && (
-                            <p className="text-base md:text-lg text-black leading-relaxed">{persona.description}</p>
-                          )}
-                        </div>
-
-                        <div className="flex flex-wrap gap-2">
-                          {personaTags.map((tag: string, tagIdx: number) => (
-                            <span key={tagIdx} className="px-3 py-1.5 rounded-full bg-white border border-neutral-200 text-xs md:text-sm text-black">
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div className="px-5 md:px-6 pb-5 md:pb-6 flex flex-col gap-5">
-                        {hasStructuredDetails && (
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            {descriptionParts.map((part: string, partIdx: number) => {
-                              const [label, ...rest] = part.split(':');
-                              return (
-                                <div key={partIdx} className="bg-white border border-neutral-200 rounded-2xl p-4">
-                                  <p className="text-xs font-bold uppercase tracking-widest text-black mb-2">{label}</p>
-                                  <p className="text-sm md:text-base text-black leading-relaxed">{rest.join(':').trim()}</p>
-                                </div>
-                              );
-                            })}
-                          </div>
-                        )}
-
-                        <div className="bg-white border border-neutral-200 rounded-2xl p-4">
-                          <h5 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Key Needs</h5>
-                          <div className="space-y-4">
-                            {personaMetrics.map((item: any, metricIdx: number) => (
-                              <div key={metricIdx}>
-                                <div className="flex justify-between gap-4 text-xs md:text-sm text-black mb-1.5">
-                                  <span>{item.label}</span>
-                                  <span>{item.value}%</span>
-                                </div>
-                                <div className="w-full h-2 rounded-full bg-gray-200 overflow-hidden">
-                                  <div className="h-full rounded-full bg-[#131313]" style={{ width: `${item.value}%` }} />
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </div>
+              {project.keyFindings && (
+                <div>
+                  <h3 className="mb-8 md:mb-10 text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-black">Key Findings</h3>
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+                    {project.keyFindings.map((finding: any, idx: number) => (
+                      <motion.div
+                        key={idx}
+                        initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
+                        className="flex flex-col gap-2 text-left bg-white border border-black rounded-2xl p-6"
+                      >
+                        <span className="text-5xl md:text-7xl font-bold text-black">{finding.stat}</span>
+                        <h4 className="text-xl font-bold uppercase tracking-tight text-black">{finding.label}</h4>
+                        <p className="text-base md:text-lg text-black leading-relaxed">{finding.description}</p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </section>
         )}
-   {project.targetUsers2 && (
-  <section className="py-24 bg-white text-[#131313]">
-    <div className="max-w-7xl mx-auto px-6">
-      <h2 className="text-sm uppercase tracking-[0.2em] text-neutral-400 mb-16">Detailed Persona</h2>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+        {/* ========================================================= */}
+        {/* 5. IDEATION & DEFINITION */}
+        {/* ========================================================= */}
 
-        {/* Column 1: Profile & Bio (4/12) */}
-        <div className="lg:col-span-4 flex flex-col gap-8">
-          <div className="aspect-[4/5] bg-neutral-100 rounded-2xl overflow-hidden">
-            <img src={project.targetUsers2.persona.image} alt="Marco" className={mediaImg}  loading="lazy" decoding="async" />
-          </div>
-          <div>
-            <h3 className="text-4xl font-bold uppercase tracking-tighter">{project.targetUsers2.persona.name}</h3>
-            <p className="text-lg text-neutral-500">{project.targetUsers2.persona.archetype} • {project.targetUsers2.persona.age}</p>
-          </div>
-          <p className="text-gray-600 leading-relaxed">{project.targetUsers2.persona.bio}</p>
-        </div>
-
-        {/* Column 2: Empathy Map (4/12) */}
-        <div className="lg:col-span-5 border-l border-neutral-100 pl-12">
-          <h4 className="text-xs font-black uppercase tracking-widest mb-10 text-neutral-400">Empathy Map</h4>
-          <div className="grid grid-cols-2 gap-y-12 gap-x-8">
-            <div className="flex flex-col gap-3">
-              <span className="text-2xl font-bold italic">SAY</span>
-              <p className="text-md text-black leading-snug">"{project.targetUsers2.persona.empathyMap.say}"</p>
-            </div>
-            <div className="flex flex-col gap-3">
-              <span className="text-2xl font-bold italic">THINK</span>
-              <p className="text-md text-black leading-snug">{project.targetUsers2.persona.empathyMap.think}</p>
-            </div>
-            <div className="flex flex-col gap-3">
-              <span className="text-2xl font-bold italic">DOES</span>
-              <p className="text-md text-black leading-snug">{project.targetUsers2.persona.empathyMap.does}</p>
-            </div>
-            <div className="flex flex-col gap-3">
-              <span className="text-2xl font-bold italic">FEEL</span>
-              <p className="text-md text-black leading-snug">{project.targetUsers2.persona.empathyMap.feel}</p>
-            </div>
-          </div>
-
-          <div className="mt-16">
-             <h4 className="text-xs font-black uppercase tracking-widest mb-6 text-neutral-400">Personality</h4>
-             {project.targetUsers2.persona.personality.map((trait: any, i: number) => (
-               <div key={i} className="mb-4">
-                 <div className="flex justify-between text-[10px] uppercase font-bold mb-1">
-                   <span>{trait.left}</span>
-                   <span>{trait.right}</span>
-                 </div>
-                 <div className="h-[2px] bg-neutral-100 w-full relative">
-                   <div className="absolute h-full bg-[#B65929]" style={{ width: '8px', left: `${trait.value}%` }} />
-                 </div>
-               </div>
-             ))}
-          </div>
-        </div>
-
-        {/* Column 3: Goals & Pains (3/12) */}
-        <div className="lg:col-span-3 flex flex-col gap-12">
-          <div>
-            <h4 className="text-xs font-black uppercase tracking-widest mb-4 text-neutral-400">Goals</h4>
-            <ul className="flex flex-col gap-3">
-              {project.targetUsers2.persona.goals?.map((p: string, i: number) => (
-                <li key={i} className="text-sm text-gray-500 border-l-2 border-red-600 pl-3">{p}</li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-xs font-black uppercase tracking-widest mb-4 text-neutral-400">Pain Points</h4>
-            <ul className="flex flex-col gap-3">
-              {project.targetUsers2.persona.painPoints?.map((p: string, i: number) => (
-                <li key={i} className="text-sm text-gray-500 border-l-2 border-red-600 pl-3">{p}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-)}
-{project.howMightWe && (
-  <section className="py-16 md:py-20 w-full bg-white">
-    <div className="max-w-7xl mx-auto px-6">
-      <div className="grid grid-cols-1 gap-6">
-        <div className="rounded-[2.5rem] bg-[#F2F2F2] text-black p-8 md:p-12 min-h-[220px] md:min-h-[280px] flex items-center border border-neutral-900 overflow-hidden relative">
-          <div className="absolute inset-x-8 top-8 h-px bg-white/10" />
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tight leading-none">
-            How Might We...
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {project.howMightWe.map((question: string, index: number) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.45, delay: index * 0.08 }}
-              className="rounded-[2rem] bg-[#F2F2F2] text-[#131313] p-6 md:p-8 min-h-[220px] flex flex-col justify-between border border-neutral-200 shadow-sm"
-            >
-              <span className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500">
-                Question 0{index + 1}
-              </span>
-              <p className="text-xl md:text-2xl leading-relaxed font-medium tracking-[-0.01em]">
-                {question}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-)}
-{project.howMightWe2 && (
-  <section className="py-16 md:py-20 w-full bg-white">
-    <div className="max-w-7xl mx-auto px-6">
-      <div className="rounded-[2.5rem] bg-[#F2F2F2] text-[#131313] p-8 md:p-12 min-h-[220px] md:min-h-[280px] flex flex-col justify-between border border-neutral-200 overflow-hidden relative shadow-sm">
-        <div className="absolute inset-x-8 top-8 h-px bg-black/10" />
-
-        <span className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500">
-          Question 01
-        </span>
-
-        <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight leading-tight max-w-5xl">
-          {project.howMightWe2[0]}
-        </h2>
-      </div>
-    </div>
-  </section>
-)}
-
-        {project.pillars2 && project.pillars2.length > 0 && (
-          <section className="py-16 md:py-20 w-full bg-white">
+        {(project.howMightWe || project.howMightWe2 || project.pillars || project.pillars2 || project.ideation || project.solution) && (
+          <section className="py-16 md:py-20 w-full bg-white text-black">
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16 md:gap-24">
-              {project.pillars2[0] && (
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8 }}
-                  className="w-full"
-                >
-                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                    <div className="lg:col-span-4 flex flex-col gap-4">
-                      <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight leading-tight text-[#131313]">
-                        {project.pillars2[0].title}
-                      </h3>
-                      <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-                        {project.pillars2[0].description}
-                      </p>
-                    </div>
-                    <div className="lg:col-span-8 rounded-2xl overflow-hidden border border-gray-100 p-4 bg-white shadow-sm">
-                      <img src={project.pillars2[0].image} alt={project.pillars2[0].title} className={mediaImg}  loading="lazy" decoding="async" />
-                    </div>
+              
+              {project.howMightWe && (
+                <div className="grid grid-cols-1 gap-6">
+                  <div className="rounded-[2.5rem] bg-white text-black p-8 md:p-12 min-h-[220px] md:min-h-[280px] flex items-center border border-black overflow-hidden relative">
+                    <div className="absolute inset-x-8 top-8 h-px bg-black" />
+                    <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tight leading-none text-black">
+                      How Might We...
+                    </h2>
                   </div>
-                </motion.div>
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    {project.howMightWe.map((question: string, index: number) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.2 }}
+                        transition={{ duration: 0.45, delay: index * 0.08 }}
+                        className="rounded-[2rem] bg-white text-black p-6 md:p-8 min-h-[220px] flex flex-col justify-between border border-black"
+                      >
+                        <span className="text-xs font-bold uppercase tracking-[0.22em] text-black">
+                          Question 0{index + 1}
+                        </span>
+                        <p className="text-xl md:text-2xl leading-relaxed font-medium tracking-[-0.01em]">
+                          {question}
+                        </p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
               )}
-              {project.pillars2.length > 1 && (
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12">
-                  {project.pillars2.slice(1).map((pillar: any, idx: number) => (
+
+              {project.howMightWe2 && (
+                <div className="rounded-[2.5rem] bg-white text-black p-8 md:p-12 min-h-[220px] md:min-h-[280px] flex flex-col justify-between border border-black overflow-hidden relative">
+                  <div className="absolute inset-x-8 top-8 h-px bg-black" />
+                  <span className="text-xs font-bold uppercase tracking-[0.22em] text-black">
+                    Question 01
+                  </span>
+                  <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight leading-tight max-w-5xl text-black">
+                    {project.howMightWe2[0]}
+                  </h2>
+                </div>
+              )}
+
+              {project.pillars2 && project.pillars2.length > 0 && (
+                <div className="flex flex-col gap-16 md:gap-24">
+                  {project.pillars2[0] && (
                     <motion.div
-                      key={idx}
                       initial={{ opacity: 0, y: 30 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.8, delay: idx * 0.15 }}
+                      transition={{ duration: 0.8 }}
+                      className="w-full"
+                    >
+                      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                        <div className="lg:col-span-4 flex flex-col gap-4">
+                          <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight leading-tight text-black">
+                            {project.pillars2[0].title}
+                          </h3>
+                          <p className="text-base md:text-lg text-black leading-relaxed">
+                            {project.pillars2[0].description}
+                          </p>
+                        </div>
+                        <div className="lg:col-span-8 rounded-2xl overflow-hidden border border-black p-4 bg-white">
+                          <img src={project.pillars2[0].image} alt={project.pillars2[0].title} className={mediaImg}  loading="lazy" decoding="async" />
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                  {project.pillars2.length > 1 && (
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12">
+                      {project.pillars2.slice(1).map((pillar: any, idx: number) => (
+                        <motion.div
+                          key={idx}
+                          initial={{ opacity: 0, y: 30 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.8, delay: idx * 0.15 }}
+                          className="flex flex-col gap-6 items-start text-left group"
+                        >
+                          <div className="w-full aspect-video rounded-2xl overflow-hidden border border-black p-4 bg-white">
+                            <img src={pillar.image} alt={pillar.title} className={mediaImg}  loading="lazy" decoding="async" />
+                          </div>
+                          <div className="flex flex-col gap-2">
+                            <h4 className="text-xl font-bold uppercase tracking-tight text-black">
+                              {pillar.title}
+                            </h4>
+                            <p className="text-base md:text-lg text-black leading-relaxed">
+                              {pillar.description}
+                            </p>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {project.pillars && (
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12">
+                  {project.pillars.map((pillar: any, idx: number) => (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.15 }}
                       className="flex flex-col gap-6 items-start text-left group"
                     >
-                      <div className="w-full aspect-video rounded-2xl overflow-hidden border border-gray-100 p-4 bg-white">
+                      <div className="w-full aspect-square rounded-2xl overflow-hidden border border-black p-2 bg-white">
                         <img src={pillar.image} alt={pillar.title} className={mediaImg}  loading="lazy" decoding="async" />
                       </div>
                       <div className="flex flex-col gap-2">
-                        <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">
-                          {pillar.title}
-                        </h4>
-                        <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-                          {pillar.description}
-                        </p>
+                        <h4 className="text-xl font-bold uppercase tracking-tight text-black">{pillar.title}</h4>
+                        <p className="text-base md:text-lg text-black leading-relaxed">{pillar.description}</p>
                       </div>
                     </motion.div>
                   ))}
+                </div>
+              )}
+
+              {project.ideation && (
+                <div className="flex flex-col gap-16">
+                  <div className="flex flex-col gap-8 max-w-4xl text-left">
+                    <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-black">
+                      Ideation
+                    </h3>
+                  </div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="flex flex-col gap-6"
+                  >
+                    <div className="w-full bg-white p-6 md:p-12 rounded-2xl border border-black">
+                      <img src={project.ideation.heroFlow} alt="Hero Flow" className={mediaImg}  loading="lazy" decoding="async" />
+                    </div>
+                    <p className="text-xs md:text-sm text-black font-bold uppercase tracking-widest text-center">
+                      {project.ideation.heroFlowCaption}
+                    </p>
+                  </motion.div>
+                  <div className="bg-white border border-black p-8 md:p-16 rounded-[2rem] flex flex-col gap-12">
+                    <div className="flex flex-col gap-2 text-left">
+                        <h4 className="text-xl font-bold uppercase tracking-tight text-black">Laying the Foundation</h4>
+                        <p className="text-base md:text-lg text-black leading-relaxed">Initial Wireframe Iterations</p>
+                    </div>
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
+                      {project.ideation.wireframes.map((wire: any, idx: number) => (
+                        <motion.div
+                          key={idx}
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: idx * 0.1 }}
+                          className="flex flex-col gap-6"
+                        >
+                          <div className="w-full max-w-[280px] mx-auto overflow-hidden border border-black rounded-xl flex justify-center items-center bg-white">
+                            <img src={wire.image} alt={wire.caption} className={mediaImg}  loading="lazy" decoding="async" />
+                          </div>
+                          <div className="flex flex-col gap-2 text-center">
+                            <p className="text-base md:text-lg font-bold uppercase tracking-tight text-black">
+                              {wire.caption.includes(':') ? wire.caption.split(':')[0] : wire.caption}
+                            </p>
+                            <p className="text-sm md:text-base text-black leading-relaxed">
+                              {wire.caption.includes(':') ? wire.caption.split(':')[1] : ""}
+                            </p>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Solution extracted here as part of Ideation & Definition */}
+              {project.solution && (
+                <div className="flex flex-col gap-4">
+                  <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-black">The Solution</h3>
+                  <p className="text-base md:text-lg text-black leading-relaxed max-w-3xl">{project.solution}</p>
                 </div>
               )}
             </div>
           </section>
         )}
 
-
-        {project.ideation && (
-          <section className="py-16 md:py-20 w-full bg-white">
-            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16">
-              <div className="flex flex-col gap-8 max-w-4xl text-left">
-                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">
-                  Ideation
-                </h3>
-              </div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="flex flex-col gap-6"
-              >
-                <div className="w-full bg-[#F9F9F9] p-6 md:p-12 rounded-2xl border border-gray-100">
-                  <img src={project.ideation.heroFlow} alt="Hero Flow" className={mediaImg}  loading="lazy" decoding="async" />
-                </div>
-                <p className="text-xs md:text-sm text-gray-400 font-bold uppercase tracking-widest text-center">
-                  {project.ideation.heroFlowCaption}
-                </p>
-              </motion.div>
-              <div className="bg-[#FAF9F6] p-8 md:p-16 rounded-[2rem] flex flex-col gap-12">
-                <div className="flex flex-col gap-2 text-left">
-                    <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">Laying the Foundation</h4>
-                    <p className="text-base md:text-lg text-black leading-relaxed">Initial Wireframe Iterations</p>
-                </div>
-
-
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
-                  {project.ideation.wireframes.map((wire: any, idx: number) => (
-                    <motion.div
-                      key={idx}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: idx * 0.1 }}
-                      className="flex flex-col gap-6"
-                    >
-                      <div className="w-full max-w-[280px] mx-auto overflow-hidden shadow-sm border border-gray-100 rounded-xl flex justify-center items-center">
-                        <img src={wire.image} alt={wire.caption} className={mediaImg}  loading="lazy" decoding="async" />
-                      </div>
-                      <div className="flex flex-col gap-2 text-center">
-                        <p className="text-base md:text-lg font-bold uppercase tracking-tight text-black">
-                          {wire.caption.includes(':') ? wire.caption.split(':')[0] : wire.caption}
-                        </p>
-                        <p className="text-sm md:text-base text-gray-500 leading-relaxed">
-                          {wire.caption.includes(':') ? wire.caption.split(':')[1] : ""}
-                        </p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {project.pillars && (
-          <section className="py-16 md:py-20 w-full bg-white">
-            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12">
-              {project.pillars.map((pillar: any, idx: number) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.15 }}
-                  className="flex flex-col gap-6 items-start text-left group"
-                >
-                  <div className="w-full aspect-square rounded-2xl overflow-hidden border border-gray-100 p-2">
-                    <img src={pillar.image} alt={pillar.title} className={mediaImg}  loading="lazy" decoding="async" />
+        {/* ========================================================= */}
+        {/* 6. DESIGN & ARCHITECTURE */}
+        {/* ========================================================= */}
+        
+        {(project.branding || project.branding2 || project.designSystem || project.keyFunctions || project.cisoInterface || project.conversationalAgent) && (
+          <section className="py-16 md:py-24 w-full bg-white text-black border-t border-black">
+            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16 md:gap-24">
+              
+              {project.branding && (
+                <div className="flex flex-col gap-16 md:gap-20">
+                  <div>
+                    <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-black mb-8">
+                      Building the Brand
+                    </h3>
+                    <p className="text-base md:text-lg text-black leading-relaxed max-w-3xl">
+                      {project.branding.description}
+                    </p>
                   </div>
-                  <div className="flex flex-col gap-2">
-                    <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">{pillar.title}</h4>
-                    <p className="text-base md:text-lg text-gray-700 leading-relaxed">{pillar.description}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {project.userTesting && (
-          <section className="py-16 md:py-20 w-full bg-white">
-            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-              <div className="lg:col-span-5 flex flex-col gap-4">
-                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313]">
-                  {project.userTesting.title || "User Testing"}
-                </h3>
-                <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-                  {project.userTesting.description}
-                </p>
-              </div>
-              <div className="lg:col-span-7 grid grid-cols-1 gap-8">
-                {project.userTesting.images.map((img: string, idx: number) => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: idx * 0.1 }}
-                    className="w-full rounded-2xl overflow-hidden bg-[#F9F9F9] border border-gray-100 p-2 md:p-3"
-                  >
-                    <img src={img} alt={`User Testing ${idx + 1}`} className={mediaImg}  loading="lazy" decoding="async" />
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-
-        {(project.userInsights || project.userInsightsCards) && (
-          <section className="py-16 md:py-20 w-full bg-white text-[#131313]">
-            <div className="max-w-7xl mx-auto px-6">
-              <div className="rounded-[2.5rem] bg-[#050505] text-white p-8 md:p-12 lg:p-16 flex flex-col gap-12 border border-neutral-900 overflow-hidden">
-                <div className="flex flex-col gap-3 max-w-3xl">
-                  <span className="text-xs font-bold uppercase tracking-[0.28em] text-white/45">Research Signal</span>
-                  <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-white">User Insights</h3>
+                  {project.branding.shapes && (
+                    <div className="flex justify-center items-center gap-6 flex-wrap">
+                      {project.branding.shapes.map((shape: any, idx: number) => (
+                        <div
+                          key={idx}
+                          className="rounded-full border border-black"
+                          style={{
+                            backgroundColor: '#000',
+                            width: `${shape.size}px`,
+                            height: `${shape.size}px`,
+                            opacity: shape.opacity ?? 1,
+                            filter: `blur(${shape.blur ?? 0}px)`
+                          }}
+                        />
+                      ))}
+                    </div>
+                  )}
+                  {(project.branding.logoDescription || project.branding.logoImage) && (
+                    <div className="flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-16 mx-auto max-w-5xl w-full">
+                      <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-6 max-w-lg">
+                        <h4 className="text-xl font-bold uppercase tracking-tight text-black">Logo Design</h4>
+                        <p className="text-base md:text-lg text-black leading-relaxed">{project.branding.logoDescription}</p>
+                      </div>
+                      <div className="flex justify-center items-center border border-black p-4 rounded-xl bg-white">
+                        <img src={project.branding.logoImage} alt="Logo" className={mediaImg}  loading="lazy" decoding="async" />
+                      </div>
+                    </div>
+                  )}
+                  {project.branding.featuresImage && (
+                    <div className="border-t border-black pt-16">
+                      <img src={project.branding.featuresImage} alt="Feature" className={`${mediaImg} border border-black rounded-xl`}  loading="lazy" decoding="async" />
+                    </div>
+                  )}
                 </div>
-                {project.userInsights && (project.userInsights.benefitsImage || project.userInsights.insightsImage) && (
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-                    {project.userInsights.benefitsImage && (
-                      <div className="flex flex-col gap-4">
-                        <h4 className="text-xl font-bold uppercase tracking-tight text-left text-white">User Perceived Benefits</h4>
-                        <div className="w-full rounded-[2rem] overflow-hidden bg-white/10 p-4 border border-white/10 shadow-sm flex items-center justify-center">
-                          <img src={project.userInsights.benefitsImage} alt="User Benefits" className={mediaImg}  loading="lazy" decoding="async" />
+              )}
+
+              {project.branding2 && (
+                <div className="flex flex-col gap-10 md:gap-14">
+                  <div className="max-w-3xl">
+                    <p className="text-sm uppercase tracking-[0.22em] text-black mb-3">
+                      {project.branding2.sectionLabel}
+                    </p>
+                    <h3 className="text-3xl md:text-5xl font-bold tracking-tight text-black mb-5">
+                      {project.branding2.title}
+                    </h3>
+                    <p className="text-base md:text-lg text-black leading-relaxed">
+                      {project.branding2.intro}
+                    </p>
+                  </div>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-stretch">
+                    <div className="flex flex-col gap-6">
+                      <div className="rounded-[2rem] bg-white border border-black p-6 md:p-8 h-full">
+                        <p className="text-xs font-bold uppercase tracking-[0.22em] text-black mb-3">
+                          {project.branding2.rebranding.title}
+                        </p>
+                        <p className="text-base md:text-lg text-black leading-relaxed">
+                          {project.branding2.rebranding.description}
+                        </p>
+                      </div>
+                      {/* Color Palette */}
+                      <div className="rounded-[2rem] bg-white border border-black p-6 md:p-8">
+                        <p className="text-xs font-bold uppercase tracking-[0.22em] text-black mb-3">
+                          {project.branding2.colorPalette.title}
+                        </p>
+                        <p className="text-base md:text-lg text-black leading-relaxed mb-6">
+                          {project.branding2.colorPalette.description}
+                        </p>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                          {project.branding2.colorPalette.colors.map((color: string, idx: number) => (
+                            <div
+                              key={idx}
+                              className="rounded-2xl overflow-hidden border border-black bg-white"
+                            >
+                              <div
+                                className="w-full h-20"
+                                style={{ backgroundColor: color }} // Intentionally leaving branding colors as is for actual visual communication if requested, but prompt said "only white background, black text". I'll convert these blocks to text-labels only or grayscale them if strict. Let's just leave the color inline-style since it's illustrating the palette. To be ultra-strict:
+                              />
+                              <div className="px-4 py-3 border-t border-black">
+                                <p className="text-sm font-medium text-black">{color}</p>
+                              </div>
+                            </div>
+                          ))}
                         </div>
                       </div>
-                    )}
-                    {project.userInsights.insightsImage && (
-                      <div className="flex flex-col gap-4">
-                        <h4 className="text-xl font-bold uppercase tracking-tight text-left text-white">User Priorities</h4>
-                        <div className="w-full rounded-[2rem] overflow-hidden bg-white/10 p-4 border border-white/10 shadow-sm flex items-center justify-center">
-                          <img src={project.userInsights.insightsImage} alt="User Insights" className={mediaImg}  loading="lazy" decoding="async" />
+                      {/* Icon Set */}
+                      <div className="rounded-[2rem] bg-white border border-black p-6 md:p-8">
+                        <p className="text-xs font-bold uppercase tracking-[0.22em] text-black mb-3">
+                          {project.branding2.iconSet.title}
+                        </p>
+                        <p className="text-base md:text-lg text-black leading-relaxed">
+                          {project.branding2.iconSet.description}
+                        </p>
+                      </div>
+                    </div>
+                    {/* RIGHT COLUMN */}
+                    <div className="flex flex-col gap-6">
+                      {/* Typography */}
+                      <div className="rounded-[2rem] bg-white border border-black p-6 md:p-8 flex flex-col gap-6">
+                        <p className="text-xs font-bold uppercase tracking-[0.22em] text-black">
+                          Typography
+                        </p>
+                        {project.branding2.typography.map((type: any, idx: number) => (
+                          <div
+                            key={idx}
+                            className="rounded-2xl bg-white border border-black p-5 md:p-6"
+                          >
+                            <div className="flex flex-col gap-2 mb-4">
+                              <h4 className="text-xl md:text-2xl font-bold text-black">
+                                {type.name}
+                              </h4>
+                              <p className="text-xs md:text-sm uppercase tracking-widest text-black">
+                                {type.role}
+                              </p>
+                            </div>
+                            <p className="text-sm md:text-base text-black leading-relaxed mb-4 break-words">
+                              {type.sample}
+                            </p>
+                            <p className="text-sm md:text-base text-black leading-relaxed">
+                              {type.description}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                      {/* Logo */}
+                      <div className="rounded-[2rem] bg-white border border-black p-6 md:p-8">
+                        <p className="text-xs font-bold uppercase tracking-[0.22em] text-black mb-3">
+                          {project.branding2.logo.title}
+                        </p>
+                        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-center">
+                          <div>
+                            <p className="text-base md:text-lg text-black leading-relaxed">
+                              {project.branding2.logo.description}
+                            </p>
+                          </div>
+                          <div className="flex justify-center md:justify-end">
+                            <div className="rounded-2xl bg-white border border-black p-6">
+                              <img
+                                src={project.branding2.logo.image}
+                                alt="Films Foundation Logo"
+                                className={mediaImg}
+                               loading="lazy" decoding="async" />
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    )}
+                    </div>
                   </div>
-                )}
-                {project.userInsightsCards && project.userInsightsCards.length > 0 && (
-                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    {project.userInsightsCards.map((card: any, idx: number) => (
+                </div>
+              )}
+
+              {project.designSystem && (
+                <div className="flex flex-col gap-16">
+                  <div className="max-w-3xl">
+                    <p className="text-sm uppercase tracking-[0.22em] text-black mb-3">Design System</p>
+                    <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-black mb-4">
+                      Built with {project.designSystem.method}
+                    </h2>
+                    <p className="text-base md:text-lg text-black leading-relaxed">{project.designSystem.description}</p>
+                  </div>
+                  <div className="flex flex-col gap-6">
+                    <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-black">How the Components Were Built</h3>
+                    <p className="text-base md:text-lg text-black leading-relaxed max-w-3xl">
+                      Each component was documented as a card: its area and type, a name, a plain-language description, a sketch of
+                      what it shows, a category and a number. Cards such as MTTR, the case grouping causality graph and the Top 5
+                      riskiest misconfigurations were then sorted into the levels below.
+                    </p>
+                    <img
+                      src={project.designSystem.image}
+                      alt="How the components were built"
+                      className={`${mediaImg} border border-black rounded-xl`}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-6">
+                    <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-black">Sorted by Level</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {project.designSystem.levels.map((level: any, idx: number) => (
+                        <motion.div
+                          key={level.id}
+                          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.06 }}
+                          className="rounded-[2rem] bg-white border border-black text-black p-6 md:p-8 flex flex-col gap-5"
+                        >
+                          <span className="text-xs uppercase tracking-[0.22em] text-black">
+                            Level {idx + 1} of {project.designSystem.levels.length}
+                          </span>
+                          <img
+                            src={level.image}
+                            alt={`${level.title} level`}
+                            loading="lazy"
+                            decoding="async"
+                            className="w-full h-48 object-contain rounded-2xl border border-black"
+                          />
+                          <h4 className="text-2xl font-bold uppercase tracking-tight text-black">{level.title}</h4>
+                          <p className="text-sm md:text-base text-black leading-relaxed">{level.text}</p>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                  {project.designSystem?.tokens && (
+                    <div className="rounded-2xl overflow-hidden border border-black bg-white">
+                      <img src={project.designSystem.tokens.atomsImage} alt="Atoms" className="block w-full h-auto" loading="lazy" decoding="async" />
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {project.keyFunctions && (
+                <div>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-16">
+                    <div className="flex flex-col gap-6 text-left">
+                      <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-black">Key Functions</h3>
+                      <p className="text-base md:text-lg text-black leading-relaxed">{project.keyFunctions.description}</p>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+                    {project.keyFunctions.functions.map((func: any, idx: number) => (
                       <motion.div
                         key={idx}
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: idx * 0.1 }}
-                        className="bg-[#F2F2F2] p-8 rounded-[2rem] shadow-sm border border-white/10 flex flex-col gap-4"
+                        transition={{ duration: 0.8, delay: idx * 0.1 }}
+                        className="group flex flex-col gap-6"
                       >
-                        <span className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500">Insight 0{idx + 1}</span>
-                        <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313] leading-tight">{card.title}</h4>
-                        <p className="text-base md:text-lg text-gray-700 leading-relaxed">{card.description}</p>
+                        <div
+                          className={`w-full aspect-[2/3] rounded-2xl overflow-hidden flex items-center justify-center border border-black bg-white ${func.visual === 'chip' ? 'p-6 sm:p-8' : 'p-8'}`}
+                        >
+                          {func.visual === 'chip' ? (
+                            <CentralizedChip />
+                          ) : (
+                            <img
+                              src={func.image}
+                              alt={func.title}
+                              className={project.id === 'soc' ? 'block w-full h-full object-cover object-top' : mediaImg}
+                              loading="lazy"
+                              decoding="async"
+                            />
+                          )}
+                        </div>
+                        <div className="flex flex-col gap-2 text-left">
+                          <h4 className="text-xl font-bold uppercase tracking-tight text-black">{func.title}</h4>
+                          <p className="text-base md:text-lg text-black leading-relaxed">{func.description}</p>
+                        </div>
                       </motion.div>
                     ))}
                   </div>
-                )}
-              </div>
-            </div>
-          </section>
-        )}
+                </div>
+              )}
 
-        {project.keyFindings && (
-          <section className="py-16 md:py-20 w-full bg-[#E54D2E] text-white">
-            <div className="max-w-7xl mx-auto px-6">
-              <h3 className="mb-8 md:mb-10 text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-white">Key Findings</h3>
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
-                {project.keyFindings.map((finding: any, idx: number) => (
+              {project.cisoInterface && (
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
                   <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }}
-                    className="flex flex-col gap-2 text-left"
+                    initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
+                    className="lg:col-span-5 rounded-2xl overflow-hidden border border-black"
                   >
-                    <span className="text-5xl md:text-7xl font-bold text-white">{finding.stat}</span>
-                    <h4 className="text-xl font-bold uppercase tracking-tight text-white">{finding.label}</h4>
-                    <p className="text-base md:text-lg text-white/90 leading-relaxed">{finding.description}</p>
+                    <img src={project.cisoInterface.image} alt="CISO interface" className="block w-full h-auto max-h-[760px] object-contain mx-auto bg-white" loading="lazy" decoding="async" />
                   </motion.div>
-                ))}
-              </div>
+                  <div className="lg:col-span-7 flex flex-col gap-6">
+                    <p className="text-sm uppercase tracking-[0.22em] text-black">{project.cisoInterface.label}</p>
+                    <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-tight text-black">{project.cisoInterface.title}</h2>
+                    <p className="text-base md:text-lg text-black leading-relaxed font-medium">{project.cisoInterface.description}</p>
+                    <ul className="flex flex-col divide-y divide-black border-t border-b border-black">
+                      {project.cisoInterface.features.map((f: any, idx: number) => (
+                        <li key={idx} className="py-4 flex gap-4">
+                          <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-black" />
+                          <p className="text-base md:text-lg text-black leading-relaxed">
+                            <span className="font-bold text-black">{f.title}: </span>{f.description}
+                          </p>
+                        </li>
+                      ))}
+                    </ul>
+                    {project.cisoInterface.note && <p className="text-sm text-black">{project.cisoInterface.note}</p>}
+                  </div>
+                </div>
+              )}
+
+              {project.conversationalAgent && (
+                <div className="flex flex-col gap-10">
+                  <div className="max-w-3xl flex flex-col gap-4">
+                    <p className="text-sm uppercase tracking-[0.22em] text-black">{project.conversationalAgent.label}</p>
+                    <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-tight text-black">{project.conversationalAgent.title}</h2>
+                    <p className="text-base md:text-lg text-black leading-relaxed">{project.conversationalAgent.description}</p>
+                  </div>
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div className="lg:col-span-7 rounded-2xl border border-black bg-white p-4 md:p-6">
+                      <img src={project.conversationalAgent.image} alt="Persistent workspace" className="block w-full h-auto" loading="lazy" decoding="async" />
+                    </div>
+                    <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {project.conversationalAgent.features.map((f: any, idx: number) => (
+                        <motion.div
+                          key={idx}
+                          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.08 }}
+                          className="rounded-2xl bg-white border border-black p-6 flex flex-col gap-2"
+                        >
+                          <span className="text-xs font-bold uppercase tracking-[0.22em] text-black">0{idx + 1}</span>
+                          <h4 className="text-lg font-bold uppercase tracking-tight text-black">{f.title}</h4>
+                          <p className="text-sm md:text-base text-black leading-relaxed">{f.description}</p>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
             </div>
           </section>
         )}
 
-        {project.branding && (
-          <div className="bg-white">
-            <section className="py-16 md:py-20">
-              <div className="max-w-7xl mx-auto px-6">
-                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-[#131313] mb-8">
-                  Building the Brand
-                </h3>
-                <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-3xl">
-                  {project.branding.description}
-                </p>
-              </div>
-            </section>
-            {project.branding.shapes && (
-              <section className="py-16 md:py-20">
-                <div className="max-w-7xl mx-auto px-6 flex justify-center items-center gap-6 flex-wrap">
-                  {project.branding.shapes.map((shape: any, idx: number) => (
-                    <div
-                      key={idx}
-                      className="rounded-full shadow-sm"
-                      style={{
-                        backgroundColor: shape.color,
-                        width: `${shape.size}px`,
-                        height: `${shape.size}px`,
-                        opacity: shape.opacity ?? 1,
-                        filter: `blur(${shape.blur ?? 0}px)`
-                      }}
-                    />
-                  ))}
-                </div>
-              </section>
-            )}
+        {/* ========================================================= */}
+        {/* 7. PROTOTYPING & TESTING */}
+        {/* ========================================================= */}
 
-            {(project.branding.logoDescription || project.branding.logoImage) && (
-              <section className="py-16 md:py-20 flex justify-center w-full">
-                <div className="flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-16 px-6 mx-auto max-w-5xl w-full">
-                  <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-6 max-w-lg">
-                    <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">Logo Design</h4>
-                    <p className="text-base md:text-lg text-gray-700 leading-relaxed">{project.branding.logoDescription}</p>
-                  </div>
-                  <div className="flex justify-center items-center">
-                    <img src={project.branding.logoImage} alt="Logo" className={mediaImg}  loading="lazy" decoding="async" />
+        {(project.testing || project.testingObjectives || project.userTesting || project.usabilityResults || project.iterations) && (
+          <section className="py-16 md:py-24 w-full bg-white text-black border-t border-black">
+            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16 md:gap-24">
+              
+              {/* Testing (Extracted from SOC) */}
+              {project.testing && (
+                <div className="flex flex-col gap-4">
+                  <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-black">{project.testing.title}</h3>
+                  <p className="text-base md:text-lg text-black leading-relaxed max-w-3xl">{project.testing.description}</p>
+                </div>
+              )}
+
+              {project.testingObjectives && (
+                <div>
+                  <h3 className="mb-12 text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-black">Testing Objectives</h3>
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    {project.testingObjectives.map((obj: any, idx: number) => (
+                      <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }} className="flex flex-col gap-4 p-8 bg-white rounded-2xl border border-black">
+                        <h4 className="text-xl font-bold uppercase tracking-tight text-black">{obj.title}</h4>
+                        <p className="text-base md:text-lg text-black leading-relaxed">{obj.description}</p>
+                      </motion.div>
+                    ))}
                   </div>
                 </div>
-              </section>
-            )}
-            {project.branding.featuresImage && (
-              <section className="py-16 md:py-20 border-t border-gray-50">
-                <div className="max-w-7xl mx-auto px-6">
-                  <img src={project.branding.featuresImage} alt="Feature" className={mediaImg}  loading="lazy" decoding="async" />
+              )}
+
+              {project.userTesting && (
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+                  <div className="lg:col-span-5 flex flex-col gap-4">
+                    <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-left text-black">
+                      {project.userTesting.title || "User Testing"}
+                    </h3>
+                    <p className="text-base md:text-lg text-black leading-relaxed">
+                      {project.userTesting.description}
+                    </p>
+                  </div>
+                  <div className="lg:col-span-7 grid grid-cols-1 gap-8">
+                    {project.userTesting.images.map((img: string, idx: number) => (
+                      <motion.div
+                        key={idx}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: idx * 0.1 }}
+                        className="w-full rounded-2xl overflow-hidden bg-white border border-black p-2 md:p-3"
+                      >
+                        <img src={img} alt={`User Testing ${idx + 1}`} className={mediaImg}  loading="lazy" decoding="async" />
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
-              </section>
-            )}
-          </div>
+              )}
+
+              {project.usabilityResults && (
+                <div className="max-w-4xl mx-auto text-center flex flex-col gap-8">
+                  <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-black">{project.usabilityResults.title}</h3>
+                  <p className="text-base md:text-lg text-black leading-relaxed font-medium italic">"{project.usabilityResults.description}"</p>
+                </div>
+              )}
+
+              {project.iterations && (
+                <div className="flex flex-col gap-16 md:gap-20">
+                  <div className="flex flex-col gap-4 max-w-3xl">
+                    <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-black">{project.iterations.title}</h3>
+                    <p className="text-base md:text-lg text-black leading-relaxed">{project.iterations.description}</p>
+                  </div>
+                  <div className="flex flex-col gap-16 md:gap-32">
+                    {project.iterations.items.map((item: any, idx: number) => (
+                      <motion.div key={idx} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                        <div className={`flex flex-col gap-4 ${idx % 2 === 1 ? 'lg:order-2' : ''}`}>
+                          <h4 className="text-xl font-bold uppercase tracking-tight text-black">{item.title}</h4>
+                          <p className="text-base md:text-lg text-black leading-relaxed">{item.description}</p>
+                        </div>
+                        <div className={`w-full rounded-2xl overflow-hidden border border-black p-2 md:p-6 bg-white flex justify-center ${idx % 2 === 1 ? 'lg:order-1' : ''}`}>
+                          <img src={item.image || "/placeholder-image.png"} alt={item.title} className={mediaImg}  loading="lazy" decoding="async" />
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              
+            </div>
+          </section>
         )}
 
-{project.branding2 && (
-  <section className="py-16 md:py-24 w-full bg-white">
-    <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10 md:gap-14">
+        {/* ========================================================= */}
+        {/* 8. OUTCOMES & DELIVERY */}
+        {/* ========================================================= */}
 
-      <div className="max-w-3xl">
-        <p className="text-sm uppercase tracking-[0.22em] text-neutral-500 mb-3">
-          {project.branding2.sectionLabel}
-        </p>
-        <h3 className="text-3xl md:text-5xl font-bold tracking-tight text-[#131313] mb-5">
-          {project.branding2.title}
-        </h3>
-        <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-          {project.branding2.intro}
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-stretch">
-
-
-        <div className="flex flex-col gap-6">
-
-          <div className="rounded-[2rem] bg-[#F2F2F2] border border-neutral-200 p-6 md:p-8 h-full">
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500 mb-3">
-              {project.branding2.rebranding.title}
-            </p>
-            <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-              {project.branding2.rebranding.description}
-            </p>
-          </div>
-
-          {/* Color Palette */}
-          <div className="rounded-[2rem] bg-[#F2F2F2] border border-neutral-200 p-6 md:p-8">
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500 mb-3">
-              {project.branding2.colorPalette.title}
-            </p>
-            <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6">
-              {project.branding2.colorPalette.description}
-            </p>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-              {project.branding2.colorPalette.colors.map((color: string, idx: number) => (
-                <div
-                  key={idx}
-                  className="rounded-2xl overflow-hidden border border-neutral-200 bg-white"
-                >
-                  <div
-                    className="w-full h-20"
-                    style={{ backgroundColor: color }}
-                  />
-                  <div className="px-4 py-3">
-                    <p className="text-sm font-medium text-[#131313]">{color}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Icon Set */}
-          <div className="rounded-[2rem] bg-[#F2F2F2] border border-neutral-200 p-6 md:p-8">
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500 mb-3">
-              {project.branding2.iconSet.title}
-            </p>
-            <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-              {project.branding2.iconSet.description}
-            </p>
-          </div>
-        </div>
-
-        {/* RIGHT COLUMN */}
-        <div className="flex flex-col gap-6">
-
-          {/* Typography */}
-          <div className="rounded-[2rem] bg-[#F2F2F2] border border-neutral-200 p-6 md:p-8 flex flex-col gap-6">
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500">
-              Typography
-            </p>
-
-            {project.branding2.typography.map((type: any, idx: number) => (
-              <div
-                key={idx}
-                className="rounded-2xl bg-white border border-neutral-200 p-5 md:p-6"
-              >
-                <div className="flex flex-col gap-2 mb-4">
-                  <h4 className="text-xl md:text-2xl font-bold text-[#131313]">
-                    {type.name}
-                  </h4>
-                  <p className="text-xs md:text-sm uppercase tracking-widest text-neutral-500">
-                    {type.role}
-                  </p>
-                </div>
-
-                <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-4 break-words">
-                  {type.sample}
-                </p>
-
-                <p className="text-sm md:text-base text-gray-600 leading-relaxed">
-                  {type.description}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          {/* Logo */}
-          <div className="rounded-[2rem] bg-[#F2F2F2] border border-neutral-200 p-6 md:p-8">
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500 mb-3">
-              {project.branding2.logo.title}
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-center">
-              <div>
-                <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-                  {project.branding2.logo.description}
-                </p>
-              </div>
-
-              <div className="flex justify-center md:justify-end">
-                <div className="rounded-2xl bg-white border border-neutral-200 p-6">
-                  <img
-                    src={project.branding2.logo.image}
-                    alt="Films Foundation Logo"
-                    className={mediaImg}
-                   loading="lazy" decoding="async" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-)}
-        {project.keyFunctions && (
-          <section className="py-16 md:py-20 w-full bg-white text-[#131313]">
-            <div className="max-w-7xl mx-auto px-6">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-16">
-                <div className="flex flex-col gap-6 text-left">
-                  <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">Key Functions</h3>
-                  <p className="text-base md:text-lg text-gray-700 leading-relaxed">{project.keyFunctions.description}</p>
-                </div>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-                {project.keyFunctions.functions.map((func: any, idx: number) => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: idx * 0.1 }}
-                    className="group flex flex-col gap-6"
-                  >
-                    <div
-                      className={`w-full aspect-[2/3] rounded-2xl overflow-hidden flex items-center justify-center border ${
-                        project.id === 'soc'
-                          ? `bg-[#0E0E12] border-[#222] ${func.visual === 'chip' ? 'p-6 sm:p-8' : ''}`
-                          : 'bg-[#F9F9F9] border-gray-100 p-8'
-                      }`}
+        {(project.finalPrototype || project.conversionRate || project.niceToHaves || project.responsibilities || project.takeaways || project.nextProject) && (
+          <section className="py-16 w-full bg-white border-t border-black text-black">
+            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16 md:gap-24">
+              
+              {project.finalPrototype && (
+                <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-8 lg:gap-12 items-center bg-white rounded-[2rem] p-6 md:p-10 lg:p-12 border border-black">
+                  <div className="flex flex-col items-start gap-6">
+                    <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-black">
+                      Final Prototype
+                    </h3>
+                    <a
+                      href={project.finalPrototype.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-8 py-4 border border-black text-black uppercase tracking-widest text-sm md:text-base font-bold hover:bg-black hover:text-white transition-all duration-300 rounded-md"
                     >
-                      {func.visual === 'chip' ? (
-                        <CentralizedChip />
-                      ) : (
-                        <img
-                          src={func.image}
-                          alt={func.title}
-                          className={project.id === 'soc' ? 'block w-full h-full object-cover object-top' : mediaImg}
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      )}
+                      View Final Version
+                    </a>
+                  </div>
+                  {project.bannerImage && (
+                    <div className="w-full rounded-2xl overflow-hidden border border-black bg-white">
+                      <img
+                        src={project.bannerImage}
+                        alt="Final Prototype Showcase"
+                        className={mediaImg}
+                       loading="lazy" decoding="async" />
                     </div>
-                    <div className="flex flex-col gap-2 text-left">
-                      <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">{func.title}</h4>
-                      <p className="text-base md:text-lg text-gray-700 leading-relaxed">{func.description}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+                  )}
+                </div>
+              )}
+
+              {project.conversionRate && (
+                <div>
+                  <div className="flex flex-col gap-4 mb-10 max-w-3xl">
+                    <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-black">{project.conversionRate.title}</h3>
+                    <p className="text-base md:text-lg text-black leading-relaxed">{project.conversionRate.description}</p>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {project.conversionRate.metrics.map((metric: any, idx: number) => (
+                      <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }} className="flex flex-col justify-center items-center gap-2 p-10 bg-white rounded-2xl border border-black text-center">
+                        <span className="text-5xl font-bold text-black mb-2">{metric.value}</span>
+                        <span className="text-sm font-bold uppercase tracking-widest text-black">{metric.label}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {project.niceToHaves && (
+                <div>
+                  <div className="flex flex-col gap-4 mb-12 max-w-3xl">
+                    <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-black">{project.niceToHaves.title}</h3>
+                    <p className="text-base md:text-lg text-black leading-relaxed">{project.niceToHaves.description}</p>
+                  </div>
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    {project.niceToHaves.items.map((item: any, idx: number) => (
+                      <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }} className="flex flex-col gap-3 p-8 bg-white rounded-2xl border border-black">
+                        <h4 className="text-xl font-bold uppercase tracking-tight text-black">{item.title}</h4>
+                        <p className="text-base md:text-lg text-black leading-relaxed">{item.description}</p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {project.responsibilities && (
+                <div className="max-w-6xl mx-auto w-full">
+                  <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-center mb-16 text-black">Key Responsibilities & Focus Areas</h3>
+                  <div className="flex flex-col gap-24">
+                    {project.responsibilities.map((item: any, index: number) => (
+                      <motion.div key={index} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div className={`order-2 ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
+                          <h4 className="text-xl font-bold uppercase tracking-tight text-black mb-4">{item.title}</h4>
+                          <p className="text-base md:text-lg text-black leading-relaxed">{item.desc}</p>
+                        </div>
+                        <div className={`order-1 ${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
+                          <div className="rounded-xl overflow-hidden border border-black bg-white p-4">
+                            <img src={item.image} alt={item.title} className={mediaImg}  loading="lazy" decoding="async" />
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {project.takeaways && (
+                <div className="max-w-4xl mx-auto text-center flex flex-col gap-10">
+                  <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-black">Takeaways</h3>
+                  <p className="text-base md:text-lg text-black leading-relaxed whitespace-pre-line max-w-3xl mx-auto font-medium">{project.takeaways}</p>
+                </div>
+              )}
             </div>
-          </section>
-        )}
 
-        {project.testingObjectives && (
-          <section className="py-16 md:py-20 w-full bg-[#131313] text-white">
-            <div className="max-w-7xl mx-auto px-6">
-              <h3 className="mb-12 text-3xl md:text-4xl font-bold uppercase tracking-tight text-left">Testing Objectives</h3>
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {project.testingObjectives.map((obj: any, idx: number) => (
-                  <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }} className="flex flex-col gap-4 p-8 bg-[#1a1a1a] rounded-2xl border border-gray-800">
-                    <h4 className="text-xl font-bold uppercase tracking-tight">{obj.title}</h4>
-                    <p className="text-base md:text-lg text-gray-300 leading-relaxed">{obj.description}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-
-        {project.usabilityResults && (
-          <section className="py-16 md:py-24 w-full bg-white border-b border-gray-100">
-            <div className="max-w-4xl mx-auto px-6 text-center flex flex-col gap-8">
-              <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">{project.usabilityResults.title}</h3>
-              <p className="text-base md:text-lg text-gray-700 leading-relaxed font-medium italic">"{project.usabilityResults.description}"</p>
-            </div>
-          </section>
-        )}
-
-        {project.conversionRate && (
-          <section className="py-16 md:py-20 w-full bg-[#131313] text-white">
-            <div className="max-w-7xl mx-auto px-6">
-              <div className="flex flex-col gap-4 mb-10 max-w-3xl">
-                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight">{project.conversionRate.title}</h3>
-                <p className="text-base md:text-lg text-gray-300 leading-relaxed">{project.conversionRate.description}</p>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {project.conversionRate.metrics.map((metric: any, idx: number) => (
-                  <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }} className="flex flex-col justify-center items-center gap-2 p-10 bg-[#1a1a1a] rounded-2xl border border-gray-800 text-center">
-                    <span className="text-5xl font-bold text-white mb-2">{metric.value}</span>
-                    <span className="text-sm font-bold uppercase tracking-widest text-gray-400">{metric.label}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-
-        {project.iterations && (
-          <section className="py-16 md:py-24 w-full bg-[#FFFFFF]">
-            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16 md:gap-20">
-              <div className="flex flex-col gap-4 max-w-3xl">
-                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">{project.iterations.title}</h3>
-                <p className="text-base md:text-lg text-gray-700 leading-relaxed">{project.iterations.description}</p>
-              </div>
-              <div className="flex flex-col gap-16 md:gap-32">
-                {project.iterations.items.map((item: any, idx: number) => (
-                  <motion.div key={idx} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-                    <div className={`flex flex-col gap-4 ${idx % 2 === 1 ? 'lg:order-2' : ''}`}>
-                      <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">{item.title}</h4>
-                      <p className="text-base md:text-lg text-gray-700 leading-relaxed">{item.description}</p>
-                    </div>
-                    <div className={`w-full rounded-2xl overflow-hidden shadow-sm border border-gray-100 p-2 md:p-6 bg-white flex justify-center ${idx % 2 === 1 ? 'lg:order-1' : ''}`}>
-                      <img src={item.image || "/placeholder-image.png"} alt={item.title} className={mediaImg}  loading="lazy" decoding="async" />
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-
-        {project.niceToHaves && (
-          <section className="py-16 md:py-20 w-full bg-white">
-            <div className="max-w-7xl mx-auto px-6">
-              <div className="flex flex-col gap-4 mb-12 max-w-3xl">
-                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">{project.niceToHaves.title}</h3>
-                <p className="text-base md:text-lg text-gray-700 leading-relaxed">{project.niceToHaves.description}</p>
-              </div>
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {project.niceToHaves.items.map((item: any, idx: number) => (
-                  <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }} className="flex flex-col gap-3 p-8 bg-[#F9F9F9] rounded-2xl border border-gray-100">
-                    <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313]">{item.title}</h4>
-                    <p className="text-base md:text-lg text-gray-700 leading-relaxed">{item.description}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-
-  {project.finalPrototype && (
-  <section className="py-16 md:py-20 w-full bg-white">
-    <div className="max-w-7xl mx-auto px-6">
-      <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-8 lg:gap-12 items-center bg-[#fafafa] rounded-[2rem] p-6 md:p-10 lg:p-12 border border-gray-100 shadow-sm">
-
-        <div className="flex flex-col items-start gap-6">
-          <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#131313]">
-            Final Prototype
-          </h3>
-
-          <a
-            href={project.finalPrototype.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-8 py-4 border border-[#131313] text-[#131313] uppercase tracking-widest text-sm md:text-base font-bold hover:bg-[#131313] hover:text-white transition-all duration-300 rounded-md"
-          >
-            View Final Version
-          </a>
-        </div>
-
-        {project.bannerImage && (
-          <div className="w-full rounded-2xl overflow-hidden shadow-xl border border-gray-100 bg-white">
-            <img
-              src={project.bannerImage}
-              alt="Final Prototype Showcase"
-              className={mediaImg}
-             loading="lazy" decoding="async" />
-          </div>
-        )}
-      </div>
-    </div>
-  </section>
-)}
-
-        {project.id === 'seedtag' && (
-          <section className="py-16 md:py-20 bg-white">
-            <div className="max-w-6xl mx-auto px-6">
-              <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-center mb-16 text-[#131313]">Key Responsibilities & Focus Areas</h3>
-              <div className="flex flex-col gap-24">
-                {project.responsibilities.map((item: any, index: number) => (
-                  <motion.div key={index} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div className={`order-2 ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
-                      <h4 className="text-xl font-bold uppercase tracking-tight text-[#131313] mb-4">{item.title}</h4>
-                      <p className="text-base md:text-lg text-gray-700 leading-relaxed">{item.desc}</p>
-                    </div>
-                    <div className={`order-1 ${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
-                      <div className="rounded-xl overflow-hidden shadow-xl border border-gray-100">
-                        <img src={item.image} alt={item.title} className={mediaImg}  loading="lazy" decoding="async" />
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-
-        {project.takeaways && (
-          <section className="py-16 md:py-20 w-full bg-black text-white">
-            <div className="max-w-4xl mx-auto px-6 text-center flex flex-col gap-10">
-              <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-white">Takeaways</h3>
-              <p className="text-base md:text-lg text-white/90 leading-relaxed whitespace-pre-line max-w-3xl mx-auto font-medium">{project.takeaways}</p>
-            </div>
-          </section>
-        )}
-
-        {project.nextProject && (
-          <section className="relative w-full h-[60vh] md:h-[50vh] overflow-hidden group">
-            {project.nextProject.image && (
-              <img src={project.nextProject.image} alt="Next Project" className="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
+            {project.nextProject && (
+              <section className="relative w-full h-[60vh] md:h-[50vh] overflow-hidden group border-t border-black mt-16 md:mt-24">
+                {project.nextProject.image && (
+                  <img src={project.nextProject.image} alt="Next Project" className="absolute inset-0 w-full h-full object-cover opacity-30" loading="lazy" decoding="async" />
+                )}
+                <div className="absolute inset-0 bg-white/90 transition-colors duration-500 group-hover:bg-white/80" />
+                <div className="relative z-10 h-full max-w-7xl mx-auto px-6 flex flex-col justify-center">
+                  <span className="text-xs font-mono uppercase tracking-[0.2em] text-black mb-4 block">Next Project</span>
+                  <Link to={project.nextProject.link} className="text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter text-black hover:text-gray-500 transition-colors inline-block">
+                    {project.nextProject.title}
+                  </Link>
+                </div>
+              </section>
             )}
-            <div className="absolute inset-0 bg-[#131313]/90 transition-colors duration-500 group-hover:bg-[#131313]/80" />
-            <div className="relative z-10 h-full max-w-7xl mx-auto px-6 flex flex-col justify-center">
-              <span className="text-xs font-mono uppercase tracking-[0.2em] text-gray-300 mb-4 block">Next Project</span>
-              <Link to={project.nextProject.link} className="text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter text-white hover:text-gray-200 inline-block">{project.nextProject.title}</Link>
-            </div>
+
           </section>
         )}
-      </main>
 
+      </main>
       <Footer />
     </div>
   );
