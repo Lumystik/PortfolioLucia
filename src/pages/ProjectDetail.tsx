@@ -1719,6 +1719,10 @@ export function ProjectDetail() {
             </div>
           </section>
         )}
+
+        {/* ========================================================= */}
+        {/* SCROLLY TELLING WRAPPER FOR SECTIONS 4-8 */}
+        {/* ========================================================= */}
         <ScrollyTelling project={project} />
         
         {/* Next Project Footer */}
