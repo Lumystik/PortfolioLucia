@@ -1394,20 +1394,6 @@ function ScrollyTelling({ project }: { project: any }) {
       desc: "Final Prototype, Conversion Rate, Nice to Haves, Takeaways",
       content: (
         <div className="flex flex-col gap-16 md:gap-24 w-full">
-          {project.finalPrototype && (
-            <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-8 lg:gap-12 items-center bg-white rounded-[2rem] p-6 md:p-10 lg:p-12 border border-black">
-              <div className="flex flex-col items-start gap-6">
-                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-black">Final Prototype</h3>
-                <a href={project.finalPrototype.link} target="_blank" rel="noopener noreferrer" className="px-8 py-4 border border-black text-black uppercase tracking-widest text-sm md:text-base font-bold hover:bg-black hover:text-white transition-all duration-300 rounded-md">View Final Version</a>
-              </div>
-              {project.bannerImage && (
-                <div className="w-full rounded-2xl overflow-hidden bg-white">
-                  <img src={project.bannerImage} alt="Final Prototype Showcase" className={mediaImg} loading="lazy" decoding="async" />
-                </div>
-              )}
-            </div>
-          )}
-
           {project.conversionRate && (
             <div>
               <div className="flex flex-col gap-4 mb-10 max-w-3xl">
@@ -1467,6 +1453,20 @@ function ScrollyTelling({ project }: { project: any }) {
             <div className="max-w-4xl mx-auto text-center flex flex-col gap-10">
               <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-black">Takeaways</h3>
               <p className="text-base md:text-lg text-black leading-relaxed whitespace-pre-line max-w-3xl mx-auto font-medium">{project.takeaways}</p>
+            </div>
+          )}
+
+          {project.finalPrototype && (
+            <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-8 lg:gap-12 items-center bg-white rounded-[2rem] p-6 md:p-10 lg:p-12 border border-black">
+              <div className="flex flex-col items-start gap-6">
+                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-black">Final Prototype</h3>
+                <a href={project.finalPrototype.link} target="_blank" rel="noopener noreferrer" className="px-8 py-4 border border-black text-black uppercase tracking-widest text-sm md:text-base font-bold hover:bg-black hover:text-white transition-all duration-300 rounded-md">View Final Version</a>
+              </div>
+              {project.bannerImage && (
+                <div className="w-full rounded-2xl overflow-hidden bg-white">
+                  <img src={project.bannerImage} alt="Final Prototype Showcase" className={mediaImg} loading="lazy" decoding="async" />
+                </div>
+              )}
             </div>
           )}
         </div>
