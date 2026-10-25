@@ -95,10 +95,10 @@ const projectsData: Record<string, any> = {
       featuresImage: "https://github.com/Lumystik/PortfolioLucia/blob/dfc97077f6303fd7953feeb6d4e1a8efdce42b2e/images/button.png?raw=true",
       shapes: [
         { color: "#000000", size: 120, x: "20%", y: "10%" },
-        { color: "#000000", size: 100, x: "50%", y: "10%"},
-        { color: "#000000", size: 90, x: "75%", y: "10%" },
-        { color: "#000000", size: 110, x: "35%", y: "10%"},
-        { color: "#000000", size: 110, x: "0%", y: "10%"}
+        { color: "#6B6A6A", size: 100, x: "50%", y: "10%"},
+        { color: "#D9D9D9", size: 90, x: "75%", y: "10%" },
+        { color: "#1600FF", size: 110, x: "35%", y: "10%"},
+        { color: "#EE4904", size: 110, x: "0%", y: "10%"}
       ]
     },
     keyFunctions: {
@@ -1478,6 +1478,7 @@ function ScrollyTelling({ project }: { project: any }) {
   // The bar belongs to this section only: it hides once the section has scrolled past the viewport bottom
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [barVisible, setBarVisible] = useState(true);
+  const barRef = useRef<HTMLDivElement>(null);
 
   // A string key, so the listener only re-attaches when the section list really changes
   const sectionIdsKey = sections.map(s => s.id).join(",");
@@ -1520,7 +1521,7 @@ function ScrollyTelling({ project }: { project: any }) {
     <div ref={wrapperRef} className="relative w-full bg-white border-t border-black">
       {/* Sticky UI Overlay */}
       <div className={`sticky top-0 h-[100dvh] -mb-[100dvh] w-full pointer-events-none flex flex-col justify-end z-50 transition-opacity duration-200 ${barVisible ? "opacity-100" : "opacity-0"}`}>
-        <div className="w-full bg-white border-t border-black py-8 px-6 pointer-events-auto">
+        <div ref={barRef} className="w-full bg-white border-t border-black py-8 px-6 pointer-events-auto">
           <div className="max-w-7xl mx-auto flex justify-between items-end">
             {/* Index */}
             <div className="flex flex-col gap-2 w-1/2">
@@ -1531,7 +1532,12 @@ function ScrollyTelling({ project }: { project: any }) {
                   aria-current={activeSection === s.id ? "true" : undefined}
                   onClick={(e) => {
                     e.preventDefault();
-                    document.getElementById(s.id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+                    const el = document.getElementById(s.id);
+                    if (!el) return;
+                    // Centre the section in the space above the fixed bar
+                    const barH = barRef.current?.offsetHeight ?? 0;
+                    const sectionMid = el.getBoundingClientRect().top + window.scrollY + el.offsetHeight / 2;
+                    window.scrollTo({ top: Math.max(0, sectionMid - (window.innerHeight - barH) / 2), behavior: "smooth" });
                   }}
                   className={`text-[25px] md:text-[40px] leading-none transition-colors duration-200 ease-out ${
                     activeSection === s.id ? "text-black font-semibold" : "text-neutral-600 font-medium hover:text-black"
