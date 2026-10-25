@@ -1,12 +1,15 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 // Shared image style: every content image fits its frame and is centred the same way.
 const mediaImg = "block w-full h-auto min-h-[120px] max-h-[480px] object-contain mx-auto bg-white";
+
+// One vertical rhythm for every section, so the gutter between any two sections is identical.
+const SECTION_Y = "py-20 md:py-28";
 
 const projectsData: Record<string, any> = {
   "museon": {
@@ -627,6 +630,95 @@ function HoverTitle({ text }: { text: string }) {
   );
 }
 
+// Design Process Map: one phase per slide, swipe / arrow / dot navigation
+function ProcessCarousel({ phases }: { phases: any[] }) {
+  const [index, setIndex] = useState(0);
+  const touchStartX = useRef<number | null>(null);
+  const lastIndex = phases.length - 1;
+  const go = (i: number) => setIndex(Math.max(0, Math.min(lastIndex, i)));
+
+  return (
+    <div className="flex flex-col gap-10">
+      <div className="flex items-center justify-between gap-6">
+        <span className="text-xs uppercase tracking-[0.22em] text-black">
+          {String(index + 1).padStart(2, "0")} / {String(phases.length).padStart(2, "0")}
+        </span>
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => go(index - 1)}
+            disabled={index === 0}
+            aria-label="Previous phase"
+            className="h-12 w-12 rounded-full border border-black flex items-center justify-center text-black transition-all duration-300 hover:bg-black hover:text-white disabled:opacity-30 disabled:pointer-events-none"
+          >
+            <ChevronLeft size={20} />
+          </button>
+          <button
+            type="button"
+            onClick={() => go(index + 1)}
+            disabled={index === lastIndex}
+            aria-label="Next phase"
+            className="h-12 w-12 rounded-full border border-black flex items-center justify-center text-black transition-all duration-300 hover:bg-black hover:text-white disabled:opacity-30 disabled:pointer-events-none"
+          >
+            <ChevronRight size={20} />
+          </button>
+        </div>
+      </div>
+
+      <div
+        className="overflow-hidden rounded-[2rem]"
+        onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
+        onTouchEnd={(e) => {
+          if (touchStartX.current === null) return;
+          const dx = e.changedTouches[0].clientX - touchStartX.current;
+          if (Math.abs(dx) > 50) go(index + (dx < 0 ? 1 : -1));
+          touchStartX.current = null;
+        }}
+      >
+        <div
+          className="flex transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform"
+          style={{ transform: `translateX(-${index * 100}%)` }}
+        >
+          {phases.map((phase: any, phaseIndex: number) => {
+            const processItems = phase.items || phase.steps?.map((step: string) => ({ title: step, description: "" })) || [];
+            return (
+              <div key={phaseIndex} className="w-full shrink-0" aria-hidden={index !== phaseIndex}>
+                <div className="h-full min-h-[420px] rounded-[2rem] bg-white border border-black p-8 md:p-14 flex flex-col gap-10">
+                  <div className="flex items-start justify-between">
+                    <span className="text-6xl md:text-8xl font-bold leading-none text-black">0{phaseIndex + 1}</span>
+                    <span className="text-xs uppercase tracking-[0.18em] text-black mt-2">Phase {phaseIndex + 1} of {phases.length}</span>
+                  </div>
+                  <h3 className="text-3xl md:text-5xl font-bold uppercase tracking-tight text-black">{phase.phase}</h3>
+                  <ol className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-6">
+                    {processItems.map((item: any, itemIndex: number) => (
+                      <li key={itemIndex} className="flex flex-col gap-2 border-t border-black pt-4">
+                        <p className="text-sm md:text-base font-bold uppercase tracking-tight text-black">{item.title}</p>
+                        {item.description && <p className="text-sm text-black leading-relaxed">{item.description}</p>}
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="flex justify-center gap-2">
+        {phases.map((_: any, i: number) => (
+          <button
+            key={i}
+            type="button"
+            onClick={() => go(i)}
+            aria-label={`Go to phase ${i + 1}`}
+            className={`h-2 rounded-full bg-black transition-all duration-500 ease-out ${i === index ? "w-10" : "w-2 opacity-25 hover:opacity-60"}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // ScrollyTelling wrapper handling fixed index, moving content, smooth animation
 function ScrollyTelling({ project }: { project: any }) {
   const sections = [];
@@ -911,9 +1003,9 @@ function ScrollyTelling({ project }: { project: any }) {
         <div className="flex flex-col gap-16 md:gap-24 w-full">
           {project.howMightWe && (
             <div className="grid grid-cols-1 gap-6">
-              <div className="rounded-[2.5rem] bg-white text-black p-8 md:p-12 min-h-[220px] md:min-h-[280px] flex items-center border border-black overflow-hidden relative">
-                <div className="absolute inset-x-8 top-8 h-px bg-black" />
-                <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tight leading-none text-black">How Might We...</h2>
+              <div className="bg-black text-white rounded-[2rem] shadow-[0_24px_60px_-20px_rgba(0,0,0,0.45)] transition-shadow duration-500 hover:shadow-[0_32px_70px_-24px_rgba(0,0,0,0.55)] p-8 md:p-12 min-h-[220px] md:min-h-[280px] flex items-center overflow-hidden relative">
+                <div className="absolute inset-x-8 top-8 h-px bg-white/25" />
+                <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tight leading-none text-white">How Might We...</h2>
               </div>
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {project.howMightWe.map((question: string, index: number) => (
@@ -1324,9 +1416,9 @@ function ScrollyTelling({ project }: { project: any }) {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {project.conversionRate.metrics.map((metric: any, idx: number) => (
-                  <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.3 }} className="flex flex-col justify-center items-center gap-2 p-10 bg-white rounded-2xl border border-black text-center">
-                    <span className="text-5xl font-bold text-black mb-2">{metric.value}</span>
-                    <span className="text-sm font-bold uppercase tracking-widest text-black">{metric.label}</span>
+                  <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.3 }} className="flex flex-col justify-center items-center gap-2 p-10 bg-black text-white rounded-[2rem] shadow-[0_24px_60px_-20px_rgba(0,0,0,0.45)] transition-shadow duration-500 hover:shadow-[0_32px_70px_-24px_rgba(0,0,0,0.55)] text-center">
+                    <span className="text-5xl font-bold text-white mb-2">{metric.value}</span>
+                    <span className="text-sm font-bold uppercase tracking-widest text-white">{metric.label}</span>
                   </motion.div>
                 ))}
               </div>
@@ -1422,7 +1514,7 @@ function ScrollyTelling({ project }: { project: any }) {
   return (
     <div className="relative w-full bg-white border-t border-black">
       {/* Sticky UI Overlay */}
-      <div className="sticky top-0 h-[100dvh] w-full pointer-events-none flex flex-col justify-end z-50">
+      <div className="sticky top-0 h-[100dvh] -mb-[100dvh] w-full pointer-events-none flex flex-col justify-end z-50">
         <div className="w-full bg-white border-t border-black py-8 px-6 pointer-events-auto">
           <div className="max-w-7xl mx-auto flex justify-between items-end">
             {/* Index */}
@@ -1465,15 +1557,17 @@ function ScrollyTelling({ project }: { project: any }) {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 -mt-[100vh] pt-[10vh]">
+      <div className="relative z-10 bg-white">
         {sections.map(s => (
-          <div id={s.id} key={s.id} className="min-h-screen pb-[35vh] pt-[5vh]">
+          <div id={s.id} key={s.id} className={SECTION_Y}>
             <div className="max-w-7xl mx-auto px-6 flex flex-col gap-24">
               <div className="w-full h-px opacity-0" />
               {s.content}
             </div>
           </div>
         ))}
+        {/* Clearance so the last section can scroll clear of the fixed bar */}
+        <div aria-hidden="true" className="h-[40vh]" />
       </div>
     </div>
   );
@@ -1507,12 +1601,12 @@ export function ProjectDetail() {
       <Navbar />
 
       {/* overflow-x-clip (not overflow-hidden) keeps the sticky index/description bar fixed while scrolling */}
-      <main className="w-full overflow-x-clip">
+      <main className="w-full overflow-x-clip bg-white">
 
         {/* ========================================================= */}
         {/* 1. OVERVIEW & CONTEXT */}
         {/* ========================================================= */}
-        <section className="w-full pt-24 pb-12 bg-white">
+        <section className="w-full bg-white pt-32 md:pt-36 pb-20 md:pb-28">
           <div className="max-w-7xl mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.1 }}
@@ -1523,7 +1617,7 @@ export function ProjectDetail() {
           </div>
         </section>
 
-        <section className="pb-24 md:pb-32 w-full bg-white text-black">
+        <section className={`${SECTION_Y} w-full bg-white text-black`}>
           <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center text-left">
             <div className="lg:col-span-4 flex flex-col gap-8">
               <div className="flex flex-col gap-2">
@@ -1580,7 +1674,7 @@ export function ProjectDetail() {
         </section>
 
         {(project.video || project.contribution || project.disclosure) && (
-          <section className="py-16 md:py-20 w-full bg-white text-black">
+          <section className={`${SECTION_Y} w-full bg-white text-black`}>
             <div className="max-w-5xl mx-auto px-6 flex flex-col gap-12">
               {project.video && (/\.gif(\?|$)/i.test(project.video) ? (
                 <img src={project.video} alt={`${project.title} walkthrough`} loading="lazy" decoding="async" className="w-full rounded-2xl border border-black bg-white object-contain" />
@@ -1614,40 +1708,14 @@ export function ProjectDetail() {
         {/* 2. PROCESS MAP */}
         {/* ========================================================= */}
         {project.processMap && (
-          <section className="py-16 md:py-24 w-full bg-white">
+          <section className={`${SECTION_Y} w-full bg-white`}>
             <div className="max-w-7xl mx-auto px-6">
               <div className="mb-12 md:mb-16 max-w-3xl">
                 <p className="text-sm uppercase tracking-[0.22em] text-black mb-3">Process</p>
                 <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-black mb-4">Design Process Map</h2>
                 <p className="text-base md:text-lg text-black leading-relaxed">A structured overview of the research, definition, and design phases that shaped the project.</p>
               </div>
-
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10">
-                {project.processMap.map((phase: any, phaseIndex: number) => {
-                  const processItems = phase.items || phase.steps?.map((step: string) => ({ title: step, description: "" })) || [];
-                  return (
-                    <motion.div key={phaseIndex} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.45, delay: phaseIndex * 0.08 }} className="relative flex flex-col rounded-[2rem] bg-white border border-black text-black p-6 md:p-8">
-                      <div className="flex items-start justify-between mb-8">
-                        <span className="text-6xl md:text-7xl font-bold leading-none text-black">0{phaseIndex + 1}</span>
-                        <span className="text-xs uppercase tracking-[0.18em] text-black mt-2">Phase {phaseIndex + 1} of {project.processMap.length}</span>
-                      </div>
-                      <h3 className="text-2xl md:text-3xl font-bold uppercase tracking-tight mb-8">{phase.phase}</h3>
-                      <ol className="relative flex flex-col gap-6 pl-6 border-l border-black">
-                        {processItems.map((item: any, itemIndex: number) => (
-                          <li key={itemIndex} className="relative">
-                            <span className="absolute -left-[30px] top-1.5 w-3 h-3 rounded-full bg-black" />
-                            <p className="text-sm md:text-base font-bold uppercase tracking-tight text-black">{item.title}</p>
-                            {item.description && <p className="text-sm text-black leading-relaxed mt-1">{item.description}</p>}
-                          </li>
-                        ))}
-                      </ol>
-                      {phaseIndex < project.processMap.length - 1 && (
-                        <div aria-hidden="true" className="hidden lg:flex absolute top-1/2 -right-7 z-10 w-6 h-6 items-center justify-center rounded-full bg-white text-black border border-black text-xs font-bold">→</div>
-                      )}
-                    </motion.div>
-                  );
-                })}
-              </div>
+              <ProcessCarousel phases={project.processMap} />
             </div>
           </section>
         )}
@@ -1656,7 +1724,7 @@ export function ProjectDetail() {
         {/* 3. PROBLEM SPACE */}
         {/* ========================================================= */}
         {(project.problem || project.problem2 || project.benchmarking) && (
-          <section className="py-16 md:py-20 w-full bg-white">
+          <section className={`${SECTION_Y} w-full bg-white`}>
             <div className="max-w-7xl mx-auto px-6">
               {project.problem && (
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
