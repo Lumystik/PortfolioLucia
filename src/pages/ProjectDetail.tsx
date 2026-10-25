@@ -672,7 +672,7 @@ function ScrollyTelling({ project }: { project: any }) {
                     : project.id === 'films-foundation' && persona.title.toLowerCase().includes('creator')
                     ? [ { label: 'Archive access', value: 95 }, { label: 'Searchability', value: 90 }, { label: 'Creative inspiration', value: 85 } ]
                     : [ { label: 'Easy booking', value: 95 }, { label: 'Event discovery', value: 85 }, { label: 'Mobile clarity', value: 80 } ];
-                  
+
                   const personaTags = project.id === 'museon' && persona.title.toLowerCase().includes('alex')
                     ? ['Museum staff', 'Planning', 'Collaboration', 'Office workflow']
                     : project.id === 'museon'
@@ -704,7 +704,7 @@ function ScrollyTelling({ project }: { project: any }) {
                           ))}
                         </div>
                       </div>
-                      
+
                       <div className="px-5 md:px-6 py-5 md:px-6 flex flex-col gap-5">
                         {hasStructuredDetails && (
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -766,7 +766,7 @@ function ScrollyTelling({ project }: { project: any }) {
                     <div className="flex flex-col gap-3"><span className="text-2xl font-bold italic text-black">DOES</span><p className="text-md text-black leading-snug">{project.targetUsers2.persona.empathyMap.does}</p></div>
                     <div className="flex flex-col gap-3"><span className="text-2xl font-bold italic text-black">FEEL</span><p className="text-md text-black leading-snug">{project.targetUsers2.persona.empathyMap.feel}</p></div>
                   </div>
-                  
+
                   <div className="mt-16">
                      <h4 className="text-xs font-black uppercase tracking-widest mb-6 text-black">Personality</h4>
                      {project.targetUsers2.persona.personality.map((trait: any, i: number) => (
@@ -1384,27 +1384,38 @@ function ScrollyTelling({ project }: { project: any }) {
 
   const [activeSection, setActiveSection] = useState(sections[0]?.id || "");
 
+  // A string key, so the listener only re-attaches when the section list really changes
+  const sectionIdsKey = sections.map(s => s.id).join(",");
+
   useEffect(() => {
-    const handleScroll = () => {
-      const sectionElements = sections.map(s => ({ id: s.id, el: document.getElementById(s.id) }));
-      let current = activeSection;
-      for (const item of sectionElements) {
-        if (item.el) {
-          const rect = item.el.getBoundingClientRect();
-          // Active if the top of the section is in the upper half of viewport or above, and bottom is not passed yet
-          if (rect.top <= window.innerHeight * 0.5 && rect.bottom >= 100) {
-            current = item.id;
-          }
-        }
+    const ids = sectionIdsKey ? sectionIdsKey.split(",") : [];
+    let frame = 0;
+
+    const update = () => {
+      frame = 0;
+      // The section whose top has crossed the middle of the viewport is the one being read
+      const readingLine = window.innerHeight * 0.5;
+      let current = ids[0] ?? "";
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= readingLine) current = id;
       }
-      if (current !== activeSection && current !== "") {
-        setActiveSection(current);
-      }
+      setActiveSection(current);
     };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // init on mount
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [sections, activeSection]);
+
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    update();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, [sectionIdsKey]);
 
   if (!sections.length) return null;
 
@@ -1417,12 +1428,16 @@ function ScrollyTelling({ project }: { project: any }) {
             {/* Index */}
             <div className="flex flex-col gap-2 w-1/2">
               {sections.map(s => (
-                <a 
-                  key={s.id} 
-                  href={`#${s.id}`} 
-                  onClick={(e) => { e.preventDefault(); document.getElementById(s.id)?.scrollIntoView({behavior: 'smooth'})}}
-                  className={`text-[25px] md:text-[40px] leading-none transition-colors duration-300 font-medium ${
-                    activeSection === s.id ? "text-black font-semibold" : "text-gray-400"
+                <a
+                  key={s.id}
+                  href={`#${s.id}`}
+                  aria-current={activeSection === s.id ? "true" : undefined}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById(s.id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }}
+                  className={`text-[25px] md:text-[40px] leading-none transition-colors duration-200 ease-out ${
+                    activeSection === s.id ? "text-black font-semibold" : "text-neutral-600 font-medium hover:text-black"
                   }`}
                 >
                   {s.title}
@@ -1432,9 +1447,10 @@ function ScrollyTelling({ project }: { project: any }) {
             {/* Description */}
             <div className="w-1/2 relative h-[100px] md:h-[120px] flex items-end justify-end">
               {sections.map(s => (
-                <div 
-                  key={s.id} 
-                  className={`absolute bottom-0 right-0 w-full md:w-[400px] text-right transition-all duration-300 ease-out ${
+                <div
+                  key={s.id}
+                  aria-hidden={activeSection !== s.id}
+                  className={`absolute bottom-0 right-0 w-full md:w-[400px] text-right transition-all duration-200 ease-out ${
                     activeSection === s.id ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"
                   }`}
                 >
@@ -1466,7 +1482,7 @@ function ScrollyTelling({ project }: { project: any }) {
 export function ProjectDetail() {
   const { id } = useParams<{ id: string }>();
   const project = id ? projectsData[id] : null;
-  
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
@@ -1490,8 +1506,9 @@ export function ProjectDetail() {
     <div className="bg-white text-black min-h-screen font-sans">
       <Navbar />
 
-      <main className="w-full overflow-hidden">
-        
+      {/* overflow-x-clip (not overflow-hidden) keeps the sticky index/description bar fixed while scrolling */}
+      <main className="w-full overflow-x-clip">
+
         {/* ========================================================= */}
         {/* 1. OVERVIEW & CONTEXT */}
         {/* ========================================================= */}
@@ -1710,7 +1727,7 @@ export function ProjectDetail() {
         {/* SCROLLY TELLING WRAPPER FOR SECTIONS 4-8 */}
         {/* ========================================================= */}
         <ScrollyTelling project={project} />
-        
+
         {/* Next Project Footer */}
         {project.nextProject && (
           <section className="relative w-full h-[60vh] md:h-[50vh] overflow-hidden group bg-white border-t border-black">
