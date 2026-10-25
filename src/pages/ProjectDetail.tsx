@@ -1716,22 +1716,6 @@ export function ProjectDetail() {
         )}
 
         {/* ========================================================= */}
-        {/* 2. PROCESS MAP */}
-        {/* ========================================================= */}
-        {project.processMap && (
-          <section className={`${SECTION_Y} w-full bg-white`}>
-            <div className="max-w-7xl mx-auto px-6">
-              <div className="mb-12 md:mb-16 max-w-3xl">
-                <p className="text-sm uppercase tracking-[0.22em] text-black mb-3">Process</p>
-                <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-black mb-4">Design Process Map</h2>
-                <p className="text-base md:text-lg text-black leading-relaxed">A structured overview of the research, definition, and design phases that shaped the project.</p>
-              </div>
-              <ProcessCarousel phases={project.processMap} />
-            </div>
-          </section>
-        )}
-
-        {/* ========================================================= */}
         {/* 3. PROBLEM SPACE */}
         {/* ========================================================= */}
         {(project.problem || project.problem2 || project.benchmarking) && (
@@ -1798,6 +1782,22 @@ export function ProjectDetail() {
                   </div>
                 </div>
               )}
+            </div>
+          </section>
+        )}
+
+        {/* ========================================================= */}
+        {/* 2. PROCESS MAP */}
+        {/* ========================================================= */}
+        {project.processMap && (
+          <section className={`${SECTION_Y} w-full bg-white`}>
+            <div className="max-w-7xl mx-auto px-6">
+              <div className="mb-12 md:mb-16 max-w-3xl">
+                <p className="text-sm uppercase tracking-[0.22em] text-black mb-3">Process</p>
+                <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-black mb-4">Design Process Map</h2>
+                <p className="text-base md:text-lg text-black leading-relaxed">A structured overview of the research, definition, and design phases that shaped the project.</p>
+              </div>
+              <ProcessCarousel phases={project.processMap} />
             </div>
           </section>
         )}
