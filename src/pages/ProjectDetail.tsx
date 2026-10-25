@@ -778,7 +778,7 @@ function ScrollyTelling({ project }: { project: any }) {
                   return (
                     <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.3 }} className="flex flex-col bg-white border border-black rounded-[2rem] overflow-hidden">
                       <div className="p-5 md:p-6 flex flex-col gap-5 border-b border-black">
-                        <div className="w-full aspect-[4/3] bg-white rounded-[1.5rem] overflow-hidden border border-black">
+                        <div className="w-full aspect-[4/3] bg-white rounded-[1.5rem] overflow-hidden">
                           <img src={persona.image} alt={persona.title} className={mediaImg} loading="lazy" decoding="async" />
                         </div>
                         <div className="flex flex-col gap-2">
@@ -840,7 +840,7 @@ function ScrollyTelling({ project }: { project: any }) {
               <h2 className="text-sm uppercase tracking-[0.2em] text-black mb-16">Detailed Persona</h2>
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
                 <div className="lg:col-span-4 flex flex-col gap-8">
-                  <div className="aspect-[4/5] bg-white border border-black rounded-2xl overflow-hidden">
+                  <div className="aspect-[4/5] bg-white rounded-2xl overflow-hidden">
                     <img src={project.targetUsers2.persona.image} alt="Marco" className={mediaImg} loading="lazy" decoding="async" />
                   </div>
                   <div>
@@ -945,7 +945,7 @@ function ScrollyTelling({ project }: { project: any }) {
                   {project.userInsights.benefitsImage && (
                     <div className="flex flex-col gap-4">
                       <h4 className="text-xl font-bold uppercase tracking-tight text-left text-black">User Perceived Benefits</h4>
-                      <div className="w-full rounded-[2rem] overflow-hidden bg-white p-4 border border-black flex items-center justify-center">
+                      <div className="w-full rounded-[2rem] overflow-hidden bg-white p-4 flex items-center justify-center">
                         <img src={project.userInsights.benefitsImage} alt="User Benefits" className={mediaImg} loading="lazy" decoding="async" />
                       </div>
                     </div>
@@ -953,7 +953,7 @@ function ScrollyTelling({ project }: { project: any }) {
                   {project.userInsights.insightsImage && (
                     <div className="flex flex-col gap-4">
                       <h4 className="text-xl font-bold uppercase tracking-tight text-left text-black">User Priorities</h4>
-                      <div className="w-full rounded-[2rem] overflow-hidden bg-white p-4 border border-black flex items-center justify-center">
+                      <div className="w-full rounded-[2rem] overflow-hidden bg-white p-4 flex items-center justify-center">
                         <img src={project.userInsights.insightsImage} alt="User Insights" className={mediaImg} loading="lazy" decoding="async" />
                       </div>
                     </div>
@@ -1035,7 +1035,7 @@ function ScrollyTelling({ project }: { project: any }) {
                       <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight leading-tight text-black">{project.pillars2[0].title}</h3>
                       <p className="text-base md:text-lg text-black leading-relaxed">{project.pillars2[0].description}</p>
                     </div>
-                    <div className="lg:col-span-8 rounded-2xl overflow-hidden border border-black p-4 bg-white">
+                    <div className="lg:col-span-8 rounded-2xl overflow-hidden p-4 bg-white">
                       <img src={project.pillars2[0].image} alt={project.pillars2[0].title} className={mediaImg} loading="lazy" decoding="async" />
                     </div>
                   </div>
@@ -1045,7 +1045,7 @@ function ScrollyTelling({ project }: { project: any }) {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12">
                   {project.pillars2.slice(1).map((pillar: any, idx: number) => (
                     <motion.div key={idx} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.3 }} className="flex flex-col gap-6 items-start text-left group">
-                      <div className="w-full aspect-video rounded-2xl overflow-hidden border border-black p-4 bg-white">
+                      <div className="w-full aspect-video rounded-2xl overflow-hidden p-4 bg-white">
                         <img src={pillar.image} alt={pillar.title} className={mediaImg} loading="lazy" decoding="async" />
                       </div>
                       <div className="flex flex-col gap-2">
@@ -1063,7 +1063,7 @@ function ScrollyTelling({ project }: { project: any }) {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12">
               {project.pillars.map((pillar: any, idx: number) => (
                 <motion.div key={idx} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.3 }} className="flex flex-col gap-6 items-start text-left group">
-                  <div className="w-full aspect-square rounded-2xl overflow-hidden border border-black p-2 bg-white">
+                  <div className="w-full aspect-square rounded-2xl overflow-hidden p-2 bg-white">
                     <img src={pillar.image} alt={pillar.title} className={mediaImg} loading="lazy" decoding="async" />
                   </div>
                   <div className="flex flex-col gap-2">
@@ -1081,7 +1081,7 @@ function ScrollyTelling({ project }: { project: any }) {
                 <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-black">Ideation</h3>
               </div>
               <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.3 }} className="flex flex-col gap-6">
-                <div className="w-full bg-white p-6 md:p-12 rounded-2xl border border-black">
+                <div className="w-full bg-white p-6 md:p-12 rounded-2xl">
                   <img src={project.ideation.heroFlow} alt="Hero Flow" className={mediaImg} loading="lazy" decoding="async" />
                 </div>
                 <p className="text-xs md:text-sm text-black font-bold uppercase tracking-widest text-center">{project.ideation.heroFlowCaption}</p>
@@ -1094,7 +1094,7 @@ function ScrollyTelling({ project }: { project: any }) {
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
                   {project.ideation.wireframes.map((wire: any, idx: number) => (
                     <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.3 }} className="flex flex-col gap-6">
-                      <div className="w-full max-w-[280px] mx-auto overflow-hidden border border-black rounded-xl flex justify-center items-center bg-white">
+                      <div className="w-full max-w-[280px] mx-auto overflow-hidden rounded-xl flex justify-center items-center bg-white">
                         <img src={wire.image} alt={wire.caption} className={mediaImg} loading="lazy" decoding="async" />
                       </div>
                       <div className="flex flex-col gap-2 text-center">
@@ -1136,7 +1136,7 @@ function ScrollyTelling({ project }: { project: any }) {
               {project.branding.shapes && (
                 <div className="flex justify-center items-center gap-6 flex-wrap">
                   {project.branding.shapes.map((shape: any, idx: number) => (
-                    <div key={idx} className="rounded-full border border-black" style={{ backgroundColor: '#000', width: `${shape.size}px`, height: `${shape.size}px`, opacity: shape.opacity ?? 1, filter: `blur(${shape.blur ?? 0}px)` }} />
+                    <div key={idx} className="rounded-full border border-black" style={{ backgroundColor: shape.color ?? '#000', width: `${shape.size}px`, height: `${shape.size}px`, opacity: shape.opacity ?? 1, filter: `blur(${shape.blur ?? 0}px)` }} />
                   ))}
                 </div>
               )}
@@ -1146,14 +1146,14 @@ function ScrollyTelling({ project }: { project: any }) {
                     <h4 className="text-xl font-bold uppercase tracking-tight text-black">Logo Design</h4>
                     <p className="text-base md:text-lg text-black leading-relaxed">{project.branding.logoDescription}</p>
                   </div>
-                  <div className="flex justify-center items-center border border-black p-4 rounded-xl bg-white">
+                  <div className="flex justify-center items-center p-4 rounded-xl bg-white">
                     <img src={project.branding.logoImage} alt="Logo" className={mediaImg} loading="lazy" decoding="async" />
                   </div>
                 </div>
               )}
               {project.branding.featuresImage && (
                 <div className="border-t border-black pt-16">
-                  <img src={project.branding.featuresImage} alt="Feature" className={`${mediaImg} border border-black rounded-xl`} loading="lazy" decoding="async" />
+                  <img src={project.branding.featuresImage} alt="Feature" className={`${mediaImg} rounded-xl`} loading="lazy" decoding="async" />
                 </div>
               )}
             </div>
@@ -1208,7 +1208,7 @@ function ScrollyTelling({ project }: { project: any }) {
                     <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-center">
                       <div><p className="text-base md:text-lg text-black leading-relaxed">{project.branding2.logo.description}</p></div>
                       <div className="flex justify-center md:justify-end">
-                        <div className="rounded-2xl bg-white border border-black p-6">
+                        <div className="rounded-2xl bg-white p-6">
                           <img src={project.branding2.logo.image} alt="Films Foundation Logo" className={mediaImg} loading="lazy" decoding="async" />
                         </div>
                       </div>
@@ -1227,7 +1227,7 @@ function ScrollyTelling({ project }: { project: any }) {
                 <p className="text-base md:text-lg text-black leading-relaxed">{project.designSystem.description}</p>
               </div>
               {project.designSystem?.tokens && (
-                <div className="rounded-2xl overflow-hidden border border-black bg-white">
+                <div className="rounded-2xl overflow-hidden bg-white">
                   <img src={project.designSystem.tokens.atomsImage} alt="Atoms" className="block w-full h-auto" loading="lazy" decoding="async" />
                 </div>
               )}
@@ -1245,7 +1245,7 @@ function ScrollyTelling({ project }: { project: any }) {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
                 {project.keyFunctions.functions.map((func: any, idx: number) => (
                   <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.3 }} className="group flex flex-col gap-6">
-                    <div className={`w-full aspect-[2/3] rounded-2xl overflow-hidden flex items-center justify-center border border-black bg-white ${func.visual === 'chip' ? 'p-6 sm:p-8' : 'p-8'}`}>
+                    <div className={`w-full aspect-[2/3] rounded-2xl overflow-hidden flex items-center justify-center bg-white ${func.visual === 'chip' ? 'p-6 sm:p-8' : 'p-8'}`}>
                       {func.visual === 'chip' ? <CentralizedChip /> : <img src={func.image} alt={func.title} className={project.id === 'soc' ? 'block w-full h-full object-cover object-top' : mediaImg} loading="lazy" decoding="async" />}
                     </div>
                     <div className="flex flex-col gap-2 text-left">
@@ -1260,7 +1260,7 @@ function ScrollyTelling({ project }: { project: any }) {
 
           {project.cisoInterface && (
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.3 }} className="lg:col-span-5 rounded-2xl overflow-hidden border border-black">
+              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.3 }} className="lg:col-span-5 rounded-2xl overflow-hidden">
                 <img src={project.cisoInterface.image} alt="CISO interface" className="block w-full h-auto max-h-[760px] object-contain mx-auto bg-white" loading="lazy" decoding="async" />
               </motion.div>
               <div className="lg:col-span-7 flex flex-col gap-6">
@@ -1288,7 +1288,7 @@ function ScrollyTelling({ project }: { project: any }) {
                 <p className="text-base md:text-lg text-black leading-relaxed">{project.conversationalAgent.description}</p>
               </div>
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <div className="lg:col-span-7 rounded-2xl border border-black bg-white p-4 md:p-6">
+                <div className="lg:col-span-7 rounded-2xl bg-white p-4 md:p-6">
                   <img src={project.conversationalAgent.image} alt="Persistent workspace" className="block w-full h-auto" loading="lazy" decoding="async" />
                 </div>
                 <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -1345,7 +1345,7 @@ function ScrollyTelling({ project }: { project: any }) {
               </div>
               <div className="lg:col-span-7 grid grid-cols-1 gap-8">
                 {project.userTesting.images.map((img: string, idx: number) => (
-                  <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.3 }} className="w-full rounded-2xl overflow-hidden bg-white border border-black p-2 md:p-3">
+                  <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.3 }} className="w-full rounded-2xl overflow-hidden bg-white p-2 md:p-3">
                     <img src={img} alt={`User Testing ${idx + 1}`} className={mediaImg} loading="lazy" decoding="async" />
                   </motion.div>
                 ))}
@@ -1373,7 +1373,7 @@ function ScrollyTelling({ project }: { project: any }) {
                       <h4 className="text-xl font-bold uppercase tracking-tight text-black">{item.title}</h4>
                       <p className="text-base md:text-lg text-black leading-relaxed">{item.description}</p>
                     </div>
-                    <div className={`w-full rounded-2xl overflow-hidden border border-black p-2 md:p-6 bg-white flex justify-center ${idx % 2 === 1 ? 'lg:order-1' : ''}`}>
+                    <div className={`w-full rounded-2xl overflow-hidden p-2 md:p-6 bg-white flex justify-center ${idx % 2 === 1 ? 'lg:order-1' : ''}`}>
                       <img src={item.image || "/placeholder-image.png"} alt={item.title} className={mediaImg} loading="lazy" decoding="async" />
                     </div>
                   </motion.div>
@@ -1401,7 +1401,7 @@ function ScrollyTelling({ project }: { project: any }) {
                 <a href={project.finalPrototype.link} target="_blank" rel="noopener noreferrer" className="px-8 py-4 border border-black text-black uppercase tracking-widest text-sm md:text-base font-bold hover:bg-black hover:text-white transition-all duration-300 rounded-md">View Final Version</a>
               </div>
               {project.bannerImage && (
-                <div className="w-full rounded-2xl overflow-hidden border border-black bg-white">
+                <div className="w-full rounded-2xl overflow-hidden bg-white">
                   <img src={project.bannerImage} alt="Final Prototype Showcase" className={mediaImg} loading="lazy" decoding="async" />
                 </div>
               )}
@@ -1453,7 +1453,7 @@ function ScrollyTelling({ project }: { project: any }) {
                       <p className="text-base md:text-lg text-black leading-relaxed">{item.desc}</p>
                     </div>
                     <div className={`order-1 ${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
-                      <div className="rounded-xl overflow-hidden border border-black bg-white p-4">
+                      <div className="rounded-xl overflow-hidden bg-white p-4">
                         <img src={item.image} alt={item.title} className={mediaImg} loading="lazy" decoding="async" />
                       </div>
                     </div>
@@ -1475,6 +1475,9 @@ function ScrollyTelling({ project }: { project: any }) {
   }
 
   const [activeSection, setActiveSection] = useState(sections[0]?.id || "");
+  // The bar belongs to this section only: it hides once the section has scrolled past the viewport bottom
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [barVisible, setBarVisible] = useState(true);
 
   // A string key, so the listener only re-attaches when the section list really changes
   const sectionIdsKey = sections.map(s => s.id).join(",");
@@ -1493,6 +1496,8 @@ function ScrollyTelling({ project }: { project: any }) {
         if (el && el.getBoundingClientRect().top <= readingLine) current = id;
       }
       setActiveSection(current);
+      const wrapper = wrapperRef.current;
+      if (wrapper) setBarVisible(wrapper.getBoundingClientRect().bottom > window.innerHeight);
     };
 
     const onScroll = () => {
@@ -1512,9 +1517,9 @@ function ScrollyTelling({ project }: { project: any }) {
   if (!sections.length) return null;
 
   return (
-    <div className="relative w-full bg-white border-t border-black">
+    <div ref={wrapperRef} className="relative w-full bg-white border-t border-black">
       {/* Sticky UI Overlay */}
-      <div className="sticky top-0 h-[100dvh] -mb-[100dvh] w-full pointer-events-none flex flex-col justify-end z-50">
+      <div className={`sticky top-0 h-[100dvh] -mb-[100dvh] w-full pointer-events-none flex flex-col justify-end z-50 transition-opacity duration-200 ${barVisible ? "opacity-100" : "opacity-0"}`}>
         <div className="w-full bg-white border-t border-black py-8 px-6 pointer-events-auto">
           <div className="max-w-7xl mx-auto flex justify-between items-end">
             {/* Index */}
@@ -1610,7 +1615,7 @@ export function ProjectDetail() {
           <div className="max-w-7xl mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.1 }}
-              className="w-full rounded-2xl overflow-hidden bg-white border border-black"
+              className="w-full rounded-2xl overflow-hidden bg-white"
             >
               <img fetchPriority="high" decoding="async" src={project.heroImage} alt={project.title} className="w-full h-auto object-cover max-h-[70vh]" />
             </motion.div>
@@ -1677,9 +1682,9 @@ export function ProjectDetail() {
           <section className={`${SECTION_Y} w-full bg-white text-black`}>
             <div className="max-w-5xl mx-auto px-6 flex flex-col gap-12">
               {project.video && (/\.gif(\?|$)/i.test(project.video) ? (
-                <img src={project.video} alt={`${project.title} walkthrough`} loading="lazy" decoding="async" className="w-full rounded-2xl border border-black bg-white object-contain" />
+                <img src={project.video} alt={`${project.title} walkthrough`} loading="lazy" decoding="async" className="w-full rounded-2xl bg-white object-contain" />
               ) : (
-                <video src={project.video} controls playsInline preload="metadata" className="w-full rounded-2xl border border-black bg-white" />
+                <video src={project.video} controls playsInline preload="metadata" className="w-full rounded-2xl bg-white" />
               ))}
               {project.contribution && (
                 <div className="flex flex-col gap-8">
@@ -1734,7 +1739,7 @@ export function ProjectDetail() {
                   </div>
                   <div className={`lg:col-span-8 flex items-center justify-center w-full ${project.id === 'soc' ? 'overflow-visible pt-32 pb-4' : 'overflow-hidden rounded-2xl'}`}>
                     {project.id === 'soc' ? <ProblemFolder tools={["Endpoint protection", "Threat intelligence feeds", "Security information system", "Ticketing"]} /> : (
-                      <img src={project.problemImage || "/placeholder-phone-mockup.png"} alt="The Problem Illustration" className={`${mediaImg} border border-black rounded-2xl`} loading="lazy" decoding="async" />
+                      <img src={project.problemImage || "/placeholder-phone-mockup.png"} alt="The Problem Illustration" className={`${mediaImg} rounded-2xl`} loading="lazy" decoding="async" />
                     )}
                   </div>
                 </div>
