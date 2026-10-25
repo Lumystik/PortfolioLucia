@@ -1617,7 +1617,7 @@ export function ProjectDetail() {
         {/* ========================================================= */}
         {/* 1. OVERVIEW & CONTEXT */}
         {/* ========================================================= */}
-        <section className="w-full bg-white pt-28 md:pt-32 pb-12 md:pb-16">
+        <section className="w-full bg-white pt-28 md:pt-32 pb-0">
           <div className="max-w-7xl mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.1 }}
@@ -1628,8 +1628,8 @@ export function ProjectDetail() {
           </div>
         </section>
 
-        <section className={`${SECTION_Y} w-full bg-white text-black`}>
-          <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center text-left">
+        <section className="pt-8 md:pt-10 pb-12 md:pb-16 w-full bg-white text-black">
+          <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-start text-left">
             <div className="lg:col-span-4 flex flex-col gap-8">
               <div className="flex flex-col gap-2">
                 <h4 className="text-sm font-bold uppercase tracking-widest text-black">Project Scope</h4>
